@@ -9,7 +9,7 @@ function get_the_lang($lang_id)
 
 function get_langs()
 {
-	$statement = db()->prepare("SELECT * FROM `languages`"); 
+	$statement = db()->prepare("SELECT * FROM `languages` WHERE status = 1"); 
 	$statement->execute(array());
 	return $statement->fetchAll(PDO::FETCH_ASSOC);
 }

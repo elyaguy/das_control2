@@ -81,7 +81,7 @@ include ("left_sidebar.php") ;
           <div class="box-body">
             <div class="table-responsive">  
               <?php
-                  $hide_colums = "";
+                  $hide_colums = "2,";
                   if (user_group_id() != 1) {
                     if (! has_permission('access', 'update_store')) {
                       $hide_colums .= "5,";

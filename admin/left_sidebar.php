@@ -67,7 +67,7 @@
               </a>
             </li>
           <?php endif; ?>
-          <?php if (user_group_id() == 1 || has_permission('access', 'read_sell_return')) : ?>
+          <!-- <?php if (user_group_id() == 1 || has_permission('access', 'read_sell_return')) : ?>
             <li class="<?php echo (current_nav() == 'sell_return') ? 'active' : null; ?>">
               <a href="sell_return.php">
                 <svg class="svg-icon"><use href="#icon-back-arrow"></svg>
@@ -84,8 +84,8 @@
                  <?php echo trans('menu_sell_log'); ?>
               </a>
             </li>
-          <?php endif; ?>
-          <li class="treeview<?php echo current_nav() == 'giftcard' || current_nav() == 'giftcard_topup' ? ' active' : null; ?>">
+          <?php endif; ?> -->
+          <!-- <li class="treeview<?php echo current_nav() == 'giftcard' || current_nav() == 'giftcard_topup' ? ' active' : null; ?>">
             <?php if(user_group_id() == 1 || has_permission('access', 'read_giftcard') || has_permission('access', 'add_giftcard') || has_permission('access', 'read_giftcard_topup')): ?>
             <a href="giftcard.php">
               <svg class="svg-icon"><use href="#icon-card1"></svg>
@@ -125,11 +125,26 @@
                 </li>
               <?php endif; ?>
             </ul>
-          </li>
+          </li> -->
         </ul>
       </li>
 
-      <?php if (user_group_id() == 1 || has_permission('access', 'read_quotation')) : ?>
+
+      <!-- EdgarTM 
+                read_quotation          cotización
+                create_installment      pagos
+                read_transfer           transferir
+                read_customer           clientes
+                deposit                 contabilidad
+                read_expense            gasto
+                read_loan               prestamos
+                read_analytics          analitica
+                send_sms                sms
+                read_filemanager        archivos
+    -->
+
+
+      <?php if (user_group_id() == -1 || has_permission('access', 'read_quotation69')) : ?>
         <li class="treeview<?php echo current_nav() == 'quotation' || current_nav() == 'quotation_list' ||  current_nav() == 'quotation_edit' ? ' active' : null; ?>">
           <?php if(user_group_id() == 1 || has_permission('access', 'read_quotation') || has_permission('access', 'create_quotation')): ?>
           <a href="quotation.php">
@@ -163,7 +178,7 @@
         </li>
       <?php endif; ?>
 
-      <?php if (INSTALLMENT && (user_group_id() == 1 || has_permission('access', 'create_installment'))):?>
+      <?php if (INSTALLMENT && (user_group_id() == -1 || has_permission('access', 'create_installment69'))):?>
         <li class="treeview<?php echo current_nav() == 'installment' || current_nav() == 'installment_payment' || current_nav() == 'installment_overview' ? ' active' : null; ?>">
           <?php if(user_group_id() == 1 || has_permission('access', 'read_installment') || has_permission('access', 'installment_payment') || has_permission('access', 'installment_payment') || has_permission('access', 'installment_overview')): ?>
           <a href="installment.php">
@@ -237,7 +252,10 @@
         </li>
       <?php endif;?>
 
-      <?php if (user_group_id() == 1 || has_permission('access', 'read_purchase_list') || has_permission('access', 'create_purchase_invoice') || has_permission('access', 'read_purchase_return') || has_permission('access', 'read_purchase_log')) : ?>
+      <?php if (user_group_id() == -1 || has_permission('access', 'read_purchase_list69') 
+      || has_permission('access', 'create_purchase_invoice69') 
+      || has_permission('access', 'read_purchase_return69') 
+      || has_permission('access', 'read_purchase_log69')) : ?>
         <li class="treeview<?php echo current_nav() == 'purchase' || current_nav() == 'purchase_return' || current_nav() == 'purchase_log' ? ' active' : null; ?>">
           <?php if(user_group_id() == 1 || has_permission('access', 'read_purchase_list') || has_permission('access', 'create_purchase_invoice') || has_permission('access', 'read_purchase_return')) : ?>
           <a href="purchage_list.php">
@@ -299,7 +317,7 @@
         </li>
       <?php endif; ?>
 
-      <?php if (user_group_id() == 1 || has_permission('access', 'read_transfer')) : ?>
+      <?php if (user_group_id() == -1 || has_permission('access', 'read_transfer69')) : ?>
         <li class="treeview<?php echo current_nav() == 'transfer' || current_nav() == 'transfer_add' ? ' active' : null; ?>">
           <a href="transfer.php">
             <svg class="svg-icon"><use href="#icon-transfer"></svg>
@@ -335,7 +353,7 @@
             <?php endif; ?>
           </ul>
         </li>
-      <?php endif; ?>
+      <?php endif; ?> 
 
       <?php if (user_group_id() == 1 || has_permission('access', 'read_product')) : ?>
         <li class="treeview<?php echo current_nav() == 'product' || current_nav() == 'product_details' || current_nav() == 'barcode_print' || current_nav() == 'category' || current_nav() == 'import_product' || current_nav() == 'stock_alert' || current_nav() == 'expired' ? ' active' : null; ?>">
@@ -363,14 +381,14 @@
                 </a>
               </li>
             <?php endif; ?>
-            <?php if (user_group_id() == 1 || has_permission('access', 'barcode_print')): ?>
+            <!-- <?php if (user_group_id() == 1 || has_permission('access', 'barcode_print')): ?>
               <li class="<?php echo current_nav() == 'barcode_print' ? ' active' : null; ?>">
                 <a href="barcode_print.php">
                   <svg class="svg-icon"><use href="#icon-barcode"></svg>
                   <?php echo trans('menu_barcode_print'); ?>
                 </a>
               </li>
-            <?php endif; ?>
+            <?php endif; ?> -->
             <?php if (user_group_id() == 1 || has_permission('access', 'read_category')): ?>
               <li class="<?php echo current_nav() == 'category' && !isset($request->get['box_state']) ? ' active' : null; ?>">
                 <a href="category.php">
@@ -425,7 +443,7 @@
         </li>
       <?php endif; ?>
 
-      <?php if (user_group_id() == 1 || has_permission('access', 'read_customer') || has_permission('access', 'read_customer_transaction')) : ?>
+      <?php if (user_group_id() == -1 || has_permission('access', 'read_customer69') || has_permission('access', 'read_customer_transaction69')) : ?>
         <li class="treeview<?php echo current_nav() == 'customer' || current_nav() == 'customer_profile' || current_nav() == 'customer_transaction' ? ' active' : null; ?>">
           <a href="customer.php">
             <svg class="svg-icon"><use href="#icon-group"></svg>
@@ -501,7 +519,13 @@
         </li>
       <?php endif; ?>
 
-      <?php if (user_group_id() == 1 || has_permission('access', 'deposit') || has_permission('access', 'withdraw') || has_permission('access', 'transfer') || has_permission('access', 'read_bank_transfer') || has_permission('access', 'read_bank_transactions') || has_permission('access', 'read_bank_account') || has_permission('access', 'create_bank_account') || has_permission('access', 'read_bank_account_sheet') || has_permission('access', 'read_income_monthwise') || has_permission('access', 'read_expense_monthwise') || has_permission('access', 'read_income_and_expense_report') || has_permission('access', 'read_profit_and_loss_report') || has_permission('access', 'read_cashbook_report')) : ?>
+      <?php if (user_group_id() == -1 || has_permission('access', 'deposit69') 
+      || has_permission('access', 'withdraw69') || has_permission('access', 'transfer69') 
+      || has_permission('access', 'read_bank_transfer69') || has_permission('access', 'read_bank_transactions69') 
+      || has_permission('access', 'read_bank_account69') || has_permission('access', 'create_bank_account69') 
+      || has_permission('access', 'read_bank_account_sheet69') || has_permission('access', 'read_income_monthwise69') 
+      || has_permission('access', 'read_expense_monthwise69') || has_permission('access', 'read_income_and_expense_report69') 
+      || has_permission('access', 'read_profit_and_loss_report69') || has_permission('access', 'read_cashbook_report69')) : ?>
         <li class="treeview<?php echo current_nav() == 'bank_transactions' || current_nav() == 'new_deposit' || current_nav() == 'new_withdraw' || current_nav() == 'bank_transfer' || current_nav() == 'bank_transactions' || current_nav() == 'bank_account' || current_nav() == 'bank_account_sheet' || current_nav() == 'income_source' || current_nav() == 'income_monthwise' || (current_nav() == 'expense_monthwise' && isset($request->get['show_top'])) || current_nav() == 'report_income_and_expense' || current_nav() == 'report_cashbook' || current_nav() == 'report_profit_and_loss' ? ' active' : null; ?>">
           <a href="bank_transactions.php?type=report">
             <svg class="svg-icon"><use href="#icon-bank"></svg>
@@ -627,7 +651,9 @@
         </li>
       <?php endif; ?>
 
-      <?php if (user_group_id() == 1 || has_permission('access', 'read_expense') || has_permission('access', 'create_expense') || has_permission('access', 'read_expense_category') || has_permission('access', 'read_expense_summary') || has_permission('access', 'read_expense_monthwise')) : ?>
+      <?php if (user_group_id() == -1 || has_permission('access', 'read_expense69') 
+      || has_permission('access', 'create_expense69') || has_permission('access', 'read_expense_category69') 
+      || has_permission('access', 'read_expense_summary') || has_permission('access', 'read_expense_monthwise')) : ?>
         <li class="treeview<?php echo current_nav() == 'expense' || current_nav() == 'expense_category' || current_nav() == 'expense_summary' || (current_nav() == 'expense_monthwise' && !isset($request->get['show_top'])) ? ' active' : null; ?>">
           <a href="expense.php">
             <svg class="svg-icon"><use href="#icon-minus"></svg>
@@ -689,7 +715,7 @@
         </li>
       <?php endif; ?>
 
-      <?php if (user_group_id() == 1 || has_permission('access', 'read_loan') || has_permission('access', 'take_loan') || has_permission('access', 'read_loan_summary')) : ?>
+      <?php if (user_group_id() == -1 || has_permission('access', 'read_loan69') || has_permission('access', 'take_loan69') || has_permission('access', 'read_loan_summary69')) : ?>
         <li class="treeview<?php echo current_nav() == 'loan' || current_nav() == 'loan_summary' ? ' active' : null; ?>">
           <a href="loan.php">
             <svg class="svg-icon"><use href="#icon-loan"></svg>
@@ -747,32 +773,32 @@
             </li>
           <?php endif; ?>
 
-          <?php if (user_group_id() == 1 || has_permission('access', 'read_collection_report')) : ?>
+          <!-- <?php if (user_group_id() == 1 || has_permission('access', 'read_collection_report')) : ?>
             <li class="<?php echo current_nav() == 'report_collection' ? ' active' : null; ?>">
               <a href="report_collection.php">
                 <svg class="svg-icon"><use href="#icon-report"></svg>
                 <?php echo trans('menu_report_collection'); ?>
               </a>
             </li>
-          <?php endif; ?>
+          <?php endif; ?> -->
 
-          <?php if (user_group_id() == 1 || has_permission('access', 'read_customer_due_collection_report')) : ?>
+          <!-- <?php if (user_group_id() == 1 || has_permission('access', 'read_customer_due_collection_report')) : ?>
             <li class="<?php echo current_nav() == 'report_customer_due_collection' ? ' active' : null; ?>">
               <a href="report_customer_due_collection.php">
                 <svg class="svg-icon"><use href="#icon-report"></svg>
                 <?php echo trans('menu_report_due_collection'); ?>
               </a>
             </li>
-          <?php endif; ?>
+          <?php endif; ?> -->
 
-          <?php if (user_group_id() == 1 || has_permission('access', 'read_supplier_due_paid_report')) : ?>
+          <!-- <?php if (user_group_id() == 1 || has_permission('access', 'read_supplier_due_paid_report')) : ?>
             <li class="<?php echo current_nav() == 'report_supplier_due_paid' ? ' active' : null; ?>">
               <a href="report_supplier_due_paid.php">
                 <svg class="svg-icon"><use href="#icon-report"></svg>
                 <?php echo trans('menu_report_due_paid'); ?>
               </a>
             </li>
-          <?php endif; ?>
+          <?php endif; ?> -->
 
           <?php if (user_group_id() == 1 || has_permission('access', 'read_sell_report')) : ?>
             <li class="<?php echo current_nav() == 'report_sell_itemwise' || current_nav() == 'report_sell_categorywise' || current_nav() == 'report_sell_supplierwise' ? ' active' : null; ?>">
@@ -793,7 +819,7 @@
               </a>
             </li>
           <?php endif; ?>
-
+<!-- 
           <?php if (user_group_id() == 1 || has_permission('access', 'read_sell_payment_report')) : ?>
             <li class="<?php echo current_nav() == 'report_sell_payment' ? 'active' : null; ?>">
               <a href="report_sell_payment.php">
@@ -803,9 +829,9 @@
                 </span>
               </a>
             </li>
-          <?php endif; ?>
+          <?php endif; ?> -->
 
-          <?php if (user_group_id() == 1 || has_permission('access', 'read_purchase_payment_report')) : ?>
+          <!-- <?php if (user_group_id() == 1 || has_permission('access', 'read_purchase_payment_report')) : ?>
             <li class="<?php echo current_nav() == 'report_purchase_payment' ? 'active' : null; ?>">
               <a href="report_purchase_payment.php">
                 <svg class="svg-icon"><use href="#icon-report"></svg>
@@ -814,9 +840,9 @@
                 </span>
               </a>
             </li>
-          <?php endif; ?>
+          <?php endif; ?> -->
 
-          <?php if (user_group_id() == 1 || has_permission('access', 'read_sell_tax_report')) : ?>
+          <!-- <?php if (user_group_id() == 1 || has_permission('access', 'read_sell_tax_report')) : ?>
             <li class="<?php echo current_nav() == 'report_sell_tax' ? 'active' : null; ?>">
               <a href="report_sell_tax.php">
                 <svg class="svg-icon"><use href="#icon-report"></svg>
@@ -825,9 +851,9 @@
                 </span>
               </a>
             </li>
-          <?php endif; ?>
+          <?php endif; ?> -->
 
-          <?php if (user_group_id() == 1 || has_permission('access', 'read_purchase_tax_report')) : ?>
+          <!-- <?php if (user_group_id() == 1 || has_permission('access', 'read_purchase_tax_report')) : ?>
             <li class="<?php echo current_nav() == 'report_purchase_tax' ? 'active' : null; ?>">
               <a href="report_purchase_tax.php">
                 <svg class="svg-icon"><use href="#icon-report"></svg>
@@ -836,9 +862,9 @@
                 </span>
               </a>
             </li>
-          <?php endif; ?>
+          <?php endif; ?> -->
 
-          <?php if (user_group_id() == 1 || has_permission('access', 'read_tax_overview_report')) : ?>
+          <!-- <?php if (user_group_id() == 1 || has_permission('access', 'read_tax_overview_report')) : ?>
             <li class="<?php echo current_nav() == 'report_tax_overview' ? 'active' : null; ?>">
               <a href="report_tax_overview.php">
                 <svg class="svg-icon"><use href="#icon-eye"></svg>
@@ -847,7 +873,7 @@
                 </span>
               </a>
             </li>
-          <?php endif; ?>
+          <?php endif; ?> -->
 
           <?php if (user_group_id() == 1 || has_permission('access', 'read_stock_report')) : ?>
             <li class="<?php echo current_nav() == 'report_stock' ? 'active' : null; ?>">
@@ -862,7 +888,7 @@
         </ul>
       </li>
 
-      <?php if (user_group_id() == 1 || has_permission('access', 'read_analytics')) : ?>
+      <?php if (user_group_id() == -1 || has_permission('access', 'read_analytics69')) : ?>
         <li class="<?php echo current_nav() == 'analytics' ? 'active' : null; ?>">
           <a href="analytics.php">
             <svg class="svg-icon"><use href="#icon-analytics"></svg>
@@ -873,7 +899,7 @@
         </li>
       <?php endif; ?>
 
-      <?php if (user_group_id() == 1 || has_permission('access', 'send_sms') || has_permission('access', 'read_sms_setting') || has_permission('access', 'read_sms_report')) : ?>
+      <?php if (user_group_id() == -1 || has_permission('access', 'send_sms69') || has_permission('access', 'read_sms_setting69') || has_permission('access', 'read_sms_report69')) : ?>
         <li class="treeview<?php echo current_nav() == 'sms_send' || current_nav() == 'sms_setting' || current_nav() == 'sms_report' ? ' active' : null; ?>">
           <a href="sms_send.php">
             <svg class="svg-icon"><use href="#icon-sms"></svg>
@@ -983,7 +1009,7 @@
         </li>
       <?php endif; ?>
 
-      <?php if ((user_group_id() == 1 || has_permission('access', 'read_filemanager')) && !DEMO) : ?>
+      <?php if ((user_group_id() == -1 || has_permission('access', 'read_filemanager69')) && !DEMO) : ?>
         <li class="<?php echo current_nav() == 'filemanager' ? 'active' : null; ?>">
           <a href="filemanager.php">
             <svg class="svg-icon"><use href="#icon-folder"></svg>
@@ -1070,7 +1096,7 @@
               </li>
             <?php endif; ?>
 
-            <?php if (user_group_id() == 1 || has_permission('access', 'read_brand')) : ?>
+            <!-- <?php if (user_group_id() == 1 || has_permission('access', 'read_brand')) : ?>
               <li class="treeview<?php echo current_nav() == 'brand' || current_nav() == 'brand_profile' ? ' active' : null; ?>">
                 <a href="brand.php">
                   <svg class="svg-icon"><use href="#icon-brand"></svg>
@@ -1102,9 +1128,9 @@
                   <?php endif; ?>
                 </ul>
               </li>
-            <?php endif; ?>
+            <?php endif; ?> -->
 
-            <?php if (user_group_id() == 1 || has_permission('access', 'read_currency')) : ?>
+            <!-- <?php if (user_group_id() == 1 || has_permission('access', 'read_currency')) : ?>
               <li class="<?php echo current_nav() == 'currency' ? 'active' : null; ?>">
                 <a href="currency.php">
                   <svg class="svg-icon"><use href="#icon-money"></svg>
@@ -1113,8 +1139,8 @@
                   </span>
                 </a>
               </li>
-            <?php endif; ?>
-
+            <?php endif; ?> -->
+<!-- 
             <?php if (user_group_id() == 1 || has_permission('access', 'read_pmethod')) : ?>
               <li class="<?php echo current_nav() == 'pmethod' ? 'active' : null; ?>">
                 <a href="pmethod.php">
@@ -1124,9 +1150,9 @@
                   </span>
                 </a>
               </li>
-            <?php endif; ?>
+            <?php endif; ?> -->
 
-            <?php if (user_group_id() == 1 || has_permission('access', 'read_unit')) : ?>
+            <!-- <?php if (user_group_id() == 1 || has_permission('access', 'read_unit')) : ?>
               <li class="<?php echo current_nav() == 'unit' ? 'active' : null; ?>">
                 <a href="unit.php">
                   <svg class="svg-icon"><use href="#icon-unit"></svg>
@@ -1135,7 +1161,7 @@
                   </span>
                 </a>
               </li>
-            <?php endif; ?>
+            <?php endif; ?> -->
 
             <?php if (user_group_id() == 1 || has_permission('access', 'read_taxrate')) : ?>
               <li class="<?php echo current_nav() == 'taxrate' ? 'active' : null; ?>">
@@ -1148,7 +1174,7 @@
               </li>
             <?php endif; ?>
 
-            <?php if (user_group_id() == 1 || has_permission('access', 'read_box')) : ?>
+            <!-- <?php if (user_group_id() == 1 || has_permission('access', 'read_box')) : ?>
               <li class="<?php echo current_nav() == 'box' ? 'active' : null; ?>">
                 <a href="box.php">
                   <svg class="svg-icon"><use href="#icon-box"></svg>
@@ -1157,7 +1183,7 @@
                   </span>
                 </a>
               </li>
-            <?php endif; ?>
+            <?php endif; ?> -->
 
             <?php if (user_group_id() == 1 || has_permission('access', 'read_printer')) : ?>
               <li class="<?php echo current_nav() == 'printer' ? 'active' : null; ?>">
@@ -1181,7 +1207,7 @@
               </li>
             <?php endif; ?>
 
-            <?php if ((user_group_id() == 1 || has_permission('access', 'backup') || has_permission('access', 'restore')) && !DEMO) : ?>
+            <!-- <?php if ((user_group_id() == 1 || has_permission('access', 'backup') || has_permission('access', 'restore')) && !DEMO) : ?>
               <li class="<?php echo current_nav() == 'backup_restore' ? 'active' : null; ?>">
                 <a href="backup_restore.php">
                   <svg class="svg-icon"><use href="#icon-backup"></svg>
@@ -1190,9 +1216,9 @@
                   </span>
                 </a>
               </li>
-            <?php endif; ?>
+            <?php endif; ?> -->
 
-            <?php if ((user_group_id() == 1 || has_permission('access', 'reset')) && !DEMO) : ?>
+            <!-- <?php if ((user_group_id() == 1 || has_permission('access', 'reset')) && !DEMO) : ?>
               <li class="<?php echo current_nav() == 'reset' ? 'active' : null; ?>">
                 <a href="reset.php">
                   <svg class="svg-icon"><use href="#icon-minus"></svg>
@@ -1201,7 +1227,7 @@
                   </span>
                 </a>
               </li>
-            <?php endif; ?>
+            <?php endif; ?> -->
 
           </ul>
         </li>

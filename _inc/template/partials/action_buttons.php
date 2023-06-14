@@ -131,7 +131,7 @@
         </div>
       </div>
     <?php endif; ?>
-
+<!-- 
     <?php if (user_group_id() == 1 || has_permission('access', 'backup')) : ?>
       <div class="col-xs-6 col-sm-4 col-md-4 col-lg-2 tour-item" id="button_backup_restore">
         <div class="panel panel-app">
@@ -149,7 +149,7 @@
           </div>
         </div>
       </div>
-    <?php endif; ?>
+    <?php endif; ?> -->
 
     <?php if (user_group_id() == 1 || has_permission('access', 'read_store')) : ?>
       <div class="col-xs-6 col-sm-4 col-md-4 col-lg-2 tour-item" id="button_settings">

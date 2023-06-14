@@ -33,26 +33,26 @@ function validate_request_data($request)
   }
 
   // Validate supplier code name
-  if(!validateString($request->post['code_name'])) {
-    throw new Exception(trans('error_code_name'));
-  }
+  // if(!validateString($request->post['code_name'])) {
+  //   throw new Exception(trans('error_code_name'));
+  // }
 
   // Validate supplier email or mobile
-  if (!validateEmail($request->post['sup_email']) && empty($request->post['sup_mobile'])) {
-    throw new Exception(trans('error_supplier_email_or_mobile'));
-  }
+  // if (!validateEmail($request->post['sup_email']) && empty($request->post['sup_mobile'])) {
+  //   throw new Exception(trans('error_supplier_email_or_mobile'));
+  // }
 
   // Validate suppleir address
   if(empty($request->post['sup_address'])) {
     throw new Exception(trans('error_sup_address'));
   }
 
-  if (get_preference('invoice_view') == 'indian_gst') {
-    // Validate supplier state
-    if (!validateString($request->post['sup_state'])) {
-      throw new Exception(trans('error_sup_state'));
-    }
-  }
+  // if (get_preference('invoice_view') == 'indian_gst') {
+  //   // Validate supplier state
+  //   if (!validateString($request->post['sup_state'])) {
+  //     throw new Exception(trans('error_sup_state'));
+  //   }
+  // }
 
   // Validate store
   if (!isset($request->post['supplier_store']) || empty($request->post['supplier_store'])) {

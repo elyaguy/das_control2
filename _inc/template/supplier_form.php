@@ -29,16 +29,16 @@
 
     <div class="form-group">
       <label for="sup_mobile" class="col-sm-3 control-label">
-        <?php echo sprintf(trans('label_mobile'), null); ?>
+        <?php echo sprintf(trans('label_mobile'), null); ?><i class="required">*</i>
       </label>
       <div class="col-sm-8">
         <input type="number" class="form-control" id="sup_mobile" value="<?php echo $supplier['sup_mobile']; ?>" name="sup_mobile">
       </div>
     </div>
 
-    <div class="form-group hidden">
+    <div class="form-group">
       <label for="sup_email" class="col-sm-3 control-label">
-        <?php echo sprintf(trans('label_email'), null); ?>
+        <?php echo sprintf(trans('label_email'), null); ?><i class="required">*</i>
      </label>
       <div class="col-sm-8">
         <input type="email" class="form-control" id="sup_email" value="<?php echo $supplier['sup_email']; ?>" name="sup_email">

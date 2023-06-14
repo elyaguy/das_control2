@@ -299,7 +299,8 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && $request->get['action_type']
             <div class="input-group-addon input-sm">
               <svg class="svg-icon"><use href="#icon-avatar"></svg>
             </div>
-            <input type="text" class="form-control" value="tusolutionweb@gmail.com" placeholder="Email / Phone No." name="username">
+            <!-- <input type="text" class="form-control" value="tusolutionweb@gmail.com" placeholder="Email / Phone No." name="username"> -->
+            <input type="text" class="form-control" value="" placeholder="Email / Phone No." name="username">
           </div>
         </div>
 
@@ -308,7 +309,8 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && $request->get['action_type']
             <div class="input-group-addon input-sm">
               <svg class="svg-icon"><use href="#icon-password"></svg>
             </div>
-            <input type="password" class="form-control" value="tusolutionweb" placeholder="Password" name="password">
+            <!-- <input type="password" class="form-control" value="tusolutionweb" placeholder="Password" name="password"> -->
+            <input type="password" class="form-control" value="" placeholder="Password" name="password">
           </div>
         </div>
 

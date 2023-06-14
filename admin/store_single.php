@@ -145,7 +145,7 @@ $tab_active = isset($request->get['tab']) ? $request->get['tab'] : 'general';
 							</p>
 						</div>
 						<?php endif; ?>
-						<div class="form-group">
+						<div class="form-group hidden">
 					      <label for="deposit_account_id" class="col-sm-3 control-label">
 					        <?php echo trans('label_deposit_account'); ?><i class="required">*</i>
 					      </label>
@@ -175,7 +175,7 @@ $tab_active = isset($request->get['tab']) ? $request->get['tab'] : 'general';
 								<input type="text" class="form-control" id="name" ng-init="storeName='<?php echo store('name'); ?>'" value="<?php echo store('name'); ?>" name="name" ng-model="storeName">
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group hidden">
 							<label for="code_name" class="col-sm-3 control-label">
 								<?php echo sprintf(trans('label_code_name'), null); ?><i class="required">*</i>
 							</label>
@@ -183,7 +183,7 @@ $tab_active = isset($request->get['tab']) ? $request->get['tab'] : 'general';
 								<input type="text" class="form-control" id="code_name" name="code_name"  value="<?php echo store('code_name') ? store('code_name') : "{{ storeName | strReplace:' ':'_' | lowercase }}"; ?>">
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group hidden">
 							<label for="country" class="col-sm-3 control-label">
 								<?php echo trans('label_country'); ?><i class="required">*</i>
 							</label>
@@ -191,7 +191,7 @@ $tab_active = isset($request->get['tab']) ? $request->get['tab'] : 'general';
 								<?php echo countrySelector(store('country'), 'store-country', 'country'); ?>
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group hidden">
 							<label for="mobile" class="col-sm-3 control-label">
 								<?php echo trans('label_mobile'); ?>
 							</label>
@@ -207,7 +207,7 @@ $tab_active = isset($request->get['tab']) ? $request->get['tab'] : 'general';
 								<input type="email" class="form-control" id="email" value="<?php echo store('email'); ?>" name="email">
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group hidden">
 							<label for="zip_code" class="col-sm-3 control-label">
 								<?php echo trans('label_zip_code'); ?><i class="required">*</i>
 							</label>
@@ -223,7 +223,7 @@ $tab_active = isset($request->get['tab']) ? $request->get['tab'] : 'general';
 								<textarea class="form-control" id="address" name="address"><?php echo store('address'); ?></textarea>
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group hidden">
 							<label for="gst_reg_no" class="col-sm-3 control-label">
 								<?php echo trans('label_gst_reg_no'); ?>
 							</label>
@@ -231,7 +231,7 @@ $tab_active = isset($request->get['tab']) ? $request->get['tab'] : 'general';
 								<input type="text" class="form-control" id="gst_reg_no" name="preference[gst_reg_no]" value="<?php echo get_preference('gst_reg_no'); ?>">
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group hidden">
 							<label for="vat_reg_no" class="col-sm-3 control-label">
 								<?php echo trans('label_vat_reg_no'); ?>
 							</label>
@@ -239,7 +239,7 @@ $tab_active = isset($request->get['tab']) ? $request->get['tab'] : 'general';
 								<input type="text" class="form-control" id="vat_reg_no" value="<?php echo store('vat_reg_no'); ?>" name="vat_reg_no">
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group hidden">
 							<label for="cashier_id" class="col-sm-3 control-label">
 								<?php echo trans('label_cashier_name'); ?><i class="required">*</i>
 							</label>
@@ -258,7 +258,7 @@ $tab_active = isset($request->get['tab']) ? $request->get['tab'] : 'general';
 					            </div>
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group hidden">
 							<label for="timezone" class="col-sm-3 control-label">
 								<?php echo trans('label_timezone'); ?><i class="required">*</i>	
 							</label>
@@ -271,7 +271,7 @@ $tab_active = isset($request->get['tab']) ? $request->get['tab'] : 'general';
 								</select>
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group hidden">
 							<label for="invoice_edit_lifespan" class="col-sm-3 control-label">
 								<?php echo trans('label_invoice_edit_lifespan'); ?><i class="required">*</i>
 								<span data-toggle="tooltip" title="" data-original-title="<?php echo trans('hint_invoice_edit_lifespan'); ?>">
@@ -290,7 +290,7 @@ $tab_active = isset($request->get['tab']) ? $request->get['tab'] : 'general';
 								</select>
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group hidden">
 							<label for="invoice_delete_lifespan" class="col-sm-3 control-label">
 								<?php echo trans('label_invoice_delete_lifespan'); ?><i class="required">*</i>
 								<span data-toggle="tooltip" title="" data-original-title="<?php echo trans('hint_invoice_delete_lifespan'); ?>">
@@ -309,7 +309,7 @@ $tab_active = isset($request->get['tab']) ? $request->get['tab'] : 'general';
 								</select>
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group hidden">
 							<label for="tax" class="col-sm-3 control-label">
 								<?php echo trans('label_tax'); ?>
 								<span data-toggle="tooltip" title="" data-original-title="<?php echo trans('hint_tax'); ?>">
@@ -319,7 +319,7 @@ $tab_active = isset($request->get['tab']) ? $request->get['tab'] : 'general';
 							  <input type="number" class="form-control" id="tax" name="preference[tax]" value="<?php echo get_preference('tax'); ?>" onClick="this.select()" onKeyUp="if(this.value<0){this.value='0';}else if(this.value>99){this.value='99';}">
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group hidden">
 							<label for="sms_gateway" class="col-sm-3 control-label">
 								<?php echo trans('label_sms_gateway'); ?>
 								<span data-toggle="tooltip" title="" data-original-title="<?php echo trans('hint_sms_gateway'); ?>">
@@ -345,7 +345,7 @@ $tab_active = isset($request->get['tab']) ? $request->get['tab'] : 'general';
 								</select>
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group hidden">
 							<label for="sms_alert" class="col-sm-3 control-label">
 								<?php echo trans('label_sms_alert'); ?>
 								<span data-toggle="tooltip" title="" data-original-title="<?php echo trans('hint_sms_alert'); ?>">
@@ -362,7 +362,7 @@ $tab_active = isset($request->get['tab']) ? $request->get['tab'] : 'general';
 								</select>
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group hidden">
 							<label for="auto_sms" class="col-sm-3 control-label">
 								<?php echo trans('label_auto_sms'); ?>
 							</label>
@@ -376,7 +376,7 @@ $tab_active = isset($request->get['tab']) ? $request->get['tab'] : 'general';
 								</div>
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group hidden">
 							<label for="expiration_system" class="col-sm-3 control-label">
 								<?php echo trans('label_expiration_system'); ?>
 							</label>

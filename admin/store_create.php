@@ -146,7 +146,7 @@ include ("left_sidebar.php");
 								<input type="text" class="form-control" id="name" value="<?php echo isset($request->post['name']) ? $request->post['name'] : null; ?>" name="name" ng-model="storeName">
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group hidden">
 					        <label for="code_name" class="col-sm-3 control-label">
 					          <?php echo trans('label_code_name'); ?><i class="required">*</i>
 					        </label>
@@ -154,7 +154,7 @@ include ("left_sidebar.php");
 					          <input type="text" class="form-control" id="code_name" value="{{ storeName | strReplace:' ':'_' | lowercase }}" name="code_name" required>
 					        </div>
 					    </div>
-						<div class="form-group">
+						<div class="form-group hidden">
 							<label for="country" class="col-sm-3 control-label">
 								<?php echo trans('label_country'); ?><i class="required">*</i>
 							</label>
@@ -162,7 +162,7 @@ include ("left_sidebar.php");
 								<?php echo countrySelector(isset($request->post['country']) ? $request->post['country'] : null, 'store-country', 'country'); ?>
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group hidden">
 							<label for="mobile" class="col-sm-3 control-label">
 								<?php echo trans('label_mobile'); ?><i class="required">*</i>
 							</label>
@@ -178,7 +178,7 @@ include ("left_sidebar.php");
 								<input type="email" class="form-control" id="email" value="<?php echo isset($request->post['email']) ? $request->post['email'] : null; ?>" name="email">
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group hidden">
 							<label for="zip_code" class="col-sm-3 control-label">
 								<?php echo trans('label_zip_code'); ?><i class="required">*</i>
 							</label>
@@ -194,7 +194,7 @@ include ("left_sidebar.php");
 								<textarea class="form-control" id="address" name="address"><?php echo isset($request->post['address']) ? $request->post['address'] : null; ?></textarea>
 							</div>
 						</div>	
-						<div class="form-group">
+						<div class="form-group hidden">
 							<label for="vat_reg_no" class="col-sm-3 control-label">
 								<?php echo trans('label_vat_reg_no'); ?>
 							</label>
@@ -202,7 +202,7 @@ include ("left_sidebar.php");
 								<input type="text" class="form-control" id="vat_reg_no" value="<?php echo isset($request->post['vat_reg_no']) ? $request->post['vat_reg_no'] : null; ?>" name="vat_reg_no">
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group hidden">
 							<label for="cashier_id" class="col-sm-3 control-label">
 								<?php echo trans('label_cashier_name'); ?><i class="required">*</i>
 							</label>
@@ -219,7 +219,7 @@ include ("left_sidebar.php");
 								</select>
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group hidden">
 							<label for="timezone" class="col-sm-3 control-label">
 								<?php echo trans('label_timezone'); ?><i class="required">*</i>
 							</label>
@@ -232,7 +232,7 @@ include ("left_sidebar.php");
 								</select>
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group hidden">
 							<label for="invoice_edit_lifespan" class="col-sm-3 control-label">
 								<?php echo trans('label_invoice_edit_lifespan'); ?><i class="required">*</i>
 								<span data-toggle="tooltip" title="" data-original-title="<?php echo trans('hint_invoice_edit_lifespan'); ?>">
@@ -251,7 +251,7 @@ include ("left_sidebar.php");
 								</select>
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group hidden">
 							<label for="invoice_delete_lifespan" class="col-sm-3 control-label">
 								<?php echo trans('label_invoice_delete_lifespan'); ?><i class="required">*</i>
 								<span data-toggle="tooltip" title="" data-original-title="<?php echo trans('hint_invoice_delete_lifespan'); ?>">
@@ -270,7 +270,7 @@ include ("left_sidebar.php");
 								</select>
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group hidden">
 							<label for="after_sell_page" class="col-sm-3 control-label">
 								<?php echo trans('label_after_sell_page'); ?><i class="required">*</i>
 								<span data-toggle="tooltip" title="" data-original-title="<?php echo trans('hint_after_sell_page'); ?>"></span>
@@ -298,7 +298,7 @@ include ("left_sidebar.php");
 								  	</option>
 								</select>
 								<div class="well wel-sm">
-									<i>For local single machine installation: PHP Server will be the best choice and for live server or local server setup (LAN): you can install PHP Pos Print Server locally on each machine (recommended) or use web browser printing feature.</i>
+									<i>Para la instalación local en una sola máquina: el servidor PHP será la mejor opción y para la configuración del servidor en vivo o del servidor local (LAN): puede instalar el servidor de impresión PHP Pos localmente en cada máquina (recomendado) o usar la función de impresión del navegador web.</i>
 								</div>
 								<div class="well wel-sm">
 									<div class="form-group">
@@ -334,7 +334,7 @@ include ("left_sidebar.php");
 								</div>
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group hidden">
 							<label for="tax" class="col-sm-3 control-label">
 								<?php echo trans('label_tax'); ?>
 								<span data-toggle="tooltip" title="" data-original-title="<?php echo trans('hint_tax'); ?>"></span>
@@ -343,7 +343,7 @@ include ("left_sidebar.php");
 							  <input type="number" class="form-control" id="tax" name="preference[tax]" value="<?php echo get_preference('tax'); ?>" onClick="this.select()" onKeyUp="if(this.value<0){this.value='0';}else if(this.value>99){this.value='99';}">
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group hidden">
 							<label for="stock_alert_quantity" class="col-sm-3 control-label">
 								<?php echo trans('label_stock_alert_quantity'); ?><i class="required">*</i>
 								<span data-toggle="tooltip" title="" data-original-title="<?php echo trans('hint_stock_alert_quantity'); ?>"></span>
@@ -352,7 +352,7 @@ include ("left_sidebar.php");
 							  <input type="number" class="form-control" id="stock_alert_quantity" name="preference[stock_alert_quantity]" value="<?php echo get_preference('stock_alert_quantity'); ?>" onClick="this.select()" onKeyUp="if(this.value<0){this.value='0';}">
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group hidden">
 							<label for="datatable_item_limit" class="col-sm-3 control-label">
 								<?php echo trans('label_datatable_item_limit'); ?><i class="required">*</i>
 								<span data-toggle="tooltip" title="" data-original-title="<?php echo trans('hint_datatable_item_limit'); ?>"></span>

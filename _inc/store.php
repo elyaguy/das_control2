@@ -33,35 +33,35 @@ function validate_request_data($request)
     throw new Exception(trans('error_name'));
   }
 
-  // Validate store code name
-  if (!validateString($request->post['code_name'])) {
-    throw new Exception(trans('error_code_name'));
-  }
+  // // Validate store code name
+  // if (!validateString($request->post['code_name'])) {
+  //   throw new Exception(trans('error_code_name'));
+  // }
 
-  // Validate store mobile number 
-  if (empty($request->post['mobile']) || !valdateMobilePhone($request->post['mobile'])) {
-    throw new Exception(trans('error_mobile'));
-  }
+  // // Validate store mobile number 
+  // if (empty($request->post['mobile']) || !valdateMobilePhone($request->post['mobile'])) {
+  //   throw new Exception(trans('error_mobile'));
+  // }
 
-  // Validate store email
-  if (!validateEmail($request->post['email'])) {
-    throw new Exception(trans('error_email'));
-  }
+  // // Validate store email
+  // if (!validateEmail($request->post['email'])) {
+  //   throw new Exception(trans('error_email'));
+  // }
 
-  // Validate store country
-  if (!validateString($request->post['country'])) {
-    throw new Exception(trans('error_country'));
-  }
+  // // Validate store country
+  // if (!validateString($request->post['country'])) {
+  //   throw new Exception(trans('error_country'));
+  // }
 
-    // Validate store zip code
-  if (empty($request->post['zip_code'])) {
-    throw new Exception(trans('error_zip_code'));
-  }
+  //   // Validate store zip code
+  // if (empty($request->post['zip_code'])) {
+  //   throw new Exception(trans('error_zip_code'));
+  // }
 
-    // Validate store cashiar name
-  if (!validateInteger($request->post['cashier_id'])) {
-    throw new Exception(trans('error_cashier_name'));
-  }
+  //   // Validate store cashiar name
+  // if (!validateInteger($request->post['cashier_id'])) {
+  //   throw new Exception(trans('error_cashier_name'));
+  // }
 
     // Validate store address
   if (!validateString($request->post['address'])) {
@@ -73,45 +73,45 @@ function validate_request_data($request)
     throw new Exception(trans('error_position'));
   }
 
-  // Validate timezone
-  if (!isset($request->post['preference']['timezone']) || !validateString($request->post['preference']['timezone'])) {
-    throw new Exception(trans('error_preference_timezone'));
-  }
+  // // Validate timezone
+  // if (!isset($request->post['preference']['timezone']) || !validateString($request->post['preference']['timezone'])) {
+  //   throw new Exception(trans('error_preference_timezone'));
+  // }
 
-  // Validate receipt printer
-  if ($request->post['remote_printing'] == 1 && !$request->post['receipt_printer']) {
-    throw new Exception(trans('error_receipt_printer'));
-  }
+  // // Validate receipt printer
+  // if ($request->post['remote_printing'] == 1 && !$request->post['receipt_printer']) {
+  //   throw new Exception(trans('error_receipt_printer'));
+  // }
 
-  // Validate invoice edit lifespan
-  if ($request->post['preference']['invoice_edit_lifespan'] < 0 || !is_numeric($request->post['preference']['invoice_edit_lifespan'])) {
-    throw new Exception(trans('error_preference_invoice_edit_lifespan'));
-  }
+  // // Validate invoice edit lifespan
+  // if ($request->post['preference']['invoice_edit_lifespan'] < 0 || !is_numeric($request->post['preference']['invoice_edit_lifespan'])) {
+  //   throw new Exception(trans('error_preference_invoice_edit_lifespan'));
+  // }
 
-  // Validate invoice delete lifespan
-  if ($request->post['preference']['invoice_delete_lifespan'] < 0 || !is_numeric($request->post['preference']['invoice_delete_lifespan'])) {
-    throw new Exception(trans('error_preference_invoice_delete_lifespan'));
-  }
+  // // Validate invoice delete lifespan
+  // if ($request->post['preference']['invoice_delete_lifespan'] < 0 || !is_numeric($request->post['preference']['invoice_delete_lifespan'])) {
+  //   throw new Exception(trans('error_preference_invoice_delete_lifespan'));
+  // }
 
-  // Validate invoice edit lifespan unit
-  if (!isset($request->post['preference']['invoice_edit_lifespan_unit']) || !validateString($request->post['preference']['invoice_edit_lifespan_unit'])) {
-    throw new Exception(trans('error_preference_invoice_edit_lifespan_unit'));
-  }
+  // // Validate invoice edit lifespan unit
+  // if (!isset($request->post['preference']['invoice_edit_lifespan_unit']) || !validateString($request->post['preference']['invoice_edit_lifespan_unit'])) {
+  //   throw new Exception(trans('error_preference_invoice_edit_lifespan_unit'));
+  // }
 
-  // Validate after sell page
-  if (!validateString($request->post['preference']['after_sell_page'])) {
-    throw new Exception(trans('error_preference_after_sell_page'));
-  }
+  // // Validate after sell page
+  // if (!validateString($request->post['preference']['after_sell_page'])) {
+  //   throw new Exception(trans('error_preference_after_sell_page'));
+  // }
 
-  // Validate tax
-  if (!is_numeric($request->post['preference']['tax']) || $request->post['preference']['tax'] < 0) {
-    throw new Exception(trans('error_preference_tax'));
-  }
+  // // Validate tax
+  // if (!is_numeric($request->post['preference']['tax']) || $request->post['preference']['tax'] < 0) {
+  //   throw new Exception(trans('error_preference_tax'));
+  // }
 
-  // Validate datatable item limit
-  if (!is_numeric($request->post['preference']['datatable_item_limit']) || $request->post['preference']['datatable_item_limit'] < 0) {
-    throw new Exception(trans('error_preference_datatable_item_limit'));
-  }
+  // // Validate datatable item limit
+  // if (!is_numeric($request->post['preference']['datatable_item_limit']) || $request->post['preference']['datatable_item_limit'] < 0) {
+  //   throw new Exception(trans('error_preference_datatable_item_limit'));
+  // }
 
   // // Validate email from
   // if (!validateString($request->post['preference']['email_from'])) {

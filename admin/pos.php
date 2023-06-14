@@ -494,7 +494,7 @@ if ($order_printer_ids) {
         <div class="searchbox text-center" style="margin: 3px 5px 2px 5px;">
           <input ng-model="searchList" class="form-control r-50" type="search" name="search" placeholder="<?php echo trans('placeholder_search_here');?>" style="border:2px solid #999;">
         </div>
-        <ul filter-list="searchList" class="list-group" style="padding: 0 10px 10px; 10px">
+        <ul filter-list="searchList" class="list-group" style="padding: 0 10px 10px;">
         <?php $inc=0;foreach ($shortcut_links as $link) : $btnColor=$inc % 2 == 0 ? 'success' : 'success'?>
           <?php if (user_group_id() == 1 || has_permission('access', $link['permission_slug'])) :?>
             <li class="list-group-item" style="padding:2px;">
@@ -588,7 +588,7 @@ if ($order_printer_ids) {
     <div class="global-site-notice noscript">
         <div class="notice-inner">
             <p><strong>JavaScript seems to be disabled in your browser.</strong><br>You must have JavaScript enabled in
-                your browser to utilize the functionality of #MODERN POS.</p>
+                your browser to utilize the functionality of #CONTROL DAS.</p>
         </div>
     </div>
 </noscript>

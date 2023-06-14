@@ -25,7 +25,7 @@
         </div>
       </div>
 
-      <div class="form-group">
+      <div class="form-group hidden">
         <label for="category_slug" class="col-sm-3 control-label">
           <?php echo trans('label_category_slug'); ?><i class="required">*</i>
         </label>
@@ -78,7 +78,7 @@
       </div>
     </div>
 
-      <div class="form-group">
+      <div class="form-group hidden">
         <label for="category_details" class="col-sm-3 control-label">
           <?php echo trans('label_category_details'); ?>
         </label>
@@ -87,7 +87,7 @@
         </div>
       </div>
 
-      <div class="form-group">
+      <div class="form-group hidden">
         <label for="status" class="col-sm-3 control-label">
           <?php echo trans('label_status'); ?><i class="required">*</i>
         </label>
@@ -103,7 +103,7 @@
         </div>
       </div>
 
-      <div class="form-group">
+      <div class="form-group hidden">
         <label for="sort_order" class="col-sm-3 control-label">
           <?php echo trans('label_sort_order'); ?><i class="required">*</i>
         </label>

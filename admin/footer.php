@@ -9,7 +9,7 @@
         <div class="searchbox text-center" style="margin: 3px 5px 2px 5px;">
           <input ng-model="searchList" class="form-control r-50" type="search" name="search" placeholder="<?php echo trans('placeholder_search_here');?>" style="border:2px solid #999;" autocomplete="off">
         </div>
-        <ul filter-list="searchList" class="list-group" style="padding: 0 10px 10px; 10px">
+        <ul filter-list="searchList" class="list-group" style="padding: 0 10px 10px;">
         <?php $inc=0;foreach ($shortcut_links as $link) : $btnColor=$inc % 2 == 0 ? 'success' : 'success'?>
           <?php if (user_group_id() == 1 || has_permission('access', $link['permission_slug'])) :?>
             <li class="list-group-item" style="padding:2px;">
@@ -28,7 +28,7 @@
             <?php echo trans('text_version'); ?>
             <?php echo settings('version'); ?>
     	</div>
-    	<div class="copyright"> <a href="https://ventas.programacionparacompartir.com/">SISTEMAS Y CODIGO FUENTE AQUI</a></div>
+    	<div class="copyright"> <a href="https://www.controldas.com/">CONTROL-DAS</a></div>
     </footer>
 </div>
 <!-- End Wrapper -->

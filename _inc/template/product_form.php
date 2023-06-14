@@ -87,7 +87,7 @@
         <!-- General Start -->
         <div class="tab-pane<?php echo $tab_active == 'general' ? ' active' : null;?>" id="general">
 
-          <div class="form-group">
+          <div class="form-group hidden">
             <label class="col-sm-3 control-label">
               <?php echo trans('label_thumbnail'); ?>
             </label>
@@ -105,15 +105,21 @@
             </div>
           </div>
 
-          <div class="form-group">
+          <div class="form-group all">
             <label for="p_type" class="col-sm-3 control-label">
               <?php echo trans('label_product_type'); ?><i class="required">*</i>
             </label>
-            <div class="col-sm-8">
+            <div class="col-sm-3">
               <select id="p_type" class="form-control" name="p_type" >
                 <option value="standard" <?php echo $product['p_type'] == 'standard' ? 'selected' : null; ?>><?php echo trans('text_standard'); ?></option>
                 <option value="service" <?php echo $product['p_type'] == 'service' ? 'selected' : null; ?>><?php echo trans('text_service'); ?></option>
               </select>
+            </div>
+            <label for="p_code" class="col-sm-2 control-label">
+              <?php echo trans('label_pcode'); ?> <i class="required">*</i>
+            </label>             
+            <div class="col-sm-3">           
+              <input type="text" name="p_code" value="<?php echo $product['p_code']; ?>" class="form-control" id="p_code" required>
             </div>
           </div>
 
@@ -125,15 +131,10 @@
               <input type="text" class="form-control" id="p_name" name="p_name" value="<?php echo $product['p_name']; ?>" required>
             </div>
           </div>
-
+<!-- 
           <div class="form-group all">
-            <label for="p_code" class="col-sm-3 control-label">
-              <?php echo trans('label_pcode'); ?> <i class="required">*</i>
-            </label>             
-            <div class="col-sm-8">           
-              <input type="text" name="p_code" value="<?php echo $product['p_code']; ?>" class="form-control" id="p_code" required>
-            </div>
-          </div>
+            
+          </div> -->
 
           <div class="form-group">
             <label for="category_id" class="col-sm-3 control-label">
@@ -182,7 +183,7 @@
             </div>
           </div>
 
-          <div ng-hide="hideBrand" class="form-group">
+          <div ng-hide="hideBrand" class="form-group hidden">
             <label for="brand_id" class="col-sm-3 control-label">
               <?php echo trans('label_brand'); ?>
             </label>
@@ -209,7 +210,7 @@
             </div>
           </div>
 
-          <div class="form-group">
+          <div class="form-group hidden">
             <label for="barcode_symbology" class="col-sm-3 control-label">
               <?php echo trans('label_barcode_symbology'); ?><i class="required">*</i>
             </label>
@@ -226,7 +227,7 @@
             </div>
           </div>
 
-          <div ng-hide="hideBox" class="form-group">
+          <div ng-hide="hideBox" class="form-group hidden">
             <label for="box_id" class="col-sm-3 control-label">
               <?php echo trans('label_box'); ?>
             </label>
@@ -251,23 +252,25 @@
             </div>
           </div>
 
-          <div ng-show="showPurchasePrice" class="form-group">
+          <!-- <div ng-show="showPurchasePrice" class="form-group"> -->
+          <div class="form-group">
             <label for="purchase_price" class="col-sm-3 control-label">
               <?php echo trans('label_product_cost'); ?><i class="required">*</i>
             </label>
-            <div class="col-sm-8">
+            <div class="col-sm-3">
               <input type="text" step="0.01" class="form-control" id="purchase_price" value="<?php echo $product['purchase_price']; ?>" name="purchase_price" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" onKeyUp="if(this.value<0){this.value='1';}" required>
             </div>
-          </div>
-
-          <div class="form-group">
-            <label for="sell_price" class="col-sm-3 control-label">
+            <label for="sell_price" class="col-sm-2 control-label">
               <?php echo trans('label_product_price'); ?><i class="required">*</i>
             </label>
-            <div class="col-sm-8">
+            <div class="col-sm-3">
               <input type="text" step="0.01" class="form-control" id="sell_price" value="<?php echo $product['sell_price']; ?>" name="sell_price" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" onKeyUp="if(this.value<0){this.value='1';}" required>
             </div>
           </div>
+<!-- 
+          <div class="form-group">
+           
+          </div> -->
 
           <div ng-show="!hideExpiredAt" class="form-group<?php echo !get_preference('expiry_yes') ? ' hide' : null;?>">
             <label for="e_date" class="col-sm-3 control-label">
@@ -278,30 +281,9 @@
             </div>
           </div>
 
-          <div ng-hide="hideUnit" class="form-group">
-            <label for="unit_id" class="col-sm-3 control-label">
-              <?php echo trans('label_unit'); ?><i class="required">*</i>
-            </label>
-            <div class="col-sm-8">
-              <select class="form-control" name="unit_id" required>
-                  <option value="">
-                    <?php echo trans('text_select'); ?>
-                  </option>
-                  <?php foreach(get_units() as $unit_row) {
-                      if($unit_row['unit_id'] == $product['unit_id']) { ?>
-                        <option value="<?php echo $unit_row['unit_id']; ?>" selected><?php echo $unit_row['unit_name']; ?></option><?php
-                      } else {
-                        ?>
-                        <option value="<?php echo $unit_row['unit_id']; ?>">
-                          <?php echo $unit_row['unit_name']; ?>
-                        </option>
-                      <?php
-                      }
-                    }
-                  ?>
-              </select>
-            </div>
-          </div>
+          <!-- <div ng-hide="hideUnit" class="form-group">
+            
+          </div> -->
 
           <?php if (get_preference('invoice_view') == 'indian_gst') : ?>
           <div class="form-group all">
@@ -318,7 +300,7 @@
             <label for="taxrate_id" class="col-sm-3 control-label">
               <?php echo trans('label_product_tax'); ?><i class="required">*</i>
             </label>
-            <div class="col-sm-8">
+            <div class="col-sm-3">
               <select class="form-control" name="taxrate_id" required>
                   <option value="">
                     <?php echo trans('text_select'); ?>
@@ -337,13 +319,10 @@
                   ?>
               </select>
             </div>
-          </div>
-
-          <div class="form-group">
-            <label for="tax_method" class="col-sm-3 control-label">
+            <label for="tax_method" class="col-sm-2 control-label">
               <?php echo trans('label_tax_method'); ?><i class="required">*</i>
             </label>
-            <div class="col-sm-8">
+            <div class="col-sm-3">
               <select id="tax_method" class="form-control" name="tax_method" >
                 <option <?php echo isset($product['tax_method']) && $product['tax_method'] == 'inclusive' ? 'selected' : null; ?> value="inclusive">
                   <?php echo trans('text_inclusive'); ?>
@@ -354,6 +333,10 @@
               </select>
             </div>
           </div>
+<!-- 
+          <div class="form-group">
+            
+          </div> -->
 
           <div class="form-group">
             <label class="col-sm-3 control-label">
@@ -383,16 +366,39 @@
             </div>
           </div>
 
-          <div ng-hide="hideAlertQuantity" class="form-group">
-            <label for="alert_quantity" class="col-sm-3 control-label">
+          <!-- <div ng-hide="hideAlertQuantity" class="form-group"> -->
+          <div  class="form-group">
+          <label for="unit_id" class="col-sm-3 control-label">
+              <?php echo trans('label_unit'); ?><i class="required">*</i>
+            </label>
+            <div class="col-sm-3">
+              <select class="form-control" name="unit_id" required>
+                  <option value="">
+                    <?php echo trans('text_select'); ?>
+                  </option>
+                  <?php foreach(get_units() as $unit_row) {
+                      if($unit_row['unit_id'] == $product['unit_id']) { ?>
+                        <option value="<?php echo $unit_row['unit_id']; ?>" selected><?php echo $unit_row['unit_name']; ?></option><?php
+                      } else {
+                        ?>
+                        <option value="<?php echo $unit_row['unit_id']; ?>">
+                          <?php echo $unit_row['unit_name']; ?>
+                        </option>
+                      <?php
+                      }
+                    }
+                  ?>
+              </select>
+            </div>
+            <label for="alert_quantity" class="col-sm-2 control-label">
               <?php echo trans('label_alert_quantity'); ?><i class="required">*</i>
             </label>
-            <div class="col-sm-8">
+            <div class="col-sm-3">
               <input type="text" class="form-control" id="alert_quantity" name="alert_quantity" value="<?php echo format_input_number($product['alert_quantity']); ?>" onclick="this.select();" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" onKeyUp="if(this.value<0){this.value='1';}" required>
             </div>
           </div>
 
-          <div class="form-group">
+          <div class="form-group hidden">
             <label for="e_date" class="col-sm-3 control-label">
               <?php echo trans('label_description'); ?>
             </label>
@@ -402,10 +408,16 @@
           </div>
 
           <div class="form-group">
-            <label for="status" class="col-sm-3 control-label">
+          <label for="sort_order" class="col-sm-3 control-label">
+              <?php echo sprintf(trans('label_sort_order'), null); ?><i class="required">*</i>
+            </label>
+            <div class="col-sm-3">
+              <input type="number" class="form-control" id="sort_order" value="<?php echo $product['sort_order']; ?>" name="sort_order">
+            </div>
+            <label for="status" class="col-sm-2 control-label">
               <?php echo trans('label_status'); ?><i class="required">*</i>
             </label>
-            <div class="col-sm-8">
+            <div class="col-sm-3">
               <select id="status" class="form-control" name="status" >
                 <option <?php echo isset($product['status']) && $product['status'] == '1' ? 'selected' : null; ?> value="1">
                   <?php echo trans('text_active'); ?>
@@ -416,15 +428,10 @@
               </select>
             </div>
           </div>
-
+<!-- 
           <div class="form-group">
-            <label for="sort_order" class="col-sm-3 control-label">
-              <?php echo sprintf(trans('label_sort_order'), null); ?><i class="required">*</i>
-            </label>
-            <div class="col-sm-8">
-              <input type="number" class="form-control" id="sort_order" value="<?php echo $product['sort_order']; ?>" name="sort_order">
-            </div>
-          </div>
+            
+          </div> -->
 
 
         </div>

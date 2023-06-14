@@ -73,7 +73,7 @@
             </li> 
           <?php endif; ?>
         <?php endif; ?>
-        <?php if (device_type() == 'computer'):?>
+        <!-- <?php if (device_type() == 'computer'):?>
         <?php if (user_group_id() == 1 || has_permission('access', 'read_cashbook_report')) : ?>
           <li class="user user-menu<?php echo current_nav() == 'report_cashbook' ? ' active' : null; ?>">
             <a href="report_cashbook.php" title="<?php echo trans('text_cashbook_report'); ?>">
@@ -84,7 +84,7 @@
             </a>
           </li> 
         <?php endif; ?>
-        <?php endif; ?>
+        <?php endif; ?> -->
         <?php if (user_group_id() == 1 || has_permission('access', 'read_sell_list')) : ?>
           <li class="user user-menu<?php echo current_nav() == 'invoice' ? ' active' : null; ?>">
             <a href="invoice.php" title="<?php echo trans('text_invoice'); ?>">
@@ -142,11 +142,11 @@
             <span class="fa fa-fw fa-expand"></span>
           </a>
         </li>
-        <li id="scrolling-sidebar" class="user user-menu">
+        <!-- <li id="scrolling-sidebar" class="user user-menu">
           <a href="#" title="<?php echo trans('text_reports'); ?>" data-toggle="scrolling-sidebar" data-width="350">
             <i class="fa fa-square"></i>
           </a>
-        </li> 
+        </li>  -->
         <li id="screen-lock" class="user user-menu">
           <a href="../lockscreen.php" title="<?php echo trans('text_lockscreen'); ?>">
             <i class="fa fa-lock"></i>

@@ -12,7 +12,7 @@
 | WEBSITE:			http://itsolution24.com
 | -----------------------------------------------------
 */
-include 'slugify.php';
+//  include 'slugify.php';
 
 class ModelSupplier extends Model 
 {
@@ -21,6 +21,7 @@ class ModelSupplier extends Model
 		$gtin = isset($data['gtin']) ? $data['gtin'] : '';
 		$sup_state = isset($data['sup_state']) ? $data['sup_state'] : '';
 		$code_name = slugify($data['sup_name']);
+		//$code_name = ($data['sup_name']);
 		
 		$statement = $this->db->prepare("INSERT INTO `suppliers` (sup_name, code_name, sup_mobile, sup_email, gtin, sup_address, sup_city, sup_state, sup_country, sup_details, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
     	$statement->execute(array($data['sup_name'], $code_name, $data['sup_mobile'], $data['sup_email'], $gtin, $data['sup_address'], $data['sup_city'],  $sup_state,  $data['sup_country'], $data['sup_details'], date_time()));
@@ -61,13 +62,11 @@ class ModelSupplier extends Model
 		$gtin = isset($data['gtin']) ? $data['gtin'] : '';
 		$sup_state = isset($data['sup_state']) ? $data['sup_state'] : '';
 		$code_name = slugify($data['sup_name']);
-		// $sup_mobile = isset($data['sup_mobile']) ? $data['sup_mobile'] : '';
-		// $sup_email = isset($data['sup_email']) ? $data['sup_email'] : '';
-    	// $statement = $this->db->prepare("UPDATE `suppliers` SET `sup_name` = ?, `code_name` = ?, `sup_mobile` = ?, `sup_email` = ?, `gtin` = ?, `sup_address` = ?, `sup_city` = ?, `sup_state` = ?, `sup_country` = ?, `sup_details` = ? WHERE `sup_id` = ? ");
-    	// $statement->execute(array($data['sup_name'], $data['code_name'], $sup_mobile, $sup_email, $gtin, $data['sup_address'], $data['sup_city'], $sup_state, $data['sup_country'], $data['sup_details'], $sup_id));
-		$statement = $this->db->prepare("UPDATE `suppliers` SET `sup_name` = ?, `code_name` = ?, `gtin` = ?, `sup_address` = ?, `sup_city` = ?, `sup_state` = ?, `sup_country` = ?, `sup_details` = ? WHERE `sup_id` = ? ");
-    	$statement->execute(array($data['sup_name'], $data['code_name'], $gtin, $data['sup_address'], $data['sup_city'], $sup_state, $data['sup_country'], $data['sup_details'], $sup_id));
-		
+		$sup_mobile = isset($data['sup_mobile']) ? $data['sup_mobile'] : '';
+		$sup_email = isset($data['sup_email']) ? $data['sup_email'] : '';
+    	$statement = $this->db->prepare("UPDATE `suppliers` SET `sup_name` = ?, `code_name` = ?, `sup_mobile` = ?, `sup_email` = ?, `gtin` = ?, `sup_address` = ?, `sup_city` = ?, `sup_state` = ?, `sup_country` = ?, `sup_details` = ? WHERE `sup_id` = ? ");
+    	$statement->execute(array($data['sup_name'], $code_name, $sup_mobile, $sup_email, $gtin, $data['sup_address'], $data['sup_city'], $sup_state, $data['sup_country'], $data['sup_details'], $sup_id));
+	
 		// Insert supplier into store
     	if (isset($data['supplier_store'])) {
 

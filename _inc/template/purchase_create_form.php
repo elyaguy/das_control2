@@ -5,19 +5,21 @@
       <label for="date" class="col-sm-3 control-label">
         <?php echo trans('label_date'); ?><i class="required">*</i>
       </label>
-      <div class="col-sm-6">
+      <div class="col-sm-2">
         <input type="text" class="form-control datepicker" name="date" autocomplete="off">
       </div>
-    </div>
 
-    <div class="form-group">
-      <label for="reference_no" class="col-sm-3 control-label">
+      <label for="reference_no" class="col-sm-1 control-label">
         <?php echo trans('label_reference_no'); ?><i class="required">*</i>
       </label>
-      <div class="col-sm-6">
+      <div class="col-sm-3">
         <input type="text" class="form-control" id="reference_no" name="reference_no" autocomplete="off">
       </div>
     </div>
+
+    <!-- <div class="form-group">
+       
+    </div> -->
 
     <div class="form-group">
       <label for="purchase-note" class="col-sm-3 control-label">
@@ -41,7 +43,7 @@
       </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group hidden">
       <label for="add_attachment" class="col-sm-3 control-label">
         <?php echo trans('label_attachment'); ?>
       </label>

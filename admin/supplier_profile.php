@@ -362,7 +362,7 @@ include ("left_sidebar.php");
                           </th>
                         </tr>
                       </thead>
-                      <tfoot>
+                      <!-- <tfoot>
                         <tr class="bg-gray">
                           <th class="w-5">
                             <?php echo trans('label_type'); ?>
@@ -407,7 +407,7 @@ include ("left_sidebar.php");
                             <?php echo trans('label_delete'); ?>
                           </th>
                         </tr>
-                      </tfoot>
+                      </tfoot> -->
                     </table>    
                   </div>
                 </div> 

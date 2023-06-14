@@ -169,7 +169,7 @@ include ("left_sidebar.php");
 											$print_columns = str_replace('6,', '', $print_columns);
 										}
 									}
-									$hide_colums = "";
+									$hide_colums = "1,11,";
 									if (user_group_id() != 1) {
 										if (! has_permission('access', 'product_bulk_action')) {
 											$hide_colums .= "0,";
@@ -198,19 +198,19 @@ include ("left_sidebar.php");
 								<table id="product-product-list" class="table table-bordered table-striped table-hover" data-hide-colums="<?php echo $hide_colums; ?>" data-print-columns="<?php echo $print_columns;?>">
 								    <thead>
 								        <tr class="bg-gray">
-								            <th class="w-5 product-head text-center">
+								            <th class="w-1 product-head text-center">
 								            	<input type="checkbox" onclick="$('input[name*=\'select\']').prop('checked', this.checked);">
 								            </th>
 								            <th class="w-5">
 								            	<?php echo sprintf(trans('label_image'),null); ?>
 								            </th>
-								            <th class="w-10">
+								            <th class="w-5">
 								            	<?php echo sprintf(trans('label_pcode'),null); ?>
 								            </th>
-								            <th class="w-20">
+								            <th class="w-65">
 								            	<?php echo sprintf(trans('label_name'),trans('text_product')); ?>
 								            </th>
-								            <th class="w-15">
+								            <th class="w-20">
 								            	<?php echo trans('label_supplier'); ?>
 								            </th>
 								            <th class="w-10">
@@ -222,19 +222,19 @@ include ("left_sidebar.php");
 								            <th class="w-5">
 								            	<?php echo trans('label_selling_price'); ?>
 								            </th>
-								            <th class="w-5">
+								            <th class="w-2">
 								            	<?php echo trans('label_view'); ?>
 								            </th>
-								            <th class="w-5">
+								            <th class="w-2">
 								            	<?php echo trans('label_edit'); ?>
 								            </th>
-								            <th class="w-5">
+								            <th class="w-2">
 								            	<?php echo trans('label_purchase'); ?>
 								            </th>
-								            <th class="w-5">
+								            <th class="w-2">
 								            	<?php echo trans('label_print_barcode'); ?>
 								            </th>
-								            <th class="w-5">
+								            <th class="w-2">
 								            	<?php echo trans('label_delete'); ?>
 								            </th>
 								        </tr>

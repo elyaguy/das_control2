@@ -34,6 +34,27 @@ function syncImage($product_id, $img_array)
 	}
 }
 
+function quitarTildes($texto) {
+    $reemplazos = array(
+        'á' => 'a',
+        'é' => 'e',
+        'í' => 'i',
+        'ó' => 'o',
+        'ú' => 'u',
+        'ñ' => 'n',
+        'Á' => 'A',
+        'É' => 'E',
+        'Í' => 'I',
+        'Ó' => 'O',
+        'Ú' => 'U',
+        'Ñ' => 'N'
+    );
+    
+    $texto_limpio = strtr($texto, $reemplazos);
+    
+    return $texto_limpio;
+}
+
 if (isset($request->post['submit'])) 
 {
 	try {
@@ -97,7 +118,13 @@ if (isset($request->post['submit']))
 					{
 						if ($Row[1] == 'ProductName' || !$Row[1]) continue;
 
-						$pro_data['product_name'] = $Row[1];
+						// setlocale(LC_ALL, "en_US.utf8");
+
+						//$pro_data['product_name'] = $Row[1];
+						// $pro_data['product_name'] = iconv('UTF-8', 'ASCII//TRANSLIT', $Row[1]);
+						$proName =iconv('ISO-8859-1', 'UTF-8', quitarTildes($Row[1]));
+						// throw new Exception($proName);
+						$pro_data['product_name'] = $proName;
 						$pro_data['product_type'] = $Row[2];
 						$pro_data['code'] = isset($Row[3]) ? $Row[3] : '';
 						$pro_data['hsn_code'] = isset($Row[4]) ? $Row[4] : '';
@@ -365,7 +392,7 @@ if (isset($request->post['submit']))
 
 							<div class="well well-small">
 								<div class="text-warning">
-									<div>The first line in downloaded .xls file should remain as it is. Please do not change the order of columns. Please make sure the (*.xls) file is UTF-8 encoded. The images should be uploaded in storage/products/ (or where you pointed) folder. The System will check that if a row exists then update, if not exist then insert.
+									<div>La primera línea del archivo .xls descargado debe permanecer como está. No cambie el orden de las columnas. Asegúrese de que el archivo (*.xls) esté codificado en UTF-8. Las imágenes deben cargarse en la carpeta storage/products/ (o donde usted indicó). El sistema verificará que si existe una fila, actualice, si no existe, inserte.
 									</div>
 								</div>
 							</div>
