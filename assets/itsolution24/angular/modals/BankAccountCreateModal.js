@@ -25,7 +25,7 @@ window.angularApp.factory("BankAccountCreateModal", ["API_URL", "window", "jQuer
                     }, 500);
                     
                 }, function(response) {
-                   window.swal("Oops!", response.data.errorMsg, "error");
+                   window.swal("Ups!", response.data.errorMsg, "error");
                 });
 
                 // Submit BankAccount Form
@@ -57,7 +57,7 @@ window.angularApp.factory("BankAccountCreateModal", ["API_URL", "window", "jQuer
                         form.find(".taxrate-body").before(alertMsg);
 
                         // Alert
-                        window.swal("Success", response.data.msg, "success")
+                        window.swal("Éxito!", response.data.msg, "success")
                         .then(function(value) {
 
                             // close modalwindow
@@ -98,7 +98,7 @@ window.angularApp.factory("BankAccountCreateModal", ["API_URL", "window", "jQuer
                         alertMsg += "</div>";
                         form.find(".taxrate-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
                 });
 

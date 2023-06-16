@@ -21,7 +21,7 @@ window.angularApp.factory("ProductDeleteModal", ["API_URL", "window", "jQuery", 
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
 
                 }, function(data) {
-                   window.swal("Oops!", "an error occured!", "error");
+                   window.swal("Ups!", "an error occured!", "error");
                 });
 
                 // Submit product delete form
@@ -58,7 +58,7 @@ window.angularApp.factory("ProductDeleteModal", ["API_URL", "window", "jQuery", 
                         }
 
                         // Alert
-                        window.swal("Success", response.data.msg, "success")
+                        window.swal("Éxito!", response.data.msg, "success")
                         .then(function(value) {
                             $scope.closeProductDeleteModal();
                             $(document).find(".close").trigger("click");
@@ -74,7 +74,7 @@ window.angularApp.factory("ProductDeleteModal", ["API_URL", "window", "jQuery", 
                         alertMsg += "</div>";
                         form.find(".box-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
                 });
 

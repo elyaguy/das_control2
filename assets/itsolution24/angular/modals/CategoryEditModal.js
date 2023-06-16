@@ -26,7 +26,7 @@ window.angularApp.factory("CategoryEditModal", ["API_URL", "window", "jQuery", "
                     }, 100);
 
                 }, function(response) {
-                   window.swal("Oops!", response.data.errorMsg, "error");
+                   window.swal("Ups!", response.data.errorMsg, "error");
                 });
 
                 $(document).delegate("#category-update", "click", function(e) {
@@ -59,7 +59,7 @@ window.angularApp.factory("CategoryEditModal", ["API_URL", "window", "jQuery", "
 
                         // Alert
                         window.swal({
-                          title: "Success!",
+                          title: "Éxito!",
                           text: response.data.msg,
                           icon: "success",
                           buttons: true,
@@ -92,7 +92,7 @@ window.angularApp.factory("CategoryEditModal", ["API_URL", "window", "jQuery", "
                         alertMsg += "</div>";
                         form.find(".box-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
                 });
                 $scope.closeCategoryEditModal = function () {

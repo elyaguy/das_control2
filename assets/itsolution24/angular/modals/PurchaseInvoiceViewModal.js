@@ -25,7 +25,7 @@ window.angularApp.factory("PurchaseInvoiceViewModal", ["API_URL", "window", "jQu
                     $scope.modal_title = "Purchase > " + invoice.invoice_id;
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
                 }, function (response) {
-                   window.swal("Oops!", response.data.errorMsg, "error")
+                   window.swal("Ups!", response.data.errorMsg, "error")
                     .then(function() {
                         $scope.closePurchaseInvoiceViewModal();
                     });

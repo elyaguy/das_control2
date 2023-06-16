@@ -18,7 +18,7 @@ window.angularApp.factory("HoldingOrderModal", ["API_URL", "window", "jQuery", "
 
                 if (window.getParameterByName("holding_id")) {
                     window.swal({
-                      title: "Oops!",
+                      title: "Ups!",
                       text: "Please, cancel existing holding order first",
                       icon: "error",
                       buttons: true,
@@ -44,7 +44,7 @@ window.angularApp.factory("HoldingOrderModal", ["API_URL", "window", "jQuery", "
                             $("#order-title").focus();
                         }, 500);                   
                     }, function(response) {
-                       window.swal("Oops!", response.data.errorMsg, "error");
+                       window.swal("Ups!", response.data.errorMsg, "error");
                     });
                 }
 
@@ -71,7 +71,7 @@ window.angularApp.factory("HoldingOrderModal", ["API_URL", "window", "jQuery", "
                         $(document).find(".modal").removeClass("overlay-loader");
                         $scope.done = true;
                         $scope.showProductList();
-                        window.swal("Success!",  response.data.msg, "success")
+                        window.swal("Éxito!",  response.data.msg, "success")
                         .then(function(value) {
                             $scope.resetPos();
                             $(".modal").remove();
@@ -85,7 +85,7 @@ window.angularApp.factory("HoldingOrderModal", ["API_URL", "window", "jQuery", "
                         if (window.store.sound_effect == 1) {
                             window.storeApp.playSound("error.mp3");
                         }
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                         $(document).find(".modal").removeClass("overlay-loader");
                     });
 

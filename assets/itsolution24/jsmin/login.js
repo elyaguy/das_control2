@@ -183,14 +183,14 @@ window.$(window.document).ready(function ($) {
                 }).
                 then(function(response) {
                   var alertMsg = response.msg;
-                  window.toastr.success(alertMsg, "Success!");
+                  window.toastr.success(alertMsg, "Éxito!");
                   window.location = getParameterByName('redirect_to') && getParameterByName('redirect_to') !== "undefined" && getParameterByName('redirect_to') !== "null" ? getParameterByName('redirect_to') : window.baseUrl + "/"+window.adminDir+"/dashboard.php";
                 }, function(response) {
                   var errorMsg = JSON.parse(response.responseText);
                   var alertMsg = "<div>";
                       alertMsg += "<p>" + errorMsg.errorMsg + ".</p>";
                       alertMsg += "</div>";
-                  window.toastr.warning(alertMsg, "Warning!");
+                  window.toastr.warning(alertMsg, "Advertencia!");
                 });
               }
             },
@@ -201,7 +201,7 @@ window.$(window.document).ready(function ($) {
                 if (isHTML(response.responseText)) {
                   window.location = window.baseUrl+"/"+adminDir+"/dashboard.php";
                 } else {
-                  window.toastr.warning(JSON.parse(response.responseText).errorMsg, "Warning!");
+                  window.toastr.warning(JSON.parse(response.responseText).errorMsg, "Advertencia!");
                 }
             }
         });
@@ -233,7 +233,7 @@ window.$(window.document).ready(function ($) {
         then(function(response) {
             $(":input[type=\"button\"]").prop("disabled", false);
             var alertMsg = response.msg;
-            window.toastr.success(alertMsg, "Success!");
+            window.toastr.success(alertMsg, "Éxito!");
             window.location = getParameterByName('redirect_to') && getParameterByName('redirect_to') !== "undefined" && getParameterByName('redirect_to') !== "null" ? getParameterByName('redirect_to') : window.baseUrl + "/"+window.adminDir+"/dashboard.php";
         }, function(response) {
 
@@ -242,7 +242,7 @@ window.$(window.document).ready(function ($) {
           var alertMsg = "<div>";
               alertMsg += "<p>" + errorMsg.errorMsg + ".</p>";
               alertMsg += "</div>";
-          window.toastr.warning(alertMsg, "Warning!");
+          window.toastr.warning(alertMsg, "Advertencia!");
 
         });
     });
@@ -324,7 +324,7 @@ window.$(window.document).ready(function ($) {
                 $btn.button("reset");
                 $passwordInput.attr("disabled", false);
                 $passwordConfirmInput.attr("disabled", false);
-                window.toastr.success(response.msg, "Success!");
+                window.toastr.success(response.msg, "Éxito!");
                 window.location.href = 'index.php';
             },
             error: function (response) {
@@ -334,7 +334,7 @@ window.$(window.document).ready(function ($) {
                 $btn.button("reset");
                 $passwordInput.attr("disabled", false);
                 $passwordConfirmInput.attr("disabled", false);
-                window.toastr.warning(JSON.parse(response.responseText).errorMsg, "Warning!");
+                window.toastr.warning(JSON.parse(response.responseText).errorMsg, "Advertencia!");
             }
         });
     });

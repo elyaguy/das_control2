@@ -26,7 +26,7 @@ window.angularApp.factory("UserEditModal", ["API_URL", "window", "jQuery", "$htt
                     }, 100);
 
                 }, function(data) {
-                   window.swal("Oops!", window.response.data.errorMsg, "error");
+                   window.swal("Ups!", window.response.data.errorMsg, "error");
                 });
 
                 $(document).delegate("#user-update", "click", function(e) {
@@ -60,7 +60,7 @@ window.angularApp.factory("UserEditModal", ["API_URL", "window", "jQuery", "$htt
 
                         // Alert
                         window.swal({
-                          title: "Success!",
+                          title: "Éxito!",
                           text: response.data.msg,
                           icon: "success",
                           buttons: true,
@@ -96,7 +96,7 @@ window.angularApp.factory("UserEditModal", ["API_URL", "window", "jQuery", "$htt
 
                         $(":input[type=\"button\"]").prop("disabled", false);
 
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
 
                 });

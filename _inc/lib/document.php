@@ -63,7 +63,7 @@ class Document
 
 		$this->bodyClass = array(
 			// 'skin' => 'skin-' . $user->getPreference('base_color', 'black'),
-			'skin' => 'skin-' . $user->getPreference('base_color', 'black'),
+			'skin' => 'skin-' . $user->getPreference('base_color', 'purple'),
 			'layout' => $user->getPreference('layout'),
 			'sidebar_layout' => $user->getPreference('sidebar_layout'),
 		);

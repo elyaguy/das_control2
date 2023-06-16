@@ -43,7 +43,7 @@ window.angularApp.factory("BannerEditModal", ["API_URL", "window", "jQuery", "$h
                                 $scope.imgArray.push(item);
                             });
                         }, function(data) {
-                           window.swal("Oops!", "an error occured!", "error");
+                           window.swal("Ups!", "an error occured!", "error");
                         });
 
                         $scope.remoteImageItem = function(index)
@@ -55,7 +55,7 @@ window.angularApp.factory("BannerEditModal", ["API_URL", "window", "jQuery", "$h
                     }, 100);
 
                 }, function(response) {
-                   window.swal("Oops!", response.data.errorMsg, "error");
+                   window.swal("Ups!", response.data.errorMsg, "error");
                 });
 
                 $(document).delegate("#banner-update", "click", function(e) {
@@ -88,7 +88,7 @@ window.angularApp.factory("BannerEditModal", ["API_URL", "window", "jQuery", "$h
 
                         // Alert
                         window.swal({
-                          title: "Success!",
+                          title: "Éxito!",
                           text: response.data.msg,
                           icon: "success",
                           buttons: true,
@@ -120,7 +120,7 @@ window.angularApp.factory("BannerEditModal", ["API_URL", "window", "jQuery", "$h
                         alertMsg += "</div>";
                         form.find(".box-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
                 });
 

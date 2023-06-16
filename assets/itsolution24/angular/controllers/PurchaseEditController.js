@@ -116,7 +116,7 @@ function (
             $(":input[type=\"button\"]").prop("disabled", false);
             var alertMsg = response.data.msg;
             window.swal({
-              title: "Success!",
+              title: "Éxito!",
               text: "Going back to list...",
               icon: "success",
               buttons: true,
@@ -126,7 +126,7 @@ function (
                 if (willDelete) {
                     window.location = window.baseUrl+'/admin/purchase.php';
                 } else {
-                    window.toastr.success(alertMsg, "Success!");
+                    window.toastr.success(alertMsg, "Éxito!");
                 }
             });
 
@@ -138,7 +138,7 @@ function (
                 alertMsg += "<p>" + value + ".</p>";
             });
             alertMsg += "</div>";
-            window.toastr.warning(alertMsg, "Warning!");
+            window.toastr.warning(alertMsg, "Advertencia!");
         });
     });
 
@@ -186,7 +186,7 @@ function (
         e.stopPropagation();
         e.preventDefault();
         if (!$scope.sup_id) {
-            window.swal("Oops!", "Please, select supplier first", "warning");
+            window.swal("Ups!", "Please, select supplier first", "warning");
         }
         var $this = $(this);
         $this.attr('autocomplete', 'off');
@@ -216,7 +216,7 @@ function (
                         };
                     }));
                 }, function (data) {
-                   window.swal("Oops!", response.data.errorMsg, "error");
+                   window.swal("Ups!", response.data.errorMsg, "error");
                 });
             },
             focusOpen: true,

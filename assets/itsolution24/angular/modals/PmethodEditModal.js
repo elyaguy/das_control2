@@ -26,7 +26,7 @@ window.angularApp.factory("PmethodEditModal", ["API_URL", "window", "jQuery", "$
                     }, 100);
 
                 }, function(response) {
-                   window.swal("Oops!", response.data.errorMsg, "error");
+                   window.swal("Ups!", response.data.errorMsg, "error");
                 });
 
                 $(document).delegate("#pmethod-update", "click", function(e) {
@@ -59,7 +59,7 @@ window.angularApp.factory("PmethodEditModal", ["API_URL", "window", "jQuery", "$
 
                         // Alert
                         window.swal({
-                          title: "Success!",
+                          title: "Éxito!",
                           text: response.data.msg,
                           icon: "success",
                           buttons: true,
@@ -95,7 +95,7 @@ window.angularApp.factory("PmethodEditModal", ["API_URL", "window", "jQuery", "$
 
                         $(":input[type=\"button\"]").prop("disabled", false);
 
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
 
                 });

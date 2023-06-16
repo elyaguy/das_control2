@@ -35,7 +35,7 @@ window.angularApp.factory("PurchaseReturnModal", ["API_URL", "window", "jQuery",
                             $(document).find("body").removeClass("overlay-loader");
                         }, 500);                 
                     }, function(response) {
-                       window.swal("Oops!", response.data.errorMsg, "error");
+                       window.swal("Ups!", response.data.errorMsg, "error");
                        $(document).find("body").removeClass("overlay-loader");
                     });
                 };
@@ -55,7 +55,7 @@ window.angularApp.factory("PurchaseReturnModal", ["API_URL", "window", "jQuery",
                         dataType: "json"
                     }).
                     then(function(response) {
-                        window.swal("Success", response.data.msg, "success")
+                        window.swal("Éxito!", response.data.msg, "success")
                         .then(function(value) {
                             if ($scope.order.datatable) {
                                 $($scope.order.datatable).DataTable().ajax.reload(null, false);
@@ -70,7 +70,7 @@ window.angularApp.factory("PurchaseReturnModal", ["API_URL", "window", "jQuery",
                         if (window.store.sound_effect == 1) {
                             window.storeApp.playSound("error.mp3");
                         }
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                         $(document).find(".modal").removeClass("overlay-loader");
                     });
                 };

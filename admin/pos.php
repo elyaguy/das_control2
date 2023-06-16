@@ -107,6 +107,7 @@ if ($order_printer_ids) {
 
 	    <!-- Skin Red CSS -->
 	    <link href="../assets/itsolution24/css/skins/skin-red.css" type="text/css" rel="stylesheet">
+	    <link href="../assets/itsolution24/css/skins/skin-purple.css" type="text/css" rel="stylesheet">
 
 	    <!-- Skin Yellow CSS -->
 	    <link href="../assets/itsolution24/css/skins/skin-yellow.css" type="text/css" rel="stylesheet">

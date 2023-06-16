@@ -25,6 +25,7 @@ const mix = require('laravel-mix');
 //     'assets/itsolution24/css/skins/skin-blue.css',
 //     'assets/itsolution24/css/skins/skin-green.css',
 //     'assets/itsolution24/css/skins/skin-red.css',
+//     'assets/itsolution24/css/skins/skin-purple.css',
 //     'assets/itsolution24/css/skins/skin-yellow.css',
 
 //     // DataTable
@@ -180,6 +181,9 @@ mix.scripts([
     'assets/itsolution24/angular/modals/BrandCreateModal.js',
     'assets/itsolution24/angular/modals/BrandDeleteModal.js',
     'assets/itsolution24/angular/modals/BrandEditModal.js',
+    'assets/itsolution24/angular/modals/CourseCreateModal.js',
+    'assets/itsolution24/angular/modals/CourseDeleteModal.js',
+    'assets/itsolution24/angular/modals/CourseEditModal.js',
     'assets/itsolution24/angular/modals/UserCreateModal.js',
     'assets/itsolution24/angular/modals/UserDeleteModal.js',
     'assets/itsolution24/angular/modals/UserEditModal.js',

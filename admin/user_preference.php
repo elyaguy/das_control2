@@ -195,7 +195,9 @@ include("left_sidebar.php");
 									<option value="green" <?php echo isset($preference['base_color']) && $preference['base_color'] == 'green'  ? ' selected' : null; ?> name="preference[base_color]">
 										<?php echo trans('text_color_green'); ?>
 									</option>
-
+									<option value="purple" <?php echo isset($preference['base_color']) && $preference['base_color'] == 'purple'  ? ' selected' : null; ?> name="preference[base_color]">
+										<?php echo trans('text_color_purple'); ?>
+									</option>
 									<option value="red" <?php echo isset($preference['base_color']) && $preference['base_color'] == 'red'  ? ' selected' : null; ?> name="preference[base_color]">
 										<?php echo trans('text_color_red'); ?>
 									</option>

@@ -21,7 +21,7 @@ window.angularApp.factory("BoxEditModal", ["API_URL", "window", "jQuery", "$http
                 $scope.modal_title = box.box_name;
                 $scope.rawHtml = $sce.trustAsHtml(response.data);
                 }, function(response) {
-                   window.swal("Oops!", response.data.errorMsg, "error");
+                   window.swal("Ups!", response.data.errorMsg, "error");
                 });
 
                 $(document).delegate("#box-update", "click", function(e) {
@@ -55,7 +55,7 @@ window.angularApp.factory("BoxEditModal", ["API_URL", "window", "jQuery", "$http
 
                         // Alert
                         window.swal({
-                          title: "Success!",
+                          title: "Éxito!",
                           text: response.data.msg,
                           icon: "success",
                           buttons: true,
@@ -89,7 +89,7 @@ window.angularApp.factory("BoxEditModal", ["API_URL", "window", "jQuery", "$http
                         alertMsg += "</div>";
                         form.find(".box-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
 
                 });

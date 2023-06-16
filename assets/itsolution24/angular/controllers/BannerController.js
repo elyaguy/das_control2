@@ -206,7 +206,7 @@ function (
                     doc['footer']=(function(page, pages) {
                         return {
                             columns: [
-                                'Powered by ITSOLUTION24.COM',
+                                'Powered by ControlDas.com',
                                 {
                                     // This is the right column
                                     alignment: 'right',
@@ -265,7 +265,7 @@ function (
             $btn.button("reset");
             $(":input[type=\"button\"]").prop("disabled", false);
             var alertMsg = response.data.msg;
-            window.toastr.success(alertMsg, "Success!");
+            window.toastr.success(alertMsg, "Éxito!");
             bannerId = response.data.id;
             dt.DataTable().ajax.reload(function(json) {
                 if ($("#row_"+bannerId).length) {
@@ -286,7 +286,7 @@ function (
                 alertMsg += "<p>" + value + ".</p>";
             });
             alertMsg += "</div>";
-            window.toastr.warning(alertMsg, "Warning!");
+            window.toastr.warning(alertMsg, "Advertencia!");
         });
     });
 
@@ -320,9 +320,9 @@ function (
                 })
                 .then(function(response) {
                     dt.DataTable().ajax.reload( null, false );
-                    window.swal("success!", response.data.msg, "success");
+                    window.swal("Éxito!", response.data.msg, "success");
                 }, function(response) {
-                    window.swal("Oops!", response.data.errorMsg, "error");
+                    window.swal("Ups!", response.data.errorMsg, "error");
                 });
             }
         });

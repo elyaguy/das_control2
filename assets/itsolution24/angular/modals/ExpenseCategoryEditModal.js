@@ -24,7 +24,7 @@ window.angularApp.factory("ExpenseCategoryEditModal", ["API_URL", "window", "jQu
                         window.storeApp.select2();
                     }, 100);
                 }, function(response) {
-                   window.swal("Oops!", response.data.errorMsg, "error");
+                   window.swal("Ups!", response.data.errorMsg, "error");
                 });
 
                 $(document).delegate("#expense-category-update", "click", function(e) {
@@ -57,7 +57,7 @@ window.angularApp.factory("ExpenseCategoryEditModal", ["API_URL", "window", "jQu
 
                         // Alert
                         window.swal({
-                          title: "Success!",
+                          title: "Éxito!",
                           text: response.data.msg,
                           icon: "success",
                           buttons: true,
@@ -90,7 +90,7 @@ window.angularApp.factory("ExpenseCategoryEditModal", ["API_URL", "window", "jQu
                         alertMsg += "</div>";
                         form.find(".box-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
                 });
                 $scope.closeExpenseCategoryEditModal = function () {

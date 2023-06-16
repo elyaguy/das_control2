@@ -20,7 +20,7 @@ window.angularApp.factory("InvoiceSMSModal", ["API_URL", "window", "jQuery", "$h
                     $scope.modal_title = "SEND SMS";
                     $scope.rawHtml = $sce.trustAsHtml(response.data);   
                 }, function(response) {
-                   window.swal("Oops!", response.data.errorMsg, "error");
+                   window.swal("Ups!", response.data.errorMsg, "error");
                 });
 
                 // Send SMS
@@ -52,7 +52,7 @@ window.angularApp.factory("InvoiceSMSModal", ["API_URL", "window", "jQuery", "$h
                         form.find(".box-body").before(alertMsg);
 
                         // Alert
-                        window.swal("Success", response.data.msg, "success")
+                        window.swal("Éxito!", response.data.msg, "success")
                         .then(function(value) {
                             $scope.closeInvoiceSMSModal();
                             $(document).find(".close").trigger("click");
@@ -67,7 +67,7 @@ window.angularApp.factory("InvoiceSMSModal", ["API_URL", "window", "jQuery", "$h
                         alertMsg += "</div>";
                         form.find(".box-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
                 });
 

@@ -49,13 +49,13 @@ window.angularApp.factory("EmailModal", ["API_URL", "window", "jQuery", "$http",
                     then(function(response) {
                         $("body").removeClass("overlay-loader");
                         $btn.button("reset");
-                        window.swal("Success", response.data.msg, "success").then(function() {
+                        window.swal("Éxito!", response.data.msg, "success").then(function() {
                             $scope.cancel();
                         });
                     }, function(response) {
                         $("body").removeClass("overlay-loader");
                         $btn.button("reset");
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
                 });
                 $scope.cancel = function () {

@@ -27,7 +27,7 @@ window.angularApp.factory("UserInvoiceDetailsModal", ["API_URL", "window", "jQue
                     }, 500);
                     
                 }, function(response) {
-                   window.swal("Oops!", response.data.errorMsg, "error");
+                   window.swal("Ups!", response.data.errorMsg, "error");
                 });
 
                 $scope.closeDueCollectionModal = function () {
@@ -80,7 +80,7 @@ window.angularApp.factory("UserInvoiceDueDetailsModal", ["API_URL", "window", "j
                     }, 500);
                     
                 }, function(response) {
-                   window.swal("Oops!", response.data.errorMsg, "error");
+                   window.swal("Ups!", response.data.errorMsg, "error");
                 });
 
                 $scope.closeDueCollectionModal = function () {

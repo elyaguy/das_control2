@@ -300,7 +300,7 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && $request->get['action_type']
               <svg class="svg-icon"><use href="#icon-avatar"></svg>
             </div>
             <!-- <input type="text" class="form-control" value="tusolutionweb@gmail.com" placeholder="Email / Phone No." name="username"> -->
-            <input type="text" class="form-control" value="" placeholder="Email / Phone No." name="username">
+            <input type="text" class="form-control" value="" placeholder='Correo o Teléfono' name="username">
           </div>
         </div>
 
@@ -310,7 +310,7 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && $request->get['action_type']
               <svg class="svg-icon"><use href="#icon-password"></svg>
             </div>
             <!-- <input type="password" class="form-control" value="tusolutionweb" placeholder="Password" name="password"> -->
-            <input type="password" class="form-control" value="" placeholder="Password" name="password">
+            <input type="password" class="form-control" value="" placeholder=<?php echo trans('label_password'); ?> name="password">
           </div>
         </div>
 
@@ -348,7 +348,7 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && $request->get['action_type']
       <?php endif; ?>
     </div>
     <div class="copyright text-center">
-      <p>&copy; <a href="https://www.udemy.com/user/tayler-darden/">Mas proyectos aqui</a>, </p>
+      <!-- <p>&copy; <a href="https://www.udemy.com/user/tayler-darden/">Mas proyectos aqui</a>, </p> -->
     </div>
   </section>
 

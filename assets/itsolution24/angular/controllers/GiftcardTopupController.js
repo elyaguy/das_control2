@@ -125,7 +125,7 @@ function (
                     $(win.document.body)
                         .css( 'font-size', '10pt' )
                         .append(
-                            '<div><b><i>Powered by: ITsolution24.com</i></b></div>'
+                            '<div><b><i>Powered by: ControlDas.com</i></b></div>'
                         )
                         .prepend(
                             '<div class="dt-print-heading"><img class="logo" src="'+window.logo+'"/><h2 class="title">'+window.store.name+'</h2><p>Printed on: '+window.formatDate(new Date())+'</p></div>'
@@ -194,7 +194,7 @@ function (
                     doc['footer']=(function(page, pages) {
                         return {
                             columns: [
-                                'Powered by ITSOLUTION24.COM',
+                                'Powered by ControlDas.com',
                                 {
                                     // This is the right column
                                     alignment: 'right',
@@ -253,9 +253,9 @@ function (
                 })
                 .then(function(response) {
                     dt.DataTable().ajax.reload( null, false );
-                    window.swal("success!", response.data.msg, "success");
+                    window.swal("Éxito!", response.data.msg, "success");
                 }, function(response) {
-                    window.swal("Oops!", response.data.errorMsg, "error");
+                    window.swal("Ups!", response.data.errorMsg, "error");
                 });
             }
         });

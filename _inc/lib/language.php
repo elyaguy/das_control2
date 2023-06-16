@@ -22,12 +22,12 @@ class Language
 	public function __construct($lang_code) 
 	{
 		$this->lang_code = $lang_code;
-		$statement = db()->prepare("SELECT `id` FROM `languages` WHERE `code` = ?");
+		$statement = db()->prepare("SELECT `id` FROM `languages` WHERE status = 1 and `code` = ?");
       	$statement->execute(array($this->lang_code));
       	$lang = $statement->fetch(PDO::FETCH_ASSOC);
       	if (!$lang) {
       		$statement = db()->prepare("SELECT `id` FROM `languages` WHERE `code` = ?");
-	      	$statement->execute(array('en'));
+	      	$statement->execute(array($this->default));
 	      	$lang = $statement->fetch(PDO::FETCH_ASSOC);
       	} 
       	$this->lang_id = $lang['id'];
@@ -59,6 +59,7 @@ class Language
 		if (empty($this->data)) {
 			$statement = db()->prepare("SELECT `lang_key`, `lang_value` FROM `language_translations` WHERE `lang_id` = ?");
 			$statement->execute(array($this->lang_id));
+			// $statement->execute(array($this->1));
 			foreach ($statement->fetchAll(PDO::FETCH_ASSOC) as $value) {
 				$this->data[trim($value['lang_key'])] = trim($value['lang_value']);
 			}

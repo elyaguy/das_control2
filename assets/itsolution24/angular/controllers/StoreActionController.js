@@ -43,7 +43,7 @@ function (
             $btn.button("reset");
             $(":input[type=\"button\"]").prop("disabled", false);
             var alertMsg = response.data.msg;
-            window.toastr.success(alertMsg, "Success!");
+            window.toastr.success(alertMsg, "Éxito!");
 
         }, function(response) {
 
@@ -54,7 +54,7 @@ function (
                 alertMsg += "<p>" + value + ".</p>";
             });
             alertMsg += "</div>";
-            window.toastr.warning(alertMsg, "Warning!");
+            window.toastr.warning(alertMsg, "Advertencia!");
         });
     });
     
@@ -82,7 +82,7 @@ function (
             $btn.button("reset");
             $(":input[type=\"button\"]").prop("disabled", false);
             var alertMsg = response.data.msg;
-            window.toastr.success(alertMsg, "Success!");
+            window.toastr.success(alertMsg, "Éxito!");
             window.location = 'store_single.php?store_id=' + response.data.id + '&box_state=open';
 
         }, function(response) {
@@ -94,7 +94,7 @@ function (
                 alertMsg += "<p>" + value + ".</p>";
             });
             alertMsg += "</div>";
-            window.toastr.warning(alertMsg, "Warning!");
+            window.toastr.warning(alertMsg, "Advertencia!");
         });
     });
 

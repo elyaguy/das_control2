@@ -25,7 +25,7 @@ window.angularApp.factory("TransferDetailsViewModal", ["API_URL", "window", "jQu
                     $scope.modal_title = "Transfer > " + transfer.ref_no;
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
                 }, function (response) {
-                    window.swal("Oops!", response.data.errorMsg, "error")
+                    window.swal("Ups!", response.data.errorMsg, "error")
                     .then(function() {
                         $scope.closeTransferDetailsViewModal();
                     });

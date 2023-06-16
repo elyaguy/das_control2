@@ -39,7 +39,7 @@ function (API_URL,
                     $scope.modal_title = invoice.invoice_id;
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
                 }, function (response) {
-                   window.swal("Oops!", response.data.errorMsg, "error")
+                   window.swal("Ups!", response.data.errorMsg, "error")
                     .then(function() {
                         $scope.closeInvoiceViewModal();
                     });

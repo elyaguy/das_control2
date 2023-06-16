@@ -25,7 +25,7 @@ window.angularApp.factory("ExpenseSummaryModal", ["API_URL", "window", "jQuery",
                     $scope.modal_title = "Expense Summary";
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
                 }, function (response) {
-                   window.swal("Oops!", response.data.errorMsg, "error")
+                   window.swal("Ups!", response.data.errorMsg, "error")
                     .then(function() {
                         $scope.closeExpenceViewModal();
                     });

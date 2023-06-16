@@ -72,7 +72,7 @@ function (
                 $tag.button("reset");
             }, 300);
         }, function(response) {
-           window.swal("Oops!", response.data.errorMsg, "error");
+           window.swal("Ups!", response.data.errorMsg, "error");
            setTimeout(function() {
                 $tag.button("reset");
             }, 300);

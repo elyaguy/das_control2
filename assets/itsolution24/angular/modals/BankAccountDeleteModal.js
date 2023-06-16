@@ -25,7 +25,7 @@ window.angularApp.factory("BankAccountDeleteModal", ["API_URL", "window", "jQuer
                     }, 100);
                     
                 }, function(response) {
-                    window.swal("Oops!", response.data.errorMsg, "error")
+                    window.swal("Ups!", response.data.errorMsg, "error")
                     .then(function() {
                         $scope.closeBankAccountDeleteModal();
                     });
@@ -62,7 +62,7 @@ window.angularApp.factory("BankAccountDeleteModal", ["API_URL", "window", "jQuer
                         $(datatable).DataTable().ajax.reload(null, false);
 
                         // Alert
-                        window.swal("Success", response.data.msg, "success")
+                        window.swal("Éxito!", response.data.msg, "success")
                         .then(function(value) {
 
                             $scope.closeBankAccountDeleteModal();
@@ -84,7 +84,7 @@ window.angularApp.factory("BankAccountDeleteModal", ["API_URL", "window", "jQuer
                         alertMsg += "</div>";
                         form.find(".account-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
 
                 });

@@ -55,7 +55,7 @@ EmailModal
                         };
                     }));
                 }, function (data) {
-                   window.swal("Oops!", response.data.errorMsg, "error");
+                   window.swal("Ups!", response.data.errorMsg, "error");
                 });
             },
             focusOpen: true,

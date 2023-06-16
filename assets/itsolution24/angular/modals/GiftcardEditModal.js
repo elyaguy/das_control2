@@ -28,7 +28,7 @@ window.angularApp.factory("GiftcardEditModal", ["API_URL", "window", "jQuery", "
                         });
                     }, 500);
                 }, function(response) {
-                   window.swal("Oops!", response.data.errorMsg, "error");
+                   window.swal("Ups!", response.data.errorMsg, "error");
                 });
 
                 $(document).delegate("#giftcard-update", "click", function(e) {
@@ -62,7 +62,7 @@ window.angularApp.factory("GiftcardEditModal", ["API_URL", "window", "jQuery", "
 
                         // Alert
                         window.swal({
-                          title: "Success!",
+                          title: "Éxito!",
                           text: response.data.msg,
                           icon: "success",
                           buttons: true,
@@ -96,7 +96,7 @@ window.angularApp.factory("GiftcardEditModal", ["API_URL", "window", "jQuery", "
                         alertMsg += "</div>";
                         form.find(".giftcard-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
 
                 });

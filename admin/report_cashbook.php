@@ -302,7 +302,7 @@ include ("left_sidebar.php") ;
           // $(element).button('reset');
         },
         success: function(res) {
-          window.swal("Success!", res.msg, "success")
+          window.swal("Éxito!", res.msg, "success")
           .then(function() {
               window.location = window.location;
               // window.toastr.success(res.msg);

@@ -25,7 +25,7 @@ window.angularApp.factory("UnitCreateModal", ["API_URL", "window", "jQuery", "$h
                     }, 500);
                     
                 }, function(response) {
-                   window.swal("Oops!", response.data.errorMsg, "error");
+                   window.swal("Ups!", response.data.errorMsg, "error");
                 });
 
                 // Submit Unit Form
@@ -57,7 +57,7 @@ window.angularApp.factory("UnitCreateModal", ["API_URL", "window", "jQuery", "$h
                         form.find(".unit-body").before(alertMsg);
 
                         // Alert
-                        window.swal("Success", response.data.msg, "success")
+                        window.swal("Éxito!", response.data.msg, "success")
                         .then(function(value) {
 
                             // close modalwindow
@@ -98,7 +98,7 @@ window.angularApp.factory("UnitCreateModal", ["API_URL", "window", "jQuery", "$h
                         alertMsg += "</div>";
                         form.find(".unit-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
                 });
 

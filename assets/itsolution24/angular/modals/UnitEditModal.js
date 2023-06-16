@@ -21,7 +21,7 @@ window.angularApp.factory("UnitEditModal", ["API_URL", "window", "jQuery", "$htt
                 $scope.modal_title = unit.unit_name;
                 $scope.rawHtml = $sce.trustAsHtml(response.data);
                 }, function(response) {
-                   window.swal("Oops!", response.data.errorMsg, "error");
+                   window.swal("Ups!", response.data.errorMsg, "error");
                 });
 
                 $(document).delegate("#unit-update", "click", function(e) {
@@ -55,7 +55,7 @@ window.angularApp.factory("UnitEditModal", ["API_URL", "window", "jQuery", "$htt
 
                         // Alert
                         window.swal({
-                          title: "Success!",
+                          title: "Éxito!",
                           text: response.data.msg,
                           icon: "success",
                           buttons: true,
@@ -89,7 +89,7 @@ window.angularApp.factory("UnitEditModal", ["API_URL", "window", "jQuery", "$htt
                         alertMsg += "</div>";
                         form.find(".unit-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
 
                 });

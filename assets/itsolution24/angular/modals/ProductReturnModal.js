@@ -21,7 +21,7 @@ window.angularApp.factory("ProductReturnModal", ["API_URL", "window", "jQuery", 
                 $scope.modal_title = product.p_name;
                 $scope.rawHtml = $sce.trustAsHtml(response.data);
                 }, function(data) {
-                   window.swal("Oops!", "an error occured!", "error");
+                   window.swal("Ups!", "an error occured!", "error");
                 });
 
                  // Submit product return form
@@ -55,7 +55,7 @@ window.angularApp.factory("ProductReturnModal", ["API_URL", "window", "jQuery", 
 
                         // Alert
                         window.swal({
-                          title: "Success!",
+                          title: "Éxito!",
                           text: response.data.msg,
                           icon: "success",
                           buttons: true,
@@ -88,7 +88,7 @@ window.angularApp.factory("ProductReturnModal", ["API_URL", "window", "jQuery", 
                         alertMsg += "</div>";
                         form.find(".box-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
 
                 });

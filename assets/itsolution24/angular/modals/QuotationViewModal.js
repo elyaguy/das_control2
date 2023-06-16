@@ -25,7 +25,7 @@ window.angularApp.factory("QuotationViewModal", ["API_URL", "window", "jQuery", 
                     $scope.modal_title = "Quotation > " + quotation.reference_no;
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
                 }, function (response) {
-                   window.swal("Oops!", response.data.errorMsg, "error")
+                   window.swal("Ups!", response.data.errorMsg, "error")
                     .then(function() {
                         $scope.closeQuotationViewModal();
                     });

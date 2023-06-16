@@ -20,7 +20,7 @@ window.angularApp.factory("ProductViewModal", ["API_URL", "window", "jQuery", "$
                     $scope.modal_title = product.p_name;
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
                 }, function(response) {
-                    window.swal("Oops!", response.data.errorMsg, "error")
+                    window.swal("Ups!", response.data.errorMsg, "error")
                     .then(function() {
                         $scope.closeProductViewModal();
                     });

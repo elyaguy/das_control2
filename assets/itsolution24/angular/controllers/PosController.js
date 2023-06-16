@@ -55,7 +55,7 @@ function (
             if (window.store.sound_effect == 1) {
                 window.storeApp.playSound("error.mp3");
             }
-            window.toastr.error("The discount amount isn't numeric!", "Warning!");
+            window.toastr.error("The discount amount isn't numeric!", "Advertencia!");
             return 0;
         }
         return (amount/100)*per;
@@ -117,7 +117,7 @@ function (
             if (window.store.sound_effect == 1) {
                 window.storeApp.playSound("error.mp3");
             }
-            window.toastr.error(response.data.errorMsg, "Warning!");
+            window.toastr.error(response.data.errorMsg, "Advertencia!");
         });
     };
     $("#customer-name").on("click", function() {
@@ -141,7 +141,7 @@ function (
                 if (window.store.sound_effect == 1) {
                     window.storeApp.playSound("error.mp3");
                 }
-                window.toastr.error(response.data.errorMsg, "Warning!");
+                window.toastr.error(response.data.errorMsg, "Advertencia!");
             });
         } else if (customer.customer_id) {
             var contact = customer.customer_mobile || customer.customer_email;
@@ -160,7 +160,7 @@ function (
             if (window.store.sound_effect == 1) {
                 window.storeApp.playSound("error.mp3");
             }
-            window.toastr.error("Oops!, Invalid customer", "Warning!");
+            window.toastr.error("Oops!, Invalid customer", "Advertencia!");
         }
     };
     if (window.getParameterByName("customer_id")) {
@@ -230,7 +230,7 @@ function (
             if (window.store.sound_effect == 1) {
                 window.storeApp.playSound("error.mp3");
             }
-            window.toastr.error(response.data.errorMsg, "Warning!");
+            window.toastr.error(response.data.errorMsg, "Advertencia!");
         });
     };
     $scope.showProductList();
@@ -355,7 +355,7 @@ function (
             if (window.store.sound_effect == 1) {
                 window.storeApp.playSound("error.mp3");
             }
-            window.toastr.error("Discount amount must be less than payable amount", "Warning!");
+            window.toastr.error("Discount amount must be less than payable amount", "Advertencia!");
         }
         if ($scope.payable != 0 && ($scope.shippingAmount >= $scope.payable)) {
             $scope.shippingAmount = 0;
@@ -363,7 +363,7 @@ function (
             if (window.store.sound_effect == 1) {
                 window.storeApp.playSound("error.mp3");
             }
-            window.toastr.error("Shipping amount must be less than payable amount", "Warning!");
+            window.toastr.error("Shipping amount must be less than payable amount", "Advertencia!");
         }
         if ($scope.discountType == 'percentage') {
             discountPercentage =  parseFloat($scope._percentage($scope.payable, $scope.discountAmount));
@@ -451,7 +451,7 @@ function (
                                 if (window.store.sound_effect == 1) {
                                     window.storeApp.playSound("error.mp3");
                                 }
-                                window.toastr.error("This product is out of stock!", "Warning!");
+                                window.toastr.error("This product is out of stock!", "Advertencia!");
                                 return false;
                             }
                             if (window.store.sound_effect == 1) {
@@ -476,7 +476,7 @@ function (
                         if (window.store.sound_effect == 1) {
                             window.storeApp.playSound("error.mp3");
                         }
-                        window.toastr.error("This product is out of stock!", "Warning!");
+                        window.toastr.error("This product is out of stock!", "Advertencia!");
                         return false;
                     }
                     if (window.store.sound_effect == 1) {
@@ -543,7 +543,7 @@ function (
             if (window.store.sound_effect == 1) {
                 window.storeApp.playSound("error.mp3");
             }
-            window.toastr.error(response.data.errorMsg, "Warning!");
+            window.toastr.error(response.data.errorMsg, "Advertencia!");
             $scope.showLoader = !1;
         });
     };
@@ -582,7 +582,7 @@ function (
                             if (window.store.sound_effect == 1) {
                                 window.storeApp.playSound("error.mp3");
                             }
-                            window.toastr.error("Quantity can't be less than 1", "Warning!");
+                            window.toastr.error("Quantity can't be less than 1", "Advertencia!");
                         }
                     }
                 });
@@ -610,7 +610,7 @@ function (
                 if (window.store.sound_effect  == 1) {
                     window.storeApp.playSound("error.mp3");
                 }
-                window.toastr.error("Last item can not be removed!", "Warning!");
+                window.toastr.error("Last item can not be removed!", "Advertencia!");
                 return false;
             }
         }
@@ -706,7 +706,7 @@ function (
                 if (window.store.sound_effect == 1) {
                     window.storeApp.playSound("error.mp3");
                 }
-                window.toastr.warning(response.data.errorMsg, "Warning!");
+                window.toastr.warning(response.data.errorMsg, "Advertencia!");
                 window.location = window.baseUrl + '/admin/pos.php';
             });
         }
@@ -797,7 +797,7 @@ function (
                 if (window.store.sound_effect == 1) {
                     window.storeApp.playSound("error.mp3");
                 }
-                window.toastr.warning(response.data.errorMsg, "Warning!");
+                window.toastr.warning(response.data.errorMsg, "Advertencia!");
                 window.location = window.baseUrl + '/admin/pos.php';
             });
         }
@@ -972,7 +972,7 @@ function (
             if (window.store.sound_effect == 1) {
                 window.storeApp.playSound("error.mp3");
             }
-            window.toastr.error("Please, select at least one product item", "Warning!");
+            window.toastr.error("Please, select at least one product item", "Advertencia!");
             return false;
         }
         if (window.store.remote_printing != 1) {
@@ -987,7 +987,7 @@ function (
             if (window.store.sound_effect == 1) {
                 window.storeApp.playSound("error.mp3");
             }
-            window.toastr.error("Please, select at least one product item", "Warning!");
+            window.toastr.error("Please, select at least one product item", "Advertencia!");
             return false;
         }
         if (window.store.remote_printing != 1) {
@@ -1012,14 +1012,14 @@ function (
             if (window.store.sound_effect == 1) {
                 window.storeApp.playSound("error.mp3");
             }
-            window.toastr.error("Please, select at least one product item", "Warning!");
+            window.toastr.error("Please, select at least one product item", "Advertencia!");
             return false;
         }
         if (!$scope.customerName) {
             if (window.store.sound_effect == 1) {
                 window.storeApp.playSound("error.mp3");
             }
-            window.toastr.error("Please, select a customer", "Warning!");
+            window.toastr.error("Please, select a customer", "Advertencia!");
             return false;
         } 
         $scope.customerId = $(document).find("input[name=\"customer-id\"]").val();
@@ -1092,7 +1092,7 @@ function (
                                 if (window.store.sound_effect == 1) {
                                     window.storeApp.playSound("error.mp3");
                                 }
-                                window.toastr.error("This product is out of stock!", "Warning!");
+                                window.toastr.error("This product is out of stock!", "Advertencia!");
                             }
                         } else {
                             $scope.error = true;
@@ -1103,7 +1103,7 @@ function (
                     if (window.store.sound_effect == 1) {
                         window.storeApp.playSound("error.mp3");
                     }
-                    window.toastr.error(response.data.errorMsg, "Warning!");
+                    window.toastr.error(response.data.errorMsg, "Advertencia!");
                 });
             });
         }
@@ -1184,7 +1184,7 @@ function (
             if (window.store.sound_effect == 1) {
                 window.storeApp.playSound("error.mp3");
             }
-            window.toastr.error("Please, select at least one product item", "Warning!");
+            window.toastr.error("Please, select at least one product item", "Advertencia!");
             return false;
         }
         if ($("#customer-mobile-number").val()) {
@@ -1213,7 +1213,7 @@ function (
                 if (window.store.sound_effect == 1) {
                     window.storeApp.playSound("error.mp3");
                 }
-                window.toastr.error("Quantity must be greater than 0!", "Warning!");
+                window.toastr.error("Quantity must be greater than 0!", "Advertencia!");
                 return false;
             }
             $scope.addItemToInvoice($scope.productItemId, parseFloat(itemQuantity));

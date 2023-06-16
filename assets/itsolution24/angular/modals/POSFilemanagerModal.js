@@ -21,7 +21,7 @@ window.angularApp.factory("POSFilemanagerModal", ["API_URL", "window", "jQuery",
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
                     $(".modal:first").addClass("filemanager-open");
                 }, function (response) {
-                    window.swal("Oops!", response.data.errorMsg, "error").then(function() {
+                    window.swal("Ups!", response.data.errorMsg, "error").then(function() {
                         $scope.closeFileManager();
                     });
                 });

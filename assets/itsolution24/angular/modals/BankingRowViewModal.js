@@ -25,7 +25,7 @@ window.angularApp.factory("BankingRowViewModal", ["API_URL", "window", "jQuery",
                     $scope.modal_title = "View " + type + " details";
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
                 }, function (response) {
-                    window.swal("Oops!", response.data.errorMsg, "error").then(function() {
+                    window.swal("Ups!", response.data.errorMsg, "error").then(function() {
                         $scope.closeBankingRowViewModal();
                     });
                 });

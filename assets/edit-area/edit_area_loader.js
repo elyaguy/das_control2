@@ -46,7 +46,7 @@ function EditAreaLoader(){
 		,min_height: 125
 		,replace_tab_by_spaces: false
 		,allow_toggle: true		// true or false
-		,language: "en"
+		,language: "es"
 		,syntax: ""
 		,syntax_selection_allow: "basic,brainfuck,c,coldfusion,cpp,css,html,java,js,pas,perl,php,python,ruby,robotstxt,sql,tsql,vb,xml"
 		,display: "onload" 		// onload or later

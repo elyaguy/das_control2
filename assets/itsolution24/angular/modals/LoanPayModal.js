@@ -28,7 +28,7 @@ window.angularApp.factory("LoanPayModal", ["API_URL", "window", "jQuery", "$http
                         window.storeApp.timePicker();
                     }, 100);
                 }, function(response) {
-                    window.swal("Oops!", response.data.errorMsg, "error").then(function() {
+                    window.swal("Ups!", response.data.errorMsg, "error").then(function() {
                         $scope.closeLoanPayModal();
                     });
                 });
@@ -62,7 +62,7 @@ window.angularApp.factory("LoanPayModal", ["API_URL", "window", "jQuery", "$http
                         form.find(".box-body").before(alertMsg);
 
                         // Alert
-                        swal("Success", response.data.msg, "success").then(function(value) {
+                        swal("Éxito!", response.data.msg, "success").then(function(value) {
                             $scope.closeLoanPayModal();
                             $(document).find(".close").click(); 
                             // flash update row    
@@ -83,7 +83,7 @@ window.angularApp.factory("LoanPayModal", ["API_URL", "window", "jQuery", "$http
                         alertMsg += "</div>";
                         form.find(".box-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
                 });
                 $scope.closeLoanPayModal = function () {

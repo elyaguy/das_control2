@@ -33,7 +33,7 @@ window.angularApp.factory("LoanViewModal", ["API_URL", "window", "jQuery", "$htt
                         window.storeApp.timePicker();
                     }, 100);
                 }, function(response) {
-                    window.swal("Oops!", response.data.errorMsg, "error").then(function() {
+                    window.swal("Ups!", response.data.errorMsg, "error").then(function() {
                         $scope.closeLoanViewModal();
                     });
                 });

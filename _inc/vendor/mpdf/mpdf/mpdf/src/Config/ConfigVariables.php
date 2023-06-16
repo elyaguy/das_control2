@@ -386,7 +386,7 @@ class ConfigVariables
 
 			// Hyphenation
 			'SHYlanguages' => ['en', 'de', 'es', 'fi', 'fr', 'it', 'nl', 'pl', 'ru', 'sv'], // existing defined patterns
-			'SHYlang' => "en", // 'en','de','es','fi','fr','it','nl','pl','ru','sv'
+			'SHYlang' => "es", // 'en','de','es','fi','fr','it','nl','pl','ru','sv'
 			'SHYleftmin' => 2,
 			'SHYrightmin' => 2,
 			'SHYcharmin' => 2,

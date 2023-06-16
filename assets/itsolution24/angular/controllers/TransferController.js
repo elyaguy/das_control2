@@ -249,7 +249,7 @@ function (
                 alertMsg += "<p>" + value + ".</p>";
             });
             alertMsg += "</div>";
-            window.toastr.warning(alertMsg, "Warning!");
+            window.toastr.warning(alertMsg, "Advertencia!");
         });
     };
 
@@ -259,7 +259,7 @@ function (
         fromStoreID = data.element.value;
         if (toStoreID == fromStoreID) {
             $("#from_store_id").val("").trigger("change");
-            window.toastr.warning("From and To store can not be same", "Warning!");
+            window.toastr.warning("From and To store can not be same", "Advertencia!");
             return false;
         } else {
             $("#from_store_id").val(fromStoreID).trigger("change");
@@ -279,7 +279,7 @@ function (
         toStoreID = data.element.value;
         if (toStoreID == fromStoreID) {
             $("#to_store_id").val("").trigger("change");
-            window.toastr.warning("From and To store can not be same", "Warning!");
+            window.toastr.warning("From and To store can not be same", "Advertencia!");
             return false;
         } else {
             $("#to_store_id").val(toStoreID).trigger("change");
@@ -307,7 +307,7 @@ function (
                     window._.map($scope.productsArray, function (sitem) {
                         if (sitem.id == response.data.products.id) {
                             if (sitem.quantity <= 0) {
-                                window.toastr.warning('Out of Stock', "Warning!");
+                                window.toastr.warning('Out of Stock', "Advertencia!");
                                 stopProcess = true;
                             } else {
                                 sitem.quantity = sitem.quantity-1;
@@ -335,7 +335,7 @@ function (
                 }  
             } 
         }, function(response) {
-            window.toastr.warning(response.data.errorMsg, "Warning!");
+            window.toastr.warning(response.data.errorMsg, "Advertencia!");
         });
     };
 
@@ -370,7 +370,7 @@ function (
                 if (sitem.id == item.id) {
                     var stockQuantity = sitem.item_quantity - sitem.total_sell;
                     if (stockQuantity < quantity) {
-                        window.toastr.warning('Out of Stock', "Warning!");
+                        window.toastr.warning('Out of Stock', "Advertencia!");
                         stopProcess = true;
                         sitem.quantity = 0;
                         $("#quantity-"+sitem.id).val(stockQuantity);
@@ -430,7 +430,7 @@ function (
                 $btn.button("reset");
                 $(":input[type=\"button\"]").prop("disabled", false);
                 var alertMsg = response.data.msg;
-                window.toastr.success(alertMsg, "Success!");
+                window.toastr.success(alertMsg, "Éxito!");
                 dt.DataTable().ajax.reload(function(json) {
                     if ($("#row_"+response.data.id).length) {
                         $("#row_"+response.data.id).flash("yellow", 5000);
@@ -447,7 +447,7 @@ function (
                     alertMsg += "<p>" + value + ".</p>";
                 });
                 alertMsg += "</div>";
-                window.toastr.warning(alertMsg, "Warning!");
+                window.toastr.warning(alertMsg, "Advertencia!");
             });     
         }
     });

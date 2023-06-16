@@ -20,7 +20,7 @@ window.angularApp.factory("GiftcardViewModal", ["API_URL", "window", "jQuery", "
                     $scope.modal_title = "Gift Card (" + giftcard.card_no + ")";
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
                 }, function (response) {
-                    window.swal("Oops!", response.data.errorMsg, "error").then(function() {
+                    window.swal("Ups!", response.data.errorMsg, "error").then(function() {
                         $scope.closeGiftcardViewModal();
                     });
                 });

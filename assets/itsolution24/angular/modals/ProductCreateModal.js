@@ -32,7 +32,7 @@ window.angularApp.factory("ProductCreateModal", ["API_URL", "window", "jQuery", 
                     }, 500);
 
                 }, function(response) {
-                   window.swal("Oops!", response.data.errorMsg, "error");
+                   window.swal("Ups!", response.data.errorMsg, "error");
                 });
 
                 // Submit Product Form
@@ -64,7 +64,7 @@ window.angularApp.factory("ProductCreateModal", ["API_URL", "window", "jQuery", 
                         form.find(".box-body").before(alertMsg);
 
                         // Alert
-                        window.swal("Success", response.data.msg, "success")
+                        window.swal("Éxito!", response.data.msg, "success")
                         .then(function(value) {
 
                             $scope.product = response.data.product;
@@ -104,7 +104,7 @@ window.angularApp.factory("ProductCreateModal", ["API_URL", "window", "jQuery", 
                         alertMsg += "</div>";
                         form.find(".box-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
                 });
 

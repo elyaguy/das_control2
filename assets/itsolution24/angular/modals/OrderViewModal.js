@@ -25,7 +25,7 @@ window.angularApp.factory("OrderViewModal", ["API_URL", "window", "jQuery", "$ht
                     $scope.modal_title = "Order > " + order.reference_no;
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
                 }, function (response) {
-                   window.swal("Oops!", response.data.errorMsg, "error")
+                   window.swal("Ups!", response.data.errorMsg, "error")
                     .then(function() {
                         $scope.closeOrderViewModal();
                     });

@@ -213,7 +213,7 @@ function (
                     doc['footer']=(function(page, pages) {
                         return {
                             columns: [
-                                'Powered by ITSOLUTION24.COM',
+                                'Powered by ControlDas.com',
                                 {
                                     // This is the right column
                                     alignment: 'right',
@@ -272,7 +272,7 @@ function (
             $btn.button("reset");
             $(":input[type=\"button\"]").prop("disabled", false);
             var alertMsg = response.data.msg;
-            window.toastr.success(alertMsg, "Success!");
+            window.toastr.success(alertMsg, "Éxito!");
 
             income_sourceId = response.data.id;
             
@@ -295,7 +295,7 @@ function (
                 alertMsg += "<p>" + value + ".</p>";
             });
             alertMsg += "</div>";
-            window.toastr.warning(alertMsg, "Warning!");
+            window.toastr.warning(alertMsg, "Advertencia!");
         });
     });
 

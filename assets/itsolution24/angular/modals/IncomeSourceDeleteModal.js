@@ -25,7 +25,7 @@ window.angularApp.factory("IncomeSourceDeleteModal", ["API_URL", "window", "jQue
                     }, 100);
 
                 }, function(response) {
-                    window.swal("Oops!", response.data.errorMsg, "error")
+                    window.swal("Ups!", response.data.errorMsg, "error")
                     .then(function() {
                         $scope.closeIncomeSourceDeleteModal();
                     });
@@ -61,7 +61,7 @@ window.angularApp.factory("IncomeSourceDeleteModal", ["API_URL", "window", "jQue
                         $(datatable).DataTable().ajax.reload( null, false );
 
                         // Alert
-                        window.swal("Success", response.data.msg, "success")
+                        window.swal("Éxito!", response.data.msg, "success")
                         .then(function(value) {
                             $scope.closeIncomeSourceDeleteModal();
                             $(document).find(".close").trigger("click");
@@ -77,7 +77,7 @@ window.angularApp.factory("IncomeSourceDeleteModal", ["API_URL", "window", "jQue
                         alertMsg += "</div>";
                         form.find(".box-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
 
                 });

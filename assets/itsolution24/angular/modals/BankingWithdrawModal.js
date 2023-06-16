@@ -23,7 +23,7 @@ window.angularApp.factory("BankingWithdrawModal", ["API_URL", "window", "jQuery"
                         window.storeApp.select2();
                     }, 300);
                 }, function(response) {
-                    window.swal("Oops!", response.data.errorMsg, "error").then(function() {
+                    window.swal("Ups!", response.data.errorMsg, "error").then(function() {
                         $scope.closeBankingWithdrawModal();
                     });
                 });
@@ -56,7 +56,7 @@ window.angularApp.factory("BankingWithdrawModal", ["API_URL", "window", "jQuery"
                         form.find(".box-body").before(alertMsg);
 
                         // Alert
-                        swal("Success", response.data.msg, "success").then(function(value) {
+                        swal("Éxito!", response.data.msg, "success").then(function(value) {
                             $scope.closeBankingWithdrawModal();
                             $(document).find(".close").click(); 
                             // update balance    
@@ -79,7 +79,7 @@ window.angularApp.factory("BankingWithdrawModal", ["API_URL", "window", "jQuery"
                         alertMsg += "</div>";
                         form.find(".box-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
                 });
                 $scope.closeBankingWithdrawModal = function () {

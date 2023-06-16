@@ -21,7 +21,7 @@ window.angularApp.factory("TransferEditModal", ["API_URL", "window", "jQuery", "
                 $scope.modal_title = transfer.ref_no ? " - " + transfer.ref_no : '';
                 $scope.rawHtml = $sce.trustAsHtml(response.data);
                 }, function(response) {
-                   window.swal("Oops!", response.data.errorMsg, "error");
+                   window.swal("Ups!", response.data.errorMsg, "error");
                 });
 
                 $(document).delegate("#transfer-update", "click", function(e) {
@@ -55,7 +55,7 @@ window.angularApp.factory("TransferEditModal", ["API_URL", "window", "jQuery", "
 
                         // Alert
                         window.swal({
-                          title: "Success!",
+                          title: "Éxito!",
                           text: response.data.msg,
                           icon: "success",
                           buttons: true,
@@ -89,7 +89,7 @@ window.angularApp.factory("TransferEditModal", ["API_URL", "window", "jQuery", "
                         alertMsg += "</div>";
                         form.find(".transfer-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
 
                 });

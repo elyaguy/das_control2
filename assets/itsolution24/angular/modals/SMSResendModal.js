@@ -22,7 +22,7 @@ window.angularApp.factory("SMSResendModal", ["API_URL", "window", "jQuery", "$ht
                     $scope.modal_title = row.people_name;
                     $scope.rawHtml = $sce.trustAsHtml(response.data);   
                 }, function(response) {
-                   window.swal("Oops!", response.data.errorMsg, "error");
+                   window.swal("Ups!", response.data.errorMsg, "error");
                 });
 
                 // Send SMS
@@ -55,7 +55,7 @@ window.angularApp.factory("SMSResendModal", ["API_URL", "window", "jQuery", "$ht
                         form.find(".box-body").before(alertMsg);
 
                         // Alert
-                        window.swal("Success", response.data.msg, "success")
+                        window.swal("Éxito!", response.data.msg, "success")
                         .then(function(value) {
                             $(datatable).DataTable().ajax.reload(function(json) {
                                 if ($("#row_"+response.data.id).length) {
@@ -76,7 +76,7 @@ window.angularApp.factory("SMSResendModal", ["API_URL", "window", "jQuery", "$ht
                         alertMsg += "</div>";
                         form.find(".box-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
                 });
 

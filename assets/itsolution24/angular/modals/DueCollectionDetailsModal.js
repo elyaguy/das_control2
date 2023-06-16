@@ -27,7 +27,7 @@ window.angularApp.factory("DueCollectionDetailsModal", ["API_URL", "window", "jQ
                     }, 500);
                     
                 }, function(response) {
-                   window.swal("Oops!", response.data.errorMsg, "error");
+                   window.swal("Ups!", response.data.errorMsg, "error");
                 });
 
                 $scope.closeDueCollectionModal = function () {

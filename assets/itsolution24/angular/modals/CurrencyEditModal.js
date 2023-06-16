@@ -26,7 +26,7 @@
                         }, 100);
 
                     }, function(response) {
-                        window.swal("Oops!", response.data.errorMsg, "error")
+                        window.swal("Ups!", response.data.errorMsg, "error")
                         .then(function() {
                             $scope.closeCurrencyEditModal();
                         });
@@ -63,7 +63,7 @@
 
                             // Alert
                             window.swal({
-                              title: "Success!",
+                              title: "Éxito!",
                               text: response.data.msg,
                               icon: "success",
                               buttons: true,
@@ -99,7 +99,7 @@
 
                             $(":input[type=\"button\"]").prop("disabled", false);
 
-                            window.swal("Oops!", response.data.errorMsg, "error");
+                            window.swal("Ups!", response.data.errorMsg, "error");
                         });
 
                     });

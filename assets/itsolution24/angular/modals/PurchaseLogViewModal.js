@@ -25,7 +25,7 @@ window.angularApp.factory("PurchaseLogViewModal", ["API_URL", "window", "jQuery"
                     $scope.modal_title = "Transaction > " + transaction.reference_no;
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
                 }, function (response) {
-                   window.swal("Oops!", response.data.errorMsg, "error")
+                   window.swal("Ups!", response.data.errorMsg, "error")
                     .then(function() {
                         $scope.closePurchaseLogViewModal();
                     });

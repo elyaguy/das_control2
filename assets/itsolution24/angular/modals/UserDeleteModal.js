@@ -25,7 +25,7 @@ window.angularApp.factory("UserDeleteModal", ["API_URL", "window", "jQuery", "$h
                     }, 100);
                 
                 }, function(response) {
-                    window.swal("Oops!", response.data.errorMsg, "error")
+                    window.swal("Ups!", response.data.errorMsg, "error")
                     .then(function() {
                         $scope.closeUserDeleteModal();
                     });
@@ -62,7 +62,7 @@ window.angularApp.factory("UserDeleteModal", ["API_URL", "window", "jQuery", "$h
                         $(datatable).DataTable().ajax.reload( null, false );
 
                         // Alert
-                        window.swal("Success", response.data.msg, "success")
+                        window.swal("Éxito!", response.data.msg, "success")
                         .then(function(value) {
                             $scope.closeUserDeleteModal();
                             $(document).find(".close").trigger("click");
@@ -78,7 +78,7 @@ window.angularApp.factory("UserDeleteModal", ["API_URL", "window", "jQuery", "$h
                         alertMsg += "</div>";
                         form.find(".box-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
 
                 });

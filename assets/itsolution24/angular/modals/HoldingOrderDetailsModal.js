@@ -36,7 +36,7 @@ window.angularApp.factory("HoldingOrderDetailsModal", ["API_URL", "window", "jQu
                             $(document).find("body").removeClass("overlay-loader");
                         }, 500);
                     }, function(response) {
-                       window.swal("Oops!", response.data.errorMsg, "error");
+                       window.swal("Ups!", response.data.errorMsg, "error");
                        $(document).find("body").removeClass("overlay-loader");
                     });
                 };
@@ -58,7 +58,7 @@ window.angularApp.factory("HoldingOrderDetailsModal", ["API_URL", "window", "jQu
                         $scope.refID = response.data.order.ref_no;
                         $(document).find("body").removeClass("overlay-loader");
                     }, function(response) {
-                       window.swal("Oops!", response.data.errorMsg, "error");
+                       window.swal("Ups!", response.data.errorMsg, "error");
                        $(document).find("body").removeClass("overlay-loader");
                     });
                 };
@@ -69,7 +69,7 @@ window.angularApp.factory("HoldingOrderDetailsModal", ["API_URL", "window", "jQu
 
                 $scope.editTheOrder = function() {
                     if (!$scope.refID) {
-                        window.swal("Oops!", "Please, select an order", "error");
+                        window.swal("Ups!", "Please, select an order", "error");
                         return false;
                     }
                     window.location = window.baseUrl+"/admin/pos.php?holding_id="+$scope.refID;
@@ -97,7 +97,7 @@ window.angularApp.factory("HoldingOrderDetailsModal", ["API_URL", "window", "jQu
                             then(function(response) {
                                 $(document).find(".modal").removeClass("overlay-loader");
                                 $scope.loadModal();
-                                window.swal("Success!",  response.data.msg, "success")
+                                window.swal("Éxito!",  response.data.msg, "success")
                                 .then(function(value) {
                                     if (window.store.sound_effect == 1) {
                                         window.storeApp.playSound("modify.mp3");
@@ -107,7 +107,7 @@ window.angularApp.factory("HoldingOrderDetailsModal", ["API_URL", "window", "jQu
                                 if (window.store.sound_effect == 1) {
                                     window.storeApp.playSound("error.mp3");
                                 }
-                                window.swal("Oops!", response.data.errorMsg, "error");
+                                window.swal("Ups!", response.data.errorMsg, "error");
                                 $(document).find(".modal").removeClass("overlay-loader");
                             });
                         }

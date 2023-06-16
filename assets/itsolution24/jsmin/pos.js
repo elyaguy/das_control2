@@ -4675,7 +4675,7 @@ function (API_URL,
                     $scope.modal_title = invoice.invoice_id;
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
                 }, function (response) {
-                   window.swal("Oops!", response.data.errorMsg, "error")
+                   window.swal("Ups!", response.data.errorMsg, "error")
                     .then(function() {
                         $scope.closeInvoiceViewModal();
                     });
@@ -4751,7 +4751,7 @@ window.angularApp.factory("InvoiceInfoEditModal", ["API_URL", "window", "jQuery"
                     }, 100);
 
                 }, function(response) {
-                   window.swal("Oops!", response.data.errorMsg, "error");
+                   window.swal("Ups!", response.data.errorMsg, "error");
                 });
 
                 $(document).delegate("#invoice-update", "click", function(e) {
@@ -4784,7 +4784,7 @@ window.angularApp.factory("InvoiceInfoEditModal", ["API_URL", "window", "jQuery"
 
                         // Alert
                         window.swal({
-                          title: "Success!",
+                          title: "Éxito!",
                           text: response.data.msg,
                           icon: "success",
                           buttons: true,
@@ -4818,7 +4818,7 @@ window.angularApp.factory("InvoiceInfoEditModal", ["API_URL", "window", "jQuery"
                         alertMsg += "</div>";
                         form.find(".box-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
                 });
                 $scope.closeInvoiceInfoEditModal = function () {
@@ -4863,7 +4863,7 @@ window.angularApp.factory("BoxCreateModal", ["API_URL", "window", "jQuery", "$ht
                     }, 500);
                     
                 }, function(response) {
-                   window.swal("Oops!", response.data.errorMsg, "error");
+                   window.swal("Ups!", response.data.errorMsg, "error");
                 });
 
                 // Submit Box Form
@@ -4895,7 +4895,7 @@ window.angularApp.factory("BoxCreateModal", ["API_URL", "window", "jQuery", "$ht
                         form.find(".box-body").before(alertMsg);
 
                         // Alert
-                        window.swal("Success", response.data.msg, "success")
+                        window.swal("Éxito!", response.data.msg, "success")
                         .then(function(value) {
 
                             // close modalwindow
@@ -4936,7 +4936,7 @@ window.angularApp.factory("BoxCreateModal", ["API_URL", "window", "jQuery", "$ht
                         alertMsg += "</div>";
                         form.find(".box-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
                 });
 
@@ -4982,7 +4982,7 @@ window.angularApp.factory("BoxDeleteModal", ["API_URL", "window", "jQuery", "$ht
                     }, 100);
                     
                 }, function(response) {
-                    window.swal("Oops!", response.data.errorMsg, "error")
+                    window.swal("Ups!", response.data.errorMsg, "error")
                     .then(function() {
                         $scope.closeBoxDeleteModal();
                     });
@@ -5019,7 +5019,7 @@ window.angularApp.factory("BoxDeleteModal", ["API_URL", "window", "jQuery", "$ht
                         $(datatable).DataTable().ajax.reload(null, false);
 
                         // Alert
-                        window.swal("Success", response.data.msg, "success")
+                        window.swal("Éxito!", response.data.msg, "success")
                         .then(function(value) {
 
                             $scope.closeBoxDeleteModal();
@@ -5041,7 +5041,7 @@ window.angularApp.factory("BoxDeleteModal", ["API_URL", "window", "jQuery", "$ht
                         alertMsg += "</div>";
                         form.find(".box-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
 
                 });
@@ -5084,7 +5084,7 @@ window.angularApp.factory("BoxEditModal", ["API_URL", "window", "jQuery", "$http
                 $scope.modal_title = box.box_name;
                 $scope.rawHtml = $sce.trustAsHtml(response.data);
                 }, function(response) {
-                   window.swal("Oops!", response.data.errorMsg, "error");
+                   window.swal("Ups!", response.data.errorMsg, "error");
                 });
 
                 $(document).delegate("#box-update", "click", function(e) {
@@ -5118,7 +5118,7 @@ window.angularApp.factory("BoxEditModal", ["API_URL", "window", "jQuery", "$http
 
                         // Alert
                         window.swal({
-                          title: "Success!",
+                          title: "Éxito!",
                           text: response.data.msg,
                           icon: "success",
                           buttons: true,
@@ -5152,7 +5152,7 @@ window.angularApp.factory("BoxEditModal", ["API_URL", "window", "jQuery", "$http
                         alertMsg += "</div>";
                         form.find(".box-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
 
                 });
@@ -5199,7 +5199,7 @@ window.angularApp.factory("UnitCreateModal", ["API_URL", "window", "jQuery", "$h
                     }, 500);
                     
                 }, function(response) {
-                   window.swal("Oops!", response.data.errorMsg, "error");
+                   window.swal("Ups!", response.data.errorMsg, "error");
                 });
 
                 // Submit Unit Form
@@ -5231,7 +5231,7 @@ window.angularApp.factory("UnitCreateModal", ["API_URL", "window", "jQuery", "$h
                         form.find(".unit-body").before(alertMsg);
 
                         // Alert
-                        window.swal("Success", response.data.msg, "success")
+                        window.swal("Éxito!", response.data.msg, "success")
                         .then(function(value) {
 
                             // close modalwindow
@@ -5272,7 +5272,7 @@ window.angularApp.factory("UnitCreateModal", ["API_URL", "window", "jQuery", "$h
                         alertMsg += "</div>";
                         form.find(".unit-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
                 });
 
@@ -5318,7 +5318,7 @@ window.angularApp.factory("UnitDeleteModal", ["API_URL", "window", "jQuery", "$h
                     }, 100);
                     
                 }, function(response) {
-                    window.swal("Oops!", response.data.errorMsg, "error")
+                    window.swal("Ups!", response.data.errorMsg, "error")
                     .then(function() {
                         $scope.closeUnitDeleteModal();
                     });
@@ -5355,7 +5355,7 @@ window.angularApp.factory("UnitDeleteModal", ["API_URL", "window", "jQuery", "$h
                         $(datatable).DataTable().ajax.reload(null, false);
 
                         // Alert
-                        window.swal("Success", response.data.msg, "success")
+                        window.swal("Éxito!", response.data.msg, "success")
                         .then(function(value) {
 
                             $scope.closeUnitDeleteModal();
@@ -5377,7 +5377,7 @@ window.angularApp.factory("UnitDeleteModal", ["API_URL", "window", "jQuery", "$h
                         alertMsg += "</div>";
                         form.find(".unit-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
 
                 });
@@ -5420,7 +5420,7 @@ window.angularApp.factory("UnitEditModal", ["API_URL", "window", "jQuery", "$htt
                 $scope.modal_title = unit.unit_name;
                 $scope.rawHtml = $sce.trustAsHtml(response.data);
                 }, function(response) {
-                   window.swal("Oops!", response.data.errorMsg, "error");
+                   window.swal("Ups!", response.data.errorMsg, "error");
                 });
 
                 $(document).delegate("#unit-update", "click", function(e) {
@@ -5454,7 +5454,7 @@ window.angularApp.factory("UnitEditModal", ["API_URL", "window", "jQuery", "$htt
 
                         // Alert
                         window.swal({
-                          title: "Success!",
+                          title: "Éxito!",
                           text: response.data.msg,
                           icon: "success",
                           buttons: true,
@@ -5488,7 +5488,7 @@ window.angularApp.factory("UnitEditModal", ["API_URL", "window", "jQuery", "$htt
                         alertMsg += "</div>";
                         form.find(".unit-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
 
                 });
@@ -5535,7 +5535,7 @@ window.angularApp.factory("TaxrateCreateModal", ["API_URL", "window", "jQuery", 
                     }, 500);
                     
                 }, function(response) {
-                   window.swal("Oops!", response.data.errorMsg, "error");
+                   window.swal("Ups!", response.data.errorMsg, "error");
                 });
 
                 // Submit Taxrate Form
@@ -5567,7 +5567,7 @@ window.angularApp.factory("TaxrateCreateModal", ["API_URL", "window", "jQuery", 
                         form.find(".taxrate-body").before(alertMsg);
 
                         // Alert
-                        window.swal("Success", response.data.msg, "success")
+                        window.swal("Éxito!", response.data.msg, "success")
                         .then(function(value) {
 
                             // close modalwindow
@@ -5608,7 +5608,7 @@ window.angularApp.factory("TaxrateCreateModal", ["API_URL", "window", "jQuery", 
                         alertMsg += "</div>";
                         form.find(".taxrate-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
                 });
 
@@ -5654,7 +5654,7 @@ window.angularApp.factory("TaxrateDeleteModal", ["API_URL", "window", "jQuery", 
                     }, 100);
                     
                 }, function(response) {
-                    window.swal("Oops!", response.data.errorMsg, "error")
+                    window.swal("Ups!", response.data.errorMsg, "error")
                     .then(function() {
                         $scope.closeTaxrateDeleteModal();
                     });
@@ -5691,7 +5691,7 @@ window.angularApp.factory("TaxrateDeleteModal", ["API_URL", "window", "jQuery", 
                         $(datatable).DataTable().ajax.reload(null, false);
 
                         // Alert
-                        window.swal("Success", response.data.msg, "success")
+                        window.swal("Éxito!", response.data.msg, "success")
                         .then(function(value) {
 
                             $scope.closeTaxrateDeleteModal();
@@ -5713,7 +5713,7 @@ window.angularApp.factory("TaxrateDeleteModal", ["API_URL", "window", "jQuery", 
                         alertMsg += "</div>";
                         form.find(".taxrate-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
 
                 });
@@ -5756,7 +5756,7 @@ window.angularApp.factory("TaxrateEditModal", ["API_URL", "window", "jQuery", "$
                 $scope.modal_title = taxrate.taxrate_name;
                 $scope.rawHtml = $sce.trustAsHtml(response.data);
                 }, function(response) {
-                   window.swal("Oops!", response.data.errorMsg, "error");
+                   window.swal("Ups!", response.data.errorMsg, "error");
                 });
 
                 $(document).delegate("#taxrate-update", "click", function(e) {
@@ -5790,7 +5790,7 @@ window.angularApp.factory("TaxrateEditModal", ["API_URL", "window", "jQuery", "$
 
                         // Alert
                         window.swal({
-                          title: "Success!",
+                          title: "Éxito!",
                           text: response.data.msg,
                           icon: "success",
                           buttons: true,
@@ -5824,7 +5824,7 @@ window.angularApp.factory("TaxrateEditModal", ["API_URL", "window", "jQuery", "$
                         alertMsg += "</div>";
                         form.find(".taxrate-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
 
                 });
@@ -5871,7 +5871,7 @@ window.angularApp.factory("CategoryCreateModal", ["API_URL", "window", "jQuery",
                     }, 500);
 
                 }, function(response) {
-                   window.swal("Oops!", response.data.errorMsg, "error");
+                   window.swal("Ups!", response.data.errorMsg, "error");
                 });
 
                 // Submit Box Form
@@ -5903,7 +5903,7 @@ window.angularApp.factory("CategoryCreateModal", ["API_URL", "window", "jQuery",
                         form.find(".box-body").before(alertMsg);
 
                         // Alert
-                        window.swal("Success", response.data.msg, "success")
+                        window.swal("Éxito!", response.data.msg, "success")
                         .then(function(value) {
 
                             // close modalwindow
@@ -5942,7 +5942,7 @@ window.angularApp.factory("CategoryCreateModal", ["API_URL", "window", "jQuery",
                         alertMsg += "</div>";
                         form.find(".box-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
                 });
 
@@ -5988,7 +5988,7 @@ window.angularApp.factory("CategoryDeleteModal", ["API_URL", "window", "jQuery",
                     }, 100);
 
                 }, function(response) {
-                    window.swal("Oops!", response.data.errorMsg, "error")
+                    window.swal("Ups!", response.data.errorMsg, "error")
                     .then(function() {
                         $scope.closeCategoryDeleteModal();
                     });
@@ -6024,7 +6024,7 @@ window.angularApp.factory("CategoryDeleteModal", ["API_URL", "window", "jQuery",
                         $(datatable).DataTable().ajax.reload( null, false );
 
                         // Alert
-                        window.swal("Success", response.data.msg, "success")
+                        window.swal("Éxito!", response.data.msg, "success")
                         .then(function(value) {
                             $scope.closeCategoryDeleteModal();
                             $(document).find(".close").trigger("click");
@@ -6040,7 +6040,7 @@ window.angularApp.factory("CategoryDeleteModal", ["API_URL", "window", "jQuery",
                         alertMsg += "</div>";
                         form.find(".box-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
 
                 });
@@ -6088,7 +6088,7 @@ window.angularApp.factory("CategoryEditModal", ["API_URL", "window", "jQuery", "
                     }, 100);
 
                 }, function(response) {
-                   window.swal("Oops!", response.data.errorMsg, "error");
+                   window.swal("Ups!", response.data.errorMsg, "error");
                 });
 
                 $(document).delegate("#category-update", "click", function(e) {
@@ -6121,7 +6121,7 @@ window.angularApp.factory("CategoryEditModal", ["API_URL", "window", "jQuery", "
 
                         // Alert
                         window.swal({
-                          title: "Success!",
+                          title: "Éxito!",
                           text: response.data.msg,
                           icon: "success",
                           buttons: true,
@@ -6154,7 +6154,7 @@ window.angularApp.factory("CategoryEditModal", ["API_URL", "window", "jQuery", "
                         alertMsg += "</div>";
                         form.find(".box-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
                 });
                 $scope.closeCategoryEditModal = function () {
@@ -6200,7 +6200,7 @@ window.angularApp.factory("CategoryEditModal", ["API_URL", "window", "jQuery", "
                         }, 100);
 
                     }, function(response) {
-                        window.swal("Oops!", response.data.errorMsg, "error")
+                        window.swal("Ups!", response.data.errorMsg, "error")
                         .then(function() {
                             $scope.closeCurrencyEditModal();
                         });
@@ -6237,7 +6237,7 @@ window.angularApp.factory("CategoryEditModal", ["API_URL", "window", "jQuery", "
 
                             // Alert
                             window.swal({
-                              title: "Success!",
+                              title: "Éxito!",
                               text: response.data.msg,
                               icon: "success",
                               buttons: true,
@@ -6273,7 +6273,7 @@ window.angularApp.factory("CategoryEditModal", ["API_URL", "window", "jQuery", "
 
                             $(":input[type=\"button\"]").prop("disabled", false);
 
-                            window.swal("Oops!", response.data.errorMsg, "error");
+                            window.swal("Ups!", response.data.errorMsg, "error");
                         });
 
                     });
@@ -6321,7 +6321,7 @@ window.angularApp.factory("CustomerCreateModal", ["API_URL", "window", "jQuery",
                     }, 500);
                     
                 }, function(response) {
-                   window.swal("Oops!", response.data.errorMsg, "error");
+                   window.swal("Ups!", response.data.errorMsg, "error");
                 });
 
                 // Submit Customer Form
@@ -6353,7 +6353,7 @@ window.angularApp.factory("CustomerCreateModal", ["API_URL", "window", "jQuery",
                         form.find(".box-body").before(alertMsg);
 
                         // Alert
-                        window.swal("Success", response.data.msg, "success")
+                        window.swal("Éxito!", response.data.msg, "success")
                         .then(function(value) {
 
                             $scope.customerMobileNumber = response.data.customer_contact;
@@ -6389,7 +6389,7 @@ window.angularApp.factory("CustomerCreateModal", ["API_URL", "window", "jQuery",
                         alertMsg += "</div>";
                         form.find(".box-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
                 });
 
@@ -6435,7 +6435,7 @@ window.angularApp.factory("CustomerDeleteModal", ["API_URL", "window", "jQuery",
                     }, 100);
 
                 }, function(response) {
-                    window.swal("Oops!", response.data.errorMsg, "error")
+                    window.swal("Ups!", response.data.errorMsg, "error")
                     .then(function() {
                         $scope.closeCustomerDeleteModal();
                     });
@@ -6471,7 +6471,7 @@ window.angularApp.factory("CustomerDeleteModal", ["API_URL", "window", "jQuery",
                         $(datatable).DataTable().ajax.reload( null, false );
 
                         // Alert
-                        window.swal("Success", response.data.msg, "success")
+                        window.swal("Éxito!", response.data.msg, "success")
                         .then(function(value) {
                             $scope.closeCustomerDeleteModal();
                             $(document).find(".close").trigger("click");
@@ -6487,7 +6487,7 @@ window.angularApp.factory("CustomerDeleteModal", ["API_URL", "window", "jQuery",
                         alertMsg += "</div>";
                         form.find(".box-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
 
                 });
@@ -6536,7 +6536,7 @@ window.angularApp.factory("CustomerEditModal", ["API_URL", "window", "jQuery", "
                     }, 100);
 
                 }, function(response) {
-                   window.swal("Oops!", response.data.errorMsg, "error");
+                   window.swal("Ups!", response.data.errorMsg, "error");
                 });
 
                 $(document).delegate("#customer-update", "click", function(e) {
@@ -6569,7 +6569,7 @@ window.angularApp.factory("CustomerEditModal", ["API_URL", "window", "jQuery", "
 
                         // Alert
                         window.swal({
-                          title: "Success!",
+                          title: "Éxito!",
                           text: response.data.msg,
                           icon: "success",
                           buttons: true,
@@ -6607,7 +6607,7 @@ window.angularApp.factory("CustomerEditModal", ["API_URL", "window", "jQuery", "
                         alertMsg += "</div>";
                         form.find(".box-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
                 });
                 $scope.closeCustomerEditModal = function () {
@@ -6646,7 +6646,7 @@ window.angularApp.factory("SupportDeskModal", ["API_URL", "$http", "$uibModal", 
                 .then(function(response, status, headers, config) {
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
                 }, function(data) {
-                   window.swal("Oops!", "an unknown error occured!", "error");
+                   window.swal("Ups!", "an unknown error occured!", "error");
                 });
                 $scope.cancel = function () {
                     $uibModalInstance.dismiss("cancel");
@@ -6692,7 +6692,7 @@ window.angularApp.factory("DueCollectionDetailsModal", ["API_URL", "window", "jQ
                     }, 500);
                     
                 }, function(response) {
-                   window.swal("Oops!", response.data.errorMsg, "error");
+                   window.swal("Ups!", response.data.errorMsg, "error");
                 });
 
                 $scope.closeDueCollectionModal = function () {
@@ -6739,7 +6739,7 @@ window.angularApp.factory("BankingDepositModal", ["API_URL", "window", "jQuery",
                         window.storeApp.select2();
                     }, 300);
                 }, function(response) {
-                    window.swal("Oops!", response.data.errorMsg, "error")
+                    window.swal("Ups!", response.data.errorMsg, "error")
                     .then(function() {
                         $scope.closeBankingDepositModal();
                     });
@@ -6793,7 +6793,7 @@ window.angularApp.factory("BankingDepositModal", ["API_URL", "window", "jQuery",
                         form.find(".box-body").before(alertMsg);
 
                         // Alert
-                        swal("Success", response.data.msg, "success").then(function(value) {
+                        swal("Éxito!", response.data.msg, "success").then(function(value) {
                             $scope.closeBankingDepositModal();
                             $(document).find(".close").click();
                             // update balance    
@@ -6816,7 +6816,7 @@ window.angularApp.factory("BankingDepositModal", ["API_URL", "window", "jQuery",
                         alertMsg += "</div>";
                         form.find(".box-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
                 });
                 $scope.closeBankingDepositModal = function () {
@@ -6871,7 +6871,7 @@ window.angularApp.factory("BankingRowViewModal", ["API_URL", "window", "jQuery",
                     $scope.modal_title = "View " + type + " details";
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
                 }, function (response) {
-                    window.swal("Oops!", response.data.errorMsg, "error").then(function() {
+                    window.swal("Ups!", response.data.errorMsg, "error").then(function() {
                         $scope.closeBankingRowViewModal();
                     });
                 });
@@ -6921,7 +6921,7 @@ window.angularApp.factory("BankingWithdrawModal", ["API_URL", "window", "jQuery"
                         window.storeApp.select2();
                     }, 300);
                 }, function(response) {
-                    window.swal("Oops!", response.data.errorMsg, "error").then(function() {
+                    window.swal("Ups!", response.data.errorMsg, "error").then(function() {
                         $scope.closeBankingWithdrawModal();
                     });
                 });
@@ -6954,7 +6954,7 @@ window.angularApp.factory("BankingWithdrawModal", ["API_URL", "window", "jQuery"
                         form.find(".box-body").before(alertMsg);
 
                         // Alert
-                        swal("Success", response.data.msg, "success").then(function(value) {
+                        swal("Éxito!", response.data.msg, "success").then(function(value) {
                             $scope.closeBankingWithdrawModal();
                             $(document).find(".close").click(); 
                             // update balance    
@@ -6977,7 +6977,7 @@ window.angularApp.factory("BankingWithdrawModal", ["API_URL", "window", "jQuery"
                         alertMsg += "</div>";
                         form.find(".box-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
                 });
                 $scope.closeBankingWithdrawModal = function () {
@@ -7031,7 +7031,7 @@ window.angularApp.factory("BankAccountCreateModal", ["API_URL", "window", "jQuer
                     }, 500);
                     
                 }, function(response) {
-                   window.swal("Oops!", response.data.errorMsg, "error");
+                   window.swal("Ups!", response.data.errorMsg, "error");
                 });
 
                 // Submit BankAccount Form
@@ -7063,7 +7063,7 @@ window.angularApp.factory("BankAccountCreateModal", ["API_URL", "window", "jQuer
                         form.find(".taxrate-body").before(alertMsg);
 
                         // Alert
-                        window.swal("Success", response.data.msg, "success")
+                        window.swal("Éxito!", response.data.msg, "success")
                         .then(function(value) {
 
                             // close modalwindow
@@ -7104,7 +7104,7 @@ window.angularApp.factory("BankAccountCreateModal", ["API_URL", "window", "jQuer
                         alertMsg += "</div>";
                         form.find(".taxrate-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
                 });
 
@@ -7150,7 +7150,7 @@ window.angularApp.factory("BankAccountDeleteModal", ["API_URL", "window", "jQuer
                     }, 100);
                     
                 }, function(response) {
-                    window.swal("Oops!", response.data.errorMsg, "error")
+                    window.swal("Ups!", response.data.errorMsg, "error")
                     .then(function() {
                         $scope.closeBankAccountDeleteModal();
                     });
@@ -7187,7 +7187,7 @@ window.angularApp.factory("BankAccountDeleteModal", ["API_URL", "window", "jQuer
                         $(datatable).DataTable().ajax.reload(null, false);
 
                         // Alert
-                        window.swal("Success", response.data.msg, "success")
+                        window.swal("Éxito!", response.data.msg, "success")
                         .then(function(value) {
 
                             $scope.closeBankAccountDeleteModal();
@@ -7209,7 +7209,7 @@ window.angularApp.factory("BankAccountDeleteModal", ["API_URL", "window", "jQuer
                         alertMsg += "</div>";
                         form.find(".account-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
 
                 });
@@ -7252,7 +7252,7 @@ window.angularApp.factory("BankAccountEditModal", ["API_URL", "window", "jQuery"
                 $scope.modal_title = account.account_name;
                 $scope.rawHtml = $sce.trustAsHtml(response.data);
                 }, function(response) {
-                   window.swal("Oops!", response.data.errorMsg, "error");
+                   window.swal("Ups!", response.data.errorMsg, "error");
                 });
 
                 $(document).delegate("#account-update", "click", function(e) {
@@ -7286,7 +7286,7 @@ window.angularApp.factory("BankAccountEditModal", ["API_URL", "window", "jQuery"
 
                         // Alert
                         window.swal({
-                          title: "Success!",
+                          title: "Éxito!",
                           text: response.data.msg,
                           icon: "success",
                           buttons: true,
@@ -7320,7 +7320,7 @@ window.angularApp.factory("BankAccountEditModal", ["API_URL", "window", "jQuery"
                         alertMsg += "</div>";
                         form.find(".account-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
 
                 });
@@ -7369,7 +7369,7 @@ window.angularApp.factory("BankTransferModal", ["API_URL", "window", "jQuery", "
                         window.storeApp.select2();
                     }, 100);
                 }, function(response) {
-                    window.swal("Oops!", response.data.errorMsg, "error")
+                    window.swal("Ups!", response.data.errorMsg, "error")
                     .then(function() {
                         $scope.CloseBankTransferModal();
                     });
@@ -7404,7 +7404,7 @@ window.angularApp.factory("BankTransferModal", ["API_URL", "window", "jQuery", "
                         form.find(".box-body").before(alertMsg);
 
                         // Alert
-                        swal("Success", response.data.msg, "success").then(function(value) {
+                        swal("Éxito!", response.data.msg, "success").then(function(value) {
                             $scope.CloseBankTransferModal();
                             $(document).find(".close").trigger("click");
                             // update balance    
@@ -7427,7 +7427,7 @@ window.angularApp.factory("BankTransferModal", ["API_URL", "window", "jQuery", "
                         alertMsg += "</div>";
                         form.find(".box-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
                 });
                 $scope.CloseBankTransferModal = function () {
@@ -7506,13 +7506,13 @@ window.angularApp.factory("EmailModal", ["API_URL", "window", "jQuery", "$http",
                     then(function(response) {
                         $("body").removeClass("overlay-loader");
                         $btn.button("reset");
-                        window.swal("Success", response.data.msg, "success").then(function() {
+                        window.swal("Éxito!", response.data.msg, "success").then(function() {
                             $scope.cancel();
                         });
                     }, function(response) {
                         $("body").removeClass("overlay-loader");
                         $btn.button("reset");
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
                 });
                 $scope.cancel = function () {
@@ -7552,7 +7552,7 @@ window.angularApp.factory("keyboardShortcutModal", ["API_URL", "window", "jQuery
                     $scope.modal_title = "Keyboard Shortcut";
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
                 }, function(data) {
-                   window.swal("Oops!", "an unknown error occured!", "error");
+                   window.swal("Ups!", "an unknown error occured!", "error");
                 });
                 $scope.cancel = function () {
                     $uibModalInstance.dismiss("cancel");
@@ -7598,7 +7598,7 @@ window.angularApp.factory("PmethodDeleteModal", ["API_URL", "window", "jQuery", 
                     }, 100);
                     
                 }, function(response) {
-                    window.swal("Oops!", response.data.errorMsg, "error")
+                    window.swal("Ups!", response.data.errorMsg, "error")
                     .then(function() {
                         $scope.closePmethodDeleteModal();
                     });
@@ -7635,7 +7635,7 @@ window.angularApp.factory("PmethodDeleteModal", ["API_URL", "window", "jQuery", 
                         $(datatable).DataTable().ajax.reload( null, false );
 
                         // Alert
-                        window.swal("Success", response.data.msg, "success")
+                        window.swal("Éxito!", response.data.msg, "success")
                         .then(function(value) {
                             $scope.closePmethodDeleteModal();
                             $(document).find(".close").trigger("click");
@@ -7651,7 +7651,7 @@ window.angularApp.factory("PmethodDeleteModal", ["API_URL", "window", "jQuery", 
                         alertMsg += "</div>";
                         form.find(".box-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
 
                 });
@@ -7699,7 +7699,7 @@ window.angularApp.factory("PmethodEditModal", ["API_URL", "window", "jQuery", "$
                     }, 100);
 
                 }, function(response) {
-                   window.swal("Oops!", response.data.errorMsg, "error");
+                   window.swal("Ups!", response.data.errorMsg, "error");
                 });
 
                 $(document).delegate("#pmethod-update", "click", function(e) {
@@ -7732,7 +7732,7 @@ window.angularApp.factory("PmethodEditModal", ["API_URL", "window", "jQuery", "$
 
                         // Alert
                         window.swal({
-                          title: "Success!",
+                          title: "Éxito!",
                           text: response.data.msg,
                           icon: "success",
                           buttons: true,
@@ -7768,7 +7768,7 @@ window.angularApp.factory("PmethodEditModal", ["API_URL", "window", "jQuery", "$
 
                         $(":input[type=\"button\"]").prop("disabled", false);
 
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
 
                 });
@@ -7811,7 +7811,7 @@ window.angularApp.factory("POSFilemanagerModal", ["API_URL", "window", "jQuery",
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
                     $(".modal:first").addClass("filemanager-open");
                 }, function (response) {
-                    window.swal("Oops!", response.data.errorMsg, "error").then(function() {
+                    window.swal("Ups!", response.data.errorMsg, "error").then(function() {
                         $scope.closeFileManager();
                     });
                 });
@@ -7868,7 +7868,7 @@ window.angularApp.factory("PrinterDeleteModal", ["API_URL", "window", "jQuery", 
                     }, 100);
 
                 }, function(response) {
-                    window.swal("Oops!", response.data.errorMsg, "error")
+                    window.swal("Ups!", response.data.errorMsg, "error")
                     .then(function() {
                         $scope.closeprinterDeleteModal();
                     });
@@ -7904,7 +7904,7 @@ window.angularApp.factory("PrinterDeleteModal", ["API_URL", "window", "jQuery", 
                         $(datatable).DataTable().ajax.reload( null, false );
 
                         // Alert
-                        window.swal("Success", response.data.msg, "success")
+                        window.swal("Éxito!", response.data.msg, "success")
                         .then(function(value) {
                             $scope.closeprinterDeleteModal();
                             $(document).find(".close").trigger("click");
@@ -7920,7 +7920,7 @@ window.angularApp.factory("PrinterDeleteModal", ["API_URL", "window", "jQuery", 
                         alertMsg += "</div>";
                         form.find(".box-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
 
                 });
@@ -7966,7 +7966,7 @@ window.angularApp.factory("PrinterEditModal", ["API_URL", "window", "jQuery", "$
                         window.storeApp.select2();
                     }, 100);
                 }, function(response) {
-                   window.swal("Oops!", response.data.errorMsg, "error");
+                   window.swal("Ups!", response.data.errorMsg, "error");
                 });
 
                 $(document).delegate("#printer-update", "click", function(e) {
@@ -7998,7 +7998,7 @@ window.angularApp.factory("PrinterEditModal", ["API_URL", "window", "jQuery", "$
 
                         // Alert Box
                         window.swal({
-                          title: "Success!",
+                          title: "Éxito!",
                           text: response.data.msg,
                           icon: "success",
                           buttons: true,
@@ -8031,7 +8031,7 @@ window.angularApp.factory("PrinterEditModal", ["API_URL", "window", "jQuery", "$
                         alertMsg += "</div>";
                         form.find(".box-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
                 });
 
@@ -8188,7 +8188,7 @@ window.angularApp.factory("ProductCreateModal", ["API_URL", "window", "jQuery", 
                     }, 500);
 
                 }, function(response) {
-                   window.swal("Oops!", response.data.errorMsg, "error");
+                   window.swal("Ups!", response.data.errorMsg, "error");
                 });
 
                 // Submit Product Form
@@ -8220,7 +8220,7 @@ window.angularApp.factory("ProductCreateModal", ["API_URL", "window", "jQuery", 
                         form.find(".box-body").before(alertMsg);
 
                         // Alert
-                        window.swal("Success", response.data.msg, "success")
+                        window.swal("Éxito!", response.data.msg, "success")
                         .then(function(value) {
 
                             $scope.product = response.data.product;
@@ -8260,7 +8260,7 @@ window.angularApp.factory("ProductCreateModal", ["API_URL", "window", "jQuery", 
                         alertMsg += "</div>";
                         form.find(".box-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
                 });
 
@@ -8322,7 +8322,7 @@ window.angularApp.factory("ProductDeleteModal", ["API_URL", "window", "jQuery", 
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
 
                 }, function(data) {
-                   window.swal("Oops!", "an error occured!", "error");
+                   window.swal("Ups!", "an error occured!", "error");
                 });
 
                 // Submit product delete form
@@ -8359,7 +8359,7 @@ window.angularApp.factory("ProductDeleteModal", ["API_URL", "window", "jQuery", 
                         }
 
                         // Alert
-                        window.swal("Success", response.data.msg, "success")
+                        window.swal("Éxito!", response.data.msg, "success")
                         .then(function(value) {
                             $scope.closeProductDeleteModal();
                             $(document).find(".close").trigger("click");
@@ -8375,7 +8375,7 @@ window.angularApp.factory("ProductDeleteModal", ["API_URL", "window", "jQuery", 
                         alertMsg += "</div>";
                         form.find(".box-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
                 });
 
@@ -8448,7 +8448,7 @@ window.angularApp.factory("ProductEditModal", ["API_URL", "window", "jQuery", "$
                                 $scope.imgArray.push(item);
                             });
                         }, function(data) {
-                           window.swal("Oops!", "an error occured!", "error");
+                           window.swal("Ups!", "an error occured!", "error");
                         });
 
                         $scope.remoteImageItem = function(index)
@@ -8461,7 +8461,7 @@ window.angularApp.factory("ProductEditModal", ["API_URL", "window", "jQuery", "$
 
 
                 }, function(data) {
-                   window.swal("Oops!", "an error occured!", "error");
+                   window.swal("Ups!", "an error occured!", "error");
                 });
 
                 $http({
@@ -8512,7 +8512,7 @@ window.angularApp.factory("ProductEditModal", ["API_URL", "window", "jQuery", "$
 
                         // Alert
                         window.swal({
-                          title: "Success!",
+                          title: "Éxito!",
                           text: response.data.msg,
                           icon: "success",
                           buttons: true,
@@ -8553,7 +8553,7 @@ window.angularApp.factory("ProductEditModal", ["API_URL", "window", "jQuery", "$
                         alertMsg += "</div>";
                         form.find(".box-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
                 });
 
@@ -8654,7 +8654,7 @@ window.angularApp.factory("ProductReturnModal", ["API_URL", "window", "jQuery", 
                 $scope.modal_title = product.p_name;
                 $scope.rawHtml = $sce.trustAsHtml(response.data);
                 }, function(data) {
-                   window.swal("Oops!", "an error occured!", "error");
+                   window.swal("Ups!", "an error occured!", "error");
                 });
 
                  // Submit product return form
@@ -8688,7 +8688,7 @@ window.angularApp.factory("ProductReturnModal", ["API_URL", "window", "jQuery", 
 
                         // Alert
                         window.swal({
-                          title: "Success!",
+                          title: "Éxito!",
                           text: response.data.msg,
                           icon: "success",
                           buttons: true,
@@ -8721,7 +8721,7 @@ window.angularApp.factory("ProductReturnModal", ["API_URL", "window", "jQuery", 
                         alertMsg += "</div>";
                         form.find(".box-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
 
                 });
@@ -8764,7 +8764,7 @@ window.angularApp.factory("ProductViewModal", ["API_URL", "window", "jQuery", "$
                     $scope.modal_title = product.p_name;
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
                 }, function(response) {
-                    window.swal("Oops!", response.data.errorMsg, "error")
+                    window.swal("Ups!", response.data.errorMsg, "error")
                     .then(function() {
                         $scope.closeProductViewModal();
                     });
@@ -8814,7 +8814,7 @@ window.angularApp.factory("StoreDeleteModal", ["API_URL", "window", "jQuery", "$
                     }, 100);
                     
                 }, function(data) {
-                    window.swal("Oops!", window.response.data.errorMsg, "error")
+                    window.swal("Ups!", window.response.data.errorMsg, "error")
                     .then(function() {
                         $scope.closeStoreDeleteModal();
                     });
@@ -8851,7 +8851,7 @@ window.angularApp.factory("StoreDeleteModal", ["API_URL", "window", "jQuery", "$
                         $(datatable).DataTable().ajax.reload( null, false );
 
                         // Alert
-                        window.swal("Success", response.data.msg, "success")
+                        window.swal("Éxito!", response.data.msg, "success")
                         .then(function(value) {
                             $scope.closeStoreDeleteModal();
                             $(document).find(".close").trigger("click");
@@ -8867,7 +8867,7 @@ window.angularApp.factory("StoreDeleteModal", ["API_URL", "window", "jQuery", "$
                         alertMsg += "</div>";
                         form.find(".box-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
 
                 });
@@ -8914,7 +8914,7 @@ window.angularApp.factory("SupplierCreateModal", ["API_URL", "window", "jQuery",
                     }, 500);
 
                 }, function(response) {
-                   window.swal("Oops!", response.data.errorMsg, "error");
+                   window.swal("Ups!", response.data.errorMsg, "error");
                 });
 
                 // Submit Box Form
@@ -8946,7 +8946,7 @@ window.angularApp.factory("SupplierCreateModal", ["API_URL", "window", "jQuery",
                         form.find(".box-body").before(alertMsg);
 
                         // Alert
-                        window.swal("Success", response.data.msg, "success")
+                        window.swal("Éxito!", response.data.msg, "success")
                         .then(function(value) {
 
                             // close modalwindow
@@ -8985,7 +8985,7 @@ window.angularApp.factory("SupplierCreateModal", ["API_URL", "window", "jQuery",
                         alertMsg += "</div>";
                         form.find(".box-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
                 });
 
@@ -9031,7 +9031,7 @@ window.angularApp.factory("SupplierDeleteModal", ["API_URL", "window", "jQuery",
                     }, 100);
                 
                 }, function(response) {
-                    window.swal("Oops!", response.data.errorMsg, "error")
+                    window.swal("Ups!", response.data.errorMsg, "error")
                     .then(function() {
                         $scope.closeSupplierDeleteModal();
                     });
@@ -9068,7 +9068,7 @@ window.angularApp.factory("SupplierDeleteModal", ["API_URL", "window", "jQuery",
                         $(datatable).DataTable().ajax.reload( null, false );
 
                         // Alert
-                        window.swal("Success", response.data.msg, "success")
+                        window.swal("Éxito!", response.data.msg, "success")
                         .then(function(value) {
                             $scope.closeSupplierDeleteModal();
                             $(document).find(".close").trigger("click");
@@ -9084,7 +9084,7 @@ window.angularApp.factory("SupplierDeleteModal", ["API_URL", "window", "jQuery",
                         alertMsg += "</div>";
                         form.find(".box-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
 
                 });
@@ -9130,7 +9130,7 @@ window.angularApp.factory("SupplierEditModal", ["API_URL", "window", "jQuery", "
                         window.storeApp.select2();
                     }, 100);
                 }, function(response) {
-                   window.swal("Oops!", response.data.errorMsg, "error");
+                   window.swal("Ups!", response.data.errorMsg, "error");
                 });
 
                 $(document).delegate("#supplier-update", "click", function(e) {
@@ -9165,7 +9165,7 @@ window.angularApp.factory("SupplierEditModal", ["API_URL", "window", "jQuery", "
 
                         // Alert
                         window.swal({
-                          title: "Success!",
+                          title: "Éxito!",
                           text: response.data.msg,
                           icon: "success",
                           buttons: true,
@@ -9198,7 +9198,7 @@ window.angularApp.factory("SupplierEditModal", ["API_URL", "window", "jQuery", "
                         alertMsg += "</div>";
                         form.find(".box-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
 
                 });
@@ -9218,6 +9218,8 @@ window.angularApp.factory("SupplierEditModal", ["API_URL", "window", "jQuery", "
         });
     };
 }]);
+
+
 window.angularApp.factory("BrandCreateModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
     return function($scope) {
         var uibBrandModalInstance = $uibModal.open({
@@ -9245,7 +9247,7 @@ window.angularApp.factory("BrandCreateModal", ["API_URL", "window", "jQuery", "$
                     }, 500);
 
                 }, function(response) {
-                   window.swal("Oops!", response.data.errorMsg, "error");
+                   window.swal("Ups!", response.data.errorMsg, "error");
                 });
 
                 // Submit Box Form
@@ -9277,7 +9279,7 @@ window.angularApp.factory("BrandCreateModal", ["API_URL", "window", "jQuery", "$
                         form.find(".box-body").before(alertMsg);
 
                         // Alert
-                        window.swal("Success", response.data.msg, "success")
+                        window.swal("Éxito!", response.data.msg, "success")
                         .then(function(value) {
 
                             // close modalwindow
@@ -9316,7 +9318,7 @@ window.angularApp.factory("BrandCreateModal", ["API_URL", "window", "jQuery", "$
                         alertMsg += "</div>";
                         form.find(".box-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
                 });
 
@@ -9362,7 +9364,7 @@ window.angularApp.factory("BrandDeleteModal", ["API_URL", "window", "jQuery", "$
                     }, 100);
                 
                 }, function(response) {
-                    window.swal("Oops!", response.data.errorMsg, "error")
+                    window.swal("Ups!", response.data.errorMsg, "error")
                     .then(function() {
                         $scope.closeBrandDeleteModal();
                     });
@@ -9399,7 +9401,7 @@ window.angularApp.factory("BrandDeleteModal", ["API_URL", "window", "jQuery", "$
                         $(datatable).DataTable().ajax.reload( null, false );
 
                         // Alert
-                        window.swal("Success", response.data.msg, "success")
+                        window.swal("Éxito!", response.data.msg, "success")
                         .then(function(value) {
                             $scope.closeBrandDeleteModal();
                             $(document).find(".close").trigger("click");
@@ -9415,7 +9417,7 @@ window.angularApp.factory("BrandDeleteModal", ["API_URL", "window", "jQuery", "$
                         alertMsg += "</div>";
                         form.find(".box-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
 
                 });
@@ -9461,7 +9463,7 @@ window.angularApp.factory("BrandEditModal", ["API_URL", "window", "jQuery", "$ht
                         window.storeApp.select2();
                     }, 100);
                 }, function(response) {
-                   window.swal("Oops!", response.data.errorMsg, "error");
+                   window.swal("Ups!", response.data.errorMsg, "error");
                 });
 
                 $(document).delegate("#brand-update", "click", function(e) {
@@ -9496,7 +9498,7 @@ window.angularApp.factory("BrandEditModal", ["API_URL", "window", "jQuery", "$ht
 
                         // Alert
                         window.swal({
-                          title: "Success!",
+                          title: "Éxito!",
                           text: response.data.msg,
                           icon: "success",
                           buttons: true,
@@ -9529,7 +9531,7 @@ window.angularApp.factory("BrandEditModal", ["API_URL", "window", "jQuery", "$ht
                         alertMsg += "</div>";
                         form.find(".box-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
 
                 });
@@ -9549,6 +9551,673 @@ window.angularApp.factory("BrandEditModal", ["API_URL", "window", "jQuery", "$ht
         });
     };
 }]);
+
+
+window.angularApp.factory("CollegeCreateModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
+    return function($scope) {
+        var uibCollegeModalInstance = $uibModal.open({
+            animation: true,
+            ariaLabelledBy: "modal-title",
+            ariaDescribedBy: "modal-body",
+            template: "<div class=\"modal-header\">" +
+                            "<button ng-click=\"closeCollegeCreateModal();\" type=\"button\" class=\"close college-create-modal\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-plus\"></span> {{ modal_title }}</h3>" +
+                        "</div>" +
+                        "<div class=\"modal-body\" id=\"modal-body\">" +
+                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                        "</div>",
+            controller: function ($scope, $uibModalInstance) {
+                $http({
+                  url: window.baseUrl + "/_inc/college.php?action_type=CREATE",
+                  method: "GET"
+                })
+                .then(function(response, status, headers, config) {
+                    $scope.modal_title = "Create New College";
+                    $scope.rawHtml = $sce.trustAsHtml(response.data);
+
+                    setTimeout(function() {
+                        window.storeApp.select2();
+                    }, 500);
+
+                }, function(response) {
+                   window.swal("Ups!", response.data.errorMsg, "error");
+                });
+
+                // Submit Box Form
+                $(document).delegate("#create-college-submit", "click", function(e) {
+                    e.stopImmediatePropagation();
+                    e.stopPropagation();
+                    e.preventDefault();
+
+                    var $tag = $(this);
+                    var $btn = $tag.button("loading");
+                    var form = $($tag.data("form"));
+                    form.find(".alert").remove();
+                    var actionUrl = form.attr("action");
+                    
+                    $http({
+                        url: window.baseUrl + "/_inc/" + actionUrl,
+                        method: "POST",
+                        data: form.serialize(),
+                        cache: false,
+                        processData: false,
+                        contentType: false,
+                        dataType: "json"
+                    }).
+                    then(function(response) {
+                        $btn.button("reset");
+                        var alertMsg = "<div class=\"alert alert-success\">";
+                        alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
+                        alertMsg += "</div>";
+                        form.find(".box-body").before(alertMsg);
+
+                        // Alert
+                        window.swal("Éxito!", response.data.msg, "success")
+                        .then(function(value) {
+
+                            // close modalwindow
+                            $scope.closeCollegeCreateModal();
+                            $(document).find(".close").trigger("click");
+
+                            // insert college into select2
+                            var select = $(document).find('#college_id');
+                            if (select.length) {
+                                var option = $('<option></option>').
+                                     attr('selected', true).
+                                     text(response.data.college.college_name).
+                                     val(response.data.id);
+                                option.appendTo(select);
+                                select.trigger('change');
+                            }
+
+                            // increase college count
+                            var collegeCount = $(document).find("#college-count h3");
+                            if (collegeCount) {
+                                collegeCount.text(parseInt(collegeCount.text()) + 1);
+                            }
+
+                            // Callback
+                            if ($scope.CollegeCreateModalCallback) {
+                                $scope.CollegeCreateModalCallback($scope);
+                            }
+                        });
+
+                    }, function(response) {
+                        $btn.button("reset");
+                        var alertMsg = "<div class=\"alert alert-danger\">";
+                        window.angular.forEach(response.data, function(value, key) {
+                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                        });
+                        alertMsg += "</div>";
+                        form.find(".box-body").before(alertMsg);
+                        $(":input[type=\"button\"]").prop("disabled", false);
+                        window.swal("Ups!", response.data.errorMsg, "error");
+                    });
+                });
+
+                $scope.closeCollegeCreateModal = function () {
+                    uibCollegeModalInstance.dismiss("cancel");
+                };
+            },
+            scope: $scope,
+            size: "md",
+            backdrop  : "static",
+            keyboard: true,
+        });
+
+        uibCollegeModalInstance.result.catch(function () { 
+            uibCollegeModalInstance.close(); 
+        });
+    };
+}]);
+window.angularApp.factory("CollegeDeleteModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
+    return function(college) {
+        var uibModalInstance = $uibModal.open({
+            animation: true,
+            ariaLabelledBy: "modal-title",
+            ariaDescribedBy: "modal-body",
+            template: "<div class=\"modal-header\">" +
+                            "<button ng-click=\"closeCollegeDeleteModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-trash\"></span> {{ modal_title }}</h3>" +
+                        "</div>" +
+                        "<div class=\"modal-body\" id=\"modal-body\">" +
+                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                        "</div>",
+            controller: function ($scope, $uibModalInstance) {
+                $http({
+                  url: window.baseUrl + "/_inc/college.php?college_id=" + college.college_id + "&action_type=DELETE",
+                  method: "GET"
+                })
+                .then(function(response, status, headers, config) {
+                    $scope.modal_title = college.college_name;
+                    $scope.rawHtml = $sce.trustAsHtml(response.data);
+
+                    setTimeout(function() {
+                        window.storeApp.select2();
+                    }, 100);
+                
+                }, function(response) {
+                    window.swal("Ups!", response.data.errorMsg, "error")
+                    .then(function() {
+                        $scope.closeCollegeDeleteModal();
+                    });
+                });
+
+                $(document).delegate("#college-delete", "click", function(e) {
+                    
+                    e.stopImmediatePropagation();
+                    e.stopPropagation();
+                    e.preventDefault();
+
+                    var $tag = $(this);
+                    var $btn = $tag.button("loading");
+                    var form = $($tag.data("form"));
+                    var datatable = $tag.data("datatable");
+                    form.find(".alert").remove();
+                    var actionUrl = form.attr("action");
+                    $http({
+                        url: window.baseUrl + "/_inc/" + actionUrl,
+                        method: "POST",
+                        data: form.serialize(),
+                        cache: false,
+                        processData: false,
+                        contentType: false,
+                        dataType: "json"
+                    }).
+                    then(function(response) {
+
+                        $btn.button("reset");
+                        var alertMsg = "<div class=\"alert alert-success\">";
+                        alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
+                        alertMsg += "</div>";
+                        form.find(".box-body").before(alertMsg);
+                        $(datatable).DataTable().ajax.reload( null, false );
+
+                        // Alert
+                        window.swal("Éxito!", response.data.msg, "success")
+                        .then(function(value) {
+                            $scope.closeCollegeDeleteModal();
+                            $(document).find(".close").trigger("click");
+                        });
+
+                    }, function(response) {
+
+                        $btn.button("reset");
+                        var alertMsg = "<div class=\"alert alert-danger\">";
+                        window.angular.forEach(response.data, function(value, key) {
+                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                        });
+                        alertMsg += "</div>";
+                        form.find(".box-body").before(alertMsg);
+                        $(":input[type=\"button\"]").prop("disabled", false);
+                        window.swal("Ups!", response.data.errorMsg, "error");
+                    });
+
+                });
+
+                $scope.closeCollegeDeleteModal = function () {
+                    $uibModalInstance.dismiss("cancel");
+                };
+            },
+            scope: $scope,
+            size: "md",
+            backdrop  : "static",
+            keyboard: true,
+        });
+
+        uibModalInstance.result.catch(function () { 
+            uibModalInstance.close(); 
+        });
+    };
+}]);
+window.angularApp.factory("CollegeEditModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
+    return function(college) {
+        var supId;
+        var uibModalInstance = $uibModal.open({
+            animation: true,
+            ariaLabelledBy: "modal-title",
+            ariaDescribedBy: "modal-body",
+            template: "<div class=\"modal-header\">" +
+                            "<button ng-click=\"closeCollegeEditModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-pencil\"></span> {{ modal_title }}</h3>" +
+                        "</div>" +
+                        "<div class=\"modal-body\" id=\"modal-body\">" +
+                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                        "</div>",
+            controller: function ($scope, $uibModalInstance) {
+                $http({
+                  url: window.baseUrl + "/_inc/college.php?college_id=" + college.college_id + "&action_type=EDIT",
+                  method: "GET"
+                })
+                .then(function(response, status, headers, config) {
+                    $scope.modal_title = college.college_name;
+                    $scope.rawHtml = $sce.trustAsHtml(response.data);
+                    setTimeout(function() {
+                        window.storeApp.select2();
+                    }, 100);
+                }, function(response) {
+                   window.swal("Ups!", response.data.errorMsg, "error");
+                });
+
+                $(document).delegate("#college-update", "click", function(e) {
+                    
+                    e.stopImmediatePropagation();
+                    e.stopPropagation();
+                    e.preventDefault();
+
+                    var $tag = $(this);
+                    var $btn = $tag.button("loading");
+                    var form = $($tag.data("form"));
+                    var datatable = $tag.data("datatable");
+                    form.find(".alert").remove();
+                    var actionUrl = form.attr("action");
+                    $http({
+                        url: window.baseUrl + "/_inc/" + actionUrl,
+                        method: "POST",
+                        data: form.serialize(),
+                        cache: false,
+                        processData: false,
+                        contentType: false,
+                        dataType: "json"
+                    }).
+                    then(function(response) {
+
+                        $btn.button("reset");
+                        var alertMsg = "<div class=\"alert alert-success\">";
+                        alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
+                        alertMsg += "</div>";
+                        form.find(".box-body").before(alertMsg);
+                        $(datatable).DataTable().ajax.reload( null, false );
+
+                        // Alert
+                        window.swal({
+                          title: "Éxito!",
+                          text: response.data.msg,
+                          icon: "success",
+                          buttons: true,
+                          dangerMode: false,
+                        })
+                        .then(function (willDelete) {
+                            if (willDelete) {
+                                $scope.closeCollegeEditModal();
+                                $(document).find(".close").trigger("click");
+                                supId = response.data.id;
+                                
+                                $(datatable).DataTable().ajax.reload(function(json) {
+                                    if ($("#row_"+supId).length) {
+                                        $("#row_"+supId).flash("yellow", 5000);
+                                    }
+                                }, false);
+
+                            } else {
+                                $(datatable).DataTable().ajax.reload(null, false);
+                            }
+                        });
+
+                    }, function(response) {
+
+                        $btn.button("reset");
+                        var alertMsg = "<div class=\"alert alert-danger\">";
+                        window.angular.forEach(response.data, function(value, key) {
+                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                        });
+                        alertMsg += "</div>";
+                        form.find(".box-body").before(alertMsg);
+                        $(":input[type=\"button\"]").prop("disabled", false);
+                        window.swal("Ups!", response.data.errorMsg, "error");
+                    });
+
+                });
+
+                $scope.closeCollegeEditModal = function () {
+                    $uibModalInstance.dismiss("cancel");
+                };
+            },
+            scope: $scope,
+            size: "md",
+            backdrop  : "static",
+            keyboard: true,
+        });
+
+        uibModalInstance.result.catch(function () { 
+            uibModalInstance.close(); 
+        });
+    };
+}]);
+
+
+window.angularApp.factory("CourseCreateModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
+    return function($scope) {
+        var uibCourseModalInstance = $uibModal.open({
+            animation: true,
+            ariaLabelledBy: "modal-title",
+            ariaDescribedBy: "modal-body",
+            template: "<div class=\"modal-header\">" +
+                            "<button ng-click=\"closeCourseCreateModal();\" type=\"button\" class=\"close course-create-modal\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-plus\"></span> {{ modal_title }}</h3>" +
+                        "</div>" +
+                        "<div class=\"modal-body\" id=\"modal-body\">" +
+                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                        "</div>",
+            controller: function ($scope, $uibModalInstance) {
+                $http({
+                  url: window.baseUrl + "/_inc/course.php?action_type=CREATE",
+                  method: "GET"
+                })
+                .then(function(response, status, headers, config) {
+                    $scope.modal_title = "Create New Course";
+                    $scope.rawHtml = $sce.trustAsHtml(response.data);
+
+                    setTimeout(function() {
+                        window.storeApp.select2();
+                    }, 500);
+
+                }, function(response) {
+                   window.swal("Ups!", response.data.errorMsg, "error");
+                });
+
+                // Submit Box Form
+                $(document).delegate("#create-course-submit", "click", function(e) {
+                    e.stopImmediatePropagation();
+                    e.stopPropagation();
+                    e.preventDefault();
+
+                    var $tag = $(this);
+                    var $btn = $tag.button("loading");
+                    var form = $($tag.data("form"));
+                    form.find(".alert").remove();
+                    var actionUrl = form.attr("action");
+                    
+                    $http({
+                        url: window.baseUrl + "/_inc/" + actionUrl,
+                        method: "POST",
+                        data: form.serialize(),
+                        cache: false,
+                        processData: false,
+                        contentType: false,
+                        dataType: "json"
+                    }).
+                    then(function(response) {
+                        $btn.button("reset");
+                        var alertMsg = "<div class=\"alert alert-success\">";
+                        alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
+                        alertMsg += "</div>";
+                        form.find(".box-body").before(alertMsg);
+
+                        // Alert
+                        window.swal("Éxito!", response.data.msg, "success")
+                        .then(function(value) {
+
+                            // close modalwindow
+                            $scope.closeCourseCreateModal();
+                            $(document).find(".close").trigger("click");
+
+                            // insert course into select2
+                            var select = $(document).find('#course_id');
+                            if (select.length) {
+                                var option = $('<option></option>').
+                                     attr('selected', true).
+                                     text(response.data.course.course_name).
+                                     val(response.data.id);
+                                option.appendTo(select);
+                                select.trigger('change');
+                            }
+
+                            // increase course count
+                            var courseCount = $(document).find("#course-count h3");
+                            if (courseCount) {
+                                courseCount.text(parseInt(courseCount.text()) + 1);
+                            }
+
+                            // Callback
+                            if ($scope.CourseCreateModalCallback) {
+                                $scope.CourseCreateModalCallback($scope);
+                            }
+                        });
+
+                    }, function(response) {
+                        $btn.button("reset");
+                        var alertMsg = "<div class=\"alert alert-danger\">";
+                        window.angular.forEach(response.data, function(value, key) {
+                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                        });
+                        alertMsg += "</div>";
+                        form.find(".box-body").before(alertMsg);
+                        $(":input[type=\"button\"]").prop("disabled", false);
+                        window.swal("Ups!", response.data.errorMsg, "error");
+                    });
+                });
+
+                $scope.closeCourseCreateModal = function () {
+                    uibCourseModalInstance.dismiss("cancel");
+                };
+            },
+            scope: $scope,
+            size: "md",
+            backdrop  : "static",
+            keyboard: true,
+        });
+
+        uibCourseModalInstance.result.catch(function () { 
+            uibCourseModalInstance.close(); 
+        });
+    };
+}]);
+window.angularApp.factory("CourseDeleteModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
+    return function(course) {
+        var uibModalInstance = $uibModal.open({
+            animation: true,
+            ariaLabelledBy: "modal-title",
+            ariaDescribedBy: "modal-body",
+            template: "<div class=\"modal-header\">" +
+                            "<button ng-click=\"closeCourseDeleteModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-trash\"></span> {{ modal_title }}</h3>" +
+                        "</div>" +
+                        "<div class=\"modal-body\" id=\"modal-body\">" +
+                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                        "</div>",
+            controller: function ($scope, $uibModalInstance) {
+                $http({
+                  url: window.baseUrl + "/_inc/course.php?course_id=" + course.course_id + "&action_type=DELETE",
+                  method: "GET"
+                })
+                .then(function(response, status, headers, config) {
+                    $scope.modal_title = course.course_name;
+                    $scope.rawHtml = $sce.trustAsHtml(response.data);
+
+                    setTimeout(function() {
+                        window.storeApp.select2();
+                    }, 100);
+                
+                }, function(response) {
+                    window.swal("Ups!", response.data.errorMsg, "error")
+                    .then(function() {
+                        $scope.closeCourseDeleteModal();
+                    });
+                });
+
+                $(document).delegate("#course-delete", "click", function(e) {
+                    
+                    e.stopImmediatePropagation();
+                    e.stopPropagation();
+                    e.preventDefault();
+
+                    var $tag = $(this);
+                    var $btn = $tag.button("loading");
+                    var form = $($tag.data("form"));
+                    var datatable = $tag.data("datatable");
+                    form.find(".alert").remove();
+                    var actionUrl = form.attr("action");
+                    $http({
+                        url: window.baseUrl + "/_inc/" + actionUrl,
+                        method: "POST",
+                        data: form.serialize(),
+                        cache: false,
+                        processData: false,
+                        contentType: false,
+                        dataType: "json"
+                    }).
+                    then(function(response) {
+
+                        $btn.button("reset");
+                        var alertMsg = "<div class=\"alert alert-success\">";
+                        alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
+                        alertMsg += "</div>";
+                        form.find(".box-body").before(alertMsg);
+                        $(datatable).DataTable().ajax.reload( null, false );
+
+                        // Alert
+                        window.swal("Éxito!", response.data.msg, "success")
+                        .then(function(value) {
+                            $scope.closeCourseDeleteModal();
+                            $(document).find(".close").trigger("click");
+                        });
+
+                    }, function(response) {
+
+                        $btn.button("reset");
+                        var alertMsg = "<div class=\"alert alert-danger\">";
+                        window.angular.forEach(response.data, function(value, key) {
+                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                        });
+                        alertMsg += "</div>";
+                        form.find(".box-body").before(alertMsg);
+                        $(":input[type=\"button\"]").prop("disabled", false);
+                        window.swal("Ups!", response.data.errorMsg, "error");
+                    });
+
+                });
+
+                $scope.closeCourseDeleteModal = function () {
+                    $uibModalInstance.dismiss("cancel");
+                };
+            },
+            scope: $scope,
+            size: "md",
+            backdrop  : "static",
+            keyboard: true,
+        });
+
+        uibModalInstance.result.catch(function () { 
+            uibModalInstance.close(); 
+        });
+    };
+}]);
+window.angularApp.factory("CourseEditModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
+    return function(course) {
+        var supId;
+        var uibModalInstance = $uibModal.open({
+            animation: true,
+            ariaLabelledBy: "modal-title",
+            ariaDescribedBy: "modal-body",
+            template: "<div class=\"modal-header\">" +
+                            "<button ng-click=\"closeCourseEditModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-pencil\"></span> {{ modal_title }}</h3>" +
+                        "</div>" +
+                        "<div class=\"modal-body\" id=\"modal-body\">" +
+                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                        "</div>",
+            controller: function ($scope, $uibModalInstance) {
+                $http({
+                  url: window.baseUrl + "/_inc/course.php?course_id=" + course.course_id + "&action_type=EDIT",
+                  method: "GET"
+                })
+                .then(function(response, status, headers, config) {
+                    $scope.modal_title = course.course_name;
+                    $scope.rawHtml = $sce.trustAsHtml(response.data);
+                    setTimeout(function() {
+                        window.storeApp.select2();
+                    }, 100);
+                }, function(response) {
+                   window.swal("Ups!", response.data.errorMsg, "error");
+                });
+
+                $(document).delegate("#course-update", "click", function(e) {
+                    
+                    e.stopImmediatePropagation();
+                    e.stopPropagation();
+                    e.preventDefault();
+
+                    var $tag = $(this);
+                    var $btn = $tag.button("loading");
+                    var form = $($tag.data("form"));
+                    var datatable = $tag.data("datatable");
+                    form.find(".alert").remove();
+                    var actionUrl = form.attr("action");
+                    $http({
+                        url: window.baseUrl + "/_inc/" + actionUrl,
+                        method: "POST",
+                        data: form.serialize(),
+                        cache: false,
+                        processData: false,
+                        contentType: false,
+                        dataType: "json"
+                    }).
+                    then(function(response) {
+
+                        $btn.button("reset");
+                        var alertMsg = "<div class=\"alert alert-success\">";
+                        alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
+                        alertMsg += "</div>";
+                        form.find(".box-body").before(alertMsg);
+                        $(datatable).DataTable().ajax.reload( null, false );
+
+                        // Alert
+                        window.swal({
+                          title: "Éxito!",
+                          text: response.data.msg,
+                          icon: "success",
+                          buttons: true,
+                          dangerMode: false,
+                        })
+                        .then(function (willDelete) {
+                            if (willDelete) {
+                                $scope.closeCourseEditModal();
+                                $(document).find(".close").trigger("click");
+                                supId = response.data.id;
+                                
+                                $(datatable).DataTable().ajax.reload(function(json) {
+                                    if ($("#row_"+supId).length) {
+                                        $("#row_"+supId).flash("yellow", 5000);
+                                    }
+                                }, false);
+
+                            } else {
+                                $(datatable).DataTable().ajax.reload(null, false);
+                            }
+                        });
+
+                    }, function(response) {
+
+                        $btn.button("reset");
+                        var alertMsg = "<div class=\"alert alert-danger\">";
+                        window.angular.forEach(response.data, function(value, key) {
+                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                        });
+                        alertMsg += "</div>";
+                        form.find(".box-body").before(alertMsg);
+                        $(":input[type=\"button\"]").prop("disabled", false);
+                        window.swal("Ups!", response.data.errorMsg, "error");
+                    });
+
+                });
+
+                $scope.closeCourseEditModal = function () {
+                    $uibModalInstance.dismiss("cancel");
+                };
+            },
+            scope: $scope,
+            size: "md",
+            backdrop  : "static",
+            keyboard: true,
+        });
+
+        uibModalInstance.result.catch(function () { 
+            uibModalInstance.close(); 
+        });
+    };
+}]);
+
 window.angularApp.factory("UserCreateModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
     return function($scope) {
         var uibModalInstance = $uibModal.open({
@@ -9576,7 +10245,7 @@ window.angularApp.factory("UserCreateModal", ["API_URL", "window", "jQuery", "$h
                     }, 500);
                     
                 }, function(response) {
-                   window.swal("Oops!", response.data.errorMsg, "error");
+                   window.swal("Ups!", response.data.errorMsg, "error");
                 });
 
                 // Submit Box Form
@@ -9608,7 +10277,7 @@ window.angularApp.factory("UserCreateModal", ["API_URL", "window", "jQuery", "$h
                         form.find(".box-body").before(alertMsg);
 
                         // Alert
-                        window.swal("Success", response.data.msg, "success")
+                        window.swal("Éxito!", response.data.msg, "success")
                         .then(function(value) {
 
                             // close modalwindow
@@ -9648,7 +10317,7 @@ window.angularApp.factory("UserCreateModal", ["API_URL", "window", "jQuery", "$h
                         alertMsg += "</div>";
                         form.find(".box-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
                 });
 
@@ -9694,7 +10363,7 @@ window.angularApp.factory("UserDeleteModal", ["API_URL", "window", "jQuery", "$h
                     }, 100);
                 
                 }, function(response) {
-                    window.swal("Oops!", response.data.errorMsg, "error")
+                    window.swal("Ups!", response.data.errorMsg, "error")
                     .then(function() {
                         $scope.closeUserDeleteModal();
                     });
@@ -9731,7 +10400,7 @@ window.angularApp.factory("UserDeleteModal", ["API_URL", "window", "jQuery", "$h
                         $(datatable).DataTable().ajax.reload( null, false );
 
                         // Alert
-                        window.swal("Success", response.data.msg, "success")
+                        window.swal("Éxito!", response.data.msg, "success")
                         .then(function(value) {
                             $scope.closeUserDeleteModal();
                             $(document).find(".close").trigger("click");
@@ -9747,7 +10416,7 @@ window.angularApp.factory("UserDeleteModal", ["API_URL", "window", "jQuery", "$h
                         alertMsg += "</div>";
                         form.find(".box-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
 
                 });
@@ -9795,7 +10464,7 @@ window.angularApp.factory("UserEditModal", ["API_URL", "window", "jQuery", "$htt
                     }, 100);
 
                 }, function(data) {
-                   window.swal("Oops!", window.response.data.errorMsg, "error");
+                   window.swal("Ups!", window.response.data.errorMsg, "error");
                 });
 
                 $(document).delegate("#user-update", "click", function(e) {
@@ -9829,7 +10498,7 @@ window.angularApp.factory("UserEditModal", ["API_URL", "window", "jQuery", "$htt
 
                         // Alert
                         window.swal({
-                          title: "Success!",
+                          title: "Éxito!",
                           text: response.data.msg,
                           icon: "success",
                           buttons: true,
@@ -9865,7 +10534,7 @@ window.angularApp.factory("UserEditModal", ["API_URL", "window", "jQuery", "$htt
 
                         $(":input[type=\"button\"]").prop("disabled", false);
 
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
 
                 });
@@ -9912,7 +10581,7 @@ window.angularApp.factory("UserGroupCreateModal", ["API_URL", "window", "jQuery"
                     }, 500);
                     
                 }, function(response) {
-                   window.swal("Oops!", response.data.errorMsg, "error");
+                   window.swal("Ups!", response.data.errorMsg, "error");
                 });
 
                 // Submit Box Form
@@ -9944,7 +10613,7 @@ window.angularApp.factory("UserGroupCreateModal", ["API_URL", "window", "jQuery"
                         form.find(".box-body").before(alertMsg);
 
                         // Alert
-                        window.swal("Success", response.data.msg, "success")
+                        window.swal("Éxito!", response.data.msg, "success")
                         .then(function(value) {
 
                             // close modalwindow
@@ -9984,7 +10653,7 @@ window.angularApp.factory("UserGroupCreateModal", ["API_URL", "window", "jQuery"
                         alertMsg += "</div>";
                         form.find(".box-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
                 });
 
@@ -10030,7 +10699,7 @@ window.angularApp.factory("UserGroupDeleteModal", ["API_URL", "window", "jQuery"
                     }, 100);
                     
                 }, function(response) {
-                    window.swal("Oops!", response.data.errorMsg, "error")
+                    window.swal("Ups!", response.data.errorMsg, "error")
                     .then(function() {
                         $scope.closeUsergroupDelteModal();
                     });
@@ -10067,7 +10736,7 @@ window.angularApp.factory("UserGroupDeleteModal", ["API_URL", "window", "jQuery"
                         $(datatable).DataTable().ajax.reload( null, false );
 
                         // Alert
-                        window.swal("Success", response.data.msg, "success")
+                        window.swal("Éxito!", response.data.msg, "success")
                         .then(function(value) {
                             $scope.closeUsergroupDelteModal();
                             $(document).find(".close").trigger("click");
@@ -10083,7 +10752,7 @@ window.angularApp.factory("UserGroupDeleteModal", ["API_URL", "window", "jQuery"
                         alertMsg += "</div>";
                         form.find(".box-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
 
                 });
@@ -10125,7 +10794,7 @@ window.angularApp.factory("UserGroupEditModal", ["API_URL", "window", "jQuery", 
                     $scope.modal_title = usergroup.name;
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
                 }, function(data) {
-                   window.swal("Oops!", window.response.data.errorMsg, "error");
+                   window.swal("Ups!", window.response.data.errorMsg, "error");
                 });
 
                 $(document).delegate(".user-group-update", "click", function(e) {
@@ -10159,7 +10828,7 @@ window.angularApp.factory("UserGroupEditModal", ["API_URL", "window", "jQuery", 
 
                         // Alert
                         window.swal({
-                          title: "Success!",
+                          title: "Éxito!",
                           text: response.data.msg,
                           icon: "success",
                           buttons: true,
@@ -10192,7 +10861,7 @@ window.angularApp.factory("UserGroupEditModal", ["API_URL", "window", "jQuery", 
                         alertMsg += "</div>";
                         form.find(".box-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
                 });
 
@@ -10240,7 +10909,7 @@ window.angularApp.factory("UserInvoiceDetailsModal", ["API_URL", "window", "jQue
                     }, 500);
                     
                 }, function(response) {
-                   window.swal("Oops!", response.data.errorMsg, "error");
+                   window.swal("Ups!", response.data.errorMsg, "error");
                 });
 
                 $scope.closeDueCollectionModal = function () {
@@ -10293,7 +10962,7 @@ window.angularApp.factory("UserInvoiceDueDetailsModal", ["API_URL", "window", "j
                     }, 500);
                     
                 }, function(response) {
-                   window.swal("Oops!", response.data.errorMsg, "error");
+                   window.swal("Ups!", response.data.errorMsg, "error");
                 });
 
                 $scope.closeDueCollectionModal = function () {
@@ -10341,7 +11010,7 @@ window.angularApp.factory("GiftcardCreateModal", ["API_URL", "window", "jQuery",
                          $(".random_card_no").trigger("click");
                     }, 500);
                 }, function(response) {
-                   window.swal("Oops!", response.data.errorMsg, "error");
+                   window.swal("Ups!", response.data.errorMsg, "error");
                 });
 
                 // Submit Giftcard Form
@@ -10374,7 +11043,7 @@ window.angularApp.factory("GiftcardCreateModal", ["API_URL", "window", "jQuery",
                         form.find(".giftcard-body").before(alertMsg);
 
                         // Alert
-                        window.swal("Success", response.data.msg, "success")
+                        window.swal("Éxito!", response.data.msg, "success")
                         .then(function(value) {
 
                             // close modalwindow
@@ -10415,7 +11084,7 @@ window.angularApp.factory("GiftcardCreateModal", ["API_URL", "window", "jQuery",
                         alertMsg += "</div>";
                         form.find(".giftcard-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
                 });
 
@@ -10464,7 +11133,7 @@ window.angularApp.factory("GiftcardEditModal", ["API_URL", "window", "jQuery", "
                         });
                     }, 500);
                 }, function(response) {
-                   window.swal("Oops!", response.data.errorMsg, "error");
+                   window.swal("Ups!", response.data.errorMsg, "error");
                 });
 
                 $(document).delegate("#giftcard-update", "click", function(e) {
@@ -10498,7 +11167,7 @@ window.angularApp.factory("GiftcardEditModal", ["API_URL", "window", "jQuery", "
 
                         // Alert
                         window.swal({
-                          title: "Success!",
+                          title: "Éxito!",
                           text: response.data.msg,
                           icon: "success",
                           buttons: true,
@@ -10532,7 +11201,7 @@ window.angularApp.factory("GiftcardEditModal", ["API_URL", "window", "jQuery", "
                         alertMsg += "</div>";
                         form.find(".giftcard-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
 
                 });
@@ -10574,7 +11243,7 @@ window.angularApp.factory("GiftcardViewModal", ["API_URL", "window", "jQuery", "
                     $scope.modal_title = "Gift Card (" + giftcard.card_no + ")";
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
                 }, function (response) {
-                    window.swal("Oops!", response.data.errorMsg, "error").then(function() {
+                    window.swal("Ups!", response.data.errorMsg, "error").then(function() {
                         $scope.closeGiftcardViewModal();
                     });
                 });
@@ -10629,7 +11298,7 @@ window.angularApp.factory("GiftcardTopupModal", ["API_URL", "window", "jQuery", 
                         });
                     }, 500);
                 }, function(response) {
-                   window.swal("Oops!", response.data.errorMsg, "error");
+                   window.swal("Ups!", response.data.errorMsg, "error");
                 });
 
                 $(document).delegate("#giftcard-topup-save", "click", function(e) {
@@ -10663,7 +11332,7 @@ window.angularApp.factory("GiftcardTopupModal", ["API_URL", "window", "jQuery", 
 
                         // Alert
                         window.swal({
-                          title: "Success!",
+                          title: "Éxito!",
                           text: response.data.msg,
                           icon: "success",
                           buttons: true,
@@ -10697,7 +11366,7 @@ window.angularApp.factory("GiftcardTopupModal", ["API_URL", "window", "jQuery", 
                         alertMsg += "</div>";
                         form.find(".giftcard-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
 
                 });
@@ -10739,7 +11408,7 @@ window.angularApp.factory("InvoiceSMSModal", ["API_URL", "window", "jQuery", "$h
                     $scope.modal_title = "SEND SMS";
                     $scope.rawHtml = $sce.trustAsHtml(response.data);   
                 }, function(response) {
-                   window.swal("Oops!", response.data.errorMsg, "error");
+                   window.swal("Ups!", response.data.errorMsg, "error");
                 });
 
                 // Send SMS
@@ -10771,7 +11440,7 @@ window.angularApp.factory("InvoiceSMSModal", ["API_URL", "window", "jQuery", "$h
                         form.find(".box-body").before(alertMsg);
 
                         // Alert
-                        window.swal("Success", response.data.msg, "success")
+                        window.swal("Éxito!", response.data.msg, "success")
                         .then(function(value) {
                             $scope.closeInvoiceSMSModal();
                             $(document).find(".close").trigger("click");
@@ -10786,7 +11455,7 @@ window.angularApp.factory("InvoiceSMSModal", ["API_URL", "window", "jQuery", "$h
                         alertMsg += "</div>";
                         form.find(".box-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
                 });
 
@@ -10838,7 +11507,7 @@ window.angularApp.factory("PaymentFormModal", ["API_URL", "window", "jQuery", "$
                         $(document).find("body").removeClass("overlay-loader");
                     }, 500);                 
                 }, function(response) {
-                   window.swal("Oops!", response.data.errorMsg, "error");
+                   window.swal("Ups!", response.data.errorMsg, "error");
                    $(document).find("body").removeClass("overlay-loader");
                 });
 
@@ -10870,14 +11539,14 @@ window.angularApp.factory("PaymentFormModal", ["API_URL", "window", "jQuery", "$
                         $scope.rawPaymentMethodHtml = $sce.trustAsHtml(response.data);
                         if ($scope.pmethodCode == 'credit') {
                             if (parseFloat($scope.customerBalance) < parseFloat($scope.totalPayable)) {
-                                window.toastr.error("Insufficient Balance!", "Warning!");
+                                window.toastr.error("Insufficient Balance!", "Advertencia!");
                             } else {
                                 $scope.paidAmount = $scope.totalPayable;
                             }
                         }
                         $(document).find("body").removeClass("overlay-loader");
                     }, function(response) {
-                       window.swal("Oops!", response.data.errorMsg, "error");
+                       window.swal("Ups!", response.data.errorMsg, "error");
                        $(document).find("body").removeClass("overlay-loader");
                     });
                 };
@@ -10913,7 +11582,7 @@ window.angularApp.factory("PaymentFormModal", ["API_URL", "window", "jQuery", "$
                         if (window.getParameterByName("holding_id") || window.getParameterByName("qref")) {
                             localStorage.setItem("swal",
                                 window.swal({
-                                  title: "Success!",
+                                  title: "Éxito!",
                                   text:  "Invoice ID: "+$scope.invoiceId,
                                   type: "success",
                                   timer: 3000,
@@ -10931,7 +11600,7 @@ window.angularApp.factory("PaymentFormModal", ["API_URL", "window", "jQuery", "$
                             } else if (window.settings.after_sell_page == 'receipt_in_popup') {
                                 InvoiceViewModal({'invoice_id':$scope.invoiceId});
                             } else if (window.settings.after_sell_page == 'toastr_msg') {
-                                window.toastr.success("ID: "+$scope.invoiceId, "Success!");
+                                window.toastr.success("ID: "+$scope.invoiceId, "Éxito!");
                             } else if (window.settings.after_sell_page == 'sweet_alert_msg') {
                                 window.swal("Success.", "ID: "+$scope.invoiceId, "success");
                             } else {
@@ -10950,9 +11619,9 @@ window.angularApp.factory("PaymentFormModal", ["API_URL", "window", "jQuery", "$
                                 dataType: "json"
                             }).
                             then(function(response) {
-                                window.toastr.success("SMS sent to the number: " + $scope.customerMobileNumber, "Success!");
+                                window.toastr.success("SMS sent to the number: " + $scope.customerMobileNumber, "Éxito!");
                             }, function(response) {
-                                window.swal("Oops!", response.data.errorMsg, "error");
+                                window.swal("Ups!", response.data.errorMsg, "error");
                             });
                         }
 
@@ -10962,7 +11631,7 @@ window.angularApp.factory("PaymentFormModal", ["API_URL", "window", "jQuery", "$
                         if (window.store.sound_effect == 1) {
                             window.storeApp.playSound("error.mp3");
                         }
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                         $(document).find(".modal").removeClass("overlay-loader");
                     });
                 };
@@ -11043,7 +11712,7 @@ window.angularApp.factory("PaymentOnlyModal", ["API_URL", "window", "jQuery", "$
                             $(document).find("body").removeClass("overlay-loader");
                         }, 500);                 
                     }, function(response) {
-                       window.swal("Oops!", response.data.errorMsg, "error");
+                       window.swal("Ups!", response.data.errorMsg, "error");
                        $(document).find("body").removeClass("overlay-loader");
                     });
                 };
@@ -11064,14 +11733,14 @@ window.angularApp.factory("PaymentOnlyModal", ["API_URL", "window", "jQuery", "$
                         $scope.rawPaymentMethodHtml = $sce.trustAsHtml(response.data);
                         if ($scope.pmethodCode == 'credit') {
                             if (parseFloat($scope.customerBalance) < parseFloat($scope.order.due)) {
-                                window.toastr.error("Insufficient Balance!", "Warning!");
+                                window.toastr.error("Insufficient Balance!", "Advertencia!");
                             } else {
                                 $scope.paidAmount = parseFloat($scope.order.due);
                             }
                         }
                         $(document).find("body").removeClass("overlay-loader");
                     }, function(response) {
-                       window.swal("Oops!", response.data.errorMsg, "error");
+                       window.swal("Ups!", response.data.errorMsg, "error");
                        $(document).find("body").removeClass("overlay-loader");
                     });
                 };
@@ -11090,7 +11759,7 @@ window.angularApp.factory("PaymentOnlyModal", ["API_URL", "window", "jQuery", "$
                         dataType: "json"
                     }).
                     then(function(response) {
-                        window.swal("Success", response.data.msg, "success")
+                        window.swal("Éxito!", response.data.msg, "success")
                         .then(function(value) {
                             if ($scope.order.datatable) {
                                 $($scope.order.datatable).DataTable().ajax.reload(null, false);
@@ -11105,7 +11774,7 @@ window.angularApp.factory("PaymentOnlyModal", ["API_URL", "window", "jQuery", "$
                         if (window.store.sound_effect == 1) {
                             window.storeApp.playSound("error.mp3");
                         }
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                         $(document).find(".modal").removeClass("overlay-loader");
                     });
                 };
@@ -11165,7 +11834,7 @@ window.angularApp.factory("PurchaseInvoiceViewModal", ["API_URL", "window", "jQu
                     $scope.modal_title = "Purchase > " + invoice.invoice_id;
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
                 }, function (response) {
-                   window.swal("Oops!", response.data.errorMsg, "error")
+                   window.swal("Ups!", response.data.errorMsg, "error")
                     .then(function() {
                         $scope.closePurchaseInvoiceViewModal();
                     });
@@ -11212,7 +11881,7 @@ window.angularApp.factory("PurchaseInvoiceInfoEditModal", ["API_URL", "window", 
                     }, 100);
 
                 }, function(response) {
-                   window.swal("Oops!", response.data.errorMsg, "error");
+                   window.swal("Ups!", response.data.errorMsg, "error");
                 });
 
                 $(document).delegate("#invoice-update", "click", function(e) {
@@ -11245,7 +11914,7 @@ window.angularApp.factory("PurchaseInvoiceInfoEditModal", ["API_URL", "window", 
 
                         // Alert
                         window.swal({
-                          title: "Success!",
+                          title: "Éxito!",
                           text: response.data.msg,
                           icon: "success",
                           buttons: true,
@@ -11278,7 +11947,7 @@ window.angularApp.factory("PurchaseInvoiceInfoEditModal", ["API_URL", "window", 
                         alertMsg += "</div>";
                         form.find(".box-body").before(alertMsg);
                         $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
                 });
                 $scope.closePurchaseInvoiceInfoEditModal = function () {
@@ -11332,7 +12001,7 @@ window.angularApp.factory("PurchasePaymentModal", ["API_URL", "window", "jQuery"
                             $(document).find("body").removeClass("overlay-loader");
                         }, 500);                 
                     }, function(response) {
-                       window.swal("Oops!", response.data.errorMsg, "error");
+                       window.swal("Ups!", response.data.errorMsg, "error");
                        $(document).find("body").removeClass("overlay-loader");
                     });
                 };
@@ -11353,7 +12022,7 @@ window.angularApp.factory("PurchasePaymentModal", ["API_URL", "window", "jQuery"
                         $scope.rawPaymentMethodHtml = $sce.trustAsHtml(response.data);
                         $(document).find("body").removeClass("overlay-loader");
                     }, function(response) {
-                       window.swal("Oops!", response.data.errorMsg, "error");
+                       window.swal("Ups!", response.data.errorMsg, "error");
                        $(document).find("body").removeClass("overlay-loader");
                     });
                 };
@@ -11372,7 +12041,7 @@ window.angularApp.factory("PurchasePaymentModal", ["API_URL", "window", "jQuery"
                         dataType: "json"
                     }).
                     then(function(response) {
-                        window.swal("Success", response.data.msg, "success")
+                        window.swal("Éxito!", response.data.msg, "success")
                         .then(function(value) {
                             $scope.closePurchasePaymentModal();
                         });
@@ -11382,7 +12051,7 @@ window.angularApp.factory("PurchasePaymentModal", ["API_URL", "window", "jQuery"
                         if (window.store.sound_effect == 1) {
                             window.storeApp.playSound("error.mp3");
                         }
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                         $(document).find(".modal").removeClass("overlay-loader");
                     });
                 };
@@ -11452,7 +12121,7 @@ window.angularApp.factory("SellReturnModal", ["API_URL", "window", "jQuery", "$h
                             $(document).find("body").removeClass("overlay-loader");
                         }, 500);                 
                     }, function(response) {
-                       window.swal("Oops!", response.data.errorMsg, "error");
+                       window.swal("Ups!", response.data.errorMsg, "error");
                        $(document).find("body").removeClass("overlay-loader");
                     });
                 };
@@ -11472,7 +12141,7 @@ window.angularApp.factory("SellReturnModal", ["API_URL", "window", "jQuery", "$h
                         dataType: "json"
                     }).
                     then(function(response) {
-                        window.swal("Success", response.data.msg, "success")
+                        window.swal("Éxito!", response.data.msg, "success")
                         .then(function(value) {
                             if ($scope.order.datatable) {
                                 $($scope.order.datatable).DataTable().ajax.reload(null, false);
@@ -11487,7 +12156,7 @@ window.angularApp.factory("SellReturnModal", ["API_URL", "window", "jQuery", "$h
                         if (window.store.sound_effect == 1) {
                             window.storeApp.playSound("error.mp3");
                         }
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                         $(document).find(".modal").removeClass("overlay-loader");
                     });
                 };
@@ -11544,7 +12213,7 @@ window.angularApp.factory("PurchaseReturnModal", ["API_URL", "window", "jQuery",
                             $(document).find("body").removeClass("overlay-loader");
                         }, 500);                 
                     }, function(response) {
-                       window.swal("Oops!", response.data.errorMsg, "error");
+                       window.swal("Ups!", response.data.errorMsg, "error");
                        $(document).find("body").removeClass("overlay-loader");
                     });
                 };
@@ -11564,7 +12233,7 @@ window.angularApp.factory("PurchaseReturnModal", ["API_URL", "window", "jQuery",
                         dataType: "json"
                     }).
                     then(function(response) {
-                        window.swal("Success", response.data.msg, "success")
+                        window.swal("Éxito!", response.data.msg, "success")
                         .then(function(value) {
                             if ($scope.order.datatable) {
                                 $($scope.order.datatable).DataTable().ajax.reload(null, false);
@@ -11579,7 +12248,7 @@ window.angularApp.factory("PurchaseReturnModal", ["API_URL", "window", "jQuery",
                         if (window.store.sound_effect == 1) {
                             window.storeApp.playSound("error.mp3");
                         }
-                        window.swal("Oops!", response.data.errorMsg, "error");
+                        window.swal("Ups!", response.data.errorMsg, "error");
                         $(document).find(".modal").removeClass("overlay-loader");
                     });
                 };
@@ -11626,7 +12295,7 @@ window.angularApp.factory("ExpenseSummaryModal", ["API_URL", "window", "jQuery",
                     $scope.modal_title = "Expense Summary";
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
                 }, function (response) {
-                   window.swal("Oops!", response.data.errorMsg, "error")
+                   window.swal("Ups!", response.data.errorMsg, "error")
                     .then(function() {
                         $scope.closeExpenceViewModal();
                     });
@@ -13611,7 +14280,7 @@ var storeApp = (function ($) {
 					,font_size: "10"	
 					,allow_resize: "no"
 					,allow_toggle: true
-					,language: "en"
+					,language: "es"
 					,syntax: "html"
 					,toolbar: "save, |, search, go_to_line, |, undo, redo, |, select_font, |, change_smooth_selection, highlight, reset_highlight, |, help"
 					,save_callback: "save_template_content_data"
@@ -13624,7 +14293,7 @@ var storeApp = (function ($) {
 					,font_size: "10"	
 					,allow_resize: "no"
 					,allow_toggle: true
-					,language: "en"
+					,language: "es"
 					,syntax: "css"
 					,toolbar: "save, |, search, go_to_line, |, undo, redo, |, select_font, |, change_smooth_selection, highlight, reset_highlight, |, help"
 					,save_callback: "save_template_css_data"
@@ -14002,7 +14671,7 @@ function save_template_content_data(id, content)
 		},
 		success: function(res) {
 		  // alert(res.msg);
-		  window.toastr.success(res.msg, "Success!");
+		  window.toastr.success(res.msg, "Éxito!");
 		},
 		error: function(xhr, ajaxOptions, thrownError) {
 		  window.toastr.error(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText,"Error!");
@@ -14032,7 +14701,7 @@ function save_template_css_data(id, content)
 		},
 		success: function(res) {
 		  // alert(res.msg);
-		  window.toastr.success(res.msg, "Success!");
+		  window.toastr.success(res.msg, "Éxito!");
 		},
 		error: function(xhr, ajaxOptions, thrownError) {
 		  window.toastr.error(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText,"Error!");

@@ -32,7 +32,7 @@ var storeApp = (function ($) {
 					,font_size: "10"	
 					,allow_resize: "no"
 					,allow_toggle: true
-					,language: "en"
+					,language: "es"
 					,syntax: "html"
 					,toolbar: "save, |, search, go_to_line, |, undo, redo, |, select_font, |, change_smooth_selection, highlight, reset_highlight, |, help"
 					,save_callback: "save_template_content_data"
@@ -45,7 +45,7 @@ var storeApp = (function ($) {
 					,font_size: "10"	
 					,allow_resize: "no"
 					,allow_toggle: true
-					,language: "en"
+					,language: "es"
 					,syntax: "css"
 					,toolbar: "save, |, search, go_to_line, |, undo, redo, |, select_font, |, change_smooth_selection, highlight, reset_highlight, |, help"
 					,save_callback: "save_template_css_data"
@@ -423,7 +423,7 @@ function save_template_content_data(id, content)
 		},
 		success: function(res) {
 		  // alert(res.msg);
-		  window.toastr.success(res.msg, "Success!");
+		  window.toastr.success(res.msg, "Éxito!");
 		},
 		error: function(xhr, ajaxOptions, thrownError) {
 		  window.toastr.error(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText,"Error!");
@@ -453,7 +453,7 @@ function save_template_css_data(id, content)
 		},
 		success: function(res) {
 		  // alert(res.msg);
-		  window.toastr.success(res.msg, "Success!");
+		  window.toastr.success(res.msg, "Éxito!");
 		},
 		error: function(xhr, ajaxOptions, thrownError) {
 		  window.toastr.error(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText,"Error!");

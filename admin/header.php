@@ -106,6 +106,7 @@ $demo_text = 'This is a demo version. Data will be reset in every 6 hours interv
 
         <!-- Skin Red CSS -->
         <link type="text/css" href="../assets/itsolution24/css/skins/skin-red.css" type="text/css" rel="stylesheet">
+        <link type="text/css" href="../assets/itsolution24/css/skins/skin-purple.css" type="text/css" rel="stylesheet">
 
         <!-- Skin Yellow CSS -->
         <link type="text/css" href="../assets/itsolution24/css/skins/skin-yellow.css" type="text/css" rel="stylesheet">

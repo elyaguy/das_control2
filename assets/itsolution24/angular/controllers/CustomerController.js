@@ -156,7 +156,7 @@ function (
                     $(win.document.body)
                         .css( 'font-size', '10pt' )
                         .append(
-                            '<div><b><i>Powered by: ITsolution24.com</i></b></div>'
+                            '<div><b><i>Powered by: ControlDas.com</i></b></div>'
                         )
                         .prepend(
                             '<div class="dt-print-heading"><img class="logo" src="'+window.logo+'"/><h2 class="title">'+window.store.name+'</h2><p>Printed on: '+window.formatDate(new Date())+'</p></div>'
@@ -179,7 +179,7 @@ function (
                     $(win.document.body)
                         .css( 'font-size', '10pt' )
                         .append(
-                            '<div><b><i>Powered by: ITsolution24.com</i></b></div>'
+                            '<div><b><i>Powered by: ControlDas.com</i></b></div>'
                         )
                         .prepend(
                             '<div class="dt-print-heading"><img class="logo" src="'+window.logo+'"/><h2 class="title">'+window.store.name+'</h2><p>Printed on: '+window.formatDate(new Date())+'</p></div>'
@@ -239,7 +239,7 @@ function (
                     doc['footer']=(function(page, pages) {
                         return {
                             columns: [
-                                'Powered by ITSOLUTION24.COM',
+                                'Powered by ControlDas.com',
                                 {
                                     // This is the right column
                                     alignment: 'right',
@@ -302,7 +302,7 @@ function (
             $btn.button("reset");
             $(":input[type=\"button\"]").prop("disabled", false);
             var alertMsg = response.data.msg;
-            window.toastr.success(alertMsg, "Success!");
+            window.toastr.success(alertMsg, "Éxito!");
 
             customerId = response.data.id;
             
@@ -325,7 +325,7 @@ function (
                 alertMsg += "<p>" + value + ".</p>";
             });
             alertMsg += "</div>";
-            window.toastr.warning(alertMsg, "Warning!");
+            window.toastr.warning(alertMsg, "Advertencia!");
         });
     });
 
