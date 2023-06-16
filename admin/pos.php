@@ -49,16 +49,16 @@ if ($order_printer_ids) {
     
 	<!-- Favicon -->
     <?php if (store('favicon')): ?>
-		<link rel="shortcut icon" href="../assets/itsolution24/img/logo-favicons/<?php echo store('favicon'); ?>">
+		<link rel="shortcut icon" href="../assets/das/img/logo-favicons/<?php echo store('favicon'); ?>">
 	<?php else: ?>
-		<link rel="shortcut icon" href="../assets/itsolution24/img/logo-favicons/nofavicon.png">
+		<link rel="shortcut icon" href="../assets/das/img/logo-favicons/nofavicon.png">
 	<?php endif; ?>
 
 	<!-- ALL CSS -->
 
 	<?php if (DEMO || USECOMPILEDASSET) : ?>
 
-		<link href="../assets/itsolution24/cssmin/pos.css" type="text/css" rel="stylesheet">
+		<link href="../assets/das/cssmin/pos.css" type="text/css" rel="stylesheet">
 
 	<?php else : ?>
 		
@@ -90,46 +90,46 @@ if ($order_printer_ids) {
 	    <link  href="../assets/contextMenu/dist/jquery.contextMenu.min.css" type="text/css" rel="stylesheet">
 
 		<!-- Filemanager CSS -->
-	    <link href="../assets/itsolution24/css/filemanager/dialogs.css" type="text/css" rel="stylesheet">
-	    <link href="../assets/itsolution24/css/filemanager/main.css" type="text/css" rel="stylesheet">
+	    <link href="../assets/das/css/filemanager/dialogs.css" type="text/css" rel="stylesheet">
+	    <link href="../assets/das/css/filemanager/main.css" type="text/css" rel="stylesheet">
 
 	    <!-- Theme CSS -->
-	    <link href="../assets/itsolution24/css/theme.css" type="text/css" rel="stylesheet">
+	    <link href="../assets/das/css/theme.css" type="text/css" rel="stylesheet">
 
 	    <!-- Skin Black CSS -->
-	    <link href="../assets/itsolution24/css/skins/skin-black.css" type="text/css" rel="stylesheet">
+	    <link href="../assets/das/css/skins/skin-black.css" type="text/css" rel="stylesheet">
 
 	    <!-- Skin Blue CSS -->
-	    <link href="../assets/itsolution24/css/skins/skin-blue.css" type="text/css" rel="stylesheet">
+	    <link href="../assets/das/css/skins/skin-blue.css" type="text/css" rel="stylesheet">
 
 	    <!-- Skin Green CSS -->
-	    <link href="../assets/itsolution24/css/skins/skin-green.css" type="text/css" rel="stylesheet">
+	    <link href="../assets/das/css/skins/skin-green.css" type="text/css" rel="stylesheet">
 
 	    <!-- Skin Red CSS -->
-	    <link href="../assets/itsolution24/css/skins/skin-red.css" type="text/css" rel="stylesheet">
-	    <link href="../assets/itsolution24/css/skins/skin-purple.css" type="text/css" rel="stylesheet">
+	    <link href="../assets/das/css/skins/skin-red.css" type="text/css" rel="stylesheet">
+	    <link href="../assets/das/css/skins/skin-purple.css" type="text/css" rel="stylesheet">
 
 	    <!-- Skin Yellow CSS -->
-	    <link href="../assets/itsolution24/css/skins/skin-yellow.css" type="text/css" rel="stylesheet">
+	    <link href="../assets/das/css/skins/skin-yellow.css" type="text/css" rel="stylesheet">
 
 	    <!-- Main CSS -->
-	    <link href="../assets/itsolution24/css/main.css" type="text/css" rel="stylesheet">
+	    <link href="../assets/das/css/main.css" type="text/css" rel="stylesheet">
 
 		<!-- Skeleton CSS -->
-		<link href="../assets/itsolution24/css/pos/skeleton.css" rel="stylesheet" type="text/css">
+		<link href="../assets/das/css/pos/skeleton.css" rel="stylesheet" type="text/css">
 
 		<!-- Main CSS -->
-		<link href="../assets/itsolution24/css/pos/pos.css" rel="stylesheet" type="text/css">
+		<link href="../assets/das/css/pos/pos.css" rel="stylesheet" type="text/css">
 
 		<!-- Responsive CSS -->
-		<link href="../assets/itsolution24/css/pos/responsive.css" rel="stylesheet" type="text/css">
+		<link href="../assets/das/css/pos/responsive.css" rel="stylesheet" type="text/css">
 
 	<?php endif ?>
 
 	<!-- This is Mandatory -->
 	<style type="text/css">
 		body::after { 
-			content: ""; background: url(../assets/itsolution24/img/pos/patterns/<?php echo $user->getPreference('pos_pattern') ? $user->getPreference('pos_pattern') : 'armysuit.jpg'; ?>) repeat repeat;opacity: 0.4;filter: alpha(opacity=40);top: 0;left: 0;bottom: 0;right: 0;position: absolute;z-index: -1;
+			content: ""; background: url(../assets/das/img/pos/patterns/<?php echo $user->getPreference('pos_pattern') ? $user->getPreference('pos_pattern') : 'armysuit.jpg'; ?>) repeat repeat;opacity: 0.4;filter: alpha(opacity=40);top: 0;left: 0;bottom: 0;right: 0;position: absolute;z-index: -1;
 		}
 		.modal-lg .modal-content {
 			border-color: #ffffff;
@@ -155,7 +155,7 @@ if ($order_printer_ids) {
 
 </head>
 <body  id="pos-page" class="pos sidebar-mini <?php echo $body_class; ?>" ng-controller="PosController">
-<div class="hidden"><?php include('../assets/itsolution24/img/iconmin/icon.svg');?></div>
+<div class="hidden"><?php include('../assets/das/img/iconmin/icon.svg');?></div>
 <?php include('../_inc/template/pos_skeleton.php'); ?>
 	<!-- POS Content-Wrapper Start -->
 	<div class="pos-content-wrapper">
@@ -195,7 +195,7 @@ if ($order_printer_ids) {
 							<div id="item-list">
 								<!-- <div class="pos-product-pagination pagination-top"></div> -->
 								<div ng-show="showLoader" class="ajax-loader">
-									<img src="../assets/itsolution24/img/loading2.gif">
+									<img src="../assets/das/img/loading2.gif">
 								</div>
 								<div class="add-new-product-wrapper" data-ng-class="{'show': showAddProductBtn}">
 									<div class="add-new-product">
@@ -511,7 +511,7 @@ if ($order_printer_ids) {
 
 	<?php if (DEMO || USECOMPILEDASSET) : ?>
 
-		<script src="../assets/itsolution24/jsmin/pos.js" type="text/javascript"></script>
+		<script src="../assets/das/jsmin/pos.js" type="text/javascript"></script>
 
 	<?php else : ?>
 
@@ -528,16 +528,16 @@ if ($order_printer_ids) {
         <script src="../assets/edit-area/edit_area_full.js" type="text/javascript"></script>
 
 		<!-- Angular JS -->
-	    <script src="../assets/itsolution24/angularmin/angular.js" type="text/javascript"></script> 
+	    <script src="../assets/das/angularmin/angular.js" type="text/javascript"></script> 
 
 	    <!-- AngularApp JS -->
-	    <script src="../assets/itsolution24/angular/angularApp.js" type="text/javascript"></script>
+	    <script src="../assets/das/angular/angularApp.js" type="text/javascript"></script>
 
 	    <!-- Filemanager JS -->
-	    <script src="../assets/itsolution24/angularmin/filemanager.js" type="text/javascript"></script>
+	    <script src="../assets/das/angularmin/filemanager.js" type="text/javascript"></script>
 
 	    <!-- Angular JS Modal -->
-		<script src="../assets/itsolution24/angularmin/modal.js" type="text/javascript"></script>
+		<script src="../assets/das/angularmin/modal.js" type="text/javascript"></script>
 
 		<!-- Bootstrap Datepicker JS -->
 		<script src="../assets/datepicker/bootstrap-datepicker.js" type="text/javascript"></script>
@@ -567,24 +567,24 @@ if ($order_printer_ids) {
 		<script src="../assets/contextMenu/dist/jquery.contextMenu.min.js"></script>
 
 		<!-- IE JS -->
-		<script src="../assets/itsolution24/js/ie.js" type="text/javascript"></script>
+		<script src="../assets/das/js/ie.js" type="text/javascript"></script>
 
 		<!-- Common JS -->
-		<script src="../assets/itsolution24/js/common.js" type="text/javascript"></script>
+		<script src="../assets/das/js/common.js" type="text/javascript"></script>
 
 		<!-- Main JS -->
-		<script src="../assets/itsolution24/js/main.js" type="text/javascript"></script>
+		<script src="../assets/das/js/main.js" type="text/javascript"></script>
 
 		<!-- POS Main JS -->
-		<script src="../assets/itsolution24/js/pos/pos.js" type="text/javascript"></script>
+		<script src="../assets/das/js/pos/pos.js" type="text/javascript"></script>
 
 <?php endif; ?>
 
-<script src="../assets/itsolution24/angular/modals/AddInvoiceNoteModal.js" type="text/javascript"></script>
-<script src="../assets/itsolution24/angular/modals/AddCustomerMobileNumberModal.js" type="text/javascript"></script>
-<script src="../assets/itsolution24/angular/modals/HoldingOrderModal.js" type="text/javascript"></script>
-<script src="../assets/itsolution24/angular/modals/HoldingOrderDetailsModal.js" type="text/javascript"></script>
-<script src="../assets/itsolution24/angular/controllers/PosController.js" type="text/javascript"></script>
+<script src="../assets/das/angular/modals/AddInvoiceNoteModal.js" type="text/javascript"></script>
+<script src="../assets/das/angular/modals/AddCustomerMobileNumberModal.js" type="text/javascript"></script>
+<script src="../assets/das/angular/modals/HoldingOrderModal.js" type="text/javascript"></script>
+<script src="../assets/das/angular/modals/HoldingOrderDetailsModal.js" type="text/javascript"></script>
+<script src="../assets/das/angular/controllers/PosController.js" type="text/javascript"></script>
 <noscript>
     <div class="global-site-notice noscript">
         <div class="notice-inner">

@@ -17,7 +17,7 @@ if (user_group_id() != 1 && !has_permission('access', 'read_sms_setting')) {
 $document->setTitle(trans('title_sms_setting'));
 
 // Add Script
-$document->addScript('../assets/itsolution24/angular/controllers/SMSSettingController.js');
+$document->addScript('../assets/das/angular/controllers/SMSSettingController.js');
 
 // Include Header and Footer
 include ("header.php");

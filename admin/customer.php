@@ -17,7 +17,7 @@ if (user_group_id() != 1 && !has_permission('access', 'read_customer')) {
 $document->setTitle(trans('text_customer_list_title'));
 
 // Add Script
-$document->addScript('../assets/itsolution24/angular/controllers/CustomerController.js');
+$document->addScript('../assets/das/angular/controllers/CustomerController.js');
 
 // Include Header and Footer
 include("header.php"); 

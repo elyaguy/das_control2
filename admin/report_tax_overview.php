@@ -17,7 +17,7 @@ if (user_group_id() != 1 && !has_permission('access', 'read_tax_overview_report'
 $document->setTitle(trans('title_tax_overview_report'));
 
 // Add Script
-$document->addScript('../assets/itsolution24/angular/controllers/ReportTaxOverviewController.js');
+$document->addScript('../assets/das/angular/controllers/ReportTaxOverviewController.js');
 
 // Include Header and Footer
 include("header.php"); 

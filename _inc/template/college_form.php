@@ -16,7 +16,7 @@
             <?php if (isset($college['college_image']) && ((FILEMANAGERPATH && is_file(FILEMANAGERPATH.$college['college_image']) && file_exists(FILEMANAGERPATH.$college['college_image'])) || (is_file(DIR_STORAGE . 'categories' . $college['college_image']) && file_exists(DIR_STORAGE . 'categories' . $college['college_image'])))) : ?>
               <img  src="<?php echo FILEMANAGERURL ? FILEMANAGERURL : root_url().'/storage/categories'; ?>/<?php echo $college['college_image']; ?>">
             <?php else : ?>
-              <img src="../assets/itsolution24/img/noimage.jpg">
+              <img src="../assets/das/img/noimage.jpg">
             <?php endif; ?>
           </a>
           <input type="hidden" name="college_image" id="the_college_image" value="<?php echo isset($college['college_image']) ? $college['college_image'] : null; ?>">

@@ -12,7 +12,7 @@
             <?php if (isset($expense['attachment']) && ((FILEMANAGERPATH && is_file(FILEMANAGERPATH.$expense['attachment']) && file_exists(FILEMANAGERPATH.$expense['attachment'])) || (is_file(DIR_STORAGE . 'expenses' . $expense['attachment']) && file_exists(DIR_STORAGE . 'expenses' . $expense['attachment'])))) : ?>
               <img  src="<?php echo FILEMANAGERURL ? FILEMANAGERURL : root_url().'/storage/expenses'; ?>/<?php echo $expense['attachment']; ?>">
             <?php else : ?>
-              <img src="../assets/itsolution24/img/noimage.jpg">
+              <img src="../assets/das/img/noimage.jpg">
             <?php endif; ?>
           </a>
           <input type="hidden" name="image" id="image" value="<?php echo isset($expense['attachment']) ? $expense['attachment'] : null; ?>">

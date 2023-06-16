@@ -56,7 +56,7 @@ $angular_disabled = true;
 $document->setTitle(trans('title_backup_restore'));
 
 // Add Script
-$document->addScript('../assets/itsolution24/js/backup-restore.js');
+$document->addScript('../assets/das/js/backup-restore.js');
 
 // INCLUDE HEADER & FOOTER
 include("header.php"); 

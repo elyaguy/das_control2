@@ -17,7 +17,7 @@ if (user_group_id() != 1 && !has_permission('access', 'read_bank_account')) {
 $document->setTitle(trans('title_bank_account'));
 
 // Add Script
-$document->addScript('../assets/itsolution24/angular/controllers/BankAccountController.js');
+$document->addScript('../assets/das/angular/controllers/BankAccountController.js');
 
 // Include Header and Footer
 include("header.php"); 

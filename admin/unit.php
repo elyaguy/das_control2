@@ -17,7 +17,7 @@ if (user_group_id() != 1 && !has_permission('access', 'read_unit')) {
 $document->setTitle(trans('title_unit'));
 
 // Add Script
-$document->addScript('../assets/itsolution24/angular/controllers/UnitController.js');
+$document->addScript('../assets/das/angular/controllers/UnitController.js');
 
 // Include Header and Footer
 include("header.php"); 

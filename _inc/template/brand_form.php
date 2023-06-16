@@ -16,7 +16,7 @@
             <?php if (isset($brand['brand_image']) && ((FILEMANAGERPATH && is_file(FILEMANAGERPATH.$brand['brand_image']) && file_exists(FILEMANAGERPATH.$brand['brand_image'])) || (is_file(DIR_STORAGE . 'categories' . $brand['brand_image']) && file_exists(DIR_STORAGE . 'categories' . $brand['brand_image'])))) : ?>
               <img  src="<?php echo FILEMANAGERURL ? FILEMANAGERURL : root_url().'/storage/categories'; ?>/<?php echo $brand['brand_image']; ?>">
             <?php else : ?>
-              <img src="../assets/itsolution24/img/noimage.jpg">
+              <img src="../assets/das/img/noimage.jpg">
             <?php endif; ?>
           </a>
           <input type="hidden" name="brand_image" id="the_brand_image" value="<?php echo isset($brand['brand_image']) ? $brand['brand_image'] : null; ?>">

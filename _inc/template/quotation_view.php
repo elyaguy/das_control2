@@ -22,9 +22,9 @@ QRcode::png($qrcode_text, ROOT.'/storage/qrcode.png', 'L', 3, 1);
 <div id="quotataion-view">
 	<div class="logo" style="text-align:center;margin-bottom:10px;">
 	<?php if ($store->get('logo')): ?>
-	  <img src="<?php echo root_url(); ?>/assets/itsolution24/img/logo-favicons/<?php echo $store->get('logo'); ?>" width="auto" height="60">
+	  <img src="<?php echo root_url(); ?>/assets/das/img/logo-favicons/<?php echo $store->get('logo'); ?>" width="auto" height="60">
 	<?php else: ?>
-	  <img src="<?php echo root_url(); ?>/assets/itsolution24/img/logo-favicons/nologo.png" width="auto" height="60">
+	  <img src="<?php echo root_url(); ?>/assets/das/img/logo-favicons/nologo.png" width="auto" height="60">
 	<?php endif; ?>
 	</div>
 	<table class="table table-bordered table-condensed">

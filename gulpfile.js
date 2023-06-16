@@ -6,7 +6,7 @@ var path = require('path');
 
 gulp.task('svgstore', function () {
     return gulp
-        .src('assets/itsolution24/img/icon/*.svg')
+        .src('assets/das/img/icon/*.svg')
         .pipe(rename({prefix: 'icon-'}))
         .pipe(svgmin(function (file) {
             var prefix = path.basename(file.relative, path.extname(file.relative));
@@ -20,12 +20,12 @@ gulp.task('svgstore', function () {
             }
         }))
         .pipe(svgstore({ inlineSvg: true }))
-        .pipe(gulp.dest('assets/itsolution24/img/iconmin'));
+        .pipe(gulp.dest('assets/das/img/iconmin'));
 });
 
 gulp.task('svgmstore', function () {
     return gulp
-        .src('assets/itsolution24/img/icon/membership/*.svg')
+        .src('assets/das/img/icon/membership/*.svg')
         .pipe(rename({prefix: 'icon-'}))
         .pipe(svgmin(function (file) {
             var prefix = path.basename(file.relative, path.extname(file.relative));
@@ -39,5 +39,5 @@ gulp.task('svgmstore', function () {
             }
         }))
         .pipe(svgstore({ inlineSvg: true }))
-        .pipe(gulp.dest('assets/itsolution24/img/iconmin/membership'));
+        .pipe(gulp.dest('assets/das/img/iconmin/membership'));
 });

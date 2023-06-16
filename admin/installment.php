@@ -17,9 +17,9 @@ if (user_group_id() != 1 && !has_permission('access', 'read_installment')) {
 $document->setTitle(trans('title_installment'));
 
 // Add Script
-$document->addScript('../assets/itsolution24/angular/modals/InstallmentViewModal.js');
-$document->addScript('../assets/itsolution24/angular/modals/InstallmentPaymentModal.js');
-$document->addScript('../assets/itsolution24/angular/controllers/InstallmentController.js');
+$document->addScript('../assets/das/angular/modals/InstallmentViewModal.js');
+$document->addScript('../assets/das/angular/modals/InstallmentPaymentModal.js');
+$document->addScript('../assets/das/angular/controllers/InstallmentController.js');
 
 // Include Header and Footer
 include("header.php"); 

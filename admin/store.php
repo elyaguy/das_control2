@@ -22,7 +22,7 @@ if (user_group_id() != 1 && !has_permission('access', 'read_store')) {
 $document->setTitle(trans('title_store'));
 
 // Add Script
-$document->addScript('../assets/itsolution24/angular/controllers/StoreController.js');
+$document->addScript('../assets/das/angular/controllers/StoreController.js');
 
 // Include Header and Footer
 include("header.php"); 

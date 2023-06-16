@@ -46,7 +46,7 @@ if(isset($_FILES["faviconFile"]["type"]))
 			$temp = explode(".", $_FILES["faviconFile"]["name"]);
 			$newfilename = $store_id . '_favicon.' . end($temp);
 			$sourcePath = $_FILES["faviconFile"]["tmp_name"]; //Storing source path of the file in a variable
-			$targetPath = "../assets/itsolution24/img/logo-favicons/".$newfilename; //Target path where file is to be stored
+			$targetPath = "../assets/das/img/logo-favicons/".$newfilename; //Target path where file is to be stored
 			if(move_uploaded_file($sourcePath,$targetPath)) {
 
 				$statement = db()->prepare("UPDATE `stores` SET `favicon` = ? WHERE `store_id` = ?");

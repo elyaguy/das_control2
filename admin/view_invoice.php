@@ -35,7 +35,7 @@ $document->setBodyClass('invoice-page');
 $document->setBodyClass('sidebar-collapse');
 
 // Add Script
-$document->addScript('../assets/itsolution24/angular/controllers/InvoiceViewController.js'); 
+$document->addScript('../assets/das/angular/controllers/InvoiceViewController.js'); 
 
 // Include Header and Footer
 include("header.php"); 

@@ -19,7 +19,7 @@ $document->setTitle(trans('title_loan_summary'));
 // ADD BODY CLASS
 $document->setBodyClass('sidebar-collapse');
 
-$document->addScript('../assets/itsolution24/angular/controllers/LoanPaymentController.js');
+$document->addScript('../assets/das/angular/controllers/LoanPaymentController.js');
 
 // Include Header and Footer
 include ("header.php"); 

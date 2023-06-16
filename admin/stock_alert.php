@@ -17,8 +17,8 @@ if (user_group_id() != 1 && !has_permission('access', 'read_stock_alert')) {
 $document->setTitle(trans('title_stock_alert'));
 
 // Add Script
-// $document->addScript('../assets/itsolution24/angular/modals/PurchaseProductModal.js');
-$document->addScript('../assets/itsolution24/angular/controllers/StockAlertController.js');
+// $document->addScript('../assets/das/angular/modals/PurchaseProductModal.js');
+$document->addScript('../assets/das/angular/controllers/StockAlertController.js');
 
 // Include Header and Footer
 include ("header.php") ;

@@ -17,7 +17,7 @@
             <?php if (isset($category['category_image']) && ((FILEMANAGERPATH && is_file(FILEMANAGERPATH.$category['category_image']) && file_exists(FILEMANAGERPATH.$category['category_image'])) || (is_file(DIR_STORAGE . 'categories' . $category['category_image']) && file_exists(DIR_STORAGE . 'categories' . $category['category_image'])))) : ?>
               <img  src="<?php echo FILEMANAGERURL ? FILEMANAGERURL : root_url().'/storage/categories'; ?>/<?php echo $category['category_image']; ?>">
             <?php else : ?>
-              <img src="../assets/itsolution24/img/noimage.jpg">
+              <img src="../assets/das/img/noimage.jpg">
             <?php endif; ?>
           </a>
           <input type="hidden" name="category_image" id="the_category_image" value="<?php echo isset($category['category_image']) ? $category['category_image'] : null; ?>">

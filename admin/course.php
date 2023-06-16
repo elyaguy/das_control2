@@ -17,8 +17,8 @@ if (user_group_id() != 1 && !has_permission('access', 'read_course')) {
 $document->setTitle(trans('text_course_list_title'));
 
 // Add Script
-$document->addScript('../assets/itsolution24/angular/controllers/CourseProfileController.js');
-$document->addScript('../assets/itsolution24/angular/controllers/CourseController.js');
+$document->addScript('../assets/das/angular/controllers/CourseProfileController.js');
+$document->addScript('../assets/das/angular/controllers/CourseController.js');
 
 
 // Include Header and Footer

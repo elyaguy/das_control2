@@ -17,9 +17,9 @@ if (user_group_id() != 1 && !has_permission('access', 'read_expense_category')) 
 $document->setTitle(trans('title_expense_category'));
 
 // Add Script
-$document->addScript('../assets/itsolution24/angular/modals/ExpenseCategoryEditModal.js');
-$document->addScript('../assets/itsolution24/angular/modals/ExpenseCategoryDeleteModal.js');
-$document->addScript('../assets/itsolution24/angular/controllers/ExpenseCategoryController.js');
+$document->addScript('../assets/das/angular/modals/ExpenseCategoryEditModal.js');
+$document->addScript('../assets/das/angular/modals/ExpenseCategoryDeleteModal.js');
+$document->addScript('../assets/das/angular/controllers/ExpenseCategoryController.js');
 
 // Include Header and Footer
 include("header.php"); 

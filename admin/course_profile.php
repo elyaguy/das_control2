@@ -27,9 +27,9 @@ if (count($course) <= 1) {
 $document->setTitle(trans('title_course_profile'));
 
 // Add Script
-$document->addScript('../assets/itsolution24/angular/controllers/CourseProfileController.js');
+$document->addScript('../assets/das/angular/controllers/CourseProfileController.js');
 if (user_group_id() == 1 || has_permission('access', 'read_sell_report')) {
-  $document->addScript('../assets/itsolution24/angular/controllers/ReportCourseSellController.js');
+  $document->addScript('../assets/das/angular/controllers/ReportCourseSellController.js');
 }
 
 // ADD BODY CLASS

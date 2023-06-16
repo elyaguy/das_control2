@@ -47,7 +47,7 @@ if(isset($_FILES["file"]["type"]))
 			$temp = explode(".", $_FILES["file"]["name"]);
 			$newfilename = $store_id . '_logo.' . end($temp);
 			$sourcePath = $_FILES["file"]["tmp_name"];
-			$targetPath = "../assets/itsolution24/img/logo-favicons/".$newfilename;
+			$targetPath = "../assets/das/img/logo-favicons/".$newfilename;
 			if(move_uploaded_file($sourcePath,$targetPath)) {
 				$statement = db()->prepare("UPDATE `stores` SET `logo` = ? WHERE `store_id` = ?");
 				$statement->execute(array($newfilename, $store_id));

@@ -25,8 +25,8 @@ $order_items = $order_model->getOrderItems($reference_no);
 $document->setTitle(trans('title_order_edit').'>'.$reference_no);
 
 // Add Script
-$document->addScript('../assets/itsolution24/angular/modals/OrderViewModal.js');
-$document->addScript('../assets/itsolution24/angular/controllers/OrderController.js');
+$document->addScript('../assets/das/angular/modals/OrderViewModal.js');
+$document->addScript('../assets/das/angular/controllers/OrderController.js');
 
 // Include Header and Footer
 include("header.php"); 

@@ -27,10 +27,10 @@ if (count($this_user) <= 1) {
 $document->setTitle(trans('title_user_profile'));
 
 // Add ScriptS
-$document->addScript('../assets/itsolution24/angular/controllers/UserController.js');
-$document->addScript('../assets/itsolution24/angular/controllers/UserProfileController.js');
-$document->addScript('../assets/itsolution24/angular/controllers/ReportUserSellController.js');
-$document->addScript('../assets/itsolution24/angular/controllers/UserLoginLogController.js');
+$document->addScript('../assets/das/angular/controllers/UserController.js');
+$document->addScript('../assets/das/angular/controllers/UserProfileController.js');
+$document->addScript('../assets/das/angular/controllers/ReportUserSellController.js');
+$document->addScript('../assets/das/angular/controllers/UserLoginLogController.js');
 
 // ADD BODY CLASS 
 $document->setBodyClass('sidebar-collapse user-profile'); 

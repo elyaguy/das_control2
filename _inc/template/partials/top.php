@@ -19,12 +19,12 @@
     <ul class="nav navbar-nav navbar-left">
       <li class="dropdown">
         <a href="#" class="dropdown-toggle" data-toggle="dropdown" title="<?php echo $user->getAllPreference()['language'];?>">
-          <img src="../assets/itsolution24/img/flags/<?php echo $user->getAllPreference()['language'];?>.png" alt="<?php echo $user->getAllPreference()['language'];?>"></a>
+          <img src="../assets/das/img/flags/<?php echo $user->getAllPreference()['language'];?>.png" alt="<?php echo $user->getAllPreference()['language'];?>"></a>
         <ul class="dropdown-menu"> 
           <?php foreach(get_langs() as $the_lang): if($user->getAllPreference()['language'] == $the_lang['slug']) continue; ?>
             <li>
               <a href="<?php echo $_SERVER['PHP_SELF'];?>?lang=<?php echo $the_lang['code'];?>" title="<?php echo trans('text_'.$the_lang['slug']); ?>">
-                <img src="../assets/itsolution24/img/flags/<?php echo $the_lang['code'];?>.png" class="language-img"> &nbsp;&nbsp;<?php echo trans('text_'.$the_lang['slug']); ?>
+                <img src="../assets/das/img/flags/<?php echo $the_lang['code'];?>.png" class="language-img"> &nbsp;&nbsp;<?php echo trans('text_'.$the_lang['slug']); ?>
               </a>
             </li>
           <?php endforeach; ?>

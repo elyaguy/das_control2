@@ -57,7 +57,7 @@
                   <div class="image-thumbnail">
                     <a class="open-filemanager" data-imageid="{{img.id}}" data-toggle="image" id="thumb{{img.id}}" href="#">
                       <img ng-show="img.url" ng-src="<?php echo FILEMANAGERURL;?>{{ img.url }}">
-                      <img ng-show="!img.url" src="../assets/itsolution24/img/noimage.jpg">
+                      <img ng-show="!img.url" src="../assets/das/img/noimage.jpg">
                     </a>
                   </div>
                 </td>

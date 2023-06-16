@@ -27,9 +27,9 @@ if (count($brand) <= 1) {
 $document->setTitle(trans('title_brand_profile'));
 
 // Add Script
-$document->addScript('../assets/itsolution24/angular/controllers/BrandProfileController.js');
+$document->addScript('../assets/das/angular/controllers/BrandProfileController.js');
 if (user_group_id() == 1 || has_permission('access', 'read_sell_report')) {
-  $document->addScript('../assets/itsolution24/angular/controllers/ReportBrandSellController.js');
+  $document->addScript('../assets/das/angular/controllers/ReportBrandSellController.js');
 }
 
 // ADD BODY CLASS

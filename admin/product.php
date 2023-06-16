@@ -18,7 +18,7 @@ $document->setTitle(trans('title_product'));
 
 // Add Script
 $document->addScript('../assets/tinymce/tinymce.min.js');
-$document->addScript('../assets/itsolution24/angular/controllers/ProductController.js');
+$document->addScript('../assets/das/angular/controllers/ProductController.js');
 
 // Include Header and Footer
 include("header.php"); 

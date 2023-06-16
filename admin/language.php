@@ -27,9 +27,9 @@ if (!$lang) {
 $document->setTitle(trans('title_language_translation'));
 
 // Add Script
-$document->addScript('../assets/itsolution24/angular/modals/LanguageCreateModal.js');
-$document->addScript('../assets/itsolution24/angular/modals/LanguageEditModal.js');
-$document->addScript('../assets/itsolution24/angular/controllers/LanguageController.js');
+$document->addScript('../assets/das/angular/modals/LanguageCreateModal.js');
+$document->addScript('../assets/das/angular/modals/LanguageEditModal.js');
+$document->addScript('../assets/das/angular/controllers/LanguageController.js');
 
 // Include Header and Footer
 include("header.php"); 

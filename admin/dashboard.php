@@ -15,9 +15,9 @@ if (!is_loggedin()) {
 $document->setTitle(trans('title_dashboard'));
 
 // Add Script
-$document->addScript('../assets/itsolution24/angular/controllers/DashboardController.js');
-$document->addScript('../assets/itsolution24/angular/controllers/ReportCollectionController.js');
-$document->addScript('../assets/itsolution24/angular/modals/QuotationViewModal.js');
+$document->addScript('../assets/das/angular/controllers/DashboardController.js');
+$document->addScript('../assets/das/angular/controllers/ReportCollectionController.js');
+$document->addScript('../assets/das/angular/modals/QuotationViewModal.js');
 
 // ADD BODY CLASS
 $document->setBodyClass('dashboard'); 

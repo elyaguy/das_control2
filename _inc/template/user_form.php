@@ -18,7 +18,7 @@
             <?php if (isset($the_user['user_image']) && ((FILEMANAGERPATH && is_file(FILEMANAGERPATH.$the_user['user_image']) && file_exists(FILEMANAGERPATH.$the_user['user_image'])) || (is_file(DIR_STORAGE . 'users' . $the_user['user_image']) && file_exists(DIR_STORAGE . 'users' . $the_user['user_image'])))) : ?>
               <img  src="<?php echo FILEMANAGERURL ? FILEMANAGERURL : root_url().'/storage/users'; ?>/<?php echo $the_user['user_image']; ?>">
             <?php else : ?>
-              <img src="../assets/itsolution24/img/noimage.jpg">
+              <img src="../assets/das/img/noimage.jpg">
             <?php endif; ?>
           </a>
           <input type="hidden" name="user_image" id="the_user_image" value="<?php echo isset($the_user['user_image']) ? $the_user['user_image'] : null; ?>">

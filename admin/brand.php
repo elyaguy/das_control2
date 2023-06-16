@@ -17,8 +17,8 @@ if (user_group_id() != 1 && !has_permission('access', 'read_brand')) {
 $document->setTitle(trans('text_brand_list_title'));
 
 // Add Script
-$document->addScript('../assets/itsolution24/angular/controllers/BrandProfileController.js');
-$document->addScript('../assets/itsolution24/angular/controllers/BrandController.js');
+$document->addScript('../assets/das/angular/controllers/BrandProfileController.js');
+$document->addScript('../assets/das/angular/controllers/BrandController.js');
 
 // Include Header and Footer
 include("header.php"); 

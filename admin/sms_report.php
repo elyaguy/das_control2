@@ -17,8 +17,8 @@ if (user_group_id() != 1 && !has_permission('access', 'read_sms_report')) {
 $document->setTitle(trans('title_sms_report'));
 
 // Add Script
-$document->addScript('../assets/itsolution24/angular/modals/SMSResendModal.js');
-$document->addScript('../assets/itsolution24/angular/controllers/SMSReportController.js');
+$document->addScript('../assets/das/angular/modals/SMSResendModal.js');
+$document->addScript('../assets/das/angular/controllers/SMSReportController.js');
 
 // ADD BODY CLASS
 $document->setBodyClass('sidebar-collapse');

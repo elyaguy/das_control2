@@ -17,7 +17,7 @@ if (user_group_id() != 1 && !has_permission('access', 'read_pmethod')) {
 $document->setTitle(trans('title_pmethod'));
 
 // Add Script
-$document->addScript('../assets/itsolution24/angular/controllers/PmethodController.js');
+$document->addScript('../assets/das/angular/controllers/PmethodController.js');
 
 // Include Header and Footer
 include("header.php"); 

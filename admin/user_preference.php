@@ -69,7 +69,7 @@ $preference = $user->getAllPreference();
 $document->setTitle(trans('title_user_preference'));
 
 // Add Script
-$document->addScript('../assets/itsolution24/angular/controllers/SystemController.js');
+$document->addScript('../assets/das/angular/controllers/SystemController.js');
 
 // Include Header and Footer
 include("header.php");
@@ -260,7 +260,7 @@ include("left_sidebar.php");
 								<ul class="list-unstyled pos-pattern">
 									<?php for ($i = 0; $i < $total_pattern; $i++) : ?>
 										<li class="<?php echo isset($preference['pos_pattern']) && $preference['pos_pattern'] == $patterns[$i] ? 'selected' : ''; ?>" data-name="<?php echo $patterns[$i]; ?>" title="<?php echo str_replace(array('.jpg', '.jpeg', '.png', '.gif', '.svg'), '', $patterns[$i]); ?>">
-											<img src="../assets/itsolution24/img/pos/patterns/<?php echo $patterns[$i]; ?>">
+											<img src="../assets/das/img/pos/patterns/<?php echo $patterns[$i]; ?>">
 										</li>
 									<?php endfor; ?>
 								</ul>

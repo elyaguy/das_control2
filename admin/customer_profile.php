@@ -30,12 +30,12 @@ if (count($customer) <= 1) {
 $document->setTitle(trans('title_customer_profile'));
 
 // Add ScriptS
-$document->addScript('../assets/itsolution24/angular/modals/InstallmentPaymentModal.js');
-$document->addScript('../assets/itsolution24/angular/modals/InstallmentViewModal.js');
-$document->addScript('../assets/itsolution24/angular/modals/CustomerSubstractBalanceModal.js');
-$document->addScript('../assets/itsolution24/angular/modals/CustomerAddBalanceModal.js');
-$document->addScript('../assets/itsolution24/angular/controllers/CustomerController.js');
-$document->addScript('../assets/itsolution24/angular/controllers/CustomerProfileController.js');
+$document->addScript('../assets/das/angular/modals/InstallmentPaymentModal.js');
+$document->addScript('../assets/das/angular/modals/InstallmentViewModal.js');
+$document->addScript('../assets/das/angular/modals/CustomerSubstractBalanceModal.js');
+$document->addScript('../assets/das/angular/modals/CustomerAddBalanceModal.js');
+$document->addScript('../assets/das/angular/controllers/CustomerController.js');
+$document->addScript('../assets/das/angular/controllers/CustomerProfileController.js');
 
 // ADD BODY CLASS 
 $document->setBodyClass('sidebar-collapse customer-profile'); 

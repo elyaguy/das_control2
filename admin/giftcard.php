@@ -17,7 +17,7 @@ if (user_group_id() != 1 && !has_permission('access', 'read_giftcard')) {
 $document->setTitle(trans('title_giftcard'));
 
 // Add Script
-$document->addScript('../assets/itsolution24/angular/controllers/GiftcardController.js');
+$document->addScript('../assets/das/angular/controllers/GiftcardController.js');
 
 // Include Header and Footer
 include("header.php"); 

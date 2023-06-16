@@ -17,7 +17,7 @@ if (user_group_id() != 1 && !has_permission('access', 'read_usergroup')) {
 $document->setTitle(trans('title_user_group'));
 
 // Add Script
-$document->addScript('../assets/itsolution24/angular/controllers/UserGroupController.js');
+$document->addScript('../assets/das/angular/controllers/UserGroupController.js');
 
 // ADD BODY CLASS
 $document->setBodyClass('usergroup');

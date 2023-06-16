@@ -17,7 +17,7 @@ if (user_group_id() != 1 && !has_permission('access', 'read_bank_transfer')) {
 $document->setTitle(trans('title_bank_transfer'));
 
 // Add Script
-$document->addScript('../assets/itsolution24/angular/controllers/BankTransferController.js');
+$document->addScript('../assets/das/angular/controllers/BankTransferController.js');
 
 include("header.php"); 
 include ("left_sidebar.php") ;

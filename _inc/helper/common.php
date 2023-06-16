@@ -738,7 +738,7 @@ function tableExists($pdo, $table) {
 }
 
 function play_sound($name, $path = null) {
-	$path = $path ? $path : root_url() . '/assets/itsolution24/mp3/' . $name;
+	$path = $path ? $path : root_url() . '/assets/das/mp3/' . $name;
 	?>
 	<audio style="display:none;" controls autoplay>
 	  <source src="<?php echo $path;?>" type="audio/ogg">
@@ -767,7 +767,7 @@ function updateImageValue(&$image, $key) {
     } elseif (is_file(DIR_STORAGE . 'products/' . $image) && file_exists(DIR_STORAGE . 'products/' . $image)) {
     	$image = root_url().'/storage/products'.$image;
     } else {
-    	$image = root_url().'/assets/itsolution24/img/noproduct.png';
+    	$image = root_url().'/assets/das/img/noproduct.png';
     }
   }
 }

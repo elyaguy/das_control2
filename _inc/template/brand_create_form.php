@@ -9,7 +9,7 @@
       <div class="col-sm-7">
         <div class="preview-thumbnail">
           <a ng-click="POSFilemanagerModal({target:'brand_image',thumb:'brand_thumb'})" onClick="return false;" href="#" data-toggle="image" id="brand_thumb">
-            <img src="../assets/itsolution24/img/noimage.jpg" alt="">
+            <img src="../assets/das/img/noimage.jpg" alt="">
           </a>
           <input type="hidden" name="brand_image" id="brand_image" value="">
         </div>

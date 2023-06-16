@@ -17,9 +17,9 @@ if (user_group_id() != 1 && !has_permission('access', 'read_expense')) {
 $document->setTitle(trans('title_expense'));
 
 // Add Script
-$document->addScript('../assets/itsolution24/angular/modals/ExpenseViewModal.js');
-$document->addScript('../assets/itsolution24/angular/modals/ExpenseEditModal.js');
-$document->addScript('../assets/itsolution24/angular/controllers/ExpenseController.js');
+$document->addScript('../assets/das/angular/modals/ExpenseViewModal.js');
+$document->addScript('../assets/das/angular/modals/ExpenseEditModal.js');
+$document->addScript('../assets/das/angular/controllers/ExpenseController.js');
 
 // Include Header and Footer
 include("header.php"); 

@@ -19,9 +19,9 @@ $type = isset($request->get['type']) ? $request->get['type'] : 'transfer';
 $document->setTitle(trans('title_'.$type));
 
 // Add Script
-$document->addScript('../assets/itsolution24/angular/modals/TransferDetailsViewModal.js');
-$document->addScript('../assets/itsolution24/angular/modals/TransferEditModal.js');
-$document->addScript('../assets/itsolution24/angular/controllers/TransferController.js');
+$document->addScript('../assets/das/angular/modals/TransferDetailsViewModal.js');
+$document->addScript('../assets/das/angular/modals/TransferEditModal.js');
+$document->addScript('../assets/das/angular/controllers/TransferController.js');
 
 include("header.php"); 
 include ("left_sidebar.php");

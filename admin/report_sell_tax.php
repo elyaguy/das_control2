@@ -19,7 +19,7 @@ $invoice_model = registry()->get('loader')->model('invoice');
 $document->setTitle(trans('title_sell_tax_report'));
 
 // Add Script
-$document->addScript('../assets/itsolution24/angular/controllers/ReportSellTaxController.js');
+$document->addScript('../assets/das/angular/controllers/ReportSellTaxController.js');
 
 // ADD BODY CLASS
 $document->setBodyClass('sidebar-collapse');

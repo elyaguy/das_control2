@@ -53,7 +53,7 @@ $tab_active = isset($request->get['tab']) ? $request->get['tab'] : 'general';
                 <td class="text-center">
                   <div class="image-thumbnail">
                     <a class="open-filemanager" data-imageid="{{img.id}}" data-toggle="image" id="thumb{{img.id}}" href="#">
-                      <img src="../assets/itsolution24/img/noimage.jpg">
+                      <img src="../assets/das/img/noimage.jpg">
                     </a>
                   </div>
                 </td>

@@ -17,8 +17,8 @@ if (user_group_id() != 1 && !has_permission('access', 'read_college')) {
 $document->setTitle(trans('text_college_list_title'));
 
 // Add Script
-$document->addScript('../assets/itsolution24/angular/controllers/CollegeProfileController.js');
-$document->addScript('../assets/itsolution24/angular/controllers/CollegeController.js');
+$document->addScript('../assets/das/angular/controllers/CollegeProfileController.js');
+$document->addScript('../assets/das/angular/controllers/CollegeController.js');
 
 // Include Header and Footer
 include("header.php"); 

@@ -26,8 +26,8 @@ if (!$store_model->getStore($store_id)) {
 $document->setTitle(trans('title_settings'));
 
 // Add Script
-$document->addScript('../assets/itsolution24/angular/controllers/StoreActionController.js');
-$document->addScript('../assets/itsolution24/js/upload.js');
+$document->addScript('../assets/das/angular/controllers/StoreActionController.js');
+$document->addScript('../assets/das/js/upload.js');
 
 // Include Header and Footer
 include ("header.php");
@@ -798,9 +798,9 @@ $tab_active = isset($request->get['tab']) ? $request->get['tab'] : 'general';
 						<div class="col-sm-2 text-center">	            
 							<div id="logo_preview">
 								<?php if (store('logo')): ?>
-									<img id="logo" src="../assets/itsolution24/img/logo-favicons/<?php echo store('logo'); ?>">
+									<img id="logo" src="../assets/das/img/logo-favicons/<?php echo store('logo'); ?>">
 								<?php else: ?>
-									<img id="logo" src="../assets/itsolution24/img/logo-favicons/nologo.png">
+									<img id="logo" src="../assets/das/img/logo-favicons/nologo.png">
 								<?php endif; ?>
 							</div>
 							<p>
@@ -816,7 +816,7 @@ $tab_active = isset($request->get['tab']) ? $request->get['tab'] : 'general';
 										<span class="fa fa-fw fa-upload"></span> 
 										<?php echo trans('button_upload'); ?>
 									</button>
-									<img class="loader logo-loader" src="../assets/itsolution24/img/loading.gif">
+									<img class="loader logo-loader" src="../assets/das/img/loading.gif">
 								</div>
 						    </div>
 						<?php endif; ?>
@@ -842,9 +842,9 @@ $tab_active = isset($request->get['tab']) ? $request->get['tab'] : 'general';
 						<div class="col-sm-2 text-center">	            
 							<div id="favicon_preview">
 								<?php if (store('favicon')): ?>
-									<img id="favicon" src="../assets/itsolution24/img/logo-favicons/<?php echo store('favicon'); ?>">
+									<img id="favicon" src="../assets/das/img/logo-favicons/<?php echo store('favicon'); ?>">
 								<?php else: ?>
-									<img id="favicon" src="../assets/itsolution24/img/logo-favicons/nofavicon.png">
+									<img id="favicon" src="../assets/das/img/logo-favicons/nofavicon.png">
 								<?php endif; ?>
 							</div>
 							<p>
@@ -860,7 +860,7 @@ $tab_active = isset($request->get['tab']) ? $request->get['tab'] : 'general';
 										<span class="fa fa-fw fa-upload"></span> 
 										<?php echo trans('button_upload'); ?>
 									</button>
-									<img class="loader favicon-loader" src="../assets/itsolution24/img/loading.gif">
+									<img class="loader favicon-loader" src="../assets/das/img/loading.gif">
 								</div>
 							</div>
 						<?php endif; ?>

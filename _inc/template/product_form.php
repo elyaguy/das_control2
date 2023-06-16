@@ -58,7 +58,7 @@
                   <div class="image-thumbnail">
                     <a class="open-filemanager" data-imageid="{{img.id}}" data-toggle="image" id="thumb{{img.id}}" href="#">
                       <img ng-show="img.url" ng-src="<?php echo FILEMANAGERURL;?>{{ img.url }}">
-                      <img ng-show="!img.url" src="../assets/itsolution24/img/noimage.jpg">
+                      <img ng-show="!img.url" src="../assets/das/img/noimage.jpg">
                     </a>
                   </div>
                 </td>
@@ -97,7 +97,7 @@
                   <?php if (isset($product['p_image']) && ((FILEMANAGERPATH && is_file(FILEMANAGERPATH.$product['p_image']) && file_exists(FILEMANAGERPATH.$product['p_image'])) || (is_file(DIR_STORAGE . 'products' . $product['p_image']) && file_exists(DIR_STORAGE . 'products' . $product['p_image'])))) : ?>
                     <img  src="<?php echo FILEMANAGERURL ? FILEMANAGERURL : root_url().'/storage/products'; ?>/<?php echo $product['p_image']; ?>">
                   <?php else : ?>
-                    <img src="../assets/itsolution24/img/noimage.jpg">
+                    <img src="../assets/das/img/noimage.jpg">
                   <?php endif; ?>
                 </a>
                 <input type="hidden" name="p_image" id="product_image" value="<?php echo isset($product['p_image']) ? $product['p_image'] : null; ?>">

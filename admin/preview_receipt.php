@@ -15,7 +15,7 @@ if (!is_loggedin()) {
 	<meta charset="UTF-8">
 	<title>Receipt Preview</title>
     <link type="text/css" href="../assets/bootstrap/css/bootstrap.css" type="text/css" rel="stylesheet">
-    <link type="text/css" href="../assets/itsolution24/cssmin/main.css" type="text/css" rel="stylesheet">
+    <link type="text/css" href="../assets/das/cssmin/main.css" type="text/css" rel="stylesheet">
 	<style type="text/css">
 		<?php 
 		$template_id = $request->get['template_id'];

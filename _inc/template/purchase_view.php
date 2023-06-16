@@ -28,9 +28,9 @@ QRcode::png($qrcode_text, ROOT.'/storage/qrcode.png', 'L', 3, 1);
 	<!-- <h2 style="text-align:center;margin:0 0 10px 0;padding:0;"><?php echo store('name');?></h2> -->
 	<div class="logo" style="text-align:center;margin-bottom:10px;">
 	<?php if ($store->get('logo')): ?>
-	  <img src="<?php echo root_url(); ?>/assets/itsolution24/img/logo-favicons/<?php echo $store->get('logo'); ?>" width="auto" height="60">
+	  <img src="<?php echo root_url(); ?>/assets/das/img/logo-favicons/<?php echo $store->get('logo'); ?>" width="auto" height="60">
 	<?php else: ?>
-	  <img src="<?php echo root_url(); ?>/assets/itsolution24/img/logo-favicons/nologo.png" width="auto" height="60">
+	  <img src="<?php echo root_url(); ?>/assets/das/img/logo-favicons/nologo.png" width="auto" height="60">
 	<?php endif; ?>
 	</div>
 

@@ -16,34 +16,34 @@ const mix = require('laravel-mix');
 //     'assets/toastr/toastr.min.css',
 
 //     // Filemanager
-//     'assets/itsolution24/css/filemanager/dialogs.css',
-//     'assets/itsolution24/css/filemanager/main.css',
+//     'assets/das/css/filemanager/dialogs.css',
+//     'assets/das/css/filemanager/main.css',
 
 //     // Theme
-//     'assets/itsolution24/css/theme.css',
-//     'assets/itsolution24/css/skins/skin-black.css',
-//     'assets/itsolution24/css/skins/skin-blue.css',
-//     'assets/itsolution24/css/skins/skin-green.css',
-//     'assets/itsolution24/css/skins/skin-red.css',
-//     'assets/itsolution24/css/skins/skin-purple.css',
-//     'assets/itsolution24/css/skins/skin-yellow.css',
+//     'assets/das/css/theme.css',
+//     'assets/das/css/skins/skin-black.css',
+//     'assets/das/css/skins/skin-blue.css',
+//     'assets/das/css/skins/skin-green.css',
+//     'assets/das/css/skins/skin-red.css',
+//     'assets/das/css/skins/skin-purple.css',
+//     'assets/das/css/skins/skin-yellow.css',
 
 //     // DataTable
 //     'assets/DataTables/datatables.min.css',
 
 //     // Main CSS
-//     'assets/itsolution24/css/main.css',
+//     'assets/das/css/main.css',
 
 //     // Responsive CSS
-//     'assets/itsolution24/css/responsive.css',
+//     'assets/das/css/responsive.css',
 
 //     // Barcode CSS
-//     // 'assets/itsolution24/css/barcode.css',
+//     // 'assets/das/css/barcode.css',
 
 //     // Print CSS
-//     'assets/itsolution24/css/print.css',
+//     'assets/das/css/print.css',
 
-// ],'assets/itsolution24/cssmin/main.css');
+// ],'assets/das/cssmin/main.css');
 
 
 
@@ -61,24 +61,24 @@ const mix = require('laravel-mix');
 //     'assets/contextMenu/dist/jquery.contextMenu.min.css',
 
 //     // Filemanager
-//     'assets/itsolution24/css/filemanager/dialogs.css',
-//     'assets/itsolution24/css/filemanager/main.css',
+//     'assets/das/css/filemanager/dialogs.css',
+//     'assets/das/css/filemanager/main.css',
 
 //     // Theme
-//     'assets/itsolution24/css/theme.css',
-//     'assets/itsolution24/css/skins/skin-black.css',
-//     'assets/itsolution24/css/skins/skin-blue.css',
-//     'assets/itsolution24/css/skins/skin-green.css',
-//     'assets/itsolution24/css/skins/skin-red.css',
-//     'assets/itsolution24/css/skins/skin-yellow.css',
-//     'assets/itsolution24/css/main.css',
+//     'assets/das/css/theme.css',
+//     'assets/das/css/skins/skin-black.css',
+//     'assets/das/css/skins/skin-blue.css',
+//     'assets/das/css/skins/skin-green.css',
+//     'assets/das/css/skins/skin-red.css',
+//     'assets/das/css/skins/skin-yellow.css',
+//     'assets/das/css/main.css',
 
 //     // Main
-//     'assets/itsolution24/css/pos/skeleton.css',
-//     'assets/itsolution24/css/pos/pos.css',
-//     'assets/itsolution24/css/pos/responsive.css',
+//     'assets/das/css/pos/skeleton.css',
+//     'assets/das/css/pos/pos.css',
+//     'assets/das/css/pos/responsive.css',
 
-// ],'assets/itsolution24/cssmin/pos.css');
+// ],'assets/das/cssmin/pos.css');
 
 
 
@@ -88,125 +88,125 @@ const mix = require('laravel-mix');
 //     'assets/bootstrap/css/bootstrap.css',
 //     'assets/perfectScroll/css/perfect-scrollbar.css',
 //     'assets/toastr/toastr.min.css',
-//     'assets/itsolution24/css/theme.css',
-//     'assets/itsolution24/css/login.css',
+//     'assets/das/css/theme.css',
+//     'assets/das/css/login.css',
 
-// ],'assets/itsolution24/cssmin/login.css');
+// ],'assets/das/cssmin/login.css');
 
 
 
 // Angular JS
 mix.scripts([
 
-    'assets/itsolution24/angular/lib/angular/angular.min.js',
-    'assets/itsolution24/angular/lib/angular/angular-sanitize.js',
-    'assets/itsolution24/angular/lib/angular/angular-bind-html-compile.min.js',
-    'assets/itsolution24/angular/lib/angular/ui-bootstrap-tpls-2.5.0.min.js',
-    'assets/itsolution24/angular/lib/angular/angular-route.min.js',
-    'assets/itsolution24/angular/lib/angular-translate/dist/angular-translate.min.js',
-    'assets/itsolution24/angular/lib/ng-file-upload/dist/ng-file-upload.min.js',
-    'assets/itsolution24/angular/lib/angular-local-storage.min.js',
-    'assets/itsolution24/angular/angularApp.js',
+    'assets/das/angular/lib/angular/angular.min.js',
+    'assets/das/angular/lib/angular/angular-sanitize.js',
+    'assets/das/angular/lib/angular/angular-bind-html-compile.min.js',
+    'assets/das/angular/lib/angular/ui-bootstrap-tpls-2.5.0.min.js',
+    'assets/das/angular/lib/angular/angular-route.min.js',
+    'assets/das/angular/lib/angular-translate/dist/angular-translate.min.js',
+    'assets/das/angular/lib/ng-file-upload/dist/ng-file-upload.min.js',
+    'assets/das/angular/lib/angular-local-storage.min.js',
+    'assets/das/angular/angularApp.js',
     
-],'assets/itsolution24/angularmin/angular.js');
+],'assets/das/angularmin/angular.js');
 
 // Angular Filemanager JS
 mix.scripts([
 
-    'assets/itsolution24/angular/filemanager/js/directives/directives.js',
-    'assets/itsolution24/angular/filemanager/js/filters/filters.js',
-    'assets/itsolution24/angular/filemanager/js/providers/config.js',
-    'assets/itsolution24/angular/filemanager/js/entities/chmod.js',
-    'assets/itsolution24/angular/filemanager/js/entities/item.js',
-    'assets/itsolution24/angular/filemanager/js/services/apihandler.js',
-    'assets/itsolution24/angular/filemanager/js/services/apimiddleware.js',
-    'assets/itsolution24/angular/filemanager/js/services/filenavigator.js',
-    'assets/itsolution24/angular/filemanager/js/providers/translations.js',
-    'assets/itsolution24/angular/filemanager/js/controllers/main.js',
-    'assets/itsolution24/angular/filemanager/js/controllers/selector-controller.js',
+    'assets/das/angular/filemanager/js/directives/directives.js',
+    'assets/das/angular/filemanager/js/filters/filters.js',
+    'assets/das/angular/filemanager/js/providers/config.js',
+    'assets/das/angular/filemanager/js/entities/chmod.js',
+    'assets/das/angular/filemanager/js/entities/item.js',
+    'assets/das/angular/filemanager/js/services/apihandler.js',
+    'assets/das/angular/filemanager/js/services/apimiddleware.js',
+    'assets/das/angular/filemanager/js/services/filenavigator.js',
+    'assets/das/angular/filemanager/js/providers/translations.js',
+    'assets/das/angular/filemanager/js/controllers/main.js',
+    'assets/das/angular/filemanager/js/controllers/selector-controller.js',
 
-],'assets/itsolution24/angularmin/filemanager.js');
+],'assets/das/angularmin/filemanager.js');
 
 
 
 // Angular Modal JS
 mix.scripts([
 
-    'assets/itsolution24/angular/modals/InvoiceViewModal.js',
-    'assets/itsolution24/angular/modals/InvoiceInfoEditModal.js',
-    'assets/itsolution24/angular/modals/BoxCreateModal.js',
-    'assets/itsolution24/angular/modals/BoxDeleteModal.js',
-    'assets/itsolution24/angular/modals/BoxEditModal.js',
-    'assets/itsolution24/angular/modals/UnitCreateModal.js',
-    'assets/itsolution24/angular/modals/UnitDeleteModal.js',
-    'assets/itsolution24/angular/modals/UnitEditModal.js',
-    'assets/itsolution24/angular/modals/TaxrateCreateModal.js',
-    'assets/itsolution24/angular/modals/TaxrateDeleteModal.js',
-    'assets/itsolution24/angular/modals/TaxrateEditModal.js',
-    'assets/itsolution24/angular/modals/CategoryCreateModal.js',
-    'assets/itsolution24/angular/modals/CategoryDeleteModal.js',
-    'assets/itsolution24/angular/modals/CategoryEditModal.js',
-    'assets/itsolution24/angular/modals/CurrencyEditModal.js',
-    'assets/itsolution24/angular/modals/CustomerCreateModal.js',
-    'assets/itsolution24/angular/modals/CustomerDeleteModal.js',
-    'assets/itsolution24/angular/modals/CustomerEditModal.js',
-    'assets/itsolution24/angular/modals/SupportDeskModal.js',
-    'assets/itsolution24/angular/modals/DueCollectionDetailsModal.js',
-    'assets/itsolution24/angular/modals/BankingDepositModal.js',
-    'assets/itsolution24/angular/modals/BankingRowViewModal.js',
-    'assets/itsolution24/angular/modals/BankingWithdrawModal.js',
-    'assets/itsolution24/angular/modals/BankAccountCreateModal.js',
-    'assets/itsolution24/angular/modals/BankAccountDeleteModal.js',
-    'assets/itsolution24/angular/modals/BankAccountEditModal.js',
-    'assets/itsolution24/angular/modals/BankTransferModal.js',
-    'assets/itsolution24/angular/modals/EmailModal.js',
-    'assets/itsolution24/angular/modals/KeyboardShortcutModal.js',
-    'assets/itsolution24/angular/modals/PmethodDeleteModal.js',
-    'assets/itsolution24/angular/modals/PmethodEditModal.js',
-    'assets/itsolution24/angular/modals/PayNowModal.js',
-    'assets/itsolution24/angular/modals/POSFilemanagerModal.js',
-    'assets/itsolution24/angular/modals/POSReceiptTemplateEditModal.js',
-    'assets/itsolution24/angular/modals/PrinterDeleteModal.js',
-    'assets/itsolution24/angular/modals/PrinterEditModal.js',
-    'assets/itsolution24/angular/modals/PrintReceiptModal.js',
-    'assets/itsolution24/angular/modals/ProductCreateModal.js',
-    'assets/itsolution24/angular/modals/ProductDeleteModal.js',
-    'assets/itsolution24/angular/modals/ProductEditModal.js',
-    'assets/itsolution24/angular/modals/ProductReturnModal.js',
-    'assets/itsolution24/angular/modals/ProductViewModal.js',
-    'assets/itsolution24/angular/modals/StoreDeleteModal.js',
-    'assets/itsolution24/angular/modals/SupplierCreateModal.js',
-    'assets/itsolution24/angular/modals/SupplierDeleteModal.js',
-    'assets/itsolution24/angular/modals/SupplierEditModal.js',
-    'assets/itsolution24/angular/modals/BrandCreateModal.js',
-    'assets/itsolution24/angular/modals/BrandDeleteModal.js',
-    'assets/itsolution24/angular/modals/BrandEditModal.js',
-    'assets/itsolution24/angular/modals/CourseCreateModal.js',
-    'assets/itsolution24/angular/modals/CourseDeleteModal.js',
-    'assets/itsolution24/angular/modals/CourseEditModal.js',
-    'assets/itsolution24/angular/modals/UserCreateModal.js',
-    'assets/itsolution24/angular/modals/UserDeleteModal.js',
-    'assets/itsolution24/angular/modals/UserEditModal.js',
-    'assets/itsolution24/angular/modals/UserGroupCreateModal.js',
-    'assets/itsolution24/angular/modals/UserGroupDeleteModal.js',
-    'assets/itsolution24/angular/modals/UserGroupEditModal.js',
-    'assets/itsolution24/angular/modals/UserInvoiceDetailsModal.js',
-    'assets/itsolution24/angular/modals/GiftcardCreateModal.js',
-    'assets/itsolution24/angular/modals/GiftcardEditModal.js',
-    'assets/itsolution24/angular/modals/GiftcardViewModal.js',
-    'assets/itsolution24/angular/modals/GiftcardTopupModal.js',
-    'assets/itsolution24/angular/modals/InvoiceSMSModal.js',
-    'assets/itsolution24/angular/modals/PaymentFormModal.js',
-    'assets/itsolution24/angular/modals/PaymentOnlyModal.js',
-    'assets/itsolution24/angular/modals/PurchaseInvoiceViewModal.js',
-    'assets/itsolution24/angular/modals/PurchaseInvoiceInfoEditModal.js',
-    'assets/itsolution24/angular/modals/PurchasePaymentModal.js',
-    'assets/itsolution24/angular/modals/SellReturnModal.js',
-    'assets/itsolution24/angular/modals/PurchaseReturnModal.js',
-    'assets/itsolution24/angular/modals/ExpenseSummaryModal.js',
-    'assets/itsolution24/angular/modals/SummaryReportModal.js',
+    'assets/das/angular/modals/InvoiceViewModal.js',
+    'assets/das/angular/modals/InvoiceInfoEditModal.js',
+    'assets/das/angular/modals/BoxCreateModal.js',
+    'assets/das/angular/modals/BoxDeleteModal.js',
+    'assets/das/angular/modals/BoxEditModal.js',
+    'assets/das/angular/modals/UnitCreateModal.js',
+    'assets/das/angular/modals/UnitDeleteModal.js',
+    'assets/das/angular/modals/UnitEditModal.js',
+    'assets/das/angular/modals/TaxrateCreateModal.js',
+    'assets/das/angular/modals/TaxrateDeleteModal.js',
+    'assets/das/angular/modals/TaxrateEditModal.js',
+    'assets/das/angular/modals/CategoryCreateModal.js',
+    'assets/das/angular/modals/CategoryDeleteModal.js',
+    'assets/das/angular/modals/CategoryEditModal.js',
+    'assets/das/angular/modals/CurrencyEditModal.js',
+    'assets/das/angular/modals/CustomerCreateModal.js',
+    'assets/das/angular/modals/CustomerDeleteModal.js',
+    'assets/das/angular/modals/CustomerEditModal.js',
+    'assets/das/angular/modals/SupportDeskModal.js',
+    'assets/das/angular/modals/DueCollectionDetailsModal.js',
+    'assets/das/angular/modals/BankingDepositModal.js',
+    'assets/das/angular/modals/BankingRowViewModal.js',
+    'assets/das/angular/modals/BankingWithdrawModal.js',
+    'assets/das/angular/modals/BankAccountCreateModal.js',
+    'assets/das/angular/modals/BankAccountDeleteModal.js',
+    'assets/das/angular/modals/BankAccountEditModal.js',
+    'assets/das/angular/modals/BankTransferModal.js',
+    'assets/das/angular/modals/EmailModal.js',
+    'assets/das/angular/modals/KeyboardShortcutModal.js',
+    'assets/das/angular/modals/PmethodDeleteModal.js',
+    'assets/das/angular/modals/PmethodEditModal.js',
+    'assets/das/angular/modals/PayNowModal.js',
+    'assets/das/angular/modals/POSFilemanagerModal.js',
+    'assets/das/angular/modals/POSReceiptTemplateEditModal.js',
+    'assets/das/angular/modals/PrinterDeleteModal.js',
+    'assets/das/angular/modals/PrinterEditModal.js',
+    'assets/das/angular/modals/PrintReceiptModal.js',
+    'assets/das/angular/modals/ProductCreateModal.js',
+    'assets/das/angular/modals/ProductDeleteModal.js',
+    'assets/das/angular/modals/ProductEditModal.js',
+    'assets/das/angular/modals/ProductReturnModal.js',
+    'assets/das/angular/modals/ProductViewModal.js',
+    'assets/das/angular/modals/StoreDeleteModal.js',
+    'assets/das/angular/modals/SupplierCreateModal.js',
+    'assets/das/angular/modals/SupplierDeleteModal.js',
+    'assets/das/angular/modals/SupplierEditModal.js',
+    'assets/das/angular/modals/BrandCreateModal.js',
+    'assets/das/angular/modals/BrandDeleteModal.js',
+    'assets/das/angular/modals/BrandEditModal.js',
+    'assets/das/angular/modals/CourseCreateModal.js',
+    'assets/das/angular/modals/CourseDeleteModal.js',
+    'assets/das/angular/modals/CourseEditModal.js',
+    'assets/das/angular/modals/UserCreateModal.js',
+    'assets/das/angular/modals/UserDeleteModal.js',
+    'assets/das/angular/modals/UserEditModal.js',
+    'assets/das/angular/modals/UserGroupCreateModal.js',
+    'assets/das/angular/modals/UserGroupDeleteModal.js',
+    'assets/das/angular/modals/UserGroupEditModal.js',
+    'assets/das/angular/modals/UserInvoiceDetailsModal.js',
+    'assets/das/angular/modals/GiftcardCreateModal.js',
+    'assets/das/angular/modals/GiftcardEditModal.js',
+    'assets/das/angular/modals/GiftcardViewModal.js',
+    'assets/das/angular/modals/GiftcardTopupModal.js',
+    'assets/das/angular/modals/InvoiceSMSModal.js',
+    'assets/das/angular/modals/PaymentFormModal.js',
+    'assets/das/angular/modals/PaymentOnlyModal.js',
+    'assets/das/angular/modals/PurchaseInvoiceViewModal.js',
+    'assets/das/angular/modals/PurchaseInvoiceInfoEditModal.js',
+    'assets/das/angular/modals/PurchasePaymentModal.js',
+    'assets/das/angular/modals/SellReturnModal.js',
+    'assets/das/angular/modals/PurchaseReturnModal.js',
+    'assets/das/angular/modals/ExpenseSummaryModal.js',
+    'assets/das/angular/modals/SummaryReportModal.js',
     
-],'assets/itsolution24/angularmin/modal.js');
+],'assets/das/angularmin/modal.js');
 
 
 
@@ -227,16 +227,16 @@ mix.scripts([
     'assets/toastr/toastr.min.js',
     'assets/accounting/accounting.min.js',
     'assets/underscore/underscore.min.js',
-    'assets/itsolution24/js/ie.js',
-    'assets/itsolution24/js/theme.js',
-    'assets/itsolution24/js/common.js',
-    'assets/itsolution24/js/main.js',
+    'assets/das/js/ie.js',
+    'assets/das/js/theme.js',
+    'assets/das/js/common.js',
+    'assets/das/js/main.js',
     'assets/DataTables/datatables.min.js',
-    'assets/itsolution24/angularmin/angular.js',
-    'assets/itsolution24/angularmin/modal.js',
-    'assets/itsolution24/angularmin/filemanager.js',
+    'assets/das/angularmin/angular.js',
+    'assets/das/angularmin/modal.js',
+    'assets/das/angularmin/filemanager.js',
 
-],'assets/itsolution24/jsmin/main.js');
+],'assets/das/jsmin/main.js');
 
 
 
@@ -246,10 +246,10 @@ mix.scripts([
     'assets/jquery/jquery.min.js',
     'assets/jquery-ui/jquery-ui.min.js',
     'assets/bootstrap/js/bootstrap.min.js',
-    'assets/itsolution24/angularmin/angular.js',
-    'assets/itsolution24/angular/angularApp.js',
-    'assets/itsolution24/angularmin/filemanager.js',
-    'assets/itsolution24/angularmin/modal.js',
+    'assets/das/angularmin/angular.js',
+    'assets/das/angular/angularApp.js',
+    'assets/das/angularmin/filemanager.js',
+    'assets/das/angularmin/modal.js',
 
     'assets/datepicker/bootstrap-datepicker.js',
     'assets/timepicker/bootstrap-timepicker.min.js',
@@ -260,13 +260,13 @@ mix.scripts([
     'assets/accounting/accounting.min.js',
     'assets/underscore/underscore.min.js',
     'assets/contextMenu/dist/jquery.contextMenu.min.js',
-    'assets/itsolution24/js/ie.js',
+    'assets/das/js/ie.js',
 
-    'assets/itsolution24/js/common.js',
-    'assets/itsolution24/js/main.js',
-    'assets/itsolution24/js/pos/pos.js',
+    'assets/das/js/common.js',
+    'assets/das/js/main.js',
+    'assets/das/js/pos/pos.js',
 
-],'assets/itsolution24/jsmin/pos.js');
+],'assets/das/jsmin/pos.js');
 
 
 // LOGIN JS
@@ -276,11 +276,11 @@ mix.scripts([
     'assets/bootstrap/js/bootstrap.min.js',
     'assets/perfectScroll/js/perfect-scrollbar.jquery.min.js',
     'assets/toastr/toastr.min.js',
-    'assets/itsolution24/js/forgot-password.js',
-    'assets/itsolution24/js/common.js',
-    'assets/itsolution24/js/login.js',
+    'assets/das/js/forgot-password.js',
+    'assets/das/js/common.js',
+    'assets/das/js/login.js',
 
-],'assets/itsolution24/jsmin/login.js');
+],'assets/das/jsmin/login.js');
 
 
 

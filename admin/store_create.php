@@ -17,8 +17,8 @@ if (user_group_id() != 1 && !has_permission('access', 'create_store')) {
 $document->setTitle(trans('title_create_store'));
 
 // Add Script
-$document->addScript('../assets/itsolution24/angular/controllers/StoreActionController.js');
-$document->addScript('../assets/itsolution24/js/upload.js');
+$document->addScript('../assets/das/angular/controllers/StoreActionController.js');
+$document->addScript('../assets/das/js/upload.js');
 
 // Include Header and Footer
 include ("header.php");

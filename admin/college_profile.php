@@ -27,9 +27,9 @@ if (count($college) <= 1) {
 $document->setTitle(trans('title_college_profile'));
 
 // Add Script
-$document->addScript('../assets/itsolution24/angular/controllers/CollegeProfileController.js');
+$document->addScript('../assets/das/angular/controllers/CollegeProfileController.js');
 if (user_group_id() == 1 || has_permission('access', 'read_sell_report')) {
-  $document->addScript('../assets/itsolution24/angular/controllers/ReportCollegeSellController.js');
+  $document->addScript('../assets/das/angular/controllers/ReportCollegeSellController.js');
 }
 
 // ADD BODY CLASS

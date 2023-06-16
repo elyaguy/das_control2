@@ -17,7 +17,7 @@ if (user_group_id() != 1 && !has_permission('access', 'read_currency')) {
 $document->setTitle(trans('title_currency'));
 
 // Add Script
-$document->addScript('../assets/itsolution24/angular/controllers/CurrencyController.js');
+$document->addScript('../assets/das/angular/controllers/CurrencyController.js');
 
 // Include Header and Footer
 include("header.php"); 

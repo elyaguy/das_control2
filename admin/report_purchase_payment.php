@@ -17,7 +17,7 @@ if (user_group_id() != 1 && !has_permission('access', 'read_purchase_payment_rep
 $document->setTitle(trans('title_purchase_payment_report'));
 
 // Add Script
-$document->addScript('../assets/itsolution24/angular/controllers/ReportPurchasePaymentController.js');
+$document->addScript('../assets/das/angular/controllers/ReportPurchasePaymentController.js');
 
 // ADD BODY CLASS
 $document->setBodyClass('sidebar-collapse');

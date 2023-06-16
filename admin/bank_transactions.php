@@ -17,7 +17,7 @@ if (user_group_id() != 1 && !has_permission('access', 'read_bank_transactions'))
 $document->setTitle(trans('title_bank_transactions'));
 
 // Add Script
-$document->addScript('../assets/itsolution24/angular/controllers/BankingController.js');
+$document->addScript('../assets/das/angular/controllers/BankingController.js');
 
 include("header.php"); 
 include ("left_sidebar.php") ;

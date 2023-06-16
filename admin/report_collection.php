@@ -18,9 +18,9 @@ $document->setTitle(trans('title_collection_report'));
 $document->setBodyClass('sidebar-collapse');
 
 // Add Script
-$document->addScript('../assets/itsolution24/angular/controllers/ReportCollectionController.js');
-$document->addScript('../assets/itsolution24/angular/modals/UserInvoiceDetailsModal.js');
-$document->addScript('../assets/itsolution24/angular/modals/DueCollectionDetailsModal.js');
+$document->addScript('../assets/das/angular/controllers/ReportCollectionController.js');
+$document->addScript('../assets/das/angular/modals/UserInvoiceDetailsModal.js');
+$document->addScript('../assets/das/angular/modals/DueCollectionDetailsModal.js');
 
 // ADD BODY CLASS
 $document->setBodyClass('sidebar-collapse');

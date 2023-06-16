@@ -17,8 +17,8 @@ if (user_group_id() != 1 && !has_permission('access', 'read_sell_log')) {
 $document->setTitle(trans('title_sell_log'));
 
 // Add Script
-$document->addScript('../assets/itsolution24/angular/modals/SellLogViewModal.js');
-$document->addScript('../assets/itsolution24/angular/controllers/SellLogController.js');
+$document->addScript('../assets/das/angular/modals/SellLogViewModal.js');
+$document->addScript('../assets/das/angular/controllers/SellLogController.js');
 
 // ADD BODY CLASS
 $document->setBodyClass('sidebar-collapse');

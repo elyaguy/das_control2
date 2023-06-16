@@ -52,9 +52,9 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['passwo
 
   <!--Set Favicon-->
   <?php if ($store->get('favicon')): ?>
-      <link rel="shortcut icon" href="assets/itsolution24/img/logo-favicons/<?php echo $store->get('favicon'); ?>">
+      <link rel="shortcut icon" href="assets/das/img/logo-favicons/<?php echo $store->get('favicon'); ?>">
   <?php else: ?>
-      <link rel="shortcut icon" href="assets/itsolution24/img/logo-favicons/nofavicon.png">
+      <link rel="shortcut icon" href="assets/das/img/logo-favicons/nofavicon.png">
   <?php endif; ?>
 
   <!-- All CSS -->
@@ -62,7 +62,7 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['passwo
   <?php if (DEMO || USECOMPILEDASSET) : ?>
 
     <!-- Login Combined CSS -->
-    <link type="text/css" href="assets/itsolution24/cssmin/login.css" rel="stylesheet">
+    <link type="text/css" href="assets/das/cssmin/login.css" rel="stylesheet">
 
   <?php else : ?>
 
@@ -76,10 +76,10 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['passwo
     <link type="text/css" href="assets/toastr/toastr.min.css" rel="stylesheet">
 
     <!-- Theme CSS -->
-    <link type="text/css" href="assets/itsolution24/css/theme.css" rel="stylesheet">
+    <link type="text/css" href="assets/das/css/theme.css" rel="stylesheet">
 
     <!-- Login CSS -->
-    <link type="text/css" href="assets/itsolution24/css/login.css" rel="stylesheet">
+    <link type="text/css" href="assets/das/css/login.css" rel="stylesheet">
 
   <?php endif; ?>
 
@@ -94,7 +94,7 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['passwo
   <?php if (DEMO || USECOMPILEDASSET) : ?>
 
     <!-- Login Combined JS -->
-    <script src="assets/itsolution24/jsmin/login.js"></script>
+    <script src="assets/das/jsmin/login.js"></script>
 
   <?php else : ?>
 
@@ -111,10 +111,10 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['passwo
     <script src="assets/toastr/toastr.min.js" type="text/javascript"></script>
 
     <!-- Common JS -->
-    <script src="assets/itsolution24/js/common.js"></script>
+    <script src="assets/das/js/common.js"></script>
 
     <!-- Login JS -->
-    <script src="assets/itsolution24/js/login.js"></script>
+    <script src="assets/das/js/login.js"></script>
 
   <?php endif; ?>
 
@@ -138,7 +138,7 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['passwo
             <img  src="<?php echo FILEMANAGERURL ? FILEMANAGERURL : root_url().'/storage/users'; ?>/<?php echo get_the_user(1, 'user_image'); ?>" style="max-width:100%;max-height:100%;">
           </div>
         <?php else : ?>
-          <img src="<?php echo root_url();?>/assets/itsolution24/img/nopeople.png">
+          <img src="<?php echo root_url();?>/assets/das/img/nopeople.png">
         <?php endif; ?>
       </div>
       <form class="lockscreen-credentials" action="" method="post" autocomplete="off">

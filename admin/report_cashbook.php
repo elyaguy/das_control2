@@ -33,8 +33,8 @@ $document->setTitle(trans('title_cashbook'));
 $document->setBodyClass('sidebar-collapse');
 
 // Add Script
-$document->addScript('../assets/itsolution24/angular/controllers/ReportIncomeDaywiseController.js');
-$document->addScript('../assets/itsolution24/angular/controllers/ReportExpenseDaywiseController.js');
+$document->addScript('../assets/das/angular/controllers/ReportIncomeDaywiseController.js');
+$document->addScript('../assets/das/angular/controllers/ReportExpenseDaywiseController.js');
 
 // Include Header and Footer
 include("header.php"); 

@@ -17,9 +17,9 @@ if (user_group_id() != 1 && !has_permission('access', 'read_sell_list')) {
 $document->setTitle(trans('title_invoice'));
 
 // Add Script
-$document->addScript('../assets/itsolution24/angular/modals/InstallmentPaymentModal.js');
-$document->addScript('../assets/itsolution24/angular/modals/InstallmentViewModal.js');
-$document->addScript('../assets/itsolution24/angular/controllers/InvoiceController.js');
+$document->addScript('../assets/das/angular/modals/InstallmentPaymentModal.js');
+$document->addScript('../assets/das/angular/modals/InstallmentViewModal.js');
+$document->addScript('../assets/das/angular/controllers/InvoiceController.js');
 
 // SIDEBAR COLLAPSE
 $document->setBodyClass('sidebar-collapse');

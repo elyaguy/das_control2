@@ -487,8 +487,8 @@ function get_postemplate_data($invoice_id)
     $symbology = barcode_symbology($generator, 'code_39');
 
     $data = array(
-      'logo' => '<img src="'.root_url().'/assets/itsolution24/img/logo-favicons/'.store('logo').'">',
-      'logo_url' => root_url().'/assets/itsolution24/img/logo-favicons/'.store('logo'),
+      'logo' => '<img src="'.root_url().'/assets/das/img/logo-favicons/'.store('logo').'">',
+      'logo_url' => root_url().'/assets/das/img/logo-favicons/'.store('logo'),
       'store_name' => store('name'),
       'store_address' => store('address'),
       'store_phone' => store('mobile'),
@@ -650,8 +650,8 @@ function get_postemplate_data($invoice_id)
 function get_postemplate_empty_data()
 {
     $data = array(
-      'logo' => '<img src="'.root_url().'/assets/itsolution24/img/logo-favicons/'.store('logo').'">',
-      'logo_url' => root_url().'/assets/itsolution24/img/logo-favicons/'.store('logo'),
+      'logo' => '<img src="'.root_url().'/assets/das/img/logo-favicons/'.store('logo').'">',
+      'logo_url' => root_url().'/assets/das/img/logo-favicons/'.store('logo'),
       'store_name' => store('name'),
       'store_address' => store('address'),
       'store_phone' => store('mobile'),

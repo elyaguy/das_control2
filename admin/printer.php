@@ -17,7 +17,7 @@ if (user_group_id() != 1 && !has_permission('access', 'read_printer')) {
 $document->setTitle(trans('title_printer'));
 
 // Add Script
-$document->addScript('../assets/itsolution24/angular/controllers/PrinterController.js');
+$document->addScript('../assets/das/angular/controllers/PrinterController.js');
 
 // Include Header and Footer
 include("header.php"); 

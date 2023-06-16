@@ -17,8 +17,8 @@ if (user_group_id() != 1 && !has_permission('access', 'read_purchase_log')) {
 $document->setTitle(trans('title_purchase_log'));
 
 // Add Script
-$document->addScript('../assets/itsolution24/angular/modals/PurchaseLogViewModal.js');
-$document->addScript('../assets/itsolution24/angular/controllers/PurchaseLogController.js');
+$document->addScript('../assets/das/angular/modals/PurchaseLogViewModal.js');
+$document->addScript('../assets/das/angular/controllers/PurchaseLogController.js');
 
 // ADD BODY CLASS
 $document->setBodyClass('sidebar-collapse');

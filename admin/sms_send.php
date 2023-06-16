@@ -18,7 +18,7 @@ $document->setTitle(trans('title_send_sms'));
 
 // Add Script
 $document->addScript('../assets/underscore/underscore.min.js');
-$document->addScript('../assets/itsolution24/angular/controllers/SMSController.js');
+$document->addScript('../assets/das/angular/controllers/SMSController.js');
 
 // Include Header and Footer
 include("header.php"); 

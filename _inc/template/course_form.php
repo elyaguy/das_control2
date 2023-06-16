@@ -16,7 +16,7 @@
             <?php if (isset($course['course_image']) && ((FILEMANAGERPATH && is_file(FILEMANAGERPATH.$course['course_image']) && file_exists(FILEMANAGERPATH.$course['course_image'])) || (is_file(DIR_STORAGE . 'categories' . $course['course_image']) && file_exists(DIR_STORAGE . 'categories' . $course['course_image'])))) : ?>
               <img  src="<?php echo FILEMANAGERURL ? FILEMANAGERURL : root_url().'/storage/categories'; ?>/<?php echo $course['course_image']; ?>">
             <?php else : ?>
-              <img src="../assets/itsolution24/img/noimage.jpg">
+              <img src="../assets/das/img/noimage.jpg">
             <?php endif; ?>
           </a>
           <input type="hidden" name="course_image" id="the_course_image" value="<?php echo isset($course['course_image']) ? $course['course_image'] : null; ?>">

@@ -25,7 +25,7 @@ $quotation_items = $quotation_model->getQuotationItems($reference_no);
 $document->setTitle(trans('title_quotation_edit').'>'.$reference_no);
 
 // Add Script
-$document->addScript('../assets/itsolution24/angular/controllers/QuotationEditController.js');
+$document->addScript('../assets/das/angular/controllers/QuotationEditController.js');
 
 // Include Header and Footer
 include("header.php"); 

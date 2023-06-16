@@ -43,14 +43,14 @@ $demo_text = 'This is a demo version. Data will be reset in every 6 hours interv
 
     <!-- Favicon -->
     <?php if (store('favicon')): ?>
-        <link rel="shortcut icon" href="../assets/itsolution24/img/logo-favicons/<?php echo store('favicon'); ?>">
+        <link rel="shortcut icon" href="../assets/das/img/logo-favicons/<?php echo store('favicon'); ?>">
     <?php else: ?>
-        <link rel="shortcut icon" href="../assets/itsolution24/img/logo-favicons/nofavicon.png">
+        <link rel="shortcut icon" href="../assets/das/img/logo-favicons/nofavicon.png">
     <?php endif; ?>
 
     <?php if (DEMO || USECOMPILEDASSET) : ?>
 
-        <link type="text/css" href="../assets/itsolution24/cssmin/main.css" type="text/css" rel="stylesheet">
+        <link type="text/css" href="../assets/das/cssmin/main.css" type="text/css" rel="stylesheet">
 
     <?php  else: ?>
   
@@ -87,45 +87,45 @@ $demo_text = 'This is a demo version. Data will be reset in every 6 hours interv
         <link type="text/css" href="../assets/toastr/toastr.min.css" type="text/css" rel="stylesheet">
 
         <!-- Filemanager Dialogs CSS -->
-        <link type="text/css" href="../assets/itsolution24/css/filemanager/dialogs.css" type="text/css" rel="stylesheet">
+        <link type="text/css" href="../assets/das/css/filemanager/dialogs.css" type="text/css" rel="stylesheet">
 
         <!-- Filemanager Main CSS -->
-        <link type="text/css" href="../assets/itsolution24/css/filemanager/main.css" type="text/css" rel="stylesheet">
+        <link type="text/css" href="../assets/das/css/filemanager/main.css" type="text/css" rel="stylesheet">
 
     <!-- Theme CSS -->
-        <link type="text/css" href="../assets/itsolution24/css/theme.css" type="text/css" rel="stylesheet">
+        <link type="text/css" href="../assets/das/css/theme.css" type="text/css" rel="stylesheet">
 
         <!-- Skin Black CSS -->
-        <link type="text/css" href="../assets/itsolution24/css/skins/skin-black.css" type="text/css" rel="stylesheet">
+        <link type="text/css" href="../assets/das/css/skins/skin-black.css" type="text/css" rel="stylesheet">
 
         <!-- Skin Blue CSS -->
-        <link type="text/css" href="../assets/itsolution24/css/skins/skin-blue.css" type="text/css" rel="stylesheet">
+        <link type="text/css" href="../assets/das/css/skins/skin-blue.css" type="text/css" rel="stylesheet">
 
         <!-- Skin Green CSS-->
-        <link type="text/css" href="../assets/itsolution24/css/skins/skin-green.css" type="text/css" rel="stylesheet">
+        <link type="text/css" href="../assets/das/css/skins/skin-green.css" type="text/css" rel="stylesheet">
 
         <!-- Skin Red CSS -->
-        <link type="text/css" href="../assets/itsolution24/css/skins/skin-red.css" type="text/css" rel="stylesheet">
-        <link type="text/css" href="../assets/itsolution24/css/skins/skin-purple.css" type="text/css" rel="stylesheet">
+        <link type="text/css" href="../assets/das/css/skins/skin-red.css" type="text/css" rel="stylesheet">
+        <link type="text/css" href="../assets/das/css/skins/skin-purple.css" type="text/css" rel="stylesheet">
 
         <!-- Skin Yellow CSS -->
-        <link type="text/css" href="../assets/itsolution24/css/skins/skin-yellow.css" type="text/css" rel="stylesheet">
+        <link type="text/css" href="../assets/das/css/skins/skin-yellow.css" type="text/css" rel="stylesheet">
 
         <!-- Datatables CSS -->
         <link type="text/css" href="../assets/DataTables/datatables.min.css" type="text/css" rel="stylesheet">
 
         <!-- Main CSS -->
-        <link href="../assets/itsolution24/css/main.css" type="text/css" rel="stylesheet">
+        <link href="../assets/das/css/main.css" type="text/css" rel="stylesheet">
 
         <?php if (isRTL()) :?>
-            <link href="../assets/itsolution24/css/rtl.css" type="text/css" rel="stylesheet">
+            <link href="../assets/das/css/rtl.css" type="text/css" rel="stylesheet">
         <?php endif;?>
 
         <!-- Responsive CSS -->
-        <link href="../assets/itsolution24/css/responsive.css" type="text/css" rel="stylesheet">
+        <link href="../assets/das/css/responsive.css" type="text/css" rel="stylesheet">
 
         <!-- Print CSS -->
-        <link href="../assets/itsolution24/css/print.css" media="print" type="text/css" rel="stylesheet">
+        <link href="../assets/das/css/print.css" media="print" type="text/css" rel="stylesheet">
 
     <?php endif; ?>
 
@@ -147,16 +147,16 @@ $demo_text = 'This is a demo version. Data will be reset in every 6 hours interv
         var filemanager = '<?php echo get_preference('ftp_hostname') && get_preference('ftp_username') ? 'ftp' : 'local'; ?>';
         var redirectTo = "<?php echo isset($request->get['redirect_to']) ? $request->get['redirect_to'] : 'admin/dashboard'; ?>";
         <?php if (store('logo')): ?>
-            var logo = '<?php echo root_url(); ?>/assets/itsolution24/img/logo-favicons/<?php echo store('logo'); ?>';
+            var logo = '<?php echo root_url(); ?>/assets/das/img/logo-favicons/<?php echo store('logo'); ?>';
         <?php else: ?>
-            var logo = '<?php echo root_url(); ?>/assets/itsolution24/img/logo-favicons/nologo.png';
+            var logo = '<?php echo root_url(); ?>/assets/das/img/logo-favicons/nologo.png';
         <?php endif; ?>
         var sendReportEmail = '<?php echo user_group_id() == 1 || has_permission('access', 'send_report_via_email');?>';
     </script>
 
     <?php if (DEMO || USECOMPILEDASSET) : ?>
 
-        <script src="../assets/itsolution24/jsmin/main.js" type="text/javascript"></script>
+        <script src="../assets/das/jsmin/main.js" type="text/javascript"></script>
 
     <?php else : ?>
 
@@ -203,34 +203,34 @@ $demo_text = 'This is a demo version. Data will be reset in every 6 hours interv
         <script src="../assets/underscore/underscore.min.js" type="text/javascript"></script>
 
         <!-- IE JS -->
-        <script src="../assets/itsolution24/js/ie.js" type="text/javascript"></script>
+        <script src="../assets/das/js/ie.js" type="text/javascript"></script>
 
         <!-- Theme JS -->
-        <script src="../assets/itsolution24/js/theme.js" type="text/javascript"></script>
+        <script src="../assets/das/js/theme.js" type="text/javascript"></script>
 
         <!-- Common JS -->
-        <script src="../assets/itsolution24/js/common.js" type="text/javascript"></script>
+        <script src="../assets/das/js/common.js" type="text/javascript"></script>
 
         <!-- Main JS-->
-        <script src="../assets/itsolution24/js/main.js" type="text/javascript"></script>
+        <script src="../assets/das/js/main.js" type="text/javascript"></script>
 
         <!-- Datatables JS -->
         <script src="../assets/DataTables/datatables.min.js" type="text/javascript"></script>
 
         <!-- Angular JS -->
-        <script src="../assets/itsolution24/angularmin/angular.js" type="text/javascript"></script> 
+        <script src="../assets/das/angularmin/angular.js" type="text/javascript"></script> 
 
         <!-- Angular App JS -->
-        <script src="../assets/itsolution24/angular/angularApp.js" type="text/javascript"></script>
+        <script src="../assets/das/angular/angularApp.js" type="text/javascript"></script>
 
         <!-- Angular Modal JS -->
-        <script src="../assets/itsolution24/angularmin/modal.js" type="text/javascript"></script>
+        <script src="../assets/das/angularmin/modal.js" type="text/javascript"></script>
 
         <!-- Anguar Filemanager JS -->
-        <script src="../assets/itsolution24/angularmin/filemanager.js" type="text/javascript"></script>
+        <script src="../assets/das/angularmin/filemanager.js" type="text/javascript"></script>
     <?php endif; ?>
 </head>
 <body class="hold-transition sidebar-mini<?php echo $body_class; ?><?php echo isRTL() ? ' rtl' : null;?>">
-<div class="hidden"><?php include('../assets/itsolution24/img/iconmin/icon.svg');?></div>
+<div class="hidden"><?php include('../assets/das/img/iconmin/icon.svg');?></div>
 <div class="wrapper">
 <?php include '../_inc/template/partials/top.php'; ?>

@@ -17,7 +17,7 @@ if (user_group_id() != 1 && !has_permission('access', 'read_sell_report')) {
 $document->setTitle(trans('title_sell_report'));
 
 // Add Script
-$document->addScript('../assets/itsolution24/angular/controllers/ReportSellCategoryWiseController.js');
+$document->addScript('../assets/das/angular/controllers/ReportSellCategoryWiseController.js');
 
 // ADD BODY CLASS
 $document->setBodyClass('sidebar-collapse');

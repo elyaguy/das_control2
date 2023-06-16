@@ -17,10 +17,10 @@ if (user_group_id() != 1 && !has_permission('access', 'barcode_print')) {
 $document->setTitle(trans('title_barcode'));
 
 // Add Style
-$document->addStyle('../assets/itsolution24/css/barcode.css', 'stylesheet', 'all');
+$document->addStyle('../assets/das/css/barcode.css', 'stylesheet', 'all');
 
 // Add Script
-$document->addScript('../assets/itsolution24/angular/controllers/BarcodePrintController.js');
+$document->addScript('../assets/das/angular/controllers/BarcodePrintController.js');
 
 // ADD BODY CLASS
 $document->setBodyClass('sidebar-collapse');
@@ -317,7 +317,7 @@ include ("left_sidebar.php") ;
 
                   <div class="text-center">
                     <div class="btn-group">
-                      <button class="btn btn-warning" onClick="window.printContent('barcode-con', {title:'<?php echo trans('text_barcode_print');?>',screenSize:'fullScreen', cssLink:'<link type=\'text/css\' href=\'../assets/itsolution24/css/barcode.css\' type=\'text/css\' rel=\'stylesheet\'>'});"><span class="fa fa-print"></span> <?php echo trans('button_print');?></button>
+                      <button class="btn btn-warning" onClick="window.printContent('barcode-con', {title:'<?php echo trans('text_barcode_print');?>',screenSize:'fullScreen', cssLink:'<link type=\'text/css\' href=\'../assets/das/css/barcode.css\' type=\'text/css\' rel=\'stylesheet\'>'});"><span class="fa fa-print"></span> <?php echo trans('button_print');?></button>
                     </div>
                   </div>
 
@@ -333,7 +333,7 @@ include ("left_sidebar.php") ;
                                 <?php if (isset($product['p_image']) && ((FILEMANAGERPATH && is_file(FILEMANAGERPATH.$product['p_image']) && file_exists(FILEMANAGERPATH.$product['p_image'])) || (is_file(DIR_STORAGE . 'products' . $product['p_image']) && file_exists(DIR_STORAGE . 'products' . $product['p_image'])))) : ?>
                                 <img  src="<?php echo FILEMANAGERURL ? FILEMANAGERURL : root_url().'/storage/products'; ?>/<?php echo $product['p_image']; ?>" style="width:60px;height:auto;">
                               <?php else : ?>
-                                <img src="../assets/itsolution24/img/noimage.jpg">
+                                <img src="../assets/das/img/noimage.jpg">
                               <?php endif; ?>
                             </span>
                           <?php endif;?>
@@ -378,7 +378,7 @@ include ("left_sidebar.php") ;
                 
                 <div class="text-center">
                   <div class="btn-group">
-                    <button class="btn btn-warning" onClick="window.printContent('barcode-con', {title:'<?php echo trans('text_barcode_print');?>',screenSize:'fullScreen', cssLink:'<link type=\'text/css\' href=\'../assets/itsolution24/css/barcode.css\' type=\'text/css\' rel=\'stylesheet\'>'});"><span class="fa fa-print"></span> <?php echo trans('button_print');?></button>
+                    <button class="btn btn-warning" onClick="window.printContent('barcode-con', {title:'<?php echo trans('text_barcode_print');?>',screenSize:'fullScreen', cssLink:'<link type=\'text/css\' href=\'../assets/das/css/barcode.css\' type=\'text/css\' rel=\'stylesheet\'>'});"><span class="fa fa-print"></span> <?php echo trans('button_print');?></button>
                   </div>
                 </div>
 

@@ -17,8 +17,8 @@ if (user_group_id() != 1 && !has_permission('access', 'read_purchase_return')) {
 $document->setTitle(trans('title_purchase_return'));
 
 // Add Script
-$document->addScript('../assets/itsolution24/angular/modals/PurchaseReturnViewModal.js');
-$document->addScript('../assets/itsolution24/angular/controllers/PurchaseReturnController.js');
+$document->addScript('../assets/das/angular/modals/PurchaseReturnViewModal.js');
+$document->addScript('../assets/das/angular/controllers/PurchaseReturnController.js');
 
 // Include Header and Footer
 include("header.php"); 

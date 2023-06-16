@@ -17,8 +17,8 @@ if (user_group_id() != 1 && !has_permission('access', 'read_order')) {
 $document->setTitle(trans('title_order'));
 
 // Add Script
-$document->addScript('../assets/itsolution24/angular/modals/OrderViewModal.js');
-$document->addScript('../assets/itsolution24/angular/controllers/OrderController.js');
+$document->addScript('../assets/das/angular/modals/OrderViewModal.js');
+$document->addScript('../assets/das/angular/controllers/OrderController.js');
 
 // Include Header and Footer
 include("header.php"); 

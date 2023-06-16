@@ -1,7 +1,7 @@
 <?php include ("../../../_init.php");?>
 <div class="box-body">
 	<div class="logo text-center mb-20">
-		<img src="<?php echo root_url();?>/assets/itsolution24/logo.jpg" alt="logo" width="120px;height:120px;">
+		<img src="<?php echo root_url();?>/assets/das/logo.jpg" alt="logo" width="120px;height:120px;">
 	</div>
 	<div class="panel mb-20" style="border:2px dotted #ddd;">
 		<div class="panel-body">

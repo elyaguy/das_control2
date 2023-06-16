@@ -14,7 +14,7 @@ if (user_group_id() != 1 && !has_permission('access', 'read_category')) {
 }
 
 // Add Script
-$document->addScript('../assets/itsolution24/angular/controllers/CategoryController.js');
+$document->addScript('../assets/das/angular/controllers/CategoryController.js');
 
 // Include Header and Footer
 include("header.php"); 

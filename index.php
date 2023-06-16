@@ -205,9 +205,9 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && $request->get['action_type']
   
   <!--Set Favicon-->
   <?php if ($store->get('favicon')): ?>
-      <link rel="shortcut icon" href="assets/itsolution24/img/logo-favicons/<?php echo $store->get('favicon'); ?>">
+      <link rel="shortcut icon" href="assets/das/img/logo-favicons/<?php echo $store->get('favicon'); ?>">
   <?php else: ?>
-      <link rel="shortcut icon" href="assets/itsolution24/img/logo-favicons/nofavicon.png">
+      <link rel="shortcut icon" href="assets/das/img/logo-favicons/nofavicon.png">
   <?php endif; ?>
 
   <!-- All CSS -->
@@ -215,7 +215,7 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && $request->get['action_type']
   <?php if (DEMO || USECOMPILEDASSET) : ?>
 
     <!-- LOGIN COMBINED CSS -->
-    <link type="text/css" href="assets/itsolution24/cssmin/login.css" rel="stylesheet">
+    <link type="text/css" href="assets/das/cssmin/login.css" rel="stylesheet">
 
   <?php else : ?>
 
@@ -226,10 +226,10 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && $request->get['action_type']
     <link type="text/css" href="assets/toastr/toastr.min.css" rel="stylesheet">
 
     <!-- Theme CSS -->
-    <link type="text/css" href="assets/itsolution24/css/theme.css" rel="stylesheet">
+    <link type="text/css" href="assets/das/css/theme.css" rel="stylesheet">
 
     <!-- Login CSS -->
-    <link type="text/css" href="assets/itsolution24/css/login.css" rel="stylesheet">
+    <link type="text/css" href="assets/das/css/login.css" rel="stylesheet">
 
   <?php endif; ?>
 
@@ -250,7 +250,7 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && $request->get['action_type']
   <?php if (DEMO || USECOMPILEDASSET) : ?>
 
     <!-- Login Combined JS -->
-    <script src="assets/itsolution24/jsmin/login.js"></script>
+    <script src="assets/das/jsmin/login.js"></script>
 
   <?php else : ?>
 
@@ -264,16 +264,16 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && $request->get['action_type']
     <script src="assets/toastr/toastr.min.js" type="text/javascript"></script>
 
     <!-- Common JS -->
-    <script src="assets/itsolution24/js/common.js"></script>
+    <script src="assets/das/js/common.js"></script>
 
     <!-- Login JS -->
-    <script src="assets/itsolution24/js/login.js"></script>
+    <script src="assets/das/js/login.js"></script>
 
   <?php endif; ?>
 
 </head>
 <body class="login-page">
-<div class="hidden"><?php include('assets/itsolution24/img/iconmin/membership/membership.svg');?></div>
+<div class="hidden"><?php include('assets/das/img/iconmin/membership/membership.svg');?></div>
 
   <section class="login-box">
     <div class="login-logo">

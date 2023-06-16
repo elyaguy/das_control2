@@ -17,7 +17,7 @@ if (user_group_id() != 1 && !has_permission('access', 'read_user')) {
 $document->setTitle(trans('title_user'));
 
 // Add Script
-$document->addScript('../assets/itsolution24/angular/controllers/UserController.js');
+$document->addScript('../assets/das/angular/controllers/UserController.js');
 
 // Include Header and Footer
 include("header.php"); 

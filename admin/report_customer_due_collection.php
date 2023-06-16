@@ -17,7 +17,7 @@ if (user_group_id() != 1 && !has_permission('access', 'read_customer_due_collect
 $document->setTitle(trans('title_due_collection'));
 
 // Add Script
-$document->addScript('../assets/itsolution24/angular/controllers/ReportCustomerDueCollectionController.js');
+$document->addScript('../assets/das/angular/controllers/ReportCustomerDueCollectionController.js');
 
 // ADD BODY CLASS
 $document->setBodyClass('sidebar-collapse');

@@ -18,8 +18,8 @@ $document->setTitle(trans('title_profit_and_loss'));
 $document->setBodyClass('sidebar-collapse');
 
 // Add Script
-$document->addScript('../assets/itsolution24/angular/controllers/ReportLossController.js');
-$document->addScript('../assets/itsolution24/angular/controllers/ReportProfitController.js');
+$document->addScript('../assets/das/angular/controllers/ReportLossController.js');
+$document->addScript('../assets/das/angular/controllers/ReportProfitController.js');
 
 $from = from();
 $to = to();

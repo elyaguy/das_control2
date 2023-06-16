@@ -17,7 +17,7 @@ if (user_group_id() != 1 && !has_permission('access', 'read_supplier_due_paid_re
 $document->setTitle(trans('title_supplier_due_paid'));
 
 // Add Script
-$document->addScript('../assets/itsolution24/angular/controllers/ReportSupplierDuePaidController.js');
+$document->addScript('../assets/das/angular/controllers/ReportSupplierDuePaidController.js');
 
 // ADD BODY CLASS
 $document->setBodyClass('sidebar-collapse');

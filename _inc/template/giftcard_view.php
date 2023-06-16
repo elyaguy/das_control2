@@ -1,7 +1,7 @@
 <div class="modal-body">
     <div class="card">
         <div class="front">
-            <img src="<?php echo root_url();?>/assets/itsolution24/img/card/card.png" alt="" class="card_img">
+            <img src="<?php echo root_url();?>/assets/das/img/card/card.png" alt="" class="card_img">
             <div class="card-content white-text">
                 <svg xmlns="http://www.w3.org/2000/svg" width="353px" height="206px" xmlns:xlink="http://www.w3.org/1999/xlink">
                 <text x="5" y="20" style="font-size:16;fill:#FFF;">
@@ -32,13 +32,13 @@
         </div>
         <div class="clearfix"></div>
         <div class="back">
-            <img src="<?php echo root_url();?>/assets/itsolution24/img/card/card2.png" alt="" class="card_img">
+            <img src="<?php echo root_url();?>/assets/das/img/card/card2.png" alt="" class="card_img">
             <div class="card-content">
                 <div class="middle">
                     <?php if ($store->get('logo')): ?>
-                      <img src="<?php echo root_url(); ?>/assets/itsolution24/img/logo-favicons/<?php echo $store->get('logo'); ?>">
+                      <img src="<?php echo root_url(); ?>/assets/das/img/logo-favicons/<?php echo $store->get('logo'); ?>">
                     <?php else: ?>
-                      <img src="<?php echo root_url(); ?>/assets/itsolution24/img/logo-favicons/nologo.png">
+                      <img src="<?php echo root_url(); ?>/assets/das/img/logo-favicons/nologo.png">
                     <?php endif; ?>                      
                 </div>
             </div>

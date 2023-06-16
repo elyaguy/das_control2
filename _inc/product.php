@@ -392,7 +392,7 @@ $columns = array(
         $img .= '<img  src="'.$root_url.'/'.$row['p_image'].'" width="30" height="30">';
       } else {
 
-        $img .= '<img src="../assets/itsolution24/img/noimage.jpg" width="30" height="30">';
+        $img .= '<img src="../assets/das/img/noimage.jpg" width="30" height="30">';
       }
       return $img;
     }

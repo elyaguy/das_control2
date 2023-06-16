@@ -26,8 +26,8 @@ if (!get_the_customer($customer_id,'customer_name')) {
 $document->setTitle(trans('title_customer_statement'));
 
 // Add Script
-$document->addScript('../assets/itsolution24/angular/modals/CustomerTransactionViewModal.js');
-$document->addScript('../assets/itsolution24/angular/controllers/CustomerTransactionController.js');
+$document->addScript('../assets/das/angular/modals/CustomerTransactionViewModal.js');
+$document->addScript('../assets/das/angular/controllers/CustomerTransactionController.js');
 
 // ADD BODY CLASS
 $document->setBodyClass('sidebar-collapse');

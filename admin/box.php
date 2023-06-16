@@ -17,7 +17,7 @@ if (user_group_id() != 1 && !has_permission('access', 'read_box')) {
 $document->setTitle(trans('title_box'));
 
 // Add Script
-$document->addScript('../assets/itsolution24/angular/controllers/BoxController.js');
+$document->addScript('../assets/das/angular/controllers/BoxController.js');
 
 // Include Header and Footer
 include("header.php"); 

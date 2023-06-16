@@ -28,10 +28,10 @@ $document->setTitle(trans('title_product'));
 
 // Add Script
 // if (user_group_id() == 1 || has_permission('access', 'read_sell_report')) {
-// 	$document->addScript('../assets/itsolution24/angular/controllers/ReportProductSellController.js');
+// 	$document->addScript('../assets/das/angular/controllers/ReportProductSellController.js');
 // }
 if (user_group_id() == 1 || has_permission('access', 'read_purchase_report')) {
-	$document->addScript('../assets/itsolution24/angular/controllers/ReportProductPurchaseController.js');
+	$document->addScript('../assets/das/angular/controllers/ReportProductPurchaseController.js');
 }
 
 // Include Header and Footer

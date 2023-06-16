@@ -17,7 +17,7 @@ if (user_group_id() != 1 && !has_permission('access', 'read_purchase_list')) {
 $document->setTitle(trans('title_purchase'));
 
 // Add Script
-$document->addScript('../assets/itsolution24/angular/controllers/PurchaseController.js');
+$document->addScript('../assets/das/angular/controllers/PurchaseController.js');
 
 // ADD BODY CLASS
 $document->setBodyClass('sidebar-collapse');

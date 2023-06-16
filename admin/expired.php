@@ -17,8 +17,8 @@ if (!get_preference('expiry_yes') || (user_group_id() != 1 && !has_permission('a
 $document->setTitle(trans('title_expired'));
 
 // Add Script
-$document->addScript('../assets/itsolution24/angular/modals/ProductEditModal.js');
-$document->addScript('../assets/itsolution24/angular/controllers/ExpiredProductController.js');
+$document->addScript('../assets/das/angular/modals/ProductEditModal.js');
+$document->addScript('../assets/das/angular/controllers/ExpiredProductController.js');
 
 // Include Header and Footer
 include("header.php"); 

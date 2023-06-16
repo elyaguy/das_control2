@@ -17,12 +17,12 @@ if (user_group_id() != 1 && !has_permission('access', 'read_loan')) {
 $document->setTitle(trans('title_loan'));
 
 // Add Script
-$document->addScript('../assets/itsolution24/angular/modals/LoanPayModal.js');
-$document->addScript('../assets/itsolution24/angular/modals/LoanViewModal.js');
-$document->addScript('../assets/itsolution24/angular/modals/LoanCreateModal.js');
-$document->addScript('../assets/itsolution24/angular/modals/LoanEditModal.js');
-$document->addScript('../assets/itsolution24/angular/modals/LoanDeleteModal.js');
-$document->addScript('../assets/itsolution24/angular/controllers/LoanController.js');
+$document->addScript('../assets/das/angular/modals/LoanPayModal.js');
+$document->addScript('../assets/das/angular/modals/LoanViewModal.js');
+$document->addScript('../assets/das/angular/modals/LoanCreateModal.js');
+$document->addScript('../assets/das/angular/modals/LoanEditModal.js');
+$document->addScript('../assets/das/angular/modals/LoanDeleteModal.js');
+$document->addScript('../assets/das/angular/controllers/LoanController.js');
 
 // Include Header and Footer
 include("header.php"); 

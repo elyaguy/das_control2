@@ -17,7 +17,7 @@ if (user_group_id() != 1 && !has_permission('access', 'read_expense_monthwise'))
 $document->setTitle(trans('title_expense_monthwise'));
 
 // Add Script
-$document->addScript('../assets/itsolution24/angular/controllers/ExpenseMonthwiseController.js');
+$document->addScript('../assets/das/angular/controllers/ExpenseMonthwiseController.js');
 
 // ADD BODY CLASS
 $document->setBodyClass('sidebar-collapse');

@@ -84,7 +84,7 @@
             <?php if (isset($loan['attachment']) && ((FILEMANAGERPATH && is_file(FILEMANAGERPATH.$loan['attachment']) && file_exists(FILEMANAGERPATH.$loan['attachment'])) || (is_file(DIR_STORAGE . 'products' . $loan['attachment']) && file_exists(DIR_STORAGE . 'products' . $loan['attachment'])))) : ?>
               <img  src="<?php echo FILEMANAGERURL ? FILEMANAGERURL : root_url().'/storage/products'; ?>/<?php echo $loan['attachment']; ?>" width="40" height="50">
             <?php else : ?>
-              <img src="../assets/itsolution24/img/noimage.jpg" width="40" height="50">
+              <img src="../assets/das/img/noimage.jpg" width="40" height="50">
             <?php endif; ?>
           </a>
           <input type="hidden" name="image" id="image" value="<?php echo $loan['attachment'];?>">
