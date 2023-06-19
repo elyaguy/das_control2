@@ -230,6 +230,22 @@ class ModelCourse extends Model
 		return (int)$purchase_price['total'];
 	}
 
+	// public function getCourseTree($data = array(), $store_id = null)
+	// {
+	// 	$tree = array();
+	// 	$courses = $this->getCourses($data, $store_id);
+	// 	foreach ($courses as $course) {
+	// 		$name = '';
+	// 		$parent = $this->getCourse($category['parent_id']);
+	// 		if (isset($parent['category_id'])) {
+	// 			$name = $parent['category_name'] .  ' > ';
+	// 		}
+
+	// 		$tree[$category['category_id']] = $name . $category['category_name'];
+	// 	}		
+	// 	return $tree;
+	// }
+
 	public function getBelongsStore($course_id)
 	{
 		$statement = $this->db->prepare("SELECT * FROM `course_to_store` WHERE `course_id` = ?");

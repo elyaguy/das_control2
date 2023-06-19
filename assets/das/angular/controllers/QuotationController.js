@@ -268,6 +268,7 @@ function (
         e.preventDefault();
         $scope.hideBoxAddBtn = true;
         $scope.hideCategoryAddBtn = true;
+        $scope.hideCourseAddBtn = true;
         $scope.hideSupAddBtn = true;
         $scope.hideUnitAddBtn = true;
         $scope.hideTaxrateAddBtn = true;
@@ -671,7 +672,7 @@ function (
             $btn.button("reset");
             $(":input[type=\"button\"]").prop("disabled", false);
             var alertMsg = response.data.msg;
-            window.toastr.success(alertMsg, "Éxito!");
+            window.toastr.success(alertMsg, "ÉXITO!");
             id = response.data.id;
             dt.DataTable().ajax.reload(function(json) {
                 if ($("#row_"+id).length) {
@@ -686,7 +687,7 @@ function (
                 alertMsg += "<p>" + value + ".</p>";
             });
             alertMsg += "</div>";
-            window.toastr.warning(alertMsg, "Advertencia!");
+            window.toastr.warning(alertMsg, "ADVERTENCIA!");
         });
     });
 
@@ -713,7 +714,7 @@ function (
             $(":input[type=\"button\"]").prop("disabled", false);
             var alertMsg = response.data.msg;
             window.swal({
-              title: "Éxito!",
+              title: "ÉXITO!",
               text: "Going back to list...",
               icon: "success",
               buttons: true,
@@ -723,7 +724,7 @@ function (
                 if (willDelete) {
                     window.location = window.baseUrl+'/admin/quotation.php';
                 } else {
-                    window.toastr.success(alertMsg, "Éxito!");
+                    window.toastr.success(alertMsg, "ÉXITO!");
                 }
             });
 
@@ -735,7 +736,7 @@ function (
                 alertMsg += "<p>" + value + ".</p>";
             });
             alertMsg += "</div>";
-            window.toastr.warning(alertMsg, "Advertencia!");
+            window.toastr.warning(alertMsg, "ADVERTENCIA!");
         });
     });
 
@@ -787,7 +788,7 @@ function (
                 })
                 .then(function(response) {
                     dt.DataTable().ajax.reload( null, false );
-                    window.swal("Éxito!", response.data.msg, "success");
+                    window.swal("ÉXITO!", response.data.msg, "success");
                     setTimeout(function() {
                         $tag.button("reset");
                     }, 300);

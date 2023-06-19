@@ -62,7 +62,7 @@ window.angularApp.factory("LoanPayModal", ["API_URL", "window", "jQuery", "$http
                         form.find(".box-body").before(alertMsg);
 
                         // Alert
-                        swal("Éxito!", response.data.msg, "success").then(function(value) {
+                        swal("ÉXITO!", response.data.msg, "success").then(function(value) {
                             $scope.closeLoanPayModal();
                             $(document).find(".close").click(); 
                             // flash update row    

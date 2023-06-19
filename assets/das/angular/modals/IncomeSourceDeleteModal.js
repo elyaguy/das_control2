@@ -61,7 +61,7 @@ window.angularApp.factory("IncomeSourceDeleteModal", ["API_URL", "window", "jQue
                         $(datatable).DataTable().ajax.reload( null, false );
 
                         // Alert
-                        window.swal("Éxito!", response.data.msg, "success")
+                        window.swal("ÉXITO!", response.data.msg, "success")
                         .then(function(value) {
                             $scope.closeIncomeSourceDeleteModal();
                             $(document).find(".close").trigger("click");

@@ -252,7 +252,7 @@ include("left_sidebar.php");
 							</label>
 							<div class="col-sm-7">
 								<?php
-								$patterns = get_filenames(DIR_ASSET . 'itsolution24/img/pos/patterns');
+								$patterns = get_filenames(DIR_ASSET . 'das/img/pos/patterns');
 								$total_pattern = count($patterns); ?>
 
 								<input type="hidden" name="preference[pos_pattern]" id="pos_pattern_input" value="<?php echo isset($preference['pos_pattern']) ? $preference['pos_pattern'] : null; ?>">

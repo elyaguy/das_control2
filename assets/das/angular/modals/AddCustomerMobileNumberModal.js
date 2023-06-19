@@ -13,7 +13,7 @@ window.angularApp.factory("AddCustomerMobileNumberModal", ["API_URL", "window", 
                             "<input type=\"text\" id=\"cnumber\" class=\"form-control\" placeholder=\"Mobile Number...\" value=\"{{ customerMobileNumber }}\" autocomplete=\"off\">" +
                         "</div>" +
                         "<div class=\"modal-footer\">" +
-                            "<button ng-click=\"clear();\" class=\"btn btn-warning pull-left\" type=\"button\"><span class=\"fa fa-fw fa-close\"></span> Cancel</button>" +
+                            "<button ng-click=\"clear();\" class=\"btn btn-warning pull-left\" type=\"button\"><span class=\"fa fa-fw fa-close\"></span> CANCELAR</button>" +
                             "<button ng-click=\"closeAddCustomerMobileNumberModal();\" id=\"reset-btn\" name=\"reset-btn\" class=\"btn btn-success\"><span class=\"fa fa-fw fa-check\"></span> Ok</button>" +
                         "</div>",
             controller: function ($scope, $uibModalInstance) {

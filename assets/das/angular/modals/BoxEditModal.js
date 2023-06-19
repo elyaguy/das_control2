@@ -55,7 +55,7 @@ window.angularApp.factory("BoxEditModal", ["API_URL", "window", "jQuery", "$http
 
                         // Alert
                         window.swal({
-                          title: "Éxito!",
+                          title: "ÉXITO!",
                           text: response.data.msg,
                           icon: "success",
                           buttons: true,

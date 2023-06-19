@@ -97,7 +97,7 @@ window.angularApp.factory("HoldingOrderDetailsModal", ["API_URL", "window", "jQu
                             then(function(response) {
                                 $(document).find(".modal").removeClass("overlay-loader");
                                 $scope.loadModal();
-                                window.swal("Éxito!",  response.data.msg, "success")
+                                window.swal("ÉXITO!",  response.data.msg, "success")
                                 .then(function(value) {
                                     if (window.store.sound_effect == 1) {
                                         window.storeApp.playSound("modify.mp3");

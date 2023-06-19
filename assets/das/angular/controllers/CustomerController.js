@@ -302,7 +302,7 @@ function (
             $btn.button("reset");
             $(":input[type=\"button\"]").prop("disabled", false);
             var alertMsg = response.data.msg;
-            window.toastr.success(alertMsg, "Éxito!");
+            window.toastr.success(alertMsg, "ÉXITO!");
 
             customerId = response.data.id;
             
@@ -325,7 +325,7 @@ function (
                 alertMsg += "<p>" + value + ".</p>";
             });
             alertMsg += "</div>";
-            window.toastr.warning(alertMsg, "Advertencia!");
+            window.toastr.warning(alertMsg, "ADVERTENCIA!");
         });
     });
 

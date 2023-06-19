@@ -61,7 +61,7 @@ window.angularApp.factory("CustomerDeleteModal", ["API_URL", "window", "jQuery",
                         $(datatable).DataTable().ajax.reload( null, false );
 
                         // Alert
-                        window.swal("Éxito!", response.data.msg, "success")
+                        window.swal("ÉXITO!", response.data.msg, "success")
                         .then(function(value) {
                             $scope.closeCustomerDeleteModal();
                             $(document).find(".close").trigger("click");

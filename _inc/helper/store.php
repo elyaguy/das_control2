@@ -20,12 +20,12 @@ function store_id()
 	return $store->get('store_id');
 }
 
-function is_multistore()
-{
-	global $store;
-	$store = $store->getStore($store_id);
-	return $store->isMultiStore();
-}
+// function is_multistore()
+// {
+// 	global $store;
+// 	$store = $store->getStore($store_id);
+// 	return $store->isMultiStore();
+// }
 
 function store_field($index, $store_id = null) 
 {

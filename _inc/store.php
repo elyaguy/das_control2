@@ -1,7 +1,7 @@
-<?php 
+<?php
 ob_start();
 session_start();
-include ("../_init.php");
+include("../_init.php");
 
 // Check, if your logged in or not
 // If user is not logged in then return an alert message
@@ -25,7 +25,7 @@ if (user_group_id() != 1 && !has_permission('access', 'read_store')) {
 $store_model = registry()->get('loader')->model('store');
 
 // Validate post data
-function validate_request_data($request) 
+function validate_request_data($request)
 {
 
   // Validate store name
@@ -43,10 +43,10 @@ function validate_request_data($request)
   //   throw new Exception(trans('error_mobile'));
   // }
 
-  // // Validate store email
-  // if (!validateEmail($request->post['email'])) {
-  //   throw new Exception(trans('error_email'));
-  // }
+  // Validate store email
+  if (!validateEmail($request->post['email'])) {
+    throw new Exception(trans('error_email'));
+  }
 
   // // Validate store country
   // if (!validateString($request->post['country'])) {
@@ -58,12 +58,16 @@ function validate_request_data($request)
   //   throw new Exception(trans('error_zip_code'));
   // }
 
-  //   // Validate store cashiar name
-  // if (!validateInteger($request->post['cashier_id'])) {
-  //   throw new Exception(trans('error_cashier_name'));
-  // }
+  // Validate store cashiar name
+  if (!array_key_exists("cashier_id", $request ->post)) {
+    throw new Exception(trans('error_cashier_name'));
+  }
 
-    // Validate store address
+  if (!validateInteger($request->post['cashier_id'])) {
+    throw new Exception(trans('error_cashier_name'));
+  }
+
+  // Validate store address
   if (!validateString($request->post['address'])) {
     throw new Exception(trans('error_addreess'));
   }
@@ -167,7 +171,7 @@ function validate_request_data($request)
 // Check store existance by id
 function validate_existance($request, $id = 0)
 {
-  
+
 
   // Check, if store name exist or not
   $statement = db()->prepare("SELECT * FROM `stores` WHERE `name` = ? AND `store_id` != ?");
@@ -178,15 +182,14 @@ function validate_existance($request, $id = 0)
 }
 
 // Create store
-if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action_type']) && $request->post['action_type'] == 'CREATE')
-{
+if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action_type']) && $request->post['action_type'] == 'CREATE') {
   try {
 
     // Check create permission
     if (user_group_id() != 1 && !has_permission('access', 'create_store')) {
       throw new Exception(trans('error_read_permission'));
     }
-    
+
     // Validate post data
     validate_request_data($request);
 
@@ -228,39 +231,38 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action
 
         //--- Category to store ---//
 
-          $statement = db()->prepare("SELECT * FROM `category_to_store` WHERE `store_id` = ? AND `ccategory_id` = ?");
-          $statement->execute(array($store_id, $product_info['category_id']));
-          $category = $statement->fetch(PDO::FETCH_ASSOC);
-          if (!$category) {
-             $statement = db()->prepare("INSERT INTO `category_to_store` SET `ccategory_id` = ?, `store_id` = ?");
-              $statement->execute(array((int)$product_info['category_id'], (int)$store_id));
-          } 
+        $statement = db()->prepare("SELECT * FROM `category_to_store` WHERE `store_id` = ? AND `ccategory_id` = ?");
+        $statement->execute(array($store_id, $product_info['category_id']));
+        $category = $statement->fetch(PDO::FETCH_ASSOC);
+        if (!$category) {
+          $statement = db()->prepare("INSERT INTO `category_to_store` SET `ccategory_id` = ?, `store_id` = ?");
+          $statement->execute(array((int)$product_info['category_id'], (int)$store_id));
+        }
 
         //--- Box to store ---//
 
-          $statement = db()->prepare("SELECT * FROM `box_to_store` WHERE `store_id` = ? AND `box_id` = ?");
-          $statement->execute(array($store_id, $product_info['box_id']));
-          $box = $statement->fetch(PDO::FETCH_ASSOC);
-          if (!$box) {
-             $statement = db()->prepare("INSERT INTO `box_to_store` SET `box_id` = ?, `store_id` = ?");
-              $statement->execute(array((int)$product_info['box_id'], (int)$store_id));
-          } 
+        $statement = db()->prepare("SELECT * FROM `box_to_store` WHERE `store_id` = ? AND `box_id` = ?");
+        $statement->execute(array($store_id, $product_info['box_id']));
+        $box = $statement->fetch(PDO::FETCH_ASSOC);
+        if (!$box) {
+          $statement = db()->prepare("INSERT INTO `box_to_store` SET `box_id` = ?, `store_id` = ?");
+          $statement->execute(array((int)$product_info['box_id'], (int)$store_id));
+        }
 
-      //--- Supplier to store ---//
+        //--- Supplier to store ---//
 
-          $statement = db()->prepare("SELECT * FROM `supplier_to_store` WHERE `store_id` = ? AND `sup_id` = ?");
-          $statement->execute(array($store_id, $product_info['sup_id']));
-          $supplier = $statement->fetch(PDO::FETCH_ASSOC);
-          if (!$supplier) {
-            $statement = db()->prepare("INSERT INTO `supplier_to_store` SET `sup_id` = ?, `store_id` = ?");
-            $statement->execute(array((int)$product_info['sup_id'], (int)$store_id));
-          }
+        $statement = db()->prepare("SELECT * FROM `supplier_to_store` WHERE `store_id` = ? AND `sup_id` = ?");
+        $statement->execute(array($store_id, $product_info['sup_id']));
+        $supplier = $statement->fetch(PDO::FETCH_ASSOC);
+        if (!$supplier) {
+          $statement = db()->prepare("INSERT INTO `supplier_to_store` SET `sup_id` = ?, `store_id` = ?");
+          $statement->execute(array((int)$product_info['sup_id'], (int)$store_id));
+        }
 
         //--- Create product link ---//
 
-          $statement = db()->prepare("INSERT INTO `product_to_store` SET `product_id` = ?, `store_id` = ?, `sup_id` = ?, `box_id` = ?, `e_date` = ?, `p_date` = ?");
-          $statement->execute(array((int)$product_id, (int)$store_id, (int)$product_info['sup_id'], (int)$product_info['box_id'], $product_info['e_date'], date('Y-m-d')));
-
+        $statement = db()->prepare("INSERT INTO `product_to_store` SET `product_id` = ?, `store_id` = ?, `sup_id` = ?, `box_id` = ?, `e_date` = ?, `p_date` = ?");
+        $statement->execute(array((int)$product_id, (int)$store_id, (int)$product_info['sup_id'], (int)$product_info['box_id'], $product_info['e_date'], date('Y-m-d')));
       }
     }
 
@@ -315,19 +317,17 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action
     header('Content-Type: application/json');
     echo json_encode(array('msg' => trans('text_create_success'), 'id' => $store_id));
     exit();
+  } catch (Exception $e) {
 
-  } catch(Exception $e) {
-    
     header('HTTP/1.1 422 Unprocessable Entity');
     header('Content-Type: application/json; charset=UTF-8');
     echo json_encode(array('errorMsg' => $e->getMessage()));
     exit();
   }
-} 
+}
 
 // Update store
-if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action_type']) && $request->post['action_type'] == 'UPDATE')
-{
+if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action_type']) && $request->post['action_type'] == 'UPDATE') {
   try {
 
     // Check update permission
@@ -353,29 +353,80 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action
     validate_existance($request, $id);
 
     $Hooks->do_action('Before_Update_Store', $request);
-    
+
     // Edit store
     $store_model->editStore($id, $request->post);
     $the_store = $store_model->editPreference($id, $request->post['preference']);
+
+
+    // Add product to store
+    if (!empty($request->post['product'])) {
+      foreach ($request->post['product'] as $product_id) {
+
+        // Fetch product info
+        $product_info = get_the_product($product_id);
+
+        //--- Category to store ---//
+
+          $statement = db()->prepare("SELECT * FROM `category_to_store` WHERE `store_id` = ? AND `ccategory_id` = ?");
+          $statement->execute(array($id, $product_info['category_id']));
+          $category = $statement->fetch(PDO::FETCH_ASSOC);
+          if (!$category) {
+             $statement = db()->prepare("INSERT INTO `category_to_store` SET `ccategory_id` = ?, `store_id` = ?");
+              $statement->execute(array((int)$product_info['category_id'], (int)$id));
+          } 
+
+        //--- Box to store ---//
+
+          $statement = db()->prepare("SELECT * FROM `box_to_store` WHERE `store_id` = ? AND `box_id` = ?");
+          $statement->execute(array($id, $product_info['box_id']));
+          $box = $statement->fetch(PDO::FETCH_ASSOC);
+          if (!$box) {
+             $statement = db()->prepare("INSERT INTO `box_to_store` SET `box_id` = ?, `store_id` = ?");
+              $statement->execute(array((int)$product_info['box_id'], (int)$id));
+          } 
+
+      //--- Supplier to store ---//
+
+          $statement = db()->prepare("SELECT * FROM `supplier_to_store` WHERE `store_id` = ? AND `sup_id` = ?");
+          $statement->execute(array($id, $product_info['sup_id']));
+          $supplier = $statement->fetch(PDO::FETCH_ASSOC);
+          if (!$supplier) {
+            $statement = db()->prepare("INSERT INTO `supplier_to_store` SET `sup_id` = ?, `store_id` = ?");
+            $statement->execute(array((int)$product_info['sup_id'], (int)$id));
+          }
+
+        //--- Create product link ---//
+          $statement = db()->prepare("SELECT * FROM `product_to_store` WHERE `store_id` = ? AND `product_id` = ?");
+          $statement->execute(array($id, (int)$product_id));
+          $prodt = $statement->fetch(PDO::FETCH_ASSOC);
+          if (!$prodt) {
+            $statement = db()->prepare("INSERT INTO `product_to_store` SET `product_id` = ?, `store_id` = ?, `sup_id` = ?, `box_id` = ?, `e_date` = ?, `p_date` = ?");
+            $statement->execute(array((int)$product_id, (int)$id, (int)$product_info['sup_id'], (int)$product_info['box_id'], $product_info['e_date'], date('Y-m-d')));
+  
+          }
+
+
+      
+      }
+    }
 
     $Hooks->do_action('After_Update_Store', $the_store);
 
     header('Content-Type: application/json');
     echo json_encode(array('msg' => trans('text_update_success'), 'id' => $id));
     exit();
-
-  } catch (Exception $e) { 
+  } catch (Exception $e) {
 
     header('HTTP/1.1 422 Unprocessable Entity');
     header('Content-Type: application/json; charset=UTF-8');
     echo json_encode(array('errorMsg' => $e->getMessage()));
     exit();
   }
-} 
+}
 
 // Delete store
-if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action_type']) && $request->post['action_type'] == 'DELETE') 
-{
+if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action_type']) && $request->post['action_type'] == 'DELETE') {
   try {
 
     // Check delete permission
@@ -417,8 +468,7 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action
     switch ($action_type) {
       case 'delete':
 
-        foreach (get_all_tables() as $table) 
-        {
+        foreach (get_all_tables() as $table) {
           $the_table = $table[0];
           if ($the_table == 'stores') {
             continue;
@@ -434,8 +484,7 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action
             $customers = $statement->fetchAll(PDO::FETCH_ASSOC);
 
             // GIFT CARD
-            foreach ($customers as $customer) 
-            {
+            foreach ($customers as $customer) {
               $statement = db()->prepare("SELECT `id` FROM `gift_cards` WHERE `customer_id` = ?");
               $statement->execute(array($customer['customer_id']));
               $card = $statement->fetch(PDO::FETCH_ASSOC);
@@ -457,14 +506,12 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action
 
       case 'insert_to':
 
-        foreach (get_all_tables() as $table) 
-        {
+        foreach (get_all_tables() as $table) {
           $the_table = $table[0];
           if ($the_table == 'stores') {
             continue;
           }
-          if ($the_table == 'transfers') 
-          {
+          if ($the_table == 'transfers') {
             $statement = db()->prepare("UPDATE `{$the_table}` SET `from_store_id` = ? WHERE `from_store_id` = ?");
             $statement->execute(array($new_store_id, $id));
 
@@ -477,7 +524,7 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action
             $statement->execute(array($new_store_id, $id));
           }
         }
-        
+
         break;
     }
 
@@ -485,12 +532,11 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action
     $the_store = $store_model->deleteStore($id);
 
     $Hooks->do_action('After_Delete_Store', $the_store);
-    
+
     header('Content-Type: application/json');
     echo json_encode(array('msg' => trans('text_delete_success')));
     exit();
-
-  } catch (Exception $e) { 
+  } catch (Exception $e) {
 
     header('HTTP/1.1 422 Unprocessable Entity');
     header('Content-Type: application/json; charset=UTF-8');
@@ -500,13 +546,13 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action
 }
 
 // Store delete form
-if (isset($request->get['store_id']) AND isset($request->get['action_type']) && $request->get['action_type'] == 'DELETE') {
-    // Fetch store
-    $store_info = $store_model->getStore($request->get['store_id']);
-    $Hooks->do_action('Before_Store_Delete_Form', $store_info);
-    include 'template/store_del_form.php';
-    $Hooks->do_action('After_Store_Delete_Form', $store_info);
-    exit();
+if (isset($request->get['store_id']) and isset($request->get['action_type']) && $request->get['action_type'] == 'DELETE') {
+  // Fetch store
+  $store_info = $store_model->getStore($request->get['store_id']);
+  $Hooks->do_action('Before_Store_Delete_Form', $store_info);
+  include 'template/store_del_form.php';
+  $Hooks->do_action('After_Store_Delete_Form', $store_info);
+  exit();
 }
 
 /**
@@ -514,8 +560,8 @@ if (isset($request->get['store_id']) AND isset($request->get['action_type']) && 
  * START DATATABLE
  *===================
  */
- 
- $Hooks->do_action('Before_Showing_Store_List');
+
+$Hooks->do_action('Before_Showing_Store_List');
 
 // DB table to use
 $where_query = '1=1';
@@ -523,84 +569,84 @@ $where_query = '1=1';
 if (!is_admin()) {
   $where_query = 'u2s.user_id = ' . user_id();
 }
- 
+
 // DB table to use
 $table = "(SELECT stores.* FROM stores 
   LEFT JOIN user_to_store u2s ON (stores.store_id = u2s.store_id) 
   WHERE $where_query GROUP by stores.store_id
   ) as stores";
- 
+
 // Table's primary key
 $primaryKey = 'store_id';
- 
+
 $columns = array(
   array(
-      'db' => 'store_id',
-      'dt' => 'DT_RowId',
-      'formatter' => function( $d, $row ) {
-        return 'row_'.$d;
-      }
-  ),
-  array( 'db' => 'store_id', 'dt' => 'store_id' ),
-  array( 
-    'db' => 'name',   
-    'dt' => 'name' ,
-    'formatter' => function($d, $row) {
-        return $row['name'];
+    'db' => 'store_id',
+    'dt' => 'DT_RowId',
+    'formatter' => function ($d, $row) {
+      return 'row_' . $d;
     }
   ),
-  array( 'db' => 'country', 'dt' => 'country' ),
-  array( 'db' => 'address', 'dt' => 'address' ),
-  array( 'db' => 'sort_order', 'dt' => 'sort_order' ),
-  array( 'db' => 'created_at', 'dt' => 'created_at' ),
-  array( 
-    'db' => 'created_at',   
-    'dt' => 'created_at' ,
-    'formatter' => function($d, $row) {
-        return $row['created_at'];
+  array('db' => 'store_id', 'dt' => 'store_id'),
+  array(
+    'db' => 'name',
+    'dt' => 'name',
+    'formatter' => function ($d, $row) {
+      return $row['name'];
     }
   ),
-  array( 
-    'db' => 'status',   
-    'dt' => 'status' ,
-    'formatter' => function($d, $row) {
-      if ($row['status'] == 1) {
-        return  '<span class="label label-info">'.trans('text_active').'</span>';
-      }
-      return '<span class="label label-warning">'.trans('text_inactivate').'</span>';
+  array('db' => 'country', 'dt' => 'country'),
+  array('db' => 'address', 'dt' => 'address'),
+  array('db' => 'sort_order', 'dt' => 'sort_order'),
+  array('db' => 'created_at', 'dt' => 'created_at'),
+  array(
+    'db' => 'created_at',
+    'dt' => 'created_at',
+    'formatter' => function ($d, $row) {
+      return $row['created_at'];
     }
   ),
   array(
-    'db' => 'status',   
-    'dt' => 'btn_edit' ,
-    'formatter' => function($d, $row) {
-      if (DEMO && $row['store_id'] == 1) {          
-        return'<button class="btn btn-sm btn-block btn-default" type="button" disabled><i class="fa fa-pencil"></i></button>';
+    'db' => 'status',
+    'dt' => 'status',
+    'formatter' => function ($d, $row) {
+      if ($row['status'] == 1) {
+        return  '<span class="label label-info">' . trans('text_active') . '</span>';
       }
-      return '<a id="edit-store" class="btn btn-sm btn-block btn-primary" href="store_single.php?store_id='.$row['store_id'].'" title="'.trans('button_edit').'"><i class="fa fa-fw fa-pencil"></i></a>';
+      return '<span class="label label-warning">' . trans('text_inactivate') . '</span>';
     }
   ),
-  array( 
-    'db' => 'status',   
-    'dt' => 'btn_delete' ,
-    'formatter' => function($d, $row) {
+  array(
+    'db' => 'status',
+    'dt' => 'btn_edit',
+    'formatter' => function ($d, $row) {
+      if (DEMO && $row['store_id'] == 1) {
+        return '<button class="btn btn-sm btn-block btn-default" type="button" disabled><i class="fa fa-pencil"></i></button>';
+      }
+      return '<a id="edit-store" class="btn btn-sm btn-block btn-primary" href="store_single.php?store_id=' . $row['store_id'] . '" title="' . trans('button_edit') . '"><i class="fa fa-fw fa-pencil"></i></a>';
+    }
+  ),
+  array(
+    'db' => 'status',
+    'dt' => 'btn_delete',
+    'formatter' => function ($d, $row) {
 
       if ((DEMO && $row['store_id'] == 2) || $row['store_id'] == 1 || store_id() == $row['store_id']) {
-        return '<button class="btn btn-sm btn-block btn-default" type="button" title="'.trans('button_delete').'" disabled><i class="fa fa-fw fa-trash"></i></button>';
+        return '<button class="btn btn-sm btn-block btn-default" type="button" title="' . trans('button_delete') . '" disabled><i class="fa fa-fw fa-trash"></i></button>';
       }
 
-      return '<button id="delete-store" class="btn btn-sm btn-block btn-danger" type="button" title="'.trans('button_delete').'"><i class="fa fa-fw fa-trash"></i></button>';
+      return '<button id="delete-store" class="btn btn-sm btn-block btn-danger" type="button" title="' . trans('button_delete') . '"><i class="fa fa-fw fa-trash"></i></button>';
     }
   ),
-  array( 
-    'db' => 'status',   
-    'dt' => 'btn_action' ,
-    'formatter' => function($d, $row) {
+  array(
+    'db' => 'status',
+    'dt' => 'btn_action',
+    'formatter' => function ($d, $row) {
       $store_id = $row['store_id'];
       if (store_id() ==  $store_id) {
-        return '<button class="btn btn-sm btn-block btn-success" type="button" title="'.trans('button_activated').'" disabled><i class="fa fa-fw fa-check"></i></button>';
+        return '<button class="btn btn-sm btn-block btn-success" type="button" title="' . trans('button_activated') . '" disabled><i class="fa fa-fw fa-check"></i></button>';
       } else {
-        return '<a class="btn btn-sm btn-block btn-info activate-store" href="store.php?active_store_id='.$store_id.'" title="'.trans('button_activate').'"><i class="fa fa-fw fa-check"></i> '.trans('button_activate').'</button>';
+        return '<a class="btn btn-sm btn-block btn-info activate-store" href="store.php?active_store_id=' . $store_id . '" title="' . trans('button_activate') . '"><i class="fa fa-fw fa-check"></i> ' . trans('button_activate') . '</button>';
       }
     }
   )

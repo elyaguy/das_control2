@@ -75,7 +75,8 @@ include ("left_sidebar.php");
 	    <div class="box box-info<?php echo create_box_state(); ?>">
 	        <div class="box-header with-border">
 				<h3 class="box-title">
-					<span class="fa fa-fw fa-plus"></span> <?php echo sprintf(trans('text_add_new'), trans('text_product')); ?>
+					<!-- <span class="fa fa-fw fa-plus"></span> <?php echo sprintf(trans('text_add_new'), trans('text_add_new')); ?> -->
+					<span class="fa fa-fw fa-plus"></span> <?php echo trans('text_new_product_title'); ?>
 				</h3>
 				<button  type="button" class="btn btn-box-tool add-new-btn" data-widget="collapse" data-collapse="true">
 					<i class="fa <?php echo !create_box_state() ? 'fa-minus' : 'fa-plus'; ?>"></i>
@@ -163,34 +164,35 @@ include ("left_sidebar.php");
 						<div class="box-body">
 							<div class="table-responsive">
 								<?php
-									$print_columns = '2,3,4,5,6,7';
+									$print_columns = '2,3,4,5,6,7,8';
 									if (user_group_id() != 1) {
 										if (! has_permission('access', 'show_purchase_price')) {
-											$print_columns = str_replace('6,', '', $print_columns);
+											$print_columns = str_replace('7,', '', $print_columns);
 										}
 									}
-									$hide_colums = "1,11,";
+									$hide_colums = "1,12,";
+									//$hide_colums = "";
 									if (user_group_id() != 1) {
 										if (! has_permission('access', 'product_bulk_action')) {
 											$hide_colums .= "0,";
 										}
 										if (! has_permission('access', 'show_purchase_price')) {
-											$hide_colums .= "6,";
+											$hide_colums .= "7,";
 										}
 										if (! has_permission('access', 'read_product')) {
-											$hide_colums .= "8,";
-										}
-										if (! has_permission('access', 'update_product')) {
 											$hide_colums .= "9,";
 										}
-										if (! has_permission('access', 'create_purchase_invoice')) {
+										if (! has_permission('access', 'update_product')) {
 											$hide_colums .= "10,";
 										}
-										if (! has_permission('access', 'print_barcode')) {
+										if (! has_permission('access', 'create_purchase_invoice')) {
 											$hide_colums .= "11,";
 										}
-										if (! has_permission('access', 'delete_product')) {
+										if (! has_permission('access', 'print_barcode')) {
 											$hide_colums .= "12,";
+										}
+										if (! has_permission('access', 'delete_product')) {
+											$hide_colums .= "13,";
 										}
 									}
 
@@ -209,6 +211,9 @@ include ("left_sidebar.php");
 								            </th>
 								            <th class="w-65">
 								            	<?php echo sprintf(trans('label_name'),trans('text_product')); ?>
+								            </th>
+											<th class="w-15">
+								            	<?php echo trans('label_course'); ?>
 								            </th>
 								            <th class="w-20">
 								            	<?php echo trans('label_supplier'); ?>
@@ -239,7 +244,7 @@ include ("left_sidebar.php");
 								            </th>
 								        </tr>
 								    </thead>
-								    <!-- <tfoot>
+								    <tfoot>
 										<tr class="bg-gray">
 											<th class="w-5 product-head text-center">
 								            	<input type="checkbox" onclick="$('input[name*=\'select\']').prop('checked', this.checked);">
@@ -250,10 +255,13 @@ include ("left_sidebar.php");
 								            <th class="w-10">
 								            	<?php echo sprintf(trans('label_pcode'),null); ?>
 								            </th>
-								            <th class="w-20">
+								            <th class="w-65">
 								            	<?php echo sprintf(trans('label_name'),trans('text_product')); ?>
 								            </th>
 								            <th class="w-15">
+								            	<?php echo trans('label_course'); ?>
+								            </th>
+											<th class="w-20">
 								            	<?php echo trans('label_supplier'); ?>
 								            </th>
 								            <th class="w-10">
@@ -265,23 +273,23 @@ include ("left_sidebar.php");
 								            <th class="w-5">
 								            	<?php echo trans('label_selling_price'); ?>
 								            </th>
-								            <th class="w-5">
+								            <th class="w-2">
 								            	<?php echo trans('label_view'); ?>
 								            </th>
-								            <th class="w-5">
+								            <th class="w-2">
 								            	<?php echo trans('label_edit'); ?>
 								            </th>
-								            <th class="w-5">
+								            <th class="w-2">
 								            	<?php echo trans('label_purchase'); ?>
 								            </th>
-								            <th class="w-5">
+								            <th class="w-2">
 								            	<?php echo trans('label_print_barcode'); ?>
 								            </th>
-								            <th class="w-5">
+								            <th class="w-2">
 								            	<?php echo trans('label_delete'); ?>
 								            </th>
 										</tr>
-								    </tfoot> -->
+								    </tfoot>
 								</table>
 							</div>
 						</div>

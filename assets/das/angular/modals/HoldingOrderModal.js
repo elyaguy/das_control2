@@ -71,7 +71,7 @@ window.angularApp.factory("HoldingOrderModal", ["API_URL", "window", "jQuery", "
                         $(document).find(".modal").removeClass("overlay-loader");
                         $scope.done = true;
                         $scope.showProductList();
-                        window.swal("Éxito!",  response.data.msg, "success")
+                        window.swal("ÉXITO!",  response.data.msg, "success")
                         .then(function(value) {
                             $scope.resetPos();
                             $(".modal").remove();

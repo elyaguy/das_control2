@@ -63,7 +63,7 @@ window.angularApp.factory("PaymentFormModal", ["API_URL", "window", "jQuery", "$
                         $scope.rawPaymentMethodHtml = $sce.trustAsHtml(response.data);
                         if ($scope.pmethodCode == 'credit') {
                             if (parseFloat($scope.customerBalance) < parseFloat($scope.totalPayable)) {
-                                window.toastr.error("Insufficient Balance!", "Advertencia!");
+                                window.toastr.error("Insufficient Balance!", "ADVERTENCIA!");
                             } else {
                                 $scope.paidAmount = $scope.totalPayable;
                             }
@@ -106,7 +106,7 @@ window.angularApp.factory("PaymentFormModal", ["API_URL", "window", "jQuery", "$
                         if (window.getParameterByName("holding_id") || window.getParameterByName("qref")) {
                             localStorage.setItem("swal",
                                 window.swal({
-                                  title: "Éxito!",
+                                  title: "ÉXITO!",
                                   text:  "Invoice ID: "+$scope.invoiceId,
                                   type: "success",
                                   timer: 3000,
@@ -124,7 +124,7 @@ window.angularApp.factory("PaymentFormModal", ["API_URL", "window", "jQuery", "$
                             } else if (window.settings.after_sell_page == 'receipt_in_popup') {
                                 InvoiceViewModal({'invoice_id':$scope.invoiceId});
                             } else if (window.settings.after_sell_page == 'toastr_msg') {
-                                window.toastr.success("ID: "+$scope.invoiceId, "Éxito!");
+                                window.toastr.success("ID: "+$scope.invoiceId, "ÉXITO!");
                             } else if (window.settings.after_sell_page == 'sweet_alert_msg') {
                                 window.swal("Success.", "ID: "+$scope.invoiceId, "success");
                             } else {
@@ -143,7 +143,7 @@ window.angularApp.factory("PaymentFormModal", ["API_URL", "window", "jQuery", "$
                                 dataType: "json"
                             }).
                             then(function(response) {
-                                window.toastr.success("SMS sent to the number: " + $scope.customerMobileNumber, "Éxito!");
+                                window.toastr.success("SMS sent to the number: " + $scope.customerMobileNumber, "ÉXITO!");
                             }, function(response) {
                                 window.swal("Ups!", response.data.errorMsg, "error");
                             });

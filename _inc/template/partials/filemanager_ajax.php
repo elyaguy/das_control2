@@ -32,7 +32,7 @@ function pickFileCallback(item) {
 		    }
 	    }, 1000);
 	} else {
-		swal("Error!", "Please, Select a valid file. i.e. jpg, png, gif, svg", "error");
+		swal("ERROR!", "Please, Select a valid file. i.e. jpg, png, gif, svg", "error");
 	}
 }
 </script>

@@ -58,7 +58,7 @@ window.angularApp.factory("InstallmentPaymentModal", ["API_URL", "window", "jQue
 
                         // Alert
                         window.swal({
-                          title: "Éxito!",
+                          title: "ÉXITO!",
                           text: response.data.msg,
                           icon: "success",
                           buttons: true,

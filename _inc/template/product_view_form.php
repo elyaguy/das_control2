@@ -79,6 +79,33 @@
       </div>
     </div>
 
+    <div class="form-group">
+      <label for="course_id" class="col-sm-3 control-label">
+        <?php echo trans('label_course'); ?>
+      </label>
+      <div class="col-sm-7">
+        <select class="form-control" name="course_id" readonly disabled>
+          <option value="">
+            <?php echo trans('text_select'); ?>
+          </option>
+          <?php foreach(get_courses() as $course) {
+              if($course['course_id'] == $product['course_id']) { ?>
+                <option value="<?php echo $course['course_id']; ?>" selected>
+                  <?php echo $course['course_name']; ?>
+                </option>
+              <?php
+              } else { ?>
+                <option value="<?php echo $course['course_id']; ?>">
+                  <?php echo $course['course_name']; ?>
+                </option>
+              <?php
+              }
+            }
+          ?>
+        </select>
+      </div>
+    </div>
+
     <div class="form-group hidden">
       <label for="brand_id" class="col-sm-3 control-label">
         <?php echo trans('label_brand'); ?>

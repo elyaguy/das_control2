@@ -148,7 +148,7 @@ window.angularApp.factory("InvoiceInfoEditModal", ["API_URL", "window", "jQuery"
 
                         // Alert
                         window.swal({
-                          title: "Éxito!",
+                          title: "ÉXITO!",
                           text: response.data.msg,
                           icon: "success",
                           buttons: true,
@@ -259,7 +259,7 @@ window.angularApp.factory("BoxCreateModal", ["API_URL", "window", "jQuery", "$ht
                         form.find(".box-body").before(alertMsg);
 
                         // Alert
-                        window.swal("Éxito!", response.data.msg, "success")
+                        window.swal("ÉXITO!", response.data.msg, "success")
                         .then(function(value) {
 
                             // close modalwindow
@@ -383,7 +383,7 @@ window.angularApp.factory("BoxDeleteModal", ["API_URL", "window", "jQuery", "$ht
                         $(datatable).DataTable().ajax.reload(null, false);
 
                         // Alert
-                        window.swal("Éxito!", response.data.msg, "success")
+                        window.swal("ÉXITO!", response.data.msg, "success")
                         .then(function(value) {
 
                             $scope.closeBoxDeleteModal();
@@ -482,7 +482,7 @@ window.angularApp.factory("BoxEditModal", ["API_URL", "window", "jQuery", "$http
 
                         // Alert
                         window.swal({
-                          title: "Éxito!",
+                          title: "ÉXITO!",
                           text: response.data.msg,
                           icon: "success",
                           buttons: true,
@@ -595,7 +595,7 @@ window.angularApp.factory("UnitCreateModal", ["API_URL", "window", "jQuery", "$h
                         form.find(".unit-body").before(alertMsg);
 
                         // Alert
-                        window.swal("Éxito!", response.data.msg, "success")
+                        window.swal("ÉXITO!", response.data.msg, "success")
                         .then(function(value) {
 
                             // close modalwindow
@@ -719,7 +719,7 @@ window.angularApp.factory("UnitDeleteModal", ["API_URL", "window", "jQuery", "$h
                         $(datatable).DataTable().ajax.reload(null, false);
 
                         // Alert
-                        window.swal("Éxito!", response.data.msg, "success")
+                        window.swal("ÉXITO!", response.data.msg, "success")
                         .then(function(value) {
 
                             $scope.closeUnitDeleteModal();
@@ -818,7 +818,7 @@ window.angularApp.factory("UnitEditModal", ["API_URL", "window", "jQuery", "$htt
 
                         // Alert
                         window.swal({
-                          title: "Éxito!",
+                          title: "ÉXITO!",
                           text: response.data.msg,
                           icon: "success",
                           buttons: true,
@@ -931,7 +931,7 @@ window.angularApp.factory("TaxrateCreateModal", ["API_URL", "window", "jQuery", 
                         form.find(".taxrate-body").before(alertMsg);
 
                         // Alert
-                        window.swal("Éxito!", response.data.msg, "success")
+                        window.swal("ÉXITO!", response.data.msg, "success")
                         .then(function(value) {
 
                             // close modalwindow
@@ -1055,7 +1055,7 @@ window.angularApp.factory("TaxrateDeleteModal", ["API_URL", "window", "jQuery", 
                         $(datatable).DataTable().ajax.reload(null, false);
 
                         // Alert
-                        window.swal("Éxito!", response.data.msg, "success")
+                        window.swal("ÉXITO!", response.data.msg, "success")
                         .then(function(value) {
 
                             $scope.closeTaxrateDeleteModal();
@@ -1154,7 +1154,7 @@ window.angularApp.factory("TaxrateEditModal", ["API_URL", "window", "jQuery", "$
 
                         // Alert
                         window.swal({
-                          title: "Éxito!",
+                          title: "ÉXITO!",
                           text: response.data.msg,
                           icon: "success",
                           buttons: true,
@@ -1267,7 +1267,7 @@ window.angularApp.factory("CategoryCreateModal", ["API_URL", "window", "jQuery",
                         form.find(".box-body").before(alertMsg);
 
                         // Alert
-                        window.swal("Éxito!", response.data.msg, "success")
+                        window.swal("ÉXITO!", response.data.msg, "success")
                         .then(function(value) {
 
                             // close modalwindow
@@ -1388,7 +1388,7 @@ window.angularApp.factory("CategoryDeleteModal", ["API_URL", "window", "jQuery",
                         $(datatable).DataTable().ajax.reload( null, false );
 
                         // Alert
-                        window.swal("Éxito!", response.data.msg, "success")
+                        window.swal("ÉXITO!", response.data.msg, "success")
                         .then(function(value) {
                             $scope.closeCategoryDeleteModal();
                             $(document).find(".close").trigger("click");
@@ -1485,7 +1485,7 @@ window.angularApp.factory("CategoryEditModal", ["API_URL", "window", "jQuery", "
 
                         // Alert
                         window.swal({
-                          title: "Éxito!",
+                          title: "ÉXITO!",
                           text: response.data.msg,
                           icon: "success",
                           buttons: true,
@@ -1601,7 +1601,7 @@ window.angularApp.factory("CategoryEditModal", ["API_URL", "window", "jQuery", "
 
                             // Alert
                             window.swal({
-                              title: "Éxito!",
+                              title: "ÉXITO!",
                               text: response.data.msg,
                               icon: "success",
                               buttons: true,
@@ -1717,7 +1717,7 @@ window.angularApp.factory("CustomerCreateModal", ["API_URL", "window", "jQuery",
                         form.find(".box-body").before(alertMsg);
 
                         // Alert
-                        window.swal("Éxito!", response.data.msg, "success")
+                        window.swal("ÉXITO!", response.data.msg, "success")
                         .then(function(value) {
 
                             $scope.customerMobileNumber = response.data.customer_contact;
@@ -1835,7 +1835,7 @@ window.angularApp.factory("CustomerDeleteModal", ["API_URL", "window", "jQuery",
                         $(datatable).DataTable().ajax.reload( null, false );
 
                         // Alert
-                        window.swal("Éxito!", response.data.msg, "success")
+                        window.swal("ÉXITO!", response.data.msg, "success")
                         .then(function(value) {
                             $scope.closeCustomerDeleteModal();
                             $(document).find(".close").trigger("click");
@@ -1933,7 +1933,7 @@ window.angularApp.factory("CustomerEditModal", ["API_URL", "window", "jQuery", "
 
                         // Alert
                         window.swal({
-                          title: "Éxito!",
+                          title: "ÉXITO!",
                           text: response.data.msg,
                           icon: "success",
                           buttons: true,
@@ -2157,7 +2157,7 @@ window.angularApp.factory("BankingDepositModal", ["API_URL", "window", "jQuery",
                         form.find(".box-body").before(alertMsg);
 
                         // Alert
-                        swal("Éxito!", response.data.msg, "success").then(function(value) {
+                        swal("ÉXITO!", response.data.msg, "success").then(function(value) {
                             $scope.closeBankingDepositModal();
                             $(document).find(".close").click();
                             // update balance    
@@ -2318,7 +2318,7 @@ window.angularApp.factory("BankingWithdrawModal", ["API_URL", "window", "jQuery"
                         form.find(".box-body").before(alertMsg);
 
                         // Alert
-                        swal("Éxito!", response.data.msg, "success").then(function(value) {
+                        swal("ÉXITO!", response.data.msg, "success").then(function(value) {
                             $scope.closeBankingWithdrawModal();
                             $(document).find(".close").click(); 
                             // update balance    
@@ -2427,7 +2427,7 @@ window.angularApp.factory("BankAccountCreateModal", ["API_URL", "window", "jQuer
                         form.find(".taxrate-body").before(alertMsg);
 
                         // Alert
-                        window.swal("Éxito!", response.data.msg, "success")
+                        window.swal("ÉXITO!", response.data.msg, "success")
                         .then(function(value) {
 
                             // close modalwindow
@@ -2551,7 +2551,7 @@ window.angularApp.factory("BankAccountDeleteModal", ["API_URL", "window", "jQuer
                         $(datatable).DataTable().ajax.reload(null, false);
 
                         // Alert
-                        window.swal("Éxito!", response.data.msg, "success")
+                        window.swal("ÉXITO!", response.data.msg, "success")
                         .then(function(value) {
 
                             $scope.closeBankAccountDeleteModal();
@@ -2650,7 +2650,7 @@ window.angularApp.factory("BankAccountEditModal", ["API_URL", "window", "jQuery"
 
                         // Alert
                         window.swal({
-                          title: "Éxito!",
+                          title: "ÉXITO!",
                           text: response.data.msg,
                           icon: "success",
                           buttons: true,
@@ -2768,7 +2768,7 @@ window.angularApp.factory("BankTransferModal", ["API_URL", "window", "jQuery", "
                         form.find(".box-body").before(alertMsg);
 
                         // Alert
-                        swal("Éxito!", response.data.msg, "success").then(function(value) {
+                        swal("ÉXITO!", response.data.msg, "success").then(function(value) {
                             $scope.CloseBankTransferModal();
                             $(document).find(".close").trigger("click");
                             // update balance    
@@ -2870,7 +2870,7 @@ window.angularApp.factory("EmailModal", ["API_URL", "window", "jQuery", "$http",
                     then(function(response) {
                         $("body").removeClass("overlay-loader");
                         $btn.button("reset");
-                        window.swal("Éxito!", response.data.msg, "success").then(function() {
+                        window.swal("ÉXITO!", response.data.msg, "success").then(function() {
                             $scope.cancel();
                         });
                     }, function(response) {
@@ -2999,7 +2999,7 @@ window.angularApp.factory("PmethodDeleteModal", ["API_URL", "window", "jQuery", 
                         $(datatable).DataTable().ajax.reload( null, false );
 
                         // Alert
-                        window.swal("Éxito!", response.data.msg, "success")
+                        window.swal("ÉXITO!", response.data.msg, "success")
                         .then(function(value) {
                             $scope.closePmethodDeleteModal();
                             $(document).find(".close").trigger("click");
@@ -3096,7 +3096,7 @@ window.angularApp.factory("PmethodEditModal", ["API_URL", "window", "jQuery", "$
 
                         // Alert
                         window.swal({
-                          title: "Éxito!",
+                          title: "ÉXITO!",
                           text: response.data.msg,
                           icon: "success",
                           buttons: true,
@@ -3268,7 +3268,7 @@ window.angularApp.factory("PrinterDeleteModal", ["API_URL", "window", "jQuery", 
                         $(datatable).DataTable().ajax.reload( null, false );
 
                         // Alert
-                        window.swal("Éxito!", response.data.msg, "success")
+                        window.swal("ÉXITO!", response.data.msg, "success")
                         .then(function(value) {
                             $scope.closeprinterDeleteModal();
                             $(document).find(".close").trigger("click");
@@ -3362,7 +3362,7 @@ window.angularApp.factory("PrinterEditModal", ["API_URL", "window", "jQuery", "$
 
                         // Alert Box
                         window.swal({
-                          title: "Éxito!",
+                          title: "ÉXITO!",
                           text: response.data.msg,
                           icon: "success",
                           buttons: true,
@@ -3584,7 +3584,7 @@ window.angularApp.factory("ProductCreateModal", ["API_URL", "window", "jQuery", 
                         form.find(".box-body").before(alertMsg);
 
                         // Alert
-                        window.swal("Éxito!", response.data.msg, "success")
+                        window.swal("ÉXITO!", response.data.msg, "success")
                         .then(function(value) {
 
                             $scope.product = response.data.product;
@@ -3723,7 +3723,7 @@ window.angularApp.factory("ProductDeleteModal", ["API_URL", "window", "jQuery", 
                         }
 
                         // Alert
-                        window.swal("Éxito!", response.data.msg, "success")
+                        window.swal("ÉXITO!", response.data.msg, "success")
                         .then(function(value) {
                             $scope.closeProductDeleteModal();
                             $(document).find(".close").trigger("click");
@@ -3876,7 +3876,7 @@ window.angularApp.factory("ProductEditModal", ["API_URL", "window", "jQuery", "$
 
                         // Alert
                         window.swal({
-                          title: "Éxito!",
+                          title: "ÉXITO!",
                           text: response.data.msg,
                           icon: "success",
                           buttons: true,
@@ -4052,7 +4052,7 @@ window.angularApp.factory("ProductReturnModal", ["API_URL", "window", "jQuery", 
 
                         // Alert
                         window.swal({
-                          title: "Éxito!",
+                          title: "ÉXITO!",
                           text: response.data.msg,
                           icon: "success",
                           buttons: true,
@@ -4215,7 +4215,7 @@ window.angularApp.factory("StoreDeleteModal", ["API_URL", "window", "jQuery", "$
                         $(datatable).DataTable().ajax.reload( null, false );
 
                         // Alert
-                        window.swal("Éxito!", response.data.msg, "success")
+                        window.swal("ÉXITO!", response.data.msg, "success")
                         .then(function(value) {
                             $scope.closeStoreDeleteModal();
                             $(document).find(".close").trigger("click");
@@ -4310,7 +4310,7 @@ window.angularApp.factory("SupplierCreateModal", ["API_URL", "window", "jQuery",
                         form.find(".box-body").before(alertMsg);
 
                         // Alert
-                        window.swal("Éxito!", response.data.msg, "success")
+                        window.swal("ÉXITO!", response.data.msg, "success")
                         .then(function(value) {
 
                             // close modalwindow
@@ -4432,7 +4432,7 @@ window.angularApp.factory("SupplierDeleteModal", ["API_URL", "window", "jQuery",
                         $(datatable).DataTable().ajax.reload( null, false );
 
                         // Alert
-                        window.swal("Éxito!", response.data.msg, "success")
+                        window.swal("ÉXITO!", response.data.msg, "success")
                         .then(function(value) {
                             $scope.closeSupplierDeleteModal();
                             $(document).find(".close").trigger("click");
@@ -4529,7 +4529,7 @@ window.angularApp.factory("SupplierEditModal", ["API_URL", "window", "jQuery", "
 
                         // Alert
                         window.swal({
-                          title: "Éxito!",
+                          title: "ÉXITO!",
                           text: response.data.msg,
                           icon: "success",
                           buttons: true,
@@ -4643,7 +4643,7 @@ window.angularApp.factory("BrandCreateModal", ["API_URL", "window", "jQuery", "$
                         form.find(".box-body").before(alertMsg);
 
                         // Alert
-                        window.swal("Éxito!", response.data.msg, "success")
+                        window.swal("ÉXITO!", response.data.msg, "success")
                         .then(function(value) {
 
                             // close modalwindow
@@ -4765,7 +4765,7 @@ window.angularApp.factory("BrandDeleteModal", ["API_URL", "window", "jQuery", "$
                         $(datatable).DataTable().ajax.reload( null, false );
 
                         // Alert
-                        window.swal("Éxito!", response.data.msg, "success")
+                        window.swal("ÉXITO!", response.data.msg, "success")
                         .then(function(value) {
                             $scope.closeBrandDeleteModal();
                             $(document).find(".close").trigger("click");
@@ -4862,7 +4862,7 @@ window.angularApp.factory("BrandEditModal", ["API_URL", "window", "jQuery", "$ht
 
                         // Alert
                         window.swal({
-                          title: "Éxito!",
+                          title: "ÉXITO!",
                           text: response.data.msg,
                           icon: "success",
                           buttons: true,
@@ -4977,7 +4977,7 @@ window.angularApp.factory("CollegeCreateModal", ["API_URL", "window", "jQuery", 
                         form.find(".box-body").before(alertMsg);
 
                         // Alert
-                        window.swal("Éxito!", response.data.msg, "success")
+                        window.swal("ÉXITO!", response.data.msg, "success")
                         .then(function(value) {
 
                             // close modalwindow
@@ -5099,7 +5099,7 @@ window.angularApp.factory("CollegeDeleteModal", ["API_URL", "window", "jQuery", 
                         $(datatable).DataTable().ajax.reload( null, false );
 
                         // Alert
-                        window.swal("Éxito!", response.data.msg, "success")
+                        window.swal("ÉXITO!", response.data.msg, "success")
                         .then(function(value) {
                             $scope.closeCollegeDeleteModal();
                             $(document).find(".close").trigger("click");
@@ -5196,7 +5196,7 @@ window.angularApp.factory("CollegeEditModal", ["API_URL", "window", "jQuery", "$
 
                         // Alert
                         window.swal({
-                          title: "Éxito!",
+                          title: "ÉXITO!",
                           text: response.data.msg,
                           icon: "success",
                           buttons: true,
@@ -5310,7 +5310,7 @@ window.angularApp.factory("CourseCreateModal", ["API_URL", "window", "jQuery", "
                         form.find(".box-body").before(alertMsg);
 
                         // Alert
-                        window.swal("Éxito!", response.data.msg, "success")
+                        window.swal("ÉXITO!", response.data.msg, "success")
                         .then(function(value) {
 
                             // close modalwindow
@@ -5432,7 +5432,7 @@ window.angularApp.factory("CourseDeleteModal", ["API_URL", "window", "jQuery", "
                         $(datatable).DataTable().ajax.reload( null, false );
 
                         // Alert
-                        window.swal("Éxito!", response.data.msg, "success")
+                        window.swal("ÉXITO!", response.data.msg, "success")
                         .then(function(value) {
                             $scope.closeCourseDeleteModal();
                             $(document).find(".close").trigger("click");
@@ -5529,7 +5529,7 @@ window.angularApp.factory("CourseEditModal", ["API_URL", "window", "jQuery", "$h
 
                         // Alert
                         window.swal({
-                          title: "Éxito!",
+                          title: "ÉXITO!",
                           text: response.data.msg,
                           icon: "success",
                           buttons: true,
@@ -5644,7 +5644,7 @@ window.angularApp.factory("UserCreateModal", ["API_URL", "window", "jQuery", "$h
                         form.find(".box-body").before(alertMsg);
 
                         // Alert
-                        window.swal("Éxito!", response.data.msg, "success")
+                        window.swal("ÉXITO!", response.data.msg, "success")
                         .then(function(value) {
 
                             // close modalwindow
@@ -5767,7 +5767,7 @@ window.angularApp.factory("UserDeleteModal", ["API_URL", "window", "jQuery", "$h
                         $(datatable).DataTable().ajax.reload( null, false );
 
                         // Alert
-                        window.swal("Éxito!", response.data.msg, "success")
+                        window.swal("ÉXITO!", response.data.msg, "success")
                         .then(function(value) {
                             $scope.closeUserDeleteModal();
                             $(document).find(".close").trigger("click");
@@ -5865,7 +5865,7 @@ window.angularApp.factory("UserEditModal", ["API_URL", "window", "jQuery", "$htt
 
                         // Alert
                         window.swal({
-                          title: "Éxito!",
+                          title: "ÉXITO!",
                           text: response.data.msg,
                           icon: "success",
                           buttons: true,
@@ -5980,7 +5980,7 @@ window.angularApp.factory("UserGroupCreateModal", ["API_URL", "window", "jQuery"
                         form.find(".box-body").before(alertMsg);
 
                         // Alert
-                        window.swal("Éxito!", response.data.msg, "success")
+                        window.swal("ÉXITO!", response.data.msg, "success")
                         .then(function(value) {
 
                             // close modalwindow
@@ -6103,7 +6103,7 @@ window.angularApp.factory("UserGroupDeleteModal", ["API_URL", "window", "jQuery"
                         $(datatable).DataTable().ajax.reload( null, false );
 
                         // Alert
-                        window.swal("Éxito!", response.data.msg, "success")
+                        window.swal("ÉXITO!", response.data.msg, "success")
                         .then(function(value) {
                             $scope.closeUsergroupDelteModal();
                             $(document).find(".close").trigger("click");
@@ -6195,7 +6195,7 @@ window.angularApp.factory("UserGroupEditModal", ["API_URL", "window", "jQuery", 
 
                         // Alert
                         window.swal({
-                          title: "Éxito!",
+                          title: "ÉXITO!",
                           text: response.data.msg,
                           icon: "success",
                           buttons: true,
@@ -6410,7 +6410,7 @@ window.angularApp.factory("GiftcardCreateModal", ["API_URL", "window", "jQuery",
                         form.find(".giftcard-body").before(alertMsg);
 
                         // Alert
-                        window.swal("Éxito!", response.data.msg, "success")
+                        window.swal("ÉXITO!", response.data.msg, "success")
                         .then(function(value) {
 
                             // close modalwindow
@@ -6534,7 +6534,7 @@ window.angularApp.factory("GiftcardEditModal", ["API_URL", "window", "jQuery", "
 
                         // Alert
                         window.swal({
-                          title: "Éxito!",
+                          title: "ÉXITO!",
                           text: response.data.msg,
                           icon: "success",
                           buttons: true,
@@ -6699,7 +6699,7 @@ window.angularApp.factory("GiftcardTopupModal", ["API_URL", "window", "jQuery", 
 
                         // Alert
                         window.swal({
-                          title: "Éxito!",
+                          title: "ÉXITO!",
                           text: response.data.msg,
                           icon: "success",
                           buttons: true,
@@ -6807,7 +6807,7 @@ window.angularApp.factory("InvoiceSMSModal", ["API_URL", "window", "jQuery", "$h
                         form.find(".box-body").before(alertMsg);
 
                         // Alert
-                        window.swal("Éxito!", response.data.msg, "success")
+                        window.swal("ÉXITO!", response.data.msg, "success")
                         .then(function(value) {
                             $scope.closeInvoiceSMSModal();
                             $(document).find(".close").trigger("click");
@@ -6906,7 +6906,7 @@ window.angularApp.factory("PaymentFormModal", ["API_URL", "window", "jQuery", "$
                         $scope.rawPaymentMethodHtml = $sce.trustAsHtml(response.data);
                         if ($scope.pmethodCode == 'credit') {
                             if (parseFloat($scope.customerBalance) < parseFloat($scope.totalPayable)) {
-                                window.toastr.error("Insufficient Balance!", "Advertencia!");
+                                window.toastr.error("Insufficient Balance!", "ADVERTENCIA!");
                             } else {
                                 $scope.paidAmount = $scope.totalPayable;
                             }
@@ -6949,7 +6949,7 @@ window.angularApp.factory("PaymentFormModal", ["API_URL", "window", "jQuery", "$
                         if (window.getParameterByName("holding_id") || window.getParameterByName("qref")) {
                             localStorage.setItem("swal",
                                 window.swal({
-                                  title: "Éxito!",
+                                  title: "ÉXITO!",
                                   text:  "Invoice ID: "+$scope.invoiceId,
                                   type: "success",
                                   timer: 3000,
@@ -6967,7 +6967,7 @@ window.angularApp.factory("PaymentFormModal", ["API_URL", "window", "jQuery", "$
                             } else if (window.settings.after_sell_page == 'receipt_in_popup') {
                                 InvoiceViewModal({'invoice_id':$scope.invoiceId});
                             } else if (window.settings.after_sell_page == 'toastr_msg') {
-                                window.toastr.success("ID: "+$scope.invoiceId, "Éxito!");
+                                window.toastr.success("ID: "+$scope.invoiceId, "ÉXITO!");
                             } else if (window.settings.after_sell_page == 'sweet_alert_msg') {
                                 window.swal("Success.", "ID: "+$scope.invoiceId, "success");
                             } else {
@@ -6986,7 +6986,7 @@ window.angularApp.factory("PaymentFormModal", ["API_URL", "window", "jQuery", "$
                                 dataType: "json"
                             }).
                             then(function(response) {
-                                window.toastr.success("SMS sent to the number: " + $scope.customerMobileNumber, "Éxito!");
+                                window.toastr.success("SMS sent to the number: " + $scope.customerMobileNumber, "ÉXITO!");
                             }, function(response) {
                                 window.swal("Ups!", response.data.errorMsg, "error");
                             });
@@ -7100,7 +7100,7 @@ window.angularApp.factory("PaymentOnlyModal", ["API_URL", "window", "jQuery", "$
                         $scope.rawPaymentMethodHtml = $sce.trustAsHtml(response.data);
                         if ($scope.pmethodCode == 'credit') {
                             if (parseFloat($scope.customerBalance) < parseFloat($scope.order.due)) {
-                                window.toastr.error("Insufficient Balance!", "Advertencia!");
+                                window.toastr.error("Insufficient Balance!", "ADVERTENCIA!");
                             } else {
                                 $scope.paidAmount = parseFloat($scope.order.due);
                             }
@@ -7126,7 +7126,7 @@ window.angularApp.factory("PaymentOnlyModal", ["API_URL", "window", "jQuery", "$
                         dataType: "json"
                     }).
                     then(function(response) {
-                        window.swal("Éxito!", response.data.msg, "success")
+                        window.swal("ÉXITO!", response.data.msg, "success")
                         .then(function(value) {
                             if ($scope.order.datatable) {
                                 $($scope.order.datatable).DataTable().ajax.reload(null, false);
@@ -7281,7 +7281,7 @@ window.angularApp.factory("PurchaseInvoiceInfoEditModal", ["API_URL", "window", 
 
                         // Alert
                         window.swal({
-                          title: "Éxito!",
+                          title: "ÉXITO!",
                           text: response.data.msg,
                           icon: "success",
                           buttons: true,
@@ -7408,7 +7408,7 @@ window.angularApp.factory("PurchasePaymentModal", ["API_URL", "window", "jQuery"
                         dataType: "json"
                     }).
                     then(function(response) {
-                        window.swal("Éxito!", response.data.msg, "success")
+                        window.swal("ÉXITO!", response.data.msg, "success")
                         .then(function(value) {
                             $scope.closePurchasePaymentModal();
                         });
@@ -7508,7 +7508,7 @@ window.angularApp.factory("SellReturnModal", ["API_URL", "window", "jQuery", "$h
                         dataType: "json"
                     }).
                     then(function(response) {
-                        window.swal("Éxito!", response.data.msg, "success")
+                        window.swal("ÉXITO!", response.data.msg, "success")
                         .then(function(value) {
                             if ($scope.order.datatable) {
                                 $($scope.order.datatable).DataTable().ajax.reload(null, false);
@@ -7600,7 +7600,7 @@ window.angularApp.factory("PurchaseReturnModal", ["API_URL", "window", "jQuery",
                         dataType: "json"
                     }).
                     then(function(response) {
-                        window.swal("Éxito!", response.data.msg, "success")
+                        window.swal("ÉXITO!", response.data.msg, "success")
                         .then(function(value) {
                             if ($scope.order.datatable) {
                                 $($scope.order.datatable).DataTable().ajax.reload(null, false);

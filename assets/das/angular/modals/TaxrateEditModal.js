@@ -55,7 +55,7 @@ window.angularApp.factory("TaxrateEditModal", ["API_URL", "window", "jQuery", "$
 
                         // Alert
                         window.swal({
-                          title: "Éxito!",
+                          title: "ÉXITO!",
                           text: response.data.msg,
                           icon: "success",
                           buttons: true,

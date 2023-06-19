@@ -267,7 +267,7 @@ function (
                 })
                 .then(function(response) {
                     dt.DataTable().ajax.reload( null, false );
-                    window.swal("Éxito!", response.data.msg, "success");
+                    window.swal("ÉXITO!", response.data.msg, "success");
                 }, function(response) {
                     window.swal("Ups!", response.data.errorMsg, "error");
                 });

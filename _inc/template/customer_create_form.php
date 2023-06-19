@@ -11,7 +11,7 @@
       </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group hidden">
       <label for="credit_balance" class="col-sm-3 control-label">
         <?php echo sprintf(trans('label_credit_balance'), null); ?>
       </label>
@@ -29,7 +29,7 @@
       </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group hidden">
       <label for="dob" class="col-sm-3 control-label">
         <?php echo sprintf(trans('label_date_of_birth'), null); ?>
       </label>
@@ -47,7 +47,7 @@
       </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group hidden">
       <label for="customer_sex" class="col-sm-3 control-label">
         <?php echo sprintf(trans('label_sex'), null); ?>
       </label>
@@ -66,7 +66,7 @@
       </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group hidden">
       <label for="customer_age" class="col-sm-3 control-label">
         <?php echo sprintf(trans('label_age'), null); ?>
       </label>
@@ -76,7 +76,7 @@
     </div>
 
     <?php if (get_preference('invoice_view') == 'indian_gst') : ?>
-    <div class="form-group">
+    <div class="form-group hidden">
       <label for="gtin" class="col-sm-3 control-label">
         <?php echo trans('label_gtin'); ?>
       </label>
@@ -105,7 +105,7 @@
     </div>
 
     <?php if (get_preference('invoice_view') == 'indian_gst') : ?>
-    <div class="form-group">
+    <div class="form-group hidden">
       <label for="customer_state" class="col-sm-3 control-label">
         <?php echo sprintf(trans('label_state'), null); ?><i class="required">*</i>
       </label>
@@ -114,7 +114,7 @@
       </div>
     </div>
     <?php else : ?>
-      <div class="form-group">
+      <div class="form-group hidden">
         <label for="customer_state" class="col-sm-3 control-label">
           <?php echo sprintf(trans('label_state'), null); ?>
         </label>
@@ -124,7 +124,7 @@
       </div>
     <?php endif; ?>
 
-    <div class="form-group">
+    <div class="form-group hidden">
       <label for="country" class="col-sm-3 control-label">
         <?php echo trans('label_country'); ?>
       </label>
@@ -161,7 +161,7 @@
       </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group hidden">
       <label for="status" class="col-sm-3 control-label">
         <?php echo trans('label_status'); ?>
       </label>
@@ -177,7 +177,7 @@
       </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group hidden">
       <label for="sort_order" class="col-sm-3 control-label">
         <?php echo sprintf(trans('label_sort_order'), null); ?>
       </label>

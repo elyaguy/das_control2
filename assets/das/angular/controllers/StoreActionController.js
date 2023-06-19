@@ -29,6 +29,9 @@ function (
         form.find(".alert").remove();
         var actionUrl = form.attr("action");
         
+        // window.toastr.success(form, "Éxito1!");
+        // window.toastr.success(form.serialize(), "Éxito2!");
+
         $http({
             url: window.baseUrl + "/_inc/" + actionUrl,
             method: "POST",
@@ -43,7 +46,7 @@ function (
             $btn.button("reset");
             $(":input[type=\"button\"]").prop("disabled", false);
             var alertMsg = response.data.msg;
-            window.toastr.success(alertMsg, "Éxito!");
+            window.toastr.success(alertMsg, "ÉXITO!");
 
         }, function(response) {
 
@@ -54,7 +57,7 @@ function (
                 alertMsg += "<p>" + value + ".</p>";
             });
             alertMsg += "</div>";
-            window.toastr.warning(alertMsg, "Advertencia!");
+            window.toastr.warning(alertMsg, "ADVERTENCIA!");
         });
     });
     
@@ -82,7 +85,7 @@ function (
             $btn.button("reset");
             $(":input[type=\"button\"]").prop("disabled", false);
             var alertMsg = response.data.msg;
-            window.toastr.success(alertMsg, "Éxito!");
+            window.toastr.success(alertMsg, "ÉXITO!");
             window.location = 'store_single.php?store_id=' + response.data.id + '&box_state=open';
 
         }, function(response) {
@@ -94,7 +97,7 @@ function (
                 alertMsg += "<p>" + value + ".</p>";
             });
             alertMsg += "</div>";
-            window.toastr.warning(alertMsg, "Advertencia!");
+            window.toastr.warning(alertMsg, "ADVERTENCIA!");
         });
     });
 

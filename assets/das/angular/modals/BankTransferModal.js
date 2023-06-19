@@ -62,7 +62,7 @@ window.angularApp.factory("BankTransferModal", ["API_URL", "window", "jQuery", "
                         form.find(".box-body").before(alertMsg);
 
                         // Alert
-                        swal("Éxito!", response.data.msg, "success").then(function(value) {
+                        swal("ÉXITO!", response.data.msg, "success").then(function(value) {
                             $scope.CloseBankTransferModal();
                             $(document).find(".close").trigger("click");
                             // update balance    

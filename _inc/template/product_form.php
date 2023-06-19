@@ -156,6 +156,36 @@
             </div>
           </div>
 
+
+          <div ng-hide="hideCourse" class="form-group">
+            <label for="course_id" class="col-sm-3 control-label">
+              <?php echo trans('label_course'); ?><i class="required">*</i>
+            </label>
+            <div class="col-sm-8">
+              <select class="form-control" name="course_id" required>
+                <option value="">
+                  <?php echo trans('text_select'); ?>
+                </option>
+                <?php foreach(get_courses() as $course) {
+                    if($course['course_id'] == $product['course_id']) { ?>
+                      <option value="<?php echo $course['course_id']; ?>" selected>
+                        <?php echo $course['course_name']; ?>
+                      </option>
+                    <?php
+                    } else { ?>
+                      <option value="<?php echo $course['course_id']; ?>">
+                        <?php echo $course['course_name']; ?>
+                      </option>
+                    <?php
+                    }
+                  }
+                ?>
+              </select>
+            </div>
+          </div>
+
+
+  
           <div ng-hide="hideSupplier" class="form-group">
             <label for="sup_id" class="col-sm-3 control-label">
               <?php echo trans('label_supplier'); ?><i class="required">*</i>

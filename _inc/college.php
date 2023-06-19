@@ -307,7 +307,7 @@ $columns = array(
     'db' => 'college_id',   
     'dt' => 'total_product' ,
     'formatter' => function($d, $row) {
-      return total_product_of_college($row['college_id']);
+      return 0;//total_product_of_college($row['college_id']);
     }
   ),
   array( 

@@ -355,10 +355,11 @@ $Hooks->do_action('Before_Showing_Product_List');
 $where_query = 'p2s.store_id = ' . store_id();
  
 // DB table to use
-$table = "(SELECT products.*, p2s.*, suppliers.sup_mobile, suppliers.sup_name as supplier, boxes.box_name FROM products 
+$table = "(SELECT products.*, p2s.*, suppliers.sup_mobile, suppliers.sup_name as supplier, boxes.box_name, courses.course_name as course FROM products 
   LEFT JOIN product_to_store p2s ON (products.p_id = p2s.product_id) 
   LEFT JOIN suppliers ON (p2s.sup_id = suppliers.sup_id) 
   LEFT JOIN boxes ON (p2s.box_id = boxes.box_id) 
+  LEFT JOIN courses ON (p2s.course_id = courses.course_id) 
   WHERE $where_query GROUP by products.p_id
   ORDER BY p2s.p_date DESC
   ) as products";
@@ -429,6 +430,13 @@ $columns = array(
     'dt' => 'category_name' ,
     'formatter' => function($d, $row) {
         return get_the_category($row['category_id'], 'category_name');
+    }
+  ),
+  array( 
+    'db' => 'course',   
+    'dt' => 'course' ,
+    'formatter' => function($d, $row) {
+        return html_entity_decode($row['course']);
     }
   ),
   array( 

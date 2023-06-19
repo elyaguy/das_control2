@@ -279,7 +279,7 @@ function (
             $btn.button("reset");
             $(":input[type=\"button\"]").prop("disabled", false);
             var alertMsg = response.data.msg;
-            window.toastr.success(alertMsg, "Éxito!");
+            window.toastr.success(alertMsg, "ÉXITO!");
             id = response.data.id;
             dt.DataTable().ajax.reload(function(json) {
                 if ($("#row_"+id).length) {
@@ -294,7 +294,7 @@ function (
                 alertMsg += "<p>" + value + ".</p>";
             });
             alertMsg += "</div>";
-            window.toastr.warning(alertMsg, "Advertencia!");
+            window.toastr.warning(alertMsg, "ADVERTENCIA!");
         });
     });
 
@@ -349,7 +349,7 @@ function (
                 })
                 .then(function (response) {
                     $(dt).DataTable().ajax.reload( null, false );
-                    window.swal("Éxito!", "Expense successfully deleted!", "success");
+                    window.swal("ÉXITO!", "Expense successfully deleted!", "success");
                 }, function (response) {
                     window.swal("Ups!", "unable to delete!", "error");
                 });

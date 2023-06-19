@@ -52,7 +52,7 @@ window.angularApp.factory("LanguageCreateModal", ["API_URL", "window", "jQuery",
                         form.find(".box-body").before(alertMsg);
 
                         // Alert
-                        window.swal("Éxito!", response.data.msg, "success")
+                        window.swal("ÉXITO!", response.data.msg, "success")
                         .then(function(value) {
                             window.location = window.location;
                         });

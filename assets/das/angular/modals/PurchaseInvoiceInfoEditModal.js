@@ -58,7 +58,7 @@ window.angularApp.factory("PurchaseInvoiceInfoEditModal", ["API_URL", "window", 
 
                         // Alert
                         window.swal({
-                          title: "Éxito!",
+                          title: "ÉXITO!",
                           text: response.data.msg,
                           icon: "success",
                           buttons: true,

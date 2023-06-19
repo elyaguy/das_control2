@@ -61,7 +61,7 @@ window.angularApp.factory("ExpenseCategoryDeleteModal", ["API_URL", "window", "j
                         $(datatable).DataTable().ajax.reload( null, false );
 
                         // Alert
-                        window.swal("Éxito!", response.data.msg, "success")
+                        window.swal("ÉXITO!", response.data.msg, "success")
                         .then(function(value) {
                             $scope.closeExpenseCategoryDeleteModal();
                             $(document).find(".close").trigger("click");

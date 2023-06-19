@@ -55,7 +55,7 @@ window.angularApp.factory("PurchaseReturnModal", ["API_URL", "window", "jQuery",
                         dataType: "json"
                     }).
                     then(function(response) {
-                        window.swal("Éxito!", response.data.msg, "success")
+                        window.swal("ÉXITO!", response.data.msg, "success")
                         .then(function(value) {
                             if ($scope.order.datatable) {
                                 $($scope.order.datatable).DataTable().ajax.reload(null, false);

@@ -68,8 +68,8 @@ class ModelProduct extends Model
 
 			//--- product to store ---//
 
-				$statement = $this->db->prepare("INSERT INTO `product_to_store` SET `product_id` = ?, `store_id` = ?, `purchase_price` = ?, `sell_price` = ?, `sup_id` = ?, `brand_id` = ?, `box_id` = ?, `taxrate_id` = ?, `tax_method` = ?, `preference` = ?, `e_date` = ?, `alert_quantity` = ?, `p_date` = ?");
-				$statement->execute(array($product_id, $store_id, $data['purchase_price'], $data['sell_price'], $data['sup_id'], $data['brand_id'], $data['box_id'], $data['taxrate_id'], $data['tax_method'], $preference, $data['e_date'], $data['alert_quantity'], date('Y-m-d')));
+				$statement = $this->db->prepare("INSERT INTO `product_to_store` SET `product_id` = ?, `store_id` = ?, `purchase_price` = ?, `sell_price` = ?, `sup_id` = ?, `brand_id` = ?, `course_id` = ?, `box_id` = ?, `taxrate_id` = ?, `tax_method` = ?, `preference` = ?, `e_date` = ?, `alert_quantity` = ?, `p_date` = ?");
+				$statement->execute(array($product_id, $store_id, $data['purchase_price'], $data['sell_price'], $data['sup_id'], $data['brand_id'], $data['course_id'], $data['box_id'], $data['taxrate_id'], $data['tax_method'], $preference, $data['e_date'], $data['alert_quantity'], date('Y-m-d')));
 			}
 		}
 
@@ -173,19 +173,29 @@ class ModelProduct extends Model
 					$statement->execute(array((int)$data['brand_id'], $store_id));
 			    } 
 
+			//--- course to store ---//
+
+				$statement = $this->db->prepare("SELECT * FROM `course_to_store` WHERE `store_id` = ? AND `course_id` = ?");
+			    $statement->execute(array($store_id, $data['course_id']));
+			    $brand = $statement->fetch(PDO::FETCH_ASSOC);
+			    if (!$brand) {
+			    	$statement = $this->db->prepare("INSERT INTO `course_to_store` SET `course_id` = ?, `store_id` = ?");
+					$statement->execute(array((int)$data['course_id'], $store_id));
+			    } 
+
 			//--- product to store ---//
 
 				$statement = $this->db->prepare("SELECT * FROM `product_to_store` WHERE `store_id` = ? AND `product_id` = ?");
 			    $statement->execute(array($store_id, $product_id));
 			    $product = $statement->fetch(PDO::FETCH_ASSOC);
 			    if (!$product) {
-			    	$statement = $this->db->prepare("INSERT INTO `product_to_store` SET `product_id` = ?, `store_id` = ?, `sup_id` = ?, `brand_id` = ?, `box_id` = ?, `taxrate_id` = ?, `tax_method` = ?, `preference` = ?, `sell_price` = ?, `e_date` = ?, `alert_quantity` = ?, `p_date` = ?");
-					$statement->execute(array($product_id, $store_id, $data['sup_id'], $data['brand_id'], $data['box_id'], $data['taxrate_id'], $data['tax_method'], $preference, $data['sell_price'], $data['e_date'], $data['alert_quantity'], date('Y-m-d')));
+			    	$statement = $this->db->prepare("INSERT INTO `product_to_store` SET `product_id` = ?, `store_id` = ?, `sup_id` = ?, `brand_id` = ?, `course_id` = ?, `box_id` = ?, `taxrate_id` = ?, `tax_method` = ?, `preference` = ?, `sell_price` = ?, `e_date` = ?, `alert_quantity` = ?, `p_date` = ?");
+					$statement->execute(array($product_id, $store_id, $data['sup_id'], $data['brand_id'], $data['course_id'], $data['box_id'], $data['taxrate_id'], $data['tax_method'], $preference, $data['sell_price'], $data['e_date'], $data['alert_quantity'], date('Y-m-d')));
 			    
 			    } else {
 
-			    	$statement = $this->db->prepare("UPDATE `product_to_store` SET `sup_id` = ?, `brand_id` = ?, `box_id` = ?, `taxrate_id` = ?, `tax_method` = ?, `preference` = ?, `purchase_price` = ?, `sell_price` = ?, `e_date` = ?, `alert_quantity` = ? WHERE `store_id` = ? AND `product_id` = ?");
-					$statement->execute(array($data['sup_id'], $data['brand_id'], $data['box_id'], $data['taxrate_id'], $data['tax_method'], $preference, $data['purchase_price'], $data['sell_price'], $data['e_date'], $data['alert_quantity'], $store_id, $product_id));
+			    	$statement = $this->db->prepare("UPDATE `product_to_store` SET `sup_id` = ?, `brand_id` = ?, `course_id` = ?, `box_id` = ?, `taxrate_id` = ?, `tax_method` = ?, `preference` = ?, `purchase_price` = ?, `sell_price` = ?, `e_date` = ?, `alert_quantity` = ? WHERE `store_id` = ? AND `product_id` = ?");
+					$statement->execute(array($data['sup_id'], $data['brand_id'], $data['course_id'], $data['box_id'], $data['taxrate_id'], $data['tax_method'], $preference, $data['purchase_price'], $data['sell_price'], $data['e_date'], $data['alert_quantity'], $store_id, $product_id));
 			    }
 
 			    $store_ids[] = $store_id;
@@ -330,6 +340,7 @@ class ModelProduct extends Model
 	    $product['stores'] = $stores;
 	    
 	    $product['sup_name'] = get_the_supplier($product['sup_id'],'sup_name');
+	    $product['course_name'] = get_the_course($product['course_id'],'course_name');
 	    $product['brand_name'] = get_the_brand($product['brand_id'],'brand_name');
 	    $product['unit'] = get_the_unit($product['unit_id'],'unit_name');
 	    $product['taxrate'] = '';
@@ -341,6 +352,50 @@ class ModelProduct extends Model
 	    }
 	    
 	    return $product;
+	}
+
+	public function getProductsToStore($data = array()) 
+	{
+		$sql = "SELECT * FROM `products` p ";
+
+		if (isset($data['filter_name'])) {
+			$sql .= " AND `p`.`p_name` LIKE '" . $data['filter_name'] . "%'";
+		}
+		
+		$sql .= " GROUP BY p.p_id";
+
+		$sort_data = array(
+			'p.p_name'
+		);
+
+		if (isset($data['sort']) && in_array($data['sort'], $sort_data)) {
+			$sql .= " ORDER BY " . $data['sort'];
+		} else {
+			$sql .= " ORDER BY `p`.`p_name`";
+		}
+
+		if (isset($data['order']) && ($data['order'] == 'DESC')) {
+			$sql .= " DESC";
+		} else {
+			$sql .= " ASC";
+		}
+
+		if (isset($data['start']) || isset($data['limit'])) {
+			if ($data['start'] < 0) {
+				$data['start'] = 0;
+			}
+
+			if ($data['limit'] < 1) {
+				$data['limit'] = 20;
+			}
+
+			$sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
+		}		
+
+		$statement = $this->db->prepare($sql);
+		$statement->execute();
+		
+		return $statement->fetchAll(PDO::FETCH_ASSOC);
 	}
 
 	public function getProducts($data = array(), $store_id = null) 

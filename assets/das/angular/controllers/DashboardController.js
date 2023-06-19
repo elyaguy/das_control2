@@ -35,6 +35,7 @@ function ($scope,
         $scope.hideCategoryAddBtn = true;
         $scope.hideSupAddBtn = true;
         $scope.hideBrandAddBtn = true;
+        $scope.hideCourseAddBtn = true;
         $scope.hideBoxAddBtn = true;
         $scope.hideUnitAddBtn = true;
         $scope.hideTaxrateAddBtn = true;

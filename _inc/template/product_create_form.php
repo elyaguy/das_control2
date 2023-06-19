@@ -102,16 +102,19 @@ $tab_active = isset($request->get['tab']) ? $request->get['tab'] : 'general';
             <label for="p_type" class="col-sm-3 control-label">
               <?php echo trans('label_product_type'); ?><i class="required">*</i>
             </label>
-            <div class="col-sm-3">
+            <div class="col-sm-7">
               <select id="p_type" class="form-control" name="p_type">
                 <option value="standard" selected><?php echo trans('text_standard'); ?></option>
                 <option value="service"><?php echo trans('text_service'); ?></option>
               </select>
             </div>
-            <label for="p_code" class="col-sm-2 control-label">
+            </div>
+
+          <div class="form-group all">
+            <label for="p_code" class="col-sm-3 control-label">
               <?php echo trans('label_pcode'); ?> <i class="required">*</i>
             </label>
-            <div class="col-sm-2">
+            <div class="col-sm-7">
               <div class="input-group">
                 <input type="text" name="p_code" id="p_code" class="form-control" autocomplete="off" required>
                 <span id="random_num" class="input-group-addon pointer random_num">
@@ -155,6 +158,31 @@ $tab_active = isset($request->get['tab']) ? $request->get['tab'] : 'general';
               </div>
             </div>
           </div>
+
+
+          <div class="form-group">
+            <label for="course_id" class="col-sm-3 control-label">
+              <?php echo trans('label_course'); ?> <i class="required">*</i>
+            </label>
+            <div class="col-sm-7">
+              <div class="{{ !hideCourseAddBtn ? 'input-group' : null }}">
+                <select id="course_id" class="form-control select2" name="course_id" required>
+                  <option value="">
+                    <?php echo trans('text_select'); ?>
+                  </option>
+                  <?php foreach (get_courses() as $course) : ?>
+                    <option value="<?php echo $course['course_id']; ?>">
+                      <?php echo $course['course_name']; ?>
+                      </option>
+                  <?php endforeach; ?>
+                </select>
+                <a ng-hide="hideCourseAddBtn" class="input-group-addon" ng-click="createNewCourse();" onClick="return false;" href="course.php?box_state=open">
+                  <i class="fa fa-plus"></i>
+                </a>
+              </div>
+            </div>
+          </div>
+
 
           <div ng-hide="hideSupplier" class="form-group">
             <label for="sup_id" class="col-sm-3 control-label">
@@ -370,7 +398,10 @@ $tab_active = isset($request->get['tab']) ? $request->get['tab'] : 'general';
                   </option>
                   <?php $inc = 1;
                   foreach (get_units() as $unit_row) : ?>
-                    <option value="<?php echo $unit_row['unit_id']; ?>">
+                    <!-- <option value="<?php echo $unit_row['unit_id']; ?>">
+                      <?php echo $unit_row['unit_name']; ?>
+                    </option> -->
+                    <option value="<?php echo $unit_row['unit_id']; ?>" <?php echo $inc == 1 ? 'selected' : null; ?>>
                       <?php echo $unit_row['unit_name']; ?>
                     </option>
                   <?php $inc++;

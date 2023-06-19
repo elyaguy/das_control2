@@ -55,7 +55,7 @@ window.angularApp.factory("PaymentOnlyModal", ["API_URL", "window", "jQuery", "$
                         $scope.rawPaymentMethodHtml = $sce.trustAsHtml(response.data);
                         if ($scope.pmethodCode == 'credit') {
                             if (parseFloat($scope.customerBalance) < parseFloat($scope.order.due)) {
-                                window.toastr.error("Insufficient Balance!", "Advertencia!");
+                                window.toastr.error("Insufficient Balance!", "ADVERTENCIA!");
                             } else {
                                 $scope.paidAmount = parseFloat($scope.order.due);
                             }
@@ -81,7 +81,7 @@ window.angularApp.factory("PaymentOnlyModal", ["API_URL", "window", "jQuery", "$
                         dataType: "json"
                     }).
                     then(function(response) {
-                        window.swal("Éxito!", response.data.msg, "success")
+                        window.swal("ÉXITO!", response.data.msg, "success")
                         .then(function(value) {
                             if ($scope.order.datatable) {
                                 $($scope.order.datatable).DataTable().ajax.reload(null, false);

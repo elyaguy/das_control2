@@ -328,7 +328,7 @@ window.jQuery(window).on("load", function () {
 					toastr.success(response.msg);
 				},
 				error: function(xhr, ajaxOptions, thrownError) {
-					toastr.error(JSON.parse(xhr.responseText).errorMsg, "Error!");
+					toastr.error(JSON.parse(xhr.responseText).errorMsg, "ERROR!");
 				}
 			});
         }
@@ -423,10 +423,10 @@ function save_template_content_data(id, content)
 		},
 		success: function(res) {
 		  // alert(res.msg);
-		  window.toastr.success(res.msg, "Éxito!");
+		  window.toastr.success(res.msg, "ÉXITO!");
 		},
 		error: function(xhr, ajaxOptions, thrownError) {
-		  window.toastr.error(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText,"Error!");
+		  window.toastr.error(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText,"ERROR!");
 		}
 	});
 	return true;
@@ -453,10 +453,10 @@ function save_template_css_data(id, content)
 		},
 		success: function(res) {
 		  // alert(res.msg);
-		  window.toastr.success(res.msg, "Éxito!");
+		  window.toastr.success(res.msg, "ÉXITO!");
 		},
 		error: function(xhr, ajaxOptions, thrownError) {
-		  window.toastr.error(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText,"Error!");
+		  window.toastr.error(thrownError + "\r\n" + xhr.statusText + "\r\n" + xhr.responseText,"ERROR!");
 		}
 	});
 	return true;

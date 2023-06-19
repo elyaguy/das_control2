@@ -272,7 +272,7 @@ function (
             $btn.button("reset");
             $(":input[type=\"button\"]").prop("disabled", false);
             var alertMsg = response.data.msg;
-            window.toastr.success(alertMsg, "Éxito!");
+            window.toastr.success(alertMsg, "ÉXITO!");
             categoryId = response.data.id;
             dt.DataTable().ajax.reload(function(json) {
                 if ($("#row_"+categoryId).length) {
@@ -293,7 +293,7 @@ function (
                 alertMsg += "<p>" + value + ".</p>";
             });
             alertMsg += "</div>";
-            window.toastr.warning(alertMsg, "Advertencia!");
+            window.toastr.warning(alertMsg, "ADVERTENCIA!");
         });
     });
 

@@ -55,7 +55,7 @@ window.angularApp.factory("SMSResendModal", ["API_URL", "window", "jQuery", "$ht
                         form.find(".box-body").before(alertMsg);
 
                         // Alert
-                        window.swal("Éxito!", response.data.msg, "success")
+                        window.swal("ÉXITO!", response.data.msg, "success")
                         .then(function(value) {
                             $(datatable).DataTable().ajax.reload(function(json) {
                                 if ($("#row_"+response.data.id).length) {

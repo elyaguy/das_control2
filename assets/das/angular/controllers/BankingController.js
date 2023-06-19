@@ -278,7 +278,7 @@ function (
                 })
                 .then(function (response) {
                     $(dt).DataTable().ajax.reload( null, false );
-                    window.swal("Éxito!", "Currency successfully deleted!", "success");
+                    window.swal("ÉXITO!", "Currency successfully deleted!", "success");
                 }, function (response) {
                     window.swal("Ups!", "unable to delete!", "error");
                 });

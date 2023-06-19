@@ -59,7 +59,7 @@ window.angularApp.factory("BrandEditModal", ["API_URL", "window", "jQuery", "$ht
 
                         // Alert
                         window.swal({
-                          title: "Éxito!",
+                          title: "ÉXITO!",
                           text: response.data.msg,
                           icon: "success",
                           buttons: true,

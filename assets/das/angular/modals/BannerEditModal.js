@@ -88,7 +88,7 @@ window.angularApp.factory("BannerEditModal", ["API_URL", "window", "jQuery", "$h
 
                         // Alert
                         window.swal({
-                          title: "Éxito!",
+                          title: "ÉXITO!",
                           text: response.data.msg,
                           icon: "success",
                           buttons: true,

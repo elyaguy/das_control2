@@ -60,7 +60,7 @@ window.angularApp.factory("UserEditModal", ["API_URL", "window", "jQuery", "$htt
 
                         // Alert
                         window.swal({
-                          title: "Éxito!",
+                          title: "ÉXITO!",
                           text: response.data.msg,
                           icon: "success",
                           buttons: true,

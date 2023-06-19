@@ -56,7 +56,7 @@ window.angularApp.factory("BankingWithdrawModal", ["API_URL", "window", "jQuery"
                         form.find(".box-body").before(alertMsg);
 
                         // Alert
-                        swal("Éxito!", response.data.msg, "success").then(function(value) {
+                        swal("ÉXITO!", response.data.msg, "success").then(function(value) {
                             $scope.closeBankingWithdrawModal();
                             $(document).find(".close").click(); 
                             // update balance    

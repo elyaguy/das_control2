@@ -264,7 +264,7 @@ function (
             $btn.button("reset");
             $(":input[type=\"button\"]").prop("disabled", false);
             var alertMsg = response.data.msg;
-            window.toastr.success(alertMsg, "Éxito!");
+            window.toastr.success(alertMsg, "ÉXITO!");
 
             currencyId = response.data.id;
             
@@ -283,7 +283,7 @@ function (
                 alertMsg += "<p>" + value + ".</p>";
             });
             alertMsg += "</div>";
-            window.toastr.warning(alertMsg, "Advertencia!");
+            window.toastr.warning(alertMsg, "ADVERTENCIA!");
         });
     });
 
@@ -320,7 +320,7 @@ function (
                 })
                 .then(function(response) {
                     dt.DataTable().ajax.reload( null, false );
-                    window.swal("Éxito!", response.data.msg, "success");
+                    window.swal("ÉXITO!", response.data.msg, "success");
                 }, function(response) {
                     window.swal("Ups!", response.data.errorMsg, "error");
                 });
@@ -351,7 +351,7 @@ function (
             $btn.button("reset");
 
             // Alert
-            window.swal("Éxito!", "Currency activated", "success")
+            window.swal("ÉXITO!", "Currency activated", "success")
             .then(function(value) {
                 window.location = window.location;
             });

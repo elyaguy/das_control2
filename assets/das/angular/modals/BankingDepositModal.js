@@ -81,7 +81,7 @@ window.angularApp.factory("BankingDepositModal", ["API_URL", "window", "jQuery",
                         form.find(".box-body").before(alertMsg);
 
                         // Alert
-                        swal("Éxito!", response.data.msg, "success").then(function(value) {
+                        swal("ÉXITO!", response.data.msg, "success").then(function(value) {
                             $scope.closeBankingDepositModal();
                             $(document).find(".close").click();
                             // update balance    

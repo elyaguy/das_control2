@@ -304,7 +304,7 @@ function (
             $btn.button("reset");
             $(":input[type=\"button\"]").prop("disabled", false);
             var alertMsg = response.data.msg;
-            window.toastr.success(alertMsg, "Éxito!");
+            window.toastr.success(alertMsg, "ÉXITO!");
 
             giftcardId = response.data.id;
             dt.DataTable().ajax.reload(function(json) {
@@ -322,7 +322,7 @@ function (
                 alertMsg += "<p>" + value + ".</p>";
             });
             alertMsg += "</div>";
-            window.toastr.warning(alertMsg, "Advertencia!");
+            window.toastr.warning(alertMsg, "ADVERTENCIA!");
         });
     });
 
@@ -348,7 +348,7 @@ function (
                 })
                 .then(function(response) {
                     dt.DataTable().ajax.reload( null, false );
-                    window.swal("Éxito!", response.data.msg, "success");
+                    window.swal("ÉXITO!", response.data.msg, "success");
                 }, function(response) {
                     window.swal("Ups!", response.data.errorMsg, "error");
                 });

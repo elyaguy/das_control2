@@ -13,6 +13,12 @@ function get_courses($data = array())
 	return $model->getCourses($data);
 }
 
+// function get_course_tree($data = array(), $store = null) 
+// {	
+// 	$model = registry()->get('loader')->model('course');
+// 	return $model->getCourseTree($data, $store);
+// }
+
 function get_the_course($id, $field = null) 
 {
 	

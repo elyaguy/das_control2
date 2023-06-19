@@ -64,7 +64,7 @@ window.angularApp.factory("ProductCreateModal", ["API_URL", "window", "jQuery", 
                         form.find(".box-body").before(alertMsg);
 
                         // Alert
-                        window.swal("Éxito!", response.data.msg, "success")
+                        window.swal("ÉXITO!", response.data.msg, "success")
                         .then(function(value) {
 
                             $scope.product = response.data.product;

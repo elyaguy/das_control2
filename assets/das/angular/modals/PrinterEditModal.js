@@ -56,7 +56,7 @@ window.angularApp.factory("PrinterEditModal", ["API_URL", "window", "jQuery", "$
 
                         // Alert Box
                         window.swal({
-                          title: "Éxito!",
+                          title: "ÉXITO!",
                           text: response.data.msg,
                           icon: "success",
                           buttons: true,

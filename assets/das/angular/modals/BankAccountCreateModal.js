@@ -57,7 +57,7 @@ window.angularApp.factory("BankAccountCreateModal", ["API_URL", "window", "jQuer
                         form.find(".taxrate-body").before(alertMsg);
 
                         // Alert
-                        window.swal("Éxito!", response.data.msg, "success")
+                        window.swal("ÉXITO!", response.data.msg, "success")
                         .then(function(value) {
 
                             // close modalwindow

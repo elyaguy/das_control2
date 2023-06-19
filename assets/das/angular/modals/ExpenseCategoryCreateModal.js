@@ -57,7 +57,7 @@ window.angularApp.factory("ExpenseCategoryCreateModal", ["API_URL", "window", "j
                         form.find(".box-body").before(alertMsg);
 
                         // Alert
-                        window.swal("Éxito!", response.data.msg, "success")
+                        window.swal("ÉXITO!", response.data.msg, "success")
                         .then(function(value) {
 
                             // close modalwindow

@@ -165,7 +165,7 @@ function (
             $(":input[type=\"button\"]").prop("disabled", false);
             $(":input[type=\"text\"]").prop("disabled", false);
             var alertMsg = response.data.msg;
-            window.toastr.success(alertMsg, "Éxito!");
+            window.toastr.success(alertMsg, "ÉXITO!");
 
             $id = response.data.id;
             dt.DataTable().ajax.reload(function(json) {
@@ -184,7 +184,7 @@ function (
                 alertMsg += "<p>" + value + ".</p>";
             });
             alertMsg += "</div>";
-            window.toastr.warning(alertMsg, "Advertencia!");
+            window.toastr.warning(alertMsg, "ADVERTENCIA!");
         });
 
     });
@@ -212,7 +212,7 @@ function (
                 })
                 .then(function(response) {
                     dt.DataTable().ajax.reload( null, false );
-                    window.swal("Éxito!", response.data.msg, "success");
+                    window.swal("ÉXITO!", response.data.msg, "success");
                 }, function(response) {
                     window.swal("Ups!", response.data.errorMsg, "error");
                 });
@@ -250,7 +250,7 @@ function (
                 })
                 .then(function(response) {
                     $(document).find("body").removeClass("overlay-loader");
-                    window.swal("Éxito!", response.data.msg, "success");
+                    window.swal("ÉXITO!", response.data.msg, "success");
                     window.location = window.baseUrl+"/"+window.adminDir+"/language.php?lang=en";
                 }, function(response) {
                     window.swal("Ups!", response.data.errorMsg, "error");

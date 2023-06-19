@@ -74,7 +74,7 @@ window.angularApp.factory("PurchasePaymentModal", ["API_URL", "window", "jQuery"
                         dataType: "json"
                     }).
                     then(function(response) {
-                        window.swal("Éxito!", response.data.msg, "success")
+                        window.swal("ÉXITO!", response.data.msg, "success")
                         .then(function(value) {
                             $scope.closePurchasePaymentModal();
                         });

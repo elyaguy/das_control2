@@ -5,6 +5,19 @@ function get_products($data = array())
 	return $model->getProducts($data);
 }
 
+function get_products_to_store($all = false) 
+{
+	// $model = registry()->get('loader')->model('product');
+	// return $model->getProductsToStore($data);
+	global $user;
+	if ($all || user_group_id() == 1) {
+		$productModel = registry()->get('loader')->model('product');
+		return $productModel->getProductsToStore();
+	} else {
+		return $user->getBelongsStore(store_id());
+	}
+}
+
 function get_product_images($p_id) 
 {	
 	$model = registry()->get('loader')->model('product');

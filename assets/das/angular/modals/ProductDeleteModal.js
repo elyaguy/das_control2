@@ -58,7 +58,7 @@ window.angularApp.factory("ProductDeleteModal", ["API_URL", "window", "jQuery", 
                         }
 
                         // Alert
-                        window.swal("Éxito!", response.data.msg, "success")
+                        window.swal("ÉXITO!", response.data.msg, "success")
                         .then(function(value) {
                             $scope.closeProductDeleteModal();
                             $(document).find(".close").trigger("click");

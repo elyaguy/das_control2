@@ -55,7 +55,7 @@ window.angularApp.factory("LoanEditModal", ["API_URL", "window", "jQuery", "$htt
 
                         // Alert Box
                         window.swal({
-                          title: "Éxito!",
+                          title: "ÉXITO!",
                           text: response.data.msg,
                           icon: "success",
                           buttons: true,
