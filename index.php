@@ -1,4 +1,4 @@
-<?php 
+<?php
 /*
 | -----------------------------------------------------
 | PRODUCT NAME: 	Modern POS - Point of Sale with Stock Management System
@@ -17,7 +17,7 @@ $document->setTitle(trans('text_login_title'));
 
 // Check, If User Login or Not
 if ($user->isLogged()) {
-  redirect(ADMINDIRNAME.'/dashboard.php');
+  redirect(ADMINDIRNAME . '/dashboard.php');
 }
 
 function insert_error_log()
@@ -26,13 +26,12 @@ function insert_error_log()
   $statement->execute(array(get_real_ip(), 'error'));
 }
 
-if ($request->server['REQUEST_METHOD'] == 'POST' && $request->get['action_type'] == "LOGIN")
-{
+if ($request->server['REQUEST_METHOD'] == 'POST' && $request->get['action_type'] == "LOGIN") {
   try {
 
     // Check total try
-    $from = date('Y-m-d H:i:s', strtotime('-'.(int)UNLOCK_ACCOUNT_AFTER.' minutes', time()));
-    $to = date('Y-m-d H:i:s'); 
+    $from = date('Y-m-d H:i:s', strtotime('-' . (int)UNLOCK_ACCOUNT_AFTER . ' minutes', time()));
+    $to = date('Y-m-d H:i:s');
     $ip = get_real_ip();
     $statement = db()->prepare("SELECT `id` FROM `login_logs` WHERE `status` = ? AND `ip` = ? AND `created_at` >= ? AND `created_at` <= ?");
     $statement->execute(array('error', $ip, $from, $to));
@@ -54,11 +53,11 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && $request->get['action_type']
     // Validate Password
     if (empty($request->post['password'])) {
       insert_error_log();
-        throw new Exception(trans('error_password'));
+      throw new Exception(trans('error_password'));
     }
 
-    $username = $request->post['username']; 
-    $password = $request->post['password']; 
+    $username = $request->post['username'];
+    $password = $request->post['password'];
 
     // Attempt to Log In
     if ($user->login($username, $password)) {
@@ -78,11 +77,11 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && $request->get['action_type']
       }
 
       // Remember Me
-      if(!empty($_POST["remember"])) {
-        setcookie ("user_login",$_POST["username"],time()+ (10 * 365 * 24 * 60 * 60));
+      if (!empty($_POST["remember"])) {
+        setcookie("user_login", $_POST["username"], time() + (10 * 365 * 24 * 60 * 60));
       } else {
-        if(isset($_COOKIE["user_login"])) {
-          setcookie ("user_login","");
+        if (isset($_COOKIE["user_login"])) {
+          setcookie("user_login", "");
         }
       }
 
@@ -93,7 +92,6 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && $request->get['action_type']
 
     insert_error_log();
     throw new Exception(trans('error_invalid_username_password'));
-
   } catch (Exception $e) {
 
     header('HTTP/1.1 422 Unprocessable Entity');
@@ -104,20 +102,19 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && $request->get['action_type']
 }
 
 // Sending Password Resetting Code Via Email
-if ($request->server['REQUEST_METHOD'] == 'POST' && $request->get['action_type'] == "SEND_PASSWORD_RESET_CODE")
-{
+if ($request->server['REQUEST_METHOD'] == 'POST' && $request->get['action_type'] == "SEND_PASSWORD_RESET_CODE") {
   try {
 
-    if(DEMO) {
+    if (DEMO) {
       throw new Exception(trans('error_disable_in_demo'));
     }
 
     // Validate Email Address
     if (!validateEmail($request->post['email'])) {
-        throw new Exception(trans('error_email'));
+      throw new Exception(trans('error_email'));
     }
 
-    $email = $request->post['email']; 
+    $email = $request->post['email'];
 
     // Check, If Email Address Exist In Database or Not
     $statement = db()->prepare("SELECT * FROM `users` LEFT JOIN `user_to_store` as `u2s` ON (`users`.`id` = `u2s`.`user_id`) WHERE `email` = ? AND `u2s`.`status` = ?");
@@ -160,7 +157,7 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && $request->get['action_type']
     $mail->IsHTML(true);
     $template_name = 'password-reset';
     if (!file_exists(DIR_EMAIL_TEMPLATE . $template_name . '.php') || !is_file(DIR_EMAIL_TEMPLATE . $template_name . '.php')) {
-        throw new Exception(trans('error_email_template_not_found'));
+      throw new Exception(trans('error_email_template_not_found'));
     }
 
     //Generate Unique String
@@ -174,7 +171,7 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && $request->get['action_type']
     $mail->Body = $body;
 
     if (!$mail->Send()) {
-        throw new Exception(trans('error_email_not_sent'));
+      throw new Exception(trans('error_email_not_sent'));
     }
 
     // Email End
@@ -186,7 +183,6 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && $request->get['action_type']
     header('Content-Type: application/json; charset=UTF-8');
     echo json_encode(array('msg' => trans('success_reset_code_sent')));
     exit();
-
   } catch (Exception $e) {
 
     header('HTTP/1.1 422 Unprocessable Entity');
@@ -196,18 +192,19 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && $request->get['action_type']
   }
 } ?>
 <!DOCTYPE html>
-<html lang="<?php echo $document->langTag($active_lang);?>">
+<html lang="<?php echo $document->langTag($active_lang); ?>">
+
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title><?php echo store('name') ? store('name') . ' | ' : ''; ?><?php echo trans('title_log_in');?></title>
+  <title><?php echo store('name') ? store('name') . ' | ' : ''; ?><?php echo trans('title_log_in'); ?></title>
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
-  
+
   <!--Set Favicon-->
-  <?php if ($store->get('favicon')): ?>
-      <link rel="shortcut icon" href="assets/das/img/logo-favicons/<?php echo $store->get('favicon'); ?>">
-  <?php else: ?>
-      <link rel="shortcut icon" href="assets/das/img/logo-favicons/nofavicon.png">
+  <?php if ($store->get('favicon')) : ?>
+    <link rel="shortcut icon" href="assets/das/img/logo-favicons/<?php echo $store->get('favicon'); ?>">
+  <?php else : ?>
+    <link rel="shortcut icon" href="assets/das/img/logo-favicons/nofavicon.png">
   <?php endif; ?>
 
   <!-- All CSS -->
@@ -236,15 +233,15 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && $request->get['action_type']
   <!-- JS -->
   <script type="text/javascript">
     var isDemo = false;
-  <?php if(DEMO) : ?>
-    var isDemo = true;
-  <?php endif;?>
+    <?php if (DEMO) : ?>
+      var isDemo = true;
+    <?php endif; ?>
   </script>
 
   <script type="text/javascript">
     var baseUrl = "<?php echo root_url(); ?>";
     var adminDir = "<?php echo ADMINDIRNAME; ?>";
-    var refUrl = "<?php echo isset($request->get['redirect_to']) ? $request->get['redirect_to'] : ''?>";
+    var refUrl = "<?php echo isset($request->get['redirect_to']) ? $request->get['redirect_to'] : '' ?>";
   </script>
 
   <?php if (DEMO || USECOMPILEDASSET) : ?>
@@ -272,19 +269,30 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && $request->get['action_type']
   <?php endif; ?>
 
 </head>
+
 <body class="login-page">
-<div class="hidden"><?php include('assets/das/img/iconmin/membership/membership.svg');?></div>
+  <div class="hidden"><?php include('assets/das/img/iconmin/membership/membership.svg'); ?></div>
 
   <section class="login-box">
-    <div class="login-logo">
+    <div class="login-cover">
+      <!--  <img src="storage/products/login.jpg"> -->
+      <div class="login-cover-image" style="background-image: url(storage/login-bg-16.jpg);position: fixed;top: 0;left: 0;right: 0;bottom: 0;background-size: cover;background-repeat: no-repeat;background-position: center;transition: background .2s linear;" data-id="login-cover-image"></div>
+      <div class="login-cover-bg"></div>
+    </div>
+    <!-- <div class="login-logo">
       <div class="text">
+        <p><strong><?php echo store('name'); ?></strong></p>
+      </div>
+    </div> -->
+    <div class="login-logo" style="position: relative;">
+      <div class="text" style="color: purple; font-size: x-large;">
         <p><strong><?php echo store('name'); ?></strong></p>
       </div>
     </div>
     <?php
     if (isset($error_message)) : ?>
       <div class="alert alert-danger">
-          <p><span class="fa fa-fw fa-warning"></span> <?php echo $error_message ; ?></p>
+        <p><span class="fa fa-fw fa-warning"></span> <?php echo $error_message; ?></p>
       </div>
       <br>
     <?php endif; ?>
@@ -292,12 +300,14 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && $request->get['action_type']
       <p class="login-box-msg">
         <strong><?php echo trans('text_login'); ?></strong>
       </p>
-      <form id="login-form" action="login.php" method="post">       
+      <form id="login-form" action="login.php" method="post">
 
         <div class="form-group">
           <div class="input-group">
             <div class="input-group-addon input-sm">
-              <svg class="svg-icon"><use href="#icon-avatar"></svg>
+              <svg class="svg-icon">
+                <use href="#icon-avatar">
+              </svg>
             </div>
             <!-- <input type="text" class="form-control" value="tusolutionweb@gmail.com" placeholder="Email / Phone No." name="username"> -->
             <input type="text" class="form-control" value="" placeholder='Correo o Teléfono' name="username">
@@ -307,7 +317,9 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && $request->get['action_type']
         <div class="form-group">
           <div class="input-group">
             <div class="input-group-addon input-sm">
-              <svg class="svg-icon"><use href="#icon-password"></svg>
+              <svg class="svg-icon">
+                <use href="#icon-password">
+              </svg>
             </div>
             <!-- <input type="password" class="form-control" value="tusolutionweb" placeholder="Password" name="password"> -->
             <input type="password" class="form-control" value="" placeholder=<?php echo trans('label_password'); ?> name="password">
@@ -315,26 +327,26 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && $request->get['action_type']
         </div>
 
         <button type="submit" id="login-btn" class="btn btn-success btn-block btn-flat" data-loading-text="Logging...">
-          <i class="fa fa-fw fa-sign-in"></i> 
+          <i class="fa fa-fw fa-sign-in"></i>
           <?php echo trans('button_sign_in'); ?>
         </button>
       </form>
-      <?php if(DEMO) : ?>
-      <div id="credentials">
-        <table class="table table-bordered table-striped">
-          <tbody>
-            <?php foreach (get_users() as $the_user) : ?>
-              <?php if (in_array($the_user['email'], array('admin@itsolution24.com', 'cashier@itsolution24.com', 'salesman@itsolution24.com'))) : ?>
-                <tr title="Login as Admin">
-                  <td class="username" data-username="<?php echo $the_user['email'];?>"><?php echo $the_user['email'];?></td>
-                  <td class="password text-center" data-password="<?php echo $the_user['raw_password'];?>"><?php echo $the_user['raw_password'];?></td>
-                </tr>
-              <?php endif;?>
-            <?php endforeach;?>
-          </tbody>
-        </table>
-      </div>
-      <?php endif;?>
+      <?php if (DEMO) : ?>
+        <div id="credentials">
+          <table class="table table-bordered table-striped">
+            <tbody>
+              <?php foreach (get_users() as $the_user) : ?>
+                <?php if (in_array($the_user['email'], array('admin@itsolution24.com', 'cashier@itsolution24.com', 'salesman@itsolution24.com'))) : ?>
+                  <tr title="Login as Admin">
+                    <td class="username" data-username="<?php echo $the_user['email']; ?>"><?php echo $the_user['email']; ?></td>
+                    <td class="password text-center" data-password="<?php echo $the_user['raw_password']; ?>"><?php echo $the_user['raw_password']; ?></td>
+                  </tr>
+                <?php endif; ?>
+              <?php endforeach; ?>
+            </tbody>
+          </table>
+        </div>
+      <?php endif; ?>
 
       <?php if (!DEMO) : ?>
         <div>
@@ -374,13 +386,14 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && $request->get['action_type']
                 <?php echo trans('button_submit'); ?>
               </button>
             </div>
-          </form> 
+          </form>
         </div>
       </div>
     </div>
     <!-- Forgot Password Modal End -->
   <?php endif; ?>
 
-<noscript>You need to have javascript enabled in order to use <strong><?php echo store('name');?></strong>.</noscript>
+  <noscript>You need to have javascript enabled in order to use <strong><?php echo store('name'); ?></strong>.</noscript>
 </body>
+
 </html>

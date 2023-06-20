@@ -1,25 +1,27 @@
-<?php 
+<?php
 ob_start();
 session_start();
-include ("_init.php");
+include("_init.php");
 
 // Redirect, If User Not Logged In
 if (!$user->isLogged()) {
   redirect(root_url() . '/index.php?redirect_to=' . url());
-}?>
+} ?>
 <!DOCTYPE html>
-<html lang="<?php echo $document->langTag($active_lang);?>">
-<head><meta http-equiv="Content-Type" content="text/html; charset=utf-8">
-  
+<html lang="<?php echo $document->langTag($active_lang); ?>">
+
+<head>
+  <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <title>Select Store<?php echo store('name') ? ' | ' . store('name') : null; ?></title>
   <meta content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no" name="viewport">
 
   <!--Set Favicon-->
-  <?php if ($store->get('favicon')): ?>
-      <link rel="shortcut icon" href="assets/das/img/logo-favicons/<?php echo $store->get('favicon'); ?>">
-  <?php else: ?>
-      <link rel="shortcut icon" href="assets/das/img/logo-favicons/nofavicon.png">
+  <?php if ($store->get('favicon')) : ?>
+    <link rel="shortcut icon" href="assets/das/img/logo-favicons/<?php echo $store->get('favicon'); ?>">
+  <?php else : ?>
+    <link rel="shortcut icon" href="assets/das/img/logo-favicons/nofavicon.png">
   <?php endif; ?>
 
   <!-- All CSS -->
@@ -53,7 +55,7 @@ if (!$user->isLogged()) {
   <script type="text/javascript">
     var baseUrl = "<?php echo root_url(); ?>";
     var adminDir = "<?php echo ADMINDIRNAME; ?>";
-    var refUrl = "<?php echo isset($session->data['ref_url']) ? $session->data['ref_url'] : ''?>";
+    var refUrl = "<?php echo isset($session->data['ref_url']) ? $session->data['ref_url'] : '' ?>";
   </script>
 
   <?php if (DEMO || USECOMPILEDASSET) : ?>
@@ -84,12 +86,14 @@ if (!$user->isLogged()) {
   <?php endif; ?>
 
 </head>
+
 <body class="login-page">
-<div class="hidden"><?php include('assets/das/img/iconmin/membership/membership.svg');?></div>
+  <div class="hidden"><?php include('assets/das/img/iconmin/membership/membership.svg'); ?></div>
 
   <section class="login-box">
     <div class="login-logo">
-      <div class="text">
+      <!-- <div class="text"> -->
+      <div class="text" style="color: purple; font-size: large;">
         <p>
           <strong>
             <?php echo trans('text_select_store'); ?>
@@ -99,17 +103,19 @@ if (!$user->isLogged()) {
     </div>
     <?php if (isset($error_message)) { ?>
       <div class="alert alert-danger">
-          <p class=""><span class="fa fa-fw fa-warning"></span> <?php echo $error_message ; ?></p>
+        <p class=""><span class="fa fa-fw fa-warning"></span> <?php echo $error_message; ?></p>
       </div>
       <br>
     <?php } ?>
     <div id="store-launcher" class="login-box-body" ng-controller="StoreController">
       <ul class="list-unstyled list-group store-list">
-        <?php foreach (get_stores() as $the_store): ?>
+        <?php foreach (get_stores() as $the_store) : ?>
           <li class="list-group-item">
-            <a class="activate-store" href="<?php echo root_url();?>/<?php echo ADMINDIRNAME;?>/store.php?active_store_id=<?php echo $the_store['store_id']; ?>">
+            <a class="activate-store" href="<?php echo root_url(); ?>/<?php echo ADMINDIRNAME; ?>/store.php?active_store_id=<?php echo $the_store['store_id']; ?>">
               <div class="store-icon">
-                <svg class="svg-icon"><use href="#icon-store"></svg>
+                <svg class="svg-icon">
+                  <use href="#icon-store">
+                </svg>
               </div>
               <div class="store-name">
                 <?php echo $the_store['name']; ?>
@@ -125,12 +131,13 @@ if (!$user->isLogged()) {
     </div>
   </section>
 
-<script type="text/javascript">
-$(document).ready(function() {
-  $(".store-list").perfectScrollbar();
-});
-</script>
+  <script type="text/javascript">
+    $(document).ready(function() {
+      $(".store-list").perfectScrollbar();
+    });
+  </script>
 
-<noscript>You need to have javascript enabled in order to use <strong><?php echo store('name');?></strong>.</noscript>
+  <noscript>You need to have javascript enabled in order to use <strong><?php echo store('name'); ?></strong>.</noscript>
 </body>
+
 </html>

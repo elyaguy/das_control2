@@ -22724,6 +22724,8 @@ table.text-center th {
 
  
 
+ 
+
 .skin-purple .main-header .navbar {
     background-color: purple
 }
@@ -22937,10 +22939,10 @@ table.text-center th {
 }
 
 .skin-purple .modal-header {
-    background: #9232f8;
-    background: -moz-linear-gradient(top, #9232f8 0, #c95cf1 50%, #7d0cf6 51%, #6a17f0 71%, #6727e7 100%);
-    background: -webkit-linear-gradient(top, #9232f8 0, #c95cf1 50%, #7d0cf6 51%, #6a17f0 71%, #6727e7 100%);
-    background: linear-gradient(to bottom, #9232f8 0, #c95cf1 50%, #7d0cf6 51%, #6a17f0 71%, #6727e7 100%)
+    background: rebeccapurple;
+    background: -moz-linear-gradient(top, #9232f8 0, purple 50%, purple 51%, purple 71%, #7d0cf6 100%);
+    background: -webkit-linear-gradient(top, #9232f8 0, purple 50%, purple 51%, purple 71%, #7d0cf6 100%);
+    background: linear-gradient(to bottom, #9232f8 0, purple 50%, purple 51%, purple 71%, #7d0cf6 100%)
 }
 
 .skin-purple .modal-title {
@@ -23072,6 +23074,7 @@ table.text-center th {
 .skin-purple #people-area>input {
     background-color: #fdddaa
 }
+
 
 
 
