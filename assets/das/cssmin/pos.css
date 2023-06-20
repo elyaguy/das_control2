@@ -22373,7 +22373,7 @@ table.text-center th {
 }
 
 
-
+/* 
 .skin-purple .main-header .navbar {
     background-color: #7039dd
 }
@@ -22719,8 +22719,359 @@ table.text-center th {
 .skin-purple #people-area>input {
     background-color: #fdddaa
 }
+ */
 
 
+ 
+
+.skin-purple .main-header .navbar {
+    background-color: purple
+}
+
+.skin-purple .main-header .navbar .nav>li>a {
+    color: #fff
+}
+
+.skin-purple .main-header .navbar .nav .open>a,
+.skin-purple .main-header .navbar .nav .open>a:focus,
+.skin-purple .main-header .navbar .nav .open>a:hover,
+.skin-purple .main-header .navbar .nav>.active>a,
+.skin-purple .main-header .navbar .nav>li>a:active,
+.skin-purple .main-header .navbar .nav>li>a:focus,
+.skin-purple .main-header .navbar .nav>li>a:hover {
+    background: rgba(0, 0, 0, .1);
+    color: #f6f6f6
+}
+
+.skin-purple .main-header .navbar .sidebar-toggle {
+    color: #fff
+}
+
+.skin-purple .main-header .navbar .sidebar-toggle:hover {
+    color: #f6f6f6;
+    background: rgba(0, 0, 0, .1)
+}
+
+.skin-purple .main-header .navbar .sidebar-toggle {
+    color: #fff
+}
+
+.skin-purple .main-header .navbar .sidebar-toggle:hover {
+    background-color: plum
+}
+
+@media (max-width:767px) {
+    .skin-purple .main-header .navbar .dropdown-menu li.divider {
+        background-color: rgba(255, 255, 255, .1)
+    }
+
+    .skin-purple .main-header .navbar .dropdown-menu li a {
+        color: #fff
+    }
+
+    .skin-purple .main-header .navbar .dropdown-menu li a:hover {
+        background: purple
+    }
+}
+
+.skin-purple .main-header .logo {
+    background-color: purple;
+    color: #fff;
+    border-bottom: 0 solid transparent
+}
+
+.skin-purple .main-header .logo:hover {
+    background-color: #5924d3
+}
+
+.skin-purple .main-header li.user-header {
+    background-color: #7039dd
+}
+
+.skin-purple .content-header {
+    background: 0 0
+}
+
+.skin-purple .left-side,
+.skin-purple .main-sidebar,
+.skin-purple .wrapper {
+    background-color: purple
+}
+
+.skin-purple .user-panel>.info,
+.skin-purple .user-panel>.info>a {
+    color: #fff
+}
+
+.skin-purple .sidebar-menu>li.header {
+    color: #4b646f;
+    background: #1a2226
+}
+
+.skin-purple .sidebar-menu>li>a {
+    border-left: 3px solid transparent
+}
+
+.skin-purple .sidebar-menu>li.active>a,
+.skin-purple .sidebar-menu>li:hover>a {
+    color: #fff;
+    background: rebeccapurple;
+    border-left-color: greenyellow;
+    font-weight: bold;
+    text-decoration: underline;
+}
+
+.skin-purple .sidebar-menu>li>.treeview-menu {
+    margin: 0 1px;
+    background: #8e02a3;
+    font-weight: 600;
+}
+
+.skin-purple .sidebar a {
+    color: whitesmoke;
+}
+
+.skin-purple .sidebar a:hover {
+    text-decoration: none
+}
+
+.skin-purple .treeview-menu>li>a {
+    color: #e6e6e6
+}
+
+.skin-purple .treeview-menu>li.active>a,
+.skin-purple .treeview-menu>li>a:hover {
+    color: #fff
+}
+
+.skin-purple .sidebar-form {
+    border-radius: 3px;
+    border: 1px solid #374850;
+    margin: 10px 10px
+}
+
+.skin-purple .sidebar-form .btn,
+.skin-purple .sidebar-form input[type=text] {
+    box-shadow: none;
+    background-color: #374850;
+    border: 1px solid transparent;
+    height: 35px;
+    -webkit-transition: all .3s ease-in-out;
+    -o-transition: all .3s ease-in-out;
+    transition: all .3s ease-in-out
+}
+
+.skin-purple .sidebar-form input[type=text] {
+    color: #666;
+    border-top-left-radius: 2px;
+    border-top-right-radius: 0;
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 2px
+}
+
+.skin-purple .sidebar-form input[type=text]:focus,
+.skin-purple .sidebar-form input[type=text]:focus+.input-group-btn .btn {
+    background-color: #fff;
+    color: #666
+}
+
+.skin-purple .sidebar-form input[type=text]:focus+.input-group-btn .btn {
+    border-left-color: #fff
+}
+
+.skin-purple .sidebar-form .btn {
+    color: #999;
+    border-top-left-radius: 0;
+    border-top-right-radius: 2px;
+    border-bottom-right-radius: 2px;
+    border-bottom-left-radius: 0
+}
+
+.skin-purple .user-panel {
+    background-color: rebeccapurple
+}
+
+.skin-purple .user-panel>.info>a .fa {
+    color: green
+}
+
+.skin-purple #info-bar {
+    background-color: #7039dd
+}
+
+.skin-purple #info-bar .total_amount_display {
+    color: #fff
+}
+
+.skin-purple #save-invoice-btn {
+    background-color: #4e1580;
+    color: #fff;
+    -webkit-transition: .3s;
+    -o-transition: .3s;
+    transition: .3s
+}
+
+.skin-purple #save-invoice-btn:hover {
+    background-color: #2c0b65
+}
+
+.skin-purple .meme-customer-info {
+    background-color: #fff6f5
+}
+
+.skin-purple .calculation-box {
+    background-color: #fff6f5
+}
+
+.skin-purple #toggle_customer {
+    background-color: #fff6f5;
+    color: #000;
+    border: 1px solid #7039dd;
+    -webkit-transition: .3s;
+    -o-transition: .3s;
+    transition: .5s
+}
+
+.skin-purple #toggle_customer:hover {
+    color: #7039dd
+}
+
+.skin-purple .modal-header {
+    background: #9232f8;
+    background: -moz-linear-gradient(top, #9232f8 0, #c95cf1 50%, #7d0cf6 51%, #6a17f0 71%, #6727e7 100%);
+    background: -webkit-linear-gradient(top, #9232f8 0, #c95cf1 50%, #7d0cf6 51%, #6a17f0 71%, #6727e7 100%);
+    background: linear-gradient(to bottom, #9232f8 0, #c95cf1 50%, #7d0cf6 51%, #6a17f0 71%, #6727e7 100%)
+}
+
+.skin-purple .modal-title {
+    color: #fff
+}
+
+.skin-purple .navbar-custom-menu>.navbar-nav>li.active>a:after,
+.skin-purple .navbar-custom-menu>.navbar-nav>li:hover>a:after {
+    border-top-color: #9033c6
+}
+
+.skin-purple .customer-name>input {
+    color: #460096;
+    background-color: #fff2ee;
+    border-bottom: 2px solid purple
+}
+
+.skin-purple .previous-due {
+    background-color: purple
+}
+
+.skin-purple .previous-due h4 {
+    color: #fff
+}
+
+.skin-purple .previous-due span {
+    background-color: purple
+}
+
+.skin-purple #total-amount {
+    background-color: purple
+}
+
+.skin-purple .total-amount-inner {
+    color: #fff
+}
+
+.skin-purple #list-table-head tr {
+    background-color: #fffbfa
+}
+
+.skin-purple #invoice-note .fa {
+    color: #fff
+}
+
+.skin-purple .total-cal {
+    border-top: 3px solid purple
+}
+
+.skin-purple .paynow-btn {
+    color: #fff;
+    background-color: purple;
+    border-color: #965dff
+}
+
+.skin-purple .pay-top td input {
+    background-color: purple;
+    color: #fff
+}
+
+.skin-purple .total-cal {
+    border-top: 2px solid purple
+}
+
+.skin-purple #totaltbl table tr.row1,
+.skin-purple #totaltbl table tr.row2 {
+    background-color: #fff
+}
+
+.skin-purple #totaltbl table tr.row3 {
+    background-color: #fffbfa
+}
+
+.skin-purple .contents #item-list .btn-both .bg-img {
+    background: #fff
+}
+
+.skin-purple .contents #item-list .btn-both span {
+    background: purple;
+    color: #fff
+}
+
+.skin-purple #list-table-div table tr {
+    background-color: #fffbfa
+}
+
+.skin-purple .product-name span {
+    border: 1px solid #490696;
+    background-color: purple;
+    color: #fff
+}
+
+.skin-purple .product-quantity button {
+    background-color: transparent
+}
+
+.skin-purple .contents #item-list .btn-both .product-select {
+    background-color: rgba(60, 141, 188, .42)
+}
+
+.skin-purple .add-icon {
+    background-color: #f39c12
+}
+
+.skin-purple #pay-button button {
+    color: #fff
+}
+
+.skin-purple #item-list .item .item-mask {
+    background-color: #000
+}
+
+.skin-purple #invoice-calculation .table tbody tr.row2 {
+    color: #000;
+    background-color: #ddd
+}
+
+.skin-purple #invoice-calculation .table tbody tr.row3 {
+    color: #000;
+    background-color: #fff
+}
+
+.skin-purple #invoice-calculation .table tbody tr td input {
+    color: #fff;
+    background-color: #000;
+    border-radius: 50px
+}
+
+.skin-purple #people-area>input {
+    background-color: #fdddaa
+}
 
 
 
@@ -22931,11 +23282,11 @@ table.text-center th {
     color: #f39c12
 }
 
-.skin-yellow .modal-header {
-    background: #ffb76b;
-    background: -moz-linear-gradient(top, #ffb76b 0, #ffa73d 50%, #ff7c00 51%, #ff7f04 100%);
-    background: -webkit-linear-gradient(top, #ffb76b 0, #ffa73d 50%, #ff7c00 51%, #ff7f04 100%);
-    background: linear-gradient(to bottom, #ffb76b 0, #ffa73d 50%, #ff7c00 51%, #ff7f04 100%)
+.skin-purple .modal-header {
+    background: rebeccapurple;
+    background: -moz-linear-gradient(top, #9232f8 0, purple 50%, purple 51%, purple 71%, #7d0cf6 100%);
+    background: -webkit-linear-gradient(top, #9232f8 0, purple 50%, purple 51%, purple 71%, #7d0cf6 100%);
+    background: linear-gradient(to bottom, #9232f8 0, purple 50%, purple 51%, purple 71%, #7d0cf6 100%)
 }
 
 .skin-yellow .modal-title {

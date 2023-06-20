@@ -299,7 +299,7 @@ if ($request->server['REQUEST_METHOD'] == 'GET' AND $request->get['action_type']
       $statement = db()->prepare("SELECT `holding_info`.*, `holding_price`.*, `customers`.`customer_id`, `customers`.`customer_name`, `customers`.`customer_mobile`, `customers`.`customer_email` FROM `holding_info` 
         LEFT JOIN `holding_price` ON `holding_info`.`ref_no` = `holding_price`.`ref_no` 
         LEFT JOIN `customers` ON `holding_info`.`customer_id` = `customers`.`customer_id` 
-        WHERE `holding_info`.`store_id` = ? ORDER BY `holding_info`.`info_id` DESC LIMIT 1,20");
+        WHERE `holding_info`.`store_id` = ? ORDER BY `holding_info`.`info_id` DESC LIMIT 0,20");
       $statement->execute(array($store_id));
       $orders = $statement->fetchAll(PDO::FETCH_ASSOC);
 

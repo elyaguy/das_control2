@@ -337,6 +337,9 @@ $permissions = array(
     'sms_sell_invoice'  => trans('sms_sell_invoice'),
     'email_sell_invoice'  => trans('email_sell_invoice'),
     'read_sell_log'  => trans('read_sell_log'),
+    'create_holding_order'  => trans('create_holding_order'),
+    'read_holding_order'  => trans('read_holding_order'),
+    
   ),
   trans('purchase') => array(
     'create_purchase_invoice'  => trans('create_purchase_invoice'),
