@@ -451,15 +451,23 @@ $tab_active = isset($request->get['tab']) ? $request->get['tab'] : 'general';
 										<input ng-model="search_product" class="form-control" type="text" id="search_product" placeholder="<?php echo trans('search'); ?>">
 									</div>
 									<div class="well well-sm product-well">
-										<div filter-list="search_product">
-											<?php foreach (get_products_to_store() as $the_product) : ?>
+										<div filter-list="search_product">								
+											<?php foreach (get_products_to_store() as $the_store) : ?>
+												<div class="checkbox">
+													<label>
+														<input type="checkbox" name="product_store[]" value="<?php echo $the_store['p_id']; ?>" <?php echo in_array($the_store['p_id'], getProductStore()) ? 'checked' : null; ?>>
+														<?php echo $the_store['p_name']; ?>
+													</label>
+												</div>
+											<?php endforeach; ?>
+											<!-- <?php foreach (get_products_to_store() as $the_product) : ?>
 												<div class="checkbox">
 													<label>
 														<input type="checkbox" name="product[]" value="<?php echo $the_product['p_id']; ?>" >
 														<?php echo $the_product['p_name']; ?>
 													</label>
 												</div>
-											<?php endforeach; ?>
+											<?php endforeach; ?> -->
 										</div>
 									</div>
 								</div>

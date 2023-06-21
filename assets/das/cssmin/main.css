@@ -21886,7 +21886,7 @@ table.text-center th {
 
 
 .skin-purple .main-header .navbar {
-    background-color: purple
+    background-color: #605ca8
 }
 
 .skin-purple .main-header .navbar .nav>li>a {
@@ -21931,12 +21931,12 @@ table.text-center th {
     }
 
     .skin-purple .main-header .navbar .dropdown-menu li a:hover {
-        background: purple
+        background: #605ca8
     }
 }
 
 .skin-purple .main-header .logo {
-    background-color: purple;
+    background-color: #605ca8;
     color: #fff;
     border-bottom: 0 solid transparent
 }
@@ -21956,7 +21956,7 @@ table.text-center th {
 .skin-purple .left-side,
 .skin-purple .main-sidebar,
 .skin-purple .wrapper {
-    background-color: purple
+    background-color: #605ca8
 }
 
 .skin-purple .user-panel>.info,
@@ -21972,20 +21972,24 @@ table.text-center th {
 .skin-purple .sidebar-menu>li>a {
     border-left: 3px solid transparent
 }
-
+/* MENU */
 .skin-purple .sidebar-menu>li.active>a,
 .skin-purple .sidebar-menu>li:hover>a {
-    color: #fff;
-    background: rebeccapurple;
+    color: whitesmoke;
+    background: #001a35;
     border-left-color: greenyellow;
-    font-weight: bold;
+    text-decoration-color: #003eff;
+    /* font-weight: bold; */
     text-decoration: underline;
 }
 
+/* MENU DESPLEGADO*/
+
 .skin-purple .sidebar-menu>li>.treeview-menu {
     margin: 0 1px;
-    background: #8e02a3;
-    font-weight: 600;
+    background: #2c3b41;
+    /* font-weight: 600; */
+
 }
 
 .skin-purple .sidebar a {
@@ -22049,7 +22053,8 @@ table.text-center th {
 }
 
 .skin-purple .user-panel {
-    background-color: rebeccapurple
+    background-color: #001a35;
+
 }
 
 .skin-purple .user-panel>.info>a .fa {
@@ -22120,7 +22125,7 @@ table.text-center th {
 }
 
 .skin-purple .previous-due {
-    background-color: purple
+    background-color: #605ca8
 }
 
 .skin-purple .previous-due h4 {
@@ -22128,11 +22133,11 @@ table.text-center th {
 }
 
 .skin-purple .previous-due span {
-    background-color: purple
+    background-color: #605ca8
 }
 
 .skin-purple #total-amount {
-    background-color: purple
+    background-color: #605ca8
 }
 
 .skin-purple .total-amount-inner {
@@ -22148,22 +22153,22 @@ table.text-center th {
 }
 
 .skin-purple .total-cal {
-    border-top: 3px solid purple
+    border-top: 3px solid #605ca8
 }
 
 .skin-purple .paynow-btn {
     color: #fff;
-    background-color: purple;
+    background-color: #605ca8;
     border-color: #965dff
 }
 
 .skin-purple .pay-top td input {
-    background-color: purple;
+    background-color: #605ca8;
     color: #fff
 }
 
 .skin-purple .total-cal {
-    border-top: 2px solid purple
+    border-top: 2px solid #605ca8
 }
 
 .skin-purple #totaltbl table tr.row1,
@@ -22180,7 +22185,7 @@ table.text-center th {
 }
 
 .skin-purple .contents #item-list .btn-both span {
-    background: purple;
+    background: #605ca8;
     color: #fff
 }
 
@@ -22190,7 +22195,7 @@ table.text-center th {
 
 .skin-purple .product-name span {
     border: 1px solid #490696;
-    background-color: purple;
+    background-color: #605ca8;
     color: #fff
 }
 

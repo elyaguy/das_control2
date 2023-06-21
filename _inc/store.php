@@ -360,11 +360,11 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action
 
 
     // Add product to store
-    if (!empty($request->post['product'])) {
-      foreach ($request->post['product'] as $product_id) {
+    if (!empty($request->post['product_store'])) {
+      foreach ($request->post['product_store'] as $product_id) {
 
         // Fetch product info
-        $product_info = get_the_product($product_id);
+        $product_info = get_the_product($product_id, null, 1);
 
         //--- Category to store ---//
 
