@@ -192,19 +192,7 @@ if ($order_printer_ids) {
 							        </select>
 								</div>
 							</div>
-							<div id="searchbox">
-								<input ng-change="showProductList()" onClick="this.select();" type="text" id="product-name" name="product-name" ng-model="productName" placeholder="<?php echo trans('text_search_product'); ?>"  autofocus>
-								<svg class="svg-icon search-btn"><use href="#icon-pos-search"></svg>
-								<div class="category-search">
-									<select class="form-control select2" name="category-search-select" id="category-search-select">
-							          	<option value=""><?php echo sprintf(trans('text_view_all'), 'Products'); ?></option>
-							          	<?php foreach (get_category_tree(array('filter_fetch_all' => true)) as $category_id => $category_name) : 
-							          		if (get_total_valid_category_item($category_id) <= 0) { continue; } ?>
-							          		<option value="<?php echo $category_id; ?>"><?php echo $category_name; ?> (<?php echo get_total_valid_category_item($category_id); ?>)</option>
-							          	<?php endforeach; ?>
-							        </select>
-								</div>
-							</div>
+	
 							<div id="item-list">
 								<!-- <div class="pos-product-pagination pagination-top"></div> -->
 								<div ng-show="showLoader" class="ajax-loader">

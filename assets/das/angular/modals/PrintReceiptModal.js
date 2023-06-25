@@ -54,7 +54,7 @@ window.angularApp.factory("PrintReceiptModal", ["API_URL", "window", "jQuery", "
         if ($scope.invoiceInfo.invoice_note) {
             receipt_data.footer += $scope.invoiceInfo.invoice_note + "\n\n";
         }  else {
-            receipt_data.footer += "Thank you for choosing us.";
+            receipt_data.footer += "Gracias por elegirnos.";
         }
 
         var socket_data = {
