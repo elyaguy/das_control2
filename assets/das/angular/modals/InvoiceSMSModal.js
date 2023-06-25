@@ -17,7 +17,7 @@ window.angularApp.factory("InvoiceSMSModal", ["API_URL", "window", "jQuery", "$h
                   method: "GET"
                 })
                 .then(function(response, status, headers, config) {
-                    $scope.modal_title = "SEND SMS";
+                    $scope.modal_title = "ENVIAR SMS";
                     $scope.rawHtml = $sce.trustAsHtml(response.data);   
                 }, function(response) {
                    window.swal("Ups!", response.data.errorMsg, "error");

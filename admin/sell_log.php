@@ -97,7 +97,7 @@ include ("left_sidebar.php") ;
                     <option value=""><?php echo trans('text_select'); ?></option>
                     <?php foreach (get_customers() as $the_customer) : ?>
                       <option value="<?php echo $the_customer['customer_id'];?>">
-                      <?php echo $the_customer['sup_name'];?>
+                      <?php echo $the_customer['customer_name'];?>
                     </option>
                   <?php endforeach;?>
                   </select>

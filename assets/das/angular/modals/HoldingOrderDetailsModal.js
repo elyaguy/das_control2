@@ -16,8 +16,8 @@ window.angularApp.factory("HoldingOrderDetailsModal", ["API_URL", "window", "jQu
                             "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
                         "</div>" +
                         "<div class=\"modal-footer\">" +
-                            "<button ng-click=\"editTheOrder();\" type=\"button\" class=\"btn btn-info r-50\"><span class=\"fa fa-fw fa-edit\"></span>Edit The Order</button>" +
-                            "<button ng-click=\"closeHoldingOrderDetailsModal();\" type=\"button\" class=\"btn btn-danger r-50\"><span class=\"fa fa-fw fa-close\"></span>Close</button>" +
+                            "<button ng-click=\"editTheOrder();\" type=\"button\" class=\"btn btn-info r-50\"><span class=\"fa fa-fw fa-edit\"></span>Editar el pedido</button>" +
+                            "<button ng-click=\"closeHoldingOrderDetailsModal();\" type=\"button\" class=\"btn btn-danger r-50\"><span class=\"fa fa-fw fa-close\"></span>Cerrar</button>" +
                         "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $scope.loadModal = function() {
@@ -27,7 +27,7 @@ window.angularApp.factory("HoldingOrderDetailsModal", ["API_URL", "window", "jQu
                       method: "GET"
                     })
                     .then(function(response, status, headers, config) {
-                        $scope.modal_title = "Hold Orders";
+                        $scope.modal_title = "Pedidos en espera";
                         $scope.rawHtml = $sce.trustAsHtml(response.data.html); 
                         $scope.orders = response.data.orders;
                         $("#total-holding_order").text($scope.orders.length);
@@ -46,7 +46,7 @@ window.angularApp.factory("HoldingOrderDetailsModal", ["API_URL", "window", "jQu
                     $(document).find("body").addClass("overlay-loader");
                     $(".holding-order-item").removeClass("active");
                     $("#holding-order-item-"+refNo).addClass("active");
-                    $scope.modal_title = "Hold Orders > " + refNo;
+                    $scope.modal_title = "Pedido en espera => " + refNo;
                     $http({
                       url: window.baseUrl + "/_inc/holding_order.php?action_type=HOLDINGORDERDETAILS&ref_no="+refNo,
                       method: "GET"
@@ -69,7 +69,7 @@ window.angularApp.factory("HoldingOrderDetailsModal", ["API_URL", "window", "jQu
 
                 $scope.editTheOrder = function() {
                     if (!$scope.refID) {
-                        window.swal("Ups!", "Please, select an order", "error");
+                        window.swal("Ups!", "Por favor, seleccione un pedido", "error");
                         return false;
                     }
                     window.location = window.baseUrl+"/admin/pos.php?holding_id="+$scope.refID;

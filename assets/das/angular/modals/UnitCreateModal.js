@@ -17,7 +17,7 @@ window.angularApp.factory("UnitCreateModal", ["API_URL", "window", "jQuery", "$h
                   method: "GET"
                 })
                 .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Create New Unit";
+                    $scope.modal_title = "Crear nueva Unidad";
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
 
                     setTimeout(function() {

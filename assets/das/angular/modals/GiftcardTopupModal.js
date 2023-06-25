@@ -18,7 +18,7 @@ window.angularApp.factory("GiftcardTopupModal", ["API_URL", "window", "jQuery", 
                   method: "GET"
                 })
                 .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Topup Gift Card (" + giftcard.card_no + ")";
+                    $scope.modal_title = "Recargar Tarjeta de Regalo (" + giftcard.card_no + ")";
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
                     setTimeout(function() {
                         window.storeApp.datePicker();

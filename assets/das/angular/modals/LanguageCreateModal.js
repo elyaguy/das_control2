@@ -17,7 +17,7 @@ window.angularApp.factory("LanguageCreateModal", ["API_URL", "window", "jQuery",
                   method: "GET"
                 })
                 .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Create New Language";
+                    $scope.modal_title = "Crear nuevo Idioma";
                     $scope.rawHtml = $sce.trustAsHtml(response.data);                    
                 }, function(response) {
                    window.swal("Ups!", response.data.errorMsg, "error");

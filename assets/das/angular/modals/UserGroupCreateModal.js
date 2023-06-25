@@ -17,7 +17,7 @@ window.angularApp.factory("UserGroupCreateModal", ["API_URL", "window", "jQuery"
                   method: "GET"
                 })
                 .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Create New UserGroup";
+                    $scope.modal_title = "Crear nuevo Grupo de Usuario";
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
 
                     setTimeout(function() {

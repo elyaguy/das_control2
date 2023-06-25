@@ -17,7 +17,7 @@ window.angularApp.factory("BankAccountCreateModal", ["API_URL", "window", "jQuer
                   method: "GET"
                 })
                 .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Create New BankAccount";
+                    $scope.modal_title = "Crear nueva Cuenta Bancaria";
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
 
                     setTimeout(function() {

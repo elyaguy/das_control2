@@ -27,7 +27,7 @@ window.angularApp.factory("PaymentOnlyModal", ["API_URL", "window", "jQuery", "$
                       method: "GET"
                     })
                     .then(function(response, status, headers, config) {
-                        $scope.modal_title = "Payment > " + $scope.order.customer_name;
+                        $scope.modal_title = "Pago => " + $scope.order.customer_name;
                         $scope.rawHtml = $sce.trustAsHtml(response.data);
                         setTimeout(function() {
                             storeApp.bootBooxHeightAdjustment();
@@ -51,7 +51,7 @@ window.angularApp.factory("PaymentOnlyModal", ["API_URL", "window", "jQuery", "$
                       method: "GET"
                     })
                     .then(function(response, status, headers, config) {
-                        $scope.modal_title = "Payment > " + $scope.order.customer_name;
+                        $scope.modal_title = "Pago => " + $scope.order.customer_name;
                         $scope.rawPaymentMethodHtml = $sce.trustAsHtml(response.data);
                         if ($scope.pmethodCode == 'credit') {
                             if (parseFloat($scope.customerBalance) < parseFloat($scope.order.due)) {

@@ -107,7 +107,7 @@ window.angularApp.factory("InvoiceInfoEditModal", ["API_URL", "window", "jQuery"
                   method: "GET"
                 })
                 .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Edit Invoice > " + invoice.invoice_id;
+                    $scope.modal_title = "Editar Factura => " + invoice.invoice_id;
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
 
                     setTimeout(function() {
@@ -219,7 +219,7 @@ window.angularApp.factory("BoxCreateModal", ["API_URL", "window", "jQuery", "$ht
                   method: "GET"
                 })
                 .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Create New Box";
+                    $scope.modal_title = "Crear nueva Caja";
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
 
                     setTimeout(function() {
@@ -555,7 +555,7 @@ window.angularApp.factory("UnitCreateModal", ["API_URL", "window", "jQuery", "$h
                   method: "GET"
                 })
                 .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Create New Unit";
+                    $scope.modal_title = "Crear nueva Unidad";
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
 
                     setTimeout(function() {
@@ -891,7 +891,7 @@ window.angularApp.factory("TaxrateCreateModal", ["API_URL", "window", "jQuery", 
                   method: "GET"
                 })
                 .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Create New Taxrate";
+                    $scope.modal_title = "Crear nueva Tasa de Impuesto";
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
 
                     setTimeout(function() {
@@ -1676,7 +1676,7 @@ window.angularApp.factory("CustomerCreateModal", ["API_URL", "window", "jQuery",
                   method: "GET"
                 })
                 .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Create New Customer";
+                    $scope.modal_title = "Crear nuevo Cliente";
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
 
                     setTimeout(function() {
@@ -2048,7 +2048,7 @@ window.angularApp.factory("DueCollectionDetailsModal", ["API_URL", "window", "jQ
                   method: "GET"
                 })
                 .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Due Collection Details";
+                    $scope.modal_title = "Detalles de Cobro Vencido";
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
 
                     setTimeout(function() {
@@ -2097,7 +2097,7 @@ window.angularApp.factory("BankingDepositModal", ["API_URL", "window", "jQuery",
                   method: "GET"
                 })
                 .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Deposit to Bank";
+                    $scope.modal_title = "Depósito al Banco";
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
                     setTimeout(function() {
                         window.storeApp.select2();
@@ -2232,7 +2232,7 @@ window.angularApp.factory("BankingRowViewModal", ["API_URL", "window", "jQuery",
                   method: "GET"
                 })
                 .then(function (response, status, headers, config) {
-                    $scope.modal_title = "View " + type + " details";
+                    $scope.modal_title = "Ver " + type + " detalle";
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
                 }, function (response) {
                     window.swal("Ups!", response.data.errorMsg, "error").then(function() {
@@ -2279,7 +2279,7 @@ window.angularApp.factory("BankingWithdrawModal", ["API_URL", "window", "jQuery"
                   method: "GET"
                 })
                 .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Withdraw from Bank";
+                    $scope.modal_title = "Retiro del Banco";
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
                     setTimeout(function() {
                         window.storeApp.select2();
@@ -2387,7 +2387,7 @@ window.angularApp.factory("BankAccountCreateModal", ["API_URL", "window", "jQuer
                   method: "GET"
                 })
                 .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Create New BankAccount";
+                    $scope.modal_title = "Crear nueva Cuenta Bancaria";
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
 
                     setTimeout(function() {
@@ -2727,7 +2727,7 @@ window.angularApp.factory("BankTransferModal", ["API_URL", "window", "jQuery", "
                   method: "GET"
                 })
                 .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Transfer Balance";
+                    $scope.modal_title = "Transferir Saldo";
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
                     setTimeout(function() {
                         window.storeApp.select2();
@@ -2913,7 +2913,7 @@ window.angularApp.factory("keyboardShortcutModal", ["API_URL", "window", "jQuery
                   method: "GET"
                 })
                 .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Keyboard Shortcut";
+                    $scope.modal_title = "Atajo de Teclado";
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
                 }, function(data) {
                    window.swal("Ups!", "an unknown error occured!", "error");
@@ -4270,7 +4270,7 @@ window.angularApp.factory("SupplierCreateModal", ["API_URL", "window", "jQuery",
                   method: "GET"
                 })
                 .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Create New Supplier";
+                    $scope.modal_title = "Crear nuevo Proveedor";
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
 
                     setTimeout(function() {
@@ -4603,7 +4603,7 @@ window.angularApp.factory("BrandCreateModal", ["API_URL", "window", "jQuery", "$
                   method: "GET"
                 })
                 .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Crear nuevo Marca";
+                    $scope.modal_title = "Crear nueva Marca";
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
 
                     setTimeout(function() {
@@ -5604,7 +5604,7 @@ window.angularApp.factory("UserCreateModal", ["API_URL", "window", "jQuery", "$h
                   method: "GET"
                 })
                 .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Create New User";
+                    $scope.modal_title = "Crear nuevo Usuario";
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
 
                     setTimeout(function() {
@@ -5940,7 +5940,7 @@ window.angularApp.factory("UserGroupCreateModal", ["API_URL", "window", "jQuery"
                   method: "GET"
                 })
                 .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Create New UserGroup";
+                    $scope.modal_title = "Crear nuevo Grupo de Usuario";
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
 
                     setTimeout(function() {
@@ -6268,7 +6268,7 @@ window.angularApp.factory("UserInvoiceDetailsModal", ["API_URL", "window", "jQue
                   method: "GET"
                 })
                 .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Invoice List of " + $scope.username;
+                    $scope.modal_title = "Lista de facturas de " + $scope.username;
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
 
                     setTimeout(function() {
@@ -6321,7 +6321,7 @@ window.angularApp.factory("UserInvoiceDueDetailsModal", ["API_URL", "window", "j
                   method: "GET"
                 })
                 .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Invoice List of " + $scope.username;
+                    $scope.modal_title = "Lista de facturas de " + $scope.username;
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
 
                     setTimeout(function() {
@@ -6366,7 +6366,7 @@ window.angularApp.factory("GiftcardCreateModal", ["API_URL", "window", "jQuery",
                   method: "GET"
                 })
                 .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Create New Giftcard";
+                    $scope.modal_title = "Crear nueva Tarjeta de Regalo";
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
                     setTimeout(function() {
                         window.storeApp.datePicker();
@@ -6607,7 +6607,7 @@ window.angularApp.factory("GiftcardViewModal", ["API_URL", "window", "jQuery", "
                   method: "GET"
                 })
                 .then(function (response, status, headers, config) {
-                    $scope.modal_title = "Gift Card (" + giftcard.card_no + ")";
+                    $scope.modal_title = "Tarjeta de Regalo (" + giftcard.card_no + ")";
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
                 }, function (response) {
                     window.swal("Ups!", response.data.errorMsg, "error").then(function() {
@@ -6655,7 +6655,7 @@ window.angularApp.factory("GiftcardTopupModal", ["API_URL", "window", "jQuery", 
                   method: "GET"
                 })
                 .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Topup Gift Card (" + giftcard.card_no + ")";
+                    $scope.modal_title = "Recargar Tarjeta de Regalo (" + giftcard.card_no + ")";
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
                     setTimeout(function() {
                         window.storeApp.datePicker();
@@ -6772,7 +6772,7 @@ window.angularApp.factory("InvoiceSMSModal", ["API_URL", "window", "jQuery", "$h
                   method: "GET"
                 })
                 .then(function(response, status, headers, config) {
-                    $scope.modal_title = "SEND SMS";
+                    $scope.modal_title = "ENVIAR SMS";
                     $scope.rawHtml = $sce.trustAsHtml(response.data);   
                 }, function(response) {
                    window.swal("Ups!", response.data.errorMsg, "error");
@@ -6867,7 +6867,7 @@ window.angularApp.factory("PaymentFormModal", ["API_URL", "window", "jQuery", "$
                   method: "GET"
                 })
                 .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Payment > " + $scope.customerName;
+                    $scope.modal_title = "Pago => " + $scope.customerName;
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
                     setTimeout(function() {
                         storeApp.bootBooxHeightAdjustment();
@@ -6902,7 +6902,7 @@ window.angularApp.factory("PaymentFormModal", ["API_URL", "window", "jQuery", "$
                       method: "GET"
                     })
                     .then(function(response, status, headers, config) {
-                        $scope.modal_title = "Payment > " + $scope.customerName;
+                        $scope.modal_title = "Pago => " + $scope.customerName;
                         $scope.rawPaymentMethodHtml = $sce.trustAsHtml(response.data);
                         if ($scope.pmethodCode == 'credit') {
                             if (parseFloat($scope.customerBalance) < parseFloat($scope.totalPayable)) {
@@ -7072,7 +7072,7 @@ window.angularApp.factory("PaymentOnlyModal", ["API_URL", "window", "jQuery", "$
                       method: "GET"
                     })
                     .then(function(response, status, headers, config) {
-                        $scope.modal_title = "Payment > " + $scope.order.customer_name;
+                        $scope.modal_title = "Pago => " + $scope.order.customer_name;
                         $scope.rawHtml = $sce.trustAsHtml(response.data);
                         setTimeout(function() {
                             storeApp.bootBooxHeightAdjustment();
@@ -7096,7 +7096,7 @@ window.angularApp.factory("PaymentOnlyModal", ["API_URL", "window", "jQuery", "$
                       method: "GET"
                     })
                     .then(function(response, status, headers, config) {
-                        $scope.modal_title = "Payment > " + $scope.order.customer_name;
+                        $scope.modal_title = "Pago => " + $scope.order.customer_name;
                         $scope.rawPaymentMethodHtml = $sce.trustAsHtml(response.data);
                         if ($scope.pmethodCode == 'credit') {
                             if (parseFloat($scope.customerBalance) < parseFloat($scope.order.due)) {
@@ -7240,7 +7240,7 @@ window.angularApp.factory("PurchaseInvoiceInfoEditModal", ["API_URL", "window", 
                   method: "GET"
                 })
                 .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Edit Invoice > " + invoice.invoice_id;
+                    $scope.modal_title = "Editar Factura => " + invoice.invoice_id;
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
 
                     setTimeout(function() {
@@ -7360,7 +7360,7 @@ window.angularApp.factory("PurchasePaymentModal", ["API_URL", "window", "jQuery"
                       method: "GET"
                     })
                     .then(function(response, status, headers, config) {
-                        $scope.modal_title = "Purchase Payment";
+                        $scope.modal_title = "Compra Pago";
                         $scope.order = response.data.order;
                         $scope.rawHtml = $sce.trustAsHtml(response.data.html);
                         setTimeout(function() {
@@ -7385,7 +7385,7 @@ window.angularApp.factory("PurchasePaymentModal", ["API_URL", "window", "jQuery"
                       method: "GET"
                     })
                     .then(function(response, status, headers, config) {
-                        $scope.modal_title = "Purchase Payment";
+                        $scope.modal_title = "Compra Pago";
                         $scope.rawPaymentMethodHtml = $sce.trustAsHtml(response.data);
                         $(document).find("body").removeClass("overlay-loader");
                     }, function(response) {
@@ -7480,7 +7480,7 @@ window.angularApp.factory("SellReturnModal", ["API_URL", "window", "jQuery", "$h
                       method: "GET"
                     })
                     .then(function(response, status, headers, config) {
-                        $scope.modal_title = "Return > " +$scope.order.invoice_id;
+                        $scope.modal_title = "Devolución => " +$scope.order.invoice_id;
                         $scope.rawHtml = $sce.trustAsHtml(response.data);
                         setTimeout(function() {
                             storeApp.customCheckbox();
@@ -7572,7 +7572,7 @@ window.angularApp.factory("PurchaseReturnModal", ["API_URL", "window", "jQuery",
                       method: "GET"
                     })
                     .then(function(response, status, headers, config) {
-                        $scope.modal_title = "Return > " +$scope.order.invoice_id;
+                        $scope.modal_title = "Devolución => " +$scope.order.invoice_id;
                         $scope.rawHtml = $sce.trustAsHtml(response.data);
                         setTimeout(function() {
                              storeApp.customCheckbox();
@@ -7659,7 +7659,7 @@ window.angularApp.factory("ExpenseSummaryModal", ["API_URL", "window", "jQuery",
                   method: "GET"
                 })
                 .then(function (response, status, headers, config) {
-                    $scope.modal_title = "Expense Summary";
+                    $scope.modal_title = "Resumen de Gastos";
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
                 }, function (response) {
                    window.swal("Ups!", response.data.errorMsg, "error")

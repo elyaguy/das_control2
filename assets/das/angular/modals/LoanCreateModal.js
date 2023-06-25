@@ -17,7 +17,7 @@ window.angularApp.factory("LoanCreateModal", ["API_URL", "window", "jQuery", "$h
                   method: "GET"
                 })
                 .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Create New Loan";
+                    $scope.modal_title = "Crear nuevo Préstamo";
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
 
                     setTimeout(function() {

@@ -22,7 +22,7 @@ window.angularApp.factory("TransferDetailsViewModal", ["API_URL", "window", "jQu
                   method: "GET"
                 })
                 .then(function (response, status, headers, config) {
-                    $scope.modal_title = "Transfer > " + transfer.ref_no;
+                    $scope.modal_title = "Transferencia => " + transfer.ref_no;
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
                 }, function (response) {
                     window.swal("Ups!", response.data.errorMsg, "error")

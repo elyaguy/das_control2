@@ -17,7 +17,7 @@ window.angularApp.factory("CustomerSubstractBalanceModal", ["API_URL", "window",
                   method: "GET"
                 })
                 .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Substract Balance > " + customer.customer_name;
+                    $scope.modal_title = "Restar Saldo => " + customer.customer_name;
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
 
                     setTimeout(function() {

@@ -19,7 +19,7 @@ window.angularApp.factory("DueCollectionDetailsModal", ["API_URL", "window", "jQ
                   method: "GET"
                 })
                 .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Due Collection Details";
+                    $scope.modal_title = "Detalles de Cobro Vencido";
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
 
                     setTimeout(function() {

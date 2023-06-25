@@ -199,7 +199,7 @@ if ($request->server['REQUEST_METHOD'] == 'POST' AND $request->get['action_type'
     $Hooks->do_action('After_Add_Order_On_Hold', $id);
 
     header('Content-Type: application/json');
-    echo json_encode(array('msg' => 'Order Successfully Added to Holding List!'));
+    echo json_encode(array('msg' => '¡Pedido agregado con éxito a la lista de espera!'));
     exit();
 
   } catch (Exception $e) { 

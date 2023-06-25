@@ -17,7 +17,7 @@ window.angularApp.factory("BoxCreateModal", ["API_URL", "window", "jQuery", "$ht
                   method: "GET"
                 })
                 .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Create New Box";
+                    $scope.modal_title = "Crear nueva Caja";
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
 
                     setTimeout(function() {

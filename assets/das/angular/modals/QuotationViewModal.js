@@ -22,7 +22,7 @@ window.angularApp.factory("QuotationViewModal", ["API_URL", "window", "jQuery", 
                   method: "GET"
                 })
                 .then(function (response, status, headers, config) {
-                    $scope.modal_title = "Quotation > " + quotation.reference_no;
+                    $scope.modal_title = "Cotización => " + quotation.reference_no;
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
                 }, function (response) {
                    window.swal("Ups!", response.data.errorMsg, "error")

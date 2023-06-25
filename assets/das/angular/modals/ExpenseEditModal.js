@@ -18,7 +18,7 @@ window.angularApp.factory("ExpenseEditModal", ["API_URL", "window", "jQuery", "$
                   method: "GET"
                 })
                 .then(function(response, status, headers, config) {
-                    $scope.modal_title = 'Edit > ' + expense.reference_no;
+                    $scope.modal_title = 'Editar => ' + expense.reference_no;
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
                     setTimeout(function() {
                         window.storeApp.select2();

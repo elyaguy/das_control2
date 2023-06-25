@@ -17,7 +17,7 @@ window.angularApp.factory("CustomerAddBalanceModal", ["API_URL", "window", "jQue
                   method: "GET"
                 })
                 .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Add Balance > " + customer.customer_name;
+                    $scope.modal_title = "Agregar Saldo => " + customer.customer_name;
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
 
                     setTimeout(function() {

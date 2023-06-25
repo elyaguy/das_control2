@@ -25,7 +25,7 @@
 		</div>
 		<div class="col-lg-8 col-md-8 col-sm-7 col-xs-6 bootboox-tab-menu bootboox-container">
 			<div ng-show="!showOrderDetails">
-				<br><br><p class="text-center"><i>Select an order to view details</i></p>
+				<br><br><p class="text-center"><i>Seleccione un pedido para ver los detalles</i></p>
 			</div>
 			<div ng-show="showOrderDetails" class="table-resposive p10">
 				<h4 class="text-center"><b><?php echo trans('text_order_details');?></b></h4>

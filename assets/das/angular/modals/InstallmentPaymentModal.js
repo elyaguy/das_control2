@@ -18,9 +18,9 @@ window.angularApp.factory("InstallmentPaymentModal", ["API_URL", "window", "jQue
                 })
                 .then(function(response, status, headers, config) {
                     if ($parentScope.invoice_id && $parentScope.invoice_id != 'undefined') {
-                        $scope.modal_title = 'Payment > ' + $parentScope.invoice_id;
+                        $scope.modal_title = 'Pago => ' + $parentScope.invoice_id;
                     } else {
-                        $scope.modal_title = 'Payment';
+                        $scope.modal_title = 'Pago';
                     }
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
                 }, function(response) {

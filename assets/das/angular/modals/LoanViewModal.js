@@ -26,7 +26,7 @@ window.angularApp.factory("LoanViewModal", ["API_URL", "window", "jQuery", "$htt
                   method: "GET"
                 })
                 .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Loan: " + loan.ref_no;
+                    $scope.modal_title = "Préstamo: " + loan.ref_no;
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
                     setTimeout(function() {
                         window.storeApp.datePicker();

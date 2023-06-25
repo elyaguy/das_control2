@@ -17,7 +17,7 @@ window.angularApp.factory("BankingWithdrawModal", ["API_URL", "window", "jQuery"
                   method: "GET"
                 })
                 .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Withdraw from Bank";
+                    $scope.modal_title = "Retirar del Banco";
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
                     setTimeout(function() {
                         window.storeApp.select2();

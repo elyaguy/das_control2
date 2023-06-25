@@ -19,7 +19,7 @@ window.angularApp.factory("HoldingOrderModal", ["API_URL", "window", "jQuery", "
                 if (window.getParameterByName("holding_id")) {
                     window.swal({
                       title: "Ups!",
-                      text: "Please, cancel existing holding order first",
+                      text: "Por favor, cancele primero el pedido existente!",
                       icon: "error",
                       buttons: true,
                       dangerMode: false,
@@ -37,7 +37,7 @@ window.angularApp.factory("HoldingOrderModal", ["API_URL", "window", "jQuery", "
                       method: "GET"
                     })
                     .then(function(response, status, headers, config) {
-                        $scope.modal_title = "Hold Order";
+                        $scope.modal_title = "Mantener Pedido";
                         $scope.rawHtml = $sce.trustAsHtml(response.data);
                         setTimeout(function() {
                             storeApp.bootBooxHeightAdjustment();

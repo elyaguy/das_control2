@@ -22,7 +22,7 @@ window.angularApp.factory("ExpenseSummaryModal", ["API_URL", "window", "jQuery",
                   method: "GET"
                 })
                 .then(function (response, status, headers, config) {
-                    $scope.modal_title = "Expense Summary";
+                    $scope.modal_title = "Resumen de Gastos";
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
                 }, function (response) {
                    window.swal("Ups!", response.data.errorMsg, "error")

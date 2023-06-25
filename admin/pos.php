@@ -231,7 +231,7 @@ if ($order_printer_ids) {
 										</div> -->
 										<span class="item-info" data-id="{{ products.p_id }}" data-name="{{ products.p_name }}">
 											<span>
-												{{ products.p_name | cut:true:30:' ...' }} <br>$ {{ products.sell_price }} {{ products.unit_name }}
+												{{ products.p_name | cut:true:30:' ...' }} <br>$ {{ products.sell_price | formatDecimal:2}} {{ products.unit_name }}
 											</span>
 										</span>
 										<span class="item-mask nowrap" title="{{ products.p_name }}">

@@ -17,7 +17,7 @@ window.angularApp.factory("keyboardShortcutModal", ["API_URL", "window", "jQuery
                   method: "GET"
                 })
                 .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Keyboard Shortcut";
+                    $scope.modal_title = "Atajo de Teclado";
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
                 }, function(data) {
                    window.swal("Ups!", "an unknown error occured!", "error");

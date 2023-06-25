@@ -26,7 +26,7 @@ window.angularApp.factory("PurchasePaymentModal", ["API_URL", "window", "jQuery"
                       method: "GET"
                     })
                     .then(function(response, status, headers, config) {
-                        $scope.modal_title = "Purchase Payment";
+                        $scope.modal_title = "Compra Pagada";
                         $scope.order = response.data.order;
                         $scope.rawHtml = $sce.trustAsHtml(response.data.html);
                         setTimeout(function() {
@@ -51,7 +51,7 @@ window.angularApp.factory("PurchasePaymentModal", ["API_URL", "window", "jQuery"
                       method: "GET"
                     })
                     .then(function(response, status, headers, config) {
-                        $scope.modal_title = "Purchase Payment";
+                        $scope.modal_title = "Compra Pagada";
                         $scope.rawPaymentMethodHtml = $sce.trustAsHtml(response.data);
                         $(document).find("body").removeClass("overlay-loader");
                     }, function(response) {

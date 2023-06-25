@@ -21,7 +21,7 @@ window.angularApp.factory("BankingDepositModal", ["API_URL", "window", "jQuery",
                   method: "GET"
                 })
                 .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Deposit to Bank";
+                    $scope.modal_title = "Depósito al Banco";
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
                     setTimeout(function() {
                         window.storeApp.select2();

@@ -17,7 +17,7 @@ window.angularApp.factory("BrandCreateModal", ["API_URL", "window", "jQuery", "$
                   method: "GET"
                 })
                 .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Crear nuevo Marca";
+                    $scope.modal_title = "Crear nueva Marca";
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
 
                     setTimeout(function() {

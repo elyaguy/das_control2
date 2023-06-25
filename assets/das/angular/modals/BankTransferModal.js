@@ -21,7 +21,7 @@ window.angularApp.factory("BankTransferModal", ["API_URL", "window", "jQuery", "
                   method: "GET"
                 })
                 .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Transfer Balance";
+                    $scope.modal_title = "Transferir Saldo";
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
                     setTimeout(function() {
                         window.storeApp.select2();

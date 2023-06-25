@@ -17,7 +17,7 @@ window.angularApp.factory("PurchaseInvoiceInfoEditModal", ["API_URL", "window", 
                   method: "GET"
                 })
                 .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Edit Invoice > " + invoice.invoice_id;
+                    $scope.modal_title = "Editar Factura => " + invoice.invoice_id;
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
 
                     setTimeout(function() {

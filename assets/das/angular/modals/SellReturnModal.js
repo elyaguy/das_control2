@@ -27,7 +27,7 @@ window.angularApp.factory("SellReturnModal", ["API_URL", "window", "jQuery", "$h
                       method: "GET"
                     })
                     .then(function(response, status, headers, config) {
-                        $scope.modal_title = "Return > " +$scope.order.invoice_id;
+                        $scope.modal_title = "Devolución => " +$scope.order.invoice_id;
                         $scope.rawHtml = $sce.trustAsHtml(response.data);
                         setTimeout(function() {
                             storeApp.customCheckbox();

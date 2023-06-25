@@ -22,7 +22,7 @@ window.angularApp.factory("OrderViewModal", ["API_URL", "window", "jQuery", "$ht
                   method: "GET"
                 })
                 .then(function (response, status, headers, config) {
-                    $scope.modal_title = "Order > " + order.reference_no;
+                    $scope.modal_title = "Pedido => " + order.reference_no;
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
                 }, function (response) {
                    window.swal("Ups!", response.data.errorMsg, "error")

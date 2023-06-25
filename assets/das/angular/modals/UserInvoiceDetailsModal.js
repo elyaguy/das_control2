@@ -19,7 +19,7 @@ window.angularApp.factory("UserInvoiceDetailsModal", ["API_URL", "window", "jQue
                   method: "GET"
                 })
                 .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Invoice List of " + $scope.username;
+                    $scope.modal_title = "Lista de facturas de " + $scope.username;
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
 
                     setTimeout(function() {
@@ -72,7 +72,7 @@ window.angularApp.factory("UserInvoiceDueDetailsModal", ["API_URL", "window", "j
                   method: "GET"
                 })
                 .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Invoice List of " + $scope.username;
+                    $scope.modal_title = "Lista de facturas de " + $scope.username;
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
 
                     setTimeout(function() {

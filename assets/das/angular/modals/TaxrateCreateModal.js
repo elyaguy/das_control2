@@ -17,7 +17,7 @@ window.angularApp.factory("TaxrateCreateModal", ["API_URL", "window", "jQuery", 
                   method: "GET"
                 })
                 .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Create New Taxrate";
+                    $scope.modal_title = "Crear nueva Tasa de Impuestos";
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
 
                     setTimeout(function() {
