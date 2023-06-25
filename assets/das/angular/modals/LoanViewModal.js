@@ -17,7 +17,7 @@ window.angularApp.factory("LoanViewModal", ["API_URL", "window", "jQuery", "$htt
 								"<div bind-html-compile=\"rawHtml\">Loading...</div>" +
 							"</div>" +
                             "<div class=\"modal-footer\" style=\"text-align:center;\">" +
-                                "<button onClick=\"window.printContent('data-modal', {headline:'<small>Printed on: "+window.formatDate(new Date())+"</small>',screenSize:'fullScreen'})\" class=\"btn btn-primary\"><span class=\"fa fa-fw fa-print\"></span> Print</button>" +
+                                "<button onClick=\"window.printContent('data-modal', {headline:'<small>Printed on: "+window.formatDate(new Date())+"</small>',screenSize:'fullScreen'})\" class=\"btn btn-primary\"><span class=\"fa fa-fw fa-print\"></span> Imprimir</button>" +
                             "</div>" +
                         "</div>",
             controller: function ($scope, $uibModalInstance) {

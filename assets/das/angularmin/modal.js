@@ -2223,7 +2223,7 @@ window.angularApp.factory("BankingRowViewModal", ["API_URL", "window", "jQuery",
 								"<div bind-html-compile=\"rawHtml\">Loading...</div>" +
 							"</div>" +
                             "<div class=\"modal-footer\" style=\"text-align:center;\">" +
-                                "<button onClick=\"window.printContent('data-modal', {headline:'<small>Printed on: "+window.formatDate(new Date())+"</small>',screenSize:'fullScreen'})\" class=\"btn btn-primary\"><span class=\"fa fa-fw fa-print\"></span> Print</button>" +
+                                "<button onClick=\"window.printContent('data-modal', {headline:'<small>Printed on: "+window.formatDate(new Date())+"</small>',screenSize:'fullScreen'})\" class=\"btn btn-primary\"><span class=\"fa fa-fw fa-print\"></span> Imprimir</button>" +
                             "</div>" +
                         "</div>",
             controller: function ($scope, $uibModalInstance) {
@@ -7189,7 +7189,7 @@ window.angularApp.factory("PurchaseInvoiceViewModal", ["API_URL", "window", "jQu
 								"<div bind-html-compile=\"rawHtml\">Loading...</div>" +
 							"</div>" +
                             "<div class=\"modal-footer\" style=\"text-align:center;\">" +
-                                "<button onClick=\"window.printContent('data-modal', {headline:'<small>Printed on: "+window.formatDate(new Date())+"</small>',screenSize:'fullScreen'})\" class=\"btn btn-primary\"><span class=\"fa fa-fw fa-print\"></span> Print</button>" +
+                                "<button onClick=\"window.printContent('data-modal', {headline:'<small>Printed on: "+window.formatDate(new Date())+"</small>',screenSize:'fullScreen'})\" class=\"btn btn-primary\"><span class=\"fa fa-fw fa-print\"></span> Imprimir</button>" +
                             "</div>" +
                         "</div>",
             controller: function ($scope, $uibModalInstance) {
@@ -7650,7 +7650,7 @@ window.angularApp.factory("ExpenseSummaryModal", ["API_URL", "window", "jQuery",
 								"<div bind-html-compile=\"rawHtml\">Loading...</div>" +
 							"</div>" +
                             "<div class=\"modal-footer\" style=\"text-align:center;\">" +
-                                "<button onClick=\"window.printContent('data-modal', {headline:'<small>Printed on: "+window.formatDate(new Date())+"</small>',screenSize:'fullScreen'})\" class=\"btn btn-primary\"><span class=\"fa fa-fw fa-print\"></span> Print</button>" +
+                                "<button onClick=\"window.printContent('data-modal', {headline:'<small>Printed on: "+window.formatDate(new Date())+"</small>',screenSize:'fullScreen'})\" class=\"btn btn-primary\"><span class=\"fa fa-fw fa-print\"></span> Imprimir</button>" +
                             "</div>" +
                         "</div>",
             controller: function ($scope, $uibModalInstance) {

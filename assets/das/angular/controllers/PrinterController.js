@@ -290,8 +290,7 @@ function (
                 icon: "warning",
                 buttons: true,
                 dangerMode: true,
-                buttons: ["CANCELAR", "SI"],
-                confirmButtonColor: "red",
+                buttons: ["CANCELAR", "SI"],                
             },)
         .then(function(willDelete) {
             if (willDelete) {
