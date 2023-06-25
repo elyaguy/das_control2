@@ -106,19 +106,19 @@ include ("left_sidebar.php");
           <div class="box-body">
             <div class="table-responsive">  
               <?php
-                $hide_colums = "";
+                $hide_colums = "4,5,";
                 if (user_group_id() != 1) {
                   if (!has_permission('access', 'create_sell_invoice')) {
-                    $hide_colums .= "5,";
-                  }
-                  if (!has_permission('access', 'read_customer_profile')) {
                     $hide_colums .= "6,";
                   }
-                  if (!has_permission('access', 'update_customer')) {
+                  if (!has_permission('access', 'read_customer_profile')) {
                     $hide_colums .= "7,";
                   }
-                  if (!has_permission('access', 'delete_customer')) {
+                  if (!has_permission('access', 'update_customer')) {
                     $hide_colums .= "8,";
+                  }
+                  if (!has_permission('access', 'delete_customer')) {
+                    $hide_colums .= "9,";
                   }
                 }
               ?> 
@@ -128,6 +128,9 @@ include ("left_sidebar.php");
                   <tr class="bg-gray">
                     <th class="w-10">
                       <?php echo sprintf(trans('label_id'), null); ?>
+                    </th>
+                    <th class="w-12">
+                      <?php echo sprintf(trans('label_document'), null); ?>
                     </th>
                     <th class="w-30">
                       <?php echo sprintf(trans('label_name'), null); ?>
@@ -159,6 +162,9 @@ include ("left_sidebar.php");
                   <tr class="bg-gray">
                     <th class="w-10">
                       <?php echo sprintf(trans('label_id'), null); ?>
+                    </th>
+                    <th class="w-20">
+                      <?php echo sprintf(trans('label_document'), null); ?>
                     </th>
                     <th class="w-30">
                       <?php echo sprintf(trans('label_name'), null); ?>

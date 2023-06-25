@@ -108,7 +108,7 @@
       <div class="form-group">
         <label class="col-sm-3 control-label"></label>
         <div class="col-sm-7">
-          <button id="invoice-update" data-form="#invoice-form" data-datatable="#invoice-invoice-list" class="btn btn-info" name="btn_edit_invoice" data-loading-text="Updating...">
+          <button id="invoice-update" data-form="#invoice-form" data-datatable="#invoice-invoice-list" class="btn btn-info" name="btn_edit_invoice" data-loading-text="Actualizando Espera..!">
             <span class="fa fa-fw fa-pencil"></span>
             <?php echo trans('button_update'); ?>
           </button>

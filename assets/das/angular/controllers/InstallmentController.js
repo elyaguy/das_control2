@@ -250,13 +250,15 @@ function (
         e.stopPropagation();
         e.preventDefault();
         var d = dt.DataTable().row( $(this).closest("tr") ).data();
-        window.swal({
-          title: "Delete!",
-          text: "Are you sure?",
-          icon: "warning",
-          buttons: true,
-          dangerMode: false,
-        })
+      window.swal({
+                title: "*** BORRAR REGISTRO ***",
+                text: "¿Estas Seguro?",
+                icon: "warning",
+                buttons: true,
+                dangerMode: true,
+                buttons: ["CANCELAR", "SI"],
+                confirmButtonColor: "red",
+            },)
         .then(function(willDelete) {
             if (willDelete) {
                 $http({

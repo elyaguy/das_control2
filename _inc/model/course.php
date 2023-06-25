@@ -17,34 +17,34 @@ class ModelCourse extends Model
 	public function addCourse($data) 
 	{
 		$code_name = slugify($data['course_name']);
-    	$statement = $this->db->prepare("INSERT INTO `courses` (course_name, code_name, course_details, course_image, created_at) VALUES (?, ?, ?, ?, ?)");
+    	$statement = $this->db->prepare("INSERT INTO `courses` (course_name, code_name, course_details, course_image, status, created_at) VALUES (?, ?, ?, ?, ?, ?)");
     	// $statement->execute(array($data['course_name'], $data['code_name'], $data['course_details'], $data['course_image'], date_time()));
-    	$statement->execute(array($data['course_name'], $code_name, $data['course_details'], $data['course_image'], date_time()));
+    	$statement->execute(array($data['course_name'], $code_name, $data['course_details'], $data['course_image'], 1, date_time()));
     	$course_id = $this->db->lastInsertId();
-    	if (isset($data['course_store'])) {
-			foreach ($data['course_store'] as $store_id) {
-				$statement = $this->db->prepare("INSERT INTO `course_to_store` SET `course_id` = ?, `store_id` = ?");
-				$statement->execute(array((int)$course_id, (int)$store_id));
-			}
-		}
-		$this->updateStatus($course_id, $data['status']);
-		$this->updateSortOrder($course_id, $data['sort_order']);
+    	// if (isset($data['course_store'])) {
+		// 	foreach ($data['course_store'] as $store_id) {
+		// 		$statement = $this->db->prepare("INSERT INTO `course_to_store` SET `course_id` = ?, `store_id` = ?");
+		// 		$statement->execute(array((int)$course_id, (int)$store_id));
+		// 	}
+		// }
+		// $this->updateStatus($course_id, $data['status']);
+		// $this->updateSortOrder($course_id, $data['sort_order']);
     	return $course_id;   
 	}
 
-	public function updateStatus($course_id, $status, $store_id = null) 
-	{
-		$store_id = $store_id ? $store_id : store_id();
-		$statement = $this->db->prepare("UPDATE `course_to_store` SET `status` = ? WHERE `store_id` = ? AND `course_id` = ?");
-		$statement->execute(array((int)$status, $store_id, (int)$course_id));
-	}
+	// public function updateStatus($course_id, $status, $store_id = null) 
+	// {
+	// 	$store_id = $store_id ? $store_id : store_id();
+	// 	$statement = $this->db->prepare("UPDATE `course_to_store` SET `status` = ? WHERE `store_id` = ? AND `course_id` = ?");
+	// 	$statement->execute(array((int)$status, $store_id, (int)$course_id));
+	// }
 
-	public function updateSortOrder($course_id, $sort_order, $store_id = null) 
-	{
-		$store_id = $store_id ? $store_id : store_id();
-		$statement = $this->db->prepare("UPDATE `course_to_store` SET `sort_order` = ? WHERE `store_id` = ? AND `course_id` = ?");
-		$statement->execute(array((int)$sort_order, $store_id, (int)$course_id));
-	}
+	// public function updateSortOrder($course_id, $sort_order, $store_id = null) 
+	// {
+	// 	$store_id = $store_id ? $store_id : store_id();
+	// 	$statement = $this->db->prepare("UPDATE `course_to_store` SET `sort_order` = ? WHERE `store_id` = ? AND `course_id` = ?");
+	// 	$statement->execute(array((int)$sort_order, $store_id, (int)$course_id));
+	// }
 
 	public function editCourse($course_id, $data) 
 	{
@@ -54,59 +54,59 @@ class ModelCourse extends Model
 		$statement->execute(array($data['course_name'], $code_name, $data['course_details'], $data['course_image'], $course_id));
 		
 		// Insert course into store
-    	if (isset($data['course_store'])) 
-    	{
-    		$store_ids = array();
-			foreach ($data['course_store'] as $store_id) {
-				$statement = $this->db->prepare("SELECT * FROM `course_to_store` WHERE `store_id` = ? AND `course_id` = ?");
-			    $statement->execute(array($store_id, $course_id));
-			    $course = $statement->fetch(PDO::FETCH_ASSOC);
-			    if (!$course) {
-			    	$statement = $this->db->prepare("INSERT INTO `course_to_store` SET `course_id` = ?, `store_id` = ?");
-					$statement->execute(array((int)$course_id, (int)$store_id));
-			    }
-			    $store_ids[] = $store_id;
-			}
+    	// if (isset($data['course_store'])) 
+    	// {
+    	// 	$store_ids = array();
+		// 	foreach ($data['course_store'] as $store_id) {
+		// 		$statement = $this->db->prepare("SELECT * FROM `course_to_store` WHERE `store_id` = ? AND `course_id` = ?");
+		// 	    $statement->execute(array($store_id, $course_id));
+		// 	    $course = $statement->fetch(PDO::FETCH_ASSOC);
+		// 	    if (!$course) {
+		// 	    	$statement = $this->db->prepare("INSERT INTO `course_to_store` SET `course_id` = ?, `store_id` = ?");
+		// 			$statement->execute(array((int)$course_id, (int)$store_id));
+		// 	    }
+		// 	    $store_ids[] = $store_id;
+		// 	}
 
-			// Delete unwanted store
-			if (!empty($store_ids)) {
+		// 	// Delete unwanted store
+		// 	if (!empty($store_ids)) {
 
-				$unremoved_store_ids = array();
+		// 		$unremoved_store_ids = array();
 
-				// get unwanted stores
-				$statement = $this->db->prepare("SELECT * FROM `course_to_store` WHERE `store_id` NOT IN (" . implode(',', $store_ids) . ")");
-				$statement->execute();
-				$unwanted_stores = $statement->fetchAll(PDO::FETCH_ASSOC);
-				foreach ($unwanted_stores as $store) {
+		// 		// get unwanted stores
+		// 		$statement = $this->db->prepare("SELECT * FROM `course_to_store` WHERE `store_id` NOT IN (" . implode(',', $store_ids) . ")");
+		// 		$statement->execute();
+		// 		$unwanted_stores = $statement->fetchAll(PDO::FETCH_ASSOC);
+		// 		foreach ($unwanted_stores as $store) {
 
-					$store_id = $store['store_id'];
+		// 			$store_id = $store['store_id'];
 					
-					// Fetch purchase invoice id
-				    $statement = $this->db->prepare("SELECT * FROM `product_to_store` as p2s WHERE `store_id` = ? AND `course_id` = ?");
-				    $statement->execute(array($store_id, $course_id));
-				    $item_available = $statement->fetch(PDO::FETCH_ASSOC);
+		// 			// Fetch purchase invoice id
+		// 		    $statement = $this->db->prepare("SELECT * FROM `product_to_store` as p2s WHERE `store_id` = ? AND `course_id` = ?");
+		// 		    $statement->execute(array($store_id, $course_id));
+		// 		    $item_available = $statement->fetch(PDO::FETCH_ASSOC);
 
-				     // If item available then store in variable
-				    if ($item_available) {
-				      $unremoved_store_ids[$item_available['store_id']] = store_field('name', $item_available['store_id']);
-				      continue;
-				    }
+		// 		     // If item available then store in variable
+		// 		    if ($item_available) {
+		// 		      $unremoved_store_ids[$item_available['store_id']] = store_field('name', $item_available['store_id']);
+		// 		      continue;
+		// 		    }
 
-				    // Delete unwanted store link
-					$statement = $this->db->prepare("DELETE FROM `course_to_store` WHERE `store_id` = ? AND `course_id` = ?");
-					$statement->execute(array($store_id, $course_id));
+		// 		    // Delete unwanted store link
+		// 			$statement = $this->db->prepare("DELETE FROM `course_to_store` WHERE `store_id` = ? AND `course_id` = ?");
+		// 			$statement->execute(array($store_id, $course_id));
 
-				}
+		// 		}
 
-				if (!empty($unremoved_store_ids)) {
+		// 		if (!empty($unremoved_store_ids)) {
 
-					throw new Exception('The Course belongs to the stores(s) "' . implode(', ', $unremoved_store_ids) . '" has products, so its can not be removed');
-				}				
-			}
-		}
+		// 			throw new Exception('The Course belongs to the stores(s) "' . implode(', ', $unremoved_store_ids) . '" has products, so its can not be removed');
+		// 		}				
+		// 	}
+		// }
 
-		$this->updateStatus($course_id, $data['status']);
-		$this->updateSortOrder($course_id, $data['sort_order']);
+		// $this->updateStatus($course_id, $data['status']);
+		// $this->updateSortOrder($course_id, $data['sort_order']);
 
     	return $course_id;
 	}
@@ -129,22 +129,24 @@ class ModelCourse extends Model
 	public function getCourse($course_id, $store_id = null) 
 	{
 		$store_id = $store_id ? $store_id : store_id();
+		// $statement = $this->db->prepare("SELECT * FROM `courses`
+		// 	LEFT JOIN `course_to_store` as b2s ON (`courses`.`course_id` = `b2s`.`course_id`)  
+	    // 	WHERE `b2s`.`store_id` = ? AND `courses`.`course_id` = ?");
 		$statement = $this->db->prepare("SELECT * FROM `courses`
-			LEFT JOIN `course_to_store` as b2s ON (`courses`.`course_id` = `b2s`.`course_id`)  
-	    	WHERE `b2s`.`store_id` = ? AND `courses`.`course_id` = ?");
-	  	$statement->execute(array($store_id, $course_id));
+		WHERE `courses`.`course_id` = ?");
+	  	$statement->execute(array($course_id));
 	    $course = $statement->fetch(PDO::FETCH_ASSOC);
 
-	    // Fetch stores related to courses
-	    $statement = $this->db->prepare("SELECT `store_id` FROM `course_to_store` WHERE `course_id` = ?");
-	    $statement->execute(array($course_id));
-	    $all_stores = $statement->fetchAll(PDO::FETCH_ASSOC);
-	    $stores = array();
-	    foreach ($all_stores as $store) {
-	    	$stores[] = $store['store_id'];
-	    }
+	    // // Fetch stores related to courses
+	    // $statement = $this->db->prepare("SELECT `store_id` FROM `course_to_store` WHERE `course_id` = ?");
+	    // $statement->execute(array($course_id));
+	    // $all_stores = $statement->fetchAll(PDO::FETCH_ASSOC);
+	    // $stores = array();
+	    // foreach ($all_stores as $store) {
+	    // 	$stores[] = $store['store_id'];
+	    // }
 
-	    $course['stores'] = $stores;
+	    // $course['stores'] = $stores;
 
 	    return $course;
 	}
@@ -153,7 +155,8 @@ class ModelCourse extends Model
 	{
 		$store_id = $store_id ? $store_id : store_id();
 
-		$sql = "SELECT * FROM `courses` LEFT JOIN `course_to_store` b2s ON (`courses`.`course_id` = `b2s`.`course_id`) WHERE `b2s`.`store_id` = ? AND `b2s`.`status` = ?";
+		// $sql = "SELECT * FROM `courses` LEFT JOIN `course_to_store` b2s ON (`courses`.`course_id` = `b2s`.`course_id`) WHERE `b2s`.`store_id` = ? AND `b2s`.`status` = ?";
+		$sql = "SELECT * FROM `courses` WHERE `status` = ?";
 
 		if (isset($data['filter_name'])) {
 			$sql .= " AND `course_name` LIKE '" . $data['filter_name'] . "%'";
@@ -190,7 +193,8 @@ class ModelCourse extends Model
 		}
 
 		$statement = $this->db->prepare($sql);
-		$statement->execute(array($store_id, 1));
+		// $statement->execute(array($store_id, 1));
+		$statement->execute(array(1));
 
 		return $statement->fetchAll(PDO::FETCH_ASSOC);
 	}
@@ -246,14 +250,14 @@ class ModelCourse extends Model
 	// 	return $tree;
 	// }
 
-	public function getBelongsStore($course_id)
-	{
-		$statement = $this->db->prepare("SELECT * FROM `course_to_store` WHERE `course_id` = ?");
-		$statement->execute(array($course_id));
+	// public function getBelongsStore($course_id)
+	// {
+	// 	$statement = $this->db->prepare("SELECT * FROM `course_to_store` WHERE `course_id` = ?");
+	// 	$statement->execute(array($course_id));
 
-		return $statement->fetchAll(PDO::FETCH_ASSOC);
+	// 	return $statement->fetchAll(PDO::FETCH_ASSOC);
 
-	}
+	// }
 
 	public function totalSell($course_id, $from = null, $to = null, $store_id = null) 
 	{
@@ -279,7 +283,8 @@ class ModelCourse extends Model
 	public function totalToday($store_id = null) 
 	{
 		$store_id = $store_id ? $store_id : store_id();
-		$where_query = "`b2s`.`store_id` = {$store_id} AND `b2s`.`status` = 1";
+		// $where_query = "`b2s`.`store_id` = {$store_id} AND `b2s`.`status` = 1";
+		$where_query = "`status` = 1";
 		$from = date('Y-m-d');
 		$to = date('Y-m-d');
 		if (($from && ($to == false)) || ($from == $to)) {
@@ -294,7 +299,8 @@ class ModelCourse extends Model
 			$to = date('Y-m-d H:i:s', strtotime($to.' '. '23:59:59'));
 			$where_query .= " AND courses.created_at >= '{$from}' AND courses.created_at <= '{$to}'";
 		}
-		$statement = $this->db->prepare("SELECT * FROM `courses` LEFT JOIN `course_to_store` b2s ON (`courses`.`course_id` = `b2s`.`course_id`) WHERE $where_query");
+		// $statement = $this->db->prepare("SELECT * FROM `courses` LEFT JOIN `course_to_store` b2s ON (`courses`.`course_id` = `b2s`.`course_id`) WHERE $where_query");
+		$statement = $this->db->prepare("SELECT * FROM `courses` WHERE $where_query");
 		$statement->execute(array());
 		return $statement->rowCount();
 	}
@@ -302,7 +308,8 @@ class ModelCourse extends Model
 	public function total($from, $to, $store_id = null) 
 	{
 		$store_id = $store_id ? $store_id : store_id();
-		$where_query = "`b2s`.`store_id` = {$store_id} AND `b2s`.`status` = 1";
+		// $where_query = "`b2s`.`store_id` = {$store_id} AND `b2s`.`status` = 1";
+		$where_query = "`status` = 1";
 		if ($from) {
 			$from = $from ? $from : date('Y-m-d');
 			$to = $to ? $to : date('Y-m-d');
@@ -319,7 +326,8 @@ class ModelCourse extends Model
 				$where_query .= " AND courses.created_at >= '{$from}' AND courses.created_at <= '{$to}'";
 			}
 		}
-		$statement = $this->db->prepare("SELECT * FROM `courses` LEFT JOIN `course_to_store` b2s ON (`courses`.`course_id` = `b2s`.`course_id`) WHERE $where_query");
+		// $statement = $this->db->prepare("SELECT * FROM `courses` LEFT JOIN `course_to_store` b2s ON (`courses`.`course_id` = `b2s`.`course_id`) WHERE $where_query");
+		$statement = $this->db->prepare("SELECT * FROM `courses` WHERE $where_query");
 		$statement->execute(array());
 		return $statement->rowCount();
 	}

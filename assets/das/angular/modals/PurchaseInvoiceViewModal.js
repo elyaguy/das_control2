@@ -22,7 +22,7 @@ window.angularApp.factory("PurchaseInvoiceViewModal", ["API_URL", "window", "jQu
                   method: "GET"
                 })
                 .then(function (response, status, headers, config) {
-                    $scope.modal_title = "Purchase > " + invoice.invoice_id;
+                    $scope.modal_title = "Compra No. => " + invoice.invoice_id;
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
                 }, function (response) {
                    window.swal("Ups!", response.data.errorMsg, "error")

@@ -12,186 +12,191 @@
 | WEBSITE:			http://itsolution24.com
 | -----------------------------------------------------
 */
-class ModelCategory extends Model 
+class ModelCategory extends Model
 {
-	public function addCategory($data) 
+	public function addCategory($data)
 	{
-    	$statement = $this->db->prepare("INSERT INTO `categorys` (category_name, category_slug, parent_id, category_details, category_image, created_at) VALUES (?, ?, ?, ?, ?, ?)");
-    	$statement->execute(array($data['category_name'], $data['category_slug'], $data['parent_id'], $data['category_details'], $data['category_image'], date_time()));
+		$statement = $this->db->prepare("INSERT INTO `categorys` (category_name, category_slug, parent_id, category_details, category_image, created_at) VALUES (?, ?, ?, ?, ?, ?)");
+		$statement->execute(array($data['category_name'], $data['category_slug'], $data['parent_id'], $data['category_details'], $data['category_image'], date_time()));
 
-    	$category_id = $this->db->lastInsertId();
+		$category_id = $this->db->lastInsertId();
 
-    	if (isset($data['category_store'])) {
-			foreach ($data['category_store'] as $store_id) {
-				$statement = $this->db->prepare("INSERT INTO `category_to_store` SET `ccategory_id` = ?, `store_id` = ?");
-				$statement->execute(array((int)$category_id, (int)$store_id));
-			}
-		}
+		// if (isset($data['category_store'])) {
+		// 	foreach ($data['category_store'] as $store_id) {
+		// 		$statement = $this->db->prepare("INSERT INTO `category_to_store` SET `ccategory_id` = ?, `store_id` = ?");
+		// 		$statement->execute(array((int)$category_id, (int)$store_id));
+		// 	}
+		// }
 
-		$this->updateStatus($category_id, $data['status']);
-		$this->updateSortOrder($category_id, $data['sort_order']);
-    	return $category_id; 
+		// $this->updateStatus($category_id, $data['status']);
+		// $this->updateSortOrder($category_id, $data['sort_order']);
+		return $category_id;
 	}
 
-	public function updateStatus($category_id, $status, $store_id = null) 
+	public function updateStatus($category_id, $status, $store_id = null)
 	{
 		$store_id = $store_id ? $store_id : store_id();
 
-		$statement = $this->db->prepare("UPDATE `category_to_store` SET `status` = ? WHERE `store_id` = ? AND `ccategory_id` = ?");
-		$statement->execute(array((int)$status, $store_id, (int)$category_id));
+		// $statement = $this->db->prepare("UPDATE `category_to_store` SET `status` = ? WHERE `store_id` = ? AND `ccategory_id` = ?");
+		$statement = $this->db->prepare("UPDATE `categorys` SET `status` = ? WHERE `category_id` = ?");
+		$statement->execute(array((int)$status, (int)$category_id));
 	}
 
-	public function updateSortOrder($category_id, $sort_order, $store_id = null) 
+	// public function updateSortOrder($category_id, $sort_order, $store_id = null) 
+	// {
+	// 	$store_id = $store_id ? $store_id : store_id();
+
+	// 	$statement = $this->db->prepare("UPDATE `category_to_store` SET `sort_order` = ? WHERE `store_id` = ? AND `ccategory_id` = ?");
+	// 	$statement->execute(array((int)$sort_order, $store_id, (int)$category_id));
+	// }
+
+	public function editCategory($category_id, $data)
 	{
-		$store_id = $store_id ? $store_id : store_id();
+		$statement = $this->db->prepare("UPDATE `categorys` SET `category_name` = ?, `category_slug` = ?, `parent_id` = ?, `category_details` = ?, `category_image` = ? WHERE category_id = ? ");
+		$statement->execute(array($data['category_name'], $data['category_slug'], (int)$data['parent_id'], $data['category_details'], $data['category_image'], $category_id));
 
-		$statement = $this->db->prepare("UPDATE `category_to_store` SET `sort_order` = ? WHERE `store_id` = ? AND `ccategory_id` = ?");
-		$statement->execute(array((int)$sort_order, $store_id, (int)$category_id));
-	}
+		// // Insert category into store
+		// if (isset($data['category_store'])) {
 
-	public function editCategory($category_id, $data) 
-	{
-    	$statement = $this->db->prepare("UPDATE `categorys` SET `category_name` = ?, `category_slug` = ?, `parent_id` = ?, `category_details` = ?, `category_image` = ? WHERE category_id = ? ");
-    	$statement->execute(array($data['category_name'], $data['category_slug'], (int)$data['parent_id'], $data['category_details'], $data['category_image'], $category_id));
+		// 	$store_ids = array();
 
-    	// Insert category into store
-    	if (isset($data['category_store'])) {
+		// 	foreach ($data['category_store'] as $store_id) {
 
-    		$store_ids = array();
+		// 		$statement = $this->db->prepare("SELECT * FROM `category_to_store` WHERE `store_id` = ? AND `ccategory_id` = ?");
+		// 	    $statement->execute(array($store_id, $category_id));
+		// 	    $category = $statement->fetch(PDO::FETCH_ASSOC);
+		// 	    if (!$category) {
+		// 	    	$statement = $this->db->prepare("INSERT INTO `category_to_store` SET `ccategory_id` = ?, `store_id` = ?");
+		// 			$statement->execute(array((int)$category_id, (int)$store_id));
+		// 	    }
 
-			foreach ($data['category_store'] as $store_id) {
+		// 	    $store_ids[] = $store_id;
+		// 	}
 
-				$statement = $this->db->prepare("SELECT * FROM `category_to_store` WHERE `store_id` = ? AND `ccategory_id` = ?");
-			    $statement->execute(array($store_id, $category_id));
-			    $category = $statement->fetch(PDO::FETCH_ASSOC);
-			    if (!$category) {
-			    	$statement = $this->db->prepare("INSERT INTO `category_to_store` SET `ccategory_id` = ?, `store_id` = ?");
-					$statement->execute(array((int)$category_id, (int)$store_id));
-			    }
+		// // Delete unwanted store
+		// if (!empty($store_ids)) {
 
-			    $store_ids[] = $store_id;
-			}
+		// 	$unremoved_store_ids = array();
 
-			// Delete unwanted store
-			if (!empty($store_ids)) {
+		// 	// get unwanted stores
+		// 	$statement = $this->db->prepare("SELECT * FROM `category_to_store` WHERE `store_id` NOT IN (" . implode(',', $store_ids) . ")");
+		// 	$statement->execute();
+		// 	$unwanted_stores = $statement->fetchAll(PDO::FETCH_ASSOC);
+		// 	foreach ($unwanted_stores as $store) {
 
-				$unremoved_store_ids = array();
+		// 		$store_id = $store['store_id'];
 
-				// get unwanted stores
-				$statement = $this->db->prepare("SELECT * FROM `category_to_store` WHERE `store_id` NOT IN (" . implode(',', $store_ids) . ")");
-				$statement->execute();
-				$unwanted_stores = $statement->fetchAll(PDO::FETCH_ASSOC);
-				foreach ($unwanted_stores as $store) {
+		// 		// Fetch purchase invoice id
+		// 	    $statement = $this->db->prepare("SELECT * FROM `products` as p LEFT JOIN `product_to_store` as p2s ON (`p`.`p_id` = `p2s`.`product_id`) WHERE `store_id` = ? AND `category_id` = ?");
+		// 	    $statement->execute(array($store_id, $category_id));
+		// 	    $item_available = $statement->fetch(PDO::FETCH_ASSOC);
 
-					$store_id = $store['store_id'];
-					
-					// Fetch purchase invoice id
-				    $statement = $this->db->prepare("SELECT * FROM `products` as p LEFT JOIN `product_to_store` as p2s ON (`p`.`p_id` = `p2s`.`product_id`) WHERE `store_id` = ? AND `category_id` = ?");
-				    $statement->execute(array($store_id, $category_id));
-				    $item_available = $statement->fetch(PDO::FETCH_ASSOC);
+		// 	     // If item available then store in variable
+		// 	    if ($item_available) {
+		// 	      $unremoved_store_ids[$item_available['store_id']] = store_field('name', $item_available['store_id']);
+		// 	      continue;
+		// 	    }
 
-				     // If item available then store in variable
-				    if ($item_available) {
-				      $unremoved_store_ids[$item_available['store_id']] = store_field('name', $item_available['store_id']);
-				      continue;
-				    }
+		// 	    // Delete unwanted store link
+		// 		$statement = $this->db->prepare("DELETE FROM `category_to_store` WHERE `store_id` = ? AND `ccategory_id` = ?");
+		// 		$statement->execute(array($store_id, $category_id));
 
-				    // Delete unwanted store link
-					$statement = $this->db->prepare("DELETE FROM `category_to_store` WHERE `store_id` = ? AND `ccategory_id` = ?");
-					$statement->execute(array($store_id, $category_id));
+		// 	}
 
-				}
+		// 	if (!empty($unremoved_store_ids)) {
 
-				if (!empty($unremoved_store_ids)) {
-
-					throw new Exception('The Category belongs to the stores(s) "' . implode(', ', $unremoved_store_ids) . '" has product(s), so its can not be removed');
-				}				
-			}
-		}
+		// 		throw new Exception('The Category belongs to the stores(s) "' . implode(', ', $unremoved_store_ids) . '" has product(s), so its can not be removed');
+		// 	}				
+		// }
+		// }
 
 		$this->updateStatus($category_id, $data['status']);
-		$this->updateSortOrder($category_id, $data['sort_order']);
+		// $this->updateSortOrder($category_id, $data['sort_order']);
 
-    	return $category_id;
+		return $category_id;
 	}
 
 	public function replaceWith($new_id, $id)
 	{
-		$belongs_stores = $this->getBelongsStore($id);
-	    foreach ($belongs_stores as $the_store) {
-	      $statement = $this->db->prepare("SELECT * FROM `category_to_store` WHERE `ccategory_id` = ? AND `store_id` = ?");
-	      $statement->execute(array($new_id, $the_store['store_id']));
-	      if ($statement->rowCount() > 0) continue;
+		// $belongs_stores = $this->getBelongsStore($id);
+		// foreach ($belongs_stores as $the_store) {
+		// 	$statement = $this->db->prepare("SELECT * FROM `category_to_store` WHERE `ccategory_id` = ? AND `store_id` = ?");
+		// 	$statement->execute(array($new_id, $the_store['store_id']));
+		// 	if ($statement->rowCount() > 0) continue;
 
-	      $statement = $this->db->prepare("INSERT INTO `category_to_store` SET `ccategory_id` = ?, `store_id` = ?");
-	      $statement->execute(array($new_id, $the_store['store_id']));
-	    }
+		// 	$statement = $this->db->prepare("INSERT INTO `category_to_store` SET `ccategory_id` = ?, `store_id` = ?");
+		// 	$statement->execute(array($new_id, $the_store['store_id']));
+		// }
 
-	    $statement = $this->db->prepare("UPDATE `products` SET `category_id` = ? WHERE `category_id` = ?");
-      	$statement->execute(array($new_id, $id));
+		$statement = $this->db->prepare("UPDATE `products` SET `category_id` = ? WHERE `category_id` = ?");
+		$statement->execute(array($new_id, $id));
 
-      	$statement = $this->db->prepare("UPDATE `purchase_item` SET `category_id` = ? WHERE `category_id` = ?");
-      	$statement->execute(array($new_id, $id));
+		$statement = $this->db->prepare("UPDATE `purchase_item` SET `category_id` = ? WHERE `category_id` = ?");
+		$statement->execute(array($new_id, $id));
 
-      	$statement = $this->db->prepare("UPDATE `selling_item` SET `category_id` = ? WHERE `category_id` = ?");
-      	$statement->execute(array($new_id, $id));
+		$statement = $this->db->prepare("UPDATE `selling_item` SET `category_id` = ? WHERE `category_id` = ?");
+		$statement->execute(array($new_id, $id));
 
-      	$statement = $this->db->prepare("UPDATE `holding_item` SET `category_id` = ? WHERE `category_id` = ?");
-      	$statement->execute(array($new_id, $id));
+		$statement = $this->db->prepare("UPDATE `holding_item` SET `category_id` = ? WHERE `category_id` = ?");
+		$statement->execute(array($new_id, $id));
 
-      	$statement = $this->db->prepare("UPDATE `quotation_item` SET `category_id` = ? WHERE `category_id` = ?");
-      	$statement->execute(array($new_id, $id));
+		$statement = $this->db->prepare("UPDATE `quotation_item` SET `category_id` = ? WHERE `category_id` = ?");
+		$statement->execute(array($new_id, $id));
 	}
 
-	public function deleteCategory($category_id) 
+	public function deleteCategory($category_id)
 	{
-    	$statement = $this->db->prepare("DELETE FROM `categorys` WHERE `category_id` = ? LIMIT 1");
-    	$statement->execute(array($category_id));
-        return $category_id;
+		$statement = $this->db->prepare("DELETE FROM `categorys` WHERE `category_id` = ? LIMIT 1");
+		$statement->execute(array($category_id));
+		return $category_id;
 	}
 
-	public function getCategory($category_id, $store_id = null) 
+	public function getCategory($category_id, $store_id = null)
 	{
 		$store_id = $store_id ? $store_id : store_id();
+		// $statement = $this->db->prepare("SELECT * FROM `categorys`
+		// 	LEFT JOIN `category_to_store` as c2s ON (`categorys`.`category_id` = `c2s`.`ccategory_id`)  
+	    // 	WHERE `c2s`.`store_id` = ? AND `category_id` = ?");
 		$statement = $this->db->prepare("SELECT * FROM `categorys`
-			LEFT JOIN `category_to_store` as c2s ON (`categorys`.`category_id` = `c2s`.`ccategory_id`)  
-	    	WHERE `c2s`.`store_id` = ? AND `category_id` = ?");
-	  	$statement->execute(array($store_id, $category_id));
-	  	$category = $statement->fetch(PDO::FETCH_ASSOC);
+		WHERE `category_id` = ?");
+		$statement->execute(array($category_id));
+		$category = $statement->fetch(PDO::FETCH_ASSOC);
 
-	  	// Fetch stores related to categorys
-	    $statement = $this->db->prepare("SELECT `store_id` FROM `category_to_store` WHERE `ccategory_id` = ?");
-	    $statement->execute(array($category_id));
-	    $all_stores = $statement->fetchAll(PDO::FETCH_ASSOC);
-	    $stores = array();
-	    foreach ($all_stores as $store) {
-	    	$stores[] = $store['store_id'];
-	    }
+		// // Fetch stores related to categorys
+		// $statement = $this->db->prepare("SELECT `store_id` FROM `category_to_store` WHERE `ccategory_id` = ?");
+		// $statement->execute(array($category_id));
+		// $all_stores = $statement->fetchAll(PDO::FETCH_ASSOC);
+		// $stores = array();
+		// foreach ($all_stores as $store) {
+		// 	$stores[] = $store['store_id'];
+		// }
 
-	    $category['stores'] = $stores;
+		// $category['stores'] = $stores;
 
-	    return $category;
+		return $category;
 	}
 
 	public function isTopLevel($category_id)
 	{
 		$statement = $this->db->prepare("SELECT `category_id` FROM `categorys` WHERE `category_id` = ? AND `parent_id` = ?");
-	    $statement->execute(array($category_id, 0));
-	    return $statement->fetch(PDO::FETCH_ASSOC);
+		$statement->execute(array($category_id, 0));
+		return $statement->fetch(PDO::FETCH_ASSOC);
 	}
 
 	public function getParentID($category_id)
 	{
 		$statement = $this->db->prepare("SELECT `parent_id` FROM `categorys` WHERE `category_id` = ?");
-	    $statement->execute(array($category_id));
-	    $category = $statement->fetch(PDO::FETCH_ASSOC);
-	    return isset($category['parent_id']) ? $category['parent_id'] : 0;
+		$statement->execute(array($category_id));
+		$category = $statement->fetch(PDO::FETCH_ASSOC);
+		return isset($category['parent_id']) ? $category['parent_id'] : 0;
 	}
 
-	public function getCategorys($data = array(), $store_id = null) {
+	public function getCategorys($data = array(), $store_id = null)
+	{
 
 		$store_id = $store_id ? $store_id : store_id();
-		$sql = "SELECT * FROM `categorys` LEFT JOIN `category_to_store` c2s ON (`categorys`.`category_id` = `c2s`.`ccategory_id`) WHERE `c2s`.`store_id` = ? AND `c2s`.`status` = ?";
+		// $sql = "SELECT * FROM `categorys` LEFT JOIN `category_to_store` c2s ON (`categorys`.`category_id` = `c2s`.`ccategory_id`) WHERE `c2s`.`store_id` = ? AND `c2s`.`status` = ?";
+		$sql = "SELECT * FROM `categorys` WHERE `status` = ?";
 
 		if (isset($data['filter_parent_id'])) {
 			$sql .= " AND `parent_id` = " . $data['filter_parent_id'];
@@ -242,7 +247,7 @@ class ModelCategory extends Model
 		}
 
 		$statement = $this->db->prepare($sql);
-		$statement->execute(array($store_id, 1));
+		$statement->execute(array(1));
 
 		return $statement->fetchAll(PDO::FETCH_ASSOC);
 	}
@@ -267,46 +272,46 @@ class ModelCategory extends Model
 			}
 
 			$tree[$category['category_id']] = $name . $category['category_name'];
-		}		
+		}
 		return $tree;
 	}
 
-	public function getBelongsStore($category_id)
-	{
-		$statement = $this->db->prepare("SELECT * FROM `category_to_store` WHERE `ccategory_id` = ?");
-		$statement->execute(array($category_id));
+	// public function getBelongsStore($category_id)
+	// {
+	// 	$statement = $this->db->prepare("SELECT * FROM `category_to_store` WHERE `ccategory_id` = ?");
+	// 	$statement->execute(array($category_id));
 
-		return $statement->fetchAll(PDO::FETCH_ASSOC);
+	// 	return $statement->fetchAll(PDO::FETCH_ASSOC);
+	// }
 
-	}
-
-	public function total($store_id = null) 
+	public function total($store_id = null)
 	{
 		$store_id = $store_id ? $store_id : store_id();
 
-		$statement = $this->db->prepare("SELECT * FROM `categorys`LEFT JOIN `category_to_store` c2s ON (`categorys`.`category_id` = `c2s`.`ccategory_id`) where `c2s`.`store_id` = ? AND `c2s`.`status` = ?");
-		$statement->execute(array($store_id, 1));
-		
+		// $statement = $this->db->prepare("SELECT * FROM `categorys`LEFT JOIN `category_to_store` c2s ON (`categorys`.`category_id` = `c2s`.`ccategory_id`) where `c2s`.`store_id` = ? AND `c2s`.`status` = ?");
+		$statement = $this->db->prepare("SELECT * FROM `categorys` where `status` = ?");
+		$statement->execute(array(1));
+
 		return $statement->rowCount();
 	}
 
-	public function totalValidItem($category_id, $store_id = null) 
+	public function totalValidItem($category_id, $store_id = null)
 	{
 		$store_id = $store_id ? $store_id : store_id();
 
 		$statement = $this->db->prepare("SELECT * FROM `products` LEFT JOIN `product_to_store` p2s ON (`products`.`p_id` = `p2s`.`product_id`) WHERE `store_id` = ? AND `category_id` = ? AND `p2s`.`quantity_in_stock` > ? AND `p2s`.`status` = ?");
 		$statement->execute(array($store_id, $category_id, 0, 1));
-	
+
 		return $statement->rowCount();
 	}
 
-	public function totalItem($category_id, $store_id = null) 
+	public function totalItem($category_id, $store_id = null)
 	{
 		$store_id = $store_id ? $store_id : store_id();
 
 		$statement = $this->db->prepare("SELECT * FROM `products` LEFT JOIN `product_to_store` p2s ON (`products`.`p_id` = `p2s`.`product_id`) WHERE `store_id` = ? AND `category_id` = ? AND `p2s`.`status` = ?");
 		$statement->execute(array($store_id, $category_id, 1));
-	
+
 		return $statement->rowCount();
 	}
 }

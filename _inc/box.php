@@ -37,20 +37,20 @@ function validate_request_data($request) {
       throw new Exception(trans('error_code_name'));
   }
 
-  // Store validation
-  if (!isset($request->post['box_store']) || empty($request->post['box_store'])) {
-    throw new Exception(trans('error_store'));
-  }
+  // // Store validation
+  // if (!isset($request->post['box_store']) || empty($request->post['box_store'])) {
+  //   throw new Exception(trans('error_store'));
+  // }
 
   // Status validation
   if (!is_numeric($request->post['status'])) {
     throw new Exception(trans('error_status'));
   }
 
-  // Sort order validation
-  if (!is_numeric($request->post['sort_order'])) {
-    throw new Exception(trans('error_sort_order'));
-  }
+  // // Sort order validation
+  // if (!is_numeric($request->post['sort_order'])) {
+  //   throw new Exception(trans('error_sort_order'));
+  // }
 }
 
 // Check box existance by id
@@ -180,18 +180,18 @@ if ($request->server['REQUEST_METHOD'] == 'POST' AND isset($request->post['actio
 
     $Hooks->do_action('Before_Delete_Box', $request);
 
-    $belongs_stores = $box_model->getBelongsStore($id);
-    foreach ($belongs_stores as $the_store) {
+    // $belongs_stores = $box_model->getBelongsStore($id);
+    // foreach ($belongs_stores as $the_store) {
 
-      // Check if relationship exist or not
-      $statement = db()->prepare("SELECT * FROM `box_to_store` WHERE `box_id` = ? AND `store_id` = ?");
-      $statement->execute(array($new_box_id, $the_store['store_id']));
-      if ($statement->rowCount() > 0) continue;
+    //   // Check if relationship exist or not
+    //   $statement = db()->prepare("SELECT * FROM `box_to_store` WHERE `box_id` = ? AND `store_id` = ?");
+    //   $statement->execute(array($new_box_id, $the_store['store_id']));
+    //   if ($statement->rowCount() > 0) continue;
 
-      // Create relationship
-      $statement = db()->prepare("INSERT INTO `box_to_store` SET `box_id` = ?, `store_id` = ?");
-      $statement->execute(array($new_box_id, $the_store['store_id']));
-    }
+    //   // Create relationship
+    //   $statement = db()->prepare("INSERT INTO `box_to_store` SET `box_id` = ?, `store_id` = ?");
+    //   $statement->execute(array($new_box_id, $the_store['store_id']));
+    // }
 
     // Update box id for product
     $statement = db()->prepare("UPDATE `product_to_store` SET `box_id` = ? WHERE `box_id` = ?");
@@ -252,14 +252,17 @@ if (isset($request->get['box_id']) AND isset($request->get['action_type']) && $r
 
 $Hooks->do_action('Before_Showing_Box_List');
 
-$where_query = 'b2s.store_id = ' . store_id();
+// $where_query = 'b2s.store_id = ' . store_id();
  
 // DB table to use
-$table = "(SELECT boxes.*, b2s.status, b2s.sort_order FROM boxes 
-  LEFT JOIN box_to_store b2s ON (boxes.box_id = b2s.box_id) 
-  WHERE $where_query GROUP by boxes.box_id
-  ) as boxes";
- 
+// $table = "(SELECT boxes.*, b2s.status, b2s.sort_order FROM boxes 
+//   LEFT JOIN box_to_store b2s ON (boxes.box_id = b2s.box_id) 
+//   WHERE $where_query GROUP by boxes.box_id
+//   ) as boxes";
+$table = "(SELECT boxes.* FROM boxes 
+GROUP by boxes.box_id
+) as boxes";
+
 // Table's primary key
 $primaryKey = 'box_id';
 $columns = array(

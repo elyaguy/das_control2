@@ -52,19 +52,19 @@
       </div>
     </div>
 
-    <div class="form-group">
+    <!-- <div class="form-group">
       <label for="sort_order" class="col-sm-3 control-label">
-        <?php echo sprintf(trans('label_sort_order'), null); ?><i class="required">*</i>
+        <?/*php echo sprintf(trans('label_sort_order'), null); */?><i class="required">*</i>
       </label>
       <div class="col-sm-8">
-        <input type="number" class="form-control" id="sort_order" value="<?php echo $taxrate['sort_order']; ?>" name="sort_order">
+        <input type="number" class="form-control" id="sort_order" value="<?/*php echo $taxrate['sort_order']; */?>" name="sort_order">
       </div>
-    </div>
+    </div> -->
 
     <div class="form-group">
       <label for="taxrate_address" class="col-sm-3 control-label"></label>
       <div class="col-sm-8">            
-        <button id="taxrate-update" class="btn btn-info"  data-form="#taxrate-form" data-datatable="#taxrate-taxrate-list" name="btn_edit_customer" data-loading-text="Updating...">
+        <button id="taxrate-update" class="btn btn-info"  data-form="#taxrate-form" data-datatable="#taxrate-taxrate-list" name="btn_edit_customer" data-loading-text="Actualizando Espera..!">
           <i class="fa fa-fw fa-pencil"></i>
           <?php echo trans('button_update'); ?>
         </button>

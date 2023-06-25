@@ -16,16 +16,18 @@ class ModelTaxrate extends Model
 {
 	public function addTaxrate($data) 
 	{		
-    	$statement = $this->db->prepare("INSERT INTO `taxrates` (taxrate_name, code_name, taxrate, status, sort_order) VALUES (?, ?, ?, ?, ?)");
-    	$statement->execute(array($data['taxrate_name'], $data['code_name'], $data['taxrate'], $data['status'], $data['sort_order']));
+    	$statement = $this->db->prepare("INSERT INTO `taxrates` (taxrate_name, code_name, taxrate, status) VALUES (?, ?, ?, ?)");
+    	// $statement = $this->db->prepare("INSERT INTO `taxrates` (taxrate_name, code_name, taxrate, status, sort_order) VALUES (?, ?, ?, ?, ?)");
+    	$statement->execute(array($data['taxrate_name'], $data['code_name'], $data['taxrate'], $data['status']));
     	$taxrate_id = $this->db->lastInsertId();
     	return $taxrate_id; 
 	}
 
 	public function editTaxrate($taxrate_id, $data) 
 	{
-    	$statement = $this->db->prepare("UPDATE `taxrates` SET `taxrate_name` = ?, `code_name` = ?, `taxrate` = ?, `status` = ?, `sort_order` = ? WHERE taxrate_id = ? ");
-    	$statement->execute(array($data['taxrate_name'], $data['code_name'], $data['taxrate'], $data['status'], $data['sort_order'], $taxrate_id));
+    	// $statement = $this->db->prepare("UPDATE `taxrates` SET `taxrate_name` = ?, `code_name` = ?, `taxrate` = ?, `status` = ?, `sort_order` = ? WHERE taxrate_id = ? ");
+    	$statement = $this->db->prepare("UPDATE `taxrates` SET `taxrate_name` = ?, `code_name` = ?, `taxrate` = ?, `status` = ? WHERE taxrate_id = ? ");
+    	$statement->execute(array($data['taxrate_name'], $data['code_name'], $data['taxrate'], $data['status'], $taxrate_id));
     	return $taxrate_id;
 	}
 

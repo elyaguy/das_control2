@@ -552,7 +552,7 @@ include ("left_sidebar.php");
 					      <div class="col-sm-7 product-selector">
 					        <div class="checkbox selector">
 					          <label>
-					            <input type="checkbox" onclick="$('input[name*=\'product\']').prop('checked', this.checked);"> Select / Deselect
+					            <input type="checkbox" onclick="$('input[name*=\'product\']').prop('checked', this.checked);"> Seleccionar / Deseleccionar
 					          </label>
 					        </div>
 					        <div class="filter-searchbox">
@@ -582,7 +582,7 @@ include ("left_sidebar.php");
 						    <div class="col-sm-7 postemplate-selector">
 						    	<div class="checkbox selector">
 						          <label>
-						            <input type="checkbox" onclick="$('input[name*=\'postemplate\']').prop('checked', this.checked);"> Select / Deselect
+						            <input type="checkbox" onclick="$('input[name*=\'postemplate\']').prop('checked', this.checked);"> Seleccionar / Deseleccionar
 						          </label>
 						        </div>
 						        <div class="filter-searchbox">
@@ -612,7 +612,7 @@ include ("left_sidebar.php");
 						    <div class="col-sm-7 printer-selector">
 						    	<div class="checkbox selector">
 						          <label>
-						            <input type="checkbox" onclick="$('input[name*=\'printer\']').prop('checked', this.checked);"> Select / Deselect
+						            <input type="checkbox" onclick="$('input[name*=\'printer\']').prop('checked', this.checked);"> Seleccionar / Deseleccionar
 						          </label>
 						        </div>
 						        <div class="filter-searchbox">
@@ -642,7 +642,7 @@ include ("left_sidebar.php");
 					      <div class="col-sm-7 currency-selector">
 					        <div class="checkbox selector">
 					          <label>
-					            <input type="checkbox" onclick="$('input[name*=\'currency\']').prop('checked', this.checked);"> Select / Deselect
+					            <input type="checkbox" onclick="$('input[name*=\'currency\']').prop('checked', this.checked);"> Seleccionar / Deseleccionar
 					          </label>
 					        </div>
 					        <div class="filter-searchbox">
@@ -672,7 +672,7 @@ include ("left_sidebar.php");
 					      	<div class="col-sm-7 payment_method-selector">
 						        <div class="checkbox selector">
 						          <label>
-						            <input type="checkbox" onclick="$('input[name*=\'pmethod\']').prop('checked', this.checked);"> Select / Deselect
+						            <input type="checkbox" onclick="$('input[name*=\'pmethod\']').prop('checked', this.checked);"> Seleccionar / Deseleccionar
 						          </label>
 						        </div>
 						        <div class="filter-searchbox">

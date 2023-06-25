@@ -29,7 +29,7 @@
     <div class="form-group">
       <label class="col-sm-4 control-label"></label>
       <div class="col-sm-6">
-        <button id="save-product-return" data-form="#product-return-form" data-datatable="#product-product-list" type="submit" class="btn btn-info" name="btn_product_return" data-loading-text="Updating...">
+        <button id="save-product-return" data-form="#product-return-form" data-datatable="#product-product-list" type="submit" class="btn btn-info" name="btn_product_return" data-loading-text="Actualizando Espera..!">
           <span class="fa fa-fw fa-save"></span>
           <?php echo trans('button_return'); ?>
         </button>

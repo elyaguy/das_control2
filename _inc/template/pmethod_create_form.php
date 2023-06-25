@@ -29,35 +29,35 @@
       </div>
     </div>
 
-    <div class="form-group">
+    <!-- <div class="form-group">
       <label class="col-sm-3 control-label">
-        <?php echo trans('label_store'); ?><i class="required">*</i>
+        <?/*php echo trans('label_store'); */?><i class="required">*</i>
       </label>
       <div class="col-sm-7 store-selector">
         <div class="checkbox selector">
           <label>
-            <input type="checkbox" onclick="$('input[name*=\'pmethod_store\']').prop('checked', this.checked);"> Select / Deselect
+            <input type="checkbox" onclick="$('input[name*=\'pmethod_store\']').prop('checked', this.checked);"> Seleccionar / Deseleccionar
           </label>
         </div>
         <div class="filter-searchbox">
-          <input ng-model="search_store" class="form-control" type="text" id="search_store" placeholder="<?php echo trans('search'); ?>">
+          <input ng-model="search_store" class="form-control" type="text" id="search_store" placeholder="<?/*php echo trans('search'); */?>">
         </div>
         <div class="well well-sm store-well"> 
           <div filter-list="search_store">
-            <?php foreach(get_stores() as $the_store) : ?>                    
+            <?/*php foreach(get_stores() as $the_store) : */?>                    
               <div class="checkbox">
                 <label>                         
-                  <input type="checkbox" name="pmethod_store[]" value="<?php echo $the_store['store_id']; ?>" <?php echo $the_store['store_id'] == store_id() ? 'checked' : null; ?>>
-                  <?php echo $the_store['name']; ?>
+                  <input type="checkbox" name="pmethod_store[]" value="<?/*php echo $the_store['store_id']; */?>" <?/*php echo $the_store['store_id'] == store_id() ? 'checked' : null; */?>>
+                  <?/*php echo $the_store['name']; */?>
                 </label>
               </div>
-            <?php endforeach; ?>
+            <?/*php endforeach; */?>
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
-    <div class="form-group">
+    <div class="form-group hidden">
       <label for="status" class="col-sm-3 control-label">
         <?php echo trans('label_status'); ?><i class="required">*</i>
       </label>
@@ -73,14 +73,14 @@
       </div>
     </div>
 
-    <div class="form-group">
+    <!-- <div class="form-group">
       <label for="sort_order" class="col-sm-3 control-label">
-        <?php echo sprintf(trans('label_sort_order'), null); ?><i class="required">*</i>
+        <?/*php echo sprintf(trans('label_sort_order'), null); */?><i class="required">*</i>
       </label>
       <div class="col-sm-7">
-        <input type="text" class="form-control" id="sort_order" value="<?php echo isset($request->post['sort_order']) ? $request->post['sort_order'] : 0; ?>" name="sort_order" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" onKeyUp="if(this.value<0){this.value='1';}" required>
+        <input type="text" class="form-control" id="sort_order" value="<?/*php echo isset($request->post['sort_order']) ? $request->post['sort_order'] : 0; */?>" name="sort_order" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" onKeyUp="if(this.value<0){this.value='1';}" required>
       </div>
-    </div>
+    </div> -->
 
     <div class="form-group">
       <label class="col-sm-3 control-label"></label>

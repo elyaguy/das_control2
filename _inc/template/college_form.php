@@ -49,7 +49,7 @@
       <div class="col-sm-8 store-selector">
         <div class="checkbox selector">
           <label>
-            <input type="checkbox" onclick="$('input[name*=\'college_store\']').prop('checked', this.checked);"> Select / Deselect
+            <input type="checkbox" onclick="$('input[name*=\'college_store\']').prop('checked', this.checked);"> Seleccionar / Deseleccionar
           </label>
         </div>
         <div class="filter-searchbox">
@@ -103,7 +103,7 @@
     <div class="form-group">
       <label for="college_address" class="col-sm-3 control-label"></label>
       <div class="col-sm-8">
-        <button id="college-update" data-form="#college-form" data-datatable="#college-college-list" class="btn btn-info" name="btn_edit_college" data-loading-text="Updating...">
+        <button id="college-update" data-form="#college-form" data-datatable="#college-college-list" class="btn btn-info" name="btn_edit_college" data-loading-text="Actualizando Espera..!">
           <span class="fa fa-fw fa-pencil"></span>
           <?php echo sprintf(trans('button_update'), null); ?>
         </button>

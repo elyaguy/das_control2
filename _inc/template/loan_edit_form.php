@@ -95,7 +95,7 @@
     <div class="form-group">
       <label for="box_address" class="col-sm-3 control-label"></label>
       <div class="col-sm-8">            
-        <button id="loan-update" class="btn btn-block btn-info"  data-form="#loan-edit-form" data-datatable="#loan-loan-list" name="btn_edit_loan" data-loading-text="Updating...">
+        <button id="loan-update" class="btn btn-block btn-info"  data-form="#loan-edit-form" data-datatable="#loan-loan-list" name="btn_edit_loan" data-loading-text="Actualizando Espera..!">
           <i class="fa fa-fw fa-pencil"></i>
           <?php echo trans('button_update'); ?>
         </button>

@@ -47,20 +47,20 @@ function validate_request_data($request)
     throw new Exception(trans('error_currency_decimal_place'));
   }
 
-  // Validate currency_store
-  if (!isset($request->post['currency_store']) || empty($request->post['currency_store'])) {
-    throw new Exception(trans('error_store'));
-  }
+  // // Validate currency_store
+  // if (!isset($request->post['currency_store']) || empty($request->post['currency_store'])) {
+  //   throw new Exception(trans('error_store'));
+  // }
 
   // Validate status
   if (!is_numeric($request->post['status'])) {
     throw new Exception(trans('error_status'));
   }
 
-  // Sort order validation
-  if (!is_numeric($request->post['sort_order'])) {
-    throw new Exception(trans('error_sort_order'));
-  }
+  // // Sort order validation
+  // if (!is_numeric($request->post['sort_order'])) {
+  //   throw new Exception(trans('error_sort_order'));
+  // }
 }
 
 // Check currency existance by id
@@ -227,14 +227,17 @@ if (isset($request->get['currency_id']) && isset($request->get['action_type']) &
 
 $Hooks->do_action('Before_Showing_Currency_List');
  
-$where_query = 'c2s.store_id = '.store_id();
+// $where_query = 'c2s.store_id = '.store_id();
  
 // DB table to use
-$table = "(SELECT currency.*, c2s.status, c2s.sort_order FROM currency 
-  LEFT JOIN currency_to_store c2s ON (currency.currency_id = c2s.currency_id) 
-  WHERE $where_query GROUP by currency.currency_id
-  ) as currency";
- 
+// $table = "(SELECT currency.*, c2s.status, c2s.sort_order FROM currency 
+//   LEFT JOIN currency_to_store c2s ON (currency.currency_id = c2s.currency_id) 
+//   WHERE $where_query GROUP by currency.currency_id
+//   ) as currency";
+$table = "(SELECT currency.* FROM currency 
+GROUP by currency.currency_id
+) as currency";
+
 // Table's primary key
 $primaryKey = 'currency_id';
 

@@ -573,7 +573,7 @@ $permissions = array(
         <h4 class="pull-left">
           <b><?php echo trans('text_permission'); ?></b>
         </h4>
-        <button data-form="#user-group-form" data-datatable="#user-group-list" class="btn btn-info btn-lg pull-right user-group-update" name="btn_edit_user" data-loading-text="Updating...">
+        <button data-form="#user-group-form" data-datatable="#user-group-list" class="btn btn-info btn-lg pull-right user-group-update" name="btn_edit_user" data-loading-text="Actualizando Espera..!">
           <span class="fa fa-fw fa-pencil"></span>
           <?php echo trans('button_update'); ?>
         </button>
@@ -613,7 +613,7 @@ $permissions = array(
   <div class="box-footer">
     <div class="form-group">
       <div class="col-sm-12 text-center">
-        <button data-form="#user-group-form" data-datatable="#user-group-list" class="btn btn-lg btn-info user-group-update" name="btn_edit_user" data-loading-text="Updating...">
+        <button data-form="#user-group-form" data-datatable="#user-group-list" class="btn btn-lg btn-info user-group-update" name="btn_edit_user" data-loading-text="Actualizando Espera..!">
           <span class="fa fa-fw fa-pencil"></span>
           <?php echo trans('button_update'); ?>
         </button>

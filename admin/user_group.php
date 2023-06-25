@@ -140,6 +140,9 @@ include ("left_sidebar.php") ;
                       <?php echo sprintf(trans('label_name'), null); ?>
                     </th>
                     <th class="w-20">
+                      <?php echo sprintf(trans('label_code'), null); ?>
+                    </th>
+                    <th class="w-20">
                       <?php echo sprintf(trans('label_total_user'), null); ?>
                     </th>
                     <th class="w-15">
@@ -150,15 +153,16 @@ include ("left_sidebar.php") ;
                     </th>
                   </tr>
                 </thead>
-                <!-- <tfoot>
+                <tfoot>
                   <tr class="bg-gray">
                     <th><?php echo sprintf(trans('label_id'), null); ?></th>
                     <th><?php echo sprintf(trans('label_name'), null); ?></th>
+                    <th><?php echo sprintf(trans('label_code'), null); ?></th>
                     <th><?php echo sprintf(trans('label_total_user'), null); ?></th>
                     <th><?php echo trans('label_edit'); ?></th>
                     <th><?php echo trans('label_delete'); ?></th>
                   </tr>
-                </tfoot> -->
+                </tfoot>
               </table>
             </div>
           </div>

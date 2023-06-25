@@ -120,7 +120,7 @@ function (
         "aoColumns": [
             {data : "sup_id"},
             {data : "sup_name"},
-            {data : "sup_mobile"},
+            {data : "sup_document"},
             {data : "total_product"},
             {data : "created_at"},
             {data : "status"},
@@ -269,8 +269,6 @@ function (
     // Create new supplier
     $(document).delegate("#create-supplier-submit", "click", function(e) {
         e.preventDefault();
-        window.toastr.warning('alertMsg', "Warning2!");
-
         var $tag = $(this);
         var $btn = $tag.button("loading");
         var form = $($tag.data("form"));
@@ -287,7 +285,6 @@ function (
             dataType: "json"
         }).
         then(function(response) {
-            window.toastr.warning('alertMsg', "Warning2!");
             $("#reset").trigger("click");
             $btn.button("reset");
             $(":input[type=\"button\"]").prop("disabled", false);
@@ -303,7 +300,6 @@ function (
             }, false);
 
         }, function(response) {
-            window.toastr.warning('alertMsg', "Warning2!");
             $btn.button("reset");
             $(":input[type=\"button\"]").prop("disabled", false);
             var alertMsg = "<div>";
@@ -311,7 +307,7 @@ function (
                 alertMsg += "<p>" + value + ".</p>";
             });
             alertMsg += "</div>";
-            window.toastr.warning(alertMsg, "Warning2!");
+            window.toastr.warning(alertMsg, "Warning!");
         });
     });
 

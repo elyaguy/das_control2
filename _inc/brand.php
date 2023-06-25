@@ -42,20 +42,20 @@ function validate_request_data($request)
     throw new Exception(trans('error_code_name'));
   }
 
-  // Validate store
-  if (!isset($request->post['brand_store']) || empty($request->post['brand_store'])) {
-    throw new Exception(trans('error_store'));
-  }
+  // // Validate store
+  // if (!isset($request->post['brand_store']) || empty($request->post['brand_store'])) {
+  //   throw new Exception(trans('error_store'));
+  // }
 
   // Validate status
   if (!is_numeric($request->post['status'])) {
     throw new Exception(trans('error_status'));
   }
 
-  // Validate sort order
-  if (!is_numeric($request->post['sort_order'])) {
-    throw new Exception(trans('error_sort_order'));
-  }
+  // // Validate sort order
+  // if (!is_numeric($request->post['sort_order'])) {
+  //   throw new Exception(trans('error_sort_order'));
+  // }
 }
 
 // Check, if already exist or not
@@ -191,18 +191,18 @@ if($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action_
 
     $Hooks->do_action('Before_Delete_Brand', $request);
 
-    $belongs_stores = $brand_model->getBelongsStore($id);
-    foreach ($belongs_stores as $the_store) {
+    // $belongs_stores = $brand_model->getBelongsStore($id);
+    // foreach ($belongs_stores as $the_store) {
 
-      // Check if relationship exist or not
-      $statement = db()->prepare("SELECT * FROM `brand_to_store` WHERE `brand_id` = ? AND `store_id` = ?");
-      $statement->execute(array($new_brand_id, $the_store['store_id']));
-      if ($statement->rowCount() > 0) continue;
+    //   // Check if relationship exist or not
+    //   $statement = db()->prepare("SELECT * FROM `brand_to_store` WHERE `brand_id` = ? AND `store_id` = ?");
+    //   $statement->execute(array($new_brand_id, $the_store['store_id']));
+    //   if ($statement->rowCount() > 0) continue;
 
-      // Create relationship
-      $statement = db()->prepare("INSERT INTO `brand_to_store` SET `brand_id` = ?, `store_id` = ?");
-      $statement->execute(array($new_brand_id, $the_store['store_id']));
-    }
+    //   // Create relationship
+    //   $statement = db()->prepare("INSERT INTO `brand_to_store` SET `brand_id` = ?, `store_id` = ?");
+    //   $statement->execute(array($new_brand_id, $the_store['store_id']));
+    // }
 
     if ($request->post['delete_action'] == 'insert_to') 
     {
@@ -275,14 +275,17 @@ if (isset($request->get['brand_id']) && isset($request->get['action_type']) && $
  */
 $Hooks->do_action('Before_Showing_Brand_List');
 
-$where_query = 'b2s.store_id = ' . store_id();
+// $where_query = 'b2s.store_id = ' . store_id();
  
 // DB table to use
-$table = "(SELECT brands.*, b2s.status, b2s.sort_order FROM brands 
-  LEFT JOIN brand_to_store b2s ON (brands.brand_id = b2s.brand_id) 
-  WHERE $where_query GROUP by brands.brand_id
-  ) as brands";
- 
+// $table = "(SELECT brands.*, b2s.status, b2s.sort_order FROM brands 
+//   LEFT JOIN brand_to_store b2s ON (brands.brand_id = b2s.brand_id) 
+//   WHERE $where_query GROUP by brands.brand_id
+//   ) as brands";
+$table = "(SELECT brands.* FROM brands 
+GROUP by brands.brand_id
+) as brands";
+
 // Table's primary key
 $primaryKey = 'brand_id';
 

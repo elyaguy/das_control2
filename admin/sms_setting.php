@@ -251,7 +251,7 @@ include ("left_sidebar.php");
 				<div class="form-group">
 					<label class="col-sm-3 control-label">&nbsp;</label>
 					<div class="col-sm-3">
-						<button id="sms-setting-btn" class="btn btn-info btn-block" type="button" data-form="#sms-setting-form" data-loading-text="Updating...">
+						<button id="sms-setting-btn" class="btn btn-info btn-block" type="button" data-form="#sms-setting-form" data-loading-text="Actualizando Espera..!">
 							<span class="fa fa-fw fa-pencil"></span> 
 							<?php echo trans('button_update'); ?>
 						</button>

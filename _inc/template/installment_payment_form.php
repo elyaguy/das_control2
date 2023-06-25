@@ -21,7 +21,7 @@
       <div class="form-group">
         <label class="col-sm-3 control-label"></label>
         <div class="col-sm-7">
-          <button id="payment-update" data-form="#payment-form" data-datatable="#payment-payment-list" class="btn btn-info" name="btn_edit_payment" data-loading-text="Updating...">
+          <button id="payment-update" data-form="#payment-form" data-datatable="#payment-payment-list" class="btn btn-info" name="btn_edit_payment" data-loading-text="Actualizando Espera..!">
             <span class="fa fa-fw fa-money"></span>
             <?php echo trans('button_pay_now'); ?>
           </button>

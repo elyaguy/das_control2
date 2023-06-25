@@ -276,7 +276,7 @@
 
     <div class="form-group">
       <div class="col-sm-6 col-sm-offset-3 text-center">            
-        <button id="update-quotation-submit" class="btn btn-block btn-info" data-form="#form-quotation" data-datatable="#quotation-quotation-list" name="submit" data-loading-text="Updating...">
+        <button id="update-quotation-submit" class="btn btn-block btn-info" data-form="#form-quotation" data-datatable="#quotation-quotation-list" name="submit" data-loading-text="Actualizando Espera..!">
           <i class="fa fa-fw fa-pencil"></i>
           <?php echo trans('button_update'); ?>
         </button>

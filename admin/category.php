@@ -108,10 +108,10 @@ include ("left_sidebar.php");
                 $hide_colums = "";
                 if (user_group_id() != 1) {
                   if (!has_permission('access', 'update_category')) {
-                    $hide_colums .= "6,";
+                    $hide_colums .= "5,";
                   }
                   if (!has_permission('access', 'delete_category')) {
-                    $hide_colums .= "7,";
+                    $hide_colums .= "6,";
                   }
                 }
               ?> 
@@ -129,9 +129,9 @@ include ("left_sidebar.php");
                     <th class="w-5">
                       <?php echo trans('label_total_item'); ?>
                     </th>
-                    <th class="w-5">
-                      <?php echo trans('label_sort_order'); ?>
-                    </th>
+                    <!-- <th class="w-5">
+                      <?/*php echo trans('label_sort_order'); */?>
+                    </th> -->
                     <th class="w-10">
                       <?php echo trans('label_status'); ?>
                     </th>
@@ -146,7 +146,7 @@ include ("left_sidebar.php");
                     </th>
                   </tr>
                 </thead>
-                <!-- <tfoot>
+                <tfoot>
                   <tr class="bg-gray">
                     <th class="w-5">
                       <?php echo sprintf(trans('label_id'), null); ?>
@@ -157,9 +157,9 @@ include ("left_sidebar.php");
                     <th class="w-5">
                       <?php echo trans('label_total_item'); ?>
                     </th>
-                    <th class="w-5">
-                      <?php echo trans('label_sort_order'); ?>
-                    </th>
+                    <!-- <th class="w-5">
+                      <?/*php echo trans('label_sort_order'); */?>
+                    </th> -->
                     <th class="w-10">
                       <?php echo trans('label_status'); ?>
                     </th>
@@ -173,7 +173,7 @@ include ("left_sidebar.php");
                       <?php echo trans('label_delete'); ?>
                     </th>
                   </tr>
-                </tfoot> -->
+                </tfoot>
               </table> 
               <!-- Category List End -->
               

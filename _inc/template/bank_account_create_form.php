@@ -63,7 +63,7 @@
       <div class="col-sm-7 store-selector">
         <div class="checkbox selector">
           <label>
-            <input type="checkbox" onclick="$('input[name*=\'account_store\']').prop('checked', this.checked);"> Select / Deselect
+            <input type="checkbox" onclick="$('input[name*=\'account_store\']').prop('checked', this.checked);"> Seleccionar / Deseleccionar
           </label>
         </div>
         <div class="filter-searchbox">

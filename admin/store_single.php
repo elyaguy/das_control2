@@ -444,7 +444,7 @@ $tab_active = isset($request->get['tab']) ? $request->get['tab'] : 'general';
 								<div class="col-sm-7 product-selector">
 									<div class="checkbox selector">
 										<label>
-											<input type="checkbox" onclick="$('input[name*=\'product\']').prop('checked', this.checked);"> Select / Deselect
+											<input type="checkbox" onclick="$('input[name*=\'product\']').prop('checked', this.checked);"> Seleccionar / Deseleccionar
 										</label>
 									</div>
 									<div class="filter-searchbox">
@@ -460,14 +460,7 @@ $tab_active = isset($request->get['tab']) ? $request->get['tab'] : 'general';
 													</label>
 												</div>
 											<?php endforeach; ?>
-											<!-- <?php foreach (get_products_to_store() as $the_product) : ?>
-												<div class="checkbox">
-													<label>
-														<input type="checkbox" name="product[]" value="<?php echo $the_product['p_id']; ?>" >
-														<?php echo $the_product['p_name']; ?>
-													</label>
-												</div>
-											<?php endforeach; ?> -->
+											
 										</div>
 									</div>
 								</div>
@@ -814,7 +807,7 @@ $tab_active = isset($request->get['tab']) ? $request->get['tab'] : 'general';
 								</div>
 								<div class="div.col-sm-1"></div>
 								<div class="col-sm-4">
-									<button id="update-store-btn" class="btn btn-block btn-info pull-right" type="button" data-form="#store-form" data-loading-text="Updating...">
+									<button id="update-store-btn" class="btn btn-block btn-info pull-right" type="button" data-form="#store-form" data-loading-text="Actualizando Espera..!">
 										<span class="fa fa-fw fa-pencil"></span>
 										<?php echo trans('button_update'); ?>
 									</button>

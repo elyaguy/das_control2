@@ -33,35 +33,35 @@
       </div>
     </div>
 
-    <div class="form-group">
+    <!-- <div class="form-group">
       <label class="col-sm-3 control-label">
-        <?php echo trans('label_store'); ?><i class="required">*</i>
+        <?/*php echo trans('label_store'); */?><i class="required">*</i>
       </label>
       <div class="col-sm-8 store-selector">
         <div class="checkbox selector">
           <label>
-            <input type="checkbox" onclick="$('input[name*=\'pmethod_store\']').prop('checked', this.checked);"> Select / Deselect
+            <input type="checkbox" onclick="$('input[name*=\'pmethod_store\']').prop('checked', this.checked);"> Seleccionar / Deseleccionar
           </label>
         </div>
 
         <div class="filter-searchbox">
-          <input ng-model="search_store" class="form-control" type="text" id="search_store" placeholder="<?php echo trans('search'); ?>">
+          <input ng-model="search_store" class="form-control" type="text" id="search_store" placeholder="<?/*php echo trans('search'); */?>">
         </div>
         
         <div class="well well-sm store-well">
           <div filter-list="search_store">
-            <?php foreach(get_stores() as $the_store) : ?>                    
+            <?/*php foreach(get_stores() as $the_store) : */?>                    
               <div class="checkbox">
                 <label>                         
-                  <input type="checkbox" name="pmethod_store[]" value="<?php echo $the_store['store_id']; ?>" <?php echo in_array($the_store['store_id'], $pmethod['stores']) ? 'checked' : null; ?>>
-                  <?php echo $the_store['name']; ?>
+                  <input type="checkbox" name="pmethod_store[]" value="<?/*php echo $the_store['store_id']; */?>" <?/*php echo in_array($the_store['store_id'], $pmethod['stores']) ? 'checked' : null; */?>>
+                  <?/*php echo $the_store['name']; /*?>
                 </label>
               </div>
-            <?php endforeach; ?>
+            <?/*php endforeach; */?>
           </div>
         </div>
       </div>
-    </div>
+    </div> -->
 
     <div class="form-group">
       <label for="status" class="col-sm-3 control-label">
@@ -75,19 +75,19 @@
       </div>
     </div>
 
-    <div class="form-group">
+    <!-- <div class="form-group">
       <label for="sort_order" class="col-sm-3 control-label">
-        <?php echo sprintf(trans('label_sort_order'), null); ?><i class="required">*</i>
+        <?/*php echo sprintf(trans('label_sort_order'), null); */?><i class="required">*</i>
       </label>
       <div class="col-sm-8">
-        <input type="text" class="form-control" id="sort_order" value="<?php echo $pmethod['sort_order']; ?>" name="sort_order" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" onKeyUp="if(this.value<0){this.value='1';}">
+        <input type="text" class="form-control" id="sort_order" value="<?/*php echo $pmethod['sort_order']; */?>" name="sort_order" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" onKeyUp="if(this.value<0){this.value='1';}">
       </div>
-    </div>
+    </div> -->
 
     <div class="form-group">
       <label for="box_address" class="col-sm-3 control-label"></label>
       <div class="col-sm-8">            
-        <button id="pmethod-update" class="btn btn-info"  data-form="#pmethod-form" data-datatable="#pmethod-pmethod-list" name="btn_edit_customer" data-loading-text="Updating...">
+        <button id="pmethod-update" class="btn btn-info"  data-form="#pmethod-form" data-datatable="#pmethod-pmethod-list" name="btn_edit_customer" data-loading-text="Actualizando Espera..!">
           <i class="fa fa-fw fa-pencil"></i>
           <?php echo trans('button_update'); ?>
         </button>

@@ -718,7 +718,7 @@ function updateFormSuccessCallback(res)
 {
     $("#loader-status").show();
     $("#loader-status .progress").show();
-    $("#loader-status .text").text("Updating...");
+    $("#loader-status .text").text("Actualizando Espera..!");
 
     $("#loader-status .progress-bar").attr("aria-valuenow", 0);
     $("#loader-status .progress-bar").css("width", "0%");

@@ -100,7 +100,7 @@
       <div class="col-sm-7 store-selector">
         <div class="checkbox selector">
           <label>
-            <input type="checkbox" onclick="$('input[name*=\'user_store\']').prop('checked', this.checked);"> Select / Deselect
+            <input type="checkbox" onclick="$('input[name*=\'user_store\']').prop('checked', this.checked);"> Seleccionar / Deseleccionar
           </label>
         </div>
         <div class="filter-searchbox">
@@ -121,7 +121,7 @@
       </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group hidden">
       <label for="status" class="col-sm-3 control-label">
         <?php echo trans('label_status'); ?><i class="required">*</i>
       </label>
@@ -137,7 +137,7 @@
       </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group hidden">
       <label for="sort_order" class="col-sm-3 control-label">
         <?php echo sprintf(trans('label_sort_order'), null); ?><i class="required">*</i>
       </label>

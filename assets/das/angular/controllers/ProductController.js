@@ -451,7 +451,7 @@ window.angularApp.controller("ProductController", [
             ProductReturnModal(dt.DataTable().row($(this).closest("tr")).data());
         });
 
-        // Create new category
+        // Crear nueva Categoría
         $scope.createNewCategory = function () {
             CategoryCreateModal($scope);
         };
@@ -461,12 +461,12 @@ window.angularApp.controller("ProductController", [
             SupplierCreateModal($scope);
         };
 
-        // Create new brand
+        // Crear nuevo Marca
         $scope.createNewBrand = function () {
             BrandCreateModal($scope);
         };
 
-        // Create new course
+        // Crear nuevo Curso
         $scope.createNewCourse = function () {
             CourseCreateModal($scope);
         };
@@ -503,8 +503,8 @@ window.angularApp.controller("ProductController", [
 
             // Alert
             window.swal({
-                title: "Are You Sure?",
-                text: "Delete All Selected Products!",
+                title: "¿Estas Seguro?",
+                text: "¡Eliminar todos los productos seleccionados!",
                 icon: "warning",
                 buttons: {
                     cancel: true,

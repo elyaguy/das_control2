@@ -23,13 +23,25 @@
     </div>
 
     <div class="form-group">
+      <label for="sup_document" class="col-sm-3 control-label">
+        <?php echo trans('label_document'); ?><i class="required">*</i>
+      </label>
+      <div class="col-sm-7">
+        <input type="text" class="form-control" id="sup_document" name="sup_document" value="<?php echo isset($request->post['sup_document']) ? $request->post['sup_document'] : null; ?>" >
+      </div>
+    </div>
+    
+
+    <div class="form-group">
       <label for="sup_email" class="col-sm-3 control-label">
         <?php echo trans('label_email'); ?><i class="required">*</i>
       </label>
       <div class="col-sm-7">
-        <input type="email" class="form-control" id="sup_email" name="sup_email" value="<?php echo isset($request->post['sup_email']) ? $request->post['sup_email'] : null; ?>" >
+        <input type="email" class="form-control" id="sup_email" name="sup_email" value="<?php echo isset($request->post['sup_email']) ? $request->post['sup_email'] : null; ?>" required>
       </div>
     </div>
+
+
 
     <div class="form-group">
       <label for="sup_mobile" class="col-sm-3 control-label">
@@ -41,7 +53,7 @@
     </div>
 
     <?php if (get_preference('invoice_view') == 'indian_gst') : ?>
-      <div class="form-group">
+      <div class="form-group hidden">
         <label for="gtin" class="col-sm-3 control-label">
           <?php echo trans('label_gtin'); ?>
         </label>
@@ -105,7 +117,7 @@
       <div class="col-sm-7 store-selector">
         <div class="checkbox selector">
           <label>
-            <input type="checkbox" onclick="$('input[name*=\'supplier_store\']').prop('checked', this.checked);"> Select / Deselect
+            <input type="checkbox" onclick="$('input[name*=\'supplier_store\']').prop('checked', this.checked);"> Seleccionar / Deseleccionar
           </label>
         </div>
         <div class="filter-searchbox">
@@ -151,7 +163,7 @@
       </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group hidden">
       <label for="sort_order" class="col-sm-3 control-label">
         <?php echo sprintf(trans('label_sort_order'), null); ?><i class="required">*</i>
       </label>

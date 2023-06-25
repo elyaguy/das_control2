@@ -1,7 +1,7 @@
-<?php 
+<?php
 ob_start();
 session_start();
-include ("../_init.php");
+include("../_init.php");
 
 // Check, if your logged in or not
 // If user is not logged in then return an alert message
@@ -28,7 +28,7 @@ $user_id = user_id();
 $transfer_model = registry()->get('loader')->model('transfer');
 
 // Validate post data
-function validate_request_data($request) 
+function validate_request_data($request)
 {
   // Validate items
   if (!isset($request->post['items'])) {
@@ -46,17 +46,17 @@ function validate_request_data($request)
   }
 
   // Validate From store id
-  if (!isset($request->post['from_store_id']) OR !validateInteger($request->post['from_store_id'])) {
+  if (!isset($request->post['from_store_id']) or !validateInteger($request->post['from_store_id'])) {
     throw new Exception(trans('error_store_id'));
   }
 
   // Validate To store id
-  if (!isset($request->post['to_store_id']) OR !validateInteger($request->post['to_store_id'])) {
+  if (!isset($request->post['to_store_id']) or !validateInteger($request->post['to_store_id'])) {
     throw new Exception(trans('error_store_id'));
   }
 }
 
-function addProductAndQuantity($item_id, $item_quantity, $from_store_id, $to_store_id) 
+function addProductAndQuantity($item_id, $item_quantity, $from_store_id, $to_store_id)
 {
   // Increase product stock
   $statement = db()->prepare("SELECT * FROM `product_to_store` WHERE `product_id` = ? AND `store_id` = ?");
@@ -77,52 +77,51 @@ function addProductAndQuantity($item_id, $item_quantity, $from_store_id, $to_sto
   $product_info = get_the_product($item_id);
 
   // Transfer category if not exist
-    $category_id = $product_info['category_id'];
-    $statement = db()->prepare("SELECT * FROM `category_to_store` WHERE `ccategory_id` = ? AND `store_id` = ?");
-    $statement->execute(array($category_id, $to_store_id));
-    $row = $statement->fetch(PDO::FETCH_ASSOC);
-    if (!$row) {
-      $statement = db()->prepare("INSERT INTO `category_to_store` SET `ccategory_id` = ?, `store_id` = ?, `status` = ?");
-      $statement->execute(array($category_id, $to_store_id, 1));
-    }
+  // $category_id = $product_info['category_id'];
+  // $statement = db()->prepare("SELECT * FROM `category_to_store` WHERE `ccategory_id` = ? AND `store_id` = ?");
+  // $statement->execute(array($category_id, $to_store_id));
+  // $row = $statement->fetch(PDO::FETCH_ASSOC);
+  // if (!$row) {
+  //   $statement = db()->prepare("INSERT INTO `category_to_store` SET `ccategory_id` = ?, `store_id` = ?, `status` = ?");
+  //   $statement->execute(array($category_id, $to_store_id, 1));
+  // }
 
   // Transfer supplier if not exist
-    $sup_id = $product_info['sup_id'];
-    $statement = db()->prepare("SELECT * FROM `supplier_to_store` WHERE `sup_id` = ? AND `store_id` = ?");
-    $statement->execute(array($sup_id, $to_store_id));
-    $row = $statement->fetch(PDO::FETCH_ASSOC);
-    if (!$row) {
-      $statement = db()->prepare("INSERT INTO `supplier_to_store` SET `sup_id` = ?, `store_id` = ?, `status` = ?");
-      $statement->execute(array($sup_id, $to_store_id, 1));
-    }
+  $sup_id = $product_info['sup_id'];
+  $statement = db()->prepare("SELECT * FROM `supplier_to_store` WHERE `sup_id` = ? AND `store_id` = ?");
+  $statement->execute(array($sup_id, $to_store_id));
+  $row = $statement->fetch(PDO::FETCH_ASSOC);
+  if (!$row) {
+    $statement = db()->prepare("INSERT INTO `supplier_to_store` SET `sup_id` = ?, `store_id` = ?, `status` = ?");
+    $statement->execute(array($sup_id, $to_store_id, 1));
+  }
 
-  // Transfer unit if not exist
-    $unit_id = $product_info['unit_id'];
-    $statement = db()->prepare("SELECT * FROM `unit_to_store` WHERE `uunit_id` = ? AND `store_id` = ?");
-    $statement->execute(array($unit_id, $to_store_id));
-    $row = $statement->fetch(PDO::FETCH_ASSOC);
-    if (!$row) {
-      $statement = db()->prepare("INSERT INTO `unit_to_store` SET `uunit_id` = ?, `store_id` = ?, `status` = ?");
-      $statement->execute(array($unit_id, $to_store_id, 1));
-    }
+  // // Transfer unit if not exist
+  //   $unit_id = $product_info['unit_id'];
+  //   $statement = db()->prepare("SELECT * FROM `unit_to_store` WHERE `uunit_id` = ? AND `store_id` = ?");
+  //   $statement->execute(array($unit_id, $to_store_id));
+  //   $row = $statement->fetch(PDO::FETCH_ASSOC);
+  //   if (!$row) {
+  //     $statement = db()->prepare("INSERT INTO `unit_to_store` SET `uunit_id` = ?, `store_id` = ?, `status` = ?");
+  //     $statement->execute(array($unit_id, $to_store_id, 1));
+  //   }
 
-  // Transfer box if not exist
-    $box_id = $product_info['box_id'];
-    $statement = db()->prepare("SELECT * FROM `box_to_store` WHERE `box_id` = ? AND `store_id` = ?");
-    $statement->execute(array($box_id, $to_store_id));
-    $row = $statement->fetch(PDO::FETCH_ASSOC);
-    if (!$row) {
-      $statement = db()->prepare("INSERT INTO `box_to_store` SET `box_id` = ?, `store_id` = ?, `status` = ?");
-      $statement->execute(array($box_id, $to_store_id, 1));
-    }
+  // // Transfer box if not exist
+  //   $box_id = $product_info['box_id'];
+  //   $statement = db()->prepare("SELECT * FROM `box_to_store` WHERE `box_id` = ? AND `store_id` = ?");
+  //   $statement->execute(array($box_id, $to_store_id));
+  //   $row = $statement->fetch(PDO::FETCH_ASSOC);
+  //   if (!$row) {
+  //     $statement = db()->prepare("INSERT INTO `box_to_store` SET `box_id` = ?, `store_id` = ?, `status` = ?");
+  //     $statement->execute(array($box_id, $to_store_id, 1));
+  //   }
 
   $statement = db()->prepare("UPDATE `product_to_store` SET `quantity_in_stock` = `quantity_in_stock`-$item_quantity WHERE `product_id` = ? AND `store_id` = ?");
   $statement->execute(array($item_id, $from_store_id));
 }
 
 // Transfer
-if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action_type']) && $request->post['action_type'] == 'TRANSFER')
-{
+if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action_type']) && $request->post['action_type'] == 'TRANSFER') {
   try {
 
     // Check create permission
@@ -134,15 +133,14 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action
     validate_request_data($request);
 
     // Validate attachment
-    if(isset($_FILES["image"]["type"]) && $_FILES["image"]["type"])
-    {
-        if (!$_FILES["image"]["type"] == "image/jpg" || !$_FILES["image"]["type"] == "application/pdf" || $_FILES["image"]["size"] > 1048576) {  // 1MB  
-            throw new Exception(trans('error_size_or_type'));
-        }
+    if (isset($_FILES["image"]["type"]) && $_FILES["image"]["type"]) {
+      if (!$_FILES["image"]["type"] == "image/jpg" || !$_FILES["image"]["type"] == "application/pdf" || $_FILES["image"]["size"] > 1048576) {  // 1MB  
+        throw new Exception(trans('error_size_or_type'));
+      }
 
-        if ($_FILES["image"]["error"] > 0) {
-            throw new Exception("Return Code: " . $_FILES["image"]["error"]);
-        }
+      if ($_FILES["image"]["error"] > 0) {
+        throw new Exception("Return Code: " . $_FILES["image"]["error"]);
+      }
     }
 
     $ref_no = $request->post['ref_no'];
@@ -166,11 +164,10 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action
     $to_store_id = $request->post['to_store_id'];
     $attachment = $request->post['image'];
 
-    foreach ($request->post['items'] as $key => $item) 
-    {
+    foreach ($request->post['items'] as $key => $item) {
       $id = $item['id'];
       $item_quantity = $item['quantity'];
-      $invoice_id = randomNumber(6).'-'.$ref_no;
+      $invoice_id = randomNumber(6) . '-' . $ref_no;
 
       $statement = db()->prepare("SELECT * FROM `purchase_item` WHERE `id` = ?");
       $statement->execute(array($id));
@@ -214,7 +211,7 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action
 
 
       $statement = db()->prepare("INSERT INTO `purchase_price` SET `invoice_id` = ?, `store_id` = ?, `order_tax` = ?, `item_tax` = ?, `cgst` = ?, `sgst` = ?, `igst` = ?, `payable_amount` = ?, `paid_amount` = ?, `due` = ?");
-      $statement->execute(array($invoice_id, $to_store_id, $order_tax, $item_tax, $cgst, $sgst, $igst, $payable_amount, $paid_amount, $due));      
+      $statement->execute(array($invoice_id, $to_store_id, $order_tax, $item_tax, $cgst, $sgst, $igst, $payable_amount, $paid_amount, $due));
 
       $statement = db()->prepare("UPDATE `purchase_price` SET `item_tax` = `item_tax`-$item_tax, `cgst` = `cgst`-$cgst, `sgst` = `sgst`-$sgst, `igst` = `igst`-$igst, `payable_amount` = `payable_amount`-$payable_amount, `paid_amount` = `paid_amount`-$payable_amount WHERE `store_id` = ? AND `invoice_id` = ?");
       $statement->execute(array($info['store_id'], $info['invoice_id']));
@@ -250,13 +247,13 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action
 
           $statement = db()->prepare("INSERT INTO `bank_transaction_info` (store_id, account_id, source_id, ref_no, invoice_id, transaction_type, title, details, image, created_by, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
           $statement->execute(array(store_id(), $account_id, $source_id, $ref_no, $invoice_id, $transaction_type, $title, $details, $image, user_id(), date_time()));
-		      $info_id = db()->lastInsertId();
-		
+          $info_id = db()->lastInsertId();
+
           $statement = db()->prepare("INSERT INTO `bank_transaction_price` (store_id, info_id, ref_no, amount) VALUES (?, ?, ?, ?)");
           $statement->execute(array($store_id, $info_id, $ref_no, $deposit_amount));
 
           $statement = db()->prepare("UPDATE `bank_account_to_store` SET `deposit` = `deposit` + $deposit_amount WHERE `store_id` = ? AND `account_id` = ?");
-          $statement->execute(array(store_id(),$account_id));
+          $statement->execute(array(store_id(), $account_id));
 
           $statement = db()->prepare("UPDATE `bank_accounts` SET `total_deposit` = `total_deposit` + $deposit_amount WHERE `id` = ?");
           $statement->execute(array($account_id));
@@ -275,13 +272,12 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action
     }
 
     $Hooks->do_action('After_Stock_Transfer', $transfer_id);
-    
+
     header('Content-Type: application/json');
     echo json_encode(array('msg' => trans('text_transfer_success'), 'id' => $transfer_id));
     exit();
-
   } catch (Exception $e) {
-    
+
     header('HTTP/1.1 422 Unprocessable Entity');
     header('Content-Type: application/json; charset=UTF-8');
     echo json_encode(array('errorMsg' => $e->getMessage()));
@@ -290,8 +286,7 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action
 }
 
 // Update transfer
-if ($request->server['REQUEST_METHOD'] == 'POST' AND isset($request->post['action_type']) && $request->post['action_type'] == 'UPDATE')
-{
+if ($request->server['REQUEST_METHOD'] == 'POST' and isset($request->post['action_type']) && $request->post['action_type'] == 'UPDATE') {
   try {
 
     // Check update permission
@@ -312,7 +307,7 @@ if ($request->server['REQUEST_METHOD'] == 'POST' AND isset($request->post['actio
     $status = $request->post['status'];
 
     $id = $request->post['id'];
-    $statement = $statement = db()->prepare("SELECT * FROM `transfers` WHERE `id` = ?"); 
+    $statement = $statement = db()->prepare("SELECT * FROM `transfers` WHERE `id` = ?");
     $statement->execute(array($id));
     $transfer = $statement->fetch(PDO::FETCH_ASSOC);
     if (!$transfer) {
@@ -328,7 +323,7 @@ if ($request->server['REQUEST_METHOD'] == 'POST' AND isset($request->post['actio
     $statement->execute(array($status, $id));
 
     if ($status == 'complete') {
-      $statement = $statement = db()->prepare("SELECT * FROM `transfer_items` WHERE `transfer_id` = ?"); 
+      $statement = $statement = db()->prepare("SELECT * FROM `transfer_items` WHERE `transfer_id` = ?");
       $statement->execute(array($transfer['id']));
       $transfer_items = $statement->fetchAll(PDO::FETCH_ASSOC);
       if (!empty($transfer_items)) {
@@ -339,7 +334,7 @@ if ($request->server['REQUEST_METHOD'] == 'POST' AND isset($request->post['actio
         }
       }
 
-      $statement = $statement = db()->prepare("SELECT `payable_amount` FROM `purchase_price` WHERE `invoice_id` = ?"); 
+      $statement = $statement = db()->prepare("SELECT `payable_amount` FROM `purchase_price` WHERE `invoice_id` = ?");
       $statement->execute(array($transfer['invoice_id']));
       $row = $statement->fetch(PDO::FETCH_ASSOC);
       if ($row) {
@@ -358,18 +353,17 @@ if ($request->server['REQUEST_METHOD'] == 'POST' AND isset($request->post['actio
 
           $statement = db()->prepare("INSERT INTO `bank_transaction_info` (store_id, account_id, source_id, ref_no, invoice_id, transaction_type, title, details, image, created_by, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
           $statement->execute(array(store_id(), $account_id, $source_id, $ref_no, $transfer['invoice_id'], $transaction_type, $title, $details, $image, user_id(), date_time()));
-		      $info_id = db()->lastInsertId();
-		
+          $info_id = db()->lastInsertId();
+
           $statement = db()->prepare("INSERT INTO `bank_transaction_price` (store_id, info_id, ref_no, amount) VALUES (?, ?, ?, ?)");
           $statement->execute(array($store_id, $info_id, $ref_no, $deposit_amount));
 
           $statement = db()->prepare("UPDATE `bank_account_to_store` SET `deposit` = `deposit` + $deposit_amount WHERE `store_id` = ? AND `account_id` = ?");
-          $statement->execute(array(store_id(),$account_id));
+          $statement->execute(array(store_id(), $account_id));
 
           $statement = db()->prepare("UPDATE `bank_accounts` SET `total_deposit` = `total_deposit` + $deposit_amount WHERE `id` = ?");
           $statement->execute(array($account_id));
         }
-
       }
     }
 
@@ -378,30 +372,27 @@ if ($request->server['REQUEST_METHOD'] == 'POST' AND isset($request->post['actio
     header('Content-Type: application/json');
     echo json_encode(array('msg' => trans('text_update_transfer_status_success'), 'id' => $transfer['id']));
     exit();
-
-  } catch (Exception $e) { 
+  } catch (Exception $e) {
 
     header('HTTP/1.1 422 Unprocessable Entity');
     header('Content-Type: application/json; charset=UTF-8');
     echo json_encode(array('errorMsg' => $e->getMessage()));
     exit();
   }
-} 
+}
 
 // View transfer details
-if (isset($request->get['transfer_id']) && isset($request->get['action_type']) && $request->get['action_type'] == 'VIEW') 
-{
-    $transfer_id = $request->get['transfer_id'];
-    $transfer = $transfer_model->getTransferInfo($transfer_id);
-    $transfer_items = $transfer_model->getTransferItems($transfer_id);
-    include ROOT.'/_inc/template/transfer_view.php';
-    exit();
+if (isset($request->get['transfer_id']) && isset($request->get['action_type']) && $request->get['action_type'] == 'VIEW') {
+  $transfer_id = $request->get['transfer_id'];
+  $transfer = $transfer_model->getTransferInfo($transfer_id);
+  $transfer_items = $transfer_model->getTransferItems($transfer_id);
+  include ROOT . '/_inc/template/transfer_view.php';
+  exit();
 }
 
 // Transfer edit form
-if (isset($request->get['id']) AND isset($request->get['action_type']) && $request->get['action_type'] == 'EDIT') 
-{
-  $statement = $statement = db()->prepare("SELECT * FROM `transfers` WHERE `id` = ?"); 
+if (isset($request->get['id']) and isset($request->get['action_type']) && $request->get['action_type'] == 'EDIT') {
+  $statement = $statement = db()->prepare("SELECT * FROM `transfers` WHERE `id` = ?");
   $statement->execute(array($request->get['id']));
   $transfer = $statement->fetch(PDO::FETCH_ASSOC);
   include 'template/transfer_edit_form.php';
@@ -432,8 +423,8 @@ if (($from && ($to == false)) || ($from == $to)) {
   $where_query .= " AND MONTH(`transfers`.`created_at`) = '{$month}'";
   $where_query .= " AND YEAR(`transfers`.`created_at`) = '{$year}'";
 } else {
-  $from = date('Y-m-d H:i:s', strtotime($from.' '. '00:00:00')); 
-  $to = date('Y-m-d H:i:s', strtotime($to.' '. '23:59:59'));
+  $from = date('Y-m-d H:i:s', strtotime($from . ' ' . '00:00:00'));
+  $to = date('Y-m-d H:i:s', strtotime($to . ' ' . '23:59:59'));
   $where_query .= " AND transfers.created_at >= '{$from}' AND transfers.created_at <= '{$to}'";
 }
 if (isset($request->get['type']) && $request->get['type'] == 'receive') {
@@ -444,80 +435,80 @@ if (isset($request->get['type']) && $request->get['type'] == 'receive') {
 
 // DB table to use
 $table = "(SELECT transfers.* FROM transfers WHERE $where_query) as transfers";
- 
+
 // Table's primary key
 $primaryKey = 'id';
 
 // indexes
 $columns = array(
-    array(
-        'db' => 'id',
-        'dt' => 'DT_RowId',
-        'formatter' => function( $d, $row ) {
-            return 'row_'.$d;
-        }
-    ),
-    array( 'db' => 'id', 'dt' => 'id' ),
-    array( 'db' => 'ref_no', 'dt' => 'ref_no' ),
-    array( 
-      'db' => 'created_at',   
-      'dt' => 'created_at' ,
-      'formatter' => function($d, $row) {
-          return $row['created_at'];
+  array(
+    'db' => 'id',
+    'dt' => 'DT_RowId',
+    'formatter' => function ($d, $row) {
+      return 'row_' . $d;
+    }
+  ),
+  array('db' => 'id', 'dt' => 'id'),
+  array('db' => 'ref_no', 'dt' => 'ref_no'),
+  array(
+    'db' => 'created_at',
+    'dt' => 'created_at',
+    'formatter' => function ($d, $row) {
+      return $row['created_at'];
+    }
+  ),
+  array(
+    'db' => 'from_store_id',
+    'dt' => 'from_store',
+    'formatter' => function ($d, $row) {
+      return store_id() == $row['from_store_id'] ? store_field('name', $row['from_store_id']) . ' (This Store)' : store_field('name', $row['from_store_id']);
+    }
+  ),
+  array(
+    'db' => 'to_store_id',
+    'dt' => 'to_store',
+    'formatter' => function ($d, $row) {
+      return store_id() == $row['to_store_id'] ? store_field('name', $row['to_store_id']) . ' (This Store)' : store_field('name', $row['to_store_id']);
+    }
+  ),
+  array(
+    'db' => 'total_item',
+    'dt' => 'total_item',
+    'formatter' => function ($d, $row) {
+      return $row['total_item'];
+    }
+  ),
+  array(
+    'db' => 'total_quantity',
+    'dt' => 'total_quantity',
+    'formatter' => function ($d, $row) {
+      return $row['total_quantity'];
+    }
+  ),
+  array(
+    'db' => 'status',
+    'dt' => 'btn_view',
+    'formatter' => function ($d, $row) {
+      return '<button class="btn btn-sm btn-block btn-success view-details" title="' . trans('button_view') . '"><span class="fa fa-eye"></span></button>';
+    }
+  ),
+  array(
+    'db' => 'status',
+    'dt' => 'btn_edit',
+    'formatter' => function ($d, $row) {
+      if ($row['status'] == 'pending') {
+        return '<button class="btn btn-sm btn-block btn-danger" id="transfer-edit" title="' . trans('button_transfer_edit') . '">' . ucfirst($row['status']) . ' <i class="fa fa-fw fa-edit"></i></button>';
+      } elseif ($row['status'] == 'sent') {
+        return '<button class="btn btn-sm btn-block btn-warning" id="transfer-edit" title="' . trans('button_transfer_edit') . '">' . ucfirst($row['status']) . ' <i class="fa fa-fw fa-edit"></i></button>';
+      } else {
+        return '<button class="btn btn-sm btn-block btn-success" title="' . trans('button_transfer_edit') . '" disabled>' . ucfirst($row['status']) . ' <i class="fa fa-fw fa-edit"></i></button>';
       }
-    ),
-    array( 
-      'db' => 'from_store_id',   
-      'dt' => 'from_store' ,
-      'formatter' => function($d, $row) {
-          return store_id() == $row['from_store_id'] ? store_field('name', $row['from_store_id']).' (This Store)' : store_field('name', $row['from_store_id']);
-      }
-    ),
-    array( 
-      'db' => 'to_store_id',   
-      'dt' => 'to_store' ,
-      'formatter' => function($d, $row) {
-          return store_id() == $row['to_store_id'] ? store_field('name', $row['to_store_id']).' (This Store)' : store_field('name', $row['to_store_id']);
-      }
-    ),
-    array( 
-      'db' => 'total_item',   
-      'dt' => 'total_item' ,
-      'formatter' => function($d, $row) {
-          return $row['total_item'];
-      }
-    ),
-    array( 
-      'db' => 'total_quantity',   
-      'dt' => 'total_quantity' ,
-      'formatter' => function($d, $row) {
-          return $row['total_quantity'];
-      }
-    ),
-    array( 
-      'db' => 'status',   
-      'dt' => 'btn_view' ,
-      'formatter' => function($d, $row) {
-        return '<button class="btn btn-sm btn-block btn-success view-details" title="'.trans('button_view').'"><span class="fa fa-eye"></span></button>';
-      }
-    ),
-    array( 
-      'db' => 'status',   
-      'dt' => 'btn_edit' ,
-      'formatter' => function($d, $row) {
-        if ($row['status'] == 'pending') {
-          return '<button class="btn btn-sm btn-block btn-danger" id="transfer-edit" title="'.trans('button_transfer_edit').'">'.ucfirst($row['status']).' <i class="fa fa-fw fa-edit"></i></button>';
-        } elseif ($row['status'] == 'sent') {
-          return '<button class="btn btn-sm btn-block btn-warning" id="transfer-edit" title="'.trans('button_transfer_edit').'">'.ucfirst($row['status']).' <i class="fa fa-fw fa-edit"></i></button>';
-        } else {
-          return '<button class="btn btn-sm btn-block btn-success" title="'.trans('button_transfer_edit').'" disabled>'.ucfirst($row['status']).' <i class="fa fa-fw fa-edit"></i></button>';
-        }
-      }
-    ),
+    }
+  ),
 );
 
 echo json_encode(
-    SSP::simple($request->get, $sql_details, $table, $primaryKey, $columns)
+  SSP::simple($request->get, $sql_details, $table, $primaryKey, $columns)
 );
 
 $Hooks->do_action('Aftere_Showing_Transfer_List');
@@ -527,4 +518,3 @@ $Hooks->do_action('Aftere_Showing_Transfer_List');
  * END DATATABLE
  *===================
  */
- 

@@ -143,7 +143,7 @@ include ("left_sidebar.php") ;
                     </th>
                   </tr>
                 </thead>
-                <!-- <tfoot>
+                <tfoot>
                   <tr class="bg-gray">
                     <th>
                       <?php echo sprintf(trans('label_id'), null); ?>
@@ -167,7 +167,7 @@ include ("left_sidebar.php") ;
                       <?php echo trans('label_delete'); ?>
                     </th>
                   </tr>
-                </tfoot> -->
+                </tfoot>
               </table>
             </div>
           </div>

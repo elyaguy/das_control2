@@ -82,7 +82,7 @@
       <div class="form-group">
         <label class="col-sm-3 control-label"></label>
         <div class="col-sm-7">
-          <button id="expense-category-update" data-form="#expense-category-form" data-datatable="#category-category-list" class="btn btn-info" name="btn_edit_expense_category" data-loading-text="Updating...">
+          <button id="expense-category-update" data-form="#expense-category-form" data-datatable="#category-category-list" class="btn btn-info" name="btn_edit_expense_category" data-loading-text="Actualizando Espera..!">
             <span class="fa fa-fw fa-pencil"></span>
             <?php echo trans('button_update'); ?>
           </button>

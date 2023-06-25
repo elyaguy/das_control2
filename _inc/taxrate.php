@@ -47,10 +47,10 @@ function validate_request_data($request) {
     throw new Exception(trans('error_status'));
   }
 
-  // Sort order validation
-  if (!is_numeric($request->post['sort_order'])) {
-    throw new Exception(trans('error_sort_order'));
-  }
+  // // Sort order validation
+  // if (!is_numeric($request->post['sort_order'])) {
+  //   throw new Exception(trans('error_sort_order'));
+  // }
 }
 
 // Check taxrate existance by id

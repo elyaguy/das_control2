@@ -245,7 +245,7 @@ function (
     // End datatable
     //================
 
-    // Create new college
+    // Crear nuevo Colegio
     $(document).delegate("#create-college-submit", "click", function(e) {
         e.preventDefault();
         var $tag = $(this);

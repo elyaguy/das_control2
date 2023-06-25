@@ -45,14 +45,14 @@ function (
         "dom": "lfBrtip",
         "serverSide": true,
         "ajax": API_URL + "/_inc/pmethod.php",
-        "order": [[ 2, "asc"]],
+        // "order": [[ 2, "asc"]],
         "aLengthMenu": [
             [10, 25, 50, 100, 200, -1],
             [10, 25, 50, 100, 200, "All"]
         ],
         "columnDefs": [
-            {"targets": [5, 6], "orderable": false},
-            {"className": "text-center", "targets": [0, 2, 4, 5, 6]},
+            {"targets": [5], "orderable": false},
+            {"className": "text-center", "targets": [0, 2, 4, 5]},
             {"visible": false,  "targets": hideColumsArray},
             { 
                 "targets": [0],
@@ -90,17 +90,17 @@ function (
                    $(td).attr('data-title', $("#pmethod-pmethod-list thead tr th:eq(5)").html());
                 }
             },
-            { 
-                "targets": [6],
-                'createdCell':  function (td, cellData, rowData, row, col) {
-                   $(td).attr('data-title', $("#pmethod-pmethod-list thead tr th:eq(6)").html());
-                }
-            },
+            // { 
+            //     "targets": [6],
+            //     'createdCell':  function (td, cellData, rowData, row, col) {
+            //        $(td).attr('data-title', $("#pmethod-pmethod-list thead tr th:eq(6)").html());
+            //     }
+            // },
         ],
         "aoColumns": [
             {data : "pmethod_id"},
             {data : "name"},
-            {data : "sort_order"},
+            // {data : "sort_order"},
             {data : "details"},
             {data : "status"},
             {data : "btn_edit"},

@@ -5863,7 +5863,7 @@ window.angularApp.factory("CategoryCreateModal", ["API_URL", "window", "jQuery",
                   method: "GET"
                 })
                 .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Create New Category";
+                    $scope.modal_title = "Crear nueva Categoría";
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
 
                     setTimeout(function() {
@@ -6312,7 +6312,7 @@ window.angularApp.factory("CustomerCreateModal", ["API_URL", "window", "jQuery",
                   method: "GET"
                 })
                 .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Create New Customer";
+                    $scope.modal_title = "Crear cliente";
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
 
                     setTimeout(function() {
@@ -8173,7 +8173,7 @@ window.angularApp.factory("ProductCreateModal", ["API_URL", "window", "jQuery", 
                   method: "GET"
                 })
                 .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Create New Product";
+                    $scope.modal_title = "Crear nuevo Producto";
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
 
                     setTimeout(function() {
@@ -9239,7 +9239,7 @@ window.angularApp.factory("BrandCreateModal", ["API_URL", "window", "jQuery", "$
                   method: "GET"
                 })
                 .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Create New Brand";
+                    $scope.modal_title = "Crear nuevo Marca";
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
 
                     setTimeout(function() {
@@ -9572,7 +9572,7 @@ window.angularApp.factory("CollegeCreateModal", ["API_URL", "window", "jQuery", 
                   method: "GET"
                 })
                 .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Create New College";
+                    $scope.modal_title = "Crear nuevo Colegio";
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
 
                     setTimeout(function() {
@@ -9905,7 +9905,7 @@ window.angularApp.factory("CourseCreateModal", ["API_URL", "window", "jQuery", "
                   method: "GET"
                 })
                 .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Create New Course";
+                    $scope.modal_title = "Crear nuevo Curso";
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
 
                     setTimeout(function() {
@@ -11831,7 +11831,7 @@ window.angularApp.factory("PurchaseInvoiceViewModal", ["API_URL", "window", "jQu
                   method: "GET"
                 })
                 .then(function (response, status, headers, config) {
-                    $scope.modal_title = "Purchase > " + invoice.invoice_id;
+                    $scope.modal_title = "Compra No. => " + invoice.invoice_id;
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
                 }, function (response) {
                    window.swal("Ups!", response.data.errorMsg, "error")

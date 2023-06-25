@@ -21956,7 +21956,9 @@ table.text-center th {
 .skin-purple .left-side,
 .skin-purple .main-sidebar,
 .skin-purple .wrapper {
-    background-color: #605ca8
+    /* background-color: #605ca8 */
+    background-color: #222d32;
+
 }
 
 .skin-purple .user-panel>.info,
@@ -21976,7 +21978,9 @@ table.text-center th {
 .skin-purple .sidebar-menu>li.active>a,
 .skin-purple .sidebar-menu>li:hover>a {
     color: whitesmoke;
-    background: #001a35;
+    /* background: #001a35; */
+    background: #1e282c;
+
     border-left-color: greenyellow;
     text-decoration-color: #003eff;
     /* font-weight: bold; */
@@ -21988,6 +21992,8 @@ table.text-center th {
 .skin-purple .sidebar-menu>li>.treeview-menu {
     margin: 0 1px;
     background: #2c3b41;
+
+    /* background: #2c3b41; */
     /* font-weight: 600; */
 
 }

@@ -44,20 +44,20 @@ function validate_request_data($request)
     throw new Exception(trans('error_code_name'));
   }
 
-  // Validate store
-  if (!isset($request->post['pmethod_store']) || empty($request->post['pmethod_store'])) {
-    throw new Exception(trans('error_store'));
-  }
+  // // Validate store
+  // if (!isset($request->post['pmethod_store']) || empty($request->post['pmethod_store'])) {
+  //   throw new Exception(trans('error_store'));
+  // }
 
   // Validate status
   if (!is_numeric($request->post['status'])) {
     throw new Exception(trans('error_status'));
   }
 
-  // Validate sort order
-  if (!is_numeric($request->post['sort_order'])) {
-    throw new Exception(trans('error_sort_order'));
-  }
+  // // Validate sort order
+  // if (!is_numeric($request->post['sort_order'])) {
+  //   throw new Exception(trans('error_sort_order'));
+  // }
 }
 
 // Check, if pmethod method exist or not
@@ -188,18 +188,18 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action
 
     $Hooks->do_action('Before_Delete_PMethod', $request);
 
-    $belongs_stores = $pmethod_model->getBelongsStore($id);
-    foreach ($belongs_stores as $the_store) {
+    // $belongs_stores = $pmethod_model->getBelongsStore($id);
+    // foreach ($belongs_stores as $the_store) {
 
-      // Check if relationship exist or not
-      $statement = db()->prepare("SELECT * FROM `pmethod_to_store` WHERE `ppmethod_id` = ? AND `store_id` = ?");
-      $statement->execute(array($new_pmethod_id, $the_store['store_id']));
-      if ($statement->rowCount() > 0) continue;
+    //   // Check if relationship exist or not
+    //   $statement = db()->prepare("SELECT * FROM `pmethod_to_store` WHERE `ppmethod_id` = ? AND `store_id` = ?");
+    //   $statement->execute(array($new_pmethod_id, $the_store['store_id']));
+    //   if ($statement->rowCount() > 0) continue;
 
-      // Create relationship
-      $statement = db()->prepare("INSERT INTO `pmethod_to_store` SET `ppmethod_id` = ?, `store_id` = ?");
-      $statement->execute(array($new_pmethod_id, $the_store['store_id']));
-    }
+    //   // Create relationship
+    //   $statement = db()->prepare("INSERT INTO `pmethod_to_store` SET `ppmethod_id` = ?, `store_id` = ?");
+    //   $statement->execute(array($new_pmethod_id, $the_store['store_id']));
+    // }
 
     if ($request->post['delete_action'] == 'insert_to') {
 
@@ -264,8 +264,9 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action
     }
     $status = $request->post['status'] == 'chacked' ? 1 : 0;
 
-    $statement = db()->prepare("UPDATE `pmethod_to_store` SET `status` = ? WHERE `store_id` = ? AND `ppmethod_id` = ?");
-    $statement->execute(array($status, $store_id, $request->post['id']));
+    // $statement = db()->prepare("UPDATE `pmethod_to_store` SET `status` = ? WHERE `store_id` = ? AND `ppmethod_id` = ?");
+    $statement = db()->prepare("UPDATE `pmethods` SET `status` = ? WHERE `pmethod_id` = ?");
+    $statement->execute(array($status, $request->post['id']));
 
     header('Content-Type: application/json');
     echo json_encode(array('msg' => trans('text_update_success')));
@@ -306,14 +307,16 @@ if (isset($request->get['pmethod_id']) AND isset($request->get['action_type']) &
 
 $Hooks->do_action('Before_Showing_PMethod_List');
 
-$where_query = "p2s.store_id = {$store_id}";
+// $where_query = "p2s.store_id = {$store_id}";
  
 // DB table to use
-$table = "(SELECT pmethods.*, p2s.status, p2s.sort_order FROM pmethods 
-  LEFT JOIN pmethod_to_store p2s ON (pmethods.pmethod_id = p2s.ppmethod_id) 
-  WHERE $where_query
-  ) as pmethods";
- 
+// $table = "(SELECT pmethods.*, p2s.status, p2s.sort_order FROM pmethods 
+//   LEFT JOIN pmethod_to_store p2s ON (pmethods.pmethod_id = p2s.ppmethod_id) 
+//   WHERE $where_query
+//   ) as pmethods";
+$table = "(SELECT pmethods.* FROM pmethods 
+) as pmethods";
+
 // Table's primary key
 $primaryKey = 'pmethod_id';
  
@@ -334,7 +337,7 @@ $columns = array(
         return $row['name'];
     }
   ),
-  array( 'db' => 'sort_order', 'dt' => 'sort_order' ),
+  // array( 'db' => 'sort_order', 'dt' => 'sort_order' ),
   array( 'db' => 'details', 'dt' => 'details' ),
   array( 
     'db' => 'status',   

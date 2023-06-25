@@ -45,14 +45,14 @@
       </div>
     </div>
 
-    <div class="form-group">
+    <!-- <div class="form-group">
       <label for="sort_order" class="col-sm-3 control-label">
-        <?php echo sprintf(trans('label_sort_order'), null); ?><i class="required">*</i>
+        <?/*php echo sprintf(trans('label_sort_order'), null); */?><i class="required">*</i>
       </label>
       <div class="col-sm-7">
-        <input type="number" class="form-control" id="sort_order" value="<?php echo isset($request->post['sort_order']) ? $request->post['sort_order'] : 0; ?>" name="sort_order" required>
+        <input type="number" class="form-control" id="sort_order" value="<?/*php echo isset($request->post['sort_order']) ? $request->post['sort_order'] : 0; */?>" name="sort_order" required>
       </div>
-    </div>
+    </div> -->
 
     <div class="form-group">
       <label class="col-sm-3 control-label"></label>

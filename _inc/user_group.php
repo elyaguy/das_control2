@@ -284,6 +284,7 @@ $columns = array(
         return $row['name'];
     }
   ),
+  array( 'db' => 'slug', 'dt' => 'slug' ),
   array( 
     'db' => 'group_id',   
     'dt' => 'total_user' ,

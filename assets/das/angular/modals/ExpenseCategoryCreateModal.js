@@ -17,7 +17,7 @@ window.angularApp.factory("ExpenseCategoryCreateModal", ["API_URL", "window", "j
                   method: "GET"
                 })
                 .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Create New Category";
+                    $scope.modal_title = "Crear nueva Categoría";
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
 
                     setTimeout(function() {

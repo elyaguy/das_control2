@@ -58,7 +58,7 @@
     <div class="form-group">
       <label for="giftcard_address" class="col-sm-3 control-label"></label>
       <div class="col-sm-8">            
-        <button id="giftcard-update" class="btn btn-info"  data-form="#giftcard-form" data-datatable="#giftcard-giftcard-list" name="btn_edit_customer" data-loading-text="Updating...">
+        <button id="giftcard-update" class="btn btn-info"  data-form="#giftcard-form" data-datatable="#giftcard-giftcard-list" name="btn_edit_customer" data-loading-text="Actualizando Espera..!">
           <i class="fa fa-fw fa-pencil"></i>
           <?php echo trans('button_update'); ?>
         </button>

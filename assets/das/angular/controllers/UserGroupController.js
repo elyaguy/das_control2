@@ -86,10 +86,17 @@ function (
                    $(td).attr('data-title', $("#user-group-list thead tr th:eq(4)").html());
                 }
             },
+            { 
+                "targets": [5],
+                'createdCell':  function (td, cellData, rowData, row, col) {
+                   $(td).attr('data-title', $("#user-group-list thead tr th:eq(5)").html());
+                }
+            },
         ],
         "aoColumns": [
             {data : "group_id"},
             {data : "name"},
+            {data : "slug"},
             {data : "total_user"},
             {data : "btn_edit"},
             {data : "btn_delete"}

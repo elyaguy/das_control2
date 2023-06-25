@@ -54,9 +54,9 @@ function (
             [10, 25, 50, 100, 200, "All"]
         ],
         "columnDefs": [
-            {"targets": [6, 7], "orderable": false},
+            {"targets": [5, 6], "orderable": false},
             {"visible": false,  "targets": hideColumsArray},
-            {"className": "text-center", "targets": [0, 3, 4, 5, 6, 7]},
+            {"className": "text-center", "targets": [0, 3, 4, 5, 6]},
             {"className": "text-right", "targets": [2]},
             { 
                 "targets": [0],
@@ -100,18 +100,18 @@ function (
                    $(td).attr('data-title', $("#category-category-list thead tr th:eq(6)").html());
                 }
             },
-            { 
-                "targets": [7],
-                'createdCell':  function (td, cellData, rowData, row, col) {
-                   $(td).attr('data-title', $("#category-category-list thead tr th:eq(7)").html());
-                }
-            },
+            // { 
+            //     "targets": [7],
+            //     'createdCell':  function (td, cellData, rowData, row, col) {
+            //        $(td).attr('data-title', $("#category-category-list thead tr th:eq(7)").html());
+            //     }
+            // },
         ],
         "aoColumns": [
             {data : "category_id"},
             {data : "category_name"},
             {data : "total_item"},
-            {data : "sort_order"},
+            // {data : "sort_order"},
             {data : "status"},
             {data : "created_at"},
             {data : "btn_edit"},

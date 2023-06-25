@@ -82,7 +82,7 @@
       <div class="form-group">
         <label class="col-sm-3 control-label"></label>
         <div class="col-sm-7">
-          <button id="income-source-update" data-form="#income-source-form" data-datatable="#source-source-list" class="btn btn-info" name="btn_edit_income_source" data-loading-text="Updating...">
+          <button id="income-source-update" data-form="#income-source-form" data-datatable="#source-source-list" class="btn btn-info" name="btn_edit_income_source" data-loading-text="Actualizando Espera..!">
             <span class="fa fa-fw fa-pencil"></span>
             <?php echo trans('button_update'); ?>
           </button>

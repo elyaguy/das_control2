@@ -70,7 +70,7 @@
       <div class="col-sm-7 store-selector">
         <div class="checkbox selector">
           <label>
-            <input type="checkbox" onclick="$('input[name*=\'account_store\']').prop('checked', this.checked);"> Select / Deselect
+            <input type="checkbox" onclick="$('input[name*=\'account_store\']').prop('checked', this.checked);"> Seleccionar / Deseleccionar
           </label>
         </div>
         <div class="filter-searchbox">
@@ -119,7 +119,7 @@
     <div class="form-group">
       <label for="account_address" class="col-sm-4 control-label"></label>
       <div class="col-sm-7">            
-        <button id="account-update" class="btn btn-info"  data-form="#account-form" data-datatable="#account-list" name="btn_edit_customer" data-loading-text="Updating...">
+        <button id="account-update" class="btn btn-info"  data-form="#account-form" data-datatable="#account-list" name="btn_edit_customer" data-loading-text="Actualizando Espera..!">
           <i class="fa fa-fw fa-pencil"></i>
           <?php echo trans('button_update'); ?>
         </button>

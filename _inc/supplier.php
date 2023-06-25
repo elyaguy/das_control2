@@ -37,6 +37,11 @@ function validate_request_data($request)
   //   throw new Exception(trans('error_code_name'));
   // }
 
+  // Validate supplier code name
+  if(!validateString($request->post['sup_document'])) {
+    throw new Exception(trans('error_sup_document'));
+  }
+
   // Validate supplier email or mobile
   // if (!validateEmail($request->post['sup_email']) && empty($request->post['sup_mobile'])) {
   //   throw new Exception(trans('error_supplier_email_or_mobile'));
@@ -64,10 +69,10 @@ function validate_request_data($request)
     throw new Exception(trans('error_status'));
   }
 
-  // Validate sort order
-  if (!is_numeric($request->post['sort_order'])) {
-    throw new Exception(trans('error_sort_order'));
-  }
+  // // Validate sort order
+  // if (!is_numeric($request->post['sort_order'])) {
+  //   throw new Exception(trans('error_sort_order'));
+  // }
 }
 
 // Check, if already exist or not
@@ -77,8 +82,8 @@ function validate_existance($request, $id = 0)
 
   // Check, if supplier name exist or not
   if (!empty($request->post['sup_name'])) {
-    $statement = db()->prepare("SELECT * FROM `suppliers` WHERE `sup_name` = ? AND `sup_id` != ?");
-    $statement->execute(array($request->post['sup_name'], $id));
+    $statement = db()->prepare("SELECT * FROM `suppliers` WHERE `sup_document` = ? AND `sup_id` != ?");
+    $statement->execute(array($request->post['sup_document'], $id));
     if ($statement->rowCount() > 0) {
       throw new Exception(trans('error_supplier_name_exist'));
     }
@@ -119,8 +124,8 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action
     // Validate existance
     validate_existance($request);
     
-    $statement = db()->prepare("SELECT * FROM `suppliers` WHERE `sup_name` = ?");
-    $statement->execute(array($request->post['sup_name']));
+    $statement = db()->prepare("SELECT * FROM `suppliers` WHERE `sup_document` = ?");
+    $statement->execute(array($request->post['sup_document']));
     $total = $statement->rowCount();
     if ($total>0) {
       throw new Exception(trans('error_supplier_exist'));
@@ -349,7 +354,7 @@ $columns = array(
         return $row['sup_name'];
     }
   ),
-  array( 'db' => 'sup_mobile',   'dt' => 'sup_mobile' ),
+  array( 'db' => 'sup_document',   'dt' => 'sup_document' ),
   array( 
     'db' => 'sup_id',   
     'dt' => 'total_product' ,

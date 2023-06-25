@@ -112,7 +112,7 @@ include ("left_sidebar.php") ;
                 </button>
                 <ul class="dropdown-menu" role="menu">
                   <li>
-                      <a href="purchase.php">
+                      <a href="purchase.php?type=today">
                         <?php echo trans('button_today_invoice'); ?>
                       </a>
                     </li>
@@ -149,7 +149,8 @@ include ("left_sidebar.php") ;
             
             <div class="table-responsive"> 
               <?php
-              $hide_colums = "";
+              $hide_colums = "4,5,6,";
+              // $hide_colums = "";
               if (user_group_id() != 1) {
                 if (! has_permission('access', 'purchase_payment')) {
                   $hide_colums .= "8,";
@@ -182,15 +183,18 @@ include ("left_sidebar.php") ;
                     </th>
                     <th class="w-10">
                       <?php echo trans('label_creator'); ?>
-                    </th>
+                    </th>              
                     <th class="w-10">
-                      <?php echo trans('label_amount'); ?> 
+                      <?php echo trans('label_amount'); ?>
                     </th>
                     <th class="w-10">
                       <?php echo trans('label_invoice_paid'); ?>
                     </th>
                     <th class="w-10">
                       <?php echo trans('label_due'); ?>
+                    </th>
+                    <th class="w-10">
+                      <?php echo trans('label_quantity_product'); ?>
                     </th>
                     <th class="w-5">
                       <?php echo trans('label_status'); ?>
@@ -234,6 +238,9 @@ include ("left_sidebar.php") ;
                     </th>
                     <th class="w-10">
                       <?php echo trans('label_due'); ?>
+                    </th>
+                    <th class="w-10">
+                      <?php echo trans('label_quantity_product'); ?>
                     </th>
                     <th class="w-5">
                       <?php echo trans('label_status'); ?>

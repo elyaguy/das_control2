@@ -98,7 +98,7 @@ $tab_active = isset($request->get['tab']) ? $request->get['tab'] : 'general';
             </div>
           </div>
 
-          <div class="form-group all">
+          <div class="form-group all hidden">
             <label for="p_type" class="col-sm-3 control-label">
               <?php echo trans('label_product_type'); ?><i class="required">*</i>
             </label>
@@ -312,10 +312,22 @@ $tab_active = isset($request->get['tab']) ? $request->get['tab'] : 'general';
               <input type="text" class="form-control" id="sell_price" name="sell_price" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" onKeyUp="if(this.value<0){this.value='1';}" required>
             </div>
           </div>
-          <!-- 
-          <div class="form-group">
-           
-          </div> -->
+          
+          <div class="form-group hidden">
+          <label for="tax_method" class="col-sm-3 control-label">
+              <?php echo trans('label_tax_method'); ?><i class="required">*</i>
+            </label>
+            <div class="col-sm-2">
+              <select id="tax_method" class="form-control" name="tax_method">
+                <option value="inclusive" selected>
+                  <?php echo trans('text_inclusive'); ?>
+                </option>
+                <option value="exclusive">
+                  <?php echo trans('text_exclusive'); ?>
+                </option>
+              </select>
+            </div>
+          </div>
 
           <div class="form-group">
             <label for="taxrate_id" class="col-sm-3 control-label">
@@ -338,19 +350,7 @@ $tab_active = isset($request->get['tab']) ? $request->get['tab'] : 'general';
                 </a>
               </div>
             </div>
-            <label for="tax_method" class="col-sm-3 control-label">
-              <?php echo trans('label_tax_method'); ?><i class="required">*</i>
-            </label>
-            <div class="col-sm-2">
-              <select id="tax_method" class="form-control" name="tax_method">
-                <option value="inclusive" selected>
-                  <?php echo trans('text_inclusive'); ?>
-                </option>
-                <option value="exclusive">
-                  <?php echo trans('text_exclusive'); ?>
-                </option>
-              </select>
-            </div>
+           
           </div>
           <!-- 
           <div class="form-group">
@@ -364,7 +364,7 @@ $tab_active = isset($request->get['tab']) ? $request->get['tab'] : 'general';
             <div class="col-sm-7 store-selector">
               <div class="checkbox selector">
                 <label>
-                  <input type="checkbox" onclick="$('input[name*=\'product_store\']').prop('checked', this.checked);"> Select / Deselect
+                  <input type="checkbox" onclick="$('input[name*=\'product_store\']').prop('checked', this.checked);"> Seleccionar / Deseleccionar
                 </label>
               </div>
               <div class="filter-searchbox">
@@ -386,7 +386,7 @@ $tab_active = isset($request->get['tab']) ? $request->get['tab'] : 'general';
           </div>
 
           <!-- <div ng-hide="hideAlertQuantity" class="form-group"> -->
-          <div class="form-group">
+          <div class="form-group hidden">
             <label for="unit_id" class="col-sm-3 control-label">
               <?php echo trans('label_unit'); ?><i class="required">*</i>
             </label>

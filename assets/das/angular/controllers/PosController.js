@@ -1304,7 +1304,7 @@ window.angularApp.controller("PosController", [
             });
         };
 
-        // Create new product
+        // Crear nuevo Producto
         $scope.createNewCustomer = function () {
             if ($scope.invoiceId) return false;
             $scope.dueAmount = 0;
@@ -1312,12 +1312,12 @@ window.angularApp.controller("PosController", [
             CustomerCreateModal($scope);
         };
 
-        // Create new category
+        // Crear nueva Categoría
         $scope.createNewCategory = function () {
             CategoryCreateModal($scope);
         };
 
-        // Create new course
+        // Crear nuevo Curso
         $scope.createNewCourse = function () {
             CourseCreateModal($scope);
         };

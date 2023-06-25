@@ -160,14 +160,14 @@ if ($order_printer_ids) {
 	<!-- POS Content-Wrapper Start -->
 	<div class="pos-content-wrapper">
 		
-		<div id="vertial-toolbar">
-			<?php if (user_group_id() == 1 || has_permission('access', 'add_giftcard')) : ?>
+		<!-- <div id="vertial-toolbar">
+			<?/*php if (user_group_id() == 1 || has_permission('access', 'add_giftcard')) : */?>
 			<span ng-click="GiftcardCreateModal();" class="toolbar-icon bg-orange mt-5" title="<?php echo trans('text_gift_card');?>">
-				<span class="expand bg-orange"><?php echo trans('button_sell_gift_card'); ?></span>
+				<span class="expand bg-orange"><?/*php echo trans('button_sell_gift_card'); */?></span>
 				<svg class="svg-icon"><use href="#icon-card"></svg>
 			</span>
-			<?php endif; ?>
-		</div>
+			<?/*php endif; */?>
+		</div> -->
 
 		<?php include('../_inc/template/partials/top.php'); ?>
 
@@ -179,6 +179,19 @@ if ($order_printer_ids) {
 					<!-- All Product List Section Start-->
 					<div id="left-panel" class="pos-content" style="<?php echo $user->getPreference('pos_side_panel') == 'left' ? 'float:right' : null; ?>">
 						<div class="contents">
+							<div id="searchbox">
+								<input ng-change="showProductList()" onClick="this.select();" type="text" id="product-name" name="product-name" ng-model="productName" placeholder="<?php echo trans('text_search_product'); ?>"  autofocus>
+								<svg class="svg-icon search-btn"><use href="#icon-pos-search"></svg>
+								<div class="category-search">
+									<select class="form-control select2" name="category-search-select" id="category-search-select">
+							          	<option value=""><?php echo sprintf(trans('text_view_all'), 'Products'); ?></option>
+							          	<?php foreach (get_category_tree(array('filter_fetch_all' => true)) as $category_id => $category_name) : 
+							          		if (get_total_valid_category_item($category_id) <= 0) { continue; } ?>
+							          		<option value="<?php echo $category_id; ?>"><?php echo $category_name; ?> (<?php echo get_total_valid_category_item($category_id); ?>)</option>
+							          	<?php endforeach; ?>
+							        </select>
+								</div>
+							</div>
 							<div id="searchbox">
 								<input ng-change="showProductList()" onClick="this.select();" type="text" id="product-name" name="product-name" ng-model="productName" placeholder="<?php echo trans('text_search_product'); ?>"  autofocus>
 								<svg class="svg-icon search-btn"><use href="#icon-pos-search"></svg>
@@ -213,17 +226,17 @@ if ($order_printer_ids) {
 								</div>
 								<div ng-repeat="products in productArray" id="{{ $index }}" class="btn btn-flat item">
 									<div ng-click="addItemToInvoice(products.p_id,products)" class="item-inner">
-										<div class="item-img">
+										<!-- <div class="item-img">
 											<img ng-src="{{ products.p_image }}" alt="{{ products.p_name }}">
-										</div>
+										</div> -->
 										<span class="item-info" data-id="{{ products.p_id }}" data-name="{{ products.p_name }}">
 											<span>
-												{{ products.p_name | cut:true:20:' ...' }}
+												{{ products.p_name | cut:true:30:' ...' }} <br>$ {{ products.sell_price }} {{ products.unit_name }}
 											</span>
 										</span>
 										<span class="item-mask nowrap" title="{{ products.p_name }}">
 											<svg class="svg-icon"><use href="#icon-add"></svg>
-											<span><?php echo trans('label_add_to_cart'); ?></span>
+											<span><?php echo trans('label_add_to_cart'); ?><i class="fa fa-shopping-cart" aria-hidden="true"></i></span>
 										</span>
 										<span ng-show="products.p_type=='service'"class="ibadge">Service</span>
 									</div>

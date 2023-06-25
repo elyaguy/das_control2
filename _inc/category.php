@@ -33,14 +33,14 @@ function validate_request_data($request)
   }
 
   // Validate category designation
-  if (!validateString($request->post['category_slug'])) {
-    throw new Exception(trans('error_category_slug'));
-  }
+  // if (!validateString($request->post['category_slug'])) {
+  //   throw new Exception(trans('error_category_slug'));
+  // }
 
   // Store id validation
-  if (!isset($request->post['category_store']) || empty($request->post['category_store'])) {
-    throw new Exception(trans('error_store'));
-  }
+  // if (!isset($request->post['category_store']) || empty($request->post['category_store'])) {
+  //   throw new Exception(trans('error_store'));
+  // }
 
   // Sort order validation
   if (!is_numeric($request->post['status'])) {
@@ -48,9 +48,9 @@ function validate_request_data($request)
   }
 
   // Sort order validation
-  if (!is_numeric($request->post['sort_order'])) {
-    throw new Exception(trans('error_sort_order'));
-  }
+  // if (!is_numeric($request->post['sort_order'])) {
+  //   throw new Exception(trans('error_sort_order'));
+  // }
 }
 
 // Check category existance by id
@@ -301,14 +301,18 @@ if (isset($request->get['category_id']) AND isset($request->get['action_type']) 
 
 $Hooks->do_action('Before_Showing_Category_List');
 
-$where_query = 'c2s.store_id = ' . store_id();
+// $where_query = 'c2s.store_id = ' . store_id();
  
 // DB table to use
-$table = "(SELECT categorys.*, c2s.status, c2s.sort_order FROM categorys 
-  LEFT JOIN category_to_store c2s ON (categorys.category_id = c2s.ccategory_id) 
-  WHERE $where_query GROUP by categorys.category_id
-  ) as categorys";
+// $table = "(SELECT categorys.*, c2s.status, c2s.sort_order FROM categorys 
+//   LEFT JOIN category_to_store c2s ON (categorys.category_id = c2s.ccategory_id) 
+//   WHERE $where_query GROUP by categorys.category_id
+//   ) as categorys";
  
+$table = "(SELECT categorys.* FROM categorys 
+  GROUP by categorys.category_id
+  ) as categorys";
+
 // Table's primary key
 $primaryKey = 'category_id';
 
@@ -342,13 +346,13 @@ $columns = array(
       return $category_model->totalItem($row['category_id']);
     }
   ),
-  array( 
-    'db' => 'sort_order',   
-    'dt' => 'sort_order',
-    'formatter' => function($d, $row) {
-      return $row['sort_order'];
-    }
-  ),
+  // array( 
+  //   'db' => 'sort_order',   
+  //   'dt' => 'sort_order',
+  //   'formatter' => function($d, $row) {
+  //     return $row['sort_order'];
+  //   }
+  // ),
   array( 
     'db' => 'status',   
     'dt' => 'status',

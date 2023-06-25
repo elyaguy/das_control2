@@ -17,7 +17,7 @@
     <div class="form-group">
       <label for="transfer-update" class="col-sm-3 control-label"></label>
       <div class="col-sm-8">            
-        <button id="transfer-update" class="btn btn-info"  data-form="#transfer-edit-form" data-datatable="#transfer-transfer-list" name="transfer-update" data-loading-text="Updating...">
+        <button id="transfer-update" class="btn btn-info"  data-form="#transfer-edit-form" data-datatable="#transfer-transfer-list" name="transfer-update" data-loading-text="Actualizando Espera..!">
           <i class="fa fa-fw fa-pencil"></i> <?php echo trans('button_update'); ?>
         </button>
       </div>

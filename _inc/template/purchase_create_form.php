@@ -1,5 +1,5 @@
 <form id="form-purchase" class="form-horizontal" action="purchase.php" method="post" enctype="multipart/form-data">
-<input type="hidden" name="action_type" value="CREATE">
+  <input type="hidden" name="action_type" value="CREATE">
   <div class="box-body">
     <div class="form-group">
       <label for="date" class="col-sm-3 control-label">
@@ -35,7 +35,7 @@
         <?php echo trans('label_status'); ?><i class="required">*</i>
       </label>
       <div class="col-sm-6">
-        <select id="status" class="form-control" name="status" >
+        <select id="status" class="form-control" name="status">
           <option value="received"><?php echo trans('text_received'); ?></option>
           <option value="pending"><?php echo trans('text_pending'); ?></option>
           <option value="ordered"><?php echo trans('text_ordered'); ?></option>
@@ -67,8 +67,8 @@
           <select id="sup_id" class="form-control select2" name="sup_id">
             <option value=""><?php echo trans('text_select'); ?></option>
             <?php foreach (get_suppliers() as $sup) : ?>
-              <option value="<?php echo $sup['sup_id'];?>">
-                <?php echo $sup['sup_name'];?>
+              <option value="<?php echo $sup['sup_id']; ?>">
+                <?php echo $sup['sup_name']; ?>
               </option>
             <?php endforeach; ?>
           </select>
@@ -91,7 +91,7 @@
               </a>
             </div>
           </div>
-        </div>  
+        </div>
       </div>
 
       <div class="row">
@@ -100,7 +100,7 @@
             <table id="product-table" class="table table-striped table-bordered mb-0">
               <thead>
                 <tr class="bg-info">
-                  <th class="w-35 text-center">
+                  <!-- <th class="w-35 text-center">
                     <?php echo trans('label_product'); ?>
                   </th>
                   <th class="w-10 text-center">
@@ -108,17 +108,26 @@
                   </th>
                   <th class="w-10 text-center">
                     <?php echo trans('label_quantity'); ?>
+                  </th> -->
+                  <th class="w-55 text-center">
+                    <?php echo trans('label_product'); ?>
                   </th>
-                  <th class="w-10 text-center">
+                  <th class="w-20 text-center">
+                    <?php echo trans('label_available'); ?>
+                  </th>
+                  <th class="w-20 text-center">
+                    <?php echo trans('label_quantity'); ?>
+                  </th>
+                  <th class="w-10 text-center hidden">
                     <?php echo trans('label_cost'); ?>
                   </th>
-                  <th class="w-10 text-center">
+                  <th class="w-10 text-center hidden">
                     <?php echo trans('label_sell_price'); ?>
                   </th>
-                  <th class="w-10 text-center">
+                  <th class="w-10 text-center hidden">
                     <?php echo trans('label_item_tax'); ?>
                   </th>
-                  <th class="w-10 text-center">
+                  <th class="w-10 text-center hidden">
                     <?php echo trans('label_item_total'); ?>
                   </th>
                   <th class="w-5 text-center">
@@ -126,10 +135,11 @@
                   </th>
                 </tr>
               </thead>
-              <tbody>   
+              <tbody>
               </tbody>
               <tfoot>
-                <tr class="bg-gray">
+
+                <tr class="bg-gray hidden">
                   <th class="text-right" colspan="6">
                     <?php echo trans('label_subtotal'); ?>
                   </th>
@@ -140,16 +150,16 @@
                   </th>
                   <th class="w-25p">&nbsp;</th>
                 </tr>
-                <tr class="bg-gray">
+                <tr class="bg-gray hidden">
                   <th class="text-right" colspan="6">
-                    <?php echo trans('label_order_tax');?> (%)
+                    <?php echo trans('label_order_tax'); ?> (%)
                   </th>
                   <th class="col-sm-2 text-right">
                     <input ng-change="addOrderTax();" id="order-tax" class="text-right p-5" type="taxt" name="order-tax" ng-model="orderTax" onclick="this.select();" ondrop="return false;" onkeypress="return IsNumeric(event);" onpaste="return false;" autocomplete="off">
                   </th>
                   <th class="w-25p">&nbsp;</th>
                 </tr>
-                <tr class="bg-gray">
+                <tr class="bg-gray hidden">
                   <th class="text-right" colspan="6">
                     <?php echo trans('label_shipping_charge'); ?>
                   </th>
@@ -158,7 +168,7 @@
                   </th>
                   <th class="w-25p">&nbsp;</th>
                 </tr>
-                <tr class="bg-gray">
+                <tr class="bg-gray hidden">
                   <th class="text-right" colspan="6">
                     <?php echo trans('label_others_charge'); ?>
                   </th>
@@ -167,7 +177,7 @@
                   </th>
                   <th class="w-25p">&nbsp;</th>
                 </tr>
-                <tr class="bg-gray">
+                <tr class="bg-gray hidden">
                   <th class="text-right" colspan="6">
                     <?php echo trans('label_discount_amount'); ?>
                   </th>
@@ -176,7 +186,7 @@
                   </th>
                   <th class="w-25p">&nbsp;</th>
                 </tr>
-                <tr class="bg-yellow">
+                <tr class="bg-yellow hidden">
                   <th class="text-right" colspan="6">
                     <?php echo trans('label_payable_amount'); ?>
                   </th>
@@ -186,20 +196,20 @@
                   </th>
                   <th class="w-25p">&nbsp;</th>
                 </tr>
-                <tr class="bg-blue">
+                <tr class="bg-blue hidden">
                   <th class="text-right" colspan="6">
                     <?php echo trans('label_payment_method'); ?>
                   </th>
                   <th class="col-sm-2 text-center">
                     <select id="pmethod-id" class="form-control select2" name="pmethod-id">
-                      <?php foreach (get_pmethods() as $pmethod):?>
-                        <option value="<?php echo $pmethod['pmethod_id'];?>"><?php echo $pmethod['name'];?></option>
-                      <?php endforeach;?>
+                      <?php foreach (get_pmethods() as $pmethod) : ?>
+                        <option value="<?php echo $pmethod['pmethod_id']; ?>"><?php echo $pmethod['name']; ?></option>
+                      <?php endforeach; ?>
                     </select>
                   </th>
                   <th class="w-25p">&nbsp;</th>
                 </tr>
-                <tr class="bg-blue">
+                <tr class="bg-blue hidden">
                   <th class="text-right" colspan="6">
                     <?php echo trans('label_paid_amount'); ?>
                   </th>
@@ -208,7 +218,8 @@
                   </th>
                   <th class="w-25p">&nbsp;</th>
                 </tr>
-                <tr class="bg-gray">
+
+                <tr class="bg-gray hidden">
                   <th colspan="2" class="w-10 text-right">
                     <?php echo trans('label_due_amount'); ?>
                   </th>
@@ -218,7 +229,7 @@
                   </th>
                   <th colspan="2">&nbsp;</th>
                 </tr>
-                <tr class="bg-gray">
+                <tr class="bg-gray hidden">
                   <th colspan="2" class="w-10 text-right">
                     <?php echo trans('label_change_amount'); ?>
                   </th>
@@ -235,13 +246,13 @@
       </div>
     </div>
     <div class="form-group">
-      <div class="col-sm-4 col-sm-offset-3 text-center">            
+      <div class="col-sm-4 col-sm-offset-3 text-center">
         <button id="create-purchase-submit" class="btn btn-block btn-lg btn-info" data-form="#form-purchase" data-datatable="#purchase-purchase-list" name="submit" data-loading-text="Processing...">
           <i class="fa fa-fw fa-save"></i>
           <?php echo trans('button_submit'); ?>
         </button>
       </div>
-      <div class="col-sm-2 text-center">            
+      <div class="col-sm-2 text-center">
         <button type="reset" class="btn btn-block btn-lg btn-danger" id="reset" name="reset">
           <span class="fa fa-fw fa-circle-o"></span>
           <?php echo trans('button_reset'); ?>
@@ -252,12 +263,12 @@
 </form>
 
 <script type="text/javascript">
-$(document).ready(function() {
-  $('.datepicker').datepicker({
-    language: langCode,
-    format: "yyyy-mm-dd",
-    autoclose:true,
-    todayHighlight: true
-  }).datepicker("setDate",'now');
-});
+  $(document).ready(function() {
+    $('.datepicker').datepicker({
+      language: langCode,
+      format: "yyyy-mm-dd",
+      autoclose: true,
+      todayHighlight: true
+    }).datepicker("setDate", 'now');
+  });
 </script>

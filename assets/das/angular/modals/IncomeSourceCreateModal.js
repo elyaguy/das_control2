@@ -17,7 +17,7 @@ window.angularApp.factory("IncomeSourceCreateModal", ["API_URL", "window", "jQue
                   method: "GET"
                 })
                 .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Create New Category";
+                    $scope.modal_title = "Crear nueva Categoría";
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
 
                     setTimeout(function() {

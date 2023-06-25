@@ -17,7 +17,7 @@ window.angularApp.factory("CollegeCreateModal", ["API_URL", "window", "jQuery", 
                   method: "GET"
                 })
                 .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Create New College";
+                    $scope.modal_title = "Crear nuevo Colegio";
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
 
                     setTimeout(function() {

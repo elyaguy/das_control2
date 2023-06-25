@@ -21,15 +21,15 @@ class ModelCurrency extends Model
 
     	$currency_id = $this->db->lastInsertId();
 
-    	if (isset($data['currency_store'])) {
-			foreach ($data['currency_store'] as $store_id) {
-				$statement = $this->db->prepare("INSERT INTO `currency_to_store` SET `currency_id` = ?, `store_id` = ?");
-				$statement->execute(array((int)$currency_id, (int)$store_id));
-			}
-		}
+    	// if (isset($data['currency_store'])) {
+		// 	foreach ($data['currency_store'] as $store_id) {
+		// 		$statement = $this->db->prepare("INSERT INTO `currency_to_store` SET `currency_id` = ?, `store_id` = ?");
+		// 		$statement->execute(array((int)$currency_id, (int)$store_id));
+		// 	}
+		// }
 
 		$this->updateStatus($currency_id, $data['status']);
-		$this->updateSortOrder($currency_id, $data['sort_order']);
+		// $this->updateSortOrder($currency_id, $data['sort_order']);
 
     	return $currency_id;     
 	}
@@ -38,37 +38,38 @@ class ModelCurrency extends Model
 	{
 		$store_id = $store_id ? $store_id : store_id();
 
-		$statement = $this->db->prepare("UPDATE `currency_to_store` SET `status` = ? WHERE `store_id` = ? AND `currency_id` = ?");
-		$statement->execute(array((int)$status, $store_id, (int)$currency_id));
+		// $statement = $this->db->prepare("UPDATE `currency_to_store` SET `status` = ? WHERE `store_id` = ? AND `currency_id` = ?");
+		$statement = $this->db->prepare("UPDATE `currency` SET `status` = ? WHERE `currency_id` = ?");
+		$statement->execute(array((int)$status, (int)$currency_id));
 	}
 
-	public function updateSortOrder($currency_id, $sort_order, $store_id = null) 
-	{
-		$store_id = $store_id ? $store_id : store_id();
+	// public function updateSortOrder($currency_id, $sort_order, $store_id = null) 
+	// {
+	// 	$store_id = $store_id ? $store_id : store_id();
 
-		$statement = $this->db->prepare("UPDATE `currency_to_store` SET `sort_order` = ? WHERE `store_id` = ? AND `currency_id` = ?");
-		$statement->execute(array((int)$sort_order, $store_id, (int)$currency_id));
-	}
+	// 	$statement = $this->db->prepare("UPDATE `currency_to_store` SET `sort_order` = ? WHERE `store_id` = ? AND `currency_id` = ?");
+	// 	$statement->execute(array((int)$sort_order, $store_id, (int)$currency_id));
+	// }
 
 	public function editCurrency($currency_id, $data) 
 	{ 
     	$statement = $this->db->prepare("UPDATE `currency` SET `title` = ?, `code` = ?, `symbol_left` = ?, `symbol_right` = ?, `decimal_place` = ? WHERE `currency_id` = ? ");
     	$statement->execute(array($data['title'], $data['code'], $data['symbol_left'], $data['symbol_right'], $data['decimal_place'], $currency_id));
 
-    	// Delete store data balongs to the currency
-    	$statement = $this->db->prepare("DELETE FROM `currency_to_store` WHERE `currency_id` = ?");
-    	$statement->execute(array($currency_id));
+    	// // Delete store data balongs to the currency
+    	// $statement = $this->db->prepare("DELETE FROM `currency_to_store` WHERE `currency_id` = ?");
+    	// $statement->execute(array($currency_id));
 		
-		// Insert currency into store
-    	if (isset($data['currency_store'])) {
-			foreach ($data['currency_store'] as $store_id) {
-				$statement = $this->db->prepare("INSERT INTO `currency_to_store` SET `currency_id` = ?, `store_id` = ?");
-				$statement->execute(array((int)$currency_id, (int)$store_id));
-			}
-		}
+		// // Insert currency into store
+    	// if (isset($data['currency_store'])) {
+		// 	foreach ($data['currency_store'] as $store_id) {
+		// 		$statement = $this->db->prepare("INSERT INTO `currency_to_store` SET `currency_id` = ?, `store_id` = ?");
+		// 		$statement->execute(array((int)$currency_id, (int)$store_id));
+		// 	}
+		// }
 
 		$this->updateStatus($currency_id, $data['status']);
-		$this->updateSortOrder($currency_id, $data['sort_order']);
+		// $this->updateSortOrder($currency_id, $data['sort_order']);
 
     	return $currency_id;
 	}
@@ -78,8 +79,8 @@ class ModelCurrency extends Model
     	$statement = $this->db->prepare("DELETE FROM `currency` WHERE `currency_id` = ? LIMIT 1");
     	$statement->execute(array($currency_id));
 
-    	$statement = $this->db->prepare("DELETE FROM `currency_to_store` WHERE `currency_id` = ?");
-    	$statement->execute(array($currency_id));	
+    	// $statement = $this->db->prepare("DELETE FROM `currency_to_store` WHERE `currency_id` = ?");
+    	// $statement->execute(array($currency_id));	
 
         return $currency_id;
 	}
@@ -88,23 +89,28 @@ class ModelCurrency extends Model
 	{
 		$store_id = $store_id ? $store_id : store_id();
 
-	    $statement = $this->db->prepare("SELECT `currency`.*, `c2s`.`status`, `c2s`.`sort_order` 
+	    // $statement = $this->db->prepare("SELECT `currency`.*, `c2s`.`status`, `c2s`.`sort_order` 
+	    // 	FROM `currency` 
+	    // 	LEFT JOIN `currency_to_store` as c2s ON (`currency`.`currency_id` = `c2s`.`currency_id`)  
+	    // 	WHERE `c2s`.`store_id` = ? AND `currency`.`currency_id` = ?");
+	    // $statement->execute(array($store_id, $currency_id));
+		
+	    $statement = $this->db->prepare("SELECT `currency`.*
 	    	FROM `currency` 
-	    	LEFT JOIN `currency_to_store` as c2s ON (`currency`.`currency_id` = `c2s`.`currency_id`)  
-	    	WHERE `c2s`.`store_id` = ? AND `currency`.`currency_id` = ?");
-	    $statement->execute(array($store_id, $currency_id));
+	    	WHERE `currency`.`currency_id` = ?");
+	    $statement->execute(array($currency_id));
 	    $currency = $statement->fetch(PDO::FETCH_ASSOC);
 
-	    // Fetch stores related to currency
-	    $statement = $this->db->prepare("SELECT `store_id` FROM `currency_to_store` WHERE `currency_id` = ?");
-	    $statement->execute(array($currency_id));
-	    $all_stores = $statement->fetchAll(PDO::FETCH_ASSOC);
-	    $stores = array();
-	    foreach ($all_stores as $store) {
-	    	$stores[] = $store['store_id'];
-	    }
+	    // // Fetch stores related to currency
+	    // $statement = $this->db->prepare("SELECT `store_id` FROM `currency_to_store` WHERE `currency_id` = ?");
+	    // $statement->execute(array($currency_id));
+	    // $all_stores = $statement->fetchAll(PDO::FETCH_ASSOC);
+	    // $stores = array();
+	    // foreach ($all_stores as $store) {
+	    // 	$stores[] = $store['store_id'];
+	    // }
 
-	    $currency['stores'] = $stores;
+	    // $currency['stores'] = $stores;
 
 	    return $currency;
 
@@ -114,7 +120,8 @@ class ModelCurrency extends Model
 
 		$store_id = $store_id ? $store_id : store_id();
 
-		$sql = "SELECT * FROM `currency` LEFT JOIN `currency_to_store` c2s ON (`currency`.`currency_id` = `c2s`.`currency_id`) WHERE `c2s`.`store_id` = ? AND `c2s`.`status` = ?";
+		// $sql = "SELECT * FROM `currency` LEFT JOIN `currency_to_store` c2s ON (`currency`.`currency_id` = `c2s`.`currency_id`) WHERE `c2s`.`store_id` = ? AND `c2s`.`status` = ?";
+		$sql = "SELECT * FROM `currency` WHERE `status` = ?";
 
 		if (isset($data['filter_name'])) {
 			$sql .= " AND `title` LIKE '" . $data['filter_name'] . "%'";
@@ -151,7 +158,8 @@ class ModelCurrency extends Model
 		}
 
 		$statement = $this->db->prepare($sql);
-		$statement->execute(array($store_id, 1));
+		// $statement->execute(array($store_id, 1));
+		$statement->execute(array(1));
 
 		return $statement->fetchAll(PDO::FETCH_ASSOC);
 	}

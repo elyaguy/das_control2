@@ -23,8 +23,8 @@ class ModelSupplier extends Model
 		$code_name = slugify($data['sup_name']);
 		//$code_name = ($data['sup_name']);
 		
-		$statement = $this->db->prepare("INSERT INTO `suppliers` (sup_name, code_name, sup_mobile, sup_email, gtin, sup_address, sup_city, sup_state, sup_country, sup_details, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    	$statement->execute(array($data['sup_name'], $code_name, $data['sup_mobile'], $data['sup_email'], $gtin, $data['sup_address'], $data['sup_city'],  $sup_state,  $data['sup_country'], $data['sup_details'], date_time()));
+		$statement = $this->db->prepare("INSERT INTO `suppliers` (sup_name, sup_document, code_name, sup_mobile, sup_email, gtin, sup_address, sup_city, sup_state, sup_country, sup_details, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    	$statement->execute(array($data['sup_name'],$data['sup_document'], $code_name, $data['sup_mobile'], $data['sup_email'], $gtin, $data['sup_address'], $data['sup_city'],  $sup_state,  $data['sup_country'], $data['sup_details'], date_time()));
 
     	$sup_id = $this->db->lastInsertId();
 
@@ -64,8 +64,8 @@ class ModelSupplier extends Model
 		$code_name = slugify($data['sup_name']);
 		$sup_mobile = isset($data['sup_mobile']) ? $data['sup_mobile'] : '';
 		$sup_email = isset($data['sup_email']) ? $data['sup_email'] : '';
-    	$statement = $this->db->prepare("UPDATE `suppliers` SET `sup_name` = ?, `code_name` = ?, `sup_mobile` = ?, `sup_email` = ?, `gtin` = ?, `sup_address` = ?, `sup_city` = ?, `sup_state` = ?, `sup_country` = ?, `sup_details` = ? WHERE `sup_id` = ? ");
-    	$statement->execute(array($data['sup_name'], $code_name, $sup_mobile, $sup_email, $gtin, $data['sup_address'], $data['sup_city'], $sup_state, $data['sup_country'], $data['sup_details'], $sup_id));
+    	$statement = $this->db->prepare("UPDATE `suppliers` SET `sup_name` = ?,`sup_document` = ?, `code_name` = ?, `sup_mobile` = ?, `sup_email` = ?, `gtin` = ?, `sup_address` = ?, `sup_city` = ?, `sup_state` = ?, `sup_country` = ?, `sup_details` = ? WHERE `sup_id` = ? ");
+    	$statement->execute(array($data['sup_name'],$data['sup_document'], $code_name, $sup_mobile, $sup_email, $gtin, $data['sup_address'], $data['sup_city'], $sup_state, $data['sup_country'], $data['sup_details'], $sup_id));
 	
 		// Insert supplier into store
     	if (isset($data['supplier_store'])) {

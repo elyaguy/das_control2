@@ -29,7 +29,7 @@
     <div class="form-group">
       <label class="col-sm-3 control-label"></label>
       <div class="col-sm-8">            
-        <button id="language-update" class="btn btn-info" data-form="#form-language-edit" name="submit" data-loading-text="Updating...">
+        <button id="language-update" class="btn btn-info" data-form="#form-language-edit" name="submit" data-loading-text="Actualizando Espera..!">
           <i class="fa fa-fw fa-pencil"></i>
           <?php echo trans('button_update'); ?>
         </button>

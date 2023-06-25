@@ -245,7 +245,7 @@ function (
     // End datatable
     //================
 
-    // Create new course
+    // Crear nuevo Curso
     $(document).delegate("#create-course-submit", "click", function(e) {
         e.preventDefault();
         var $tag = $(this);

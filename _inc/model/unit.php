@@ -21,16 +21,16 @@ class ModelUnit extends Model
 
     	$unit_id = $this->db->lastInsertId();
 
-    	if (isset($data['unit_store'])) {
-			foreach ($data['unit_store'] as $store_id) {
-				$statement = $this->db->prepare("INSERT INTO `unit_to_store` SET `uunit_id` = ?, `store_id` = ?");
-				$statement->execute(array((int)$unit_id, (int)$store_id));
-			}
-		}
+    	// if (isset($data['unit_store'])) {
+		// 	foreach ($data['unit_store'] as $store_id) {
+		// 		$statement = $this->db->prepare("INSERT INTO `unit_to_store` SET `uunit_id` = ?, `store_id` = ?");
+		// 		$statement->execute(array((int)$unit_id, (int)$store_id));
+		// 	}
+		// }
 
 
 		$this->updateStatus($unit_id, $data['status']);
-		$this->updateSortOrder($unit_id, $data['sort_order']);
+		// $this->updateSortOrder($unit_id, $data['sort_order']);
 
     	return $unit_id; 
 	}
@@ -39,40 +39,41 @@ class ModelUnit extends Model
 	{
 		$store_id = $store_id ? $store_id : store_id();
 
-		$statement = $this->db->prepare("UPDATE `unit_to_store` SET `status` = ? WHERE `store_id` = ? AND `uunit_id` = ?");
-		$statement->execute(array((int)$status, $store_id, (int)$unit_id));
+		// $statement = $this->db->prepare("UPDATE `unit_to_store` SET `status` = ? WHERE `store_id` = ? AND `uunit_id` = ?");
+		$statement = $this->db->prepare("UPDATE `units` SET `status` = ? WHERE `unit_id` = ?");
+		$statement->execute(array((int)$status, (int)$unit_id));
 	}
 
-	public function updateSortOrder($unit_id, $sort_order, $store_id = null) 
-	{
-		$store_id = $store_id ? $store_id : store_id();
+	// public function updateSortOrder($unit_id, $sort_order, $store_id = null) 
+	// {
+	// 	$store_id = $store_id ? $store_id : store_id();
 
-		$statement = $this->db->prepare("UPDATE `unit_to_store` SET `sort_order` = ? WHERE `store_id` = ? AND `uunit_id` = ?");
-		$statement->execute(array((int)$sort_order, $store_id, (int)$unit_id));
-	}
+	// 	$statement = $this->db->prepare("UPDATE `unit_to_store` SET `sort_order` = ? WHERE `store_id` = ? AND `uunit_id` = ?");
+	// 	$statement->execute(array((int)$sort_order, $store_id, (int)$unit_id));
+	// }
 
 	public function editUnit($unit_id, $data) 
 	{
     	$statement = $this->db->prepare("UPDATE `units` SET `unit_name` = ?, `code_name` = ?, `unit_details` = ? WHERE unit_id = ? ");
     	$statement->execute(array($data['unit_name'], $data['code_name'], $data['unit_details'], $unit_id));
 		
-		// Insert unit into store
-    	if (isset($data['unit_store'])) {
+		// // Insert unit into store
+    	// if (isset($data['unit_store'])) {
 
-			foreach ($data['unit_store'] as $store_id) {
+		// 	foreach ($data['unit_store'] as $store_id) {
 
-				$statement = $this->db->prepare("SELECT * FROM `unit_to_store` WHERE `store_id` = ? AND `uunit_id` = ?");
-			    $statement->execute(array($store_id, $unit_id));
-			    $unit = $statement->fetch(PDO::FETCH_ASSOC);
-			    if (!$unit) {
-			    	$statement = $this->db->prepare("INSERT INTO `unit_to_store` SET `uunit_id` = ?, `store_id` = ?");
-					$statement->execute(array((int)$unit_id, (int)$store_id));
-			    }
-			}
-		}
+		// 		$statement = $this->db->prepare("SELECT * FROM `unit_to_store` WHERE `store_id` = ? AND `uunit_id` = ?");
+		// 	    $statement->execute(array($store_id, $unit_id));
+		// 	    $unit = $statement->fetch(PDO::FETCH_ASSOC);
+		// 	    if (!$unit) {
+		// 	    	$statement = $this->db->prepare("INSERT INTO `unit_to_store` SET `uunit_id` = ?, `store_id` = ?");
+		// 			$statement->execute(array((int)$unit_id, (int)$store_id));
+		// 	    }
+		// 	}
+		// }
 
 		$this->updateStatus($unit_id, $data['status']);
-		$this->updateSortOrder($unit_id, $data['sort_order']);
+		// $this->updateSortOrder($unit_id, $data['sort_order']);
 
     	return $unit_id;
     
@@ -83,8 +84,8 @@ class ModelUnit extends Model
     	$statement = $this->db->prepare("DELETE FROM `units` WHERE `unit_id` = ? LIMIT 1");
     	$statement->execute(array($unit_id));
 
-    	$statement = $this->db->prepare("DELETE FROM `unit_to_store` WHERE `uunit_id` = ?");
-    	$statement->execute(array($unit_id));
+    	// $statement = $this->db->prepare("DELETE FROM `unit_to_store` WHERE `uunit_id` = ?");
+    	// $statement->execute(array($unit_id));
 
         return $unit_id;
 	}
@@ -93,22 +94,25 @@ class ModelUnit extends Model
 	{
 		$store_id = $store_id ? $store_id : store_id();
 
+		// $statement = $this->db->prepare("SELECT * FROM `units`
+		// 	LEFT JOIN `unit_to_store` as unit2s ON (`units`.`unit_id` = `unit2s`.`uunit_id`)  
+	    // 	WHERE `unit2s`.`store_id` = ? AND `units`.`unit_id` = ?");
 		$statement = $this->db->prepare("SELECT * FROM `units`
-			LEFT JOIN `unit_to_store` as unit2s ON (`units`.`unit_id` = `unit2s`.`uunit_id`)  
-	    	WHERE `unit2s`.`store_id` = ? AND `units`.`unit_id` = ?");
-	  	$statement->execute(array($store_id, $unit_id));
+		WHERE `units`.`unit_id` = ?");
+	  	// $statement->execute(array($store_id, $unit_id));
+	  	$statement->execute(array($unit_id));
 	  	$unit = $statement->fetch(PDO::FETCH_ASSOC);
 
-	    // Fetch stores related to units
-	    $statement = $this->db->prepare("SELECT `store_id` FROM `unit_to_store` WHERE `uunit_id` = ?");
-	    $statement->execute(array($unit_id));
-	    $all_stores = $statement->fetchAll(PDO::FETCH_ASSOC);
-	    $stores = array();
-	    foreach ($all_stores as $store) {
-	    	$stores[] = $store['store_id'];
-	    }
+	    // // Fetch stores related to units
+	    // $statement = $this->db->prepare("SELECT `store_id` FROM `unit_to_store` WHERE `uunit_id` = ?");
+	    // $statement->execute(array($unit_id));
+	    // $all_stores = $statement->fetchAll(PDO::FETCH_ASSOC);
+	    // $stores = array();
+	    // foreach ($all_stores as $store) {
+	    // 	$stores[] = $store['store_id'];
+	    // }
 
-	    $unit['stores'] = $stores;
+	    // $unit['stores'] = $stores;
 
 	    return $unit;
 	}
@@ -117,7 +121,8 @@ class ModelUnit extends Model
 
 		$store_id = $store_id ? $store_id : store_id();
 
-		$sql = "SELECT * FROM `units` LEFT JOIN `unit_to_store` unit2s ON (`units`.`unit_id` = `unit2s`.`uunit_id`) WHERE `unit2s`.`store_id` = ? AND `unit2s`.`status` = ?";
+		// $sql = "SELECT * FROM `units` LEFT JOIN `unit_to_store` unit2s ON (`units`.`unit_id` = `unit2s`.`uunit_id`) WHERE `unit2s`.`store_id` = ? AND `unit2s`.`status` = ?";
+		$sql = "SELECT * FROM `units` WHERE `status` = ?";
 
 		if (isset($data['filter_name'])) {
 			$sql .= " AND `unit_name` LIKE '" . $data['filter_name'] . "%'";
@@ -158,7 +163,8 @@ class ModelUnit extends Model
 		}
 
 		$statement = $this->db->prepare($sql);
-		$statement->execute(array($store_id, 1));
+		// $statement->execute(array($store_id, 1));
+		$statement->execute(array(1));
 
 		return $statement->fetchAll(PDO::FETCH_ASSOC);
 	}
@@ -171,20 +177,21 @@ class ModelUnit extends Model
 		return isset($row['unit_id']) ? $row['unit_id'] : null;
 	}
 
-	public function getBelongsStore($unit_id)
-	{
-		$statement = $this->db->prepare("SELECT * FROM `unit_to_store` WHERE `uunit_id` = ?");
-		$statement->execute(array($unit_id));
+	// public function getBelongsStore($unit_id)
+	// {
+	// 	$statement = $this->db->prepare("SELECT * FROM `unit_to_store` WHERE `uunit_id` = ?");
+	// 	$statement->execute(array($unit_id));
 
-		return $statement->fetchAll(PDO::FETCH_ASSOC);
-	}
+	// 	return $statement->fetchAll(PDO::FETCH_ASSOC);
+	// }
 
 	public function total($store_id = null) 
 	{
 		$store_id = $store_id ? $store_id : store_id();
 
-		$statement = $this->db->prepare("SELECT * FROM `units`LEFT JOIN `unit_to_store` unit2s ON (`units`.`unit_id` = `unit2s`.`uunit_id`) where `unit2s`.`store_id` = ? AND `unit2s`.`status` = ?");
-		$statement->execute(array($store_id, 1));
+		// $statement = $this->db->prepare("SELECT * FROM `units`LEFT JOIN `unit_to_store` unit2s ON (`units`.`unit_id` = `unit2s`.`uunit_id`) where `unit2s`.`store_id` = ? AND `unit2s`.`status` = ?");
+		$statement = $this->db->prepare("SELECT * FROM `units` where `status` = ?");
+		$statement->execute(array(1));
 		
 		return $statement->rowCount();
 	}

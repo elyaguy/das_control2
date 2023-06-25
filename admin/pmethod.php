@@ -1,7 +1,7 @@
-<?php 
+<?php
 ob_start();
 session_start();
-include ("../_init.php");
+include("../_init.php");
 
 // Redirect, If user is not logged in
 if (!is_loggedin()) {
@@ -10,7 +10,7 @@ if (!is_loggedin()) {
 
 // Redirect, If User has not Read Permission
 if (user_group_id() != 1 && !has_permission('access', 'read_pmethod')) {
-  redirect(root_url() . '/'.ADMINDIRNAME.'/dashboard.php');
+  redirect(root_url() . '/' . ADMINDIRNAME . '/dashboard.php');
 }
 
 // Set Document Title
@@ -20,8 +20,8 @@ $document->setTitle(trans('title_pmethod'));
 $document->addScript('../assets/das/angular/controllers/PmethodController.js');
 
 // Include Header and Footer
-include("header.php"); 
-include ("left_sidebar.php") ;
+include("header.php");
+include("left_sidebar.php");
 ?>
 
 <!-- Content Wrapper Start -->
@@ -38,7 +38,7 @@ include ("left_sidebar.php") ;
     <ol class="breadcrumb">
       <li>
         <a href="dashboard.php">
-          <i class="fa fa-dashboard"></i> 
+          <i class="fa fa-dashboard"></i>
           <?php echo trans('text_dashboard'); ?>
         </a>
       </li>
@@ -52,16 +52,16 @@ include ("left_sidebar.php") ;
   <!-- Content Start -->
   <section class="content">
 
-    <?php if(DEMO) : ?>
-    <div class="box">
-      <div class="box-body">
-        <div class="alert alert-info mb-0">
-          <p><span class="fa fa-fw fa-info-circle"></span> <?php echo $demo_text; ?></p>
+    <?php if (DEMO) : ?>
+      <div class="box">
+        <div class="box-body">
+          <div class="alert alert-info mb-0">
+            <p><span class="fa fa-fw fa-info-circle"></span> <?php echo $demo_text; ?></p>
+          </div>
         </div>
       </div>
-    </div>
     <?php endif; ?>
-    
+
     <?php if (user_group_id() == 1 || has_permission('access', 'create_pmethod')) : ?>
       <div class="box box-info<?php echo create_box_state(); ?>">
         <div class="box-header with-border">
@@ -72,20 +72,20 @@ include ("left_sidebar.php") ;
             <i class="fa <?php echo !create_box_state() ? 'fa-minus' : 'fa-plus'; ?>"></i>
           </button>
         </div>
-      
-        <?php if (isset($error_message)): ?>
+
+        <?php if (isset($error_message)) : ?>
           <div class="alert alert-danger">
-              <p>
-                <span class="fa fa-warning"></span> 
-                <?php echo $error_message ; ?>
-              </p>
+            <p>
+              <span class="fa fa-warning"></span>
+              <?php echo $error_message; ?>
+            </p>
           </div>
-        <?php elseif (isset($success_message)): ?>
+        <?php elseif (isset($success_message)) : ?>
           <div class="alert alert-success">
-              <p>
-                <span class="fa fa-check"></span> 
-                <?php echo $success_message ; ?>
-              </p>
+            <p>
+              <span class="fa fa-check"></span>
+              <?php echo $success_message; ?>
+            </p>
           </div>
         <?php endif; ?>
 
@@ -103,20 +103,20 @@ include ("left_sidebar.php") ;
             </h3>
           </div>
           <div class="box-body">
-            <div class="table-responsive">  
+            <div class="table-responsive">
 
-                <?php
-                  $hide_colums = "";
-                  if (user_group_id() != 1) {
-                    if (! has_permission('access', 'update_pmethod')) {
-                      $hide_colums .= "5,";
-                    }
-                    if (! has_permission('access', 'delete_pmethod')) {
-                      $hide_colums .= "6,";
-                    }
-                  }
-                ?> 
-              
+              <?php
+              $hide_colums = "";
+              if (user_group_id() != 1) {
+                if (!has_permission('access', 'update_pmethod')) {
+                  $hide_colums .= "5,";
+                }
+                if (!has_permission('access', 'delete_pmethod')) {
+                  $hide_colums .= "6,";
+                }
+              }
+              ?>
+
               <!-- Pmethod List Start -->
               <table id="pmethod-pmethod-list" class="table table-bordered table-striped table-hover" data-hide-colums="<?php echo $hide_colums; ?>">
                 <thead>
@@ -126,9 +126,6 @@ include ("left_sidebar.php") ;
                     </th>
                     <th class="w-35">
                       <?php echo sprintf(trans('label_name'), null); ?>
-                    </th>
-                    <th class="w-5">
-                      <?php echo trans('label_sort_order'); ?>
                     </th>
                     <th class="w-20">
                       <?php echo trans('label_details'); ?>
@@ -144,16 +141,13 @@ include ("left_sidebar.php") ;
                     </th>
                   </tr>
                 </thead>
-                <!-- <tfoot>
+                <tfoot>
                   <tr class="bg-gray">
                     <th class="w-5">
                       <?php echo sprintf(trans('label_id'), null); ?>
                     </th>
                     <th class="w-35">
                       <?php echo sprintf(trans('label_name'), null); ?>
-                    </th>
-                    <th class="w-5">
-                      <?php echo trans('label_sort_order'); ?>
                     </th>
                     <th class="w-20">
                       <?php echo trans('label_details'); ?>
@@ -168,7 +162,7 @@ include ("left_sidebar.php") ;
                       <?php echo trans('label_delete'); ?>
                     </th>
                   </tr>
-                </tfoot> -->
+                </tfoot>
               </table>
               <!-- Pmethod List End -->
             </div>
@@ -182,4 +176,4 @@ include ("left_sidebar.php") ;
 </div>
 <!-- Content Wrapper End -->
 
-<?php include ("footer.php"); ?>
+<?php include("footer.php"); ?>

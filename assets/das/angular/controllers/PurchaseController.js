@@ -158,6 +158,7 @@ function (
             {data : "invoice_amount"},
             {data : "paid_amount"},
             {data : "due"},
+            {data : "qty"},
             {data : "status"},
             {data : "btn_pay"},
             {data : "btn_return"},
@@ -209,6 +210,17 @@ function (
                 }, 0 );
             // Update footer
             $( api.column( 6 ).footer() ).html(
+                window.formatDecimal(pageTotal, 2)
+            );
+            // Total over all pages at column 6
+            pageTotal = api
+                .column( 7, { page: "current"} )
+                .data()
+                .reduce( function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0 );
+            // Update footer
+            $( api.column( 7 ).footer() ).html(
                 window.formatDecimal(pageTotal, 2)
             );
         },
@@ -381,8 +393,8 @@ function (
         var $tag = $(this);
         var $btn = $tag.button("loading");
         window.swal({
-          title: "Delete!",
-          text: "Are You Sure?",
+          title: "*** BORRAR REGISTRO ***",
+          text: "¿Estas Seguro?",
           icon: "warning",
           buttons: {
 			cancel: true,
@@ -548,7 +560,7 @@ function (
         e.stopPropagation();
         e.preventDefault();
         if (!$scope.sup_id) {
-            window.swal("Ups!", "Please, select supplier first", "warning");
+            window.swal("Ups!", "Por favor, seleccione primero el proveedor", "warning");
         }
         var $this = $(this);
         $this.attr('autocomplete', 'off');
@@ -741,19 +753,19 @@ function (
         html += "<td style=\"padding:2px;\" data-title=\"Quantity\">";
         html += "<input class=\"form-control input-sm text-center quantity\" name=\"products["+data.itemId+"][quantity]\" type=\"text\" value=\""+data.itemQuantity+"\" data-id=\""+data.itemId+"\" id=\"quantity-"+data.itemId+"\" onclick=\"this.select();\" onkeypress=\"return IsNumeric(event);\" ondrop=\"return false;\" onpaste=\"return false;\" onKeyUp=\"if(this.value<0){this.value='1';}\">";
         html += "</td>";
-        html += "<td style=\"padding:2px; min-width:80px;\" data-title=\"Purchase Price\">";
+        html += "<td class=\"hidden\" style=\"padding:2px; min-width:80px;\" data-title=\"Purchase Price\">";
         html += "<input id=\"purchase-price-"+data.itemId+"\" class=\"form-control input-sm text-center purchase-price\" type=\"text\" name=\"products["+data.itemId+"][purchase_price]\" value=\""+data.itemPurchasePrice+"\" data-id=\""+data.itemId+"\" data-item=\""+data.itemId+"\" onclick=\"this.select();\" onkeypress=\"return IsNumeric(event);\" ondrop=\"return false;\" onpaste=\"return false;\" onKeyUp=\"if(this.value<0){this.value='1';}\">"
         html += "</td>";
-        html += "<td style=\"padding:2px;min-width:80px;\" data-title=\"Unit Price\">";
+        html += "<td class=\"hidden\" style=\"padding:2px;min-width:80px;\" data-title=\"Unit Price\">";
         html += "<input id=\"sell-price-"+data.itemId+"\" class=\"form-control input-sm text-center sell-price\" type=\"text\" name=\"products["+data.itemId+"][sell_price]\" value=\""+data.itemSellPrice+"\" data-id=\""+data.itemId+"\" data-item=\""+data.itemId+"\" onclick=\"this.select();\" onkeypress=\"return IsNumeric(event);\" ondrop=\"return false;\" onpaste=\"return false;\" onKeyUp=\"if(this.value<0){this.value='1';}\">";
         html += "</td>";
-        html += "<td class=\"text-center\" data-title=\"Tax Amount\">";
+        html += "<td class=\"text-center hidden\" data-title=\"Tax Amount\">";
         html += "<input id=\"tax-method-"+data.itemId+"\" name=\"products["+data.itemId+"][tax_method]\" type=\"hidden\" value=\""+data.itemTaxMethod+"\">";
         html += "<input id=\"taxrate-"+data.itemId+"\" name=\"products["+data.itemId+"][taxrate]\" type=\"hidden\" value=\""+data.itemTaxrate+"\">";
         html += "<input id=\"tax-amount-"+data.itemId+"\" name=\"products["+data.itemId+"][tax_amount]\" type=\"hidden\" value=\""+data.itemTaxAmount+"\">";
         html += "<span id=\"tax-amount-view-"+data.itemId+"\" class=\"tax tax-amount-view\">"+window.formatDecimal(data.itemTaxAmount,2)+"</span>";
         html += "</td>";
-        html += "<td class=\"text-right\" data-title=\"Total\">";
+        html += "<td class=\"text-right hidden\" data-title=\"Total\">";
         html += "<span class=\"subtotal\" id=\"subtotal-"+data.itemId+"\">"+window.formatDecimal(purchasePrice,2)+"</span>";
         html += "</td>";    
         html += "<td class=\"text-center\">";

@@ -105,7 +105,7 @@ $tab_active = isset($request->get['tab']) ? $request->get['tab'] : 'general';
           <div class="col-sm-6 store-selector">
             <div class="checkbox selector">
               <label>
-                <input type="checkbox" onclick="$('input[name*=\'banner_store\']').prop('checked', this.checked);"> Select / Deselect
+                <input type="checkbox" onclick="$('input[name*=\'banner_store\']').prop('checked', this.checked);"> Seleccionar / Deseleccionar
               </label>
             </div>
             <div class="filter-searchbox">

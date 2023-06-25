@@ -30,7 +30,7 @@ function ($scope,
 ) {
     "use strict";
 
-    // Create new product
+    // Crear nuevo Producto
     $scope.createNewProduct = function () {
         $scope.hideCategoryAddBtn = true;
         $scope.hideSupAddBtn = true;

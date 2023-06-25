@@ -111,9 +111,16 @@ function (
                    $(td).attr('data-title', $("#customer-customer-list thead tr th:eq(8)").html());
                 }
             },
+            { 
+                "targets": [9],
+                'createdCell':  function (td, cellData, rowData, row, col) {
+                   $(td).attr('data-title', $("#customer-customer-list thead tr th:eq(9)").html());
+                }
+            },
         ],
         "aoColumns": [
             {data : "customer_id"},
+            {data : "customer_document"},
             {data : "customer_name"},
             {data : "customer_mobile"},
             {data : "customer_sex"},

@@ -245,7 +245,7 @@ function (
     // End datatable
     //================
 
-    // Create new brand
+    // Crear nuevo Marca
     $(document).delegate("#create-brand-submit", "click", function(e) {
         e.preventDefault();
         var $tag = $(this);

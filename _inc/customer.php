@@ -34,32 +34,36 @@ function validate_request_data($request)
     throw new Exception(trans('error_customer_name'));
   }
 
-  // Validate customer date of birth
- if ($request->post['dob']) {
-    if (!isItValidDate($request->post['dob'])) {
-        throw new Exception(trans('error_date_of_birth'));
-    }
+  if (!validateString($request->post['customer_document'])) {
+    throw new Exception(trans('error_customer_document'));
   }
+
+  // Validate customer date of birth
+//  if ($request->post['dob']) {
+//     if (!isItValidDate($request->post['dob'])) {
+//         throw new Exception(trans('error_date_of_birth'));
+//     }
+//   }
 
   // Validate customer email and mobile
-  if (!validateEmail($request->post['customer_email']) 
-    AND (empty($request->post['customer_mobile']) 
-      || !valdateMobilePhone($request->post['customer_mobile']))) {
+  // if (!validateEmail($request->post['customer_email']) 
+  //   AND (empty($request->post['customer_mobile']) 
+  //     || !valdateMobilePhone($request->post['customer_mobile']))) {
 
-    throw new Exception(trans('error_customer_email_or_mobile'));
-  }
+  //   throw new Exception(trans('error_customer_email_or_mobile'));
+  // }
 
   // Validate customer sex
-  if (!validateInteger($request->post['customer_sex'])) {
-    throw new Exception(trans('error_customer_sex'));
-  }
+  // if (!validateInteger($request->post['customer_sex'])) {
+  //   throw new Exception(trans('error_customer_sex'));
+  // }
 
   // Validate customer state
-  if (get_preference('invoice_view') == 'indian_gst') {
-    if (!validateString($request->post['customer_state'])) {
-      throw new Exception(trans('error_customer_state'));
-    }
-  }
+  // if (get_preference('invoice_view') == 'indian_gst') {
+  //   if (!validateString($request->post['customer_state'])) {
+  //     throw new Exception(trans('error_customer_state'));
+  //   }
+  // }
 
   // Store validation
   if (!isset($request->post['customer_store']) || empty($request->post['customer_store'])) {
@@ -72,15 +76,21 @@ function validate_request_data($request)
   }
 
   // Validate sort order
-  if (!is_numeric($request->post['sort_order'])) {
-    throw new Exception(trans('error_sort_order'));
-  }
+  // if (!is_numeric($request->post['sort_order'])) {
+  //   throw new Exception(trans('error_sort_order'));
+  // }
 }
 
 // Check customer existance by id
 function validate_existance($request, $id = 0)
 {
-  
+  if (!empty($request->post['customer_document'])) {
+    $statement = db()->prepare("SELECT * FROM `customers` WHERE `customer_document` = ? AND `customer_id` != ?");
+    $statement->execute(array($request->post['customer_document'], $id));
+    if ($statement->rowCount() > 0) {
+      throw new Exception(trans('error_customer_name_exist'));
+    }
+  }
   // Check email address, if exist or not?
   if (!empty($request->post['customer_email'])) {
     $statement = db()->prepare("SELECT * FROM `customers` WHERE `customer_email` = ? AND `customer_id` != ?");
@@ -432,6 +442,7 @@ $columns = array(
       }
   ),
   array( 'db' => 'customer_id', 'dt' => 'customer_id' ),
+  array( 'db' => 'customer_document', 'dt' => 'customer_document' ),
   array( 
     'db' => 'customer_name',   
     'dt' => 'customer_name' ,
