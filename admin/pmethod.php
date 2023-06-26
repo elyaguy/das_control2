@@ -109,10 +109,10 @@ include("left_sidebar.php");
               $hide_colums = "";
               if (user_group_id() != 1) {
                 if (!has_permission('access', 'update_pmethod')) {
-                  $hide_colums .= "5,";
+                  $hide_colums .= "4,";
                 }
                 if (!has_permission('access', 'delete_pmethod')) {
-                  $hide_colums .= "6,";
+                  $hide_colums .= "5,";
                 }
               }
               ?>

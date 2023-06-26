@@ -84,7 +84,7 @@
     <div class="form-group">
       <label class="col-sm-4 control-label"></label>
       <div class="col-sm-7">            
-        <button id="withdraw-confirm-btn" class="btn btn-warning btn-block" data-form="#form-withdraw" data-datatable="#invoice-invoice-list" name="submit" data-loading-text="Procesando...">
+        <button id="withdraw-confirm-btn" class="btn btn-warning btn-block" data-form="#form-withdraw" data-datatable="#invoice-invoice-list" name="submit" data-loading-text="Iniciando...">
           <i class="fa fa-fw fa-paper-plane"></i>
           <?php echo trans('button_withdraw_now'); ?>
         </button>

@@ -127,7 +127,7 @@ if (!$user->isLogged()) {
       </ul>
     </div>
     <div class="copyright text-center">
-      <p>&copy; <a href="https://wwww.controldas.com/">CONTROL-DAS</a></p>
+      <p>&copy; <a href="https://www.controldas.com/">CONTROL-DAS</a></p>
     </div>
   </section>
 
