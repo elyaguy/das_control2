@@ -46,10 +46,11 @@ function get_stores($all = false)
 	}
 }
 
-function getProductStore(){	
+function get_product_store(){	
 	$storeModel = registry()->get('loader')->model('store');
 	return $storeModel->getProductStore(store_id());
 }
+
 
 function get_store_ids($data = array()) 
 {

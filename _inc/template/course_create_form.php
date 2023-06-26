@@ -99,7 +99,7 @@
     <div class="form-group">
       <label class="col-sm-3 control-label"></label>
       <div class="col-sm-7">
-        <button class="btn btn-info" id="create-course-submit" type="submit" name="create-course-submit" data-form="#create-course-form" data-loading-text="Saving...">
+        <button class="btn btn-info" id="create-course-submit" type="submit" name="create-course-submit" data-form="#create-course-form" data-loading-text="Guardando...">
           <span class="fa fa-fw fa-save"></span>
           <?php echo trans('button_save'); ?>
         </button>

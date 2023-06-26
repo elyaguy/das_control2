@@ -73,7 +73,7 @@
 						<div class="form-group">
 				            <div class="col-sm-4 col-sm-offset-3">
 				                <!-- <input type="submit" class="btn btn-success" value="Next Step &rarr;" > -->
-				                <button class="btn btn-success btn-block ajaxcall" data-form="timezoneForm" data-loading-text="Saving...">Next Step &rarr;</button>
+				                <button class="btn btn-success btn-block ajaxcall" data-form="timezoneForm" data-loading-text="Guardando...">Next Step &rarr;</button>
 				            </div>
 				        </div>
 					</form>

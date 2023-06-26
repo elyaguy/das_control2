@@ -149,7 +149,7 @@
     <div class="form-group">
       <label class="col-sm-3 control-label"></label>
       <div class="col-sm-7">
-        <button class="btn btn-info" id="create-user-submit" type="submit" name="create-user-submit" data-form="#create-user-form" data-loading-text="Saving...">
+        <button class="btn btn-info" id="create-user-submit" type="submit" name="create-user-submit" data-form="#create-user-form" data-loading-text="Guardando...">
           <span class="fa fa-fw fa-save"></span> 
           <?php echo trans('button_save'); ?>
         </button>

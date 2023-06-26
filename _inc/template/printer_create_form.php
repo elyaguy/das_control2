@@ -125,7 +125,7 @@
     <div class="form-group">
       <label class="col-sm-3 control-label"></label>
       <div class="col-sm-6">
-        <button id="create-printer-submit" data-form="#create-printer-form" data-datatable="#printer-printer-list" class="btn btn-info" name="btn_edit_printer" data-loading-text="Saving...">
+        <button id="create-printer-submit" data-form="#create-printer-form" data-datatable="#printer-printer-list" class="btn btn-info" name="btn_edit_printer" data-loading-text="Guardando...">
           <span class="fa fa-fw fa-pencil"></span>
           <?php echo trans('button_save'); ?>
         </button>

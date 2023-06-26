@@ -29,7 +29,7 @@
 		<div class="form-group">
 			<label class="col-sm-3 control-label"></label>
 			<div class="col-sm-7">
-			  <button id="submit-balance" data-form="#balance-form" class="btn btn-info" name="btn_susbtract_balance" data-loading-text="Saving...">
+			  <button id="submit-balance" data-form="#balance-form" class="btn btn-info" name="btn_susbtract_balance" data-loading-text="Guardando...">
 			    <span class="fa fa-fw fa-money"></span>
 			    <?php echo trans('button_submit'); ?>
 			  </button>

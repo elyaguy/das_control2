@@ -73,7 +73,7 @@
       <div class="form-group">
         <label class="col-sm-3 control-label"></label>
         <div class="col-sm-6">
-          <button id="create-income-source-submit" data-form="#create-income-source-form" data-datatable="#source-source-list" class="btn btn-info" name="btn_edit_income_source" data-loading-text="Saving...">
+          <button id="create-income-source-submit" data-form="#create-income-source-form" data-datatable="#source-source-list" class="btn btn-info" name="btn_edit_income_source" data-loading-text="Guardando...">
             <span class="fa fa-fw fa-pencil"></span>
             <?php echo trans('button_save'); ?>
           </button>

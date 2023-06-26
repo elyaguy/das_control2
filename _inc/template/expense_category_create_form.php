@@ -73,7 +73,7 @@
       <div class="form-group">
         <label class="col-sm-3 control-label"></label>
         <div class="col-sm-6">
-          <button id="create-expense-category-submit" data-form="#create-expense-category-form" data-datatable="#category-category-list" class="btn btn-info" name="btn_edit_expense_category" data-loading-text="Saving...">
+          <button id="create-expense-category-submit" data-form="#create-expense-category-form" data-datatable="#category-category-list" class="btn btn-info" name="btn_edit_expense_category" data-loading-text="Guardando...">
             <span class="fa fa-fw fa-pencil"></span>
             <?php echo trans('button_save'); ?>
           </button>

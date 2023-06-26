@@ -18,6 +18,13 @@ function get_products_to_store($all = false)
 	// }
 }
 
+function get_products_to_store_college($all = false)
+{
+	$productModel = registry()->get('loader')->model('product');
+	return $productModel->getProductsToStoreCollege();
+}
+
+
 function get_product_images($p_id)
 {
 	$model = registry()->get('loader')->model('product');

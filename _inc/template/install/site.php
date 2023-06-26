@@ -153,7 +153,7 @@
 				                <a href="timezone.php" class="btn btn-default">&larr; Previous Step</a>
 				            </div>
 				            <div class="col-sm-6 text-left">
-				                <button class="btn btn-success ajaxcall" data-form="siteForm" data-loading-text="Saving...">Next Step &rarr;</button>
+				                <button class="btn btn-success ajaxcall" data-form="siteForm" data-loading-text="Guardando...">Next Step &rarr;</button>
 				            </div>
 				        </div>
 					</form>

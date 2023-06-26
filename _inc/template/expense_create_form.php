@@ -88,7 +88,7 @@
     <div class="form-group">
       <label class="col-sm-3 control-label"></label>
       <div class="col-sm-6">            
-        <button id="create-expense-submit" class="btn btn-info" data-form="#form-expense" data-datatable="#expense-expense-list" name="submit" data-loading-text="Saving...">
+        <button id="create-expense-submit" class="btn btn-info" data-form="#form-expense" data-datatable="#expense-expense-list" name="submit" data-loading-text="Guardando...">
           <i class="fa fa-fw fa-pencil"></i>
           <?php echo trans('button_save'); ?>
         </button>

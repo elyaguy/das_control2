@@ -705,7 +705,7 @@ include ("left_sidebar.php");
 								<?php echo trans('button_back'); ?>
 							</a>
 
-							<button id="create-store-btn" class="btn btn-info pull-right" type="button" data-form="#store-form" data-loading-text="Saving...">
+							<button id="create-store-btn" class="btn btn-info pull-right" type="button" data-form="#store-form" data-loading-text="Guardando...">
 								<span class="fa fa-fw fa-save"></span> 
 								<?php echo trans('button_save'); ?>
 							</button>

@@ -1,7 +1,7 @@
-<?php 
+<?php
 ob_start();
 session_start();
-include ("../_init.php");
+include("../_init.php");
 
 // Check, if your logged in or not
 // If user is not logged in then return an alert message
@@ -25,26 +25,26 @@ if (user_group_id() != 1 && !has_permission('access', 'read_college')) {
 $college_model = registry()->get('loader')->model('college');
 
 // Validate post data
-function validate_request_data($request) 
+function validate_request_data($request)
 {
   // Validate college name
-  if(!validateString($request->post['college_name'])) {
+  if (!validateString($request->post['college_name'])) {
     throw new Exception(trans('error_college_name'));
   }
 
   // Validate college code name
-  if(!validateString($request->post['code_name'])) {
+  if (!validateString($request->post['code_name'])) {
     throw new Exception(trans('error_code_name'));
   }
 
   // Validate college slug
-  if(!validateString($request->post['code_name'])) {
-    throw new Exception(trans('error_code_name'));
+  if (!validateString($request->post['college_details'])) {
+    throw new Exception(trans('error_college_responsible'));
   }
 
   // Validate store
-  if (!isset($request->post['college_store']) || empty($request->post['college_store'])) {
-    throw new Exception(trans('error_store'));
+  if (!isset($request->post['product_college']) || empty($request->post['product_college'])) {
+    throw new Exception(trans('error_product_college'));
   }
 
   // Validate status
@@ -52,16 +52,16 @@ function validate_request_data($request)
     throw new Exception(trans('error_status'));
   }
 
-  // Validate sort order
-  if (!is_numeric($request->post['sort_order'])) {
-    throw new Exception(trans('error_sort_order'));
-  }
+  // // Validate sort order
+  // if (!is_numeric($request->post['sort_order'])) {
+  //   throw new Exception(trans('error_sort_order'));
+  // }
 }
 
 // Check, if already exist or not
 function validate_existance($request, $id = 0)
 {
-  
+
 
   // Check, if college name exist or not
   $statement = db()->prepare("SELECT * FROM `colleges` WHERE (`college_name` = ? OR `code_name` = ?) AND `college_id` != ?");
@@ -72,8 +72,7 @@ function validate_existance($request, $id = 0)
 }
 
 // Create college
-if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action_type']) && $request->post['action_type'] == 'CREATE')
-{
+if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action_type']) && $request->post['action_type'] == 'CREATE') {
   try {
 
     // Check create permission
@@ -86,11 +85,11 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action
 
     // Validate existance
     validate_existance($request);
-    
+
     $statement = db()->prepare("SELECT * FROM `colleges` WHERE (`code_name` = ? OR `college_name` = ?)");
     $statement->execute(array($request->post['code_name'], $request->post['college_name']));
     $total = $statement->rowCount();
-    if ($total>0) {
+    if ($total > 0) {
       throw new Exception(trans('error_college_exist'));
     }
 
@@ -102,26 +101,69 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action
     // get college info
     $college = $college_model->getCollege($college_id);
 
+    // Add product to store
+    if (!empty($request->post['product_college'])) {
+      foreach ($request->post['product_college'] as $product_id) {
+
+        // Fetch product info
+        $product_info = get_the_product($product_id);
+
+        //--- Category to store ---//
+
+        // $statement = db()->prepare("SELECT * FROM `category_to_store` WHERE `store_id` = ? AND `ccategory_id` = ?");
+        // $statement->execute(array($store_id, $product_info['category_id']));
+        // $category = $statement->fetch(PDO::FETCH_ASSOC);
+        // if (!$category) {
+        //   $statement = db()->prepare("INSERT INTO `category_to_store` SET `ccategory_id` = ?, `store_id` = ?");
+        //   $statement->execute(array((int)$product_info['category_id'], (int)$store_id));
+        // }
+
+        //--- Box to store ---//
+
+        // $statement = db()->prepare("SELECT * FROM `box_to_store` WHERE `store_id` = ? AND `box_id` = ?");
+        // $statement->execute(array($store_id, $product_info['box_id']));
+        // $box = $statement->fetch(PDO::FETCH_ASSOC);
+        // if (!$box) {
+        //   $statement = db()->prepare("INSERT INTO `box_to_store` SET `box_id` = ?, `store_id` = ?");
+        //   $statement->execute(array((int)$product_info['box_id'], (int)$store_id));
+        // }
+
+        //--- Supplier to store ---//
+
+        // $statement = db()->prepare("SELECT * FROM `product_to_college` WHERE `college_id` = ? AND `product_id` = ?");
+        // $statement->execute(array($college_id, $product_info['product_id']));
+        // $supplier = $statement->fetch(PDO::FETCH_ASSOC);
+        // if (!$supplier) {
+        //   $statement = db()->prepare("INSERT INTO `product_to_college` SET `college_id` = ?, `product_id` = ?");
+        //   $statement->execute(array((int)$college_id),(int)$product_info['product_id']);
+        // }
+
+        //--- Create product link ---//
+
+        // REVISAR PASAR TODA LA INFO EDGAR
+
+        $statement = db()->prepare("INSERT INTO `product_to_college` SET `college_id` = ?, `product_id` = ?");
+        $statement->execute(array((int)$college_id, (int)$product_info['product_id']));
+      }
+    }
+
     $Hooks->do_action('After_Create_College', $college);
 
     // SET OUTPUT CONTENT TYPE
     header('Content-Type: application/json');
     echo json_encode(array('msg' => trans('text_success'), 'id' => $college_id, 'college' => $college));
     exit();
+  } catch (Exception $e) {
 
-  } catch (Exception $e) { 
-    
     header('HTTP/1.1 422 Unprocessable Entity');
     header('Content-Type: application/json; charset=UTF-8');
     echo json_encode(array('errorMsg' => $e->getMessage()));
     exit();
-
   }
-} 
+}
 
 // Update college
-if($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action_type']) && $request->post['action_type'] == 'UPDATE')
-{
+if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action_type']) && $request->post['action_type'] == 'UPDATE') {
   try {
 
     // Check update permission
@@ -147,24 +189,70 @@ if($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action_
     // Edit college
     $college = $college_model->editCollege($id, $request->post);
 
+    // Add product to store
+    if (!empty($request->post['product_college'])) {
+      foreach ($request->post['product_college'] as $product_id) {
+
+        // Fetch product info
+        $product_info = get_the_product($product_id, null);
+
+        //--- Category to store ---//
+
+        // $statement = db()->prepare("SELECT * FROM `category_to_store` WHERE `store_id` = ? AND `ccategory_id` = ?");
+        // $statement->execute(array($id, $product_info['category_id']));
+        // $category = $statement->fetch(PDO::FETCH_ASSOC);
+        // if (!$category) {
+        //    $statement = db()->prepare("INSERT INTO `category_to_store` SET `ccategory_id` = ?, `store_id` = ?");
+        //     $statement->execute(array((int)$product_info['category_id'], (int)$id));
+        // } 
+
+        //--- Box to store ---//
+
+        // $statement = db()->prepare("SELECT * FROM `box_to_store` WHERE `store_id` = ? AND `box_id` = ?");
+        // $statement->execute(array($id, $product_info['box_id']));
+        // $box = $statement->fetch(PDO::FETCH_ASSOC);
+        // if (!$box) {
+        //    $statement = db()->prepare("INSERT INTO `box_to_store` SET `box_id` = ?, `store_id` = ?");
+        //     $statement->execute(array((int)$product_info['box_id'], (int)$id));
+        // } 
+
+        //--- Supplier to store ---//
+
+        // $statement = db()->prepare("SELECT * FROM `supplier_to_store` WHERE `store_id` = ? AND `sup_id` = ?");
+        // $statement->execute(array($id, $product_info['sup_id']));
+        // $supplier = $statement->fetch(PDO::FETCH_ASSOC);
+        // if (!$supplier) {
+        //   $statement = db()->prepare("INSERT INTO `supplier_to_store` SET `sup_id` = ?, `store_id` = ?");
+        //   $statement->execute(array((int)$product_info['sup_id'], (int)$id));
+        // }
+
+        //--- Create product link ---//
+        $statement = db()->prepare("SELECT * FROM `product_to_college` WHERE `college_id` = ? AND `product_id` = ?");
+        $statement->execute(array($id, (int)$product_id));
+        $prodt = $statement->fetch(PDO::FETCH_ASSOC);
+        if (!$prodt) {
+          $statement = db()->prepare("INSERT INTO `product_to_college` SET `product_id` = ?, `college_id` = ?");
+          $statement->execute(array((int)$product_id, (int)$id, ));
+        }
+      }
+    }
+
     $Hooks->do_action('After_Update_College', $college);
 
     header('Content-Type: application/json');
     echo json_encode(array('msg' => trans('text_update_success'), 'id' => $id));
     exit();
-    
-  } catch(Exception $e) { 
+  } catch (Exception $e) {
 
     header('HTTP/1.1 422 Unprocessable Entity');
     header('Content-Type: application/json; charset=UTF-8');
     echo json_encode(array('errorMsg' => $e->getMessage()));
     exit();
   }
-} 
+}
 
 // Delete college
-if($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action_type']) && $request->post['action_type'] == 'DELETE') 
-{
+if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action_type']) && $request->post['action_type'] == 'DELETE') {
   try {
 
     // Check delete permission
@@ -191,21 +279,20 @@ if($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action_
 
     $Hooks->do_action('Before_Delete_College', $request);
 
-    $belongs_stores = $college_model->getBelongsStore($id);
-    foreach ($belongs_stores as $the_store) {
+    // $belongs_stores = $college_model->getBelongsStore($id);
+    // foreach ($belongs_stores as $the_store) {
 
-      // Check if relationship exist or not
-      $statement = db()->prepare("SELECT * FROM `college_to_store` WHERE `college_id` = ? AND `store_id` = ?");
-      $statement->execute(array($new_college_id, $the_store['store_id']));
-      if ($statement->rowCount() > 0) continue;
+    //   // Check if relationship exist or not
+    //   $statement = db()->prepare("SELECT * FROM `college_to_store` WHERE `college_id` = ? AND `store_id` = ?");
+    //   $statement->execute(array($new_college_id, $the_store['store_id']));
+    //   if ($statement->rowCount() > 0) continue;
 
-      // Create relationship
-      $statement = db()->prepare("INSERT INTO `college_to_store` SET `college_id` = ?, `store_id` = ?");
-      $statement->execute(array($new_college_id, $the_store['store_id']));
-    }
+    //   // Create relationship
+    //   $statement = db()->prepare("INSERT INTO `college_to_store` SET `college_id` = ?, `store_id` = ?");
+    //   $statement->execute(array($new_college_id, $the_store['store_id']));
+    // }
 
-    if ($request->post['delete_action'] == 'insert_to') 
-    {
+    if ($request->post['delete_action'] == 'insert_to') {
       $statement = db()->prepare("UPDATE `holding_item` SET `college_id` = ? WHERE `college_id` = ?");
       $statement->execute(array($new_college_id, $id));
 
@@ -217,18 +304,17 @@ if($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action_
 
       $statement = db()->prepare("UPDATE `selling_item` SET `college_id` = ? WHERE `college_id` = ?");
       $statement->execute(array($new_college_id, $id));
-    } 
+    }
 
     // Delete college
     $college = $college_model->deleteCollege($id);
 
     $Hooks->do_action('After_Delete_College', $college);
-    
+
     header('Content-Type: application/json');
     echo json_encode(array('msg' => trans('text_delete_success')));
     exit();
-
-  } catch (Exception $e) { 
+  } catch (Exception $e) {
 
     header('HTTP/1.1 422 Unprocessable Entity');
     header('Content-Type: application/json; charset=UTF-8');
@@ -238,8 +324,7 @@ if($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action_
 }
 
 // college create form
-if (isset($request->get['action_type']) && $request->get['action_type'] == 'CREATE') 
-{
+if (isset($request->get['action_type']) && $request->get['action_type'] == 'CREATE') {
   $Hooks->do_action('Before_College_Create_Form');
   include 'template/college_create_form.php';
   $Hooks->do_action('After_College_Create_Form');
@@ -248,7 +333,7 @@ if (isset($request->get['action_type']) && $request->get['action_type'] == 'CREA
 
 // college edit form
 if (isset($request->get['college_id']) && isset($request->get['action_type']) && $request->get['action_type'] == 'EDIT') {
-    
+
   // Fetch college info
   $college = $college_model->getCollege($request->get['college_id']);
   $Hooks->do_action('Before_College_Edit_Form', $college);
@@ -275,79 +360,82 @@ if (isset($request->get['college_id']) && isset($request->get['action_type']) &&
  */
 $Hooks->do_action('Before_Showing_College_List');
 
-$where_query = 'b2s.store_id = ' . store_id();
- 
+// $where_query = 'b2s.store_id = ' . store_id();
+
 // DB table to use
-$table = "(SELECT colleges.*, b2s.status, b2s.sort_order FROM colleges 
-  LEFT JOIN college_to_store b2s ON (colleges.college_id = b2s.college_id) 
-  WHERE $where_query GROUP by colleges.college_id
-  ) as colleges";
- 
+// $table = "(SELECT colleges.*, b2s.status, b2s.sort_order FROM colleges 
+//   LEFT JOIN college_to_store b2s ON (colleges.college_id = b2s.college_id) 
+//   WHERE $where_query GROUP by colleges.college_id
+//   ) as colleges";
+$table = "(SELECT colleges.* FROM colleges 
+GROUP by colleges.college_id
+) as colleges";
+
 // Table's primary key
 $primaryKey = 'college_id';
 
 $columns = array(
   array(
-      'db' => 'college_id',
-      'dt' => 'DT_RowId',
-      'formatter' => function( $d, $row ) {
-          return 'row_'.$d;
-      }
-  ),
-  array( 'db' => 'college_id', 'dt' => 'college_id' ),
-  array( 
-    'db' => 'college_name',   
-    'dt' => 'college_name' ,
-    'formatter' => function($d, $row) {
-        return ucfirst($row['college_name']);
+    'db' => 'college_id',
+    'dt' => 'DT_RowId',
+    'formatter' => function ($d, $row) {
+      return 'row_' . $d;
     }
   ),
-  array( 'db' => 'code_name',   'dt' => 'code_name' ),
-  array( 
-    'db' => 'college_id',   
-    'dt' => 'total_product' ,
-    'formatter' => function($d, $row) {
-      return 0;//total_product_of_college($row['college_id']);
+  array('db' => 'college_id', 'dt' => 'college_id'),
+  array(
+    'db' => 'college_name',
+    'dt' => 'college_name',
+    'formatter' => function ($d, $row) {
+      return ucfirst($row['college_name']);
     }
   ),
-  array( 
-    'db' => 'status',   
+  array('db' => 'code_name',   'dt' => 'code_name'),
+  array(
+    'db' => 'college_id',
+    'dt' => 'total_product',
+    'formatter' => function ($d, $row) {
+      return total_product_of_college((int)$row['college_id']);
+    }
+  ),
+  array(
+    'db' => 'status',
     'dt' => 'status',
-    'formatter' => function($d, $row) {
-      return $row['status'] 
-        ? '<span class="label label-success">'.trans('text_active').'</span>' 
-        : '<span class="label label-warning">' .trans('text_inactive').'</span>';
+    'formatter' => function ($d, $row) {
+      return $row['status']
+        ? '<span class="label label-success">' . trans('text_active') . '</span>'
+        : '<span class="label label-warning">' . trans('text_inactive') . '</span>';
     }
   ),
-  array( 
-    'db' => 'college_id',   
-    'dt' => 'btn_view' ,
-    'formatter' => function($d, $row) {
-        return '<a id="view-college" class="btn btn-sm btn-block btn-info" href="college_profile.php?college_id='.$row['college_id'].'" title="'.trans('button_view_profile').'"><i class="fa fa-fw fa-user"></i></a>';
+  array(
+    'db' => 'college_id',
+    'dt' => 'btn_view',
+    'formatter' => function ($d, $row) {
+      return '<a id="view-college" class="btn btn-sm btn-block btn-info" href="college_profile.php?college_id=' . $row['college_id'] . '" title="' . trans('button_view_profile') . '"><i class="fa fa-fw fa-user"></i></a>';
     }
   ),
-  array( 
-    'db' => 'college_id',   
-    'dt' => 'btn_edit' ,
-    'formatter' => function($d, $row) {
-      if (DEMO && $row['college_id'] == 1) {          
-        return'<button class="btn btn-sm btn-block btn-default" type="button" disabled><i class="fa fa-pencil"></i></button>';
+  array(
+    'db' => 'college_id',
+    'dt' => 'btn_edit',
+    'formatter' => function ($d, $row) {
+      if (DEMO && $row['college_id'] == 1) {
+        return '<button class="btn btn-sm btn-block btn-default" type="button" disabled><i class="fa fa-pencil"></i></button>';
       }
-      return '<button id="edit-college" class="btn btn-sm btn-block btn-primary" type="button" title="'.trans('button_edit').'"><i class="fa fa-fw fa-pencil"></i></button>';
+      return '<button id="edit-college" class="btn btn-sm btn-block btn-primary" type="button" title="' . trans('button_edit') . '"><i class="fa fa-fw fa-pencil"></i></button>';
     }
   ),
-  array( 
-    'db' => 'college_id',   
-    'dt' => 'btn_delete' ,
-    'formatter' => function($d, $row) {
-      if (DEMO && $row['college_id'] == 1) {          
-        return'<button class="btn btn-sm btn-block btn-default" type="button" disabled><i class="fa fa-trash"></i></button>';
+  array(
+    'db' => 'college_id',
+    'dt' => 'btn_delete',
+    'formatter' => function ($d, $row) {
+      if (DEMO && $row['college_id'] == 1) {
+        return '<button class="btn btn-sm btn-block btn-default" type="button" disabled><i class="fa fa-trash"></i></button>';
       }
-      return '<button id="delete-college" class="btn btn-sm btn-block btn-danger" type="button" title="'.trans('button_delete').'"><i class="fa fa-fw fa-trash"></i></button>';
+      return '<button id="delete-college" class="btn btn-sm btn-block btn-danger" type="button" title="' . trans('button_delete') . '"><i class="fa fa-fw fa-trash"></i></button>';
     }
   )
 );
- 
+
 echo json_encode(
   SSP::simple($request->get, $sql_details, $table, $primaryKey, $columns)
 );

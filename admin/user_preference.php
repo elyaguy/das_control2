@@ -271,7 +271,7 @@ include("left_sidebar.php");
 				<div class="box-footer">
 					<?php if (user_group_id() == 1 || has_permission('access', 'update_user_preference')) : ?>
 						<div class="col-sm-3 col-sm-offset-3">
-							<button class="btn btn-info btn-block save" type="button" data-form="#user-preference-form" data-loading-text="Saving...">
+							<button class="btn btn-info btn-block save" type="button" data-form="#user-preference-form" data-loading-text="Guardando...">
 								<span class="fa fa-fw fa-pencil"></span>
 								<?php echo trans('button_update'); ?>
 							</button>

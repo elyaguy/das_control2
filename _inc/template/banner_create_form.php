@@ -154,7 +154,7 @@ $tab_active = isset($request->get['tab']) ? $request->get['tab'] : 'general';
         <div class="form-group">
           <label class="col-sm-3 control-label"></label>
           <div class="col-sm-3">
-            <button id="create-banner-submit" data-form="#create-banner-form" data-datatable="#banner-banner-list" class="btn btn-block btn-info" name="btn_edit_banner" data-loading-text="Saving...">
+            <button id="create-banner-submit" data-form="#create-banner-form" data-datatable="#banner-banner-list" class="btn btn-block btn-info" name="btn_edit_banner" data-loading-text="Guardando...">
               <span class="fa fa-fw fa-pencil"></span>
               <?php echo trans('button_save'); ?>
             </button>

@@ -208,7 +208,7 @@
 
     <div class="form-group">
       <div class="col-sm-4 col-sm-offset-3 text-center">            
-        <button id="create-quotation-submit" class="btn btn-block btn-lg btn-info" data-form="#form-quotation" data-datatable="#quotation-quotation-list" name="submit" data-loading-text="Saving...">
+        <button id="create-quotation-submit" class="btn btn-block btn-lg btn-info" data-form="#form-quotation" data-datatable="#quotation-quotation-list" name="submit" data-loading-text="Guardando...">
           <i class="fa fa-fw fa-save"></i>
           <?php echo trans('button_save'); ?>
         </button>

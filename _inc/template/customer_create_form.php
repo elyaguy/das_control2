@@ -206,7 +206,7 @@
     <div class="form-group">
       <label></label>
       <div class="col-sm-6 col-sm-offset-5">
-        <button class="btn btn-info" id="create-customer-submit" type="submit" name="create-customer-submit" data-form="#create-customer-form" data-loading-text="Saving...">
+        <button class="btn btn-info" id="create-customer-submit" type="submit" name="create-customer-submit" data-form="#create-customer-form" data-loading-text="Guardando...">
           <span class="fa fa-fw fa-save"></span>
           <?php echo trans('button_save'); ?>
         </button>
