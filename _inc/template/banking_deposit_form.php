@@ -89,7 +89,7 @@
     <div class="form-group">
       <label class="col-sm-3 control-label"></label>
       <div class="col-sm-8">            
-        <button id="deposit-confirm-btn" class="btn btn-info btn-block" data-form="#form-deposit" data-datatable="#invoice-invoice-list" name="submit" data-loading-text="Processing...">
+        <button id="deposit-confirm-btn" class="btn btn-info btn-block" data-form="#form-deposit" data-datatable="#invoice-invoice-list" name="submit" data-loading-text="Procesando...">
           <i class="fa fa-fw fa-plus"></i>
           <?php echo trans('button_deposit_now'); ?>
         </button>

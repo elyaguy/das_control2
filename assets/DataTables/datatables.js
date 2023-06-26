@@ -71317,7 +71317,7 @@ this.pdfMake = this.pdfMake || {}; this.pdfMake.vfs = {
 			 *      } );
 			 *    } );
 			 */
-			"sProcessing": "Processing...",
+			"sProcessing": "Procesando...",
 	
 	
 			/**

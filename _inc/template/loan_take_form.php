@@ -152,7 +152,7 @@
     <div class="form-group">
       <label class="col-sm-3 control-label"></label>
       <div class="col-sm-6">            
-        <button id="take-loan-submit" class="btn btn-info" data-form="#form-loan" data-datatable="#invoice-invoice-list" name="submit" data-loading-text="Processing...">
+        <button id="take-loan-submit" class="btn btn-info" data-form="#form-loan" data-datatable="#invoice-invoice-list" name="submit" data-loading-text="Procesando...">
           <i class="fa fa-fw fa-pencil"></i>
           <?php echo trans('button_save'); ?>
         </button>

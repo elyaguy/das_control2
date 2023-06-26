@@ -149,7 +149,7 @@
 				                <a href="purchase_code.php" class="btn btn-default">&larr; Previous Step</a>
 				            </div>
 				            <div class="col-sm-6 text-left">
-				                <button class="btn btn-success ajaxcall" data-form="databaseForm" data-loading-text="Processing...">Next Step &rarr;</button>
+				                <button class="btn btn-success ajaxcall" data-form="databaseForm" data-loading-text="Procesando...">Next Step &rarr;</button>
 				            </div>
 				        </div>
 					</form>
@@ -166,7 +166,7 @@ function databaseFormSuccessCallback(res)
 	console.log(res);
 	$("#loader-status").show();
 	$("#loader-status .progress").show();
-    $("#loader-status .text").text("Processing...");
+    $("#loader-status .text").text("Procesando...");
 
 	$("#loader-status .progress-bar").attr("aria-valuenow", 0);
     $("#loader-status .progress-bar").css("width", "0%");

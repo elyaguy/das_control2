@@ -130,7 +130,7 @@
 
     <div class="form-group">
       <div class="col-sm-5 col-sm-offset-2 text-center">            
-        <button id="transfer-confirm-btn" class="btn btn-block btn-lg btn-info r-50" data-form="#form-transfer" data-datatable="#transter-transter-list" name="submit" data-loading-text="Processing...">
+        <button id="transfer-confirm-btn" class="btn btn-block btn-lg btn-info r-50" data-form="#form-transfer" data-datatable="#transter-transter-list" name="submit" data-loading-text="Procesando...">
           <span class="fa fa-fw fa-car"></span><?php echo trans('button_transfer_now'); ?> &rarr;
         </button>
       </div>

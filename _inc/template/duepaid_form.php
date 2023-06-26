@@ -41,7 +41,7 @@
     <div class="form-group">
       <label class="col-sm-4 control-label"></label>
       <div class="col-sm-7">            
-        <button id="duepaid-confirm-btn" class="btn btn-info" data-form="#form-duepaid-confirm" data-datatable="#invoice-invoice-list" name="submit" data-loading-text="Processing...">
+        <button id="duepaid-confirm-btn" class="btn btn-info" data-form="#form-duepaid-confirm" data-datatable="#invoice-invoice-list" name="submit" data-loading-text="Procesando...">
           <i class="fa fa-fw fa-pencil"></i>
           <?php echo trans('button_update'); ?>
         </button>

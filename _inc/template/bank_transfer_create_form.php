@@ -73,7 +73,7 @@
     <div class="form-group">
       <label class="col-sm-3 control-label"></label>
       <div class="col-sm-7">            
-        <button id="transfer-confirm-btn" class="btn btn-info" data-form="#form-transfer" data-datatable="#invoice-invoice-list" name="submit" data-loading-text="Processing...">
+        <button id="transfer-confirm-btn" class="btn btn-info" data-form="#form-transfer" data-datatable="#invoice-invoice-list" name="submit" data-loading-text="Procesando...">
           <i class="fa fa-fw fa-plus"></i>
           <?php echo trans('button_transfer_now'); ?>
         </button>

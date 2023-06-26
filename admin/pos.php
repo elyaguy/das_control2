@@ -443,13 +443,13 @@ if ($order_printer_ids) {
 								<div id="pay-button" class="text-center">
 									<div class="btn-group btn-group-justified">
 										<div class="btn-group">
-											<button ng-click="payNow()" onClick="return false;" class="btn btn-success" data-loading-text="Processing..." title="Payment">
+											<button ng-click="payNow()" onClick="return false;" class="btn btn-success" data-loading-text="Procesando..." title="Payment">
 												<span class="fa fa-fw fa-money"></span> 
 												<?php echo trans('button_pay'); ?>
 											</button>
 										</div>
 										<div class="btn-group">
-											<button ng-click="HoldingOrderModal()" on-click="return false;" class="btn btn-danger" data-loading-text="Processing..." title="Order Holdinbg">
+											<button ng-click="HoldingOrderModal()" on-click="return false;" class="btn btn-danger" data-loading-text="Procesando..." title="Order Holdinbg">
 												<span class="fa fa-fw fa-crosshairs"></span> 
 												<?php echo trans('button_hold'); ?>
 											</button>

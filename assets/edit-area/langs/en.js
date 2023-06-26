@@ -41,7 +41,7 @@ tab: "Tab",
 shift: "Shift",
 ctrl: "Ctrl",
 esc: "Esc",
-processing: "Processing...",
+processing: "Procesando...",
 fullscreen: "fullscreen",
 syntax_selection: "--Syntax--",
 close_tab: "Close file"

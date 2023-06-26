@@ -24,7 +24,7 @@
     <div class="form-group">
       <label class="col-sm-3 control-label"></label>
       <div class="col-sm-7">
-        <button class="btn btn-info" id="giftcard-topup-save" type="submit" name="giftcard-topup-save" data-form="#topup-giftcard-form" data-datatable="#giftcard-giftcard-list" data-loading-text="Processing...">
+        <button class="btn btn-info" id="giftcard-topup-save" type="submit" name="giftcard-topup-save" data-form="#topup-giftcard-form" data-datatable="#giftcard-giftcard-list" data-loading-text="Procesando...">
           <span class="fa fa-fw fa-money"></span> 
           <?php echo trans('button_topup_now'); ?>
         </button>  

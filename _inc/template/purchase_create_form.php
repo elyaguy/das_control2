@@ -247,7 +247,7 @@
     </div>
     <div class="form-group">
       <div class="col-sm-4 col-sm-offset-3 text-center">
-        <button id="create-purchase-submit" class="btn btn-block btn-lg btn-info" data-form="#form-purchase" data-datatable="#purchase-purchase-list" name="submit" data-loading-text="Processing...">
+        <button id="create-purchase-submit" class="btn btn-block btn-lg btn-info" data-form="#form-purchase" data-datatable="#purchase-purchase-list" name="submit" data-loading-text="Procesando...">
           <i class="fa fa-fw fa-save"></i>
           <?php echo trans('button_submit'); ?>
         </button>

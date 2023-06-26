@@ -514,7 +514,7 @@ $columns = array(
               $o .= '<li><a href="pos.php?qref='.$row['reference_no'].'">'.trans('button_create_sell').'</a></li>';
             }
             if ($row['status'] != 'complete' && user_group_id() == 1 || has_permission('access', 'delete_quotation')) {
-              $o .= '<li><a id="delete-quotation" href="quotation.php" data-loading-text="Processing...">'.trans('button_delete').'</a></li>';
+              $o .= '<li><a id="delete-quotation" href="quotation.php" data-loading-text="Procesando...">'.trans('button_delete').'</a></li>';
             }
           $o .= '</ul></div>';
           return $o;
