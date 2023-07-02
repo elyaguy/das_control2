@@ -19,6 +19,7 @@ window.angularApp.controller("PosController", [
     "AddInvoiceNoteModal",
     "AddCustomerMobileNumberModal",
     "PaymentFormModal",
+    "PaymentOnlyModal",
     "GiftcardCreateModal",
     "GiftcardViewModal",
     "HoldingOrderModal",
@@ -44,6 +45,7 @@ window.angularApp.controller("PosController", [
         AddInvoiceNoteModal,
         AddCustomerMobileNumberModal,
         PaymentFormModal,
+        PaymentOnlyModal,
         GiftcardCreateModal,
         GiftcardViewModal,
         HoldingOrderModal,
@@ -175,6 +177,101 @@ window.angularApp.controller("PosController", [
         // End Customer dropdown list
         // ===============================================
 
+
+        // ===============================================
+        // Start College dropdown list
+        // ===============================================
+
+        $scope.collegeName = "";
+        $scope.hideCollegeDropdown = false;
+        $scope.collegeArray = [];
+        $scope.showCollegeList = function (isClick) {
+            if ($scope.isEditMode) { return false; }
+            //Edgar
+            if ($scope.itemArray.length > 0) { return false; }
+            if (isClick) { $scope.collegeName = ""; }
+            if (window.deviceType == 'computer') {
+                $("#college-name").focus();
+            }
+            $http({
+                url: API_URL + "/_inc/pos.php?query_string=" + $scope.collegeName + "&field=college_name&action_type=COLLEGELIST&limit=30",
+                method: "GET",
+                cache: false,
+                processData: false,
+                contentType: false,
+                dataType: "json"
+            }).
+                then(function (response) {
+                    $scope.hideCollegeDropdown = false;
+                    $scope.collegeArray = [];
+                    window.angular.forEach(response.data, function (collegeItem, key) {
+                        if (collegeItem) {
+                            $("#college-dropdown").scrollTop($("#college-dropdown").offset().top);
+                            $("#college-dropdown").perfectScrollbar("update");
+                            $scope.collegeArray.push(collegeItem);
+                        }
+                    });
+
+                }, function (response) {
+                    if (window.store.sound_effect == 1) {
+                        window.storeApp.playSound("error.mp3");
+                    }
+                    window.toastr.error(response.data.errorMsg, "ADVERTENCIA!");
+                });
+        };
+        $("#college-name").on("click", function () {
+            $scope.showCollegeList(true);
+        });
+        $scope.addCollege = function (college) {
+            if ($scope._isInt(college)) {
+                $http({
+                    url: API_URL + "/_inc/pos.php?college_id=" + college + "&action_type=COLLEGE",
+                    method: "GET",
+                    cache: false,
+                    processData: false,
+                    contentType: false,
+                    dataType: "json"
+                }).
+                    then(function (response) {
+                        if (response.data.college_id) {
+                            $scope.addCollege(response.data);
+                        }
+                    }, function (response) {
+                        if (window.store.sound_effect == 1) {
+                            window.storeApp.playSound("error.mp3");
+                        }
+                        window.toastr.error(response.data.errorMsg, "ADVERTENCIA!");
+                    });
+            } else if (college.college_id) {
+                var contact = college.college_name || college.college_name;
+                $scope.collegeName = college.college_name + " (" + contact + ")";
+                //  $scope.collegeMobileNumber = college.college_mobile;
+                //  $scope.collegeEmail = college.college_email;
+                $scope.collegeId = college.college_id;
+                //  $scope.dueAmount = parseFloat(college.due);
+                $scope.hideCollegeDropdown = true;
+                $scope.showProductList();
+                // var pos_college = "C: " + $scope.collegeName + "\n";
+                // var ob_info = pos_college + "\n";
+                // $scope.orderData.info = ob_info;
+                // $scope.billData.info = ob_info;
+                // $scope._calcTotalPayable();
+            } else {
+                if (window.store.sound_effect == 1) {
+                    window.storeApp.playSound("error.mp3");
+                }
+                window.toastr.error("Oops!, Invalid college", "ADVERTENCIA!");
+            }
+        };
+        if (window.getParameterByName("college_id")) {
+            $scope.addCollege(window.getParameterByName("college_id"));
+        } else {
+            // add walking college to invoice
+            $scope.addCollege(1);
+        }
+
+
+
         // ===============================================
         // Start Product list
         // ===============================================
@@ -189,9 +286,12 @@ window.angularApp.controller("PosController", [
             page = page ? page : 1;
             $scope.showLoader = 1;
             var productCode = $scope.productName;
+            var collegeId = $scope.collegeId ? $scope.collegeId : '';
+            var courseId = $scope.ProductCourseID ? $scope.ProductCourseID : '';
             var categoryId = $scope.ProductCategoryID ? $scope.ProductCategoryID : '';
             $http({
-                url: url ? url : API_URL + "/_inc/pos.php?action_type=PRODUCTLIST&query_string=" + productCode + "&category_id=" + categoryId + "&field=p_name&page=" + page,
+                //url: url ? url : API_URL + "/_inc/pos.php?action_type=PRODUCTLIST&query_string=" + productCode + "&category_id=" + categoryId + "&field=p_name&page=" + page,
+                url: url ? url : API_URL + "/_inc/pos.php?action_type=PRODUCTLIST&query_string=" + productCode + "&college_id=" + collegeId + "&course_id=" + courseId + "&category_id=" + categoryId + "&field=p_name&page=" + page,
                 method: "GET",
                 cache: false,
                 processData: false,
@@ -257,10 +357,21 @@ window.angularApp.controller("PosController", [
             $scope.showProductList();
         });
 
+        $("#course-search-select").on('select2:selecting', function (e) {
+            var courseID = e.params.args.data.id;
+            $scope.ProductCourseID = courseID;
+            $scope.showProductList();
+        });
+
         $("#salesman_id").on('select2:selecting', function (e) {
             var salesmanId = e.params.args.data.id;
             $scope.salesmanId = salesmanId;
         });
+        // $("#college-name").on('select2:selecting', function (e) {
+        //     var collegeId = e.params.args.data.id;
+        //     $scope.collegeId = collegeId;
+        // });
+
 
         // ===============================================
         // End Product list
@@ -506,6 +617,8 @@ window.angularApp.controller("PosController", [
                             $scope.totalQuantity = $scope.totalQuantity + qty;
                             $scope.totalAmount = $scope.totalAmount + (parseFloat(response.data.sell_price) * qty) + additonalTaxAmount;
                             $scope.itemArray.push(item);
+                            //Edgar
+                            // $scope.isEditMode = true;
                         }
                         $scope.totalItem = window._.size($scope.itemArray);
                         $scope._calcTotalPayable();
@@ -820,6 +933,7 @@ window.angularApp.controller("PosController", [
                 window.location = "pos.php";
             } else {
                 $scope.customerArray = [];
+                $scope.collegeArray = [];
                 $scope.itemArray = [];
                 $scope.invoiceId = "";
                 $scope.invoiceNote = "";
@@ -828,6 +942,8 @@ window.angularApp.controller("PosController", [
                 $scope.dueAmount = 0;
                 $scope.customerName = "";
                 $scope.customerId = "";
+                $scope.collegeName = "";
+                $scope.collegeId = "";
                 $scope.totalItem = 0;
                 $scope.totalQuantity = 0;
                 $scope.totalAmount = 0;
@@ -1013,14 +1129,21 @@ window.angularApp.controller("PosController", [
                 if (window.store.sound_effect == 1) {
                     window.storeApp.playSound("error.mp3");
                 }
-                window.toastr.error("Please, select at least one product item", "ADVERTENCIA!");
+                window.toastr.error("Por favor, seleccione al menos un artículo del producto", "ADVERTENCIA!");
                 return false;
             }
             if (!$scope.customerName) {
                 if (window.store.sound_effect == 1) {
                     window.storeApp.playSound("error.mp3");
                 }
-                window.toastr.error("Please, select a customer", "ADVERTENCIA!");
+                window.toastr.error("Por favor, seleccione un cliente", "ADVERTENCIA!");
+                return false;
+            }
+            if (!$scope.collegeName) {
+                if (window.store.sound_effect == 1) {
+                    window.storeApp.playSound("error.mp3");
+                }
+                window.toastr.error("Por favor, seleccione un colegio", "ADVERTENCIA!");
                 return false;
             }
             $scope.customerId = $(document).find("input[name=\"customer-id\"]").val();
@@ -1029,7 +1152,8 @@ window.angularApp.controller("PosController", [
             }
             setTimeout(function () {
                 PaymentFormModal($scope);
-            }, 300);
+                //PaymentOnlyModal($scope);
+            }, 300/2);
         }
 
         // =============================================

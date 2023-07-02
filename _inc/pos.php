@@ -86,6 +86,37 @@ if ($request->server['REQUEST_METHOD'] == 'GET' && isset($request->get['action_t
 	}
 }
 
+// Fetch college list
+if ($request->server['REQUEST_METHOD'] == 'GET' && isset($request->get['action_type']) && $request->get['action_type'] == 'COLLEGELIST') {
+	try {
+
+		$limit = isset($request->get['limit']) ? (int)$request->get['limit'] : 20;
+		$field = $request->get['field'];
+		$query_string = $request->get['query_string'];
+		$statement = db()->prepare("SELECT * FROM `colleges` 
+			WHERE UPPER($field) LIKE '" . strtoupper($query_string) . "%' AND `status` = ? GROUP BY `colleges`.`college_id` ORDER BY `colleges`.`college_id` DESC LIMIT $limit");
+		// $statement->execute(array(store_id(), 1));
+		$statement->execute(array(1));
+		$colleges = $statement->fetchAll(PDO::FETCH_ASSOC);
+		
+		$college_array = array();
+		if ($statement->rowCount() > 0) {
+		    $college_array = $colleges;
+		}
+
+	    header('Content-Type: application/json');
+	    echo json_encode($college_array); 
+	    exit();
+
+	} catch (Exception $e) {
+
+	    header('HTTP/1.1 422 Unprocessable Entity');
+	    header('Content-Type: application/json; charset=UTF-8');
+	    echo json_encode(array('errorMsg' => $e->getMessage()));
+	    exit();
+	}
+}
+
 // Fetch a product item
 if ($request->server['REQUEST_METHOD'] == 'GET' && isset($request->get['action_type']) && $request->get['action_type'] == 'PRODUCTITEM')
 {
@@ -142,6 +173,18 @@ if ($request->server['REQUEST_METHOD'] == 'GET' && isset($request->get['action_t
 			$query_string = '';
 		}
 
+		if (isset($request->get['college_id'])) {
+			$college_id = $request->get['college_id'];
+		} else {
+			$college_id = '';
+		}
+
+		if (isset($request->get['course_id'])) {
+			$course_id = $request->get['course_id'];
+		} else {
+			$course_id = '';
+		}
+
 		if (isset($request->get['category_id'])) {
 			$category_id = $request->get['category_id'];
 		} else {
@@ -171,6 +214,8 @@ if ($request->server['REQUEST_METHOD'] == 'GET' && isset($request->get['action_t
 		$data = array(
 			'query_string' => $query_string,
 			'field' => $field,
+			'college_id' => $college_id,
+			'course_id' => $course_id,
 			'category_id' => $category_id,
 			'start' => $start,
 			'limit' => $limit,

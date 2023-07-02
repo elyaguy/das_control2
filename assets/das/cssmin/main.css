@@ -21191,6 +21191,11 @@ table.text-center th {
     background-color: #fdddaa
 }
 
+.skin-black #college-area>input {
+    background-color: #fdddaa
+}
+
+
 .skin-blue .main-header .navbar {
     background-color: #3c8dbc
 }
@@ -21541,6 +21546,9 @@ table.text-center th {
     background-color: #fdddaa
 }
 
+.skin-blue #college-area>input {
+    background-color: #fdddaa
+}
 
 .skin-green .main-header .navbar {
     background-color: #00a65a
@@ -21881,7 +21889,9 @@ table.text-center th {
 .skin-green #people-area>input {
     background-color: #fdddaa
 }
-
+.skin-green #college-area>input {
+    background-color: #fdddaa
+}
 
 
 
@@ -22245,6 +22255,9 @@ table.text-center th {
     background-color: #fdddaa
 }
 
+.skin-purple #college-area>input {
+    background-color: #fdddaa
+}
 
 
 
@@ -22596,6 +22609,9 @@ table.text-center th {
     background-color: #fdddaa
 }
 
+.skin-red #college-area>input {
+    background-color: #fdddaa
+}
 
 
 
@@ -22949,6 +22965,10 @@ table.text-center th {
 .skin-yellow #people-area>input {
     background-color: #fdddaa
 }
+.skin-yellow #college-area>input {
+    background-color: #fdddaa
+}
+
 
 table.dataTable {
     clear: both;

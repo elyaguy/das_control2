@@ -11490,8 +11490,8 @@ window.angularApp.factory("PaymentFormModal", ["API_URL", "window", "jQuery", "$
                             "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
                         "</div>" +
                         "<div class=\"modal-footer\">" +
-                            "<button ng-click=\"closePaymentFormModal();\" type=\"button\" class=\"btn btn-danger radius-50\"><i class=\"fa fa-fw fa-close\"></i> Close</button>" +
-                            "<button  ng-click=\"checkout();\" type=\"button\" class=\"btn btn-success radius-50\"><i class=\"fa fa-fw fa-money\"></i> Checkout &rarr;</button>" +
+                            "<button ng-click=\"closePaymentFormModal();\" type=\"button\" class=\"btn btn-danger radius-50\"><i class=\"fa fa-fw fa-close\"></i> Cerrar</button>" +
+                            "<button  ng-click=\"checkout();\" type=\"button\" class=\"btn btn-success radius-50 hidden\"><i class=\"fa fa-fw fa-money\"></i> COBRAR &rarr;</button>" +
                         "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $(document).find("body").addClass("overlay-loader");
@@ -11503,7 +11503,7 @@ window.angularApp.factory("PaymentFormModal", ["API_URL", "window", "jQuery", "$
                     $scope.modal_title = "Pago => " + $scope.customerName;
                     $scope.rawHtml = $sce.trustAsHtml(response.data);
                     setTimeout(function() {
-                        storeApp.bootBooxHeightAdjustment();
+                        // storeApp.bootBooxHeightAdjustment();
                         $(document).find("body").removeClass("overlay-loader");
                     }, 500);                 
                 }, function(response) {
@@ -11666,7 +11666,7 @@ window.angularApp.factory("PaymentFormModal", ["API_URL", "window", "jQuery", "$
                 }, true);
             },
             scope: $scope,
-            size: "lg",
+            size: "md",
             backdrop  : "static",
             keyboard: true,
         });
@@ -14777,12 +14777,16 @@ $(document).ready(function() {
 		var totalAmountArea = $("#total-amount").outerHeight();
 
 		var peopleArea 	= $("#people-area").outerHeight();
+		var courseArea 	= $("#course-area").outerHeight();
 		var itemHead 	 	= $("#invoice-item-head").outerHeight();
 		var totalCalc 		= $("#invoice-calculation").outerHeight();
 		var payButton 		= $("#pay-button").outerHeight();
 
+		// $("#item-list").css({height:windowHeight-(searchbox+searchbox+totalAmountArea+topBar)});
+        // $("#invoice-item-list").css({height: windowHeight-(peopleArea+itemHead +totalCalc+payButton+topBar)+4});
+
 		$("#item-list").css({height:windowHeight-(searchbox+totalAmountArea+topBar)});
-		$("#invoice-item-list").css({height: windowHeight-(peopleArea+itemHead +totalCalc+payButton+topBar)+4});
+		$("#invoice-item-list").css({height: windowHeight-(peopleArea+peopleArea+itemHead +totalCalc+payButton+topBar)+4});
 	};
 
 	$(window).resize(function () {

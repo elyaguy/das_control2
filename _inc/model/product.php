@@ -541,45 +541,87 @@ class ModelProduct extends Model
 		$store_id = $store_id ? $store_id : store_id();
 		$products = array();
 		$where_query = '';
-		if (get_preference('expiry_yes')) {
-			$where_query .= " AND `p2s`.`e_date` > NOW()";
+		// if (get_preference('expiry_yes')) {
+		// 	$where_query .= " AND `p2s`.`e_date` > NOW()";
+		// }
+		if ($course_id) {
+			$where_query .= " AND `p2s`.`course_id` = $course_id ";
 		}
 		$limit_query = NULL;
 		if (isset($data['start']) && isset($data['limit'])) {
 			$limit_query =  " LIMIT $start,$limit";
 		}
+		// if (!$query_string) {
+		// 	if ($category_id) {
+		// 		$statement = $this->db->prepare("SELECT * FROM `products` 
+		// 		LEFT JOIN `product_to_store` p2s ON (`products`.`p_id` = `p2s`.`product_id`) 
+		// 		LEFT JOIN `units` p3s ON (`products`.`unit_id` = `p3s`.`unit_id`) 
+		// 		WHERE `p2s`.`store_id` = ? AND (`p2s`.`quantity_in_stock` > 0 OR `products`.`p_type` = 'service') AND `p2s`.`status` = ? AND `products`.`category_id` = ?{$where_query} GROUP BY `product_id`{$limit_query}");
+		// 		$statement->execute(array($store_id, 1, $category_id));
+		// 	} else {
+		// 		$statement = $this->db->prepare("SELECT `products`.*, `selling_item`.`item_id`, SUM(`selling_item`.`item_total`) as `total`, p3s.unit_name, `p2s`.`sell_price` FROM `selling_item` 
+		// 		RIGHT JOIN `products` ON (`selling_item`.`item_id` = `products`.`p_id`) 
+		// 		RIGHT JOIN `product_to_store` p2s ON (`products`.`p_id` = `p2s`.`product_id`) 
+		// 		RIGHT JOIN `units` p3s ON (`products`.`unit_id` = `p3s`.`unit_id`) 
+		// 		WHERE `p2s`.`store_id` = ? AND (`p2s`.`quantity_in_stock` > 0 OR `products`.`p_type` = 'service') AND `p2s`.`status` = ?{$where_query}
+		// 		GROUP BY `product_id` ORDER BY `total` DESC{$limit_query}");
+		// 		$statement->execute(array($store_id, 1));
+		// 	}
+		// 	$products = $statement->fetchAll(PDO::FETCH_ASSOC);
+		// }		
+		// if ($query_string || (!$query_string && empty($products))) {
+		// 	if ($category_id) {
+		// 		$statement = $this->db->prepare("SELECT * FROM `products` 
+		// 		LEFT JOIN `product_to_store` p2s ON (`products`.`p_id` = `p2s`.`product_id`) 
+		// 		LEFT JOIN `units` p3s ON (`products`.`unit_id` = `p3s`.`unit_id`) 
+		// 		WHERE `p2s`.`store_id` = ? AND (`p2s`.`quantity_in_stock` > 0 OR `products`.`p_type` = 'service') AND (UPPER($field) LIKE '" . strtoupper($query_string) . "%' OR `products`.`p_code` = '{$query_string}') AND `p2s`.`status` = ? AND `products`.`category_id` = ?{$where_query}{$limit_query}");
+		// 		$statement->execute(array($store_id, 1, $category_id));
+		// 	} else {
+		// 		$statement = $this->db->prepare("SELECT * FROM `products` 
+		// 		LEFT JOIN `product_to_store` p2s ON (`products`.`p_id` = `p2s`.`product_id`) 
+		// 		LEFT JOIN `units` p3s ON (`products`.`unit_id` = `p3s`.`unit_id`) 
+		// 		WHERE `p2s`.`store_id` = ? AND (`p2s`.`quantity_in_stock` > 0 OR `products`.`p_type` = 'service') AND (UPPER($field) LIKE '" . strtoupper($query_string) . "%' OR `products`.`p_code` = '{$query_string}') AND `p2s`.`status` = ?{$where_query}{$limit_query}");
+		// 		$statement->execute(array($store_id, 1));
+		// 	}
+		// 	$products = $statement->fetchAll(PDO::FETCH_ASSOC);
+		// }
+
 		if (!$query_string) {
 			if ($category_id) {
 				$statement = $this->db->prepare("SELECT * FROM `products` 
 				LEFT JOIN `product_to_store` p2s ON (`products`.`p_id` = `p2s`.`product_id`) 
+				LEFT JOIN `product_to_college` p2c ON (`products`.`p_id` = `p2c`.`product_id`) 
 				LEFT JOIN `units` p3s ON (`products`.`unit_id` = `p3s`.`unit_id`) 
-				WHERE `p2s`.`store_id` = ? AND (`p2s`.`quantity_in_stock` > 0 OR `products`.`p_type` = 'service') AND `p2s`.`status` = ? AND `products`.`category_id` = ?{$where_query} GROUP BY `product_id`{$limit_query}");
-				$statement->execute(array($store_id, 1, $category_id));
+				WHERE `p2s`.`store_id` = ? AND `p2c`.`college_id` = ? AND (`p2s`.`quantity_in_stock` > 0 OR `products`.`p_type` = 'service') AND `p2s`.`status` = ? AND `products`.`category_id` = ?{$where_query} GROUP BY  `p2s`.`product_id` {$limit_query}");
+				$statement->execute(array($store_id, $college_id, 1, $category_id));
 			} else {
+
 				$statement = $this->db->prepare("SELECT `products`.*, `selling_item`.`item_id`, SUM(`selling_item`.`item_total`) as `total`, p3s.unit_name, `p2s`.`sell_price` FROM `selling_item` 
 				RIGHT JOIN `products` ON (`selling_item`.`item_id` = `products`.`p_id`) 
 				RIGHT JOIN `product_to_store` p2s ON (`products`.`p_id` = `p2s`.`product_id`) 
+				RIGHT JOIN `product_to_college` p2c ON (`products`.`p_id` = `p2c`.`product_id`) 
 				RIGHT JOIN `units` p3s ON (`products`.`unit_id` = `p3s`.`unit_id`) 
-				WHERE `p2s`.`store_id` = ? AND (`p2s`.`quantity_in_stock` > 0 OR `products`.`p_type` = 'service') AND `p2s`.`status` = ?{$where_query}
-				GROUP BY `product_id` ORDER BY `total` DESC{$limit_query}");
-				$statement->execute(array($store_id, 1));
+				WHERE `p2s`.`store_id` = ? AND `p2c`.`college_id` = ? AND (`p2s`.`quantity_in_stock` > 0 OR `products`.`p_type` = 'service') AND `p2s`.`status` = ?{$where_query}
+				GROUP BY `p2s`.`product_id` ORDER BY `total` DESC{$limit_query}");
+				$statement->execute(array($store_id, $college_id, 1));
 			}
 			$products = $statement->fetchAll(PDO::FETCH_ASSOC);
 		}
-
 		if ($query_string || (!$query_string && empty($products))) {
 			if ($category_id) {
 				$statement = $this->db->prepare("SELECT * FROM `products` 
 				LEFT JOIN `product_to_store` p2s ON (`products`.`p_id` = `p2s`.`product_id`) 
+				LEFT JOIN `product_to_college` p2c ON (`products`.`p_id` = `p2c`.`product_id`) 
 				LEFT JOIN `units` p3s ON (`products`.`unit_id` = `p3s`.`unit_id`) 
-				WHERE `p2s`.`store_id` = ? AND (`p2s`.`quantity_in_stock` > 0 OR `products`.`p_type` = 'service') AND (UPPER($field) LIKE '" . strtoupper($query_string) . "%' OR `products`.`p_code` = '{$query_string}') AND `p2s`.`status` = ? AND `products`.`category_id` = ?{$where_query}{$limit_query}");
-				$statement->execute(array($store_id, 1, $category_id));
+				WHERE `p2s`.`store_id` = ? AND `p2c`.`college_id` = ? AND (`p2s`.`quantity_in_stock` > 0 OR `products`.`p_type` = 'service') AND (UPPER($field) LIKE '" . strtoupper($query_string) . "%' OR `products`.`p_code` = '{$query_string}') AND `p2s`.`status` = ? AND `products`.`category_id` = ?{$where_query}{$limit_query}");
+				$statement->execute(array($store_id, $college_id, 1, $category_id));
 			} else {
 				$statement = $this->db->prepare("SELECT * FROM `products` 
 				LEFT JOIN `product_to_store` p2s ON (`products`.`p_id` = `p2s`.`product_id`) 
+				LEFT JOIN `product_to_college` p2c ON (`products`.`p_id` = `p2c`.`product_id`) 
 				LEFT JOIN `units` p3s ON (`products`.`unit_id` = `p3s`.`unit_id`) 
-				WHERE `p2s`.`store_id` = ? AND (`p2s`.`quantity_in_stock` > 0 OR `products`.`p_type` = 'service') AND (UPPER($field) LIKE '" . strtoupper($query_string) . "%' OR `products`.`p_code` = '{$query_string}') AND `p2s`.`status` = ?{$where_query}{$limit_query}");
-				$statement->execute(array($store_id, 1));
+				WHERE `p2s`.`store_id` = ? AND `p2c`.`college_id` = ? AND (`p2s`.`quantity_in_stock` > 0 OR `products`.`p_type` = 'service') AND (UPPER($field) LIKE '" . strtoupper($query_string) . "%' OR `products`.`p_code` = '{$query_string}') AND `p2s`.`status` = ?{$where_query}{$limit_query}");
+				$statement->execute(array($store_id, $college_id, 1));
 			}
 			$products = $statement->fetchAll(PDO::FETCH_ASSOC);
 		}

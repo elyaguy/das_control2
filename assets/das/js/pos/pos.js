@@ -19,12 +19,15 @@ $(document).ready(function() {
 		var totalAmountArea = $("#total-amount").outerHeight();
 
 		var peopleArea 	= $("#people-area").outerHeight();
+		var courseArea 	= $("#course-area").outerHeight();
 		var itemHead 	 	= $("#invoice-item-head").outerHeight();
 		var totalCalc 		= $("#invoice-calculation").outerHeight();
 		var payButton 		= $("#pay-button").outerHeight();
 
+		// $("#item-list").css({height:windowHeight-(searchbox+searchbox+totalAmountArea+topBar)});
+		// $("#invoice-item-list").css({height: windowHeight-(peopleArea+itemHead +totalCalc+payButton+topBar)+4});
 		$("#item-list").css({height:windowHeight-(searchbox+totalAmountArea+topBar)});
-		$("#invoice-item-list").css({height: windowHeight-(peopleArea+itemHead +totalCalc+payButton+topBar)+4});
+		$("#invoice-item-list").css({height: windowHeight-(peopleArea+peopleArea+itemHead +totalCalc+payButton+topBar)+4});
 	};
 
 	$(window).resize(function () {

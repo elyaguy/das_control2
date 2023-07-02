@@ -235,6 +235,19 @@ img {
     border: 2px solid #ccc;
     box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
 }
+
+#searchbox .course-search {
+	position: absolute;
+	width: 350px;
+	top: 7px;
+	right: 10px;
+	border-radius: 50px;
+}
+#searchbox .course-search .select2-container--default .select2-selection--single {
+    border-radius: 50px;
+    border: 2px solid #ccc;
+    box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.2);
+}
 /* End Search Box Area */
 
 /*
@@ -618,6 +631,145 @@ img {
 	color: #000000;
 }
 /* end customer area */
+
+
+/*
+-------------------------------------------
+    3.01. start customer area 
+-------------------------------------------
+*/
+#college-area {
+	position: relative;
+    border-bottom: 2px solid #026c3c;
+}
+#college-area > input {
+	width: 100%;
+	height: 50px;
+    color: #424242;
+    font-size: 1.4rem;
+    font-weight: 700;
+    border: none;
+    padding-left: 40px;
+    background-color: #04c46c;
+    cursor: pointer;
+}
+#college-area .customer-icon {
+	position: absolute;
+	top: 50%;
+	left:10px;
+	margin-top:-15px;
+}
+#college-area .customer-icon .svg-icon {
+	height:25px;
+	width:25px;
+}
+#college-area .previous-due {
+    position: absolute;
+    text-align: center;
+    right: 60px;
+    top: 0;
+    height: 100%;
+    background-color: #04c46c;
+}
+#college-area .previous-due h4 {
+    color: #fff;
+    font-size: 11px;
+    text-transform: uppercase;
+    font-weight: 700;
+    padding: 0 3px;
+    margin-top: 5px;
+    width: 80px;
+}
+#college-area .previous-due span {
+	display: block;
+    color: #fff;
+    margin-top: 3px;
+    padding: 5px 15px;
+    border: 2px solid #ff9090;
+    border-radius: 50px;
+}
+#college-area .edit-icon {
+	position: absolute;
+    right: 147px;
+    color: #fff;
+    top: 11px;
+    height: auto;
+    background: #777;
+    padding: 3px 8px 1px 8px;
+    border-radius: 50px;
+    border: 1px solid #eee;
+    box-shadow: 0px 0px 5px rgba(5, 5, 5, 0.3);
+}
+#college-area .add-icon {
+	position: absolute;
+	top: 0;
+	right: 0;
+	width: 60px;
+	height:100%;
+	cursor: pointer;
+}
+#college-area .add-icon .svg-icon {
+    height: 25px;
+    width: 25px;
+    margin: 12px 0 0 20px;
+}
+#college-area .slidedown-menu {
+	position: absolute;
+	top: 52px;
+	z-index: 890;
+}
+#college-area .slidedown-menu .slidedown-footer {
+	padding: 10px;
+	border-top: 1px solid #dddddd;
+}
+#college-area .slidedown-menu ul.customer-list > li {
+	border-bottom: 1px dotted #dddddd;
+	-webkit-transition: all .1s linear;
+	transition: all .1s linear;
+}
+#college-area .slidedown-menu ul.customer-list {
+	margin-bottom: 0;
+}
+#college-area .slidedown-menu ul.customer-list > li:last-child {
+	border-bottom-color: transparent;
+}
+#college-area .slidedown-menu ul.customer-list > li:hover {
+	background-color: #FF0000;
+}
+#college-area .slidedown-menu ul.customer-list > li > a {
+	display: block;
+	padding:10px;
+}
+#college-area .slidedown-menu ul.customer-list > li:hover a {
+	text-decoration: none;
+	color: #ffffff;
+}
+#college-area .slidedown-menu {
+	width: 100%;
+	max-height: 378px;
+	background-color: #ffffff;
+	box-shadow: -5px 5px 5px rgba(0,0,0,0.5);
+	overflow-y: scroll;
+}
+#college-area .slidedown-menu:before {
+	position: absolute;
+	content: "";
+	top: -10px;
+	left: 15px;
+	border-left: 10px solid transparent;
+	border-right: 10px solid transparent;
+	border-bottom: 10px solid #ffffff;
+	z-index: 891px;
+}
+#college-area .slidedown-menu .slidedown-footer {
+	background-color: #f7a1a1;
+}
+#college-area .slidedown-menu .slidedown-footer a {
+	color: #000000;
+}
+/* end customer area */
+
+
 
 /*
 ---------------------------------------

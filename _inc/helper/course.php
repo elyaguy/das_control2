@@ -32,6 +32,12 @@ function get_the_course($id, $field = null)
 	return $course;
 }
 
+function get_total_valid_course_item($course_id)
+{	
+	$model = registry()->get('loader')->model('course');
+	return $model->totalValidItem($course_id);
+}
+
 function course_selling_price($course_id, $from, $to)
 {
 	

@@ -14,8 +14,8 @@ window.angularApp.factory("PaymentFormModal", ["API_URL", "window", "jQuery", "$
                             "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
                         "</div>" +
                         "<div class=\"modal-footer\">" +
-                            "<button ng-click=\"closePaymentFormModal();\" type=\"button\" class=\"btn btn-danger radius-50\"><i class=\"fa fa-fw fa-close\"></i> Close</button>" +
-                            "<button  ng-click=\"checkout();\" type=\"button\" class=\"btn btn-success radius-50\"><i class=\"fa fa-fw fa-money\"></i> Checkout &rarr;</button>" +
+                            "<button ng-click=\"closePaymentFormModal();\" type=\"button\" class=\"btn btn-danger radius-50\"><i class=\"fa fa-fw fa-close\"></i> Cerrar</button>" +
+                            "<button  ng-click=\"checkout();\" type=\"button\" class=\"btn btn-success radius-50 hidden\"><i class=\"fa fa-fw fa-money\"></i> COBRAR &rarr;</button>" +
                         "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $(document).find("body").addClass("overlay-loader");
@@ -190,7 +190,7 @@ window.angularApp.factory("PaymentFormModal", ["API_URL", "window", "jQuery", "$
                 }, true);
             },
             scope: $scope,
-            size: "lg",
+            size: "md",
             backdrop  : "static",
             keyboard: true,
         });

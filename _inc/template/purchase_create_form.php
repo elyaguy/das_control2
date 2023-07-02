@@ -101,13 +101,13 @@
               <thead>
                 <tr class="bg-info">
                   <!-- <th class="w-35 text-center">
-                    <?php echo trans('label_product'); ?>
+                    <?/*php echo trans('label_product'); */?>
                   </th>
                   <th class="w-10 text-center">
-                    <?php echo trans('label_available'); ?>
+                    <?/*php echo trans('label_available'); */?>
                   </th>
                   <th class="w-10 text-center">
-                    <?php echo trans('label_quantity'); ?>
+                    <?/*php echo trans('label_quantity'); */?>
                   </th> -->
                   <th class="w-55 text-center">
                     <?php echo trans('label_product'); ?>

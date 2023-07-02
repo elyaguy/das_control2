@@ -234,21 +234,21 @@ class ModelCourse extends Model
 		return (int)$purchase_price['total'];
 	}
 
-	// public function getCourseTree($data = array(), $store_id = null)
-	// {
-	// 	$tree = array();
-	// 	$courses = $this->getCourses($data, $store_id);
-	// 	foreach ($courses as $course) {
-	// 		$name = '';
-	// 		$parent = $this->getCourse($category['parent_id']);
-	// 		if (isset($parent['category_id'])) {
-	// 			$name = $parent['category_name'] .  ' > ';
-	// 		}
+	public function getCourseTree($data = array(), $store_id = null)
+	{
+		$tree = array();
+		$courses = $this->getCourses($data, $store_id);
+		// foreach ($courses as $course) {
+		// 	$name = '';
+		// 	$parent = $this->getCourse($course['parent_id']);
+		// 	if (isset($parent['category_id'])) {
+		// 		$name = $parent['category_name'] .  ' > ';
+		// 	}
 
-	// 		$tree[$category['category_id']] = $name . $category['category_name'];
-	// 	}		
-	// 	return $tree;
-	// }
+		// 	$tree[$course['category_id']] = $name . $course['category_name'];
+		// }		
+		return $courses;
+	}
 
 	// public function getBelongsStore($course_id)
 	// {
