@@ -32,12 +32,12 @@ function validate_request_data($request)
     throw new Exception(trans('error_user_name'));
   }
 
-  // Validate customer date of birth
-  if ($request->post['dob']) {
-    if (!isItValidDate($request->post['dob'])) {
-      throw new Exception(trans('error_date_of_birth'));
-    }
-  }
+  // // Validate customer date of birth
+  // if ($request->post['dob']) {
+  //   if (!isItValidDate($request->post['dob'])) {
+  //     throw new Exception(trans('error_date_of_birth'));
+  //   }
+  // }
 
   // Validate customer email & mobile
   if (!validateEmail($request->post['email']) && empty($request->post['mobile'])) {
@@ -47,6 +47,20 @@ function validate_request_data($request)
   // Validate user group id
   if (!validateInteger($request->post['group_id'])) {
     throw new Exception(trans('error_user_group'));
+  } else {
+    if ($request->post['group_id'] == '6') {
+      if (!validateInteger($request->post['supplier_id'])) {
+        throw new Exception(trans('error_user_supplier'));
+      } else {
+        $request->post['fk_id'] = $request->post['supplier_id'];
+      }
+    } elseif ($request->post['group_id'] == '7') {
+      if (!validateInteger($request->post['college_id'])) {
+        throw new Exception(trans('error_user_college'));
+      } else {
+        $request->post['fk_id'] = $request->post['college_id'];
+      }
+    }
   }
 
   if (!isset($request->post['user_store']) || empty($request->post['user_store'])) {
@@ -180,7 +194,7 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action
       throw new Exception(trans('error_user_group_admin'));
     }
 
- 
+
 
     // Validate post data
     validate_request_data($request);

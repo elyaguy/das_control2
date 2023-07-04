@@ -16,8 +16,8 @@ class ModelUser extends Model
 {
 	public function addUser($data) 
 	{
-    	$statement = $this->db->prepare("INSERT INTO `users` (username, email, mobile, password, raw_password, group_id, dob, user_image, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    	$statement->execute(array($data['username'], $data['email'], $data['mobile'], md5($data['password']), $data['password'], (int)$data['group_id'], $data['dob'], $data['user_image'], date_time()));
+    	$statement = $this->db->prepare("INSERT INTO `users` (username, fk_id, email, mobile, password, raw_password, group_id, dob, user_image, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    	$statement->execute(array($data['username'], $data['fk_id'], $data['email'], $data['mobile'], md5($data['password']), $data['password'], (int)$data['group_id'], $data['dob'], $data['user_image'], date_time()));
 
     	$id = $this->db->lastInsertId();
 
@@ -52,8 +52,8 @@ class ModelUser extends Model
 
 	public function editUser($id, $data) 
 	{    	
-    	$statement = $this->db->prepare("UPDATE `users` SET `username` = ?,`email` = ?, `mobile` = ?, `group_id` = ?, `dob` = ?, `user_image` = ? WHERE `id` = ? ");
-    	$statement->execute(array($data['username'],$data['email'], $data['mobile'], (int)$data['group_id'], $data['dob'], $data['user_image'], $id));
+    	$statement = $this->db->prepare("UPDATE `users` SET `username` = ?, `fk_id` = ?, `email` = ?, `mobile` = ?, `group_id` = ?, `dob` = ?, `user_image` = ? WHERE `id` = ? ");
+    	$statement->execute(array($data['username'],$data['fk_id'],$data['email'], $data['mobile'], (int)$data['group_id'], $data['dob'], $data['user_image'], $id));
 
 
     	// Delete store data balongs to the user

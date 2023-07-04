@@ -128,6 +128,13 @@ include ("left_sidebar.php") ;
                       $hide_colums .= "4,";
                     }
                   }
+                   // 6 proveedor 7 colegio
+                   if (user_group_id() == 7) {
+                    if (!has_permission('access', 'show_purchase_price')) {
+                      $hide_colums .= "4,5";
+                      $print_columns = '0,1,2,3';
+                    }
+                  }
                 ?>
               <table id="report-report-list" class="table table-bordered table-striped table-hover" data-hide-colums="<?php echo $hide_colums; ?>" data-print-columns="<?php echo $print_columns;?>">
                 <thead>

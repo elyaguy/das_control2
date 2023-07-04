@@ -7,119 +7,119 @@ window.angularApp.factory("InvoiceViewModal", [
     "$sce",
     "InvoiceSMSModal",
     "EmailModal",
-    "$rootScope", 
-function (API_URL,
-    window,
-    $,
-    $http,
-    $uibModal,
-    $sce,
-    InvoiceSMSModal,
-    EmailModal,
-    $scope
-) {
+    "$rootScope",
+    function (API_URL,
+        window,
+        $,
+        $http,
+        $uibModal,
+        $sce,
+        InvoiceSMSModal,
+        EmailModal,
+        $scope
+    ) {
+        return function (invoice) {
+            var uibModalInstance = $uibModal.open({
+                animation: true,
+                ariaLabelledBy: "modal-title",
+                ariaDescribedBy: "modal-body",
+                template: "<div class=\"modal-header\">" +
+                    "<button ng-click=\"closeInvoiceViewModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                    "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-eye\"></span> {{ modal_title }}</h3>" +
+                    "</div>" +
+                    "<div class=\"modal-body\" id=\"modal-body\">" +
+                    "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                    "</div>",
+                controller: function ($scope, $uibModalInstance) {
+                    $http({
+                        url: window.baseUrl + "/_inc/invoice.php?invoice_id=" + invoice.invoice_id + '&action_type=INVOICEVIEW',
+                        method: "GET"
+                    })
+                        .then(function (response, status, headers, config) {
+                            $scope.modal_title = invoice.invoice_id;
+                            $scope.rawHtml = $sce.trustAsHtml(response.data);
+                        }, function (response) {
+                            window.swal("Ups!", response.data.errorMsg, "error")
+                                .then(function () {
+                                    $scope.closeInvoiceViewModal();
+                                });
+                        });
+
+                    $scope.InvoiceSMSModal = function () {
+                        InvoiceSMSModal($scope);
+                    }
+
+                    $(document).delegate("#sms-btn", "click", function (e) {
+                        e.stopPropagation();
+                        var invoiceID = $(this).data("invoiceid");
+                        $scope.invoiceID = invoiceID;
+                        InvoiceSMSModal($scope);
+                    });
+
+                    $(document).delegate("#email-btn", "click", function (e) {
+                        e.stopPropagation();
+
+                        var recipientName = $(this).data("customername");
+                        var thehtml = $("#invoice").html();
+                        var invoice = {
+                            template: "invoice",
+                            styles: $($("#invoice").html()).find("#styles").text(),
+                            subject: "Invoice#" + $(this).data("invoiceid"),
+                            title: "Send Invoice through Email",
+                            recipientName: recipientName,
+                            senderName: window.store.name,
+                            html: thehtml
+                        };
+                        EmailModal(invoice);
+                    });
+
+                    $scope.closeInvoiceViewModal = function () {
+                        $uibModalInstance.dismiss("cancel");
+                    };
+                },
+                scope: $scope,
+                size: "md",
+                backdrop: "static",
+                keyboard: true,
+            });
+
+            uibModalInstance.result.catch(function () {
+                uibModalInstance.close();
+            });
+        };
+    }]);
+window.angularApp.factory("InvoiceInfoEditModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
     return function (invoice) {
         var uibModalInstance = $uibModal.open({
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"closeInvoiceViewModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                            "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-eye\"></span> {{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>",
+                "<button id=\"invoice_info_modal\" ng-click=\"closeInvoiceInfoEditModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-pencil\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $http({
-                  url: window.baseUrl + "/_inc/invoice.php?invoice_id=" + invoice.invoice_id + '&action_type=INVOICEVIEW',
-                  method: "GET"
+                    url: window.baseUrl + "/_inc/invoice.php?invoice_id=" + invoice.invoice_id + "&action_type=INVOICEINFOEDIT",
+                    method: "GET"
                 })
-                .then(function (response, status, headers, config) {
-                    $scope.modal_title = invoice.invoice_id;
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
-                }, function (response) {
-                   window.swal("Ups!", response.data.errorMsg, "error")
-                    .then(function() {
-                        $scope.closeInvoiceViewModal();
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = "Editar Factura => " + invoice.invoice_id;
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
+
+                        setTimeout(function () {
+                            window.storeApp.select2();
+                        }, 100);
+
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
-                });
 
-                $scope.InvoiceSMSModal = function() {
-                    InvoiceSMSModal($scope);
-                }
+                $(document).delegate("#invoice-update", "click", function (e) {
 
-                $(document).delegate("#sms-btn", "click", function (e) {
-                    e.stopPropagation();
-                    var invoiceID = $(this).data("invoiceid");
-                    $scope.invoiceID = invoiceID;
-                    InvoiceSMSModal($scope);
-                });
-
-                $(document).delegate("#email-btn", "click", function (e) {
-                    e.stopPropagation();
-
-                    var recipientName = $(this).data("customername");
-                    var thehtml = $("#invoice").html();
-                    var invoice = {
-                        template: "invoice", 
-                        styles:$($("#invoice").html()).find("#styles").text(),
-                        subject: "Invoice#"+$(this).data("invoiceid"), 
-                        title: "Send Invoice through Email", 
-                        recipientName: recipientName, 
-                        senderName: window.store.name, 
-                        html: thehtml
-                    };
-                    EmailModal(invoice);
-                });
-
-                $scope.closeInvoiceViewModal = function () {
-                    $uibModalInstance.dismiss("cancel");
-                };
-            },
-            scope: $scope,
-            size: "md",
-            backdrop  : "static",
-            keyboard: true,
-        });
-
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
-        });
-    };
-}]);
-window.angularApp.factory("InvoiceInfoEditModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function(invoice) {
-        var uibModalInstance = $uibModal.open({
-            animation: true,
-            ariaLabelledBy: "modal-title",
-            ariaDescribedBy: "modal-body",
-            template: "<div class=\"modal-header\">" +
-                            "<button id=\"invoice_info_modal\" ng-click=\"closeInvoiceInfoEditModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-pencil\"></span> {{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>",
-            controller: function ($scope, $uibModalInstance) {
-                $http({
-                  url: window.baseUrl + "/_inc/invoice.php?invoice_id=" + invoice.invoice_id + "&action_type=INVOICEINFOEDIT",
-                  method: "GET"
-                })
-                .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Editar Factura => " + invoice.invoice_id;
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
-
-                    setTimeout(function() {
-                        window.storeApp.select2();
-                    }, 100);
-
-                }, function(response) {
-                   window.swal("Ups!", response.data.errorMsg, "error");
-                });
-
-                $(document).delegate("#invoice-update", "click", function(e) {
-                    
                     e.stopImmediatePropagation();
                     e.stopPropagation();
                     e.preventDefault();
@@ -139,51 +139,51 @@ window.angularApp.factory("InvoiceInfoEditModal", ["API_URL", "window", "jQuery"
                         contentType: false,
                         dataType: "json"
                     }).
-                    then(function(response) {
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-success\">";
-                        alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
+                        then(function (response) {
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-success\">";
+                            alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
 
-                        // Alert
-                        window.swal({
-                          title: "ÉXITO!",
-                          text: response.data.msg,
-                          icon: "success",
-                          buttons: true,
-                          dangerMode: false,
-                        })
-                        .then(function (willDelete) {
-                            if (willDelete) {
-                                invoiceId = response.data.id;
-                                $(document).find("#invoice_info_modal").trigger("click");
-                                if ($(datatable).length) {
-                                    $(datatable).DataTable().ajax.reload(function(json) {
-                                        if ($("#row_"+invoiceId).length) {
-                                            $("#row_"+invoiceId).flash("yellow", 5000);
+                            // Alert
+                            window.swal({
+                                title: "ÉXITO!",
+                                text: response.data.msg,
+                                icon: "success",
+                                buttons: true,
+                                dangerMode: false,
+                            })
+                                .then(function (willDelete) {
+                                    if (willDelete) {
+                                        invoiceId = response.data.id;
+                                        $(document).find("#invoice_info_modal").trigger("click");
+                                        if ($(datatable).length) {
+                                            $(datatable).DataTable().ajax.reload(function (json) {
+                                                if ($("#row_" + invoiceId).length) {
+                                                    $("#row_" + invoiceId).flash("yellow", 5000);
+                                                }
+                                            }, false);
                                         }
-                                    }, false);
-                                }
-                            } else {
-                                if ($(datatable).length) {
-                                    $(datatable).DataTable().ajax.reload(null, false);
-                                }
-                            }
-                        });
+                                    } else {
+                                        if ($(datatable).length) {
+                                            $(datatable).DataTable().ajax.reload(null, false);
+                                        }
+                                    }
+                                });
 
-                    }, function(response) {
-                        
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-danger\">";
-                        window.angular.forEach(response.data, function(value, key) {
-                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                        }, function (response) {
+
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-danger\">";
+                            window.angular.forEach(response.data, function (value, key) {
+                                alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                            });
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+                            $(":input[type=\"button\"]").prop("disabled", false);
+                            window.swal("Ups!", response.data.errorMsg, "error");
                         });
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-                        $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                    });
                 });
                 $scope.closeInvoiceInfoEditModal = function () {
                     $uibModalInstance.dismiss("cancel");
@@ -191,47 +191,47 @@ window.angularApp.factory("InvoiceInfoEditModal", ["API_URL", "window", "jQuery"
             },
             scope: $scope,
             size: "md",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: true,
         });
 
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
         });
     };
 }]);
 window.angularApp.factory("BoxCreateModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function($scope) {
+    return function ($scope) {
         var uibModalInstance = $uibModal.open({
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"closeBoxCreateModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-plus\"></span> {{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>",
+                "<button ng-click=\"closeBoxCreateModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-plus\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $http({
-                  url: window.baseUrl + "/_inc/box.php?action_type=CREATE",
-                  method: "GET"
+                    url: window.baseUrl + "/_inc/box.php?action_type=CREATE",
+                    method: "GET"
                 })
-                .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Crear nueva Caja";
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = "Crear nueva Caja";
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
 
-                    setTimeout(function() {
-                        window.storeApp.select2();
-                    }, 500);
-                    
-                }, function(response) {
-                   window.swal("Ups!", response.data.errorMsg, "error");
-                });
+                        setTimeout(function () {
+                            window.storeApp.select2();
+                        }, 500);
+
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error");
+                    });
 
                 // Submit Box Form
-                $(document).delegate("#create-box-submit", "click", function(e) {
+                $(document).delegate("#create-box-submit", "click", function (e) {
                     e.stopImmediatePropagation();
                     e.stopPropagation();
                     e.preventDefault();
@@ -241,7 +241,7 @@ window.angularApp.factory("BoxCreateModal", ["API_URL", "window", "jQuery", "$ht
                     var form = $($tag.data("form"));
                     form.find(".alert").remove();
                     var actionUrl = form.attr("action");
-                    
+
                     $http({
                         url: window.baseUrl + "/_inc/" + actionUrl,
                         method: "POST",
@@ -251,57 +251,57 @@ window.angularApp.factory("BoxCreateModal", ["API_URL", "window", "jQuery", "$ht
                         contentType: false,
                         dataType: "json"
                     }).
-                    then(function(response) {
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-success\">";
-                        alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
+                        then(function (response) {
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-success\">";
+                            alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
 
-                        // Alert
-                        window.swal("ÉXITO!", response.data.msg, "success")
-                        .then(function(value) {
+                            // Alert
+                            window.swal("ÉXITO!", response.data.msg, "success")
+                                .then(function (value) {
 
-                            // close modalwindow
-                            $scope.closeBoxCreateModal();
-                            $(document).find(".close").trigger("click");
+                                    // close modalwindow
+                                    $scope.closeBoxCreateModal();
+                                    $(document).find(".close").trigger("click");
 
-                            // insert box into select2
-                            var select = $(document).find("#box_id");
-                            if (select.length) {
-                            
-                                var option = $("<option></option>").
-                                     attr("selected", true).
-                                     text(response.data.box.box_name).
-                                     val(response.data.id);
-                                option.appendTo(select);
-                                select.trigger("change");
-                            }
+                                    // insert box into select2
+                                    var select = $(document).find("#box_id");
+                                    if (select.length) {
 
-                            // increase store count
-                            var boxCount = $(document).find("#box-count h3");
-                            if (boxCount) {
-                                boxCount.text(parseInt(boxCount.text()) + 1);
-                            }
+                                        var option = $("<option></option>").
+                                            attr("selected", true).
+                                            text(response.data.box.box_name).
+                                            val(response.data.id);
+                                        option.appendTo(select);
+                                        select.trigger("change");
+                                    }
 
-                            // Callback
-                            if ($scope.BoxCreateModalCallback) {
-                                $scope.BoxCreateModalCallback($scope);
-                            }
+                                    // increase store count
+                                    var boxCount = $(document).find("#box-count h3");
+                                    if (boxCount) {
+                                        boxCount.text(parseInt(boxCount.text()) + 1);
+                                    }
 
+                                    // Callback
+                                    if ($scope.BoxCreateModalCallback) {
+                                        $scope.BoxCreateModalCallback($scope);
+                                    }
+
+                                });
+
+                        }, function (response) {
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-danger\">";
+                            window.angular.forEach(response.data, function (value, key) {
+                                alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                            });
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+                            $(":input[type=\"button\"]").prop("disabled", false);
+                            window.swal("Ups!", response.data.errorMsg, "error");
                         });
-
-                    }, function(response) {
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-danger\">";
-                        window.angular.forEach(response.data, function(value, key) {
-                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
-                        });
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-                        $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                    });
                 });
 
                 $scope.closeBoxCreateModal = function () {
@@ -310,50 +310,50 @@ window.angularApp.factory("BoxCreateModal", ["API_URL", "window", "jQuery", "$ht
             },
             scope: $scope,
             size: "md",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: true,
         });
 
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
         });
     };
 }]);
-window.angularApp.factory("BoxDeleteModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function(API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function(box) {
+window.angularApp.factory("BoxDeleteModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
+    return function (box) {
         var uibModalInstance = $uibModal.open({
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                           "<button ng-click=\"closeBoxDeleteModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-trash\"></span> {{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>",
+                "<button ng-click=\"closeBoxDeleteModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-trash\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $http({
-                  url: window.baseUrl + "/_inc/box.php?box_id=" + box.box_id + "&action_type=DELETE",
-                  method: "GET"
+                    url: window.baseUrl + "/_inc/box.php?box_id=" + box.box_id + "&action_type=DELETE",
+                    method: "GET"
                 })
-                .then(function(response, status, headers, config) {
-                    $scope.modal_title = box.box_name;
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = box.box_name;
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
 
-                    setTimeout(function() {
-                        window.storeApp.select2();
-                    }, 100);
-                    
-                }, function(response) {
-                    window.swal("Ups!", response.data.errorMsg, "error")
-                    .then(function() {
-                        $scope.closeBoxDeleteModal();
+                        setTimeout(function () {
+                            window.storeApp.select2();
+                        }, 100);
+
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error")
+                            .then(function () {
+                                $scope.closeBoxDeleteModal();
+                            });
                     });
-                });
 
-                $(document).delegate("#box-delete", "click", function(e) {
-                    
+                $(document).delegate("#box-delete", "click", function (e) {
+
                     e.stopImmediatePropagation();
                     e.stopPropagation();
                     e.preventDefault();
@@ -373,40 +373,40 @@ window.angularApp.factory("BoxDeleteModal", ["API_URL", "window", "jQuery", "$ht
                         contentType: false,
                         dataType: "json"
                     }).
-                    then(function(response) {
+                        then(function (response) {
 
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-success\">";
-                        alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-                        $(datatable).DataTable().ajax.reload(null, false);
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-success\">";
+                            alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+                            $(datatable).DataTable().ajax.reload(null, false);
 
-                        // Alert
-                        window.swal("ÉXITO!", response.data.msg, "success")
-                        .then(function(value) {
+                            // Alert
+                            window.swal("ÉXITO!", response.data.msg, "success")
+                                .then(function (value) {
 
-                            $scope.closeBoxDeleteModal();
-                            $(document).find(".close").trigger("click");
+                                    $scope.closeBoxDeleteModal();
+                                    $(document).find(".close").trigger("click");
+                                });
+
+                            // Callback
+                            if ($scope.BoxDeleteModalCallback) {
+                                $scope.BoxDeleteModalCallback($scope);
+                            }
+
+                        }, function (response) {
+
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-danger\">";
+                            window.angular.forEach(response.data, function (value, key) {
+                                alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                            });
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+                            $(":input[type=\"button\"]").prop("disabled", false);
+                            window.swal("Ups!", response.data.errorMsg, "error");
                         });
-
-                        // Callback
-                        if ($scope.BoxDeleteModalCallback) {
-                            $scope.BoxDeleteModalCallback($scope);
-                        }
-
-                    }, function(response) {
-
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-danger\">";
-                        window.angular.forEach(response.data, function(value, key) {
-                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
-                        });
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-                        $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                    });
 
                 });
 
@@ -416,1182 +416,63 @@ window.angularApp.factory("BoxDeleteModal", ["API_URL", "window", "jQuery", "$ht
             },
             scope: $scope,
             size: "md",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: true,
         });
-        
-        uibModalInstance.result.catch(function () { 
-                uibModalInstance.close(); 
+
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
         });
     };
 }]);
 window.angularApp.factory("BoxEditModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function(box) {
+    return function (box) {
         var boxId;
         var uibModalInstance = $uibModal.open({
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"closeBoxEditModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-pencil\"></span> {{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile='rawHtml'>Loading...</div>" +
-                        "</div>",
+                "<button ng-click=\"closeBoxEditModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-pencil\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile='rawHtml'>Loading...</div>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $http({
-                  url: API_URL + "/_inc/box.php?box_id=" + box.box_id + "&action_type=EDIT",
-                  method: "GET"
+                    url: API_URL + "/_inc/box.php?box_id=" + box.box_id + "&action_type=EDIT",
+                    method: "GET"
                 })
-                .then(function(response, status, headers, config) {
-                $scope.modal_title = box.box_name;
-                $scope.rawHtml = $sce.trustAsHtml(response.data);
-                }, function(response) {
-                   window.swal("Ups!", response.data.errorMsg, "error");
-                });
-
-                $(document).delegate("#box-update", "click", function(e) {
-                    e.stopImmediatePropagation();
-                    e.stopPropagation();
-                    e.preventDefault();
-
-                    var $tag = $(this);
-                    var $btn = $tag.button("loading");
-                    var form = $($tag.data("form"));
-                    var datatable = $tag.data("datatable");
-                    form.find(".alert").remove();
-                    var actionUrl = form.attr("action");
-                    
-                    $http({
-                        url: API_URL + "/_inc/" + actionUrl,
-                        method: "POST",
-                        data: form.serialize(),
-                        cache: false,
-                        processData: false,
-                        contentType: false,
-                        dataType: "json"
-                    }).
-                    then(function(response) {
-
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-success\">";
-                        alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-
-                        // Alert
-                        window.swal({
-                          title: "ÉXITO!",
-                          text: response.data.msg,
-                          icon: "success",
-                          buttons: true,
-                          dangerMode: false,
-                        })
-                        .then(function (willDelete) {
-                            if (willDelete) {
-
-                                $scope.closeBoxEditModal();
-                                $(document).find(".close").trigger("click");
-                                boxId = response.data.id;
-                                
-                                $(datatable).DataTable().ajax.reload(function(json) {
-                                    if ($("#row_"+boxId).length) {
-                                        $("#row_"+boxId).flash("yellow", 5000);
-                                    }
-                                }, false);
-
-                            } else {
-                                $(datatable).DataTable().ajax.reload(null, false);
-                            }
-                        });
-
-                    }, function(response) {
-
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-danger\">";
-                        window.angular.forEach(response.data, function(value, key) {
-                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
-                        });
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-                        $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                    });
-
-                });
-
-                $scope.closeBoxEditModal = function () {
-                    $uibModalInstance.dismiss("cancel");
-                };
-            },
-            scope: $scope,
-            size: "md",
-            backdrop  : "static",
-            keyboard: true,
-        });
-
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
-        });
-    };
-}]);
-window.angularApp.factory("UnitCreateModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function($scope) {
-        var uibModalInstance = $uibModal.open({
-            animation: true,
-            ariaLabelledBy: "modal-title",
-            ariaDescribedBy: "modal-body",
-            template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"closeUnitCreateModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-plus\"></span> {{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>",
-            controller: function ($scope, $uibModalInstance) {
-                $http({
-                  url: window.baseUrl + "/_inc/unit.php?action_type=CREATE",
-                  method: "GET"
-                })
-                .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Crear nueva Unidad";
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
-
-                    setTimeout(function() {
-                        window.storeApp.select2();
-                    }, 500);
-                    
-                }, function(response) {
-                   window.swal("Ups!", response.data.errorMsg, "error");
-                });
-
-                // Submit Unit Form
-                $(document).delegate("#create-unit-submit", "click", function(e) {
-                    e.stopImmediatePropagation();
-                    e.stopPropagation();
-                    e.preventDefault();
-
-                    var $tag = $(this);
-                    var $btn = $tag.button("loading");
-                    var form = $($tag.data("form"));
-                    form.find(".alert").remove();
-                    var actionUrl = form.attr("action");
-                    
-                    $http({
-                        url: window.baseUrl + "/_inc/" + actionUrl,
-                        method: "POST",
-                        data: form.serialize(),
-                        cache: false,
-                        processData: false,
-                        contentType: false,
-                        dataType: "json"
-                    }).
-                    then(function(response) {
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-success\">";
-                        alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
-                        alertMsg += "</div>";
-                        form.find(".unit-body").before(alertMsg);
-
-                        // Alert
-                        window.swal("ÉXITO!", response.data.msg, "success")
-                        .then(function(value) {
-
-                            // close modalwindow
-                            $scope.closeUnitCreateModal();
-                            $(document).find(".close").trigger("click");
-
-                            // insert unit into select2
-                            var select = $(document).find("#unit_id");
-                            if (select.length) {
-                            
-                                var option = $("<option></option>").
-                                     attr("selected", true).
-                                     text(response.data.unit.unit_name).
-                                     val(response.data.id);
-                                option.appendTo(select);
-                                select.trigger("change");
-                            }
-
-                            // increase store count
-                            var unitCount = $(document).find("#unit-count h3");
-                            if (unitCount) {
-                                unitCount.text(parseInt(unitCount.text()) + 1);
-                            }
-
-                            // Callback
-                            if ($scope.UnitCreateModalCallback) {
-                                $scope.UnitCreateModalCallback($scope);
-                            }
-
-                        });
-
-                    }, function(response) {
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-danger\">";
-                        window.angular.forEach(response.data, function(value, key) {
-                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
-                        });
-                        alertMsg += "</div>";
-                        form.find(".unit-body").before(alertMsg);
-                        $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                    });
-                });
-
-                $scope.closeUnitCreateModal = function () {
-                    $uibModalInstance.dismiss("cancel");
-                };
-            },
-            scope: $scope,
-            size: "md",
-            backdrop  : "static",
-            keyboard: true,
-        });
-
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
-        });
-    };
-}]);
-window.angularApp.factory("UnitDeleteModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function(API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function(unit) {
-        var uibModalInstance = $uibModal.open({
-            animation: true,
-            ariaLabelledBy: "modal-title",
-            ariaDescribedBy: "modal-body",
-            template: "<div class=\"modal-header\">" +
-                           "<button ng-click=\"closeUnitDeleteModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-trash\"></span> {{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>",
-            controller: function ($scope, $uibModalInstance) {
-                $http({
-                  url: window.baseUrl + "/_inc/unit.php?unit_id=" + unit.unit_id + "&action_type=DELETE",
-                  method: "GET"
-                })
-                .then(function(response, status, headers, config) {
-                    $scope.modal_title = unit.unit_name;
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
-
-                    setTimeout(function() {
-                        window.storeApp.select2();
-                    }, 100);
-                    
-                }, function(response) {
-                    window.swal("Ups!", response.data.errorMsg, "error")
-                    .then(function() {
-                        $scope.closeUnitDeleteModal();
-                    });
-                });
-
-                $(document).delegate("#unit-delete", "click", function(e) {
-                    
-                    e.stopImmediatePropagation();
-                    e.stopPropagation();
-                    e.preventDefault();
-
-                    var $tag = $(this);
-                    var $btn = $tag.button("loading");
-                    var form = $($tag.data("form"));
-                    var datatable = $tag.data("datatable");
-                    form.find(".alert").remove();
-                    var actionUrl = form.attr("action");
-                    $http({
-                        url: window.baseUrl + "/_inc/" + actionUrl,
-                        method: "POST",
-                        data: form.serialize(),
-                        cache: false,
-                        processData: false,
-                        contentType: false,
-                        dataType: "json"
-                    }).
-                    then(function(response) {
-
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-success\">";
-                        alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
-                        alertMsg += "</div>";
-                        form.find(".unit-body").before(alertMsg);
-                        $(datatable).DataTable().ajax.reload(null, false);
-
-                        // Alert
-                        window.swal("ÉXITO!", response.data.msg, "success")
-                        .then(function(value) {
-
-                            $scope.closeUnitDeleteModal();
-                            $(document).find(".close").trigger("click");
-                        });
-
-                        // Callback
-                        if ($scope.UnitDeleteModalCallback) {
-                            $scope.UnitDeleteModalCallback($scope);
-                        }
-
-                    }, function(response) {
-
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-danger\">";
-                        window.angular.forEach(response.data, function(value, key) {
-                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
-                        });
-                        alertMsg += "</div>";
-                        form.find(".unit-body").before(alertMsg);
-                        $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                    });
-
-                });
-
-                $scope.closeUnitDeleteModal = function () {
-                    $uibModalInstance.dismiss("cancel");
-                };
-            },
-            scope: $scope,
-            size: "md",
-            backdrop  : "static",
-            keyboard: true,
-        });
-        
-        uibModalInstance.result.catch(function () { 
-                uibModalInstance.close(); 
-        });
-    };
-}]);
-window.angularApp.factory("UnitEditModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function(unit) {
-        var unitId;
-        var uibModalInstance = $uibModal.open({
-            animation: true,
-            ariaLabelledBy: "modal-title",
-            ariaDescribedBy: "modal-body",
-            template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"closeUnitEditModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-pencil\"></span> {{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile='rawHtml'>Loading...</div>" +
-                        "</div>",
-            controller: function ($scope, $uibModalInstance) {
-                $http({
-                  url: API_URL + "/_inc/unit.php?unit_id=" + unit.unit_id + "&action_type=EDIT",
-                  method: "GET"
-                })
-                .then(function(response, status, headers, config) {
-                $scope.modal_title = unit.unit_name;
-                $scope.rawHtml = $sce.trustAsHtml(response.data);
-                }, function(response) {
-                   window.swal("Ups!", response.data.errorMsg, "error");
-                });
-
-                $(document).delegate("#unit-update", "click", function(e) {
-                    e.stopImmediatePropagation();
-                    e.stopPropagation();
-                    e.preventDefault();
-
-                    var $tag = $(this);
-                    var $btn = $tag.button("loading");
-                    var form = $($tag.data("form"));
-                    var datatable = $tag.data("datatable");
-                    form.find(".alert").remove();
-                    var actionUrl = form.attr("action");
-                    
-                    $http({
-                        url: API_URL + "/_inc/" + actionUrl,
-                        method: "POST",
-                        data: form.serialize(),
-                        cache: false,
-                        processData: false,
-                        contentType: false,
-                        dataType: "json"
-                    }).
-                    then(function(response) {
-
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-success\">";
-                        alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
-                        alertMsg += "</div>";
-                        form.find(".unit-body").before(alertMsg);
-
-                        // Alert
-                        window.swal({
-                          title: "ÉXITO!",
-                          text: response.data.msg,
-                          icon: "success",
-                          buttons: true,
-                          dangerMode: false,
-                        })
-                        .then(function (willDelete) {
-                            if (willDelete) {
-
-                                $scope.closeUnitEditModal();
-                                $(document).find(".close").trigger("click");
-                                unitId = response.data.id;
-                                
-                                $(datatable).DataTable().ajax.reload(function(json) {
-                                    if ($("#row_"+unitId).length) {
-                                        $("#row_"+unitId).flash("yellow", 5000);
-                                    }
-                                }, false);
-
-                            } else {
-                                $(datatable).DataTable().ajax.reload(null, false);
-                            }
-                        });
-
-                    }, function(response) {
-
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-danger\">";
-                        window.angular.forEach(response.data, function(value, key) {
-                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
-                        });
-                        alertMsg += "</div>";
-                        form.find(".unit-body").before(alertMsg);
-                        $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                    });
-
-                });
-
-                $scope.closeUnitEditModal = function () {
-                    $uibModalInstance.dismiss("cancel");
-                };
-            },
-            scope: $scope,
-            size: "md",
-            backdrop  : "static",
-            keyboard: true,
-        });
-
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
-        });
-    };
-}]);
-window.angularApp.factory("TaxrateCreateModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function($scope) {
-        var uibModalInstance = $uibModal.open({
-            animation: true,
-            ariaLabelledBy: "modal-title",
-            ariaDescribedBy: "modal-body",
-            template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"closeTaxrateCreateModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-plus\"></span> {{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>",
-            controller: function ($scope, $uibModalInstance) {
-                $http({
-                  url: window.baseUrl + "/_inc/taxrate.php?action_type=CREATE",
-                  method: "GET"
-                })
-                .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Crear nueva Tasa de Impuesto";
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
-
-                    setTimeout(function() {
-                        window.storeApp.select2();
-                    }, 500);
-                    
-                }, function(response) {
-                   window.swal("Ups!", response.data.errorMsg, "error");
-                });
-
-                // Submit Taxrate Form
-                $(document).delegate("#create-taxrate-submit", "click", function(e) {
-                    e.stopImmediatePropagation();
-                    e.stopPropagation();
-                    e.preventDefault();
-
-                    var $tag = $(this);
-                    var $btn = $tag.button("loading");
-                    var form = $($tag.data("form"));
-                    form.find(".alert").remove();
-                    var actionUrl = form.attr("action");
-                    
-                    $http({
-                        url: window.baseUrl + "/_inc/" + actionUrl,
-                        method: "POST",
-                        data: form.serialize(),
-                        cache: false,
-                        processData: false,
-                        contentType: false,
-                        dataType: "json"
-                    }).
-                    then(function(response) {
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-success\">";
-                        alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
-                        alertMsg += "</div>";
-                        form.find(".taxrate-body").before(alertMsg);
-
-                        // Alert
-                        window.swal("ÉXITO!", response.data.msg, "success")
-                        .then(function(value) {
-
-                            // close modalwindow
-                            $scope.closeTaxrateCreateModal();
-                            $(document).find(".close").trigger("click");
-
-                            // insert taxrate into select2
-                            var select = $(document).find("#taxrate_id");
-                            if (select.length) {
-                            
-                                var option = $("<option></option>").
-                                     attr("selected", true).
-                                     text(response.data.taxrate.taxrate_name).
-                                     val(response.data.id);
-                                option.appendTo(select);
-                                select.trigger("change");
-                            }
-
-                            // increase store count
-                            var taxrateCount = $(document).find("#taxrate-count h3");
-                            if (taxrateCount) {
-                                taxrateCount.text(parseInt(taxrateCount.text()) + 1);
-                            }
-
-                            // Callback
-                            if ($scope.TaxrateCreateModalCallback) {
-                                $scope.TaxrateCreateModalCallback($scope);
-                            }
-
-                        });
-
-                    }, function(response) {
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-danger\">";
-                        window.angular.forEach(response.data, function(value, key) {
-                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
-                        });
-                        alertMsg += "</div>";
-                        form.find(".taxrate-body").before(alertMsg);
-                        $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                    });
-                });
-
-                $scope.closeTaxrateCreateModal = function () {
-                    $uibModalInstance.dismiss("cancel");
-                };
-            },
-            scope: $scope,
-            size: "md",
-            backdrop  : "static",
-            keyboard: true,
-        });
-
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
-        });
-    };
-}]);
-window.angularApp.factory("TaxrateDeleteModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function(API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function(taxrate) {
-        var uibModalInstance = $uibModal.open({
-            animation: true,
-            ariaLabelledBy: "modal-title",
-            ariaDescribedBy: "modal-body",
-            template: "<div class=\"modal-header\">" +
-                           "<button ng-click=\"closeTaxrateDeleteModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-trash\"></span> {{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>",
-            controller: function ($scope, $uibModalInstance) {
-                $http({
-                  url: window.baseUrl + "/_inc/taxrate.php?taxrate_id=" + taxrate.taxrate_id + "&action_type=DELETE",
-                  method: "GET"
-                })
-                .then(function(response, status, headers, config) {
-                    $scope.modal_title = taxrate.taxrate_name;
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
-
-                    setTimeout(function() {
-                        window.storeApp.select2();
-                    }, 100);
-                    
-                }, function(response) {
-                    window.swal("Ups!", response.data.errorMsg, "error")
-                    .then(function() {
-                        $scope.closeTaxrateDeleteModal();
-                    });
-                });
-
-                $(document).delegate("#taxrate-delete", "click", function(e) {
-                    
-                    e.stopImmediatePropagation();
-                    e.stopPropagation();
-                    e.preventDefault();
-
-                    var $tag = $(this);
-                    var $btn = $tag.button("loading");
-                    var form = $($tag.data("form"));
-                    var datatable = $tag.data("datatable");
-                    form.find(".alert").remove();
-                    var actionUrl = form.attr("action");
-                    $http({
-                        url: window.baseUrl + "/_inc/" + actionUrl,
-                        method: "POST",
-                        data: form.serialize(),
-                        cache: false,
-                        processData: false,
-                        contentType: false,
-                        dataType: "json"
-                    }).
-                    then(function(response) {
-
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-success\">";
-                        alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
-                        alertMsg += "</div>";
-                        form.find(".taxrate-body").before(alertMsg);
-                        $(datatable).DataTable().ajax.reload(null, false);
-
-                        // Alert
-                        window.swal("ÉXITO!", response.data.msg, "success")
-                        .then(function(value) {
-
-                            $scope.closeTaxrateDeleteModal();
-                            $(document).find(".close").trigger("click");
-                        });
-
-                        // Callback
-                        if ($scope.TaxrateDeleteModalCallback) {
-                            $scope.TaxrateDeleteModalCallback($scope);
-                        }
-
-                    }, function(response) {
-
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-danger\">";
-                        window.angular.forEach(response.data, function(value, key) {
-                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
-                        });
-                        alertMsg += "</div>";
-                        form.find(".taxrate-body").before(alertMsg);
-                        $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                    });
-
-                });
-
-                $scope.closeTaxrateDeleteModal = function () {
-                    $uibModalInstance.dismiss("cancel");
-                };
-            },
-            scope: $scope,
-            size: "md",
-            backdrop  : "static",
-            keyboard: true,
-        });
-        
-        uibModalInstance.result.catch(function () { 
-                uibModalInstance.close(); 
-        });
-    };
-}]);
-window.angularApp.factory("TaxrateEditModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function(taxrate) {
-        var taxrateId;
-        var uibModalInstance = $uibModal.open({
-            animation: true,
-            ariaLabelledBy: "modal-title",
-            ariaDescribedBy: "modal-body",
-            template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"closeTaxrateEditModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-pencil\"></span> {{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile='rawHtml'>Loading...</div>" +
-                        "</div>",
-            controller: function ($scope, $uibModalInstance) {
-                $http({
-                  url: API_URL + "/_inc/taxrate.php?taxrate_id=" + taxrate.taxrate_id + "&action_type=EDIT",
-                  method: "GET"
-                })
-                .then(function(response, status, headers, config) {
-                $scope.modal_title = taxrate.taxrate_name;
-                $scope.rawHtml = $sce.trustAsHtml(response.data);
-                }, function(response) {
-                   window.swal("Ups!", response.data.errorMsg, "error");
-                });
-
-                $(document).delegate("#taxrate-update", "click", function(e) {
-                    e.stopImmediatePropagation();
-                    e.stopPropagation();
-                    e.preventDefault();
-
-                    var $tag = $(this);
-                    var $btn = $tag.button("loading");
-                    var form = $($tag.data("form"));
-                    var datatable = $tag.data("datatable");
-                    form.find(".alert").remove();
-                    var actionUrl = form.attr("action");
-                    
-                    $http({
-                        url: API_URL + "/_inc/" + actionUrl,
-                        method: "POST",
-                        data: form.serialize(),
-                        cache: false,
-                        processData: false,
-                        contentType: false,
-                        dataType: "json"
-                    }).
-                    then(function(response) {
-
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-success\">";
-                        alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
-                        alertMsg += "</div>";
-                        form.find(".taxrate-body").before(alertMsg);
-
-                        // Alert
-                        window.swal({
-                          title: "ÉXITO!",
-                          text: response.data.msg,
-                          icon: "success",
-                          buttons: true,
-                          dangerMode: false,
-                        })
-                        .then(function (willDelete) {
-                            if (willDelete) {
-
-                                $scope.closeTaxrateEditModal();
-                                $(document).find(".close").trigger("click");
-                                taxrateId = response.data.id;
-                                
-                                $(datatable).DataTable().ajax.reload(function(json) {
-                                    if ($("#row_"+taxrateId).length) {
-                                        $("#row_"+taxrateId).flash("yellow", 5000);
-                                    }
-                                }, false);
-
-                            } else {
-                                $(datatable).DataTable().ajax.reload(null, false);
-                            }
-                        });
-
-                    }, function(response) {
-
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-danger\">";
-                        window.angular.forEach(response.data, function(value, key) {
-                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
-                        });
-                        alertMsg += "</div>";
-                        form.find(".taxrate-body").before(alertMsg);
-                        $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                    });
-
-                });
-
-                $scope.closeTaxrateEditModal = function () {
-                    $uibModalInstance.dismiss("cancel");
-                };
-            },
-            scope: $scope,
-            size: "md",
-            backdrop  : "static",
-            keyboard: true,
-        });
-
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
-        });
-    };
-}]);
-window.angularApp.factory("CategoryCreateModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function($scope) {
-        var uibModalInstance = $uibModal.open({
-            animation: true,
-            ariaLabelledBy: "modal-title",
-            ariaDescribedBy: "modal-body",
-            template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"closeCategoryCreateModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-plus\"></span> {{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>",
-            controller: function ($scope, $uibModalInstance) {
-                $http({
-                  url: window.baseUrl + "/_inc/category.php?action_type=CREATE",
-                  method: "GET"
-                })
-                .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Crear nueva Categoría";
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
-
-                    setTimeout(function() {
-                        window.storeApp.select2();
-                    }, 500);
-
-                }, function(response) {
-                   window.swal("Ups!", response.data.errorMsg, "error");
-                });
-
-                // Submit Box Form
-                $(document).delegate("#create-category-submit", "click", function(e) {
-                    e.stopImmediatePropagation();
-                    e.stopPropagation();
-                    e.preventDefault();
-
-                    var $tag = $(this);
-                    var $btn = $tag.button("loading");
-                    var form = $($tag.data("form"));
-                    form.find(".alert").remove();
-                    var actionUrl = form.attr("action");
-                    
-                    $http({
-                        url: window.baseUrl + "/_inc/" + actionUrl,
-                        method: "POST",
-                        data: form.serialize(),
-                        cache: false,
-                        processData: false,
-                        contentType: false,
-                        dataType: "json"
-                    }).
-                    then(function(response) {
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-success\">";
-                        alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-
-                        // Alert
-                        window.swal("ÉXITO!", response.data.msg, "success")
-                        .then(function(value) {
-
-                            // close modalwindow
-                            $scope.closeCategoryCreateModal();
-                            $(document).find(".close").trigger("click");
-
-                            // insert category into select2
-                            var select = $(document).find('#category_id');
-                            if (select.length) {
-                                var option = $('<option></option>').
-                                     attr('selected', true).
-                                     text(response.data.category.category_name).
-                                     val(response.data.id);
-                                option.appendTo(select);
-                                select.trigger('change');
-                            }
-
-                            // increase category count
-                            var categoryCount = $(document).find("#category-count h3");
-                            if (categoryCount) {
-                                categoryCount.text(parseInt(categoryCount.text()) + 1);
-                            }
-
-                            // Callback
-                            if ($scope.CategoryCreateModalCallback) {
-                                $scope.CategoryCreateModalCallback($scope);
-                            }
-                        });
-
-                    }, function(response) {
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-danger\">";
-                        window.angular.forEach(response.data, function(value, key) {
-                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
-                        });
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-                        $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                    });
-                });
-
-                $scope.closeCategoryCreateModal = function () {
-                    $uibModalInstance.dismiss("cancel");
-                };
-            },
-            scope: $scope,
-            size: "md",
-            backdrop  : "static",
-            keyboard: true,
-        });
-
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
-        });
-    };
-}]);
-window.angularApp.factory("CategoryDeleteModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function(category) {
-        var uibModalInstance = $uibModal.open({
-            animation: true,
-            ariaLabelledBy: "modal-title",
-            ariaDescribedBy: "modal-body",
-            template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"closeCategoryDeleteModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-trash\"></span> {{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>",
-            controller: function ($scope, $uibModalInstance) {
-                $http({
-                  url: window.baseUrl + "/_inc/category.php?category_id=" + category.category_id + "&action_type=DELETE",
-                  method: "GET"
-                })
-                .then(function(response) {
-                    $scope.modal_title = category.category_name;
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
-
-                    setTimeout(function() {
-                        window.storeApp.select2();
-                    }, 100);
-
-                }, function(response) {
-                    window.swal("Ups!", response.data.errorMsg, "error")
-                    .then(function() {
-                        $scope.closeCategoryDeleteModal();
-                    });
-                });
-
-                $(document).delegate("#category-delete", "click", function(e) {
-                    
-                    e.stopImmediatePropagation();
-                    e.stopPropagation();
-                    e.preventDefault();
-
-                    var $tag = $(this);
-                    var $btn = $tag.button("loading");
-                    var form = $($tag.data("form"));
-                    var datatable = $tag.data("datatable");
-                    form.find(".alert").remove();
-                    var actionUrl = form.attr("action");
-                    $http({
-                        url: window.baseUrl + "/_inc/" + actionUrl,
-                        method: "POST",
-                        data: form.serialize(),
-                        cache: false,
-                        processData: false,
-                        contentType: false,
-                        dataType: "json"
-                    }).
-                    then(function(response) {
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-success\">";
-                        alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-                        $(datatable).DataTable().ajax.reload( null, false );
-
-                        // Alert
-                        window.swal("ÉXITO!", response.data.msg, "success")
-                        .then(function(value) {
-                            $scope.closeCategoryDeleteModal();
-                            $(document).find(".close").trigger("click");
-                        });
-
-                    }, function(response) {
-
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-danger\">";
-                        window.angular.forEach(response.data, function(value, key) {
-                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
-                        });
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-                        $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                    });
-
-                });
-
-                $scope.closeCategoryDeleteModal = function () {
-                    $uibModalInstance.dismiss("cancel");
-                };
-            },
-            scope: $scope,
-            size: "md",
-            backdrop  : "static",
-            keyboard: true,
-        });
-
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
-        });
-    };
-}]);
-window.angularApp.factory("CategoryEditModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function(category) {
-        var categoryId;
-        var uibModalInstance = $uibModal.open({
-            animation: true,
-            ariaLabelledBy: "modal-title",
-            ariaDescribedBy: "modal-body",
-            template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"closeCategoryEditModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-pencil\"></span> {{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>",
-            controller: function ($scope, $uibModalInstance) {
-                $http({
-                  url: window.baseUrl + "/_inc/category.php?category_id=" + category.category_id + "&action_type=EDIT",
-                  method: "GET"
-                })
-                .then(function(response, status, headers, config) {
-                    $scope.modal_title = category.category_name;
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
-
-                    setTimeout(function() {
-                        window.storeApp.select2();
-                    }, 100);
-
-                }, function(response) {
-                   window.swal("Ups!", response.data.errorMsg, "error");
-                });
-
-                $(document).delegate("#category-update", "click", function(e) {
-                    
-                    e.stopImmediatePropagation();
-                    e.stopPropagation();
-                    e.preventDefault();
-
-                    var $tag = $(this);
-                    var $btn = $tag.button("loading");
-                    var form = $($tag.data("form"));
-                    var datatable = $tag.data("datatable");
-                    form.find(".alert").remove();
-                    var actionUrl = form.attr("action");
-                    $http({
-                        url: window.baseUrl + "/_inc/" + actionUrl,
-                        method: "POST",
-                        data: form.serialize(),
-                        cache: false,
-                        processData: false,
-                        contentType: false,
-                        dataType: "json"
-                    }).
-                    then(function(response) {
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-success\">";
-                        alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-
-                        // Alert
-                        window.swal({
-                          title: "ÉXITO!",
-                          text: response.data.msg,
-                          icon: "success",
-                          buttons: true,
-                          dangerMode: false,
-                        })
-                        .then(function (willDelete) {
-                            if (willDelete) {
-                                $scope.closeCategoryEditModal();
-                                $(document).find(".close").trigger("click");
-                                categoryId = response.data.id;
-                                
-                                $(datatable).DataTable().ajax.reload(function(json) {
-                                    if ($("#row_"+categoryId).length) {
-                                        $("#row_"+categoryId).flash("yellow", 5000);
-                                    }
-                                }, false);
-
-                            } else {
-                                $(datatable).DataTable().ajax.reload(null, false);
-                            }
-                        });
-
-                    }, function(response) {
-                        
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-danger\">";
-                        window.angular.forEach(response.data, function(value, key) {
-                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
-                        });
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-                        $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                    });
-                });
-                $scope.closeCategoryEditModal = function () {
-                    $uibModalInstance.dismiss("cancel");
-                };
-            },
-            scope: $scope,
-            size: "md",
-            backdrop  : "static",
-            keyboard: true,
-        });
-
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
-        });
-    };
-}]);
-    window.angularApp.factory("CurrencyEditModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
-        return function(currency) {
-            var currencyId;
-            var uibModalInstance = $uibModal.open({
-                animation: true,
-                ariaLabelledBy: "modal-title",
-                ariaDescribedBy: "modal-body",
-                template: "<div class=\"modal-header\">" +
-                                "<button ng-click=\"closeCurrencyEditModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                               "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-pencil\"></span> {{ modal_title }}</h3>" +
-                            "</div>" +
-                            "<div class=\"modal-body\" id=\"modal-body\">" +
-                                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                            "</div>",
-                controller: function ($scope, $uibModalInstance) {
-                    $http({
-                      url: API_URL + "/_inc/currency.php?currency_id=" + currency.currency_id + "&action_type=EDIT",
-                      method: "GET"
-                    })
-                    .then(function(response, status, headers, config) {
-                        $scope.modal_title = currency.title;
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = box.box_name;
                         $scope.rawHtml = $sce.trustAsHtml(response.data);
-
-                        setTimeout(function() {
-                            window.storeApp.select2();
-                        }, 100);
-
-                    }, function(response) {
-                        window.swal("Ups!", response.data.errorMsg, "error")
-                        .then(function() {
-                            $scope.closeCurrencyEditModal();
-                        });
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error");
                     });
 
-                    $(document).delegate("#currency-update", "click", function(e) {
-                        
-                        e.stopImmediatePropagation();
-                        e.stopPropagation();
-                        e.preventDefault();
+                $(document).delegate("#box-update", "click", function (e) {
+                    e.stopImmediatePropagation();
+                    e.stopPropagation();
+                    e.preventDefault();
 
-                        var $tag = $(this);
-                        var $btn = $tag.button("loading");
-                        var form = $($tag.data("form"));
-                        var datatable = $tag.data("datatable");
-                        form.find(".alert").remove();
-                        var actionUrl = form.attr("action");
-                        $http({
-                            url: API_URL + "/_inc/" + actionUrl,
-                            method: "POST",
-                            data: form.serialize(),
-                            cache: false,
-                            processData: false,
-                            contentType: false,
-                            dataType: "json"
-                        }).
-                        then(function(response) {
+                    var $tag = $(this);
+                    var $btn = $tag.button("loading");
+                    var form = $($tag.data("form"));
+                    var datatable = $tag.data("datatable");
+                    form.find(".alert").remove();
+                    var actionUrl = form.attr("action");
+
+                    $http({
+                        url: API_URL + "/_inc/" + actionUrl,
+                        method: "POST",
+                        data: form.serialize(),
+                        cache: false,
+                        processData: false,
+                        contentType: false,
+                        dataType: "json"
+                    }).
+                        then(function (response) {
 
                             $btn.button("reset");
                             var alertMsg = "<div class=\"alert alert-success\">";
@@ -1601,35 +482,1154 @@ window.angularApp.factory("CategoryEditModal", ["API_URL", "window", "jQuery", "
 
                             // Alert
                             window.swal({
-                              title: "ÉXITO!",
-                              text: response.data.msg,
-                              icon: "success",
-                              buttons: true,
-                              dangerMode: false,
+                                title: "ÉXITO!",
+                                text: response.data.msg,
+                                icon: "success",
+                                buttons: true,
+                                dangerMode: false,
                             })
-                            .then(function (willDelete) {
-                                if (willDelete) {
-                                    $scope.closeCurrencyEditModal();
-                                    $(document).find(".close").trigger("click");
-                                    currencyId = response.data.id;
-                                    
-                                    $(datatable).DataTable().ajax.reload(function(json) {
-                                        if ($("#row_"+currencyId).length) {
-                                            $("#row_"+currencyId).flash("yellow", 5000);
-                                        }
-                                    }, false);
+                                .then(function (willDelete) {
+                                    if (willDelete) {
 
-                                } else {
-                                    $(datatable).DataTable().ajax.reload(null, false);
-                                }
+                                        $scope.closeBoxEditModal();
+                                        $(document).find(".close").trigger("click");
+                                        boxId = response.data.id;
+
+                                        $(datatable).DataTable().ajax.reload(function (json) {
+                                            if ($("#row_" + boxId).length) {
+                                                $("#row_" + boxId).flash("yellow", 5000);
+                                            }
+                                        }, false);
+
+                                    } else {
+                                        $(datatable).DataTable().ajax.reload(null, false);
+                                    }
+                                });
+
+                        }, function (response) {
+
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-danger\">";
+                            window.angular.forEach(response.data, function (value, key) {
+                                alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
                             });
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+                            $(":input[type=\"button\"]").prop("disabled", false);
+                            window.swal("Ups!", response.data.errorMsg, "error");
+                        });
 
-                        }, function(response) {
+                });
+
+                $scope.closeBoxEditModal = function () {
+                    $uibModalInstance.dismiss("cancel");
+                };
+            },
+            scope: $scope,
+            size: "md",
+            backdrop: "static",
+            keyboard: true,
+        });
+
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
+        });
+    };
+}]);
+window.angularApp.factory("UnitCreateModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
+    return function ($scope) {
+        var uibModalInstance = $uibModal.open({
+            animation: true,
+            ariaLabelledBy: "modal-title",
+            ariaDescribedBy: "modal-body",
+            template: "<div class=\"modal-header\">" +
+                "<button ng-click=\"closeUnitCreateModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-plus\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>",
+            controller: function ($scope, $uibModalInstance) {
+                $http({
+                    url: window.baseUrl + "/_inc/unit.php?action_type=CREATE",
+                    method: "GET"
+                })
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = "Crear nueva Unidad";
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
+
+                        setTimeout(function () {
+                            window.storeApp.select2();
+                        }, 500);
+
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error");
+                    });
+
+                // Submit Unit Form
+                $(document).delegate("#create-unit-submit", "click", function (e) {
+                    e.stopImmediatePropagation();
+                    e.stopPropagation();
+                    e.preventDefault();
+
+                    var $tag = $(this);
+                    var $btn = $tag.button("loading");
+                    var form = $($tag.data("form"));
+                    form.find(".alert").remove();
+                    var actionUrl = form.attr("action");
+
+                    $http({
+                        url: window.baseUrl + "/_inc/" + actionUrl,
+                        method: "POST",
+                        data: form.serialize(),
+                        cache: false,
+                        processData: false,
+                        contentType: false,
+                        dataType: "json"
+                    }).
+                        then(function (response) {
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-success\">";
+                            alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
+                            alertMsg += "</div>";
+                            form.find(".unit-body").before(alertMsg);
+
+                            // Alert
+                            window.swal("ÉXITO!", response.data.msg, "success")
+                                .then(function (value) {
+
+                                    // close modalwindow
+                                    $scope.closeUnitCreateModal();
+                                    $(document).find(".close").trigger("click");
+
+                                    // insert unit into select2
+                                    var select = $(document).find("#unit_id");
+                                    if (select.length) {
+
+                                        var option = $("<option></option>").
+                                            attr("selected", true).
+                                            text(response.data.unit.unit_name).
+                                            val(response.data.id);
+                                        option.appendTo(select);
+                                        select.trigger("change");
+                                    }
+
+                                    // increase store count
+                                    var unitCount = $(document).find("#unit-count h3");
+                                    if (unitCount) {
+                                        unitCount.text(parseInt(unitCount.text()) + 1);
+                                    }
+
+                                    // Callback
+                                    if ($scope.UnitCreateModalCallback) {
+                                        $scope.UnitCreateModalCallback($scope);
+                                    }
+
+                                });
+
+                        }, function (response) {
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-danger\">";
+                            window.angular.forEach(response.data, function (value, key) {
+                                alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                            });
+                            alertMsg += "</div>";
+                            form.find(".unit-body").before(alertMsg);
+                            $(":input[type=\"button\"]").prop("disabled", false);
+                            window.swal("Ups!", response.data.errorMsg, "error");
+                        });
+                });
+
+                $scope.closeUnitCreateModal = function () {
+                    $uibModalInstance.dismiss("cancel");
+                };
+            },
+            scope: $scope,
+            size: "md",
+            backdrop: "static",
+            keyboard: true,
+        });
+
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
+        });
+    };
+}]);
+window.angularApp.factory("UnitDeleteModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
+    return function (unit) {
+        var uibModalInstance = $uibModal.open({
+            animation: true,
+            ariaLabelledBy: "modal-title",
+            ariaDescribedBy: "modal-body",
+            template: "<div class=\"modal-header\">" +
+                "<button ng-click=\"closeUnitDeleteModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-trash\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>",
+            controller: function ($scope, $uibModalInstance) {
+                $http({
+                    url: window.baseUrl + "/_inc/unit.php?unit_id=" + unit.unit_id + "&action_type=DELETE",
+                    method: "GET"
+                })
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = unit.unit_name;
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
+
+                        setTimeout(function () {
+                            window.storeApp.select2();
+                        }, 100);
+
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error")
+                            .then(function () {
+                                $scope.closeUnitDeleteModal();
+                            });
+                    });
+
+                $(document).delegate("#unit-delete", "click", function (e) {
+
+                    e.stopImmediatePropagation();
+                    e.stopPropagation();
+                    e.preventDefault();
+
+                    var $tag = $(this);
+                    var $btn = $tag.button("loading");
+                    var form = $($tag.data("form"));
+                    var datatable = $tag.data("datatable");
+                    form.find(".alert").remove();
+                    var actionUrl = form.attr("action");
+                    $http({
+                        url: window.baseUrl + "/_inc/" + actionUrl,
+                        method: "POST",
+                        data: form.serialize(),
+                        cache: false,
+                        processData: false,
+                        contentType: false,
+                        dataType: "json"
+                    }).
+                        then(function (response) {
+
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-success\">";
+                            alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
+                            alertMsg += "</div>";
+                            form.find(".unit-body").before(alertMsg);
+                            $(datatable).DataTable().ajax.reload(null, false);
+
+                            // Alert
+                            window.swal("ÉXITO!", response.data.msg, "success")
+                                .then(function (value) {
+
+                                    $scope.closeUnitDeleteModal();
+                                    $(document).find(".close").trigger("click");
+                                });
+
+                            // Callback
+                            if ($scope.UnitDeleteModalCallback) {
+                                $scope.UnitDeleteModalCallback($scope);
+                            }
+
+                        }, function (response) {
+
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-danger\">";
+                            window.angular.forEach(response.data, function (value, key) {
+                                alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                            });
+                            alertMsg += "</div>";
+                            form.find(".unit-body").before(alertMsg);
+                            $(":input[type=\"button\"]").prop("disabled", false);
+                            window.swal("Ups!", response.data.errorMsg, "error");
+                        });
+
+                });
+
+                $scope.closeUnitDeleteModal = function () {
+                    $uibModalInstance.dismiss("cancel");
+                };
+            },
+            scope: $scope,
+            size: "md",
+            backdrop: "static",
+            keyboard: true,
+        });
+
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
+        });
+    };
+}]);
+window.angularApp.factory("UnitEditModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
+    return function (unit) {
+        var unitId;
+        var uibModalInstance = $uibModal.open({
+            animation: true,
+            ariaLabelledBy: "modal-title",
+            ariaDescribedBy: "modal-body",
+            template: "<div class=\"modal-header\">" +
+                "<button ng-click=\"closeUnitEditModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-pencil\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile='rawHtml'>Loading...</div>" +
+                "</div>",
+            controller: function ($scope, $uibModalInstance) {
+                $http({
+                    url: API_URL + "/_inc/unit.php?unit_id=" + unit.unit_id + "&action_type=EDIT",
+                    method: "GET"
+                })
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = unit.unit_name;
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error");
+                    });
+
+                $(document).delegate("#unit-update", "click", function (e) {
+                    e.stopImmediatePropagation();
+                    e.stopPropagation();
+                    e.preventDefault();
+
+                    var $tag = $(this);
+                    var $btn = $tag.button("loading");
+                    var form = $($tag.data("form"));
+                    var datatable = $tag.data("datatable");
+                    form.find(".alert").remove();
+                    var actionUrl = form.attr("action");
+
+                    $http({
+                        url: API_URL + "/_inc/" + actionUrl,
+                        method: "POST",
+                        data: form.serialize(),
+                        cache: false,
+                        processData: false,
+                        contentType: false,
+                        dataType: "json"
+                    }).
+                        then(function (response) {
+
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-success\">";
+                            alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
+                            alertMsg += "</div>";
+                            form.find(".unit-body").before(alertMsg);
+
+                            // Alert
+                            window.swal({
+                                title: "ÉXITO!",
+                                text: response.data.msg,
+                                icon: "success",
+                                buttons: true,
+                                dangerMode: false,
+                            })
+                                .then(function (willDelete) {
+                                    if (willDelete) {
+
+                                        $scope.closeUnitEditModal();
+                                        $(document).find(".close").trigger("click");
+                                        unitId = response.data.id;
+
+                                        $(datatable).DataTable().ajax.reload(function (json) {
+                                            if ($("#row_" + unitId).length) {
+                                                $("#row_" + unitId).flash("yellow", 5000);
+                                            }
+                                        }, false);
+
+                                    } else {
+                                        $(datatable).DataTable().ajax.reload(null, false);
+                                    }
+                                });
+
+                        }, function (response) {
+
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-danger\">";
+                            window.angular.forEach(response.data, function (value, key) {
+                                alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                            });
+                            alertMsg += "</div>";
+                            form.find(".unit-body").before(alertMsg);
+                            $(":input[type=\"button\"]").prop("disabled", false);
+                            window.swal("Ups!", response.data.errorMsg, "error");
+                        });
+
+                });
+
+                $scope.closeUnitEditModal = function () {
+                    $uibModalInstance.dismiss("cancel");
+                };
+            },
+            scope: $scope,
+            size: "md",
+            backdrop: "static",
+            keyboard: true,
+        });
+
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
+        });
+    };
+}]);
+window.angularApp.factory("TaxrateCreateModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
+    return function ($scope) {
+        var uibModalInstance = $uibModal.open({
+            animation: true,
+            ariaLabelledBy: "modal-title",
+            ariaDescribedBy: "modal-body",
+            template: "<div class=\"modal-header\">" +
+                "<button ng-click=\"closeTaxrateCreateModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-plus\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>",
+            controller: function ($scope, $uibModalInstance) {
+                $http({
+                    url: window.baseUrl + "/_inc/taxrate.php?action_type=CREATE",
+                    method: "GET"
+                })
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = "Crear nueva Tasa de Impuesto";
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
+
+                        setTimeout(function () {
+                            window.storeApp.select2();
+                        }, 500);
+
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error");
+                    });
+
+                // Submit Taxrate Form
+                $(document).delegate("#create-taxrate-submit", "click", function (e) {
+                    e.stopImmediatePropagation();
+                    e.stopPropagation();
+                    e.preventDefault();
+
+                    var $tag = $(this);
+                    var $btn = $tag.button("loading");
+                    var form = $($tag.data("form"));
+                    form.find(".alert").remove();
+                    var actionUrl = form.attr("action");
+
+                    $http({
+                        url: window.baseUrl + "/_inc/" + actionUrl,
+                        method: "POST",
+                        data: form.serialize(),
+                        cache: false,
+                        processData: false,
+                        contentType: false,
+                        dataType: "json"
+                    }).
+                        then(function (response) {
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-success\">";
+                            alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
+                            alertMsg += "</div>";
+                            form.find(".taxrate-body").before(alertMsg);
+
+                            // Alert
+                            window.swal("ÉXITO!", response.data.msg, "success")
+                                .then(function (value) {
+
+                                    // close modalwindow
+                                    $scope.closeTaxrateCreateModal();
+                                    $(document).find(".close").trigger("click");
+
+                                    // insert taxrate into select2
+                                    var select = $(document).find("#taxrate_id");
+                                    if (select.length) {
+
+                                        var option = $("<option></option>").
+                                            attr("selected", true).
+                                            text(response.data.taxrate.taxrate_name).
+                                            val(response.data.id);
+                                        option.appendTo(select);
+                                        select.trigger("change");
+                                    }
+
+                                    // increase store count
+                                    var taxrateCount = $(document).find("#taxrate-count h3");
+                                    if (taxrateCount) {
+                                        taxrateCount.text(parseInt(taxrateCount.text()) + 1);
+                                    }
+
+                                    // Callback
+                                    if ($scope.TaxrateCreateModalCallback) {
+                                        $scope.TaxrateCreateModalCallback($scope);
+                                    }
+
+                                });
+
+                        }, function (response) {
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-danger\">";
+                            window.angular.forEach(response.data, function (value, key) {
+                                alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                            });
+                            alertMsg += "</div>";
+                            form.find(".taxrate-body").before(alertMsg);
+                            $(":input[type=\"button\"]").prop("disabled", false);
+                            window.swal("Ups!", response.data.errorMsg, "error");
+                        });
+                });
+
+                $scope.closeTaxrateCreateModal = function () {
+                    $uibModalInstance.dismiss("cancel");
+                };
+            },
+            scope: $scope,
+            size: "md",
+            backdrop: "static",
+            keyboard: true,
+        });
+
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
+        });
+    };
+}]);
+window.angularApp.factory("TaxrateDeleteModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
+    return function (taxrate) {
+        var uibModalInstance = $uibModal.open({
+            animation: true,
+            ariaLabelledBy: "modal-title",
+            ariaDescribedBy: "modal-body",
+            template: "<div class=\"modal-header\">" +
+                "<button ng-click=\"closeTaxrateDeleteModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-trash\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>",
+            controller: function ($scope, $uibModalInstance) {
+                $http({
+                    url: window.baseUrl + "/_inc/taxrate.php?taxrate_id=" + taxrate.taxrate_id + "&action_type=DELETE",
+                    method: "GET"
+                })
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = taxrate.taxrate_name;
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
+
+                        setTimeout(function () {
+                            window.storeApp.select2();
+                        }, 100);
+
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error")
+                            .then(function () {
+                                $scope.closeTaxrateDeleteModal();
+                            });
+                    });
+
+                $(document).delegate("#taxrate-delete", "click", function (e) {
+
+                    e.stopImmediatePropagation();
+                    e.stopPropagation();
+                    e.preventDefault();
+
+                    var $tag = $(this);
+                    var $btn = $tag.button("loading");
+                    var form = $($tag.data("form"));
+                    var datatable = $tag.data("datatable");
+                    form.find(".alert").remove();
+                    var actionUrl = form.attr("action");
+                    $http({
+                        url: window.baseUrl + "/_inc/" + actionUrl,
+                        method: "POST",
+                        data: form.serialize(),
+                        cache: false,
+                        processData: false,
+                        contentType: false,
+                        dataType: "json"
+                    }).
+                        then(function (response) {
+
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-success\">";
+                            alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
+                            alertMsg += "</div>";
+                            form.find(".taxrate-body").before(alertMsg);
+                            $(datatable).DataTable().ajax.reload(null, false);
+
+                            // Alert
+                            window.swal("ÉXITO!", response.data.msg, "success")
+                                .then(function (value) {
+
+                                    $scope.closeTaxrateDeleteModal();
+                                    $(document).find(".close").trigger("click");
+                                });
+
+                            // Callback
+                            if ($scope.TaxrateDeleteModalCallback) {
+                                $scope.TaxrateDeleteModalCallback($scope);
+                            }
+
+                        }, function (response) {
+
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-danger\">";
+                            window.angular.forEach(response.data, function (value, key) {
+                                alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                            });
+                            alertMsg += "</div>";
+                            form.find(".taxrate-body").before(alertMsg);
+                            $(":input[type=\"button\"]").prop("disabled", false);
+                            window.swal("Ups!", response.data.errorMsg, "error");
+                        });
+
+                });
+
+                $scope.closeTaxrateDeleteModal = function () {
+                    $uibModalInstance.dismiss("cancel");
+                };
+            },
+            scope: $scope,
+            size: "md",
+            backdrop: "static",
+            keyboard: true,
+        });
+
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
+        });
+    };
+}]);
+window.angularApp.factory("TaxrateEditModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
+    return function (taxrate) {
+        var taxrateId;
+        var uibModalInstance = $uibModal.open({
+            animation: true,
+            ariaLabelledBy: "modal-title",
+            ariaDescribedBy: "modal-body",
+            template: "<div class=\"modal-header\">" +
+                "<button ng-click=\"closeTaxrateEditModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-pencil\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile='rawHtml'>Loading...</div>" +
+                "</div>",
+            controller: function ($scope, $uibModalInstance) {
+                $http({
+                    url: API_URL + "/_inc/taxrate.php?taxrate_id=" + taxrate.taxrate_id + "&action_type=EDIT",
+                    method: "GET"
+                })
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = taxrate.taxrate_name;
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error");
+                    });
+
+                $(document).delegate("#taxrate-update", "click", function (e) {
+                    e.stopImmediatePropagation();
+                    e.stopPropagation();
+                    e.preventDefault();
+
+                    var $tag = $(this);
+                    var $btn = $tag.button("loading");
+                    var form = $($tag.data("form"));
+                    var datatable = $tag.data("datatable");
+                    form.find(".alert").remove();
+                    var actionUrl = form.attr("action");
+
+                    $http({
+                        url: API_URL + "/_inc/" + actionUrl,
+                        method: "POST",
+                        data: form.serialize(),
+                        cache: false,
+                        processData: false,
+                        contentType: false,
+                        dataType: "json"
+                    }).
+                        then(function (response) {
+
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-success\">";
+                            alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
+                            alertMsg += "</div>";
+                            form.find(".taxrate-body").before(alertMsg);
+
+                            // Alert
+                            window.swal({
+                                title: "ÉXITO!",
+                                text: response.data.msg,
+                                icon: "success",
+                                buttons: true,
+                                dangerMode: false,
+                            })
+                                .then(function (willDelete) {
+                                    if (willDelete) {
+
+                                        $scope.closeTaxrateEditModal();
+                                        $(document).find(".close").trigger("click");
+                                        taxrateId = response.data.id;
+
+                                        $(datatable).DataTable().ajax.reload(function (json) {
+                                            if ($("#row_" + taxrateId).length) {
+                                                $("#row_" + taxrateId).flash("yellow", 5000);
+                                            }
+                                        }, false);
+
+                                    } else {
+                                        $(datatable).DataTable().ajax.reload(null, false);
+                                    }
+                                });
+
+                        }, function (response) {
+
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-danger\">";
+                            window.angular.forEach(response.data, function (value, key) {
+                                alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                            });
+                            alertMsg += "</div>";
+                            form.find(".taxrate-body").before(alertMsg);
+                            $(":input[type=\"button\"]").prop("disabled", false);
+                            window.swal("Ups!", response.data.errorMsg, "error");
+                        });
+
+                });
+
+                $scope.closeTaxrateEditModal = function () {
+                    $uibModalInstance.dismiss("cancel");
+                };
+            },
+            scope: $scope,
+            size: "md",
+            backdrop: "static",
+            keyboard: true,
+        });
+
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
+        });
+    };
+}]);
+window.angularApp.factory("CategoryCreateModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
+    return function ($scope) {
+        var uibModalInstance = $uibModal.open({
+            animation: true,
+            ariaLabelledBy: "modal-title",
+            ariaDescribedBy: "modal-body",
+            template: "<div class=\"modal-header\">" +
+                "<button ng-click=\"closeCategoryCreateModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-plus\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>",
+            controller: function ($scope, $uibModalInstance) {
+                $http({
+                    url: window.baseUrl + "/_inc/category.php?action_type=CREATE",
+                    method: "GET"
+                })
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = "Crear nueva Categoría";
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
+
+                        setTimeout(function () {
+                            window.storeApp.select2();
+                        }, 500);
+
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error");
+                    });
+
+                // Submit Box Form
+                $(document).delegate("#create-category-submit", "click", function (e) {
+                    e.stopImmediatePropagation();
+                    e.stopPropagation();
+                    e.preventDefault();
+
+                    var $tag = $(this);
+                    var $btn = $tag.button("loading");
+                    var form = $($tag.data("form"));
+                    form.find(".alert").remove();
+                    var actionUrl = form.attr("action");
+
+                    $http({
+                        url: window.baseUrl + "/_inc/" + actionUrl,
+                        method: "POST",
+                        data: form.serialize(),
+                        cache: false,
+                        processData: false,
+                        contentType: false,
+                        dataType: "json"
+                    }).
+                        then(function (response) {
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-success\">";
+                            alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+
+                            // Alert
+                            window.swal("ÉXITO!", response.data.msg, "success")
+                                .then(function (value) {
+
+                                    // close modalwindow
+                                    $scope.closeCategoryCreateModal();
+                                    $(document).find(".close").trigger("click");
+
+                                    // insert category into select2
+                                    var select = $(document).find('#category_id');
+                                    if (select.length) {
+                                        var option = $('<option></option>').
+                                            attr('selected', true).
+                                            text(response.data.category.category_name).
+                                            val(response.data.id);
+                                        option.appendTo(select);
+                                        select.trigger('change');
+                                    }
+
+                                    // increase category count
+                                    var categoryCount = $(document).find("#category-count h3");
+                                    if (categoryCount) {
+                                        categoryCount.text(parseInt(categoryCount.text()) + 1);
+                                    }
+
+                                    // Callback
+                                    if ($scope.CategoryCreateModalCallback) {
+                                        $scope.CategoryCreateModalCallback($scope);
+                                    }
+                                });
+
+                        }, function (response) {
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-danger\">";
+                            window.angular.forEach(response.data, function (value, key) {
+                                alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                            });
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+                            $(":input[type=\"button\"]").prop("disabled", false);
+                            window.swal("Ups!", response.data.errorMsg, "error");
+                        });
+                });
+
+                $scope.closeCategoryCreateModal = function () {
+                    $uibModalInstance.dismiss("cancel");
+                };
+            },
+            scope: $scope,
+            size: "md",
+            backdrop: "static",
+            keyboard: true,
+        });
+
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
+        });
+    };
+}]);
+window.angularApp.factory("CategoryDeleteModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
+    return function (category) {
+        var uibModalInstance = $uibModal.open({
+            animation: true,
+            ariaLabelledBy: "modal-title",
+            ariaDescribedBy: "modal-body",
+            template: "<div class=\"modal-header\">" +
+                "<button ng-click=\"closeCategoryDeleteModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-trash\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>",
+            controller: function ($scope, $uibModalInstance) {
+                $http({
+                    url: window.baseUrl + "/_inc/category.php?category_id=" + category.category_id + "&action_type=DELETE",
+                    method: "GET"
+                })
+                    .then(function (response) {
+                        $scope.modal_title = category.category_name;
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
+
+                        setTimeout(function () {
+                            window.storeApp.select2();
+                        }, 100);
+
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error")
+                            .then(function () {
+                                $scope.closeCategoryDeleteModal();
+                            });
+                    });
+
+                $(document).delegate("#category-delete", "click", function (e) {
+
+                    e.stopImmediatePropagation();
+                    e.stopPropagation();
+                    e.preventDefault();
+
+                    var $tag = $(this);
+                    var $btn = $tag.button("loading");
+                    var form = $($tag.data("form"));
+                    var datatable = $tag.data("datatable");
+                    form.find(".alert").remove();
+                    var actionUrl = form.attr("action");
+                    $http({
+                        url: window.baseUrl + "/_inc/" + actionUrl,
+                        method: "POST",
+                        data: form.serialize(),
+                        cache: false,
+                        processData: false,
+                        contentType: false,
+                        dataType: "json"
+                    }).
+                        then(function (response) {
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-success\">";
+                            alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+                            $(datatable).DataTable().ajax.reload(null, false);
+
+                            // Alert
+                            window.swal("ÉXITO!", response.data.msg, "success")
+                                .then(function (value) {
+                                    $scope.closeCategoryDeleteModal();
+                                    $(document).find(".close").trigger("click");
+                                });
+
+                        }, function (response) {
+
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-danger\">";
+                            window.angular.forEach(response.data, function (value, key) {
+                                alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                            });
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+                            $(":input[type=\"button\"]").prop("disabled", false);
+                            window.swal("Ups!", response.data.errorMsg, "error");
+                        });
+
+                });
+
+                $scope.closeCategoryDeleteModal = function () {
+                    $uibModalInstance.dismiss("cancel");
+                };
+            },
+            scope: $scope,
+            size: "md",
+            backdrop: "static",
+            keyboard: true,
+        });
+
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
+        });
+    };
+}]);
+window.angularApp.factory("CategoryEditModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
+    return function (category) {
+        var categoryId;
+        var uibModalInstance = $uibModal.open({
+            animation: true,
+            ariaLabelledBy: "modal-title",
+            ariaDescribedBy: "modal-body",
+            template: "<div class=\"modal-header\">" +
+                "<button ng-click=\"closeCategoryEditModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-pencil\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>",
+            controller: function ($scope, $uibModalInstance) {
+                $http({
+                    url: window.baseUrl + "/_inc/category.php?category_id=" + category.category_id + "&action_type=EDIT",
+                    method: "GET"
+                })
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = category.category_name;
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
+
+                        setTimeout(function () {
+                            window.storeApp.select2();
+                        }, 100);
+
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error");
+                    });
+
+                $(document).delegate("#category-update", "click", function (e) {
+
+                    e.stopImmediatePropagation();
+                    e.stopPropagation();
+                    e.preventDefault();
+
+                    var $tag = $(this);
+                    var $btn = $tag.button("loading");
+                    var form = $($tag.data("form"));
+                    var datatable = $tag.data("datatable");
+                    form.find(".alert").remove();
+                    var actionUrl = form.attr("action");
+                    $http({
+                        url: window.baseUrl + "/_inc/" + actionUrl,
+                        method: "POST",
+                        data: form.serialize(),
+                        cache: false,
+                        processData: false,
+                        contentType: false,
+                        dataType: "json"
+                    }).
+                        then(function (response) {
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-success\">";
+                            alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+
+                            // Alert
+                            window.swal({
+                                title: "ÉXITO!",
+                                text: response.data.msg,
+                                icon: "success",
+                                buttons: true,
+                                dangerMode: false,
+                            })
+                                .then(function (willDelete) {
+                                    if (willDelete) {
+                                        $scope.closeCategoryEditModal();
+                                        $(document).find(".close").trigger("click");
+                                        categoryId = response.data.id;
+
+                                        $(datatable).DataTable().ajax.reload(function (json) {
+                                            if ($("#row_" + categoryId).length) {
+                                                $("#row_" + categoryId).flash("yellow", 5000);
+                                            }
+                                        }, false);
+
+                                    } else {
+                                        $(datatable).DataTable().ajax.reload(null, false);
+                                    }
+                                });
+
+                        }, function (response) {
+
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-danger\">";
+                            window.angular.forEach(response.data, function (value, key) {
+                                alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                            });
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+                            $(":input[type=\"button\"]").prop("disabled", false);
+                            window.swal("Ups!", response.data.errorMsg, "error");
+                        });
+                });
+                $scope.closeCategoryEditModal = function () {
+                    $uibModalInstance.dismiss("cancel");
+                };
+            },
+            scope: $scope,
+            size: "md",
+            backdrop: "static",
+            keyboard: true,
+        });
+
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
+        });
+    };
+}]);
+window.angularApp.factory("CurrencyEditModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
+    return function (currency) {
+        var currencyId;
+        var uibModalInstance = $uibModal.open({
+            animation: true,
+            ariaLabelledBy: "modal-title",
+            ariaDescribedBy: "modal-body",
+            template: "<div class=\"modal-header\">" +
+                "<button ng-click=\"closeCurrencyEditModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-pencil\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>",
+            controller: function ($scope, $uibModalInstance) {
+                $http({
+                    url: API_URL + "/_inc/currency.php?currency_id=" + currency.currency_id + "&action_type=EDIT",
+                    method: "GET"
+                })
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = currency.title;
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
+
+                        setTimeout(function () {
+                            window.storeApp.select2();
+                        }, 100);
+
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error")
+                            .then(function () {
+                                $scope.closeCurrencyEditModal();
+                            });
+                    });
+
+                $(document).delegate("#currency-update", "click", function (e) {
+
+                    e.stopImmediatePropagation();
+                    e.stopPropagation();
+                    e.preventDefault();
+
+                    var $tag = $(this);
+                    var $btn = $tag.button("loading");
+                    var form = $($tag.data("form"));
+                    var datatable = $tag.data("datatable");
+                    form.find(".alert").remove();
+                    var actionUrl = form.attr("action");
+                    $http({
+                        url: API_URL + "/_inc/" + actionUrl,
+                        method: "POST",
+                        data: form.serialize(),
+                        cache: false,
+                        processData: false,
+                        contentType: false,
+                        dataType: "json"
+                    }).
+                        then(function (response) {
+
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-success\">";
+                            alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+
+                            // Alert
+                            window.swal({
+                                title: "ÉXITO!",
+                                text: response.data.msg,
+                                icon: "success",
+                                buttons: true,
+                                dangerMode: false,
+                            })
+                                .then(function (willDelete) {
+                                    if (willDelete) {
+                                        $scope.closeCurrencyEditModal();
+                                        $(document).find(".close").trigger("click");
+                                        currencyId = response.data.id;
+
+                                        $(datatable).DataTable().ajax.reload(function (json) {
+                                            if ($("#row_" + currencyId).length) {
+                                                $("#row_" + currencyId).flash("yellow", 5000);
+                                            }
+                                        }, false);
+
+                                    } else {
+                                        $(datatable).DataTable().ajax.reload(null, false);
+                                    }
+                                });
+
+                        }, function (response) {
 
                             $btn.button("reset");
 
                             var alertMsg = "<div class=\"alert alert-danger\">";
-                            window.angular.forEach(response.data, function(value, key) {
+                            window.angular.forEach(response.data, function (value, key) {
                                 alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
                             });
                             alertMsg += "</div>";
@@ -1640,56 +1640,56 @@ window.angularApp.factory("CategoryEditModal", ["API_URL", "window", "jQuery", "
                             window.swal("Ups!", response.data.errorMsg, "error");
                         });
 
-                    });
+                });
 
-                    $scope.closeCurrencyEditModal = function () {
-                        $uibModalInstance.dismiss("cancel");
-                    };
-                },
-                scope: $scope,
-                size: "md",
-                backdrop  : "static",
-                keyboard: true,
-            });
+                $scope.closeCurrencyEditModal = function () {
+                    $uibModalInstance.dismiss("cancel");
+                };
+            },
+            scope: $scope,
+            size: "md",
+            backdrop: "static",
+            keyboard: true,
+        });
 
-            uibModalInstance.result.catch(function () { 
-                uibModalInstance.close(); 
-            });
-        };
-    }]);
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
+        });
+    };
+}]);
 window.angularApp.factory("CustomerCreateModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function($scope) {
+    return function ($scope) {
         var uibModalInstance = $uibModal.open({
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"closeCustomerCreateModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-plus\"></span> {{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>",
+                "<button ng-click=\"closeCustomerCreateModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-plus\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $http({
-                  url: window.baseUrl + "/_inc/customer.php?action_type=CREATE",
-                  method: "GET"
+                    url: window.baseUrl + "/_inc/customer.php?action_type=CREATE",
+                    method: "GET"
                 })
-                .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Crear nuevo Cliente";
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = "Crear nuevo Cliente";
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
 
-                    setTimeout(function() {
-                        window.storeApp.select2();
-                        window.storeApp.datePicker();
-                    }, 500);
-                    
-                }, function(response) {
-                   window.swal("Ups!", response.data.errorMsg, "error");
-                });
+                        setTimeout(function () {
+                            window.storeApp.select2();
+                            window.storeApp.datePicker();
+                        }, 500);
+
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error");
+                    });
 
                 // Submit Customer Form
-                $(document).delegate("#create-customer-submit", "click", function(e) {
+                $(document).delegate("#create-customer-submit", "click", function (e) {
                     e.stopImmediatePropagation();
                     e.stopPropagation();
                     e.preventDefault();
@@ -1699,7 +1699,7 @@ window.angularApp.factory("CustomerCreateModal", ["API_URL", "window", "jQuery",
                     var form = $($tag.data("form"));
                     form.find(".alert").remove();
                     var actionUrl = form.attr("action");
-                    
+
                     $http({
                         url: window.baseUrl + "/_inc/" + actionUrl,
                         method: "POST",
@@ -1709,52 +1709,52 @@ window.angularApp.factory("CustomerCreateModal", ["API_URL", "window", "jQuery",
                         contentType: false,
                         dataType: "json"
                     }).
-                    then(function(response) {
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-success\">";
-                        alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
+                        then(function (response) {
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-success\">";
+                            alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
 
-                        // Alert
-                        window.swal("ÉXITO!", response.data.msg, "success")
-                        .then(function(value) {
+                            // Alert
+                            window.swal("ÉXITO!", response.data.msg, "success")
+                                .then(function (value) {
 
-                            $scope.customerMobileNumber = response.data.customer_contact;
-                            $scope.customerName = response.data.customer_name + " (" + $scope.customerMobileNumber + ")";
-                            $scope.customerId = response.data.id;
-                            $scope.dueAmount = response.data.due_amount;
+                                    $scope.customerMobileNumber = response.data.customer_contact;
+                                    $scope.customerName = response.data.customer_name + " (" + $scope.customerMobileNumber + ")";
+                                    $scope.customerId = response.data.id;
+                                    $scope.dueAmount = response.data.due_amount;
 
-                            $(document).find("input[name=\"customer-name\"]").val(response.data.customer_name + ' (' + response.data.customer_contact + ')');
-                            $(document).find("input[name=\"customer-id\"]").val(response.data.id);
+                                    $(document).find("input[name=\"customer-name\"]").val(response.data.customer_name + ' (' + response.data.customer_contact + ')');
+                                    $(document).find("input[name=\"customer-id\"]").val(response.data.id);
 
-                            // increase customer count
-                            var customerCount = $(document).find("#customer-count h3");
-                            if (customerCount) {
-                                customerCount.text(parseInt(customerCount.text()) + 1);
-                            }
+                                    // increase customer count
+                                    var customerCount = $(document).find("#customer-count h3");
+                                    if (customerCount) {
+                                        customerCount.text(parseInt(customerCount.text()) + 1);
+                                    }
 
-                            // close modalwindow
-                            $scope.closeCustomerCreateModal();
-                            $(document).find(".close").trigger("click");
+                                    // close modalwindow
+                                    $scope.closeCustomerCreateModal();
+                                    $(document).find(".close").trigger("click");
 
-                            // Callback
-                            if ($scope.CustomerCreateModalCallback) {
-                                $scope.CustomerCreateModalCallback($scope);
-                            }
+                                    // Callback
+                                    if ($scope.CustomerCreateModalCallback) {
+                                        $scope.CustomerCreateModalCallback($scope);
+                                    }
+                                });
+
+                        }, function (response) {
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-danger\">";
+                            window.angular.forEach(response.data, function (value, key) {
+                                alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                            });
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+                            $(":input[type=\"button\"]").prop("disabled", false);
+                            window.swal("Ups!", response.data.errorMsg, "error");
                         });
-
-                    }, function(response) {
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-danger\">";
-                        window.angular.forEach(response.data, function(value, key) {
-                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
-                        });
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-                        $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                    });
                 });
 
                 $scope.closeCustomerCreateModal = function () {
@@ -1767,46 +1767,46 @@ window.angularApp.factory("CustomerCreateModal", ["API_URL", "window", "jQuery",
             keyboard: true,
         });
 
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
         });
     };
 }]);
 window.angularApp.factory("CustomerDeleteModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function(customer) {
+    return function (customer) {
         var uibModalInstance = $uibModal.open({
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"closeCustomerDeleteModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-trash\"></span> {{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>",
+                "<button ng-click=\"closeCustomerDeleteModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-trash\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $http({
-                  url: window.baseUrl + "/_inc/customer.php?customer_id=" + customer.customer_id + "&action_type=DELETE",
-                  method: "GET"
+                    url: window.baseUrl + "/_inc/customer.php?customer_id=" + customer.customer_id + "&action_type=DELETE",
+                    method: "GET"
                 })
-                .then(function(response) {
-                    $scope.modal_title = customer.customer_name;
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
+                    .then(function (response) {
+                        $scope.modal_title = customer.customer_name;
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
 
-                    setTimeout(function() {
-                        window.storeApp.select2();
-                    }, 100);
+                        setTimeout(function () {
+                            window.storeApp.select2();
+                        }, 100);
 
-                }, function(response) {
-                    window.swal("Ups!", response.data.errorMsg, "error")
-                    .then(function() {
-                        $scope.closeCustomerDeleteModal();
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error")
+                            .then(function () {
+                                $scope.closeCustomerDeleteModal();
+                            });
                     });
-                });
 
-                $(document).delegate("#customer-delete", "click", function(e) {
-                    
+                $(document).delegate("#customer-delete", "click", function (e) {
+
                     e.stopImmediatePropagation();
                     e.stopPropagation();
                     e.preventDefault();
@@ -1826,33 +1826,33 @@ window.angularApp.factory("CustomerDeleteModal", ["API_URL", "window", "jQuery",
                         contentType: false,
                         dataType: "json"
                     }).
-                    then(function(response) {
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-success\">";
-                        alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-                        $(datatable).DataTable().ajax.reload( null, false );
+                        then(function (response) {
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-success\">";
+                            alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+                            $(datatable).DataTable().ajax.reload(null, false);
 
-                        // Alert
-                        window.swal("ÉXITO!", response.data.msg, "success")
-                        .then(function(value) {
-                            $scope.closeCustomerDeleteModal();
-                            $(document).find(".close").trigger("click");
+                            // Alert
+                            window.swal("ÉXITO!", response.data.msg, "success")
+                                .then(function (value) {
+                                    $scope.closeCustomerDeleteModal();
+                                    $(document).find(".close").trigger("click");
+                                });
+
+                        }, function (response) {
+
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-danger\">";
+                            window.angular.forEach(response.data, function (value, key) {
+                                alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                            });
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+                            $(":input[type=\"button\"]").prop("disabled", false);
+                            window.swal("Ups!", response.data.errorMsg, "error");
                         });
-
-                    }, function(response) {
-
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-danger\">";
-                        window.angular.forEach(response.data, function(value, key) {
-                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
-                        });
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-                        $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                    });
 
                 });
 
@@ -1862,49 +1862,49 @@ window.angularApp.factory("CustomerDeleteModal", ["API_URL", "window", "jQuery",
             },
             scope: $scope,
             size: "md",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: true,
         });
 
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
         });
     };
 }]);
 window.angularApp.factory("CustomerEditModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function(customer) {
+    return function (customer) {
         var customerId;
         var uibModalInstance = $uibModal.open({
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"closeCustomerEditModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-pencil\"></span> {{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>",
+                "<button ng-click=\"closeCustomerEditModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-pencil\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $http({
-                  url: window.baseUrl + "/_inc/customer.php?customer_id=" + customer.customer_id + "&action_type=EDIT",
-                  method: "GET"
+                    url: window.baseUrl + "/_inc/customer.php?customer_id=" + customer.customer_id + "&action_type=EDIT",
+                    method: "GET"
                 })
-                .then(function(response, status, headers, config) {
-                    $scope.modal_title = customer.customer_name;
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = customer.customer_name;
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
 
-                    setTimeout(function() {
-                        window.storeApp.select2();
-                        window.storeApp.datePicker();
-                    }, 100);
+                        setTimeout(function () {
+                            window.storeApp.select2();
+                            window.storeApp.datePicker();
+                        }, 100);
 
-                }, function(response) {
-                   window.swal("Ups!", response.data.errorMsg, "error");
-                });
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error");
+                    });
 
-                $(document).delegate("#customer-update", "click", function(e) {
-                    
+                $(document).delegate("#customer-update", "click", function (e) {
+
                     e.stopImmediatePropagation();
                     e.stopPropagation();
                     e.preventDefault();
@@ -1924,55 +1924,55 @@ window.angularApp.factory("CustomerEditModal", ["API_URL", "window", "jQuery", "
                         contentType: false,
                         dataType: "json"
                     }).
-                    then(function(response) {
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-success\">";
-                        alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
+                        then(function (response) {
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-success\">";
+                            alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
 
-                        // Alert
-                        window.swal({
-                          title: "ÉXITO!",
-                          text: response.data.msg,
-                          icon: "success",
-                          buttons: true,
-                          dangerMode: false,
-                        })
-                        .then(function (willDelete) {
-                            if (willDelete) {
-                                $scope.closeCustomerEditModal();
-                                $(document).find(".close").trigger("click");
-                                customerId = response.data.id;
-                                
-                                $(datatable).DataTable().ajax.reload(function(json) {
-                                    if ($("#row_"+customerId).length) {
-                                        $("#row_"+customerId).flash("yellow", 5000);
+                            // Alert
+                            window.swal({
+                                title: "ÉXITO!",
+                                text: response.data.msg,
+                                icon: "success",
+                                buttons: true,
+                                dangerMode: false,
+                            })
+                                .then(function (willDelete) {
+                                    if (willDelete) {
+                                        $scope.closeCustomerEditModal();
+                                        $(document).find(".close").trigger("click");
+                                        customerId = response.data.id;
+
+                                        $(datatable).DataTable().ajax.reload(function (json) {
+                                            if ($("#row_" + customerId).length) {
+                                                $("#row_" + customerId).flash("yellow", 5000);
+                                            }
+                                        }, false);
+
+                                    } else {
+                                        $(datatable).DataTable().ajax.reload(null, false);
                                     }
-                                }, false);
 
-                            } else {
-                                $(datatable).DataTable().ajax.reload(null, false);
-                            }
+                                    // Callback
+                                    if ($scope.CustomerEditModalCallback) {
+                                        $scope.CustomerEditModalCallback($scope);
+                                    }
+                                });
 
-                            // Callback
-                            if ($scope.CustomerEditModalCallback) {
-                                $scope.CustomerEditModalCallback($scope);
-                            }
+                        }, function (response) {
+
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-danger\">";
+                            window.angular.forEach(response.data, function (value, key) {
+                                alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                            });
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+                            $(":input[type=\"button\"]").prop("disabled", false);
+                            window.swal("Ups!", response.data.errorMsg, "error");
                         });
-
-                    }, function(response) {
-                        
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-danger\">";
-                        window.angular.forEach(response.data, function(value, key) {
-                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
-                        });
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-                        $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                    });
                 });
                 $scope.closeCustomerEditModal = function () {
                     $uibModalInstance.dismiss("cancel");
@@ -1980,84 +1980,84 @@ window.angularApp.factory("CustomerEditModal", ["API_URL", "window", "jQuery", "
             },
             scope: $scope,
             size: "md",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: true,
         });
 
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
         });
     };
 }]);
-window.angularApp.factory("SupportDeskModal", ["API_URL", "$http", "$uibModal", "$sce", "$rootScope", function(API_URL, $http, $uibModal, $sce, $scope) {
-    return function() {
+window.angularApp.factory("SupportDeskModal", ["API_URL", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, $http, $uibModal, $sce, $scope) {
+    return function () {
         var uibModalInstance = $uibModal.open({
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"cancel();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-headphones\"></span> Support Desk</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>",
+                "<button ng-click=\"cancel();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-headphones\"></span> Support Desk</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $http({
-                  url: API_URL + "/_inc/template/partials/supportdesk_modal.php",
-                  method: "GET"
+                    url: API_URL + "/_inc/template/partials/supportdesk_modal.php",
+                    method: "GET"
                 })
-                .then(function(response, status, headers, config) {
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
-                }, function(data) {
-                   window.swal("Ups!", "an unknown error occured!", "error");
-                });
+                    .then(function (response, status, headers, config) {
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
+                    }, function (data) {
+                        window.swal("Ups!", "an unknown error occured!", "error");
+                    });
                 $scope.cancel = function () {
                     $uibModalInstance.dismiss("cancel");
                 };
             },
             scope: $scope,
             size: "md",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: true,
         });
 
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
         });
     };
 }]);
 window.angularApp.factory("DueCollectionDetailsModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
     var $from = window.getParameterByName("from");
     var $to = window.getParameterByName("to");
-    return function($scope) {
+    return function ($scope) {
         var uibModalInstance = $uibModal.open({
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"closeDueCollectionModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-list\"></span> {{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>",
+                "<button ng-click=\"closeDueCollectionModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-list\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $http({
-                  url: window.baseUrl + "/_inc/duepaid.php?action_type=DUEPAIDDETAILS&created_by=" + $scope.createdBy + "&from=" + $from + "&to=" + $to,
-                  method: "GET"
+                    url: window.baseUrl + "/_inc/duepaid.php?action_type=DUEPAIDDETAILS&created_by=" + $scope.createdBy + "&from=" + $from + "&to=" + $to,
+                    method: "GET"
                 })
-                .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Detalles de Cobro Vencido";
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = "Detalles de Cobro Vencido";
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
 
-                    setTimeout(function() {
-                        window.storeApp.select2();
-                    }, 500);
-                    
-                }, function(response) {
-                   window.swal("Ups!", response.data.errorMsg, "error");
-                });
+                        setTimeout(function () {
+                            window.storeApp.select2();
+                        }, 500);
+
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error");
+                    });
 
                 $scope.closeDueCollectionModal = function () {
                     $uibModalInstance.dismiss("cancel");
@@ -2065,12 +2065,12 @@ window.angularApp.factory("DueCollectionDetailsModal", ["API_URL", "window", "jQ
             },
             scope: $scope,
             size: "lg",
-            backdrop  : "dynamic", //static
+            backdrop: "dynamic", //static
             keyboard: true,
         });
 
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
         });
     };
 }]);
@@ -2079,35 +2079,35 @@ window.angularApp.factory("DueCollectionDetailsModal", ["API_URL", "window", "jQ
 //================================
 
 window.angularApp.factory("BankingDepositModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function() {
+    return function () {
         var uibModalInstance = $uibModal.open({
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"closeBankingDepositModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\">{{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>",
+                "<button ng-click=\"closeBankingDepositModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\">{{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $http({
-                  url: window.baseUrl + "/_inc/banking.php?action_type=DEPOSIT",
-                  method: "GET"
+                    url: window.baseUrl + "/_inc/banking.php?action_type=DEPOSIT",
+                    method: "GET"
                 })
-                .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Depósito al Banco";
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
-                    setTimeout(function() {
-                        window.storeApp.select2();
-                    }, 300);
-                }, function(response) {
-                    window.swal("Ups!", response.data.errorMsg, "error")
-                    .then(function() {
-                        $scope.closeBankingDepositModal();
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = "Depósito al Banco";
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
+                        setTimeout(function () {
+                            window.storeApp.select2();
+                        }, 300);
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error")
+                            .then(function () {
+                                $scope.closeBankingDepositModal();
+                            });
                     });
-                });
 
                 $scope.showCapital = false;
                 $(document).delegate('#source_id', 'select2:select', function (e) {
@@ -2117,19 +2117,19 @@ window.angularApp.factory("BankingDepositModal", ["API_URL", "window", "jQuery",
                     var data = e.params.data;
                     var slug = $(data.element).data("slug");
                     if (slug == "capital_and_profit") {
-                        $scope.$apply(function() {
+                        $scope.$apply(function () {
                             $scope.showCapital = true;
                         });
                         $("#title").val("Capital/Profit Manual Entry");
                     } else {
-                        $scope.$apply(function() {
+                        $scope.$apply(function () {
                             $scope.showCapital = false;
                         });
                         $("#title").val("");
                     }
                 });
 
-                $(document).delegate("#deposit-confirm-btn", "click", function(e) {
+                $(document).delegate("#deposit-confirm-btn", "click", function (e) {
                     e.stopImmediatePropagation();
                     e.stopPropagation();
                     e.preventDefault();
@@ -2149,39 +2149,39 @@ window.angularApp.factory("BankingDepositModal", ["API_URL", "window", "jQuery",
                         contentType: false,
                         dataType: "json"
                     }).
-                    then(function(response) {
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-success\">";
+                        then(function (response) {
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-success\">";
                             alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
                             alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
+                            form.find(".box-body").before(alertMsg);
 
-                        // Alert
-                        swal("ÉXITO!", response.data.msg, "success").then(function(value) {
-                            $scope.closeBankingDepositModal();
-                            $(document).find(".close").click();
-                            // update balance    
-                            $("#balance-display").text("TK "+response.data.balance);    
-                            // flash update row    
-                            var rowId = response.data.invoice.invoice_id;
-                            $(datatable).DataTable().ajax.reload(function(json) {
-                                if ($("#row_"+rowId).length) {
-                                    $("#row_"+rowId).flash("yellow", 5000);
-                                }
-                            }, false);                        
-                        });
+                            // Alert
+                            swal("ÉXITO!", response.data.msg, "success").then(function (value) {
+                                $scope.closeBankingDepositModal();
+                                $(document).find(".close").click();
+                                // update balance    
+                                $("#balance-display").text("TK " + response.data.balance);
+                                // flash update row    
+                                var rowId = response.data.invoice.invoice_id;
+                                $(datatable).DataTable().ajax.reload(function (json) {
+                                    if ($("#row_" + rowId).length) {
+                                        $("#row_" + rowId).flash("yellow", 5000);
+                                    }
+                                }, false);
+                            });
 
-                    }, function(response) {
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-danger\">";
-                        window.angular.forEach(response.data, function(value, key) {
-                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                        }, function (response) {
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-danger\">";
+                            window.angular.forEach(response.data, function (value, key) {
+                                alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                            });
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+                            $(":input[type=\"button\"]").prop("disabled", false);
+                            window.swal("Ups!", response.data.errorMsg, "error");
                         });
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-                        $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                    });
                 });
                 $scope.closeBankingDepositModal = function () {
                     $uibModalInstance.dismiss("cancel");
@@ -2189,7 +2189,7 @@ window.angularApp.factory("BankingDepositModal", ["API_URL", "window", "jQuery",
             },
             scope: $scope,
             size: "md",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: true, // ESC key close enable/disable
             resolve: {
                 userForm: function () {
@@ -2198,8 +2198,8 @@ window.angularApp.factory("BankingDepositModal", ["API_URL", "window", "jQuery",
             }
         });
 
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
         });
     };
 }]);
@@ -2214,31 +2214,31 @@ window.angularApp.factory("BankingRowViewModal", ["API_URL", "window", "jQuery",
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
-            template:   "<div id=\"data-modal\" class=\"modal-inner\">" +
-                            "<div class=\"modal-header\">" +
-								"<button ng-click=\"closeBankingRowViewModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-							   "<h3 class=\"modal-title\" id=\"modal-title\">{{ modal_title }}</h3>" +
-							"</div>" +
-							"<div class=\"modal-body\" id=\"modal-body\">" +
-								"<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-							"</div>" +
-                            "<div class=\"modal-footer\" style=\"text-align:center;\">" +
-                                "<button onClick=\"window.printContent('data-modal', {headline:'<small>Printed on: "+window.formatDate(new Date())+"</small>',screenSize:'fullScreen'})\" class=\"btn btn-primary\"><span class=\"fa fa-fw fa-print\"></span> Imprimir</button>" +
-                            "</div>" +
-                        "</div>",
+            template: "<div id=\"data-modal\" class=\"modal-inner\">" +
+                "<div class=\"modal-header\">" +
+                "<button ng-click=\"closeBankingRowViewModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\">{{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>" +
+                "<div class=\"modal-footer\" style=\"text-align:center;\">" +
+                "<button onClick=\"window.printContent('data-modal', {headline:'<small>Printed on: " + window.formatDate(new Date()) + "</small>',screenSize:'fullScreen'})\" class=\"btn btn-primary\"><span class=\"fa fa-fw fa-print\"></span> Imprimir</button>" +
+                "</div>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $http({
-                  url: window.baseUrl + "/_inc/banking.php?invoice_id=" + invoice.ref_no + '&action_type=VIEW&view_type=' + type,
-                  method: "GET"
+                    url: window.baseUrl + "/_inc/banking.php?invoice_id=" + invoice.ref_no + '&action_type=VIEW&view_type=' + type,
+                    method: "GET"
                 })
-                .then(function (response, status, headers, config) {
-                    $scope.modal_title = "Ver " + type + " detalle";
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
-                }, function (response) {
-                    window.swal("Ups!", response.data.errorMsg, "error").then(function() {
-                        $scope.closeBankingRowViewModal();
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = "Ver " + type + " detalle";
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error").then(function () {
+                            $scope.closeBankingRowViewModal();
+                        });
                     });
-                });
 
                 $scope.closeBankingRowViewModal = function () {
                     $uibModalInstance.dismiss("cancel");
@@ -2246,7 +2246,7 @@ window.angularApp.factory("BankingRowViewModal", ["API_URL", "window", "jQuery",
             },
             scope: $scope,
             size: "md",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: true, // ESC key close enable/disable
             resolve: {
                 userForm: function () {
@@ -2255,42 +2255,42 @@ window.angularApp.factory("BankingRowViewModal", ["API_URL", "window", "jQuery",
             }
         });
 
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
         });
     };
 }]);
 window.angularApp.factory("BankingWithdrawModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function() {
+    return function () {
         var uibModalInstance = $uibModal.open({
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"closeBankingWithdrawModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\">{{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>",
+                "<button ng-click=\"closeBankingWithdrawModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\">{{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $http({
-                  url: window.baseUrl + "/_inc/banking.php?action_type=WITHDRAW",
-                  method: "GET"
+                    url: window.baseUrl + "/_inc/banking.php?action_type=WITHDRAW",
+                    method: "GET"
                 })
-                .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Retiro del Banco";
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
-                    setTimeout(function() {
-                        window.storeApp.select2();
-                    }, 300);
-                }, function(response) {
-                    window.swal("Ups!", response.data.errorMsg, "error").then(function() {
-                        $scope.closeBankingWithdrawModal();
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = "Retiro del Banco";
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
+                        setTimeout(function () {
+                            window.storeApp.select2();
+                        }, 300);
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error").then(function () {
+                            $scope.closeBankingWithdrawModal();
+                        });
                     });
-                });
 
-                $(document).delegate("#withdraw-confirm-btn", "click", function(e) {
+                $(document).delegate("#withdraw-confirm-btn", "click", function (e) {
                     e.stopImmediatePropagation();
                     e.stopPropagation();
                     e.preventDefault();
@@ -2310,39 +2310,39 @@ window.angularApp.factory("BankingWithdrawModal", ["API_URL", "window", "jQuery"
                         contentType: false,
                         dataType: "json"
                     }).
-                    then(function(response) {
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-success\">";
+                        then(function (response) {
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-success\">";
                             alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
                             alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
+                            form.find(".box-body").before(alertMsg);
 
-                        // Alert
-                        swal("ÉXITO!", response.data.msg, "success").then(function(value) {
-                            $scope.closeBankingWithdrawModal();
-                            $(document).find(".close").click(); 
-                            // update balance    
-                            $("#balance-display").text("TK "+response.data.balance);    
-                            // flash update row    
-                            var rowId = response.data.invoice.invoice_id;
-                            $(datatable).DataTable().ajax.reload(function(json) {
-                                if ($("#row_"+rowId).length) {
-                                    $("#row_"+rowId).flash("yellow", 5000);
-                                }
-                            }, false); 
-                        });
+                            // Alert
+                            swal("ÉXITO!", response.data.msg, "success").then(function (value) {
+                                $scope.closeBankingWithdrawModal();
+                                $(document).find(".close").click();
+                                // update balance    
+                                $("#balance-display").text("TK " + response.data.balance);
+                                // flash update row    
+                                var rowId = response.data.invoice.invoice_id;
+                                $(datatable).DataTable().ajax.reload(function (json) {
+                                    if ($("#row_" + rowId).length) {
+                                        $("#row_" + rowId).flash("yellow", 5000);
+                                    }
+                                }, false);
+                            });
 
-                    }, function(response) {
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-danger\">";
-                        window.angular.forEach(response.data, function(value, key) {
-                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                        }, function (response) {
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-danger\">";
+                            window.angular.forEach(response.data, function (value, key) {
+                                alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                            });
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+                            $(":input[type=\"button\"]").prop("disabled", false);
+                            window.swal("Ups!", response.data.errorMsg, "error");
                         });
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-                        $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                    });
                 });
                 $scope.closeBankingWithdrawModal = function () {
                     $uibModalInstance.dismiss("cancel");
@@ -2350,7 +2350,7 @@ window.angularApp.factory("BankingWithdrawModal", ["API_URL", "window", "jQuery"
             },
             scope: $scope,
             size: "md",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: true, // ESC key close enable/disable
             resolve: {
                 userForm: function () {
@@ -2359,8 +2359,8 @@ window.angularApp.factory("BankingWithdrawModal", ["API_URL", "window", "jQuery"
             }
         });
 
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
         });
     };
 }]);
@@ -2369,37 +2369,37 @@ window.angularApp.factory("BankingWithdrawModal", ["API_URL", "window", "jQuery"
 // end withdraw factory
 //===============================
 window.angularApp.factory("BankAccountCreateModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function($scope) {
+    return function ($scope) {
         var uibModalInstance = $uibModal.open({
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"closeBankAccountCreateModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-plus\"></span> {{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>",
+                "<button ng-click=\"closeBankAccountCreateModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-plus\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $http({
-                  url: window.baseUrl + "/_inc/taxrate.php?action_type=CREATE",
-                  method: "GET"
+                    url: window.baseUrl + "/_inc/taxrate.php?action_type=CREATE",
+                    method: "GET"
                 })
-                .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Crear nueva Cuenta Bancaria";
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = "Crear nueva Cuenta Bancaria";
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
 
-                    setTimeout(function() {
-                        window.storeApp.select2();
-                    }, 500);
-                    
-                }, function(response) {
-                   window.swal("Ups!", response.data.errorMsg, "error");
-                });
+                        setTimeout(function () {
+                            window.storeApp.select2();
+                        }, 500);
+
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error");
+                    });
 
                 // Submit BankAccount Form
-                $(document).delegate("#create-taxrate-submit", "click", function(e) {
+                $(document).delegate("#create-taxrate-submit", "click", function (e) {
                     e.stopImmediatePropagation();
                     e.stopPropagation();
                     e.preventDefault();
@@ -2409,7 +2409,7 @@ window.angularApp.factory("BankAccountCreateModal", ["API_URL", "window", "jQuer
                     var form = $($tag.data("form"));
                     form.find(".alert").remove();
                     var actionUrl = form.attr("action");
-                    
+
                     $http({
                         url: window.baseUrl + "/_inc/" + actionUrl,
                         method: "POST",
@@ -2419,57 +2419,57 @@ window.angularApp.factory("BankAccountCreateModal", ["API_URL", "window", "jQuer
                         contentType: false,
                         dataType: "json"
                     }).
-                    then(function(response) {
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-success\">";
-                        alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
-                        alertMsg += "</div>";
-                        form.find(".taxrate-body").before(alertMsg);
+                        then(function (response) {
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-success\">";
+                            alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
+                            alertMsg += "</div>";
+                            form.find(".taxrate-body").before(alertMsg);
 
-                        // Alert
-                        window.swal("ÉXITO!", response.data.msg, "success")
-                        .then(function(value) {
+                            // Alert
+                            window.swal("ÉXITO!", response.data.msg, "success")
+                                .then(function (value) {
 
-                            // close modalwindow
-                            $scope.closeBankAccountCreateModal();
-                            $(document).find(".close").trigger("click");
+                                    // close modalwindow
+                                    $scope.closeBankAccountCreateModal();
+                                    $(document).find(".close").trigger("click");
 
-                            // insert taxrate into select2
-                            var select = $(document).find("#taxrate_id");
-                            if (select.length) {
-                            
-                                var option = $("<option></option>").
-                                     attr("selected", true).
-                                     text(response.data.taxrate.taxrate_name).
-                                     val(response.data.id);
-                                option.appendTo(select);
-                                select.trigger("change");
-                            }
+                                    // insert taxrate into select2
+                                    var select = $(document).find("#taxrate_id");
+                                    if (select.length) {
 
-                            // increase store count
-                            var taxrateCount = $(document).find("#taxrate-count h3");
-                            if (taxrateCount) {
-                                taxrateCount.text(parseInt(taxrateCount.text()) + 1);
-                            }
+                                        var option = $("<option></option>").
+                                            attr("selected", true).
+                                            text(response.data.taxrate.taxrate_name).
+                                            val(response.data.id);
+                                        option.appendTo(select);
+                                        select.trigger("change");
+                                    }
 
-                            // Callback
-                            if ($scope.BankAccountCreateModalCallback) {
-                                $scope.BankAccountCreateModalCallback($scope);
-                            }
+                                    // increase store count
+                                    var taxrateCount = $(document).find("#taxrate-count h3");
+                                    if (taxrateCount) {
+                                        taxrateCount.text(parseInt(taxrateCount.text()) + 1);
+                                    }
 
+                                    // Callback
+                                    if ($scope.BankAccountCreateModalCallback) {
+                                        $scope.BankAccountCreateModalCallback($scope);
+                                    }
+
+                                });
+
+                        }, function (response) {
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-danger\">";
+                            window.angular.forEach(response.data, function (value, key) {
+                                alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                            });
+                            alertMsg += "</div>";
+                            form.find(".taxrate-body").before(alertMsg);
+                            $(":input[type=\"button\"]").prop("disabled", false);
+                            window.swal("Ups!", response.data.errorMsg, "error");
                         });
-
-                    }, function(response) {
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-danger\">";
-                        window.angular.forEach(response.data, function(value, key) {
-                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
-                        });
-                        alertMsg += "</div>";
-                        form.find(".taxrate-body").before(alertMsg);
-                        $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                    });
                 });
 
                 $scope.closeBankAccountCreateModal = function () {
@@ -2478,50 +2478,50 @@ window.angularApp.factory("BankAccountCreateModal", ["API_URL", "window", "jQuer
             },
             scope: $scope,
             size: "md",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: true,
         });
 
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
         });
     };
 }]);
-window.angularApp.factory("BankAccountDeleteModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function(API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function(account) {
+window.angularApp.factory("BankAccountDeleteModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
+    return function (account) {
         var uibModalInstance = $uibModal.open({
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                           "<button ng-click=\"closeBankAccountDeleteModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-trash\"></span> {{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>",
+                "<button ng-click=\"closeBankAccountDeleteModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-trash\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $http({
-                  url: window.baseUrl + "/_inc/bank_account.php?account_id=" + account.id + "&action_type=DELETE",
-                  method: "GET"
+                    url: window.baseUrl + "/_inc/bank_account.php?account_id=" + account.id + "&action_type=DELETE",
+                    method: "GET"
                 })
-                .then(function(response, status, headers, config) {
-                    $scope.modal_title = account.account_name;
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = account.account_name;
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
 
-                    setTimeout(function() {
-                        window.storeApp.select2();
-                    }, 100);
-                    
-                }, function(response) {
-                    window.swal("Ups!", response.data.errorMsg, "error")
-                    .then(function() {
-                        $scope.closeBankAccountDeleteModal();
+                        setTimeout(function () {
+                            window.storeApp.select2();
+                        }, 100);
+
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error")
+                            .then(function () {
+                                $scope.closeBankAccountDeleteModal();
+                            });
                     });
-                });
 
-                $(document).delegate("#account-delete", "click", function(e) {
-                    
+                $(document).delegate("#account-delete", "click", function (e) {
+
                     e.stopImmediatePropagation();
                     e.stopPropagation();
                     e.preventDefault();
@@ -2541,40 +2541,40 @@ window.angularApp.factory("BankAccountDeleteModal", ["API_URL", "window", "jQuer
                         contentType: false,
                         dataType: "json"
                     }).
-                    then(function(response) {
+                        then(function (response) {
 
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-success\">";
-                        alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
-                        alertMsg += "</div>";
-                        form.find(".account-body").before(alertMsg);
-                        $(datatable).DataTable().ajax.reload(null, false);
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-success\">";
+                            alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
+                            alertMsg += "</div>";
+                            form.find(".account-body").before(alertMsg);
+                            $(datatable).DataTable().ajax.reload(null, false);
 
-                        // Alert
-                        window.swal("ÉXITO!", response.data.msg, "success")
-                        .then(function(value) {
+                            // Alert
+                            window.swal("ÉXITO!", response.data.msg, "success")
+                                .then(function (value) {
 
-                            $scope.closeBankAccountDeleteModal();
-                            $(document).find(".close").trigger("click");
+                                    $scope.closeBankAccountDeleteModal();
+                                    $(document).find(".close").trigger("click");
+                                });
+
+                            // Callback
+                            if ($scope.BankAccountDeleteModalCallback) {
+                                $scope.BankAccountDeleteModalCallback($scope);
+                            }
+
+                        }, function (response) {
+
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-danger\">";
+                            window.angular.forEach(response.data, function (value, key) {
+                                alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                            });
+                            alertMsg += "</div>";
+                            form.find(".account-body").before(alertMsg);
+                            $(":input[type=\"button\"]").prop("disabled", false);
+                            window.swal("Ups!", response.data.errorMsg, "error");
                         });
-
-                        // Callback
-                        if ($scope.BankAccountDeleteModalCallback) {
-                            $scope.BankAccountDeleteModalCallback($scope);
-                        }
-
-                    }, function(response) {
-
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-danger\">";
-                        window.angular.forEach(response.data, function(value, key) {
-                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
-                        });
-                        alertMsg += "</div>";
-                        form.find(".account-body").before(alertMsg);
-                        $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                    });
 
                 });
 
@@ -2584,42 +2584,42 @@ window.angularApp.factory("BankAccountDeleteModal", ["API_URL", "window", "jQuer
             },
             scope: $scope,
             size: "md",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: true,
         });
-        
-        uibModalInstance.result.catch(function () { 
-                uibModalInstance.close(); 
+
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
         });
     };
 }]);
 window.angularApp.factory("BankAccountEditModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function(account) {
+    return function (account) {
         var accountId;
         var uibModalInstance = $uibModal.open({
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"closeBankAccountEditModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-pencil\"></span> {{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile='rawHtml'>Loading...</div>" +
-                        "</div>",
+                "<button ng-click=\"closeBankAccountEditModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-pencil\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile='rawHtml'>Loading...</div>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $http({
-                  url: API_URL + "/_inc/bank_account.php?account_id=" + account.id + "&action_type=EDIT",
-                  method: "GET"
+                    url: API_URL + "/_inc/bank_account.php?account_id=" + account.id + "&action_type=EDIT",
+                    method: "GET"
                 })
-                .then(function(response, status, headers, config) {
-                $scope.modal_title = account.account_name;
-                $scope.rawHtml = $sce.trustAsHtml(response.data);
-                }, function(response) {
-                   window.swal("Ups!", response.data.errorMsg, "error");
-                });
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = account.account_name;
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error");
+                    });
 
-                $(document).delegate("#account-update", "click", function(e) {
+                $(document).delegate("#account-update", "click", function (e) {
                     e.stopImmediatePropagation();
                     e.stopPropagation();
                     e.preventDefault();
@@ -2630,7 +2630,7 @@ window.angularApp.factory("BankAccountEditModal", ["API_URL", "window", "jQuery"
                     var datatable = $tag.data("datatable");
                     form.find(".alert").remove();
                     var actionUrl = form.attr("action");
-                    
+
                     $http({
                         url: API_URL + "/_inc/" + actionUrl,
                         method: "POST",
@@ -2640,52 +2640,52 @@ window.angularApp.factory("BankAccountEditModal", ["API_URL", "window", "jQuery"
                         contentType: false,
                         dataType: "json"
                     }).
-                    then(function(response) {
+                        then(function (response) {
 
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-success\">";
-                        alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
-                        alertMsg += "</div>";
-                        form.find(".account-body").before(alertMsg);
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-success\">";
+                            alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
+                            alertMsg += "</div>";
+                            form.find(".account-body").before(alertMsg);
 
-                        // Alert
-                        window.swal({
-                          title: "ÉXITO!",
-                          text: response.data.msg,
-                          icon: "success",
-                          buttons: true,
-                          dangerMode: false,
-                        })
-                        .then(function (willDelete) {
-                            if (willDelete) {
+                            // Alert
+                            window.swal({
+                                title: "ÉXITO!",
+                                text: response.data.msg,
+                                icon: "success",
+                                buttons: true,
+                                dangerMode: false,
+                            })
+                                .then(function (willDelete) {
+                                    if (willDelete) {
 
-                                $scope.closeBankAccountEditModal();
-                                $(document).find(".close").trigger("click");
-                                accountId = response.data.id;
-                                
-                                $(datatable).DataTable().ajax.reload(function(json) {
-                                    if ($("#row_"+accountId).length) {
-                                        $("#row_"+accountId).flash("yellow", 5000);
+                                        $scope.closeBankAccountEditModal();
+                                        $(document).find(".close").trigger("click");
+                                        accountId = response.data.id;
+
+                                        $(datatable).DataTable().ajax.reload(function (json) {
+                                            if ($("#row_" + accountId).length) {
+                                                $("#row_" + accountId).flash("yellow", 5000);
+                                            }
+                                        }, false);
+
+                                    } else {
+                                        $(datatable).DataTable().ajax.reload(null, false);
                                     }
-                                }, false);
+                                });
 
-                            } else {
-                                $(datatable).DataTable().ajax.reload(null, false);
-                            }
+                        }, function (response) {
+
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-danger\">";
+                            window.angular.forEach(response.data, function (value, key) {
+                                alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                            });
+                            alertMsg += "</div>";
+                            form.find(".account-body").before(alertMsg);
+                            $(":input[type=\"button\"]").prop("disabled", false);
+                            window.swal("Ups!", response.data.errorMsg, "error");
                         });
-
-                    }, function(response) {
-
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-danger\">";
-                        window.angular.forEach(response.data, function(value, key) {
-                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
-                        });
-                        alertMsg += "</div>";
-                        form.find(".account-body").before(alertMsg);
-                        $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                    });
 
                 });
 
@@ -2695,12 +2695,12 @@ window.angularApp.factory("BankAccountEditModal", ["API_URL", "window", "jQuery"
             },
             scope: $scope,
             size: "md",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: true,
         });
 
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
         });
     };
 }]);
@@ -2709,38 +2709,38 @@ window.angularApp.factory("BankAccountEditModal", ["API_URL", "window", "jQuery"
 //================================
 
 window.angularApp.factory("BankTransferModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function() {
+    return function () {
         var uibModalInstance = $uibModal.open({
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"CloseBankTransferModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-paper-plane\"></span> {{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>",
+                "<button ng-click=\"CloseBankTransferModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-paper-plane\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $http({
-                  url: window.baseUrl + "/_inc/banking.php?action_type=TRANSFER",
-                  method: "GET"
+                    url: window.baseUrl + "/_inc/banking.php?action_type=TRANSFER",
+                    method: "GET"
                 })
-                .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Transferir Saldo";
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
-                    setTimeout(function() {
-                        window.storeApp.select2();
-                    }, 100);
-                }, function(response) {
-                    window.swal("Ups!", response.data.errorMsg, "error")
-                    .then(function() {
-                        $scope.CloseBankTransferModal();
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = "Transferir Saldo";
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
+                        setTimeout(function () {
+                            window.storeApp.select2();
+                        }, 100);
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error")
+                            .then(function () {
+                                $scope.CloseBankTransferModal();
+                            });
                     });
-                });
 
                 // Confirm transfer
-                $(document).delegate("#transfer-confirm-btn", "click", function(e) {
+                $(document).delegate("#transfer-confirm-btn", "click", function (e) {
                     e.stopImmediatePropagation();
                     e.stopPropagation();
                     e.preventDefault();
@@ -2760,39 +2760,39 @@ window.angularApp.factory("BankTransferModal", ["API_URL", "window", "jQuery", "
                         contentType: false,
                         dataType: "json"
                     }).
-                    then(function(response) {
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-success\">";
+                        then(function (response) {
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-success\">";
                             alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
                             alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
+                            form.find(".box-body").before(alertMsg);
 
-                        // Alert
-                        swal("ÉXITO!", response.data.msg, "success").then(function(value) {
-                            $scope.CloseBankTransferModal();
-                            $(document).find(".close").trigger("click");
-                            // update balance    
-                            $("#balance-display").text("TK "+response.data.balance);    
-                            // flash update row    
-                            var rowId = response.data.invoice.invoice_id;
-                            $(datatable).DataTable().ajax.reload(function(json) {
-                                if ($("#row_"+rowId).length) {
-                                    $("#row_"+rowId).flash("yellow", 5000);
-                                }
-                            }, false);                        
-                        });
+                            // Alert
+                            swal("ÉXITO!", response.data.msg, "success").then(function (value) {
+                                $scope.CloseBankTransferModal();
+                                $(document).find(".close").trigger("click");
+                                // update balance    
+                                $("#balance-display").text("TK " + response.data.balance);
+                                // flash update row    
+                                var rowId = response.data.invoice.invoice_id;
+                                $(datatable).DataTable().ajax.reload(function (json) {
+                                    if ($("#row_" + rowId).length) {
+                                        $("#row_" + rowId).flash("yellow", 5000);
+                                    }
+                                }, false);
+                            });
 
-                    }, function(response) {
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-danger\">";
-                        window.angular.forEach(response.data, function(value, key) {
-                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                        }, function (response) {
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-danger\">";
+                            window.angular.forEach(response.data, function (value, key) {
+                                alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                            });
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+                            $(":input[type=\"button\"]").prop("disabled", false);
+                            window.swal("Ups!", response.data.errorMsg, "error");
                         });
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-                        $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                    });
                 });
                 $scope.CloseBankTransferModal = function () {
                     $uibModalInstance.dismiss("cancel");
@@ -2800,7 +2800,7 @@ window.angularApp.factory("BankTransferModal", ["API_URL", "window", "jQuery", "
             },
             scope: $scope,
             size: "md",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: true,
             resolve: {
                 userForm: function () {
@@ -2809,8 +2809,8 @@ window.angularApp.factory("BankTransferModal", ["API_URL", "window", "jQuery", "
             }
         });
 
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
         });
     };
 }]);
@@ -2820,38 +2820,38 @@ window.angularApp.factory("BankTransferModal", ["API_URL", "window", "jQuery", "
 //===============================
 
 window.angularApp.factory("EmailModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function(content) {
+    return function (content) {
         var uibModalInstance = $uibModal.open({
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"cancel();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-envelope\"></span>Email: {{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>" +
-                        "<div class=\"modal-footer\">" +
-                            "<a id=\"sendEmailBtn\" class=\"btn-success btn btn-sm\" data-loading-text=\"Sending...\"><span class=\"fa fa-fw fa-send-o\"></span> SEND</a>" +
-                            "<a ng-click=\"cancel();\" class=\"btn-danger btn btn-sm\" data-dismiss=\"modal\" aria-label=\"Close\"><span class=\"fa fa-fw- fa-close\"></span> CLOSE</a>" +
-                        "</div>",
+                "<button ng-click=\"cancel();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-envelope\"></span>Email: {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>" +
+                "<div class=\"modal-footer\">" +
+                "<a id=\"sendEmailBtn\" class=\"btn-success btn btn-sm\" data-loading-text=\"Sending...\"><span class=\"fa fa-fw fa-send-o\"></span> SEND</a>" +
+                "<a ng-click=\"cancel();\" class=\"btn-danger btn btn-sm\" data-dismiss=\"modal\" aria-label=\"Close\"><span class=\"fa fa-fw- fa-close\"></span> CLOSE</a>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $scope.modal_title = content.title;
                 var form = "<form method=\"post\" action=\"#\" id=\"email-form\" style=\"margin:40px 20px;\">";
-                form += "<input type=\"hidden\" name=\"recipient_name\" value=\""+content.recipientName+"\">";
-                form += "<input type=\"hidden\" name=\"template\" value=\""+content.template+"\">";
-                form += "<input type=\"hidden\" name=\"subject\" value=\""+content.subject+"\">";
-                form += "<input type=\"hidden\" name=\"title\" value=\""+content.title.trim()+"\">";
+                form += "<input type=\"hidden\" name=\"recipient_name\" value=\"" + content.recipientName + "\">";
+                form += "<input type=\"hidden\" name=\"template\" value=\"" + content.template + "\">";
+                form += "<input type=\"hidden\" name=\"subject\" value=\"" + content.subject + "\">";
+                form += "<input type=\"hidden\" name=\"title\" value=\"" + content.title.trim() + "\">";
                 form += "<input type=\"email\" name=\"email\" class=\"form-control\" placeholder=\"Please, type a valid email address\" required>";
                 if (content.styles && content.styles != undefined) {
-                    form += "<textarea style=\"display:none;\" name=\"styles\">"+content.styles.trim()+"</textarea>";
+                    form += "<textarea style=\"display:none;\" name=\"styles\">" + content.styles.trim() + "</textarea>";
                 }
-                form += "<textarea style=\"display:none;\" name=\"emailbody\">"+content.html.trim()+"</textarea>";
+                form += "<textarea style=\"display:none;\" name=\"emailbody\">" + content.html.trim() + "</textarea>";
                 form += "</form>";
                 $scope.rawHtml = $sce.trustAsHtml(form);
                 $scope.content = content;
-                $(document).delegate("#sendEmailBtn", "click", function(e) {
+                $(document).delegate("#sendEmailBtn", "click", function (e) {
                     e.stopImmediatePropagation();
                     e.stopPropagation();
                     e.preventDefault();
@@ -2867,17 +2867,17 @@ window.angularApp.factory("EmailModal", ["API_URL", "window", "jQuery", "$http",
                         contentType: false,
                         dataType: "json"
                     }).
-                    then(function(response) {
-                        $("body").removeClass("overlay-loader");
-                        $btn.button("reset");
-                        window.swal("ÉXITO!", response.data.msg, "success").then(function() {
-                            $scope.cancel();
+                        then(function (response) {
+                            $("body").removeClass("overlay-loader");
+                            $btn.button("reset");
+                            window.swal("ÉXITO!", response.data.msg, "success").then(function () {
+                                $scope.cancel();
+                            });
+                        }, function (response) {
+                            $("body").removeClass("overlay-loader");
+                            $btn.button("reset");
+                            window.swal("Ups!", response.data.errorMsg, "error");
                         });
-                    }, function(response) {
-                        $("body").removeClass("overlay-loader");
-                        $btn.button("reset");
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                    });
                 });
                 $scope.cancel = function () {
                     $uibModalInstance.dismiss("cancel");
@@ -2885,49 +2885,49 @@ window.angularApp.factory("EmailModal", ["API_URL", "window", "jQuery", "$http",
             },
             scope: $scope,
             size: "md",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: true,
         });
 
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
         });
     };
 }]);
 window.angularApp.factory("keyboardShortcutModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function() {
+    return function () {
         var uibModalInstance = $uibModal.open({
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"cancel();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-keyboard-o\"></span> {{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>",
+                "<button ng-click=\"cancel();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-keyboard-o\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $http({
-                  url: API_URL + "/_inc/template/partials/keyboard_shortcut.php",
-                  method: "GET"
+                    url: API_URL + "/_inc/template/partials/keyboard_shortcut.php",
+                    method: "GET"
                 })
-                .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Atajo de Teclado";
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
-                }, function(data) {
-                   window.swal("Ups!", "an unknown error occured!", "error");
-                });
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = "Atajo de Teclado";
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
+                    }, function (data) {
+                        window.swal("Ups!", "an unknown error occured!", "error");
+                    });
                 $scope.cancel = function () {
                     $uibModalInstance.dismiss("cancel");
                 };
             },
             scope: $scope,
             size: "md",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: true,
         });
-        
+
         uibModalInstance.result.then(function (selectedItem) {
             // ...
         }, function () {
@@ -2936,40 +2936,40 @@ window.angularApp.factory("keyboardShortcutModal", ["API_URL", "window", "jQuery
     };
 }]);
 window.angularApp.factory("PmethodDeleteModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function(pmethod) {
+    return function (pmethod) {
         var uibModalInstance = $uibModal.open({
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"closePmethodDeleteModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-trash\"></span> {{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>",
+                "<button ng-click=\"closePmethodDeleteModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-trash\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $http({
-                  url: window.baseUrl + "/_inc/pmethod.php?pmethod_id=" + pmethod.pmethod_id + "&action_type=DELETE",
-                  method: "GET"
+                    url: window.baseUrl + "/_inc/pmethod.php?pmethod_id=" + pmethod.pmethod_id + "&action_type=DELETE",
+                    method: "GET"
                 })
-                .then(function(response, status, headers, config) {
-                    $scope.modal_title = pmethod.name;
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = pmethod.name;
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
 
-                    setTimeout(function() {
-                        window.storeApp.select2();
-                    }, 100);
-                    
-                }, function(response) {
-                    window.swal("Ups!", response.data.errorMsg, "error")
-                    .then(function() {
-                        $scope.closePmethodDeleteModal();
+                        setTimeout(function () {
+                            window.storeApp.select2();
+                        }, 100);
+
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error")
+                            .then(function () {
+                                $scope.closePmethodDeleteModal();
+                            });
                     });
-                });
 
-                $(document).delegate("#pmethod-delete", "click", function(e) {
-                    
+                $(document).delegate("#pmethod-delete", "click", function (e) {
+
                     e.stopImmediatePropagation();
                     e.stopPropagation();
                     e.preventDefault();
@@ -2989,34 +2989,34 @@ window.angularApp.factory("PmethodDeleteModal", ["API_URL", "window", "jQuery", 
                         contentType: false,
                         dataType: "json"
                     }).
-                    then(function(response) {
+                        then(function (response) {
 
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-success\">";
-                        alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-                        $(datatable).DataTable().ajax.reload( null, false );
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-success\">";
+                            alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+                            $(datatable).DataTable().ajax.reload(null, false);
 
-                        // Alert
-                        window.swal("ÉXITO!", response.data.msg, "success")
-                        .then(function(value) {
-                            $scope.closePmethodDeleteModal();
-                            $(document).find(".close").trigger("click");
+                            // Alert
+                            window.swal("ÉXITO!", response.data.msg, "success")
+                                .then(function (value) {
+                                    $scope.closePmethodDeleteModal();
+                                    $(document).find(".close").trigger("click");
+                                });
+
+                        }, function (response) {
+
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-danger\">";
+                            window.angular.forEach(response.data, function (value, key) {
+                                alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                            });
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+                            $(":input[type=\"button\"]").prop("disabled", false);
+                            window.swal("Ups!", response.data.errorMsg, "error");
                         });
-
-                    }, function(response) {
-
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-danger\">";
-                        window.angular.forEach(response.data, function(value, key) {
-                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
-                        });
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-                        $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                    });
 
                 });
 
@@ -3026,47 +3026,47 @@ window.angularApp.factory("PmethodDeleteModal", ["API_URL", "window", "jQuery", 
             },
             scope: $scope,
             size: "md",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: true,
         });
 
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
         });
     };
 }]);
 window.angularApp.factory("PmethodEditModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function(pmethod) {
+    return function (pmethod) {
         var pmethodId;
         var uibModalInstance = $uibModal.open({
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"closePmethodEditModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-pencil\"></span> {{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>",
+                "<button ng-click=\"closePmethodEditModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-pencil\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $http({
-                  url: API_URL + "/_inc/pmethod.php?pmethod_id=" + pmethod.pmethod_id + "&action_type=EDIT",
-                  method: "GET"
+                    url: API_URL + "/_inc/pmethod.php?pmethod_id=" + pmethod.pmethod_id + "&action_type=EDIT",
+                    method: "GET"
                 })
-                .then(function(response, status, headers, config) {
-                    $scope.modal_title = pmethod.name;
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = pmethod.name;
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
 
-                    setTimeout(function() {
-                        window.storeApp.select2();
-                    }, 100);
+                        setTimeout(function () {
+                            window.storeApp.select2();
+                        }, 100);
 
-                }, function(response) {
-                   window.swal("Ups!", response.data.errorMsg, "error");
-                });
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error");
+                    });
 
-                $(document).delegate("#pmethod-update", "click", function(e) {
+                $(document).delegate("#pmethod-update", "click", function (e) {
                     e.stopImmediatePropagation();
                     e.stopPropagation();
                     e.preventDefault();
@@ -3086,54 +3086,54 @@ window.angularApp.factory("PmethodEditModal", ["API_URL", "window", "jQuery", "$
                         contentType: false,
                         dataType: "json"
                     }).
-                    then(function(response) {
+                        then(function (response) {
 
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-success\">";
-                        alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-success\">";
+                            alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
 
-                        // Alert
-                        window.swal({
-                          title: "ÉXITO!",
-                          text: response.data.msg,
-                          icon: "success",
-                          buttons: true,
-                          dangerMode: false,
-                        })
-                        .then(function (willDelete) {
-                            if (willDelete) {
-                                $scope.closePmethodEditModal();
-                                $(document).find(".close").trigger("click");
-                                pmethodId = response.data.id;
-                                
-                                $(datatable).DataTable().ajax.reload(function(json) {
-                                    if ($("#row_"+pmethodId).length) {
-                                        $("#row_"+pmethodId).flash("yellow", 5000);
+                            // Alert
+                            window.swal({
+                                title: "ÉXITO!",
+                                text: response.data.msg,
+                                icon: "success",
+                                buttons: true,
+                                dangerMode: false,
+                            })
+                                .then(function (willDelete) {
+                                    if (willDelete) {
+                                        $scope.closePmethodEditModal();
+                                        $(document).find(".close").trigger("click");
+                                        pmethodId = response.data.id;
+
+                                        $(datatable).DataTable().ajax.reload(function (json) {
+                                            if ($("#row_" + pmethodId).length) {
+                                                $("#row_" + pmethodId).flash("yellow", 5000);
+                                            }
+                                        }, false);
+
+                                    } else {
+                                        $(datatable).DataTable().ajax.reload(null, false);
                                     }
-                                }, false);
+                                });
 
-                            } else {
-                                $(datatable).DataTable().ajax.reload(null, false);
-                            }
+                        }, function (response) {
+
+                            $btn.button("reset");
+
+                            var alertMsg = "<div class=\"alert alert-danger\">";
+                            window.angular.forEach(response.data, function (value, key) {
+                                alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                            });
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+
+                            $(":input[type=\"button\"]").prop("disabled", false);
+
+                            window.swal("Ups!", response.data.errorMsg, "error");
                         });
-
-                    }, function(response) {
-
-                        $btn.button("reset");
-
-                        var alertMsg = "<div class=\"alert alert-danger\">";
-                        window.angular.forEach(response.data, function(value, key) {
-                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
-                        });
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-
-                        $(":input[type=\"button\"]").prop("disabled", false);
-
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                    });
 
                 });
 
@@ -3143,12 +3143,12 @@ window.angularApp.factory("PmethodEditModal", ["API_URL", "window", "jQuery", "$
             },
             scope: $scope,
             size: "md",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: true,
         });
 
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
         });
     };
 }]);
@@ -3159,30 +3159,30 @@ window.angularApp.factory("POSFilemanagerModal", ["API_URL", "window", "jQuery",
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"closeFileManager()\" type=\"button\" id=\"close-filemanger\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\">{{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-bodyx\" id=\"filemanager\">" +
-                            "<div bind-html-compile=\"rawHtml\"><div style=\"padding:10px;\">Loading...</div></div>" +
-                        "</div>",
+                "<button ng-click=\"closeFileManager()\" type=\"button\" id=\"close-filemanger\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\">{{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-bodyx\" id=\"filemanager\">" +
+                "<div bind-html-compile=\"rawHtml\"><div style=\"padding:10px;\">Loading...</div></div>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $http({
-                  url: window.baseUrl + "/"+window.adminDir+"/filemanager.php?ajax=1&target=" + data.target + "&thumb=" + data.thumb,
-                  dataType: "html",
-                  method: "GET"
+                    url: window.baseUrl + "/" + window.adminDir + "/filemanager.php?ajax=1&target=" + data.target + "&thumb=" + data.thumb,
+                    dataType: "html",
+                    method: "GET"
                 })
-                .then(function (response, status, headers, config) {
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
-                    $(".modal:first").addClass("filemanager-open");
-                }, function (response) {
-                    window.swal("Ups!", response.data.errorMsg, "error").then(function() {
-                        $scope.closeFileManager();
+                    .then(function (response, status, headers, config) {
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
+                        $(".modal:first").addClass("filemanager-open");
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error").then(function () {
+                            $scope.closeFileManager();
+                        });
                     });
-                });
 
                 $scope.closeFileManager = function () {
                     $uibModalInstance.dismiss("cancel");
-                    setTimeout(function() {
+                    setTimeout(function () {
                         console.log($(document).find('.modal').length);
                         if ($(document).find('.modal').length) {
                             $("body").addClass("modal-open");
@@ -3192,54 +3192,54 @@ window.angularApp.factory("POSFilemanagerModal", ["API_URL", "window", "jQuery",
             },
             scope: $scope,
             size: "lg",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: false,
         });
-        
-        uibModalInstance.result.catch(function () { 
-            setTimeout(function() {
+
+        uibModalInstance.result.catch(function () {
+            setTimeout(function () {
                 $("body").removeClass("modal-open");
                 $("body").removeClass("filemanager-open");
             }, 500);
-            uibModalInstance.close(); 
+            uibModalInstance.close();
         });
     };
 }]);
 window.angularApp.factory("PrinterDeleteModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function(printer) {
+    return function (printer) {
         var uibModalInstance = $uibModal.open({
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"closeprinterDeleteModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-trash\"></span> {{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>",
+                "<button ng-click=\"closeprinterDeleteModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-trash\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $http({
-                  url: window.baseUrl + "/_inc/printer.php?printer_id=" + printer.printer_id + "&action_type=DELETE",
-                  method: "GET"
+                    url: window.baseUrl + "/_inc/printer.php?printer_id=" + printer.printer_id + "&action_type=DELETE",
+                    method: "GET"
                 })
-                .then(function(response) {
-                    $scope.modal_title = printer.title;
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
+                    .then(function (response) {
+                        $scope.modal_title = printer.title;
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
 
-                    setTimeout(function() {
-                        window.storeApp.select2();
-                    }, 100);
+                        setTimeout(function () {
+                            window.storeApp.select2();
+                        }, 100);
 
-                }, function(response) {
-                    window.swal("Ups!", response.data.errorMsg, "error")
-                    .then(function() {
-                        $scope.closeprinterDeleteModal();
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error")
+                            .then(function () {
+                                $scope.closeprinterDeleteModal();
+                            });
                     });
-                });
 
-                $(document).delegate("#printer-delete", "click", function(e) {
-                    
+                $(document).delegate("#printer-delete", "click", function (e) {
+
                     e.stopImmediatePropagation();
                     e.stopPropagation();
                     e.preventDefault();
@@ -3259,33 +3259,33 @@ window.angularApp.factory("PrinterDeleteModal", ["API_URL", "window", "jQuery", 
                         contentType: false,
                         dataType: "json"
                     }).
-                    then(function(response) {
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-success\">";
-                        alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-                        $(datatable).DataTable().ajax.reload( null, false );
+                        then(function (response) {
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-success\">";
+                            alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+                            $(datatable).DataTable().ajax.reload(null, false);
 
-                        // Alert
-                        window.swal("ÉXITO!", response.data.msg, "success")
-                        .then(function(value) {
-                            $scope.closeprinterDeleteModal();
-                            $(document).find(".close").trigger("click");
+                            // Alert
+                            window.swal("ÉXITO!", response.data.msg, "success")
+                                .then(function (value) {
+                                    $scope.closeprinterDeleteModal();
+                                    $(document).find(".close").trigger("click");
+                                });
+
+                        }, function (response) {
+
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-danger\">";
+                            window.angular.forEach(response.data, function (value, key) {
+                                alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                            });
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+                            $(":input[type=\"button\"]").prop("disabled", false);
+                            window.swal("Ups!", response.data.errorMsg, "error");
                         });
-
-                    }, function(response) {
-
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-danger\">";
-                        window.angular.forEach(response.data, function(value, key) {
-                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
-                        });
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-                        $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                    });
 
                 });
 
@@ -3295,45 +3295,45 @@ window.angularApp.factory("PrinterDeleteModal", ["API_URL", "window", "jQuery", 
             },
             scope: $scope,
             size: "md",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: true,
         });
 
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
         });
     };
 }]);
 window.angularApp.factory("PrinterEditModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function($rscope) {
+    return function ($rscope) {
         var printerId;
         var uibModalInstance = $uibModal.open({
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"closeprinterEditModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-pencil\"></span> {{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>",
+                "<button ng-click=\"closeprinterEditModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-pencil\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $http({
-                  url: window.baseUrl + "/_inc/printer.php?printer_id=" + $rscope.printer.printer_id + "&action_type=EDIT",
-                  method: "GET"
+                    url: window.baseUrl + "/_inc/printer.php?printer_id=" + $rscope.printer.printer_id + "&action_type=EDIT",
+                    method: "GET"
                 })
-                .then(function(response, status, headers, config) {
-                    $scope.modal_title = $rscope.printer.title;
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
-                    setTimeout(function() {
-                        window.storeApp.select2();
-                    }, 100);
-                }, function(response) {
-                   window.swal("Ups!", response.data.errorMsg, "error");
-                });
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = $rscope.printer.title;
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
+                        setTimeout(function () {
+                            window.storeApp.select2();
+                        }, 100);
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error");
+                    });
 
-                $(document).delegate("#printer-update", "click", function(e) {
+                $(document).delegate("#printer-update", "click", function (e) {
                     e.stopImmediatePropagation();
                     e.stopPropagation();
                     e.preventDefault();
@@ -3353,50 +3353,50 @@ window.angularApp.factory("PrinterEditModal", ["API_URL", "window", "jQuery", "$
                         contentType: false,
                         dataType: "json"
                     }).
-                    then(function(response) {
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-success\">";
-                        alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
+                        then(function (response) {
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-success\">";
+                            alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
 
-                        // Alert Box
-                        window.swal({
-                          title: "ÉXITO!",
-                          text: response.data.msg,
-                          icon: "success",
-                          buttons: true,
-                          dangerMode: false,
-                        })
-                        .then(function (willDelete) {
-                            if (willDelete) {
-                                $scope.closeprinterEditModal();
-                                $(document).find(".close").trigger("click");
-                                printerId = response.data.id;
-                                
-                                $(datatable).DataTable().ajax.reload(function(json) {
-                                    if ($("#row_"+printerId).length) {
-                                        $("#row_"+printerId).flash("yellow", 5000);
+                            // Alert Box
+                            window.swal({
+                                title: "ÉXITO!",
+                                text: response.data.msg,
+                                icon: "success",
+                                buttons: true,
+                                dangerMode: false,
+                            })
+                                .then(function (willDelete) {
+                                    if (willDelete) {
+                                        $scope.closeprinterEditModal();
+                                        $(document).find(".close").trigger("click");
+                                        printerId = response.data.id;
+
+                                        $(datatable).DataTable().ajax.reload(function (json) {
+                                            if ($("#row_" + printerId).length) {
+                                                $("#row_" + printerId).flash("yellow", 5000);
+                                            }
+                                        }, false);
+
+                                    } else {
+                                        $(datatable).DataTable().ajax.reload(null, false);
                                     }
-                                }, false);
+                                });
 
-                            } else {
-                                $(datatable).DataTable().ajax.reload(null, false);
-                            }
-                        });
+                        }, function (response) {
 
-                    }, function(response) {
-                        
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-danger\">";
-                        window.angular.forEach(response.data, function(value, key) {
-                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-danger\">";
+                            window.angular.forEach(response.data, function (value, key) {
+                                alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                            });
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+                            $(":input[type=\"button\"]").prop("disabled", false);
+                            window.swal("Ups!", response.data.errorMsg, "error");
                         });
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-                        $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                    });
                 });
 
 
@@ -3441,17 +3441,17 @@ window.angularApp.factory("PrinterEditModal", ["API_URL", "window", "jQuery", "$
             },
             scope: $scope,
             size: "md",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: true,
         });
 
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
         });
     };
 }]);
 window.angularApp.factory("PrintReceiptModal", ["API_URL", "window", "jQuery", "$http", "$rootScope", function (API_URL, window, $, $http, $scope) {
-    return function($scope) {
+    return function ($scope) {
 
         var customerContact;
         if ($scope.invoiceInfo.customer_mobile && $scope.invoiceInfo.customer_mobile !== "undefined") {
@@ -3480,8 +3480,8 @@ window.angularApp.factory("PrintReceiptModal", ["API_URL", "window", "jQuery", "
         receipt_data.info += "\n";
 
         receipt_data.items = "";
-        window.angular.forEach($scope.invoiceItems, function($row, key) {
-            receipt_data.items += "#" + key+1 + " " + $row.item_name + "\n";
+        window.angular.forEach($scope.invoiceItems, function ($row, key) {
+            receipt_data.items += "#" + key + 1 + " " + $row.item_name + "\n";
             receipt_data.items += $row.item_quantity + " x " + parseFloat($row.item_price).toFixed(2) + "  =  " + (parseInt($row.item_quantity) * parseFloat($row.item_price)).toFixed(2) + "\n";
         });
 
@@ -3505,7 +3505,7 @@ window.angularApp.factory("PrintReceiptModal", ["API_URL", "window", "jQuery", "
         receipt_data.footer = "";
         if ($scope.invoiceInfo.invoice_note) {
             receipt_data.footer += $scope.invoiceInfo.invoice_note + "\n\n";
-        }  else {
+        } else {
             receipt_data.footer += "Gracias por elegirnos.";
         }
 
@@ -3515,48 +3515,48 @@ window.angularApp.factory("PrintReceiptModal", ["API_URL", "window", "jQuery", "
             'text': receipt_data,
             'cash_drawer': '',
         };
-        $.get(window.baseUrl + '/_inc/print.php', {data: JSON.stringify(socket_data)});    
+        $.get(window.baseUrl + '/_inc/print.php', { data: JSON.stringify(socket_data) });
     };
 }]);
 window.angularApp.factory("ProductCreateModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "POSFilemanagerModal", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, POSFilemanagerModal, $scope) {
-    return function($scope) {
+    return function ($scope) {
         var uibModalInstance = $uibModal.open({
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"closeProductCreateModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-plus\"></span> {{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>",
+                "<button ng-click=\"closeProductCreateModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-plus\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $http({
-                  url: window.baseUrl + "/_inc/product.php?action_type=CREATE",
-                  method: "GET"
+                    url: window.baseUrl + "/_inc/product.php?action_type=CREATE",
+                    method: "GET"
                 })
-                .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Crear nuevo Producto";
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = "Crear nuevo Producto";
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
 
-                    setTimeout(function() {
-                        window.storeApp.datePicker();
-                        window.storeApp.select2();
+                        setTimeout(function () {
+                            window.storeApp.datePicker();
+                            window.storeApp.select2();
 
-                        // Generate random number
-                        $(".random_num").click(function(){
-                            $(this).parent(".input-group").children("input").val(window.storeApp.generateCardNo(8));
-                        });
-                        
-                    }, 500);
+                            // Generate random number
+                            $(".random_num").click(function () {
+                                $(this).parent(".input-group").children("input").val(window.storeApp.generateCardNo(8));
+                            });
 
-                }, function(response) {
-                   window.swal("Ups!", response.data.errorMsg, "error");
-                });
+                        }, 500);
+
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error");
+                    });
 
                 // Submit Product Form
-                $(document).delegate("#create-product-submit", "click", function(e) {
+                $(document).delegate("#create-product-submit", "click", function (e) {
                     e.stopImmediatePropagation();
                     e.stopPropagation();
                     e.preventDefault();
@@ -3566,7 +3566,7 @@ window.angularApp.factory("ProductCreateModal", ["API_URL", "window", "jQuery", 
                     var form = $($tag.data("form"));
                     form.find(".alert").remove();
                     var actionUrl = form.attr("action");
-                    
+
                     $http({
                         url: window.baseUrl + "/_inc/" + actionUrl,
                         method: "POST",
@@ -3576,76 +3576,76 @@ window.angularApp.factory("ProductCreateModal", ["API_URL", "window", "jQuery", 
                         contentType: false,
                         dataType: "json"
                     }).
-                    then(function(response) {
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-success\">";
-                        alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
+                        then(function (response) {
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-success\">";
+                            alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
 
-                        // Alert
-                        window.swal("ÉXITO!", response.data.msg, "success")
-                        .then(function(value) {
+                            // Alert
+                            window.swal("ÉXITO!", response.data.msg, "success")
+                                .then(function (value) {
 
-                            $scope.product = response.data.product;
-                            $scope.closeProductCreateModal();
-                            $(document).find(".close").trigger("click");
+                                    $scope.product = response.data.product;
+                                    $scope.closeProductCreateModal();
+                                    $(document).find(".close").trigger("click");
 
-                            // insert product into select2
-                            var select = $(document).find('#product_id');
-                            if (select.length) {
-                                var option = $('<option></option>').
-                                     attr('selected', true).
-                                     text(response.data.product.p_name).
-                                     val(response.data.id);
-                                option.appendTo(select);
-                                select.trigger('change');
-                            }
+                                    // insert product into select2
+                                    var select = $(document).find('#product_id');
+                                    if (select.length) {
+                                        var option = $('<option></option>').
+                                            attr('selected', true).
+                                            text(response.data.product.p_name).
+                                            val(response.data.id);
+                                        option.appendTo(select);
+                                        select.trigger('change');
+                                    }
 
-                            // increase product count
-                            var productCount = $(document).find("#product-count h3");
-                            if (productCount) {
-                                productCount.text(parseInt(productCount.text()) + 1);
-                            }
+                                    // increase product count
+                                    var productCount = $(document).find("#product-count h3");
+                                    if (productCount) {
+                                        productCount.text(parseInt(productCount.text()) + 1);
+                                    }
 
-                            // Callback
-                            if ($scope.ProductCreateModalCallback) {
-                                $scope.ProductCreateModalCallback($scope);
-                            }
+                                    // Callback
+                                    if ($scope.ProductCreateModalCallback) {
+                                        $scope.ProductCreateModalCallback($scope);
+                                    }
 
+                                });
+
+                        }, function (response) {
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-danger\">";
+                            window.angular.forEach(response.data, function (value, key) {
+                                alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                            });
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+                            $(":input[type=\"button\"]").prop("disabled", false);
+                            window.swal("Ups!", response.data.errorMsg, "error");
                         });
-
-                    }, function(response) {
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-danger\">";
-                        window.angular.forEach(response.data, function(value, key) {
-                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
-                        });
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-                        $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                    });
                 });
 
                 // Multiple image
                 $scope.imgArray = [];
                 $scope.imgSerial = 0;
-                $scope.addImageItem = function() {
+                $scope.addImageItem = function () {
                     $scope.imgSerial++;
                     var item = {
-                        'id' : $scope.imgSerial,
-                        'url' : '',
-                        'sort_order' : $scope.imgSerial,
+                        'id': $scope.imgSerial,
+                        'url': '',
+                        'sort_order': $scope.imgSerial,
                     };
                     $scope.imgArray.push(item);
                 };
-                $(document).delegate(".open-filemanager", "click", function(e) {
+                $(document).delegate(".open-filemanager", "click", function (e) {
                     e.stopImmediatePropagation();
                     e.stopPropagation();
                     e.preventDefault();
                     var id = $(this).data('imageid');
-                    POSFilemanagerModal({target:'image'+id, thumb:'thumb'+id});
+                    POSFilemanagerModal({ target: 'image' + id, thumb: 'thumb' + id });
                 });
 
                 $scope.closeProductCreateModal = function () {
@@ -3654,43 +3654,43 @@ window.angularApp.factory("ProductCreateModal", ["API_URL", "window", "jQuery", 
             },
             scope: $scope,
             size: "md",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: true,
         });
 
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
         });
     };
 }]);
 window.angularApp.factory("ProductDeleteModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function(product) {
+    return function (product) {
         var uibModalInstance = $uibModal.open({
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"closeProductDeleteModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-delete\"></span> {{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>",
+                "<button ng-click=\"closeProductDeleteModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-delete\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $http({
-                  url: window.baseUrl + "/_inc/product.php?p_id=" + product.p_id + "&action_type=DELETE",
-                  method: "GET"
+                    url: window.baseUrl + "/_inc/product.php?p_id=" + product.p_id + "&action_type=DELETE",
+                    method: "GET"
                 })
-                .then(function(response, status, headers, config) {
-                    $scope.modal_title = product.p_name;
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = product.p_name;
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
 
-                }, function(data) {
-                   window.swal("Ups!", "an error occured!", "error");
-                });
+                    }, function (data) {
+                        window.swal("Ups!", "an error occured!", "error");
+                    });
 
                 // Submit product delete form
-                $(document).delegate("#product-delete-submit", "click", function(e) {
+                $(document).delegate("#product-delete-submit", "click", function (e) {
                     e.stopImmediatePropagation();
                     e.stopPropagation();
                     e.preventDefault();
@@ -3700,7 +3700,7 @@ window.angularApp.factory("ProductDeleteModal", ["API_URL", "window", "jQuery", 
                     var form = $($tag.data("form"));
                     form.find(".alert").remove();
                     var actionUrl = form.attr("action");
-                    
+
                     $http({
                         url: window.baseUrl + "/_inc/" + actionUrl,
                         method: "POST",
@@ -3710,37 +3710,37 @@ window.angularApp.factory("ProductDeleteModal", ["API_URL", "window", "jQuery", 
                         contentType: false,
                         dataType: "json"
                     }).
-                    then(function(response) {
+                        then(function (response) {
 
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-success\">";
-                        alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + "</p>";
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-                        $("#product-product-list").DataTable().ajax.reload( null, false);
-                        if (response.data.action_type == "soft_delete") {
-                            $("#total-trash").text(parseInt($("#total-trash").text())+1);
-                        }
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-success\">";
+                            alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + "</p>";
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+                            $("#product-product-list").DataTable().ajax.reload(null, false);
+                            if (response.data.action_type == "soft_delete") {
+                                $("#total-trash").text(parseInt($("#total-trash").text()) + 1);
+                            }
 
-                        // Alert
-                        window.swal("ÉXITO!", response.data.msg, "success")
-                        .then(function(value) {
-                            $scope.closeProductDeleteModal();
-                            $(document).find(".close").trigger("click");
+                            // Alert
+                            window.swal("ÉXITO!", response.data.msg, "success")
+                                .then(function (value) {
+                                    $scope.closeProductDeleteModal();
+                                    $(document).find(".close").trigger("click");
+                                });
+
+                        }, function (response) {
+
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-danger\">";
+                            window.angular.forEach(response.data, function (value) {
+                                alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                            });
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+                            $(":input[type=\"button\"]").prop("disabled", false);
+                            window.swal("Ups!", response.data.errorMsg, "error");
                         });
-
-                    }, function(response) {
-
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-danger\">";
-                        window.angular.forEach(response.data, function(value) {
-                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
-                        });
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-                        $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                    });
                 });
 
                 $scope.closeProductDeleteModal = function () {
@@ -3749,17 +3749,17 @@ window.angularApp.factory("ProductDeleteModal", ["API_URL", "window", "jQuery", 
             },
             scope: $scope,
             size: "md",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: true,
         });
 
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
         });
     };
 }]);
 window.angularApp.factory("ProductEditModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "POSFilemanagerModal", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, POSFilemanagerModal, $scope) {
-    return function(product) {
+    return function (product) {
         var productId;
         $scope.imgArray = [];
         $scope.imgSerial = 0;
@@ -3768,65 +3768,64 @@ window.angularApp.factory("ProductEditModal", ["API_URL", "window", "jQuery", "$
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"closeProductEditModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-pencil\"></span> {{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>",
+                "<button ng-click=\"closeProductEditModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-pencil\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $http({
-                  url: window.baseUrl + "/_inc/product.php?p_id=" + product.p_id + "&action_type=EDIT",
-                  method: "GET"
+                    url: window.baseUrl + "/_inc/product.php?p_id=" + product.p_id + "&action_type=EDIT",
+                    method: "GET"
                 })
-                .then(function(response, status, headers, config) {
-                    $scope.modal_title = product.p_name;
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = product.p_name;
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
 
-                    setTimeout(function() {
-                        window.storeApp.datePicker();
-                        window.storeApp.select2();
-                        storeApp.intiTinymce("#edit_description");
+                        setTimeout(function () {
+                            window.storeApp.datePicker();
+                            window.storeApp.select2();
+                            storeApp.intiTinymce("#edit_description");
 
-                        // Generate random number
-                        $(".random_num").click(function(){
-                            $(this).parent(".input-group").children("input").val(window.storeApp.generateCardNo(8));
-                        });
-
-                        $scope.productType = $("#p_type").select2('val');
-                        $scope.setFieldAsProductType($scope.productType);
-
-                        // Product images
-                        $http({
-                          url: window.baseUrl + "/_inc/ajax.php?p_id=" + product.p_id + "&type=PRODUCTIMAGES",
-                          method: "GET"
-                        })
-                        .then(function(response, status, headers, config) {
-                            window.angular.forEach(response.data.images, function(item, key) {
-                                $scope.imgSerial++;
-                                var item = {
-                                    'id' : $scope.imgSerial,
-                                    'url' : item.url,
-                                    'sort_order' : item.sort_order,
-                                };
-                                $scope.imgArray.push(item);
+                            // Generate random number
+                            $(".random_num").click(function () {
+                                $(this).parent(".input-group").children("input").val(window.storeApp.generateCardNo(8));
                             });
-                        }, function(data) {
-                           window.swal("Ups!", "an error occured!", "error");
-                        });
 
-                        $scope.remoteImageItem = function(index)
-                        {
-                            $scope.imgArray.splice(index, 1);
-                        }
-                        
-                    }, 500);
+                            $scope.productType = $("#p_type").select2('val');
+                            $scope.setFieldAsProductType($scope.productType);
+
+                            // Product images
+                            $http({
+                                url: window.baseUrl + "/_inc/ajax.php?p_id=" + product.p_id + "&type=PRODUCTIMAGES",
+                                method: "GET"
+                            })
+                                .then(function (response, status, headers, config) {
+                                    window.angular.forEach(response.data.images, function (item, key) {
+                                        $scope.imgSerial++;
+                                        var item = {
+                                            'id': $scope.imgSerial,
+                                            'url': item.url,
+                                            'sort_order': item.sort_order,
+                                        };
+                                        $scope.imgArray.push(item);
+                                    });
+                                }, function (data) {
+                                    window.swal("Ups!", "an error occured!", "error");
+                                });
+
+                            $scope.remoteImageItem = function (index) {
+                                $scope.imgArray.splice(index, 1);
+                            }
+
+                        }, 500);
 
 
 
-                }, function(data) {
-                   window.swal("Ups!", "an error occured!", "error");
-                });
+                    }, function (data) {
+                        window.swal("Ups!", "an error occured!", "error");
+                    });
 
                 $http({
                     url: API_URL + "/_inc/ajax.php?type=QUANTITYCHECK",
@@ -3836,18 +3835,18 @@ window.angularApp.factory("ProductEditModal", ["API_URL", "window", "jQuery", "$
                     contentType: false,
                     dataType: "json"
                 }).
-                then(function(response) {
-                    if (response.data.error == true) {
-                        window.location = window.baseUrl+'/maintenance.php';
-                    }
-                });
+                    then(function (response) {
+                        if (response.data.error == true) {
+                            window.location = window.baseUrl + '/maintenance.php';
+                        }
+                    });
 
                 // Submit product update form
-                $(document).delegate("#product-update-submit", "click", function(e) {
+                $(document).delegate("#product-update-submit", "click", function (e) {
                     e.stopImmediatePropagation();
                     e.stopPropagation();
                     e.preventDefault();
-                    
+
                     var $tag = $(this);
                     var $btn = $tag.button("loading");
                     var form = $($tag.data("form"));
@@ -3856,7 +3855,7 @@ window.angularApp.factory("ProductEditModal", ["API_URL", "window", "jQuery", "$
                     var postData;
                     // var desc = window.tinymce ? window.tinymce.activeEditor.getContent() : '';
                     postData = form.serialize();
-                    
+
                     $http({
                         url: window.baseUrl + "/_inc/" + actionUrl,
                         method: "POST",
@@ -3866,78 +3865,78 @@ window.angularApp.factory("ProductEditModal", ["API_URL", "window", "jQuery", "$
                         contentType: false,
                         dataType: "json"
                     }).
-                    then(function (response) {
+                        then(function (response) {
 
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-success\">";
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-success\">";
                             alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
                             alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
+                            form.find(".box-body").before(alertMsg);
 
-                        // Alert
-                        window.swal({
-                          title: "ÉXITO!",
-                          text: response.data.msg,
-                          icon: "success",
-                          buttons: true,
-                          dangerMode: false,
-                        })
-                        .then(function (willDelete) {
-                            if (willDelete) {
+                            // Alert
+                            window.swal({
+                                title: "ÉXITO!",
+                                text: response.data.msg,
+                                icon: "success",
+                                buttons: true,
+                                dangerMode: false,
+                            })
+                                .then(function (willDelete) {
+                                    if (willDelete) {
 
-                                // close modalwindow
-                                $scope.closeProductEditModal();
-                                $(document).find(".close").trigger("click");
-                                $("body").removeClass("modal-open");
+                                        // close modalwindow
+                                        $scope.closeProductEditModal();
+                                        $(document).find(".close").trigger("click");
+                                        $("body").removeClass("modal-open");
 
-                                productId = response.data.id;
-                                
-                                if ($("#product-product-list").length) {
-                                   $("#product-product-list").DataTable().ajax.reload(function(json) {
-                                        if ($("#row_"+productId).length) {
-                                            $("#row_"+productId).flash("yellow", 5000);
+                                        productId = response.data.id;
+
+                                        if ($("#product-product-list").length) {
+                                            $("#product-product-list").DataTable().ajax.reload(function (json) {
+                                                if ($("#row_" + productId).length) {
+                                                    $("#row_" + productId).flash("yellow", 5000);
+                                                }
+                                            }, false);
                                         }
-                                    }, false); 
-                                }
 
-                            } else {
+                                    } else {
 
-                                if ($("#product-product-list").length) {
-                                    $("#product-product-list").DataTable().ajax.reload(null, false);
-                                }
-                            }
+                                        if ($("#product-product-list").length) {
+                                            $("#product-product-list").DataTable().ajax.reload(null, false);
+                                        }
+                                    }
+                                });
+
+                        }, function (response) {
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-danger\">";
+                            window.angular.forEach(response.data, function (value) {
+                                alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                            });
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+                            $(":input[type=\"button\"]").prop("disabled", false);
+                            window.swal("Ups!", response.data.errorMsg, "error");
                         });
-
-                    }, function(response) {
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-danger\">";
-                        window.angular.forEach(response.data, function(value) {
-                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
-                        });
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-                        $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                    });
                 });
 
-                $scope.addImageItem = function() {
+                $scope.addImageItem = function () {
                     $scope.imgSerial++;
                     var item = {
-                        'id' : $scope.imgSerial,
-                        'url' : '',
-                        'sort_order' : $scope.imgSerial,
+                        'id': $scope.imgSerial,
+                        'url': '',
+                        'sort_order': $scope.imgSerial,
                     };
                     $scope.imgArray.push(item);
                 };
-                $(document).delegate(".open-filemanager", "click", function(e) {
+                $(document).delegate(".open-filemanager", "click", function (e) {
                     e.stopImmediatePropagation();
                     e.stopPropagation();
                     e.preventDefault();
                     var id = $(this).data('imageid');
-                    POSFilemanagerModal({target:'image'+id, thumb:'thumb'+id});
+                    POSFilemanagerModal({ target: 'image' + id, thumb: 'thumb' + id });
                 });
-                
+
                 // Close modal
                 $scope.closeProductEditModal = function () {
                     $uibModalInstance.dismiss("cancel");
@@ -3945,31 +3944,31 @@ window.angularApp.factory("ProductEditModal", ["API_URL", "window", "jQuery", "$
 
 
                 // Product Type
-                $scope.setFieldAsProductType = function(type) {
+                $scope.setFieldAsProductType = function (type) {
                     if (type == 'service') {
-                        $scope.$apply(function() {
+                        $scope.$apply(function () {
                             $scope.hideSupplier = 1;
                             $scope.hideBrand = 1;
                             $scope.hideBrand = 1;
                             $scope.hideUnit = 1;
                             $scope.hideBox = 1;
                             $scope.showPurchasePrice = 1;
-                            $scope.hideExpiredAt = 1; 
-                            $scope.showSellPrice = 1; 
+                            $scope.hideExpiredAt = 1;
+                            $scope.showSellPrice = 1;
                             $scope.hideAlertQuantity = 1;
                         });
                     } else {
-                        $scope.$applyAsync(function() {
+                        $scope.$applyAsync(function () {
                             $scope.hideSupplier = !1;
                             $scope.hideBrand = !1;
                             $scope.hideBrand = !1;
                             $scope.hideUnit = !1;
                             $scope.hideBox = !1;
                             $scope.showPurchasePrice = !1;
-                            $scope.hideExpiredAt = !1; 
+                            $scope.hideExpiredAt = !1;
                             $scope.showSellPrice = !1;
                             $scope.hideAlertQuantity = !1;
-                        }); 
+                        });
                     }
                 }
                 $scope.productType = 'standard';
@@ -3983,46 +3982,46 @@ window.angularApp.factory("ProductEditModal", ["API_URL", "window", "jQuery", "$
             },
             scope: $scope,
             size: "lg",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: true,
         });
 
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
-            setTimeout(function() {
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
+            setTimeout(function () {
                 $("body").removeClass("modal-open");
             }, 500);
         });
     };
 }]);
 window.angularApp.factory("ProductReturnModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function(product) {
+    return function (product) {
         var productId;
         var uibModalInstance = $uibModal.open({
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"closeProductDecrementModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-refresh\"></span> {{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>",
+                "<button ng-click=\"closeProductDecrementModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-refresh\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $http({
-                  url: window.baseUrl + "/_inc/product_return.php?p_id=" + product.p_id,
-                  method: "GET"
+                    url: window.baseUrl + "/_inc/product_return.php?p_id=" + product.p_id,
+                    method: "GET"
                 })
-                .then(function(response, status, headers, config) {
-                $scope.modal_title = product.p_name;
-                $scope.rawHtml = $sce.trustAsHtml(response.data);
-                }, function(data) {
-                   window.swal("Ups!", "an error occured!", "error");
-                });
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = product.p_name;
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
+                    }, function (data) {
+                        window.swal("Ups!", "an error occured!", "error");
+                    });
 
-                 // Submit product return form
-                $(document).delegate("#save-product-return", "click", function(e) {
+                // Submit product return form
+                $(document).delegate("#save-product-return", "click", function (e) {
                     e.stopImmediatePropagation();
                     e.stopPropagation();
                     e.preventDefault();
@@ -4042,54 +4041,54 @@ window.angularApp.factory("ProductReturnModal", ["API_URL", "window", "jQuery", 
                         contentType: false,
                         dataType: "json"
                     }).
-                    then(function(response) {
+                        then(function (response) {
 
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-success\">";
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-success\">";
                             alertMsg += "<p><i class=\"fa fa-check\"></i>" + response.data.msg + ".</p>";
                             alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
+                            form.find(".box-body").before(alertMsg);
 
-                        // Alert
-                        window.swal({
-                          title: "ÉXITO!",
-                          text: response.data.msg,
-                          icon: "success",
-                          buttons: true,
-                          dangerMode: false,
-                        })
-                        .then(function (willDelete) {
-                            if (willDelete) {
-                                $scope.closeProductDecrementModal();
-                                $(document).find(".close").trigger("click");
-                                productId = response.data.id;
-                                
-                                $("#product-product-list").DataTable().ajax.reload(function(json) {
-                                    if ($("#row_"+productId).length) {
-                                        $("#row_"+productId).flash("yellow", 5000);
+                            // Alert
+                            window.swal({
+                                title: "ÉXITO!",
+                                text: response.data.msg,
+                                icon: "success",
+                                buttons: true,
+                                dangerMode: false,
+                            })
+                                .then(function (willDelete) {
+                                    if (willDelete) {
+                                        $scope.closeProductDecrementModal();
+                                        $(document).find(".close").trigger("click");
+                                        productId = response.data.id;
+
+                                        $("#product-product-list").DataTable().ajax.reload(function (json) {
+                                            if ($("#row_" + productId).length) {
+                                                $("#row_" + productId).flash("yellow", 5000);
+                                            }
+                                        }, false);
+
+                                    } else {
+                                        $("#product-product-list").DataTable().ajax.reload(null, false);
                                     }
-                                }, false);
+                                });
 
-                            } else {
-                                $("#product-product-list").DataTable().ajax.reload(null, false);
-                            }
+                        }, function (response) {
+
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-danger\">";
+                            window.angular.forEach(response.data, function (value) {
+                                alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                            });
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+                            $(":input[type=\"button\"]").prop("disabled", false);
+                            window.swal("Ups!", response.data.errorMsg, "error");
                         });
-
-                    }, function(response) {
-
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-danger\">";
-                        window.angular.forEach(response.data, function(value) {
-                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
-                        });
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-                        $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                    });
 
                 });
-                
+
                 // Close modal
                 $scope.closeProductDecrementModal = function () {
                     $uibModalInstance.dismiss("cancel");
@@ -4097,42 +4096,42 @@ window.angularApp.factory("ProductReturnModal", ["API_URL", "window", "jQuery", 
             },
             scope: $scope,
             size: "md",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: true,
         });
 
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
         });
     };
 }]);
 window.angularApp.factory("ProductViewModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function(product) {
-       var uibModalInstance = $uibModal.open({
+    return function (product) {
+        var uibModalInstance = $uibModal.open({
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"closeProductViewModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-eye\"></span> {{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>",
+                "<button ng-click=\"closeProductViewModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-eye\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $http({
-                  url: window.baseUrl + "/_inc/product.php?p_id=" + product.p_id + "&action_type=VIEW",
-                  method: "GET"
+                    url: window.baseUrl + "/_inc/product.php?p_id=" + product.p_id + "&action_type=VIEW",
+                    method: "GET"
                 })
-                .then(function(response, status, headers, config) {
-                    $scope.modal_title = product.p_name;
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
-                }, function(response) {
-                    window.swal("Ups!", response.data.errorMsg, "error")
-                    .then(function() {
-                        $scope.closeProductViewModal();
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = product.p_name;
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error")
+                            .then(function () {
+                                $scope.closeProductViewModal();
+                            });
                     });
-                });
 
                 // Close modal
                 $scope.closeProductViewModal = function () {
@@ -4141,51 +4140,51 @@ window.angularApp.factory("ProductViewModal", ["API_URL", "window", "jQuery", "$
             },
             scope: $scope,
             size: "md",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: true,
         });
 
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
         });
 
     };
 }]);
 window.angularApp.factory("StoreDeleteModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function(store) {
+    return function (store) {
         var uibModalInstance = $uibModal.open({
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"closeStoreDeleteModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-trash\"></span> {{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>",
+                "<button ng-click=\"closeStoreDeleteModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-trash\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $http({
-                  url: window.baseUrl + "/_inc/store.php?store_id=" + store.store_id + "&action_type=DELETE",
-                  method: "GET"
+                    url: window.baseUrl + "/_inc/store.php?store_id=" + store.store_id + "&action_type=DELETE",
+                    method: "GET"
                 })
-                .then(function(response, status, headers, config) {
-                    $scope.modal_title = store.name;
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = store.name;
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
 
-                    setTimeout(function() {
-                        window.storeApp.select2();
-                    }, 100);
-                    
-                }, function(data) {
-                    window.swal("Ups!", window.response.data.errorMsg, "error")
-                    .then(function() {
-                        $scope.closeStoreDeleteModal();
+                        setTimeout(function () {
+                            window.storeApp.select2();
+                        }, 100);
+
+                    }, function (data) {
+                        window.swal("Ups!", window.response.data.errorMsg, "error")
+                            .then(function () {
+                                $scope.closeStoreDeleteModal();
+                            });
                     });
-                });
 
-                $(document).delegate("#store-delete", "click", function(e) {
-                    
+                $(document).delegate("#store-delete", "click", function (e) {
+
                     e.stopImmediatePropagation();
                     e.stopPropagation();
                     e.preventDefault();
@@ -4205,34 +4204,34 @@ window.angularApp.factory("StoreDeleteModal", ["API_URL", "window", "jQuery", "$
                         contentType: false,
                         dataType: "json"
                     }).
-                    then(function(response) {
+                        then(function (response) {
 
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-success\">";
-                        alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-                        $(datatable).DataTable().ajax.reload( null, false );
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-success\">";
+                            alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+                            $(datatable).DataTable().ajax.reload(null, false);
 
-                        // Alert
-                        window.swal("ÉXITO!", response.data.msg, "success")
-                        .then(function(value) {
-                            $scope.closeStoreDeleteModal();
-                            $(document).find(".close").trigger("click");
+                            // Alert
+                            window.swal("ÉXITO!", response.data.msg, "success")
+                                .then(function (value) {
+                                    $scope.closeStoreDeleteModal();
+                                    $(document).find(".close").trigger("click");
+                                });
+
+                        }, function (response) {
+
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-danger\">";
+                            window.angular.forEach(response.data, function (value, key) {
+                                alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                            });
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+                            $(":input[type=\"button\"]").prop("disabled", false);
+                            window.swal("Ups!", response.data.errorMsg, "error");
                         });
-
-                    }, function(response) {
-
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-danger\">";
-                        window.angular.forEach(response.data, function(value, key) {
-                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
-                        });
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-                        $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                    });
 
                 });
 
@@ -4242,47 +4241,47 @@ window.angularApp.factory("StoreDeleteModal", ["API_URL", "window", "jQuery", "$
             },
             scope: $scope,
             size: "md",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: true,
         });
 
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
         });
     };
 }]);
 window.angularApp.factory("SupplierCreateModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function($scope) {
+    return function ($scope) {
         var uibSupplierModalInstance = $uibModal.open({
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"closeSupplierCreateModal();\" type=\"button\" class=\"close supplier-create-modal\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-plus\"></span> {{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>",
+                "<button ng-click=\"closeSupplierCreateModal();\" type=\"button\" class=\"close supplier-create-modal\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-plus\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $http({
-                  url: window.baseUrl + "/_inc/supplier.php?action_type=CREATE",
-                  method: "GET"
+                    url: window.baseUrl + "/_inc/supplier.php?action_type=CREATE",
+                    method: "GET"
                 })
-                .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Crear nuevo Proveedor";
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = "Crear nuevo Proveedor";
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
 
-                    setTimeout(function() {
-                        window.storeApp.select2();
-                    }, 500);
+                        setTimeout(function () {
+                            window.storeApp.select2();
+                        }, 500);
 
-                }, function(response) {
-                   window.swal("Ups!", response.data.errorMsg, "error");
-                });
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error");
+                    });
 
                 // Submit Box Form
-                $(document).delegate("#create-supplier-submit", "click", function(e) {
+                $(document).delegate("#create-supplier-submit", "click", function (e) {
                     e.stopImmediatePropagation();
                     e.stopPropagation();
                     e.preventDefault();
@@ -4292,7 +4291,7 @@ window.angularApp.factory("SupplierCreateModal", ["API_URL", "window", "jQuery",
                     var form = $($tag.data("form"));
                     form.find(".alert").remove();
                     var actionUrl = form.attr("action");
-                    
+
                     $http({
                         url: window.baseUrl + "/_inc/" + actionUrl,
                         method: "POST",
@@ -4302,55 +4301,55 @@ window.angularApp.factory("SupplierCreateModal", ["API_URL", "window", "jQuery",
                         contentType: false,
                         dataType: "json"
                     }).
-                    then(function(response) {
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-success\">";
-                        alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
+                        then(function (response) {
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-success\">";
+                            alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
 
-                        // Alert
-                        window.swal("ÉXITO!", response.data.msg, "success")
-                        .then(function(value) {
+                            // Alert
+                            window.swal("ÉXITO!", response.data.msg, "success")
+                                .then(function (value) {
 
-                            // close modalwindow
-                            $scope.closeSupplierCreateModal();
-                            $(document).find(".close").trigger("click");
+                                    // close modalwindow
+                                    $scope.closeSupplierCreateModal();
+                                    $(document).find(".close").trigger("click");
 
-                            // insert supplier into select2
-                            var select = $(document).find('#sup_id');
-                            if (select.length) {
-                                var option = $('<option></option>').
-                                     attr('selected', true).
-                                     text(response.data.supplier.sup_name).
-                                     val(response.data.id);
-                                option.appendTo(select);
-                                select.trigger('change');
-                            }
+                                    // insert supplier into select2
+                                    var select = $(document).find('#sup_id');
+                                    if (select.length) {
+                                        var option = $('<option></option>').
+                                            attr('selected', true).
+                                            text(response.data.supplier.sup_name).
+                                            val(response.data.id);
+                                        option.appendTo(select);
+                                        select.trigger('change');
+                                    }
 
-                            // increase supplier count
-                            var supplierCount = $(document).find("#supplier-count h3");
-                            if (supplierCount) {
-                                supplierCount.text(parseInt(supplierCount.text()) + 1);
-                            }
+                                    // increase supplier count
+                                    var supplierCount = $(document).find("#supplier-count h3");
+                                    if (supplierCount) {
+                                        supplierCount.text(parseInt(supplierCount.text()) + 1);
+                                    }
 
-                            // Callback
-                            if ($scope.SupplierCreateModalCallback) {
-                                $scope.SupplierCreateModalCallback($scope);
-                            }
+                                    // Callback
+                                    if ($scope.SupplierCreateModalCallback) {
+                                        $scope.SupplierCreateModalCallback($scope);
+                                    }
+                                });
+
+                        }, function (response) {
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-danger\">";
+                            window.angular.forEach(response.data, function (value, key) {
+                                alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                            });
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+                            $(":input[type=\"button\"]").prop("disabled", false);
+                            window.swal("Ups!", response.data.errorMsg, "error");
                         });
-
-                    }, function(response) {
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-danger\">";
-                        window.angular.forEach(response.data, function(value, key) {
-                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
-                        });
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-                        $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                    });
                 });
 
                 $scope.closeSupplierCreateModal = function () {
@@ -4359,50 +4358,50 @@ window.angularApp.factory("SupplierCreateModal", ["API_URL", "window", "jQuery",
             },
             scope: $scope,
             size: "md",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: true,
         });
 
-        uibSupplierModalInstance.result.catch(function () { 
-            uibSupplierModalInstance.close(); 
+        uibSupplierModalInstance.result.catch(function () {
+            uibSupplierModalInstance.close();
         });
     };
 }]);
 window.angularApp.factory("SupplierDeleteModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function(supplier) {
+    return function (supplier) {
         var uibModalInstance = $uibModal.open({
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"closeSupplierDeleteModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-trash\"></span> {{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>",
+                "<button ng-click=\"closeSupplierDeleteModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-trash\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $http({
-                  url: window.baseUrl + "/_inc/supplier.php?sup_id=" + supplier.sup_id + "&action_type=DELETE",
-                  method: "GET"
+                    url: window.baseUrl + "/_inc/supplier.php?sup_id=" + supplier.sup_id + "&action_type=DELETE",
+                    method: "GET"
                 })
-                .then(function(response, status, headers, config) {
-                    $scope.modal_title = supplier.sup_name;
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = supplier.sup_name;
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
 
-                    setTimeout(function() {
-                        window.storeApp.select2();
-                    }, 100);
-                
-                }, function(response) {
-                    window.swal("Ups!", response.data.errorMsg, "error")
-                    .then(function() {
-                        $scope.closeSupplierDeleteModal();
+                        setTimeout(function () {
+                            window.storeApp.select2();
+                        }, 100);
+
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error")
+                            .then(function () {
+                                $scope.closeSupplierDeleteModal();
+                            });
                     });
-                });
 
-                $(document).delegate("#supplier-delete", "click", function(e) {
-                    
+                $(document).delegate("#supplier-delete", "click", function (e) {
+
                     e.stopImmediatePropagation();
                     e.stopPropagation();
                     e.preventDefault();
@@ -4422,34 +4421,34 @@ window.angularApp.factory("SupplierDeleteModal", ["API_URL", "window", "jQuery",
                         contentType: false,
                         dataType: "json"
                     }).
-                    then(function(response) {
+                        then(function (response) {
 
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-success\">";
-                        alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-                        $(datatable).DataTable().ajax.reload( null, false );
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-success\">";
+                            alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+                            $(datatable).DataTable().ajax.reload(null, false);
 
-                        // Alert
-                        window.swal("ÉXITO!", response.data.msg, "success")
-                        .then(function(value) {
-                            $scope.closeSupplierDeleteModal();
-                            $(document).find(".close").trigger("click");
+                            // Alert
+                            window.swal("ÉXITO!", response.data.msg, "success")
+                                .then(function (value) {
+                                    $scope.closeSupplierDeleteModal();
+                                    $(document).find(".close").trigger("click");
+                                });
+
+                        }, function (response) {
+
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-danger\">";
+                            window.angular.forEach(response.data, function (value, key) {
+                                alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                            });
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+                            $(":input[type=\"button\"]").prop("disabled", false);
+                            window.swal("Ups!", response.data.errorMsg, "error");
                         });
-
-                    }, function(response) {
-
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-danger\">";
-                        window.angular.forEach(response.data, function(value, key) {
-                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
-                        });
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-                        $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                    });
 
                 });
 
@@ -4459,46 +4458,46 @@ window.angularApp.factory("SupplierDeleteModal", ["API_URL", "window", "jQuery",
             },
             scope: $scope,
             size: "md",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: true,
         });
 
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
         });
     };
 }]);
 window.angularApp.factory("SupplierEditModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function(supplier) {
+    return function (supplier) {
         var supId;
         var uibModalInstance = $uibModal.open({
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"closeSupplierEditModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-pencil\"></span> {{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>",
+                "<button ng-click=\"closeSupplierEditModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-pencil\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $http({
-                  url: window.baseUrl + "/_inc/supplier.php?sup_id=" + supplier.sup_id + "&action_type=EDIT",
-                  method: "GET"
+                    url: window.baseUrl + "/_inc/supplier.php?sup_id=" + supplier.sup_id + "&action_type=EDIT",
+                    method: "GET"
                 })
-                .then(function(response, status, headers, config) {
-                    $scope.modal_title = supplier.sup_name;
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
-                    setTimeout(function() {
-                        window.storeApp.select2();
-                    }, 100);
-                }, function(response) {
-                   window.swal("Ups!", response.data.errorMsg, "error");
-                });
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = supplier.sup_name;
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
+                        setTimeout(function () {
+                            window.storeApp.select2();
+                        }, 100);
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error");
+                    });
 
-                $(document).delegate("#supplier-update", "click", function(e) {
-                    
+                $(document).delegate("#supplier-update", "click", function (e) {
+
                     e.stopImmediatePropagation();
                     e.stopPropagation();
                     e.preventDefault();
@@ -4518,52 +4517,52 @@ window.angularApp.factory("SupplierEditModal", ["API_URL", "window", "jQuery", "
                         contentType: false,
                         dataType: "json"
                     }).
-                    then(function(response) {
+                        then(function (response) {
 
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-success\">";
-                        alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-                        $(datatable).DataTable().ajax.reload( null, false );
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-success\">";
+                            alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+                            $(datatable).DataTable().ajax.reload(null, false);
 
-                        // Alert
-                        window.swal({
-                          title: "ÉXITO!",
-                          text: response.data.msg,
-                          icon: "success",
-                          buttons: true,
-                          dangerMode: false,
-                        })
-                        .then(function (willDelete) {
-                            if (willDelete) {
-                                $scope.closeSupplierEditModal();
-                                $(document).find(".close").trigger("click");
-                                supId = response.data.id;
-                                
-                                $(datatable).DataTable().ajax.reload(function(json) {
-                                    if ($("#row_"+supId).length) {
-                                        $("#row_"+supId).flash("yellow", 5000);
+                            // Alert
+                            window.swal({
+                                title: "ÉXITO!",
+                                text: response.data.msg,
+                                icon: "success",
+                                buttons: true,
+                                dangerMode: false,
+                            })
+                                .then(function (willDelete) {
+                                    if (willDelete) {
+                                        $scope.closeSupplierEditModal();
+                                        $(document).find(".close").trigger("click");
+                                        supId = response.data.id;
+
+                                        $(datatable).DataTable().ajax.reload(function (json) {
+                                            if ($("#row_" + supId).length) {
+                                                $("#row_" + supId).flash("yellow", 5000);
+                                            }
+                                        }, false);
+
+                                    } else {
+                                        $(datatable).DataTable().ajax.reload(null, false);
                                     }
-                                }, false);
+                                });
 
-                            } else {
-                                $(datatable).DataTable().ajax.reload(null, false);
-                            }
+                        }, function (response) {
+
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-danger\">";
+                            window.angular.forEach(response.data, function (value, key) {
+                                alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                            });
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+                            $(":input[type=\"button\"]").prop("disabled", false);
+                            window.swal("Ups!", response.data.errorMsg, "error");
                         });
-
-                    }, function(response) {
-
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-danger\">";
-                        window.angular.forEach(response.data, function(value, key) {
-                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
-                        });
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-                        $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                    });
 
                 });
 
@@ -4573,49 +4572,49 @@ window.angularApp.factory("SupplierEditModal", ["API_URL", "window", "jQuery", "
             },
             scope: $scope,
             size: "md",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: true,
         });
 
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
         });
     };
 }]);
 
 
 window.angularApp.factory("BrandCreateModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function($scope) {
+    return function ($scope) {
         var uibBrandModalInstance = $uibModal.open({
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"closeBrandCreateModal();\" type=\"button\" class=\"close brand-create-modal\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-plus\"></span> {{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>",
+                "<button ng-click=\"closeBrandCreateModal();\" type=\"button\" class=\"close brand-create-modal\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-plus\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $http({
-                  url: window.baseUrl + "/_inc/brand.php?action_type=CREATE",
-                  method: "GET"
+                    url: window.baseUrl + "/_inc/brand.php?action_type=CREATE",
+                    method: "GET"
                 })
-                .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Crear nueva Marca";
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = "Crear nueva Marca";
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
 
-                    setTimeout(function() {
-                        window.storeApp.select2();
-                    }, 500);
+                        setTimeout(function () {
+                            window.storeApp.select2();
+                        }, 500);
 
-                }, function(response) {
-                   window.swal("Ups!", response.data.errorMsg, "error");
-                });
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error");
+                    });
 
                 // Submit Box Form
-                $(document).delegate("#create-brand-submit", "click", function(e) {
+                $(document).delegate("#create-brand-submit", "click", function (e) {
                     e.stopImmediatePropagation();
                     e.stopPropagation();
                     e.preventDefault();
@@ -4625,7 +4624,7 @@ window.angularApp.factory("BrandCreateModal", ["API_URL", "window", "jQuery", "$
                     var form = $($tag.data("form"));
                     form.find(".alert").remove();
                     var actionUrl = form.attr("action");
-                    
+
                     $http({
                         url: window.baseUrl + "/_inc/" + actionUrl,
                         method: "POST",
@@ -4635,55 +4634,55 @@ window.angularApp.factory("BrandCreateModal", ["API_URL", "window", "jQuery", "$
                         contentType: false,
                         dataType: "json"
                     }).
-                    then(function(response) {
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-success\">";
-                        alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
+                        then(function (response) {
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-success\">";
+                            alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
 
-                        // Alert
-                        window.swal("ÉXITO!", response.data.msg, "success")
-                        .then(function(value) {
+                            // Alert
+                            window.swal("ÉXITO!", response.data.msg, "success")
+                                .then(function (value) {
 
-                            // close modalwindow
-                            $scope.closeBrandCreateModal();
-                            $(document).find(".close").trigger("click");
+                                    // close modalwindow
+                                    $scope.closeBrandCreateModal();
+                                    $(document).find(".close").trigger("click");
 
-                            // insert brand into select2
-                            var select = $(document).find('#brand_id');
-                            if (select.length) {
-                                var option = $('<option></option>').
-                                     attr('selected', true).
-                                     text(response.data.brand.brand_name).
-                                     val(response.data.id);
-                                option.appendTo(select);
-                                select.trigger('change');
-                            }
+                                    // insert brand into select2
+                                    var select = $(document).find('#brand_id');
+                                    if (select.length) {
+                                        var option = $('<option></option>').
+                                            attr('selected', true).
+                                            text(response.data.brand.brand_name).
+                                            val(response.data.id);
+                                        option.appendTo(select);
+                                        select.trigger('change');
+                                    }
 
-                            // increase brand count
-                            var brandCount = $(document).find("#brand-count h3");
-                            if (brandCount) {
-                                brandCount.text(parseInt(brandCount.text()) + 1);
-                            }
+                                    // increase brand count
+                                    var brandCount = $(document).find("#brand-count h3");
+                                    if (brandCount) {
+                                        brandCount.text(parseInt(brandCount.text()) + 1);
+                                    }
 
-                            // Callback
-                            if ($scope.BrandCreateModalCallback) {
-                                $scope.BrandCreateModalCallback($scope);
-                            }
+                                    // Callback
+                                    if ($scope.BrandCreateModalCallback) {
+                                        $scope.BrandCreateModalCallback($scope);
+                                    }
+                                });
+
+                        }, function (response) {
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-danger\">";
+                            window.angular.forEach(response.data, function (value, key) {
+                                alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                            });
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+                            $(":input[type=\"button\"]").prop("disabled", false);
+                            window.swal("Ups!", response.data.errorMsg, "error");
                         });
-
-                    }, function(response) {
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-danger\">";
-                        window.angular.forEach(response.data, function(value, key) {
-                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
-                        });
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-                        $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                    });
                 });
 
                 $scope.closeBrandCreateModal = function () {
@@ -4692,50 +4691,50 @@ window.angularApp.factory("BrandCreateModal", ["API_URL", "window", "jQuery", "$
             },
             scope: $scope,
             size: "md",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: true,
         });
 
-        uibBrandModalInstance.result.catch(function () { 
-            uibBrandModalInstance.close(); 
+        uibBrandModalInstance.result.catch(function () {
+            uibBrandModalInstance.close();
         });
     };
 }]);
 window.angularApp.factory("BrandDeleteModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function(brand) {
+    return function (brand) {
         var uibModalInstance = $uibModal.open({
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"closeBrandDeleteModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-trash\"></span> {{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>",
+                "<button ng-click=\"closeBrandDeleteModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-trash\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $http({
-                  url: window.baseUrl + "/_inc/brand.php?brand_id=" + brand.brand_id + "&action_type=DELETE",
-                  method: "GET"
+                    url: window.baseUrl + "/_inc/brand.php?brand_id=" + brand.brand_id + "&action_type=DELETE",
+                    method: "GET"
                 })
-                .then(function(response, status, headers, config) {
-                    $scope.modal_title = brand.brand_name;
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = brand.brand_name;
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
 
-                    setTimeout(function() {
-                        window.storeApp.select2();
-                    }, 100);
-                
-                }, function(response) {
-                    window.swal("Ups!", response.data.errorMsg, "error")
-                    .then(function() {
-                        $scope.closeBrandDeleteModal();
+                        setTimeout(function () {
+                            window.storeApp.select2();
+                        }, 100);
+
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error")
+                            .then(function () {
+                                $scope.closeBrandDeleteModal();
+                            });
                     });
-                });
 
-                $(document).delegate("#brand-delete", "click", function(e) {
-                    
+                $(document).delegate("#brand-delete", "click", function (e) {
+
                     e.stopImmediatePropagation();
                     e.stopPropagation();
                     e.preventDefault();
@@ -4755,34 +4754,34 @@ window.angularApp.factory("BrandDeleteModal", ["API_URL", "window", "jQuery", "$
                         contentType: false,
                         dataType: "json"
                     }).
-                    then(function(response) {
+                        then(function (response) {
 
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-success\">";
-                        alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-                        $(datatable).DataTable().ajax.reload( null, false );
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-success\">";
+                            alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+                            $(datatable).DataTable().ajax.reload(null, false);
 
-                        // Alert
-                        window.swal("ÉXITO!", response.data.msg, "success")
-                        .then(function(value) {
-                            $scope.closeBrandDeleteModal();
-                            $(document).find(".close").trigger("click");
+                            // Alert
+                            window.swal("ÉXITO!", response.data.msg, "success")
+                                .then(function (value) {
+                                    $scope.closeBrandDeleteModal();
+                                    $(document).find(".close").trigger("click");
+                                });
+
+                        }, function (response) {
+
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-danger\">";
+                            window.angular.forEach(response.data, function (value, key) {
+                                alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                            });
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+                            $(":input[type=\"button\"]").prop("disabled", false);
+                            window.swal("Ups!", response.data.errorMsg, "error");
                         });
-
-                    }, function(response) {
-
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-danger\">";
-                        window.angular.forEach(response.data, function(value, key) {
-                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
-                        });
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-                        $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                    });
 
                 });
 
@@ -4792,46 +4791,46 @@ window.angularApp.factory("BrandDeleteModal", ["API_URL", "window", "jQuery", "$
             },
             scope: $scope,
             size: "md",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: true,
         });
 
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
         });
     };
 }]);
 window.angularApp.factory("BrandEditModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function(brand) {
+    return function (brand) {
         var supId;
         var uibModalInstance = $uibModal.open({
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"closeBrandEditModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-pencil\"></span> {{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>",
+                "<button ng-click=\"closeBrandEditModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-pencil\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $http({
-                  url: window.baseUrl + "/_inc/brand.php?brand_id=" + brand.brand_id + "&action_type=EDIT",
-                  method: "GET"
+                    url: window.baseUrl + "/_inc/brand.php?brand_id=" + brand.brand_id + "&action_type=EDIT",
+                    method: "GET"
                 })
-                .then(function(response, status, headers, config) {
-                    $scope.modal_title = brand.brand_name;
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
-                    setTimeout(function() {
-                        window.storeApp.select2();
-                    }, 100);
-                }, function(response) {
-                   window.swal("Ups!", response.data.errorMsg, "error");
-                });
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = brand.brand_name;
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
+                        setTimeout(function () {
+                            window.storeApp.select2();
+                        }, 100);
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error");
+                    });
 
-                $(document).delegate("#brand-update", "click", function(e) {
-                    
+                $(document).delegate("#brand-update", "click", function (e) {
+
                     e.stopImmediatePropagation();
                     e.stopPropagation();
                     e.preventDefault();
@@ -4851,52 +4850,52 @@ window.angularApp.factory("BrandEditModal", ["API_URL", "window", "jQuery", "$ht
                         contentType: false,
                         dataType: "json"
                     }).
-                    then(function(response) {
+                        then(function (response) {
 
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-success\">";
-                        alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-                        $(datatable).DataTable().ajax.reload( null, false );
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-success\">";
+                            alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+                            $(datatable).DataTable().ajax.reload(null, false);
 
-                        // Alert
-                        window.swal({
-                          title: "ÉXITO!",
-                          text: response.data.msg,
-                          icon: "success",
-                          buttons: true,
-                          dangerMode: false,
-                        })
-                        .then(function (willDelete) {
-                            if (willDelete) {
-                                $scope.closeBrandEditModal();
-                                $(document).find(".close").trigger("click");
-                                supId = response.data.id;
-                                
-                                $(datatable).DataTable().ajax.reload(function(json) {
-                                    if ($("#row_"+supId).length) {
-                                        $("#row_"+supId).flash("yellow", 5000);
+                            // Alert
+                            window.swal({
+                                title: "ÉXITO!",
+                                text: response.data.msg,
+                                icon: "success",
+                                buttons: true,
+                                dangerMode: false,
+                            })
+                                .then(function (willDelete) {
+                                    if (willDelete) {
+                                        $scope.closeBrandEditModal();
+                                        $(document).find(".close").trigger("click");
+                                        supId = response.data.id;
+
+                                        $(datatable).DataTable().ajax.reload(function (json) {
+                                            if ($("#row_" + supId).length) {
+                                                $("#row_" + supId).flash("yellow", 5000);
+                                            }
+                                        }, false);
+
+                                    } else {
+                                        $(datatable).DataTable().ajax.reload(null, false);
                                     }
-                                }, false);
+                                });
 
-                            } else {
-                                $(datatable).DataTable().ajax.reload(null, false);
-                            }
+                        }, function (response) {
+
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-danger\">";
+                            window.angular.forEach(response.data, function (value, key) {
+                                alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                            });
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+                            $(":input[type=\"button\"]").prop("disabled", false);
+                            window.swal("Ups!", response.data.errorMsg, "error");
                         });
-
-                    }, function(response) {
-
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-danger\">";
-                        window.angular.forEach(response.data, function(value, key) {
-                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
-                        });
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-                        $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                    });
 
                 });
 
@@ -4906,12 +4905,12 @@ window.angularApp.factory("BrandEditModal", ["API_URL", "window", "jQuery", "$ht
             },
             scope: $scope,
             size: "md",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: true,
         });
 
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
         });
     };
 }]);
@@ -4919,37 +4918,37 @@ window.angularApp.factory("BrandEditModal", ["API_URL", "window", "jQuery", "$ht
 
 
 window.angularApp.factory("CollegeCreateModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function($scope) {
+    return function ($scope) {
         var uibCollegeModalInstance = $uibModal.open({
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"closeCollegeCreateModal();\" type=\"button\" class=\"close college-create-modal\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-plus\"></span> {{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>",
+                "<button ng-click=\"closeCollegeCreateModal();\" type=\"button\" class=\"close college-create-modal\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-plus\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $http({
-                  url: window.baseUrl + "/_inc/college.php?action_type=CREATE",
-                  method: "GET"
+                    url: window.baseUrl + "/_inc/college.php?action_type=CREATE",
+                    method: "GET"
                 })
-                .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Crear nuevo Colegio";
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = "Crear nuevo Colegio";
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
 
-                    setTimeout(function() {
-                        window.storeApp.select2();
-                    }, 500);
+                        setTimeout(function () {
+                            window.storeApp.select2();
+                        }, 500);
 
-                }, function(response) {
-                   window.swal("Ups!", response.data.errorMsg, "error");
-                });
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error");
+                    });
 
                 // Submit Box Form
-                $(document).delegate("#create-college-submit", "click", function(e) {
+                $(document).delegate("#create-college-submit", "click", function (e) {
                     e.stopImmediatePropagation();
                     e.stopPropagation();
                     e.preventDefault();
@@ -4959,7 +4958,7 @@ window.angularApp.factory("CollegeCreateModal", ["API_URL", "window", "jQuery", 
                     var form = $($tag.data("form"));
                     form.find(".alert").remove();
                     var actionUrl = form.attr("action");
-                    
+
                     $http({
                         url: window.baseUrl + "/_inc/" + actionUrl,
                         method: "POST",
@@ -4969,55 +4968,55 @@ window.angularApp.factory("CollegeCreateModal", ["API_URL", "window", "jQuery", 
                         contentType: false,
                         dataType: "json"
                     }).
-                    then(function(response) {
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-success\">";
-                        alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
+                        then(function (response) {
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-success\">";
+                            alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
 
-                        // Alert
-                        window.swal("ÉXITO!", response.data.msg, "success")
-                        .then(function(value) {
+                            // Alert
+                            window.swal("ÉXITO!", response.data.msg, "success")
+                                .then(function (value) {
 
-                            // close modalwindow
-                            $scope.closeCollegeCreateModal();
-                            $(document).find(".close").trigger("click");
+                                    // close modalwindow
+                                    $scope.closeCollegeCreateModal();
+                                    $(document).find(".close").trigger("click");
 
-                            // insert college into select2
-                            var select = $(document).find('#college_id');
-                            if (select.length) {
-                                var option = $('<option></option>').
-                                     attr('selected', true).
-                                     text(response.data.college.college_name).
-                                     val(response.data.id);
-                                option.appendTo(select);
-                                select.trigger('change');
-                            }
+                                    // insert college into select2
+                                    var select = $(document).find('#college_id');
+                                    if (select.length) {
+                                        var option = $('<option></option>').
+                                            attr('selected', true).
+                                            text(response.data.college.college_name).
+                                            val(response.data.id);
+                                        option.appendTo(select);
+                                        select.trigger('change');
+                                    }
 
-                            // increase college count
-                            var collegeCount = $(document).find("#college-count h3");
-                            if (collegeCount) {
-                                collegeCount.text(parseInt(collegeCount.text()) + 1);
-                            }
+                                    // increase college count
+                                    var collegeCount = $(document).find("#college-count h3");
+                                    if (collegeCount) {
+                                        collegeCount.text(parseInt(collegeCount.text()) + 1);
+                                    }
 
-                            // Callback
-                            if ($scope.CollegeCreateModalCallback) {
-                                $scope.CollegeCreateModalCallback($scope);
-                            }
+                                    // Callback
+                                    if ($scope.CollegeCreateModalCallback) {
+                                        $scope.CollegeCreateModalCallback($scope);
+                                    }
+                                });
+
+                        }, function (response) {
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-danger\">";
+                            window.angular.forEach(response.data, function (value, key) {
+                                alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                            });
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+                            $(":input[type=\"button\"]").prop("disabled", false);
+                            window.swal("Ups!", response.data.errorMsg, "error");
                         });
-
-                    }, function(response) {
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-danger\">";
-                        window.angular.forEach(response.data, function(value, key) {
-                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
-                        });
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-                        $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                    });
                 });
 
                 $scope.closeCollegeCreateModal = function () {
@@ -5026,50 +5025,50 @@ window.angularApp.factory("CollegeCreateModal", ["API_URL", "window", "jQuery", 
             },
             scope: $scope,
             size: "md",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: true,
         });
 
-        uibCollegeModalInstance.result.catch(function () { 
-            uibCollegeModalInstance.close(); 
+        uibCollegeModalInstance.result.catch(function () {
+            uibCollegeModalInstance.close();
         });
     };
 }]);
 window.angularApp.factory("CollegeDeleteModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function(college) {
+    return function (college) {
         var uibModalInstance = $uibModal.open({
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"closeCollegeDeleteModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-trash\"></span> {{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>",
+                "<button ng-click=\"closeCollegeDeleteModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-trash\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $http({
-                  url: window.baseUrl + "/_inc/college.php?college_id=" + college.college_id + "&action_type=DELETE",
-                  method: "GET"
+                    url: window.baseUrl + "/_inc/college.php?college_id=" + college.college_id + "&action_type=DELETE",
+                    method: "GET"
                 })
-                .then(function(response, status, headers, config) {
-                    $scope.modal_title = college.college_name;
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = college.college_name;
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
 
-                    setTimeout(function() {
-                        window.storeApp.select2();
-                    }, 100);
-                
-                }, function(response) {
-                    window.swal("Ups!", response.data.errorMsg, "error")
-                    .then(function() {
-                        $scope.closeCollegeDeleteModal();
+                        setTimeout(function () {
+                            window.storeApp.select2();
+                        }, 100);
+
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error")
+                            .then(function () {
+                                $scope.closeCollegeDeleteModal();
+                            });
                     });
-                });
 
-                $(document).delegate("#college-delete", "click", function(e) {
-                    
+                $(document).delegate("#college-delete", "click", function (e) {
+
                     e.stopImmediatePropagation();
                     e.stopPropagation();
                     e.preventDefault();
@@ -5089,34 +5088,34 @@ window.angularApp.factory("CollegeDeleteModal", ["API_URL", "window", "jQuery", 
                         contentType: false,
                         dataType: "json"
                     }).
-                    then(function(response) {
+                        then(function (response) {
 
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-success\">";
-                        alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-                        $(datatable).DataTable().ajax.reload( null, false );
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-success\">";
+                            alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+                            $(datatable).DataTable().ajax.reload(null, false);
 
-                        // Alert
-                        window.swal("ÉXITO!", response.data.msg, "success")
-                        .then(function(value) {
-                            $scope.closeCollegeDeleteModal();
-                            $(document).find(".close").trigger("click");
+                            // Alert
+                            window.swal("ÉXITO!", response.data.msg, "success")
+                                .then(function (value) {
+                                    $scope.closeCollegeDeleteModal();
+                                    $(document).find(".close").trigger("click");
+                                });
+
+                        }, function (response) {
+
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-danger\">";
+                            window.angular.forEach(response.data, function (value, key) {
+                                alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                            });
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+                            $(":input[type=\"button\"]").prop("disabled", false);
+                            window.swal("Ups!", response.data.errorMsg, "error");
                         });
-
-                    }, function(response) {
-
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-danger\">";
-                        window.angular.forEach(response.data, function(value, key) {
-                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
-                        });
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-                        $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                    });
 
                 });
 
@@ -5126,46 +5125,46 @@ window.angularApp.factory("CollegeDeleteModal", ["API_URL", "window", "jQuery", 
             },
             scope: $scope,
             size: "md",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: true,
         });
 
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
         });
     };
 }]);
 window.angularApp.factory("CollegeEditModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function(college) {
+    return function (college) {
         var supId;
         var uibModalInstance = $uibModal.open({
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"closeCollegeEditModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-pencil\"></span> {{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>",
+                "<button ng-click=\"closeCollegeEditModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-pencil\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $http({
-                  url: window.baseUrl + "/_inc/college.php?college_id=" + college.college_id + "&action_type=EDIT",
-                  method: "GET"
+                    url: window.baseUrl + "/_inc/college.php?college_id=" + college.college_id + "&action_type=EDIT",
+                    method: "GET"
                 })
-                .then(function(response, status, headers, config) {
-                    $scope.modal_title = college.college_name;
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
-                    setTimeout(function() {
-                        window.storeApp.select2();
-                    }, 100);
-                }, function(response) {
-                   window.swal("Ups!", response.data.errorMsg, "error");
-                });
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = college.college_name;
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
+                        setTimeout(function () {
+                            window.storeApp.select2();
+                        }, 100);
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error");
+                    });
 
-                $(document).delegate("#college-update", "click", function(e) {
-                    
+                $(document).delegate("#college-update", "click", function (e) {
+
                     e.stopImmediatePropagation();
                     e.stopPropagation();
                     e.preventDefault();
@@ -5185,52 +5184,52 @@ window.angularApp.factory("CollegeEditModal", ["API_URL", "window", "jQuery", "$
                         contentType: false,
                         dataType: "json"
                     }).
-                    then(function(response) {
+                        then(function (response) {
 
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-success\">";
-                        alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-                        $(datatable).DataTable().ajax.reload( null, false );
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-success\">";
+                            alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+                            $(datatable).DataTable().ajax.reload(null, false);
 
-                        // Alert
-                        window.swal({
-                          title: "ÉXITO!",
-                          text: response.data.msg,
-                          icon: "success",
-                          buttons: true,
-                          dangerMode: false,
-                        })
-                        .then(function (willDelete) {
-                            if (willDelete) {
-                                $scope.closeCollegeEditModal();
-                                $(document).find(".close").trigger("click");
-                                supId = response.data.id;
-                                
-                                $(datatable).DataTable().ajax.reload(function(json) {
-                                    if ($("#row_"+supId).length) {
-                                        $("#row_"+supId).flash("yellow", 5000);
+                            // Alert
+                            window.swal({
+                                title: "ÉXITO!",
+                                text: response.data.msg,
+                                icon: "success",
+                                buttons: true,
+                                dangerMode: false,
+                            })
+                                .then(function (willDelete) {
+                                    if (willDelete) {
+                                        $scope.closeCollegeEditModal();
+                                        $(document).find(".close").trigger("click");
+                                        supId = response.data.id;
+
+                                        $(datatable).DataTable().ajax.reload(function (json) {
+                                            if ($("#row_" + supId).length) {
+                                                $("#row_" + supId).flash("yellow", 5000);
+                                            }
+                                        }, false);
+
+                                    } else {
+                                        $(datatable).DataTable().ajax.reload(null, false);
                                     }
-                                }, false);
+                                });
 
-                            } else {
-                                $(datatable).DataTable().ajax.reload(null, false);
-                            }
+                        }, function (response) {
+
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-danger\">";
+                            window.angular.forEach(response.data, function (value, key) {
+                                alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                            });
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+                            $(":input[type=\"button\"]").prop("disabled", false);
+                            window.swal("Ups!", response.data.errorMsg, "error");
                         });
-
-                    }, function(response) {
-
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-danger\">";
-                        window.angular.forEach(response.data, function(value, key) {
-                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
-                        });
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-                        $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                    });
 
                 });
 
@@ -5240,49 +5239,49 @@ window.angularApp.factory("CollegeEditModal", ["API_URL", "window", "jQuery", "$
             },
             scope: $scope,
             size: "md",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: true,
         });
 
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
         });
     };
 }]);
 
 
 window.angularApp.factory("CourseCreateModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function($scope) {
+    return function ($scope) {
         var uibCourseModalInstance = $uibModal.open({
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"closeCourseCreateModal();\" type=\"button\" class=\"close course-create-modal\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-plus\"></span> {{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>",
+                "<button ng-click=\"closeCourseCreateModal();\" type=\"button\" class=\"close course-create-modal\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-plus\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $http({
-                  url: window.baseUrl + "/_inc/course.php?action_type=CREATE",
-                  method: "GET"
+                    url: window.baseUrl + "/_inc/course.php?action_type=CREATE",
+                    method: "GET"
                 })
-                .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Crear nuevo Curso";
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = "Crear nuevo Curso";
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
 
-                    setTimeout(function() {
-                        window.storeApp.select2();
-                    }, 500);
+                        setTimeout(function () {
+                            window.storeApp.select2();
+                        }, 500);
 
-                }, function(response) {
-                   window.swal("Ups!", response.data.errorMsg, "error");
-                });
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error");
+                    });
 
                 // Submit Box Form
-                $(document).delegate("#create-course-submit", "click", function(e) {
+                $(document).delegate("#create-course-submit", "click", function (e) {
                     e.stopImmediatePropagation();
                     e.stopPropagation();
                     e.preventDefault();
@@ -5292,7 +5291,7 @@ window.angularApp.factory("CourseCreateModal", ["API_URL", "window", "jQuery", "
                     var form = $($tag.data("form"));
                     form.find(".alert").remove();
                     var actionUrl = form.attr("action");
-                    
+
                     $http({
                         url: window.baseUrl + "/_inc/" + actionUrl,
                         method: "POST",
@@ -5302,55 +5301,55 @@ window.angularApp.factory("CourseCreateModal", ["API_URL", "window", "jQuery", "
                         contentType: false,
                         dataType: "json"
                     }).
-                    then(function(response) {
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-success\">";
-                        alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
+                        then(function (response) {
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-success\">";
+                            alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
 
-                        // Alert
-                        window.swal("ÉXITO!", response.data.msg, "success")
-                        .then(function(value) {
+                            // Alert
+                            window.swal("ÉXITO!", response.data.msg, "success")
+                                .then(function (value) {
 
-                            // close modalwindow
-                            $scope.closeCourseCreateModal();
-                            $(document).find(".close").trigger("click");
+                                    // close modalwindow
+                                    $scope.closeCourseCreateModal();
+                                    $(document).find(".close").trigger("click");
 
-                            // insert course into select2
-                            var select = $(document).find('#course_id');
-                            if (select.length) {
-                                var option = $('<option></option>').
-                                     attr('selected', true).
-                                     text(response.data.course.course_name).
-                                     val(response.data.id);
-                                option.appendTo(select);
-                                select.trigger('change');
-                            }
+                                    // insert course into select2
+                                    var select = $(document).find('#course_id');
+                                    if (select.length) {
+                                        var option = $('<option></option>').
+                                            attr('selected', true).
+                                            text(response.data.course.course_name).
+                                            val(response.data.id);
+                                        option.appendTo(select);
+                                        select.trigger('change');
+                                    }
 
-                            // increase course count
-                            var courseCount = $(document).find("#course-count h3");
-                            if (courseCount) {
-                                courseCount.text(parseInt(courseCount.text()) + 1);
-                            }
+                                    // increase course count
+                                    var courseCount = $(document).find("#course-count h3");
+                                    if (courseCount) {
+                                        courseCount.text(parseInt(courseCount.text()) + 1);
+                                    }
 
-                            // Callback
-                            if ($scope.CourseCreateModalCallback) {
-                                $scope.CourseCreateModalCallback($scope);
-                            }
+                                    // Callback
+                                    if ($scope.CourseCreateModalCallback) {
+                                        $scope.CourseCreateModalCallback($scope);
+                                    }
+                                });
+
+                        }, function (response) {
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-danger\">";
+                            window.angular.forEach(response.data, function (value, key) {
+                                alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                            });
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+                            $(":input[type=\"button\"]").prop("disabled", false);
+                            window.swal("Ups!", response.data.errorMsg, "error");
                         });
-
-                    }, function(response) {
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-danger\">";
-                        window.angular.forEach(response.data, function(value, key) {
-                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
-                        });
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-                        $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                    });
                 });
 
                 $scope.closeCourseCreateModal = function () {
@@ -5359,50 +5358,50 @@ window.angularApp.factory("CourseCreateModal", ["API_URL", "window", "jQuery", "
             },
             scope: $scope,
             size: "md",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: true,
         });
 
-        uibCourseModalInstance.result.catch(function () { 
-            uibCourseModalInstance.close(); 
+        uibCourseModalInstance.result.catch(function () {
+            uibCourseModalInstance.close();
         });
     };
 }]);
 window.angularApp.factory("CourseDeleteModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function(course) {
+    return function (course) {
         var uibModalInstance = $uibModal.open({
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"closeCourseDeleteModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-trash\"></span> {{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>",
+                "<button ng-click=\"closeCourseDeleteModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-trash\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $http({
-                  url: window.baseUrl + "/_inc/course.php?course_id=" + course.course_id + "&action_type=DELETE",
-                  method: "GET"
+                    url: window.baseUrl + "/_inc/course.php?course_id=" + course.course_id + "&action_type=DELETE",
+                    method: "GET"
                 })
-                .then(function(response, status, headers, config) {
-                    $scope.modal_title = course.course_name;
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = course.course_name;
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
 
-                    setTimeout(function() {
-                        window.storeApp.select2();
-                    }, 100);
-                
-                }, function(response) {
-                    window.swal("Ups!", response.data.errorMsg, "error")
-                    .then(function() {
-                        $scope.closeCourseDeleteModal();
+                        setTimeout(function () {
+                            window.storeApp.select2();
+                        }, 100);
+
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error")
+                            .then(function () {
+                                $scope.closeCourseDeleteModal();
+                            });
                     });
-                });
 
-                $(document).delegate("#course-delete", "click", function(e) {
-                    
+                $(document).delegate("#course-delete", "click", function (e) {
+
                     e.stopImmediatePropagation();
                     e.stopPropagation();
                     e.preventDefault();
@@ -5422,34 +5421,34 @@ window.angularApp.factory("CourseDeleteModal", ["API_URL", "window", "jQuery", "
                         contentType: false,
                         dataType: "json"
                     }).
-                    then(function(response) {
+                        then(function (response) {
 
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-success\">";
-                        alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-                        $(datatable).DataTable().ajax.reload( null, false );
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-success\">";
+                            alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+                            $(datatable).DataTable().ajax.reload(null, false);
 
-                        // Alert
-                        window.swal("ÉXITO!", response.data.msg, "success")
-                        .then(function(value) {
-                            $scope.closeCourseDeleteModal();
-                            $(document).find(".close").trigger("click");
+                            // Alert
+                            window.swal("ÉXITO!", response.data.msg, "success")
+                                .then(function (value) {
+                                    $scope.closeCourseDeleteModal();
+                                    $(document).find(".close").trigger("click");
+                                });
+
+                        }, function (response) {
+
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-danger\">";
+                            window.angular.forEach(response.data, function (value, key) {
+                                alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                            });
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+                            $(":input[type=\"button\"]").prop("disabled", false);
+                            window.swal("Ups!", response.data.errorMsg, "error");
                         });
-
-                    }, function(response) {
-
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-danger\">";
-                        window.angular.forEach(response.data, function(value, key) {
-                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
-                        });
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-                        $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                    });
 
                 });
 
@@ -5459,46 +5458,46 @@ window.angularApp.factory("CourseDeleteModal", ["API_URL", "window", "jQuery", "
             },
             scope: $scope,
             size: "md",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: true,
         });
 
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
         });
     };
 }]);
 window.angularApp.factory("CourseEditModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function(course) {
+    return function (course) {
         var supId;
         var uibModalInstance = $uibModal.open({
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"closeCourseEditModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-pencil\"></span> {{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>",
+                "<button ng-click=\"closeCourseEditModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-pencil\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $http({
-                  url: window.baseUrl + "/_inc/course.php?course_id=" + course.course_id + "&action_type=EDIT",
-                  method: "GET"
+                    url: window.baseUrl + "/_inc/course.php?course_id=" + course.course_id + "&action_type=EDIT",
+                    method: "GET"
                 })
-                .then(function(response, status, headers, config) {
-                    $scope.modal_title = course.course_name;
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
-                    setTimeout(function() {
-                        window.storeApp.select2();
-                    }, 100);
-                }, function(response) {
-                   window.swal("Ups!", response.data.errorMsg, "error");
-                });
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = course.course_name;
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
+                        setTimeout(function () {
+                            window.storeApp.select2();
+                        }, 100);
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error");
+                    });
 
-                $(document).delegate("#course-update", "click", function(e) {
-                    
+                $(document).delegate("#course-update", "click", function (e) {
+
                     e.stopImmediatePropagation();
                     e.stopPropagation();
                     e.preventDefault();
@@ -5518,52 +5517,52 @@ window.angularApp.factory("CourseEditModal", ["API_URL", "window", "jQuery", "$h
                         contentType: false,
                         dataType: "json"
                     }).
-                    then(function(response) {
+                        then(function (response) {
 
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-success\">";
-                        alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-                        $(datatable).DataTable().ajax.reload( null, false );
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-success\">";
+                            alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+                            $(datatable).DataTable().ajax.reload(null, false);
 
-                        // Alert
-                        window.swal({
-                          title: "ÉXITO!",
-                          text: response.data.msg,
-                          icon: "success",
-                          buttons: true,
-                          dangerMode: false,
-                        })
-                        .then(function (willDelete) {
-                            if (willDelete) {
-                                $scope.closeCourseEditModal();
-                                $(document).find(".close").trigger("click");
-                                supId = response.data.id;
-                                
-                                $(datatable).DataTable().ajax.reload(function(json) {
-                                    if ($("#row_"+supId).length) {
-                                        $("#row_"+supId).flash("yellow", 5000);
+                            // Alert
+                            window.swal({
+                                title: "ÉXITO!",
+                                text: response.data.msg,
+                                icon: "success",
+                                buttons: true,
+                                dangerMode: false,
+                            })
+                                .then(function (willDelete) {
+                                    if (willDelete) {
+                                        $scope.closeCourseEditModal();
+                                        $(document).find(".close").trigger("click");
+                                        supId = response.data.id;
+
+                                        $(datatable).DataTable().ajax.reload(function (json) {
+                                            if ($("#row_" + supId).length) {
+                                                $("#row_" + supId).flash("yellow", 5000);
+                                            }
+                                        }, false);
+
+                                    } else {
+                                        $(datatable).DataTable().ajax.reload(null, false);
                                     }
-                                }, false);
+                                });
 
-                            } else {
-                                $(datatable).DataTable().ajax.reload(null, false);
-                            }
+                        }, function (response) {
+
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-danger\">";
+                            window.angular.forEach(response.data, function (value, key) {
+                                alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                            });
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+                            $(":input[type=\"button\"]").prop("disabled", false);
+                            window.swal("Ups!", response.data.errorMsg, "error");
                         });
-
-                    }, function(response) {
-
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-danger\">";
-                        window.angular.forEach(response.data, function(value, key) {
-                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
-                        });
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-                        $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                    });
 
                 });
 
@@ -5573,12 +5572,12 @@ window.angularApp.factory("CourseEditModal", ["API_URL", "window", "jQuery", "$h
             },
             scope: $scope,
             size: "md",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: true,
         });
 
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
         });
     };
 }]);
@@ -5586,37 +5585,37 @@ window.angularApp.factory("CourseEditModal", ["API_URL", "window", "jQuery", "$h
 
 
 window.angularApp.factory("UserCreateModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function($scope) {
+    return function ($scope) {
         var uibModalInstance = $uibModal.open({
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"closeUserCreateModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-plus\"></span> {{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>",
+                "<button ng-click=\"closeUserCreateModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-plus\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $http({
-                  url: window.baseUrl + "/_inc/user.php?action_type=CREATE",
-                  method: "GET"
+                    url: window.baseUrl + "/_inc/user.php?action_type=CREATE",
+                    method: "GET"
                 })
-                .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Crear nuevo Usuario";
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = "Crear nuevo Usuario";
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
 
-                    setTimeout(function() {
-                        window.storeApp.select2();
-                    }, 500);
-                    
-                }, function(response) {
-                   window.swal("Ups!", response.data.errorMsg, "error");
-                });
+                        setTimeout(function () {
+                            window.storeApp.select2();
+                        }, 500);
+
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error");
+                    });
 
                 // Submit Box Form
-                $(document).delegate("#create-user-submit", "click", function(e) {
+                $(document).delegate("#create-user-submit", "click", function (e) {
                     e.stopImmediatePropagation();
                     e.stopPropagation();
                     e.preventDefault();
@@ -5626,7 +5625,7 @@ window.angularApp.factory("UserCreateModal", ["API_URL", "window", "jQuery", "$h
                     var form = $($tag.data("form"));
                     form.find(".alert").remove();
                     var actionUrl = form.attr("action");
-                    
+
                     $http({
                         url: window.baseUrl + "/_inc/" + actionUrl,
                         method: "POST",
@@ -5636,56 +5635,56 @@ window.angularApp.factory("UserCreateModal", ["API_URL", "window", "jQuery", "$h
                         contentType: false,
                         dataType: "json"
                     }).
-                    then(function(response) {
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-success\">";
-                        alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
+                        then(function (response) {
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-success\">";
+                            alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
 
-                        // Alert
-                        window.swal("ÉXITO!", response.data.msg, "success")
-                        .then(function(value) {
+                            // Alert
+                            window.swal("ÉXITO!", response.data.msg, "success")
+                                .then(function (value) {
 
-                            // close modalwindow
-                            $scope.closeUserCreateModal();
-                            $(document).find(".close").trigger("click");
+                                    // close modalwindow
+                                    $scope.closeUserCreateModal();
+                                    $(document).find(".close").trigger("click");
 
-                            // insert user into select2
-                            var select = $(document).find('#user_id');
-                            if (select.length) {
-                                var option = $('<option></option>').
-                                     attr('selected', true).
-                                     text(response.data.user.username).
-                                     val(response.data.id);
-                                option.appendTo(select);
-                                select.trigger('change');
-                            }
+                                    // insert user into select2
+                                    var select = $(document).find('#user_id');
+                                    if (select.length) {
+                                        var option = $('<option></option>').
+                                            attr('selected', true).
+                                            text(response.data.user.username).
+                                            val(response.data.id);
+                                        option.appendTo(select);
+                                        select.trigger('change');
+                                    }
 
-                            // increase user count
-                            var userCount = $(document).find("#user-count h3");
-                            if (userCount) {
-                                userCount.text(parseInt(userCount.text()) + 1);
-                            }
+                                    // increase user count
+                                    var userCount = $(document).find("#user-count h3");
+                                    if (userCount) {
+                                        userCount.text(parseInt(userCount.text()) + 1);
+                                    }
 
-                            // Callback
-                            if ($scope.UserCreateModalCallback) {
-                                $scope.UserCreateModalCallback($scope);
-                            }
+                                    // Callback
+                                    if ($scope.UserCreateModalCallback) {
+                                        $scope.UserCreateModalCallback($scope);
+                                    }
 
+                                });
+
+                        }, function (response) {
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-danger\">";
+                            window.angular.forEach(response.data, function (value, key) {
+                                alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                            });
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+                            $(":input[type=\"button\"]").prop("disabled", false);
+                            window.swal("Ups!", response.data.errorMsg, "error");
                         });
-
-                    }, function(response) {
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-danger\">";
-                        window.angular.forEach(response.data, function(value, key) {
-                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
-                        });
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-                        $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                    });
                 });
 
                 $scope.closeUserCreateModal = function () {
@@ -5694,50 +5693,50 @@ window.angularApp.factory("UserCreateModal", ["API_URL", "window", "jQuery", "$h
             },
             scope: $scope,
             size: "md",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: true,
         });
 
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
         });
     };
 }]);
 window.angularApp.factory("UserDeleteModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function(user) {
+    return function (user) {
         var uibModalInstance = $uibModal.open({
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"closeUserDeleteModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-trash\"></span> {{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>",
+                "<button ng-click=\"closeUserDeleteModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-trash\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $http({
-                  url: window.baseUrl + "/_inc/user.php?id=" + user.id + "&action_type=DELETE",
-                  method: "GET"
+                    url: window.baseUrl + "/_inc/user.php?id=" + user.id + "&action_type=DELETE",
+                    method: "GET"
                 })
-                .then(function(response, status, headers, config) {
-                    $scope.modal_title = user.username;
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = user.username;
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
 
-                    setTimeout(function() {
-                        window.storeApp.select2();
-                    }, 100);
-                
-                }, function(response) {
-                    window.swal("Ups!", response.data.errorMsg, "error")
-                    .then(function() {
-                        $scope.closeUserDeleteModal();
+                        setTimeout(function () {
+                            window.storeApp.select2();
+                        }, 100);
+
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error")
+                            .then(function () {
+                                $scope.closeUserDeleteModal();
+                            });
                     });
-                });
 
-                $(document).delegate("#user-delete", "click", function(e) {
-                    
+                $(document).delegate("#user-delete", "click", function (e) {
+
                     e.stopImmediatePropagation();
                     e.stopPropagation();
                     e.preventDefault();
@@ -5757,34 +5756,34 @@ window.angularApp.factory("UserDeleteModal", ["API_URL", "window", "jQuery", "$h
                         contentType: false,
                         dataType: "json"
                     }).
-                    then(function(response) {
+                        then(function (response) {
 
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-success\">";
-                        alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-                        $(datatable).DataTable().ajax.reload( null, false );
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-success\">";
+                            alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+                            $(datatable).DataTable().ajax.reload(null, false);
 
-                        // Alert
-                        window.swal("ÉXITO!", response.data.msg, "success")
-                        .then(function(value) {
-                            $scope.closeUserDeleteModal();
-                            $(document).find(".close").trigger("click");
+                            // Alert
+                            window.swal("ÉXITO!", response.data.msg, "success")
+                                .then(function (value) {
+                                    $scope.closeUserDeleteModal();
+                                    $(document).find(".close").trigger("click");
+                                });
+
+                        }, function (response) {
+
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-danger\">";
+                            window.angular.forEach(response.data, function (value, key) {
+                                alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                            });
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+                            $(":input[type=\"button\"]").prop("disabled", false);
+                            window.swal("Ups!", response.data.errorMsg, "error");
                         });
-
-                    }, function(response) {
-
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-danger\">";
-                        window.angular.forEach(response.data, function(value, key) {
-                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
-                        });
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-                        $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                    });
 
                 });
 
@@ -5794,48 +5793,51 @@ window.angularApp.factory("UserDeleteModal", ["API_URL", "window", "jQuery", "$h
             },
             scope: $scope,
             size: "md",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: true,
         });
 
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
         });
     };
 }]);
 window.angularApp.factory("UserEditModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function(user) {
+    return function (user) {
         var uibModalInstance = $uibModal.open({
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"closeUserEditModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-pencil\"></span> {{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>",
+                "<button ng-click=\"closeUserEditModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-pencil\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $http({
-                  url: window.baseUrl + "/_inc/user.php?id=" + user.id + "&action_type=EDIT",
-                  method: "GET"
+                    url: window.baseUrl + "/_inc/user.php?id=" + user.id + "&action_type=EDIT",
+                    method: "GET"
                 })
-                .then(function(response, status, headers, config) {
-                    $scope.modal_title = user.username;
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = user.username;
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
 
-                    setTimeout(function() {
-                        window.storeApp.select2();
-                        window.storeApp.datePicker();
-                    }, 100);
+                        setTimeout(function () {
+                            window.storeApp.select2();
+                            window.storeApp.datePicker();
+                            $scope.groupType = $("#group_id").select2('val');
+                            // console.log($scope.groupType);
+                            $scope.setFieldAsGroupType($scope.groupType);
+                        }, 100);
 
-                }, function(data) {
-                   window.swal("Ups!", window.response.data.errorMsg, "error");
-                });
+                    }, function (data) {
+                        window.swal("Ups!", window.response.data.errorMsg, "error");
+                    });
 
-                $(document).delegate("#user-update", "click", function(e) {
-                    
+                $(document).delegate("#user-update", "click", function (e) {
+
                     e.stopImmediatePropagation();
                     e.stopPropagation();
                     e.preventDefault();
@@ -5855,104 +5857,140 @@ window.angularApp.factory("UserEditModal", ["API_URL", "window", "jQuery", "$htt
                         contentType: false,
                         dataType: "json"
                     }).
-                    then(function(response) {
+                        then(function (response) {
 
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-success\">";
-                        alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-success\">";
+                            alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
 
-                        // Alert
-                        window.swal({
-                          title: "ÉXITO!",
-                          text: response.data.msg,
-                          icon: "success",
-                          buttons: true,
-                          dangerMode: false,
-                        })
-                        .then(function (willDelete) {
-                            if (willDelete) {
-                                $scope.closeUserEditModal();
-                                $(document).find(".close").trigger("click");
-                                window.userId = response.data.id;
-                                
-                                $(datatable).DataTable().ajax.reload(function(json) {
-                                    if ($("#row_"+window.userId).length) {
-                                        $("#row_"+window.userId).flash("yellow", 5000);
+                            // Alert
+                            window.swal({
+                                title: "ÉXITO!",
+                                text: response.data.msg,
+                                icon: "success",
+                                buttons: true,
+                                dangerMode: false,
+                            })
+                                .then(function (willDelete) {
+                                    if (willDelete) {
+                                        $scope.closeUserEditModal();
+                                        $(document).find(".close").trigger("click");
+                                        window.userId = response.data.id;
+
+                                        $(datatable).DataTable().ajax.reload(function (json) {
+                                            if ($("#row_" + window.userId).length) {
+                                                $("#row_" + window.userId).flash("yellow", 5000);
+                                            }
+                                        }, false);
+
+                                    } else {
+                                        $(datatable).DataTable().ajax.reload(null, false);
                                     }
-                                }, false);
+                                });
 
-                            } else {
-                                $(datatable).DataTable().ajax.reload(null, false);
-                            }
+                        }, function (response) {
+
+                            $btn.button("reset");
+
+                            var alertMsg = "<div class=\"alert alert-danger\">";
+                            window.angular.forEach(response.data, function (value, key) {
+                                alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                            });
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+
+                            $(":input[type=\"button\"]").prop("disabled", false);
+
+                            window.swal("Ups!", response.data.errorMsg, "error");
                         });
-
-                    }, function(response) {
-
-                        $btn.button("reset");
-
-                        var alertMsg = "<div class=\"alert alert-danger\">";
-                        window.angular.forEach(response.data, function(value, key) {
-                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
-                        });
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-
-                        $(":input[type=\"button\"]").prop("disabled", false);
-
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                    });
 
                 });
 
                 $scope.closeUserEditModal = function () {
                     $uibModalInstance.dismiss("cancel");
                 };
+
+
+                // $scope.hideSupplier = 1;
+                // $scope.hideCollege = 1;
+                // console.log('modal');
+
+                // Supplier Visor   => 6
+                // College Visor    => 7
+                $scope.setFieldAsGroupType = function (type) {
+                    if (type == '6') {
+                        $scope.$apply(function () {
+                            $scope.hideSupplier = !1;
+                            $scope.hideCollege = 1;
+                        });
+                    }
+                    else if (type == '7') {
+                        $scope.$apply(function () {
+                            $scope.hideSupplier = 1;
+                            $scope.hideCollege = !1;
+                        });
+                    }
+                    else {
+                        $scope.$applyAsync(function () {
+                            $scope.hideSupplier = 1;
+                            $scope.hideCollege = 1;
+                        });
+                    }
+                }
+                $(document).delegate("#group_id", 'select2:select', function (e) {
+                    var data = e.params.data;
+                    $scope.groupType = data.element.value;
+                    console.log($scope.groupType);
+                    $scope.setFieldAsGroupType($scope.groupType);
+                });
+
+
             },
             scope: $scope,
             size: "md",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: true,
         });
 
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
         });
     };
 }]);
 window.angularApp.factory("UserGroupCreateModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function($scope) {
+    return function ($scope) {
         var uibModalInstance = $uibModal.open({
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"closeUserGroupCreateModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-plus\"></span> {{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>",
+                "<button ng-click=\"closeUserGroupCreateModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-plus\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $http({
-                  url: window.baseUrl + "/_inc/user_group.php?action_type=CREATE",
-                  method: "GET"
+                    url: window.baseUrl + "/_inc/user_group.php?action_type=CREATE",
+                    method: "GET"
                 })
-                .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Crear nuevo Grupo de Usuario";
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = "Crear nuevo Grupo de Usuario";
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
 
-                    setTimeout(function() {
-                        window.storeApp.select2();
-                    }, 500);
-                    
-                }, function(response) {
-                   window.swal("Ups!", response.data.errorMsg, "error");
-                });
+                        setTimeout(function () {
+                            window.storeApp.select2();
+                        }, 500);
+
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error");
+                    });
 
                 // Submit Box Form
-                $(document).delegate("#create-usergroup-submit", "click", function(e) {
+                $(document).delegate("#create-usergroup-submit", "click", function (e) {
                     e.stopImmediatePropagation();
                     e.stopPropagation();
                     e.preventDefault();
@@ -5962,7 +6000,7 @@ window.angularApp.factory("UserGroupCreateModal", ["API_URL", "window", "jQuery"
                     var form = $($tag.data("form"));
                     form.find(".alert").remove();
                     var actionUrl = form.attr("action");
-                    
+
                     $http({
                         url: window.baseUrl + "/_inc/" + actionUrl,
                         method: "POST",
@@ -5972,56 +6010,56 @@ window.angularApp.factory("UserGroupCreateModal", ["API_URL", "window", "jQuery"
                         contentType: false,
                         dataType: "json"
                     }).
-                    then(function(response) {
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-success\">";
-                        alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
+                        then(function (response) {
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-success\">";
+                            alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
 
-                        // Alert
-                        window.swal("ÉXITO!", response.data.msg, "success")
-                        .then(function(value) {
+                            // Alert
+                            window.swal("ÉXITO!", response.data.msg, "success")
+                                .then(function (value) {
 
-                            // close modalwindow
-                            $scope.closeUserGroupCreateModal();
-                            $(document).find(".close").trigger("click");
+                                    // close modalwindow
+                                    $scope.closeUserGroupCreateModal();
+                                    $(document).find(".close").trigger("click");
 
-                            // insert usergroup into select2
-                            var select = $(document).find('#group_id');
-                            if (select.length) {
-                                var option = $('<option></option>').
-                                     attr('selected', true).
-                                     text(response.data.usergroup.name).
-                                     val(response.data.id);
-                                option.appendTo(select);
-                                select.trigger('change');
-                            }
+                                    // insert usergroup into select2
+                                    var select = $(document).find('#group_id');
+                                    if (select.length) {
+                                        var option = $('<option></option>').
+                                            attr('selected', true).
+                                            text(response.data.usergroup.name).
+                                            val(response.data.id);
+                                        option.appendTo(select);
+                                        select.trigger('change');
+                                    }
 
-                            // increase usergroup count
-                            var usergroupCount = $(document).find("#usergroup-count h3");
-                            if (usergroupCount) {
-                                usergroupCount.text(parseInt(usergroupCount.text()) + 1);
-                            }
+                                    // increase usergroup count
+                                    var usergroupCount = $(document).find("#usergroup-count h3");
+                                    if (usergroupCount) {
+                                        usergroupCount.text(parseInt(usergroupCount.text()) + 1);
+                                    }
 
-                            // Callback
-                            if ($scope.UserGroupCreateModalCallback) {
-                                $scope.UserGroupCreateModalCallback($scope);
-                            }
+                                    // Callback
+                                    if ($scope.UserGroupCreateModalCallback) {
+                                        $scope.UserGroupCreateModalCallback($scope);
+                                    }
 
+                                });
+
+                        }, function (response) {
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-danger\">";
+                            window.angular.forEach(response.data, function (value, key) {
+                                alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                            });
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+                            $(":input[type=\"button\"]").prop("disabled", false);
+                            window.swal("Ups!", response.data.errorMsg, "error");
                         });
-
-                    }, function(response) {
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-danger\">";
-                        window.angular.forEach(response.data, function(value, key) {
-                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
-                        });
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-                        $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                    });
                 });
 
                 $scope.closeUserGroupCreateModal = function () {
@@ -6030,49 +6068,49 @@ window.angularApp.factory("UserGroupCreateModal", ["API_URL", "window", "jQuery"
             },
             scope: $scope,
             size: "md",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: true,
         });
 
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
         });
     };
 }]);
 window.angularApp.factory("UserGroupDeleteModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function(usergroup) {
+    return function (usergroup) {
         var uibModalInstance = $uibModal.open({
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                        "<button ng-click=\"closeUsergroupDelteModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                       "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-trash\"></span> {{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                        "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                    "</div>",
+                "<button ng-click=\"closeUsergroupDelteModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-trash\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $http({
-                  url: window.baseUrl + "/_inc/user_group.php?group_id=" + usergroup.group_id + "&action_type=DELETE",
-                  method: "GET"
+                    url: window.baseUrl + "/_inc/user_group.php?group_id=" + usergroup.group_id + "&action_type=DELETE",
+                    method: "GET"
                 })
-                .then(function(response, status, headers, config) {
-                    $scope.modal_title = usergroup.name;
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = usergroup.name;
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
 
-                    setTimeout(function() {
-                        window.storeApp.select2();
-                    }, 100);
-                    
-                }, function(response) {
-                    window.swal("Ups!", response.data.errorMsg, "error")
-                    .then(function() {
-                        $scope.closeUsergroupDelteModal();
+                        setTimeout(function () {
+                            window.storeApp.select2();
+                        }, 100);
+
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error")
+                            .then(function () {
+                                $scope.closeUsergroupDelteModal();
+                            });
                     });
-                });
 
-                $(document).delegate("#user-group-delete", "click", function(e) {
+                $(document).delegate("#user-group-delete", "click", function (e) {
 
                     e.stopImmediatePropagation();
                     e.stopPropagation();
@@ -6093,34 +6131,34 @@ window.angularApp.factory("UserGroupDeleteModal", ["API_URL", "window", "jQuery"
                         contentType: false,
                         dataType: "json"
                     }).
-                    then(function(response) {
+                        then(function (response) {
 
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-success\">";
-                        alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-                        $(datatable).DataTable().ajax.reload( null, false );
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-success\">";
+                            alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+                            $(datatable).DataTable().ajax.reload(null, false);
 
-                        // Alert
-                        window.swal("ÉXITO!", response.data.msg, "success")
-                        .then(function(value) {
-                            $scope.closeUsergroupDelteModal();
-                            $(document).find(".close").trigger("click");
+                            // Alert
+                            window.swal("ÉXITO!", response.data.msg, "success")
+                                .then(function (value) {
+                                    $scope.closeUsergroupDelteModal();
+                                    $(document).find(".close").trigger("click");
+                                });
+
+                        }, function (response) {
+
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-danger\">";
+                            window.angular.forEach(response.data, function (value, key) {
+                                alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                            });
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+                            $(":input[type=\"button\"]").prop("disabled", false);
+                            window.swal("Ups!", response.data.errorMsg, "error");
                         });
-
-                    }, function(response) {
-
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-danger\">";
-                        window.angular.forEach(response.data, function(value, key) {
-                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
-                        });
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-                        $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                    });
 
                 });
 
@@ -6130,42 +6168,42 @@ window.angularApp.factory("UserGroupDeleteModal", ["API_URL", "window", "jQuery"
             },
             scope: $scope,
             size: "md",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: true,
         });
 
-        uibModalInstance.result.catch(function () { 
-             uibModalInstance.close(); 
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
         });
     };
 }]);
-window.angularApp.factory("UserGroupEditModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function(API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function(usergroup) {
+window.angularApp.factory("UserGroupEditModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
+    return function (usergroup) {
         var uibModalInstance = $uibModal.open({
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"closeUsergroupEditModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-pencil\"></span> {{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>",
+                "<button ng-click=\"closeUsergroupEditModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-pencil\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $http({
-                  url: window.baseUrl + "/_inc/user_group.php?group_id=" + usergroup.group_id + "&action_type=EDIT",
-                  method: "GET"
+                    url: window.baseUrl + "/_inc/user_group.php?group_id=" + usergroup.group_id + "&action_type=EDIT",
+                    method: "GET"
                 })
-                .then(function(response, status, headers, config) {
-                    $scope.modal_title = usergroup.name;
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
-                }, function(data) {
-                   window.swal("Ups!", window.response.data.errorMsg, "error");
-                });
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = usergroup.name;
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
+                    }, function (data) {
+                        window.swal("Ups!", window.response.data.errorMsg, "error");
+                    });
 
-                $(document).delegate(".user-group-update", "click", function(e) {
-                    
+                $(document).delegate(".user-group-update", "click", function (e) {
+
                     e.stopImmediatePropagation();
                     e.stopPropagation();
                     e.preventDefault();
@@ -6185,51 +6223,51 @@ window.angularApp.factory("UserGroupEditModal", ["API_URL", "window", "jQuery", 
                         contentType: false,
                         dataType: "json"
                     }).
-                    then(function(response) {
+                        then(function (response) {
 
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-success\">";
-                        alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-success\">";
+                            alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
 
-                        // Alert
-                        window.swal({
-                          title: "ÉXITO!",
-                          text: response.data.msg,
-                          icon: "success",
-                          buttons: true,
-                          dangerMode: false,
-                        })
-                        .then(function (willDelete) {
-                            if (willDelete) {
-                                $scope.closeUsergroupEditModal();
-                                $(document).find(".close").trigger("click");
-                                window.groupId = response.data.id;
-                                
-                                $(datatable).DataTable().ajax.reload(function(json) {
-                                    if ($("#row_"+window.groupId).length) {
-                                        $("#row_"+ window.groupId).flash("yellow", 5000);
+                            // Alert
+                            window.swal({
+                                title: "ÉXITO!",
+                                text: response.data.msg,
+                                icon: "success",
+                                buttons: true,
+                                dangerMode: false,
+                            })
+                                .then(function (willDelete) {
+                                    if (willDelete) {
+                                        $scope.closeUsergroupEditModal();
+                                        $(document).find(".close").trigger("click");
+                                        window.groupId = response.data.id;
+
+                                        $(datatable).DataTable().ajax.reload(function (json) {
+                                            if ($("#row_" + window.groupId).length) {
+                                                $("#row_" + window.groupId).flash("yellow", 5000);
+                                            }
+                                        }, false);
+
+                                    } else {
+                                        $(datatable).DataTable().ajax.reload(null, false);
                                     }
-                                }, false);
+                                });
 
-                            } else {
-                                $(datatable).DataTable().ajax.reload(null, false);
-                            }
+                        }, function (response) {
+
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-danger\">";
+                            window.angular.forEach(response.data, function (value, key) {
+                                alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                            });
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+                            $(":input[type=\"button\"]").prop("disabled", false);
+                            window.swal("Ups!", response.data.errorMsg, "error");
                         });
-
-                    }, function(response) {
-
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-danger\">";
-                        window.angular.forEach(response.data, function(value, key) {
-                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
-                        });
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-                        $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                    });
                 });
 
                 $scope.closeUsergroupEditModal = function () {
@@ -6238,46 +6276,46 @@ window.angularApp.factory("UserGroupEditModal", ["API_URL", "window", "jQuery", 
             },
             scope: $scope,
             size: "lg",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: true,
         });
 
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
         });
     };
 }]);
 window.angularApp.factory("UserInvoiceDetailsModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
     var $from = window.getParameterByName("from");
     var $to = window.getParameterByName("to");
-    return function($scope) {
+    return function ($scope) {
         var uibModalInstance = $uibModal.open({
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"closeDueCollectionModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-list\"></span> {{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>",
+                "<button ng-click=\"closeDueCollectionModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-list\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $http({
-                  url: window.baseUrl + "/_inc/invoice.php?action_type=INVOICEDETAILS&user_id=" + $scope.userID + "&from=" + $from + "&to=" + $to,
-                  method: "GET"
+                    url: window.baseUrl + "/_inc/invoice.php?action_type=INVOICEDETAILS&user_id=" + $scope.userID + "&from=" + $from + "&to=" + $to,
+                    method: "GET"
                 })
-                .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Lista de facturas de " + $scope.username;
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = "Lista de facturas de " + $scope.username;
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
 
-                    setTimeout(function() {
-                        window.storeApp.select2();
-                    }, 500);
-                    
-                }, function(response) {
-                   window.swal("Ups!", response.data.errorMsg, "error");
-                });
+                        setTimeout(function () {
+                            window.storeApp.select2();
+                        }, 500);
+
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error");
+                    });
 
                 $scope.closeDueCollectionModal = function () {
                     $uibModalInstance.dismiss("cancel");
@@ -6285,7 +6323,7 @@ window.angularApp.factory("UserInvoiceDetailsModal", ["API_URL", "window", "jQue
             },
             scope: $scope,
             size: "lg",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: true, // ESC key close enable/disable
             resolve: {
                 userForm: function () {
@@ -6294,8 +6332,8 @@ window.angularApp.factory("UserInvoiceDetailsModal", ["API_URL", "window", "jQue
             }
         });
 
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
         });
     };
 }]);
@@ -6303,34 +6341,34 @@ window.angularApp.factory("UserInvoiceDetailsModal", ["API_URL", "window", "jQue
 window.angularApp.factory("UserInvoiceDueDetailsModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
     var $from = window.getParameterByName("from");
     var $to = window.getParameterByName("to");
-    return function($scope) {
+    return function ($scope) {
         var uibModalInstance = $uibModal.open({
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"closeDueCollectionModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\">{{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>",
+                "<button ng-click=\"closeDueCollectionModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\">{{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $http({
-                  url: window.baseUrl + "/_inc/invoice.php?action_type=INVOICEDUEDETAILS&user_id=" + $scope.userID + "&from=" + $from + "&to=" + $to,
-                  method: "GET"
+                    url: window.baseUrl + "/_inc/invoice.php?action_type=INVOICEDUEDETAILS&user_id=" + $scope.userID + "&from=" + $from + "&to=" + $to,
+                    method: "GET"
                 })
-                .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Lista de facturas de " + $scope.username;
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = "Lista de facturas de " + $scope.username;
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
 
-                    setTimeout(function() {
-                        window.storeApp.select2();
-                    }, 500);
-                    
-                }, function(response) {
-                   window.swal("Ups!", response.data.errorMsg, "error");
-                });
+                        setTimeout(function () {
+                            window.storeApp.select2();
+                        }, 500);
+
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error");
+                    });
 
                 $scope.closeDueCollectionModal = function () {
                     $uibModalInstance.dismiss("cancel");
@@ -6338,50 +6376,50 @@ window.angularApp.factory("UserInvoiceDueDetailsModal", ["API_URL", "window", "j
             },
             scope: $scope,
             size: "md",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: true,
         });
 
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
         });
     };
 }]);
 window.angularApp.factory("GiftcardCreateModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function($scope) {
+    return function ($scope) {
         var uibModalInstance = $uibModal.open({
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"closeGiftcardCreateModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-plus\"></span> {{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>",
+                "<button ng-click=\"closeGiftcardCreateModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-plus\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $http({
-                  url: window.baseUrl + "/_inc/giftcard.php?action_type=CREATE",
-                  method: "GET"
+                    url: window.baseUrl + "/_inc/giftcard.php?action_type=CREATE",
+                    method: "GET"
                 })
-                .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Crear nueva Tarjeta de Regalo";
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
-                    setTimeout(function() {
-                        window.storeApp.datePicker();
-                        window.storeApp.select2();
-                        $(".random_card_no").click(function(){
-                            $(this).parent(".input-group").children("input").val(window.storeApp.generateCardNo(16));
-                        });
-                         $(".random_card_no").trigger("click");
-                    }, 500);
-                }, function(response) {
-                   window.swal("Ups!", response.data.errorMsg, "error");
-                });
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = "Crear nueva Tarjeta de Regalo";
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
+                        setTimeout(function () {
+                            window.storeApp.datePicker();
+                            window.storeApp.select2();
+                            $(".random_card_no").click(function () {
+                                $(this).parent(".input-group").children("input").val(window.storeApp.generateCardNo(16));
+                            });
+                            $(".random_card_no").trigger("click");
+                        }, 500);
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error");
+                    });
 
                 // Submit Giftcard Form
-                $(document).delegate("#create-giftcard-submit", "click", function(e) {
+                $(document).delegate("#create-giftcard-submit", "click", function (e) {
                     e.stopImmediatePropagation();
                     e.stopPropagation();
                     e.preventDefault();
@@ -6391,7 +6429,7 @@ window.angularApp.factory("GiftcardCreateModal", ["API_URL", "window", "jQuery",
                     var form = $($tag.data("form"));
                     form.find(".alert").remove();
                     var actionUrl = form.attr("action");
-                    
+
                     $http({
                         url: window.baseUrl + "/_inc/" + actionUrl,
                         method: "POST",
@@ -6401,58 +6439,58 @@ window.angularApp.factory("GiftcardCreateModal", ["API_URL", "window", "jQuery",
                         contentType: false,
                         dataType: "json"
                     }).
-                    then(function(response) {
-                        $scope.card_no = response.data.giftcard.card_no;
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-success\">";
-                        alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
-                        alertMsg += "</div>";
-                        form.find(".giftcard-body").before(alertMsg);
+                        then(function (response) {
+                            $scope.card_no = response.data.giftcard.card_no;
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-success\">";
+                            alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
+                            alertMsg += "</div>";
+                            form.find(".giftcard-body").before(alertMsg);
 
-                        // Alert
-                        window.swal("ÉXITO!", response.data.msg, "success")
-                        .then(function(value) {
+                            // Alert
+                            window.swal("ÉXITO!", response.data.msg, "success")
+                                .then(function (value) {
 
-                            // close modalwindow
-                            $scope.closeGiftcardCreateModal();
-                            $(document).find(".close").trigger("click");
+                                    // close modalwindow
+                                    $scope.closeGiftcardCreateModal();
+                                    $(document).find(".close").trigger("click");
 
-                            // insert giftcard into select2
-                            var select = $(document).find("#giftcard_id");
-                            if (select.length) {
-                            
-                                var option = $("<option></option>").
-                                     attr("selected", true).
-                                     text(response.data.giftcard.card_no).
-                                     val(response.data.id);
-                                option.appendTo(select);
-                                select.trigger("change");
-                            }
+                                    // insert giftcard into select2
+                                    var select = $(document).find("#giftcard_id");
+                                    if (select.length) {
 
-                            // increase store count
-                            var giftcardCount = $(document).find("#giftcard-count h3");
-                            if (giftcardCount) {
-                                giftcardCount.text(parseInt(giftcardCount.text()) + 1);
-                            }
+                                        var option = $("<option></option>").
+                                            attr("selected", true).
+                                            text(response.data.giftcard.card_no).
+                                            val(response.data.id);
+                                        option.appendTo(select);
+                                        select.trigger("change");
+                                    }
 
-                            // Callback
-                            if ($scope.GiftcardCreateModalCallback) {
-                                $scope.GiftcardCreateModalCallback($scope);
-                            }
+                                    // increase store count
+                                    var giftcardCount = $(document).find("#giftcard-count h3");
+                                    if (giftcardCount) {
+                                        giftcardCount.text(parseInt(giftcardCount.text()) + 1);
+                                    }
 
+                                    // Callback
+                                    if ($scope.GiftcardCreateModalCallback) {
+                                        $scope.GiftcardCreateModalCallback($scope);
+                                    }
+
+                                });
+
+                        }, function (response) {
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-danger\">";
+                            window.angular.forEach(response.data, function (value, key) {
+                                alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                            });
+                            alertMsg += "</div>";
+                            form.find(".giftcard-body").before(alertMsg);
+                            $(":input[type=\"button\"]").prop("disabled", false);
+                            window.swal("Ups!", response.data.errorMsg, "error");
                         });
-
-                    }, function(response) {
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-danger\">";
-                        window.angular.forEach(response.data, function(value, key) {
-                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
-                        });
-                        alertMsg += "</div>";
-                        form.find(".giftcard-body").before(alertMsg);
-                        $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                    });
                 });
 
                 $scope.closeGiftcardCreateModal = function () {
@@ -6461,49 +6499,49 @@ window.angularApp.factory("GiftcardCreateModal", ["API_URL", "window", "jQuery",
             },
             scope: $scope,
             size: "md",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: true,
         });
 
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
         });
     };
 }]);
 window.angularApp.factory("GiftcardEditModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function(giftcard) {
+    return function (giftcard) {
         var giftcardId;
         var uibModalInstance = $uibModal.open({
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"closeGiftcardEditModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-pencil\"></span> {{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile='rawHtml'>Loading...</div>" +
-                        "</div>",
+                "<button ng-click=\"closeGiftcardEditModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-pencil\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile='rawHtml'>Loading...</div>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $http({
-                  url: API_URL + "/_inc/giftcard.php?id=" + giftcard.id + "&action_type=EDIT",
-                  method: "GET"
+                    url: API_URL + "/_inc/giftcard.php?id=" + giftcard.id + "&action_type=EDIT",
+                    method: "GET"
                 })
-                .then(function(response, status, headers, config) {
-                    $scope.modal_title = giftcard.card_no;
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
-                    setTimeout(function() {
-                        window.storeApp.datePicker();
-                        window.storeApp.select2();
-                        $(".random_card_no").click(function(){
-                            $(this).parent(".input-group").children("input").val(window.storeApp.generateCardNo(16));
-                        });
-                    }, 500);
-                }, function(response) {
-                   window.swal("Ups!", response.data.errorMsg, "error");
-                });
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = giftcard.card_no;
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
+                        setTimeout(function () {
+                            window.storeApp.datePicker();
+                            window.storeApp.select2();
+                            $(".random_card_no").click(function () {
+                                $(this).parent(".input-group").children("input").val(window.storeApp.generateCardNo(16));
+                            });
+                        }, 500);
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error");
+                    });
 
-                $(document).delegate("#giftcard-update", "click", function(e) {
+                $(document).delegate("#giftcard-update", "click", function (e) {
                     e.stopImmediatePropagation();
                     e.stopPropagation();
                     e.preventDefault();
@@ -6514,7 +6552,7 @@ window.angularApp.factory("GiftcardEditModal", ["API_URL", "window", "jQuery", "
                     var datatable = $tag.data("datatable");
                     form.find(".alert").remove();
                     var actionUrl = form.attr("action");
-                    
+
                     $http({
                         url: API_URL + "/_inc/" + actionUrl,
                         method: "POST",
@@ -6524,52 +6562,52 @@ window.angularApp.factory("GiftcardEditModal", ["API_URL", "window", "jQuery", "
                         contentType: false,
                         dataType: "json"
                     }).
-                    then(function(response) {
+                        then(function (response) {
 
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-success\">";
-                        alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
-                        alertMsg += "</div>";
-                        form.find(".giftcard-body").before(alertMsg);
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-success\">";
+                            alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
+                            alertMsg += "</div>";
+                            form.find(".giftcard-body").before(alertMsg);
 
-                        // Alert
-                        window.swal({
-                          title: "ÉXITO!",
-                          text: response.data.msg,
-                          icon: "success",
-                          buttons: true,
-                          dangerMode: false,
-                        })
-                        .then(function (willDelete) {
-                            if (willDelete) {
+                            // Alert
+                            window.swal({
+                                title: "ÉXITO!",
+                                text: response.data.msg,
+                                icon: "success",
+                                buttons: true,
+                                dangerMode: false,
+                            })
+                                .then(function (willDelete) {
+                                    if (willDelete) {
 
-                                $scope.closeGiftcardEditModal();
-                                $(document).find(".close").trigger("click");
-                                giftcardId = response.data.id;
-                                
-                                $(datatable).DataTable().ajax.reload(function(json) {
-                                    if ($("#row_"+giftcardId).length) {
-                                        $("#row_"+giftcardId).flash("yellow", 5000);
+                                        $scope.closeGiftcardEditModal();
+                                        $(document).find(".close").trigger("click");
+                                        giftcardId = response.data.id;
+
+                                        $(datatable).DataTable().ajax.reload(function (json) {
+                                            if ($("#row_" + giftcardId).length) {
+                                                $("#row_" + giftcardId).flash("yellow", 5000);
+                                            }
+                                        }, false);
+
+                                    } else {
+                                        $(datatable).DataTable().ajax.reload(null, false);
                                     }
-                                }, false);
+                                });
 
-                            } else {
-                                $(datatable).DataTable().ajax.reload(null, false);
-                            }
+                        }, function (response) {
+
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-danger\">";
+                            window.angular.forEach(response.data, function (value, key) {
+                                alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                            });
+                            alertMsg += "</div>";
+                            form.find(".giftcard-body").before(alertMsg);
+                            $(":input[type=\"button\"]").prop("disabled", false);
+                            window.swal("Ups!", response.data.errorMsg, "error");
                         });
-
-                    }, function(response) {
-
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-danger\">";
-                        window.angular.forEach(response.data, function(value, key) {
-                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
-                        });
-                        alertMsg += "</div>";
-                        form.find(".giftcard-body").before(alertMsg);
-                        $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                    });
 
                 });
 
@@ -6579,12 +6617,12 @@ window.angularApp.factory("GiftcardEditModal", ["API_URL", "window", "jQuery", "
             },
             scope: $scope,
             size: "md",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: true,
         });
 
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
         });
     };
 }]);
@@ -6595,25 +6633,25 @@ window.angularApp.factory("GiftcardViewModal", ["API_URL", "window", "jQuery", "
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"closeGiftcardViewModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\">{{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>",
+                "<button ng-click=\"closeGiftcardViewModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\">{{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $http({
-                  url: window.baseUrl + "/_inc/giftcard.php?card_no=" + giftcard.card_no + "&action_type=VIEW",
-                  method: "GET"
+                    url: window.baseUrl + "/_inc/giftcard.php?card_no=" + giftcard.card_no + "&action_type=VIEW",
+                    method: "GET"
                 })
-                .then(function (response, status, headers, config) {
-                    $scope.modal_title = "Tarjeta de Regalo (" + giftcard.card_no + ")";
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
-                }, function (response) {
-                    window.swal("Ups!", response.data.errorMsg, "error").then(function() {
-                        $scope.closeGiftcardViewModal();
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = "Tarjeta de Regalo (" + giftcard.card_no + ")";
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error").then(function () {
+                            $scope.closeGiftcardViewModal();
+                        });
                     });
-                });
 
                 $scope.closeGiftcardViewModal = function () {
                     $uibModalInstance.dismiss("cancel");
@@ -6621,7 +6659,7 @@ window.angularApp.factory("GiftcardViewModal", ["API_URL", "window", "jQuery", "
             },
             scope: $scope,
             size: "md",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: true,
             resolve: {
                 userForm: function () {
@@ -6630,45 +6668,45 @@ window.angularApp.factory("GiftcardViewModal", ["API_URL", "window", "jQuery", "
             }
         });
 
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
         });
     };
 }]);
 window.angularApp.factory("GiftcardTopupModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function(giftcard) {
+    return function (giftcard) {
         var giftcardId;
         var uibModalInstance = $uibModal.open({
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"closeGiftcardTopupModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-pencil\"></span> {{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile='rawHtml'>Loading...</div>" +
-                        "</div>",
+                "<button ng-click=\"closeGiftcardTopupModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-pencil\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile='rawHtml'>Loading...</div>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $http({
-                  url: API_URL + "/_inc/giftcard.php?id=" + giftcard.id + "&action_type=TOPUP",
-                  method: "GET"
+                    url: API_URL + "/_inc/giftcard.php?id=" + giftcard.id + "&action_type=TOPUP",
+                    method: "GET"
                 })
-                .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Recargar Tarjeta de Regalo (" + giftcard.card_no + ")";
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
-                    setTimeout(function() {
-                        window.storeApp.datePicker();
-                        window.storeApp.select2();
-                        $(".random_card_no").click(function(){
-                            $(this).parent(".input-group").children("input").val(window.storeApp.generateCardNo(16));
-                        });
-                    }, 500);
-                }, function(response) {
-                   window.swal("Ups!", response.data.errorMsg, "error");
-                });
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = "Recargar Tarjeta de Regalo (" + giftcard.card_no + ")";
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
+                        setTimeout(function () {
+                            window.storeApp.datePicker();
+                            window.storeApp.select2();
+                            $(".random_card_no").click(function () {
+                                $(this).parent(".input-group").children("input").val(window.storeApp.generateCardNo(16));
+                            });
+                        }, 500);
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error");
+                    });
 
-                $(document).delegate("#giftcard-topup-save", "click", function(e) {
+                $(document).delegate("#giftcard-topup-save", "click", function (e) {
                     e.stopImmediatePropagation();
                     e.stopPropagation();
                     e.preventDefault();
@@ -6679,7 +6717,7 @@ window.angularApp.factory("GiftcardTopupModal", ["API_URL", "window", "jQuery", 
                     var datatable = $tag.data("datatable");
                     form.find(".alert").remove();
                     var actionUrl = form.attr("action");
-                    
+
                     $http({
                         url: API_URL + "/_inc/" + actionUrl,
                         method: "POST",
@@ -6689,52 +6727,52 @@ window.angularApp.factory("GiftcardTopupModal", ["API_URL", "window", "jQuery", 
                         contentType: false,
                         dataType: "json"
                     }).
-                    then(function(response) {
+                        then(function (response) {
 
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-success\">";
-                        alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
-                        alertMsg += "</div>";
-                        form.find(".giftcard-body").before(alertMsg);
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-success\">";
+                            alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
+                            alertMsg += "</div>";
+                            form.find(".giftcard-body").before(alertMsg);
 
-                        // Alert
-                        window.swal({
-                          title: "ÉXITO!",
-                          text: response.data.msg,
-                          icon: "success",
-                          buttons: true,
-                          dangerMode: false,
-                        })
-                        .then(function (willDelete) {
-                            if (willDelete) {
+                            // Alert
+                            window.swal({
+                                title: "ÉXITO!",
+                                text: response.data.msg,
+                                icon: "success",
+                                buttons: true,
+                                dangerMode: false,
+                            })
+                                .then(function (willDelete) {
+                                    if (willDelete) {
 
-                                $scope.closeGiftcardTopupModal();
-                                $(document).find(".close").trigger("click");
-                                giftcardId = response.data.id;
-                                
-                                $(datatable).DataTable().ajax.reload(function(json) {
-                                    if ($("#row_"+giftcardId).length) {
-                                        $("#row_"+giftcardId).flash("yellow", 5000);
+                                        $scope.closeGiftcardTopupModal();
+                                        $(document).find(".close").trigger("click");
+                                        giftcardId = response.data.id;
+
+                                        $(datatable).DataTable().ajax.reload(function (json) {
+                                            if ($("#row_" + giftcardId).length) {
+                                                $("#row_" + giftcardId).flash("yellow", 5000);
+                                            }
+                                        }, false);
+
+                                    } else {
+                                        $(datatable).DataTable().ajax.reload(null, false);
                                     }
-                                }, false);
+                                });
 
-                            } else {
-                                $(datatable).DataTable().ajax.reload(null, false);
-                            }
+                        }, function (response) {
+
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-danger\">";
+                            window.angular.forEach(response.data, function (value, key) {
+                                alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                            });
+                            alertMsg += "</div>";
+                            form.find(".giftcard-body").before(alertMsg);
+                            $(":input[type=\"button\"]").prop("disabled", false);
+                            window.swal("Ups!", response.data.errorMsg, "error");
                         });
-
-                    }, function(response) {
-
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-danger\">";
-                        window.angular.forEach(response.data, function(value, key) {
-                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
-                        });
-                        alertMsg += "</div>";
-                        form.find(".giftcard-body").before(alertMsg);
-                        $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                    });
 
                 });
 
@@ -6744,42 +6782,42 @@ window.angularApp.factory("GiftcardTopupModal", ["API_URL", "window", "jQuery", 
             },
             scope: $scope,
             size: "md",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: true,
         });
 
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
         });
     };
 }]);
 window.angularApp.factory("InvoiceSMSModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function($scope) {
+    return function ($scope) {
         var uibModalInstance = $uibModal.open({
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"closeInvoiceSMSModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-paper-plane\"></span> {{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>",
+                "<button ng-click=\"closeInvoiceSMSModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-paper-plane\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $http({
-                  url: window.baseUrl + "/_inc/sms/index.php?action_type=FORM&invoice_id="+$scope.invoiceID,
-                  method: "GET"
+                    url: window.baseUrl + "/_inc/sms/index.php?action_type=FORM&invoice_id=" + $scope.invoiceID,
+                    method: "GET"
                 })
-                .then(function(response, status, headers, config) {
-                    $scope.modal_title = "ENVIAR SMS";
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);   
-                }, function(response) {
-                   window.swal("Ups!", response.data.errorMsg, "error");
-                });
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = "ENVIAR SMS";
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error");
+                    });
 
                 // Send SMS
-                $(document).delegate("#send", "click", function(e) {
+                $(document).delegate("#send", "click", function (e) {
                     e.stopImmediatePropagation();
                     e.stopPropagation();
                     e.preventDefault();
@@ -6789,7 +6827,7 @@ window.angularApp.factory("InvoiceSMSModal", ["API_URL", "window", "jQuery", "$h
                     var form = $($tag.data("form"));
                     form.find(".alert").remove();
                     var actionUrl = form.attr("action");
-                    
+
                     $http({
                         url: window.baseUrl + "/_inc/" + actionUrl,
                         method: "POST",
@@ -6799,31 +6837,31 @@ window.angularApp.factory("InvoiceSMSModal", ["API_URL", "window", "jQuery", "$h
                         contentType: false,
                         dataType: "json"
                     }).
-                    then(function(response) {
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-success\">";
-                        alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
+                        then(function (response) {
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-success\">";
+                            alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
 
-                        // Alert
-                        window.swal("ÉXITO!", response.data.msg, "success")
-                        .then(function(value) {
-                            $scope.closeInvoiceSMSModal();
-                            $(document).find(".close").trigger("click");
-                        });
+                            // Alert
+                            window.swal("ÉXITO!", response.data.msg, "success")
+                                .then(function (value) {
+                                    $scope.closeInvoiceSMSModal();
+                                    $(document).find(".close").trigger("click");
+                                });
 
-                    }, function(response) {
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-danger\">";
-                        window.angular.forEach(response.data, function(value, key) {
-                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                        }, function (response) {
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-danger\">";
+                            window.angular.forEach(response.data, function (value, key) {
+                                alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                            });
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+                            $(":input[type=\"button\"]").prop("disabled", false);
+                            window.swal("Ups!", response.data.errorMsg, "error");
                         });
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-                        $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                    });
                 });
 
                 $scope.closeInvoiceSMSModal = function () {
@@ -6832,53 +6870,53 @@ window.angularApp.factory("InvoiceSMSModal", ["API_URL", "window", "jQuery", "$h
             },
             scope: $scope,
             size: "md",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: true,
         });
 
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
         });
     };
 }]);
 window.angularApp.factory("PaymentFormModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "InvoiceViewModal", "PrintReceiptModal", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, InvoiceViewModal, PrintReceiptModal, $scope) {
-    return function($scope) {
+    return function ($scope) {
         var uibModalInstance = $uibModal.open({
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"closePaymentFormModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                            "<h3 class=\"modal-title\" id=\"modal-title\">" + 
-                                "<span class=\"fa fa-fw fa-list\"></span> {{ modal_title }}" +
-                            "</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\" style=\"padding: 0px;overflow-x: hidden;\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>" +
-                        "<div class=\"modal-footer\">" +
-                            "<button ng-click=\"closePaymentFormModal();\" type=\"button\" class=\"btn btn-danger radius-50\"><i class=\"fa fa-fw fa-close\"></i> Close</button>" +
-                            "<button  ng-click=\"checkout();\" type=\"button\" class=\"btn btn-success radius-50\"><i class=\"fa fa-fw fa-money\"></i> Checkout &rarr;</button>" +
-                        "</div>",
+                "<button ng-click=\"closePaymentFormModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\">" +
+                "<span class=\"fa fa-fw fa-list\"></span> {{ modal_title }}" +
+                "</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\" style=\"padding: 0px;overflow-x: hidden;\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>" +
+                "<div class=\"modal-footer\">" +
+                "<button ng-click=\"closePaymentFormModal();\" type=\"button\" class=\"btn btn-danger radius-50\"><i class=\"fa fa-fw fa-close\"></i> Close</button>" +
+                "<button  ng-click=\"checkout();\" type=\"button\" class=\"btn btn-success radius-50\"><i class=\"fa fa-fw fa-money\"></i> Checkout &rarr;</button>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $(document).find("body").addClass("overlay-loader");
                 $http({
-                  url: window.baseUrl + "/_inc/template/payment_form.php?customer_id="+$scope.customerId,
-                  method: "GET"
+                    url: window.baseUrl + "/_inc/template/payment_form.php?customer_id=" + $scope.customerId,
+                    method: "GET"
                 })
-                .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Pago => " + $scope.customerName;
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
-                    setTimeout(function() {
-                        storeApp.bootBooxHeightAdjustment();
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = "Pago => " + $scope.customerName;
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
+                        setTimeout(function () {
+                            storeApp.bootBooxHeightAdjustment();
+                            $(document).find("body").removeClass("overlay-loader");
+                        }, 500);
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error");
                         $(document).find("body").removeClass("overlay-loader");
-                    }, 500);                 
-                }, function(response) {
-                   window.swal("Ups!", response.data.errorMsg, "error");
-                   $(document).find("body").removeClass("overlay-loader");
-                });
+                    });
 
-                $scope.sellWithInstallment = function() {
+                $scope.sellWithInstallment = function () {
                     if ($scope.isInstallmentOrder == 0) {
                         $scope.isInstallmentOrder = 1;
                         $("#activeSellWithInstallmentBtn").removeClass("btn-default");
@@ -6890,35 +6928,35 @@ window.angularApp.factory("PaymentFormModal", ["API_URL", "window", "jQuery", "$
                     }
                 }
 
-                $scope.selectPaymentMethod = function(pmethodId,pmethodCode) {
+                $scope.selectPaymentMethod = function (pmethodId, pmethodCode) {
                     $(document).find("body").addClass("overlay-loader");
                     $scope.pmethodId = pmethodId;
                     $scope.pmethodCode = pmethodCode;
                     $(".pmethod_item").removeClass("active");
-                    $("#pmethod_"+pmethodId).addClass("active");
+                    $("#pmethod_" + pmethodId).addClass("active");
 
                     $http({
-                      url: window.baseUrl + "/_inc/payment.php?action_type=FIELD&pmethod_id=" + pmethodId,
-                      method: "GET"
+                        url: window.baseUrl + "/_inc/payment.php?action_type=FIELD&pmethod_id=" + pmethodId,
+                        method: "GET"
                     })
-                    .then(function(response, status, headers, config) {
-                        $scope.modal_title = "Pago => " + $scope.customerName;
-                        $scope.rawPaymentMethodHtml = $sce.trustAsHtml(response.data);
-                        if ($scope.pmethodCode == 'credit') {
-                            if (parseFloat($scope.customerBalance) < parseFloat($scope.totalPayable)) {
-                                window.toastr.error("Insufficient Balance!", "ADVERTENCIA!");
-                            } else {
-                                $scope.paidAmount = $scope.totalPayable;
+                        .then(function (response, status, headers, config) {
+                            $scope.modal_title = "Pago => " + $scope.customerName;
+                            $scope.rawPaymentMethodHtml = $sce.trustAsHtml(response.data);
+                            if ($scope.pmethodCode == 'credit') {
+                                if (parseFloat($scope.customerBalance) < parseFloat($scope.totalPayable)) {
+                                    window.toastr.error("Insufficient Balance!", "ADVERTENCIA!");
+                                } else {
+                                    $scope.paidAmount = $scope.totalPayable;
+                                }
                             }
-                        }
-                        $(document).find("body").removeClass("overlay-loader");
-                    }, function(response) {
-                       window.swal("Ups!", response.data.errorMsg, "error");
-                       $(document).find("body").removeClass("overlay-loader");
-                    });
+                            $(document).find("body").removeClass("overlay-loader");
+                        }, function (response) {
+                            window.swal("Ups!", response.data.errorMsg, "error");
+                            $(document).find("body").removeClass("overlay-loader");
+                        });
                 };
 
-                $scope.checkout = function() {
+                $scope.checkout = function () {
                     $(document).find(".modal").addClass("overlay-loader");
                     var form = $("#checkout-form");
                     var actionUrl = form.attr("action");
@@ -6932,93 +6970,93 @@ window.angularApp.factory("PaymentFormModal", ["API_URL", "window", "jQuery", "$
                         contentType: false,
                         dataType: "json"
                     }).
-                    then(function(response) {
-                        window.onbeforeunload = null;
-                        $(document).find(".modal").removeClass("overlay-loader");
-                        $scope.invoiceId = response.data.invoice_id;
-                        $scope.invoiceInfo = response.data.invoice_info;
-                        $scope.invoiceItems = response.data.invoice_items;
-                        $scope.done = true;
-                        if (window.store.sound_effect == 1) {
-                            window.storeApp.playSound("modify.mp3");
-                        }
-                        if (window.store.auto_print == 1 && window.store.remote_printing == 1) {
-                            PrintReceiptModal($scope);
-                        }
-                        
-                        if (window.getParameterByName("holding_id") || window.getParameterByName("qref")) {
-                            localStorage.setItem("swal",
-                                window.swal({
-                                  title: "ÉXITO!",
-                                  text:  "Invoice ID: "+$scope.invoiceId,
-                                  type: "success",
-                                  timer: 3000,
-                                  showConfirmButton: false
-                                })
-                                .then(function (willDelete) {
-                                    if (willDelete) {
-                                        window.location = "pos.php";
-                                    }
-                                })
-                            );
-                        } else {
-                            if (window.settings.after_sell_page == 'receipt_in_new_window') {
-                                window.open(window.baseUrl + "/admin/view_invoice.php?invoice_id=" + $scope.invoiceId);
-                            } else if (window.settings.after_sell_page == 'receipt_in_popup') {
-                                InvoiceViewModal({'invoice_id':$scope.invoiceId});
-                            } else if (window.settings.after_sell_page == 'toastr_msg') {
-                                window.toastr.success("ID: "+$scope.invoiceId, "ÉXITO!");
-                            } else if (window.settings.after_sell_page == 'sweet_alert_msg') {
-                                window.swal("Success.", "ID: "+$scope.invoiceId, "success");
-                            } else {
-                                window.swal("Success.", "ID: "+$scope.invoiceId, "success");
+                        then(function (response) {
+                            window.onbeforeunload = null;
+                            $(document).find(".modal").removeClass("overlay-loader");
+                            $scope.invoiceId = response.data.invoice_id;
+                            $scope.invoiceInfo = response.data.invoice_info;
+                            $scope.invoiceItems = response.data.invoice_items;
+                            $scope.done = true;
+                            if (window.store.sound_effect == 1) {
+                                window.storeApp.playSound("modify.mp3");
                             }
-                        }
+                            if (window.store.auto_print == 1 && window.store.remote_printing == 1) {
+                                PrintReceiptModal($scope);
+                            }
 
-                        if ($scope.customerMobileNumber && window.settings.invoice_auto_sms == '1') {
-                            $http({
-                                url: window.baseUrl + "/_inc/sms/index.php",
-                                method: "POST",
-                                data: "phone_number="+$scope.customerMobileNumber+"&invoice_id="+$scope.invoiceId+"&action_type=SEND",
-                                cache: false,
-                                processData: false,
-                                contentType: false,
-                                dataType: "json"
-                            }).
-                            then(function(response) {
-                                window.toastr.success("SMS sent to the number: " + $scope.customerMobileNumber, "ÉXITO!");
-                            }, function(response) {
-                                window.swal("Ups!", response.data.errorMsg, "error");
-                            });
-                        }
+                            if (window.getParameterByName("holding_id") || window.getParameterByName("qref")) {
+                                localStorage.setItem("swal",
+                                    window.swal({
+                                        title: "ÉXITO!",
+                                        text: "Invoice ID: " + $scope.invoiceId,
+                                        type: "success",
+                                        timer: 3000,
+                                        showConfirmButton: false
+                                    })
+                                        .then(function (willDelete) {
+                                            if (willDelete) {
+                                                window.location = "pos.php";
+                                            }
+                                        })
+                                );
+                            } else {
+                                if (window.settings.after_sell_page == 'receipt_in_new_window') {
+                                    window.open(window.baseUrl + "/admin/view_invoice.php?invoice_id=" + $scope.invoiceId);
+                                } else if (window.settings.after_sell_page == 'receipt_in_popup') {
+                                    InvoiceViewModal({ 'invoice_id': $scope.invoiceId });
+                                } else if (window.settings.after_sell_page == 'toastr_msg') {
+                                    window.toastr.success("ID: " + $scope.invoiceId, "ÉXITO!");
+                                } else if (window.settings.after_sell_page == 'sweet_alert_msg') {
+                                    window.swal("Success.", "ID: " + $scope.invoiceId, "success");
+                                } else {
+                                    window.swal("Success.", "ID: " + $scope.invoiceId, "success");
+                                }
+                            }
 
-                        $scope.resetPos();
-                        $scope.closePaymentFormModal();
-                    }, function(response) {
-                        if (window.store.sound_effect == 1) {
-                            window.storeApp.playSound("error.mp3");
-                        }
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                        $(document).find(".modal").removeClass("overlay-loader");
-                    });
+                            if ($scope.customerMobileNumber && window.settings.invoice_auto_sms == '1') {
+                                $http({
+                                    url: window.baseUrl + "/_inc/sms/index.php",
+                                    method: "POST",
+                                    data: "phone_number=" + $scope.customerMobileNumber + "&invoice_id=" + $scope.invoiceId + "&action_type=SEND",
+                                    cache: false,
+                                    processData: false,
+                                    contentType: false,
+                                    dataType: "json"
+                                }).
+                                    then(function (response) {
+                                        window.toastr.success("SMS sent to the number: " + $scope.customerMobileNumber, "ÉXITO!");
+                                    }, function (response) {
+                                        window.swal("Ups!", response.data.errorMsg, "error");
+                                    });
+                            }
+
+                            $scope.resetPos();
+                            $scope.closePaymentFormModal();
+                        }, function (response) {
+                            if (window.store.sound_effect == 1) {
+                                window.storeApp.playSound("error.mp3");
+                            }
+                            window.swal("Ups!", response.data.errorMsg, "error");
+                            $(document).find(".modal").removeClass("overlay-loader");
+                        });
                 };
 
-                $scope.checkoutWithFullPaid = function() {
+                $scope.checkoutWithFullPaid = function () {
                     $scope.paidAmount = $scope.totalPayable;
-                    setTimeout(function() {
+                    setTimeout(function () {
                         $scope.checkout();
                     }, 100);
                 };
 
-                $scope.checkoutWithFullDue = function() {
+                $scope.checkoutWithFullDue = function () {
                     $scope.paidAmount = 0;
-                    setTimeout(function() {
+                    setTimeout(function () {
                         $scope.checkout();
                     }, 100);
                 };
 
-                $scope.checkoutWhilePressEnter = function($event) {
-                    if(($event.keyCode || $event.which) == 13){
+                $scope.checkoutWhilePressEnter = function ($event) {
+                    if (($event.keyCode || $event.which) == 13) {
                         $scope.checkout();
                     }
                 };
@@ -7027,92 +7065,92 @@ window.angularApp.factory("PaymentFormModal", ["API_URL", "window", "jQuery", "$
                     $uibModalInstance.dismiss("cancel");
                 };
 
-                $scope.$watch('installmentInterestPercentage', function() {
-                    $scope.installmentInterestAmount = ($scope.installmentInterestPercentage/100)*$scope.payable;
+                $scope.$watch('installmentInterestPercentage', function () {
+                    $scope.installmentInterestAmount = ($scope.installmentInterestPercentage / 100) * $scope.payable;
                     $scope._calcTotalPayable($scope);
                 }, true);
             },
             scope: $scope,
             size: "lg",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: true,
         });
 
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
         });
     };
 }]);
 window.angularApp.factory("PaymentOnlyModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function($parentScope) {
+    return function ($parentScope) {
         $scope.order = $parentScope.order;
         var uibModalInstance = $uibModal.open({
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                            "<button id=\"payment_only_modal\" ng-click=\"closePaymentOnlyModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\">" +
-                                "<span class=\"fa fa-fw fa-list\"></span> {{ modal_title }}" +
-                                "<span ng-click=\"loadModal();\" class=\"fa fa-fw fa-refresh pointer\"></span>" +
-                            "</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\" style=\"padding: 0px;overflow-x: hidden;\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>" +
-                        "<div class=\"modal-footer\">" +
-                            "<button ng-click=\"closePaymentOnlyModal();\" type=\"button\" class=\"btn btn-danger radius-50\"><i class=\"fa fa-fw fa-close\"></i> Close</button>" +
-                            "<button  ng-click=\"payNow();\" type=\"button\" class=\"btn btn-success radius-50\"><i class=\"fa fa-fw fa-money\"></i> Pay Now &rarr;</button>" +
-                        "</div>",
+                "<button id=\"payment_only_modal\" ng-click=\"closePaymentOnlyModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\">" +
+                "<span class=\"fa fa-fw fa-list\"></span> {{ modal_title }}" +
+                "<span ng-click=\"loadModal();\" class=\"fa fa-fw fa-refresh pointer\"></span>" +
+                "</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\" style=\"padding: 0px;overflow-x: hidden;\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>" +
+                "<div class=\"modal-footer\">" +
+                "<button ng-click=\"closePaymentOnlyModal();\" type=\"button\" class=\"btn btn-danger radius-50\"><i class=\"fa fa-fw fa-close\"></i> Close</button>" +
+                "<button  ng-click=\"payNow();\" type=\"button\" class=\"btn btn-success radius-50\"><i class=\"fa fa-fw fa-money\"></i> Pay Now &rarr;</button>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
-                $scope.loadModal = function() {
+                $scope.loadModal = function () {
                     $(document).find("body").addClass("overlay-loader");
                     $http({
-                      url: window.baseUrl + "/_inc/template/payment_only_form.php?customer_id="+$scope.order.customer_id,
-                      method: "GET"
+                        url: window.baseUrl + "/_inc/template/payment_only_form.php?customer_id=" + $scope.order.customer_id,
+                        method: "GET"
                     })
-                    .then(function(response, status, headers, config) {
-                        $scope.modal_title = "Pago => " + $scope.order.customer_name;
-                        $scope.rawHtml = $sce.trustAsHtml(response.data);
-                        setTimeout(function() {
-                            storeApp.bootBooxHeightAdjustment();
+                        .then(function (response, status, headers, config) {
+                            $scope.modal_title = "Pago => " + $scope.order.customer_name;
+                            $scope.rawHtml = $sce.trustAsHtml(response.data);
+                            setTimeout(function () {
+                                storeApp.bootBooxHeightAdjustment();
+                                $(document).find("body").removeClass("overlay-loader");
+                            }, 500);
+                        }, function (response) {
+                            window.swal("Ups!", response.data.errorMsg, "error");
                             $(document).find("body").removeClass("overlay-loader");
-                        }, 500);                 
-                    }, function(response) {
-                       window.swal("Ups!", response.data.errorMsg, "error");
-                       $(document).find("body").removeClass("overlay-loader");
-                    });
+                        });
                 };
                 $scope.loadModal();
 
-                $scope.selectPaymentMethod = function(pmethodId,pmethodCode) {
+                $scope.selectPaymentMethod = function (pmethodId, pmethodCode) {
                     $(document).find("body").addClass("overlay-loader");
                     $scope.pmethodId = pmethodId;
                     $scope.pmethodCode = pmethodCode;
                     $(".pmethod_item").removeClass("active");
-                    $("#pmethod_"+pmethodId).addClass("active");
+                    $("#pmethod_" + pmethodId).addClass("active");
                     $http({
-                      url: window.baseUrl + "/_inc/payment.php?action_type=FIELD&pmethod_id=" + pmethodId,
-                      method: "GET"
+                        url: window.baseUrl + "/_inc/payment.php?action_type=FIELD&pmethod_id=" + pmethodId,
+                        method: "GET"
                     })
-                    .then(function(response, status, headers, config) {
-                        $scope.modal_title = "Pago => " + $scope.order.customer_name;
-                        $scope.rawPaymentMethodHtml = $sce.trustAsHtml(response.data);
-                        if ($scope.pmethodCode == 'credit') {
-                            if (parseFloat($scope.customerBalance) < parseFloat($scope.order.due)) {
-                                window.toastr.error("Insufficient Balance!", "ADVERTENCIA!");
-                            } else {
-                                $scope.paidAmount = parseFloat($scope.order.due);
+                        .then(function (response, status, headers, config) {
+                            $scope.modal_title = "Pago => " + $scope.order.customer_name;
+                            $scope.rawPaymentMethodHtml = $sce.trustAsHtml(response.data);
+                            if ($scope.pmethodCode == 'credit') {
+                                if (parseFloat($scope.customerBalance) < parseFloat($scope.order.due)) {
+                                    window.toastr.error("Insufficient Balance!", "ADVERTENCIA!");
+                                } else {
+                                    $scope.paidAmount = parseFloat($scope.order.due);
+                                }
                             }
-                        }
-                        $(document).find("body").removeClass("overlay-loader");
-                    }, function(response) {
-                       window.swal("Ups!", response.data.errorMsg, "error");
-                       $(document).find("body").removeClass("overlay-loader");
-                    });
+                            $(document).find("body").removeClass("overlay-loader");
+                        }, function (response) {
+                            window.swal("Ups!", response.data.errorMsg, "error");
+                            $(document).find("body").removeClass("overlay-loader");
+                        });
                 };
 
-                $scope.payNow = function() {
+                $scope.payNow = function () {
                     $(document).find(".modal").addClass("overlay-loader");
                     var form = $("#checkout-form");
                     var data = form.serialize();
@@ -7125,36 +7163,36 @@ window.angularApp.factory("PaymentOnlyModal", ["API_URL", "window", "jQuery", "$
                         contentType: false,
                         dataType: "json"
                     }).
-                    then(function(response) {
-                        window.swal("ÉXITO!", response.data.msg, "success")
-                        .then(function(value) {
-                            if ($scope.order.datatable) {
-                                $($scope.order.datatable).DataTable().ajax.reload(null, false);
-                            };
-                            if ($parentScope.loadOrders) {
-                                $parentScope.loadOrders();
+                        then(function (response) {
+                            window.swal("ÉXITO!", response.data.msg, "success")
+                                .then(function (value) {
+                                    if ($scope.order.datatable) {
+                                        $($scope.order.datatable).DataTable().ajax.reload(null, false);
+                                    };
+                                    if ($parentScope.loadOrders) {
+                                        $parentScope.loadOrders();
+                                    }
+                                    $(document).find("#payment_only_modal").trigger("click");
+                                });
+                            $(document).find(".modal").removeClass("overlay-loader");
+                        }, function (response) {
+                            if (window.store.sound_effect == 1) {
+                                window.storeApp.playSound("error.mp3");
                             }
-                            $(document).find("#payment_only_modal").trigger("click");
+                            window.swal("Ups!", response.data.errorMsg, "error");
+                            $(document).find(".modal").removeClass("overlay-loader");
                         });
-                        $(document).find(".modal").removeClass("overlay-loader");
-                    }, function(response) {
-                        if (window.store.sound_effect == 1) {
-                            window.storeApp.playSound("error.mp3");
-                        }
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                        $(document).find(".modal").removeClass("overlay-loader");
-                    });
                 };
 
-                $scope.payNowWithFullPaid = function() {
+                $scope.payNowWithFullPaid = function () {
                     $scope.paidAmount = $scope.order.due;
-                    setTimeout(function() {
+                    setTimeout(function () {
                         $scope.payNow();
                     }, 100);
                 };
 
-                $scope.payNowWhilePressEnter = function($event) {
-                    if(($event.keyCode || $event.which) == 13){
+                $scope.payNowWhilePressEnter = function ($event) {
+                    if (($event.keyCode || $event.which) == 13) {
                         $scope.payNow();
                     }
                 };
@@ -7165,12 +7203,12 @@ window.angularApp.factory("PaymentOnlyModal", ["API_URL", "window", "jQuery", "$
             },
             scope: $scope,
             size: "lg",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: true,
         });
 
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
         });
     };
 }]);
@@ -7180,79 +7218,79 @@ window.angularApp.factory("PurchaseInvoiceViewModal", ["API_URL", "window", "jQu
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
-            template:   "<div id=\"data-modal\" class=\"modal-inner\">" +
-                            "<div class=\"modal-header\">" +
-								"<button ng-click=\"closePurchaseInvoiceViewModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-							   "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-eye\"></span> {{ modal_title }}</h3>" +
-							"</div>" +
-							"<div class=\"modal-body\" id=\"modal-body\">" +
-								"<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-							"</div>" +
-                            "<div class=\"modal-footer\" style=\"text-align:center;\">" +
-                                "<button onClick=\"window.printContent('data-modal', {headline:'<small>Printed on: "+window.formatDate(new Date())+"</small>',screenSize:'fullScreen'})\" class=\"btn btn-primary\"><span class=\"fa fa-fw fa-print\"></span> Imprimir</button>" +
-                            "</div>" +
-                        "</div>",
+            template: "<div id=\"data-modal\" class=\"modal-inner\">" +
+                "<div class=\"modal-header\">" +
+                "<button ng-click=\"closePurchaseInvoiceViewModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-eye\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>" +
+                "<div class=\"modal-footer\" style=\"text-align:center;\">" +
+                "<button onClick=\"window.printContent('data-modal', {headline:'<small>Printed on: " + window.formatDate(new Date()) + "</small>',screenSize:'fullScreen'})\" class=\"btn btn-primary\"><span class=\"fa fa-fw fa-print\"></span> Imprimir</button>" +
+                "</div>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $http({
-                  url: window.baseUrl + "/_inc/purchase.php?invoice_id=" + invoice.invoice_id + '&action_type=VIEW',
-                  method: "GET"
+                    url: window.baseUrl + "/_inc/purchase.php?invoice_id=" + invoice.invoice_id + '&action_type=VIEW',
+                    method: "GET"
                 })
-                .then(function (response, status, headers, config) {
-                    $scope.modal_title = "Compra No. => " + invoice.invoice_id;
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
-                }, function (response) {
-                   window.swal("Ups!", response.data.errorMsg, "error")
-                    .then(function() {
-                        $scope.closePurchaseInvoiceViewModal();
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = "Compra No. => " + invoice.invoice_id;
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error")
+                            .then(function () {
+                                $scope.closePurchaseInvoiceViewModal();
+                            });
                     });
-                });
                 $scope.closePurchaseInvoiceViewModal = function () {
                     $uibModalInstance.dismiss("cancel");
                 };
             },
             scope: $scope,
             size: "md",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: true,
         });
 
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
         });
     };
 }]);
 window.angularApp.factory("PurchaseInvoiceInfoEditModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function(invoice) {
+    return function (invoice) {
         var uibModalInstance = $uibModal.open({
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"closePurchaseInvoiceInfoEditModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-pencil\"></span> {{ modal_title }}</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>",
+                "<button ng-click=\"closePurchaseInvoiceInfoEditModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-pencil\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $http({
-                  url: window.baseUrl + "/_inc/purchase.php?invoice_id=" + invoice.invoice_id + "&action_type=INVOICEINFOEDIT",
-                  method: "GET"
+                    url: window.baseUrl + "/_inc/purchase.php?invoice_id=" + invoice.invoice_id + "&action_type=INVOICEINFOEDIT",
+                    method: "GET"
                 })
-                .then(function(response, status, headers, config) {
-                    $scope.modal_title = "Editar Factura => " + invoice.invoice_id;
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = "Editar Factura => " + invoice.invoice_id;
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
 
-                    setTimeout(function() {
-                        window.storeApp.select2();
-                    }, 100);
+                        setTimeout(function () {
+                            window.storeApp.select2();
+                        }, 100);
 
-                }, function(response) {
-                   window.swal("Ups!", response.data.errorMsg, "error");
-                });
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error");
+                    });
 
-                $(document).delegate("#invoice-update", "click", function(e) {
-                    
+                $(document).delegate("#invoice-update", "click", function (e) {
+
                     e.stopImmediatePropagation();
                     e.stopPropagation();
                     e.preventDefault();
@@ -7272,50 +7310,50 @@ window.angularApp.factory("PurchaseInvoiceInfoEditModal", ["API_URL", "window", 
                         contentType: false,
                         dataType: "json"
                     }).
-                    then(function(response) {
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-success\">";
-                        alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
+                        then(function (response) {
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-success\">";
+                            alertMsg += "<p><i class=\"fa fa-check\"></i> " + response.data.msg + ".</p>";
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
 
-                        // Alert
-                        window.swal({
-                          title: "ÉXITO!",
-                          text: response.data.msg,
-                          icon: "success",
-                          buttons: true,
-                          dangerMode: false,
-                        })
-                        .then(function (willDelete) {
-                            if (willDelete) {
-                                $scope.closePurchaseInvoiceInfoEditModal();
-                                $(document).find(".close").trigger("click");
-                                invoiceId = response.data.id;
-                                
-                                $(datatable).DataTable().ajax.reload(function(json) {
-                                    if ($("#row_"+invoiceId).length) {
-                                        $("#row_"+invoiceId).flash("yellow", 5000);
+                            // Alert
+                            window.swal({
+                                title: "ÉXITO!",
+                                text: response.data.msg,
+                                icon: "success",
+                                buttons: true,
+                                dangerMode: false,
+                            })
+                                .then(function (willDelete) {
+                                    if (willDelete) {
+                                        $scope.closePurchaseInvoiceInfoEditModal();
+                                        $(document).find(".close").trigger("click");
+                                        invoiceId = response.data.id;
+
+                                        $(datatable).DataTable().ajax.reload(function (json) {
+                                            if ($("#row_" + invoiceId).length) {
+                                                $("#row_" + invoiceId).flash("yellow", 5000);
+                                            }
+                                        }, false);
+
+                                    } else {
+                                        $(datatable).DataTable().ajax.reload(null, false);
                                     }
-                                }, false);
+                                });
 
-                            } else {
-                                $(datatable).DataTable().ajax.reload(null, false);
-                            }
-                        });
+                        }, function (response) {
 
-                    }, function(response) {
-                        
-                        $btn.button("reset");
-                        var alertMsg = "<div class=\"alert alert-danger\">";
-                        window.angular.forEach(response.data, function(value, key) {
-                            alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                            $btn.button("reset");
+                            var alertMsg = "<div class=\"alert alert-danger\">";
+                            window.angular.forEach(response.data, function (value, key) {
+                                alertMsg += "<p><i class=\"fa fa-warning\"></i> " + value + ".</p>";
+                            });
+                            alertMsg += "</div>";
+                            form.find(".box-body").before(alertMsg);
+                            $(":input[type=\"button\"]").prop("disabled", false);
+                            window.swal("Ups!", response.data.errorMsg, "error");
                         });
-                        alertMsg += "</div>";
-                        form.find(".box-body").before(alertMsg);
-                        $(":input[type=\"button\"]").prop("disabled", false);
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                    });
                 });
                 $scope.closePurchaseInvoiceInfoEditModal = function () {
                     $uibModalInstance.dismiss("cancel");
@@ -7323,78 +7361,78 @@ window.angularApp.factory("PurchaseInvoiceInfoEditModal", ["API_URL", "window", 
             },
             scope: $scope,
             size: "md",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: true,
         });
 
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
         });
     };
 }]);
 window.angularApp.factory("PurchasePaymentModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function(invoice) {
+    return function (invoice) {
         var uibModalInstance = $uibModal.open({
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                            "<button ng-click=\"closePurchasePaymentModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\">" +
-                                "<span class=\"fa fa-fw fa-list\"></span> {{ modal_title }}" +
-                                "<span ng-click=\"loadModal();\" class=\"fa fa-fw fa-refresh pointer\"></span>" +
-                            "</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\" style=\"padding: 0px;overflow-x: hidden;\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>" +
-                        "<div class=\"modal-footer\">" +
-                            "<button ng-click=\"closePurchasePaymentModal();\" type=\"button\" class=\"btn btn-danger radius-50\"><span class=\"fa fa-fw fa-close\"></span> Close</button>" +
-                            "<button  ng-click=\"payNow();\" type=\"button\" class=\"btn btn-success radius-50\"><span class=\"fa fa-fw fa-money\"></span> Pay Now &rarr;</button>" +
-                        "</div>",
+                "<button ng-click=\"closePurchasePaymentModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\">" +
+                "<span class=\"fa fa-fw fa-list\"></span> {{ modal_title }}" +
+                "<span ng-click=\"loadModal();\" class=\"fa fa-fw fa-refresh pointer\"></span>" +
+                "</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\" style=\"padding: 0px;overflow-x: hidden;\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>" +
+                "<div class=\"modal-footer\">" +
+                "<button ng-click=\"closePurchasePaymentModal();\" type=\"button\" class=\"btn btn-danger radius-50\"><span class=\"fa fa-fw fa-close\"></span> Close</button>" +
+                "<button  ng-click=\"payNow();\" type=\"button\" class=\"btn btn-success radius-50\"><span class=\"fa fa-fw fa-money\"></span> Pay Now &rarr;</button>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
-                $scope.loadModal = function() {
+                $scope.loadModal = function () {
                     $(document).find("body").addClass("overlay-loader");
                     $http({
-                      url: window.baseUrl + "/_inc/purchase.php?action_type=PAYMENTFORMDETAILS&invoice_id="+invoice.invoice_id,
-                      method: "GET"
+                        url: window.baseUrl + "/_inc/purchase.php?action_type=PAYMENTFORMDETAILS&invoice_id=" + invoice.invoice_id,
+                        method: "GET"
                     })
-                    .then(function(response, status, headers, config) {
-                        $scope.modal_title = "Compra Pago";
-                        $scope.order = response.data.order;
-                        $scope.rawHtml = $sce.trustAsHtml(response.data.html);
-                        setTimeout(function() {
-                            storeApp.bootBooxHeightAdjustment();
+                        .then(function (response, status, headers, config) {
+                            $scope.modal_title = "Compra Pago";
+                            $scope.order = response.data.order;
+                            $scope.rawHtml = $sce.trustAsHtml(response.data.html);
+                            setTimeout(function () {
+                                storeApp.bootBooxHeightAdjustment();
+                                $(document).find("body").removeClass("overlay-loader");
+                            }, 500);
+                        }, function (response) {
+                            window.swal("Ups!", response.data.errorMsg, "error");
                             $(document).find("body").removeClass("overlay-loader");
-                        }, 500);                 
-                    }, function(response) {
-                       window.swal("Ups!", response.data.errorMsg, "error");
-                       $(document).find("body").removeClass("overlay-loader");
-                    });
+                        });
                 };
                 $scope.loadModal();
 
-                $scope.selectPaymentMethod = function(pmethodId,pmethodName) {
+                $scope.selectPaymentMethod = function (pmethodId, pmethodName) {
                     $(document).find("body").addClass("overlay-loader");
                     $scope.pmethodId = pmethodId;
                     $scope.pmethodName = pmethodName;
                     $(".pmethod_item").removeClass("active");
-                    $("#pmethod_"+pmethodId).addClass("active");
+                    $("#pmethod_" + pmethodId).addClass("active");
                     $http({
-                      url: window.baseUrl + "/_inc/purchase_payment.php?action_type=FIELD&pmethod_id=" + pmethodId,
-                      method: "GET"
+                        url: window.baseUrl + "/_inc/purchase_payment.php?action_type=FIELD&pmethod_id=" + pmethodId,
+                        method: "GET"
                     })
-                    .then(function(response, status, headers, config) {
-                        $scope.modal_title = "Compra Pago";
-                        $scope.rawPaymentMethodHtml = $sce.trustAsHtml(response.data);
-                        $(document).find("body").removeClass("overlay-loader");
-                    }, function(response) {
-                       window.swal("Ups!", response.data.errorMsg, "error");
-                       $(document).find("body").removeClass("overlay-loader");
-                    });
+                        .then(function (response, status, headers, config) {
+                            $scope.modal_title = "Compra Pago";
+                            $scope.rawPaymentMethodHtml = $sce.trustAsHtml(response.data);
+                            $(document).find("body").removeClass("overlay-loader");
+                        }, function (response) {
+                            window.swal("Ups!", response.data.errorMsg, "error");
+                            $(document).find("body").removeClass("overlay-loader");
+                        });
                 };
 
-                $scope.payNow = function() {
+                $scope.payNow = function () {
                     $(document).find(".modal").addClass("overlay-loader");
                     var form = $("#checkout-form");
                     var data = form.serialize();
@@ -7407,31 +7445,31 @@ window.angularApp.factory("PurchasePaymentModal", ["API_URL", "window", "jQuery"
                         contentType: false,
                         dataType: "json"
                     }).
-                    then(function(response) {
-                        window.swal("ÉXITO!", response.data.msg, "success")
-                        .then(function(value) {
-                            $scope.closePurchasePaymentModal();
+                        then(function (response) {
+                            window.swal("ÉXITO!", response.data.msg, "success")
+                                .then(function (value) {
+                                    $scope.closePurchasePaymentModal();
+                                });
+                            $(document).find(".modal").removeClass("overlay-loader");
+                            $("#invoice-invoice-list").DataTable().ajax.reload(null, false);
+                        }, function (response) {
+                            if (window.store.sound_effect == 1) {
+                                window.storeApp.playSound("error.mp3");
+                            }
+                            window.swal("Ups!", response.data.errorMsg, "error");
+                            $(document).find(".modal").removeClass("overlay-loader");
                         });
-                        $(document).find(".modal").removeClass("overlay-loader");
-                        $("#invoice-invoice-list").DataTable().ajax.reload(null, false);
-                    }, function(response) {
-                        if (window.store.sound_effect == 1) {
-                            window.storeApp.playSound("error.mp3");
-                        }
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                        $(document).find(".modal").removeClass("overlay-loader");
-                    });
                 };
 
-                $scope.payNowWithFullPaid = function() {
+                $scope.payNowWithFullPaid = function () {
                     $scope.paidAmount = $scope.order.due;
-                    setTimeout(function() {
+                    setTimeout(function () {
                         $scope.payNow();
                     }, 100);
                 };
 
-                $scope.payNowWhilePressEnter = function($event) {
-                    if(($event.keyCode || $event.which) == 13){
+                $scope.payNowWhilePressEnter = function ($event) {
+                    if (($event.keyCode || $event.which) == 13) {
                         $scope.payNow();
                     }
                 };
@@ -7442,59 +7480,59 @@ window.angularApp.factory("PurchasePaymentModal", ["API_URL", "window", "jQuery"
             },
             scope: $scope,
             size: "lg",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: true,
         });
 
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
         });
     };
 }]);
 window.angularApp.factory("SellReturnModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function($parentScope) {
+    return function ($parentScope) {
         $scope.order = $parentScope.order;
         var uibModalInstance = $uibModal.open({
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                            "<button id=\"sell_return_modal\" ng-click=\"closeSellReturnModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\">" +
-                                "<span class=\"fa fa-fw fa-list\"></span> {{ modal_title }}" +
-                                "<span ng-click=\"loadModal();\" class=\"fa fa-fw fa-refresh pointer\"></span>" +
-                            "</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\" style=\"padding: 0px;overflow-x: hidden;\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>" +
-                        "<div class=\"modal-footer\">" +
-                            "<button ng-click=\"closeSellReturnModal();\" type=\"button\" class=\"btn btn-danger radius-50\"><span class=\"fa fa-fw fa-close\"></span> Close</button>" +
-                            "<button  ng-click=\"returnNow();\" type=\"button\" class=\"btn btn-success radius-50\"><span class=\"fa fa-fw fa-save\"></span> Return Now &rarr;</button>" +
-                        "</div>",
+                "<button id=\"sell_return_modal\" ng-click=\"closeSellReturnModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\">" +
+                "<span class=\"fa fa-fw fa-list\"></span> {{ modal_title }}" +
+                "<span ng-click=\"loadModal();\" class=\"fa fa-fw fa-refresh pointer\"></span>" +
+                "</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\" style=\"padding: 0px;overflow-x: hidden;\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>" +
+                "<div class=\"modal-footer\">" +
+                "<button ng-click=\"closeSellReturnModal();\" type=\"button\" class=\"btn btn-danger radius-50\"><span class=\"fa fa-fw fa-close\"></span> Close</button>" +
+                "<button  ng-click=\"returnNow();\" type=\"button\" class=\"btn btn-success radius-50\"><span class=\"fa fa-fw fa-save\"></span> Return Now &rarr;</button>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
-                $scope.loadModal = function() {
+                $scope.loadModal = function () {
                     $(document).find("body").addClass("overlay-loader");
                     $http({
-                      url: window.baseUrl + "/_inc/template/sell_return_form.php",
-                      method: "GET"
+                        url: window.baseUrl + "/_inc/template/sell_return_form.php",
+                        method: "GET"
                     })
-                    .then(function(response, status, headers, config) {
-                        $scope.modal_title = "Devolución => " +$scope.order.invoice_id;
-                        $scope.rawHtml = $sce.trustAsHtml(response.data);
-                        setTimeout(function() {
-                            storeApp.customCheckbox();
-                            storeApp.bootBooxHeightAdjustment();
+                        .then(function (response, status, headers, config) {
+                            $scope.modal_title = "Devolución => " + $scope.order.invoice_id;
+                            $scope.rawHtml = $sce.trustAsHtml(response.data);
+                            setTimeout(function () {
+                                storeApp.customCheckbox();
+                                storeApp.bootBooxHeightAdjustment();
+                                $(document).find("body").removeClass("overlay-loader");
+                            }, 500);
+                        }, function (response) {
+                            window.swal("Ups!", response.data.errorMsg, "error");
                             $(document).find("body").removeClass("overlay-loader");
-                        }, 500);                 
-                    }, function(response) {
-                       window.swal("Ups!", response.data.errorMsg, "error");
-                       $(document).find("body").removeClass("overlay-loader");
-                    });
+                        });
                 };
                 $scope.loadModal();
 
-                $scope.returnNow = function() {
+                $scope.returnNow = function () {
                     $(document).find(".modal").addClass("overlay-loader");
                     var form = $("#sell-return-form");
                     var data = form.serialize();
@@ -7507,25 +7545,25 @@ window.angularApp.factory("SellReturnModal", ["API_URL", "window", "jQuery", "$h
                         contentType: false,
                         dataType: "json"
                     }).
-                    then(function(response) {
-                        window.swal("ÉXITO!", response.data.msg, "success")
-                        .then(function(value) {
-                            if ($scope.order.datatable) {
-                                $($scope.order.datatable).DataTable().ajax.reload(null, false);
-                            };
-                            if ($parentScope.loadOrders) {
-                                $parentScope.loadOrders();
+                        then(function (response) {
+                            window.swal("ÉXITO!", response.data.msg, "success")
+                                .then(function (value) {
+                                    if ($scope.order.datatable) {
+                                        $($scope.order.datatable).DataTable().ajax.reload(null, false);
+                                    };
+                                    if ($parentScope.loadOrders) {
+                                        $parentScope.loadOrders();
+                                    }
+                                    $(document).find("#sell_return_modal").trigger("click");
+                                });
+                            $(document).find(".modal").removeClass("overlay-loader");
+                        }, function (response) {
+                            if (window.store.sound_effect == 1) {
+                                window.storeApp.playSound("error.mp3");
                             }
-                            $(document).find("#sell_return_modal").trigger("click");
+                            window.swal("Ups!", response.data.errorMsg, "error");
+                            $(document).find(".modal").removeClass("overlay-loader");
                         });
-                        $(document).find(".modal").removeClass("overlay-loader");
-                    }, function(response) {
-                        if (window.store.sound_effect == 1) {
-                            window.storeApp.playSound("error.mp3");
-                        }
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                        $(document).find(".modal").removeClass("overlay-loader");
-                    });
                 };
 
                 $scope.closeSellReturnModal = function () {
@@ -7534,59 +7572,59 @@ window.angularApp.factory("SellReturnModal", ["API_URL", "window", "jQuery", "$h
             },
             scope: $scope,
             size: "lg",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: true,
         });
 
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
         });
     };
 }]);
 window.angularApp.factory("PurchaseReturnModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
-    return function($parentScope) {
+    return function ($parentScope) {
         $scope.order = $parentScope.order;
         var uibModalInstance = $uibModal.open({
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
             template: "<div class=\"modal-header\">" +
-                            "<button id=\"purchase-return-modal\" ng-click=\"closePurchaseReturnModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-                           "<h3 class=\"modal-title\" id=\"modal-title\">" +
-                                "<span class=\"fa fa-fw fa-list\"></span> {{ modal_title }}" +
-                                "<span ng-click=\"loadModal();\" class=\"fa fa-fw fa-refresh pointer\"></span>" +
-                            "</h3>" +
-                        "</div>" +
-                        "<div class=\"modal-body\" id=\"modal-body\" style=\"padding: 0px;overflow-x: hidden;\">" +
-                            "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-                        "</div>" +
-                        "<div class=\"modal-footer\">" +
-                            "<button ng-click=\"closePurchaseReturnModal();\" type=\"button\" class=\"btn btn-danger radius-50\"><span class=\"fa fa-fw fa-close\"></span> Close</button>" +
-                            "<button  ng-click=\"returnNow();\" type=\"button\" class=\"btn btn-success radius-50\"><span class=\"fa fa-fw fa-save\"></span> Return Now &rarr;</button>" +
-                        "</div>",
+                "<button id=\"purchase-return-modal\" ng-click=\"closePurchaseReturnModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\">" +
+                "<span class=\"fa fa-fw fa-list\"></span> {{ modal_title }}" +
+                "<span ng-click=\"loadModal();\" class=\"fa fa-fw fa-refresh pointer\"></span>" +
+                "</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\" style=\"padding: 0px;overflow-x: hidden;\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>" +
+                "<div class=\"modal-footer\">" +
+                "<button ng-click=\"closePurchaseReturnModal();\" type=\"button\" class=\"btn btn-danger radius-50\"><span class=\"fa fa-fw fa-close\"></span> Close</button>" +
+                "<button  ng-click=\"returnNow();\" type=\"button\" class=\"btn btn-success radius-50\"><span class=\"fa fa-fw fa-save\"></span> Return Now &rarr;</button>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
-                $scope.loadModal = function() {
+                $scope.loadModal = function () {
                     $(document).find("body").addClass("overlay-loader");
                     $http({
-                      url: window.baseUrl + "/_inc/template/purchase_return_form.php",
-                      method: "GET"
+                        url: window.baseUrl + "/_inc/template/purchase_return_form.php",
+                        method: "GET"
                     })
-                    .then(function(response, status, headers, config) {
-                        $scope.modal_title = "Devolución => " +$scope.order.invoice_id;
-                        $scope.rawHtml = $sce.trustAsHtml(response.data);
-                        setTimeout(function() {
-                             storeApp.customCheckbox();
-                            storeApp.bootBooxHeightAdjustment();
+                        .then(function (response, status, headers, config) {
+                            $scope.modal_title = "Devolución => " + $scope.order.invoice_id;
+                            $scope.rawHtml = $sce.trustAsHtml(response.data);
+                            setTimeout(function () {
+                                storeApp.customCheckbox();
+                                storeApp.bootBooxHeightAdjustment();
+                                $(document).find("body").removeClass("overlay-loader");
+                            }, 500);
+                        }, function (response) {
+                            window.swal("Ups!", response.data.errorMsg, "error");
                             $(document).find("body").removeClass("overlay-loader");
-                        }, 500);                 
-                    }, function(response) {
-                       window.swal("Ups!", response.data.errorMsg, "error");
-                       $(document).find("body").removeClass("overlay-loader");
-                    });
+                        });
                 };
                 $scope.loadModal();
 
-                $scope.returnNow = function() {
+                $scope.returnNow = function () {
                     $(document).find(".modal").addClass("overlay-loader");
                     var form = $("#purchase-return-form");
                     var data = form.serialize();
@@ -7599,25 +7637,25 @@ window.angularApp.factory("PurchaseReturnModal", ["API_URL", "window", "jQuery",
                         contentType: false,
                         dataType: "json"
                     }).
-                    then(function(response) {
-                        window.swal("ÉXITO!", response.data.msg, "success")
-                        .then(function(value) {
-                            if ($scope.order.datatable) {
-                                $($scope.order.datatable).DataTable().ajax.reload(null, false);
-                            };
-                            if ($parentScope.loadOrders) {
-                                $parentScope.loadOrders();
+                        then(function (response) {
+                            window.swal("ÉXITO!", response.data.msg, "success")
+                                .then(function (value) {
+                                    if ($scope.order.datatable) {
+                                        $($scope.order.datatable).DataTable().ajax.reload(null, false);
+                                    };
+                                    if ($parentScope.loadOrders) {
+                                        $parentScope.loadOrders();
+                                    }
+                                    $(document).find("#purchase-return-modal").trigger("click");
+                                });
+                            $(document).find(".modal").removeClass("overlay-loader");
+                        }, function (response) {
+                            if (window.store.sound_effect == 1) {
+                                window.storeApp.playSound("error.mp3");
                             }
-                            $(document).find("#purchase-return-modal").trigger("click");
+                            window.swal("Ups!", response.data.errorMsg, "error");
+                            $(document).find(".modal").removeClass("overlay-loader");
                         });
-                        $(document).find(".modal").removeClass("overlay-loader");
-                    }, function(response) {
-                        if (window.store.sound_effect == 1) {
-                            window.storeApp.playSound("error.mp3");
-                        }
-                        window.swal("Ups!", response.data.errorMsg, "error");
-                        $(document).find(".modal").removeClass("overlay-loader");
-                    });
                 };
 
                 $scope.closePurchaseReturnModal = function () {
@@ -7626,12 +7664,12 @@ window.angularApp.factory("PurchaseReturnModal", ["API_URL", "window", "jQuery",
             },
             scope: $scope,
             size: "lg",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: true,
         });
 
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
         });
     };
 }]);
@@ -7641,32 +7679,32 @@ window.angularApp.factory("ExpenseSummaryModal", ["API_URL", "window", "jQuery",
             animation: true,
             ariaLabelledBy: "modal-title",
             ariaDescribedBy: "modal-body",
-            template:   "<div id=\"data-modal\" class=\"modal-inner\">" +
-                            "<div class=\"modal-header\">" +
-								"<button ng-click=\"closeExpenceViewModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
-							   "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-eye\"></span> {{ modal_title }}</h3>" +
-							"</div>" +
-							"<div class=\"modal-body\" id=\"modal-body\">" +
-								"<div bind-html-compile=\"rawHtml\">Loading...</div>" +
-							"</div>" +
-                            "<div class=\"modal-footer\" style=\"text-align:center;\">" +
-                                "<button onClick=\"window.printContent('data-modal', {headline:'<small>Printed on: "+window.formatDate(new Date())+"</small>',screenSize:'fullScreen'})\" class=\"btn btn-primary\"><span class=\"fa fa-fw fa-print\"></span> Imprimir</button>" +
-                            "</div>" +
-                        "</div>",
+            template: "<div id=\"data-modal\" class=\"modal-inner\">" +
+                "<div class=\"modal-header\">" +
+                "<button ng-click=\"closeExpenceViewModal();\" type=\"button\" class=\"close\" data-dismiss=\"modal\" aria-label=\"Close\"><span aria-hidden=\"true\">&times;</span></button>" +
+                "<h3 class=\"modal-title\" id=\"modal-title\"><span class=\"fa fa-fw fa-eye\"></span> {{ modal_title }}</h3>" +
+                "</div>" +
+                "<div class=\"modal-body\" id=\"modal-body\">" +
+                "<div bind-html-compile=\"rawHtml\">Loading...</div>" +
+                "</div>" +
+                "<div class=\"modal-footer\" style=\"text-align:center;\">" +
+                "<button onClick=\"window.printContent('data-modal', {headline:'<small>Printed on: " + window.formatDate(new Date()) + "</small>',screenSize:'fullScreen'})\" class=\"btn btn-primary\"><span class=\"fa fa-fw fa-print\"></span> Imprimir</button>" +
+                "</div>" +
+                "</div>",
             controller: function ($scope, $uibModalInstance) {
                 $http({
-                  url: window.baseUrl + "/_inc/expense.php?action_type=SUMMARY",
-                  method: "GET"
+                    url: window.baseUrl + "/_inc/expense.php?action_type=SUMMARY",
+                    method: "GET"
                 })
-                .then(function (response, status, headers, config) {
-                    $scope.modal_title = "Resumen de Gastos";
-                    $scope.rawHtml = $sce.trustAsHtml(response.data);
-                }, function (response) {
-                   window.swal("Ups!", response.data.errorMsg, "error")
-                    .then(function() {
-                        $scope.closeExpenceViewModal();
+                    .then(function (response, status, headers, config) {
+                        $scope.modal_title = "Resumen de Gastos";
+                        $scope.rawHtml = $sce.trustAsHtml(response.data);
+                    }, function (response) {
+                        window.swal("Ups!", response.data.errorMsg, "error")
+                            .then(function () {
+                                $scope.closeExpenceViewModal();
+                            });
                     });
-                });
 
                 $scope.closeExpenceViewModal = function () {
                     $uibModalInstance.dismiss("cancel");
@@ -7674,12 +7712,12 @@ window.angularApp.factory("ExpenseSummaryModal", ["API_URL", "window", "jQuery",
             },
             scope: $scope,
             size: "md",
-            backdrop  : "static",
+            backdrop: "static",
             keyboard: true,
         });
 
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
+        uibModalInstance.result.catch(function () {
+            uibModalInstance.close();
         });
     };
 }]);

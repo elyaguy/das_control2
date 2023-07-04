@@ -8,7 +8,7 @@
   <input type="hidden" id="id" name="id" value="<?php echo $the_user['id']; ?>">
   
   <div class="box-body">
-    <div class="form-group">
+    <div class="form-group hidden">
       <label class="col-sm-3 control-label">
         <?php echo sprintf(trans('label_image'),null); ?>
       </label>
@@ -59,7 +59,7 @@
         <span data-toggle="tooltip" title="" data-original-title="<?php echo trans('hint_group'); ?>"></span>    
       </label>
       <div class="col-sm-7">
-        <select class="form-control" name="group_id" required>
+        <select class="form-control" name="group_id" id="group_id" required>
           <option value="">
             <?php echo trans('text_select'); ?>
           </option>
@@ -74,7 +74,51 @@
       </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group" ng-hide="hideCollege">
+      <label for="college_id" class="col-sm-3 control-label">
+        <?php echo trans('label_college'); ?><i class="required">*</i>
+        <span data-toggle="tooltip" title="" data-original-title="<?php echo trans('hint_college'); ?>"></span>
+      </label>
+      <div class="col-sm-7">
+        <select id="college_id" class="form-control" name="college_id" required>
+          <option value="">
+            <?php echo sprintf(trans('text_select'), null); ?>
+          </option>
+          <?php foreach (get_colleges() as $user_group) : ?>
+            <?php if($user_group['college_id'] == $the_user['fk_id']) : ?>
+                <option value="<?php echo $user_group['college_id']; ?>" selected><?php echo $user_group['college_name'] ; ?></option>
+              <?php else: ?>
+                <option value="<?php echo $user_group['college_id']; ?>"><?php echo $user_group['college_name'] ; ?></option>
+              <?php endif; ?>
+
+          <?php endforeach; ?>
+        </select>
+      </div>
+    </div>
+
+
+    <div class="form-group" ng-hide="hideSupplier">
+      <label for="supplier_id" class="col-sm-3 control-label">
+        <?php echo trans('label_supplier'); ?><i class="required">*</i>
+        <span data-toggle="tooltip" title="" data-original-title="<?php echo trans('hint_supplier'); ?>"></span>
+      </label>
+      <div class="col-sm-7">
+        <select id="supplier_id" class="form-control" name="supplier_id" required>
+          <option value="">
+            <?php echo sprintf(trans('text_select'), null); ?>
+          </option>
+          <?php foreach (get_suppliers() as $user_group) : ?>
+            <?php if($user_group['sup_id'] == $the_user['fk_id']) : ?>
+                <option value="<?php echo $user_group['sup_id']; ?>" selected><?php echo $user_group['sup_name'] ; ?></option>
+              <?php else: ?>
+                <option value="<?php echo $user_group['sup_id']; ?>"><?php echo $user_group['sup_name'] ; ?></option>
+              <?php endif; ?>
+          <?php endforeach; ?>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group hidden">
       <label for="dob" class="col-sm-3 control-label">
         <?php echo sprintf(trans('label_date_of_birth'), null); ?>
       </label>

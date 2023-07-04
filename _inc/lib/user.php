@@ -15,6 +15,7 @@
 class User 
 {
 	private $id;
+	private $idFK;
 	private $group_id;
 	private $username;
 	private $permission = array();
@@ -47,6 +48,7 @@ class User
 			}			
 			if ($user) {
 				$this->id = $user['id'];
+				$this->idFK = $user['fk_id'];
 				$this->username = $user['username'];
 				$this->group_id = $user['group_id'];
 				$this->preference = unserialize($user['preference']);
@@ -84,6 +86,7 @@ class User
 			unset($this->session->data['ref_url']);
 			$this->session->data['id'] = $the_user['id'];
 			$this->id = $the_user['id'];
+			$this->idFK = $the_user['fk_id'];
 			$this->username = $the_user['username'];
 			$this->group_id = $the_user['group_id'];
 
@@ -107,6 +110,7 @@ class User
 	{
 		unset($this->session->data['id']);
 		$this->id = '';
+		$this->idFK = '';
 		$this->username = '';
 	}
 
@@ -127,6 +131,11 @@ class User
 	public function getId() 
 	{
 		return $this->id;
+	}
+
+	public function getFKId() 
+	{
+		return $this->idFK;
 	}
 
 	public function getUserName($id = null, $field = 'username') 

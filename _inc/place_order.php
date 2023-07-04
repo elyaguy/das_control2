@@ -40,6 +40,11 @@ function validate_customer_request_data($request)
   if (!validateInteger($request->post['customer-id'])) {
     throw new Exception(trans('error_invoice_customer'));
   }
+
+   // Validate college id
+   if (!validateInteger($request->post['college-id'])) {
+    throw new Exception(trans('error_invoice_college'));
+  }
 }
 
 // Validate invoice items

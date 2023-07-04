@@ -5,6 +5,7 @@ $customer_id = isset($request->get['customer_id']) ? $request->get['customer_id'
 <form class="form-horizontal" id="checkout-form" action="place_order.php">
 	<input type="hidden" name="invoice-id" value="{{ invoiceId }}">
 	<input type="hidden" name="customer-id" value="{{ customerId }}">
+	<input type="hidden" name="college-id" value="{{ collegeId }}">
 	<input type="hidden" name="salesman-id" value="{{ salesmanId }}">
 	<input type="hidden" name="customer-mobile-number" value="{{ customerMobileNumber }}">
 	<input type="hidden" name="pmethod-id" value="{{ pmethodId }}">

@@ -22,6 +22,12 @@ function user_id()
 	return $user->getId();
 }
 
+function userFK_id() 
+{
+	global $user;
+	return $user->getFKId();
+}
+
 function user_group_id() 
 {
 	global $user;

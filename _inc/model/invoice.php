@@ -98,6 +98,7 @@ class ModelInvoice extends Model
         $total_items = count($request->post['product-item']);
         $invoice_note = $request->post['invoice-note'];
         $customer_id = $request->post['customer-id'];
+        $college_id = $request->post['college-id'];
         $customer_mobile = $request->post['customer-mobile-number'];
         $pmethod_id = $request->post['pmethod-id'];
         $pmethod_code = get_the_pmethod($pmethod_id,'code_name');
@@ -289,8 +290,8 @@ class ModelInvoice extends Model
                 $igst = $tax;
                 $tigst += $tax;
             }
-            $statement = $this->db->prepare("INSERT INTO `selling_item` (invoice_id, store_id, item_id, category_id, brand_id, sup_id, item_name, item_purchase_price, item_price, item_discount, item_tax, tax_method, taxrate_id, tax, gst, cgst, sgst, igst, item_quantity, item_total, purchase_invoice_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-            $statement->execute(array($invoice_id, $store_id, $product_id, $category_id, $brand_id, $sup_id, $product_name, $item_purchase_price, $product_price, $product_discount, $tax, $tax_method, $taxrate_id, $taxrate, $taxrate, $cgst, $sgst, $igst, $product_quantity, $product_total, $purchase_invoice_id));
+            $statement = $this->db->prepare("INSERT INTO `selling_item` (invoice_id, store_id, college_id, item_id, category_id, brand_id, sup_id, item_name, item_purchase_price, item_price, item_discount, item_tax, tax_method, taxrate_id, tax, gst, cgst, sgst, igst, item_quantity, item_total, purchase_invoice_id) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $statement->execute(array($invoice_id, $store_id, $college_id, $product_id, $category_id, $brand_id, $sup_id, $product_name, $item_purchase_price, $product_price, $product_discount, $tax, $tax_method, $taxrate_id, $taxrate, $taxrate, $cgst, $sgst, $igst, $product_quantity, $product_total, $purchase_invoice_id));
             $statement = $this->db->prepare("UPDATE `product_to_store` SET `quantity_in_stock` = `quantity_in_stock` - {$quantity_substract} WHERE `store_id` = ? AND `product_id` = ?");
             $statement->execute(array($store_id, $product_id));
         }
@@ -305,8 +306,8 @@ class ModelInvoice extends Model
         $capital = ($total_purchase_price / ($subtotal -$discount_amount)) * ($paid_amount - $shipping_amount - $others_charge);
         $profit = ($subtotal -$discount_amount) - $total_purchase_price;
         
-        $statement = $this->db->prepare("INSERT INTO `selling_info` (invoice_id, store_id, customer_id, customer_mobile, invoice_note, total_items, payment_status, is_installment, created_by, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-        $statement->execute(array($invoice_id, $store_id, $customer_id, $customer_mobile, $invoice_note, $total_items, $payment_status, $is_installment_order, $user_id, $created_at));
+        $statement = $this->db->prepare("INSERT INTO `selling_info` (invoice_id, store_id, customer_id, college_id, customer_mobile, invoice_note, total_items, payment_status, is_installment, created_by, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+        $statement->execute(array($invoice_id, $store_id, $customer_id, $college_id, $customer_mobile, $invoice_note, $total_items, $payment_status, $is_installment_order, $user_id, $created_at));
         
         $statement = $this->db->prepare("INSERT INTO `selling_price` (invoice_id, store_id, subtotal, discount_type, discount_amount, interest_amount, interest_percentage, item_tax, order_tax, cgst, sgst, igst, total_purchase_price, shipping_type, shipping_amount, others_charge, previous_due, payable_amount, paid_amount, due, prev_due_paid, profit, balance) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
         $statement->execute(array($invoice_id, $store_id, $subtotal, $discount_type, $discount_amount, $installment_interest_amount, $installment_interest_percentage, $item_tax, $order_tax, $tcgst, $tsgst, $tigst, $total_purchase_price, $shipping_type, $shipping_amount, $others_charge, $previous_due, $payable_amount, $paid_amount, $due, $prev_due_paid, $profit, $balance));
@@ -329,8 +330,8 @@ class ModelInvoice extends Model
         }
 
         $reference_no = generate_sell_log_ref_no('sell');
-        $statement = db()->prepare("INSERT INTO `sell_logs` (customer_id, reference_no, type, pmethod_id, description, amount, store_id, ref_invoice_id, created_by, created_at) VALUES (?,?,?,?,?,?,?,?,?,?)");
-        $statement->execute(array($customer_id, $reference_no, 'sell', $pmethod_id,  'Paid while selling', $paid_amount, $store_id, $invoice_id, $user_id, $created_at));
+        $statement = db()->prepare("INSERT INTO `sell_logs` (customer_id, college_id, reference_no, type, pmethod_id, description, amount, store_id, ref_invoice_id, created_by, created_at) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
+        $statement->execute(array($customer_id, $college_id, $reference_no, 'sell', $pmethod_id,  'Paid while selling', $paid_amount, $store_id, $invoice_id, $user_id, $created_at));
         
         if ($due > 0) {
             $statement = $this->db->prepare("UPDATE `customer_to_store` SET `due` = `due` + {$due}  WHERE `store_id` = ? AND `customer_id` = ?");
@@ -403,6 +404,7 @@ class ModelInvoice extends Model
         $created_at = date_time();
         $invoice_id = $data['invoice-id'];
         $customer_id = $data['customer-id'];
+        $college_id = $data['college-id'];
         $pmethod_id = $data['pmethod-id'];
         $pmethod_code = get_the_pmethod($pmethod_id,'code_name');
         $invoice_price = $this->getSellingPrice($invoice_id, $store_id);
@@ -540,8 +542,8 @@ class ModelInvoice extends Model
 
         if ($paid_amount > 0) {
           $reference_no = generate_sell_log_ref_no('due_paid');
-          $statement = db()->prepare("INSERT INTO `sell_logs` (customer_id, reference_no, type, pmethod_id, description, amount, store_id, ref_invoice_id, created_by, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-          $statement->execute(array($customer_id, $reference_no, 'due_paid', $pmethod_id, 'Due paid', $paid_amount, $store_id, $invoice_id, $user_id, $created_at));
+          $statement = db()->prepare("INSERT INTO `sell_logs` (customer_id, college_id, reference_no, type, pmethod_id, description, amount, store_id, ref_invoice_id, created_by, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+          $statement->execute(array($customer_id, $college_id, $reference_no, 'due_paid', $pmethod_id, 'Due paid', $paid_amount, $store_id, $invoice_id, $user_id, $created_at));
         }
 
         if ($balance > 0) {

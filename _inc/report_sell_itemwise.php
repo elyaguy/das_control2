@@ -34,14 +34,24 @@ $where_query = "selling_info.inv_type != 'due_paid' AND selling_info.store_id = 
 if (isset($request->get['pid']) && $request->get['pid'] && $request->get['pid'] != 'null') {
   $where_query .= " AND item_id = " . $request->get['pid'];
 }
+//Para cuando sea rol de colegio y proveedor
+// 6 proveedor 7 colegio
+if (user_group_id() == 7) {
+  $where_query .= " AND selling_item.college_id = " . userFK_id();
+}
+
 $from = from();
 $to = to();
 $where_query .= date_range_filter($from, $to);
 
 // DB table to use
-$table = "(SELECT @sl:=@sl+1 AS sl, selling_info.invoice_id, selling_info.created_at, selling_item.id, selling_item.item_id, selling_item.item_name, SUM(selling_item.item_quantity) as total_item, SUM(selling_item.item_discount) as discount, SUM(selling_item.item_tax) as tax, SUM(selling_item.item_purchase_price) as purchase_price, SUM(selling_item.item_total) as sell_price FROM selling_item 
+$table = "(SELECT @sl:=@sl+1 AS sl, selling_info.invoice_id, selling_info.created_at, selling_item.id, selling_item.item_id, selling_item.item_name, SUM(selling_item.item_quantity) as total_item, SUM(selling_item.item_discount) as discount, SUM(selling_item.item_tax) as tax, SUM(selling_item.item_purchase_price) as purchase_price, SUM(selling_item.item_total) as sell_price , course_name , SUM(product_to_college.estimatedsales) as estimated_sales
+  FROM selling_item 
   LEFT JOIN selling_info ON (selling_item.invoice_id = selling_info.invoice_id)
   LEFT JOIN selling_price ON (selling_item.invoice_id = selling_price.invoice_id)
+  LEFT JOIN product_to_store ON (selling_item.item_id = product_to_store.product_id AND selling_item.store_id = product_to_store.store_id)
+  LEFT JOIN product_to_college ON (selling_item.item_id = product_to_college.product_id AND selling_item.college_id = product_to_college.college_id)
+  LEFT JOIN courses ON (product_to_store.course_id = courses.course_id)
   WHERE $where_query
   GROUP BY selling_item.item_id
   ORDER BY sell_price DESC) as selling_item";
@@ -53,6 +63,8 @@ $columns = array(
     array( 'db' => 'sl', 'dt' => 'sl' ),
     array( 'db' => 'item_id', 'dt' => 'id' ),
     array( 'db' => 'invoice_id', 'dt' => 'invoice_id' ),
+    array( 'db' => 'course_name', 'dt' => 'course_name' ),
+    array( 'db' => 'estimated_sales', 'dt' => 'estimated_sales' ),    
     array( 
       'db' => 'created_at',
       'dt' => 'selling_date',

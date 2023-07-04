@@ -1,9 +1,9 @@
 <form id="create-user-form" class="form-horizontal" action="user.php" method="post" enctype="multipart/form-data">
   <input type="hidden" id="action_type" name="action_type" value="CREATE">
   <div class="box-body">
-    <div class="form-group">
+    <div class="form-group hidden">
       <label for="user_image" class="col-sm-3 control-label">
-        <?php echo sprintf(trans('label_thumbnail'),null); ?>
+        <?php echo sprintf(trans('label_thumbnail'), null); ?>
       </label>
       <div class="col-sm-7">
         <div class="preview-thumbnail">
@@ -14,7 +14,7 @@
         </div>
       </div>
     </div>
-    
+
     <div class="form-group">
       <label for="username" class="col-sm-3 control-label">
         <?php echo sprintf(trans('label_name'), null); ?><i class="required">*</i>
@@ -73,7 +73,7 @@
             </option>
             <?php foreach (get_usergroups() as $user_group) : ?>
               <option value="<?php echo $user_group['group_id']; ?>">
-                <?php echo $user_group['name'] ; ?>
+                <?php echo $user_group['name']; ?>
               </option>
             <?php endforeach; ?>
           </select>
@@ -84,7 +84,46 @@
       </div>
     </div>
 
-    <div class="form-group">
+    <div class="form-group"  ng-hide="hideCollege">
+      <label for="college_id" class="col-sm-3 control-label">
+        <?php echo trans('label_college'); ?><i class="required">*</i>
+        <span data-toggle="tooltip" title="" data-original-title="<?php echo trans('hint_college'); ?>"></span>
+      </label>
+      <div class="col-sm-7">
+        <select id="college_id" class="form-control" name="college_id" required>
+          <option value="">
+            <?php echo sprintf(trans('text_select'), null); ?>
+          </option>
+          <?php foreach (get_colleges() as $user_group) : ?>
+            <option value="<?php echo $user_group['college_id']; ?>">
+              <?php echo $user_group['college_name']; ?>
+            </option>
+          <?php endforeach; ?>
+        </select>
+      </div>
+    </div>
+
+
+    <div class="form-group" ng-hide="hideSupplier">
+      <label for="supplier_id" class="col-sm-3 control-label">
+        <?php echo trans('label_supplier'); ?><i class="required">*</i>
+        <span data-toggle="tooltip" title="" data-original-title="<?php echo trans('hint_supplier'); ?>"></span>
+      </label>
+      <div class="col-sm-7">
+        <select id="supplier_id" class="form-control" name="supplier_id" required>
+          <option value="">
+            <?php echo sprintf(trans('text_select'), null); ?>
+          </option>
+          <?php foreach (get_suppliers() as $user_group) : ?>
+            <option value="<?php echo $user_group['sup_id']; ?>">
+              <?php echo $user_group['sup_name']; ?>
+            </option>
+          <?php endforeach; ?>
+        </select>
+      </div>
+    </div>
+
+    <div class="form-group hidden">
       <label for="dob" class="col-sm-3 control-label">
         <?php echo sprintf(trans('label_date_of_birth'), null); ?>
       </label>
@@ -106,16 +145,16 @@
         <div class="filter-searchbox">
           <input ng-model="search_store" class="form-control" type="text" id="search_store" placeholder="<?php echo trans('search'); ?>">
         </div>
-        <div class="well well-sm store-well"> 
+        <div class="well well-sm store-well">
           <div filter-list="search_store">
-          <?php foreach(get_stores() as $the_store) : ?>                    
-            <div class="checkbox">
-              <label>                         
-                <input type="checkbox" name="user_store[]" value="<?php echo $the_store['store_id']; ?>" <?php echo $the_store['store_id'] == store_id() ? 'checked' : null; ?>>
-                <?php echo $the_store['name']; ?>
-              </label>
-            </div>
-          <?php endforeach; ?>
+            <?php foreach (get_stores() as $the_store) : ?>
+              <div class="checkbox">
+                <label>
+                  <input type="checkbox" name="user_store[]" value="<?php echo $the_store['store_id']; ?>" <?php echo $the_store['store_id'] == store_id() ? 'checked' : null; ?>>
+                  <?php echo $the_store['name']; ?>
+                </label>
+              </div>
+            <?php endforeach; ?>
           </div>
         </div>
       </div>
@@ -126,7 +165,7 @@
         <?php echo trans('label_status'); ?><i class="required">*</i>
       </label>
       <div class="col-sm-7">
-        <select id="status" class="form-control" name="status" >
+        <select id="status" class="form-control" name="status">
           <option <?php echo isset($request->post['status']) && $request->post['status'] == '1' ? 'selected' : null; ?> value="1">
             <?php echo trans('text_active'); ?>
           </option>
@@ -150,15 +189,15 @@
       <label class="col-sm-3 control-label"></label>
       <div class="col-sm-7">
         <button class="btn btn-info" id="create-user-submit" type="submit" name="create-user-submit" data-form="#create-user-form" data-loading-text="Guardando...">
-          <span class="fa fa-fw fa-save"></span> 
+          <span class="fa fa-fw fa-save"></span>
           <?php echo trans('button_save'); ?>
         </button>
         <button type="reset" class="btn btn-danger" id="reset" name="reset">
-          <span class="fa fa-fw fa-circle-o"></span> 
+          <span class="fa fa-fw fa-circle-o"></span>
           <?php echo trans('button_reset'); ?>
         </button>
       </div>
     </div>
-    
+
   </div>
 </form>
