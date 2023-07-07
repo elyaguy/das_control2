@@ -19,6 +19,7 @@ $document->setTitle(trans('text_college_list_title'));
 // Add Script
 $document->addScript('../assets/das/angular/controllers/CollegeProfileController.js');
 $document->addScript('../assets/das/angular/controllers/CollegeController.js');
+// $document->addScript('../assets/das/angular/controllers/CollegeControllerProduct.js');
 
 // Include Header and Footer
 include("header.php"); 

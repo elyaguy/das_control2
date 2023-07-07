@@ -592,7 +592,7 @@ class ModelProduct extends Model
 				LEFT JOIN `product_to_store` p2s ON (`products`.`p_id` = `p2s`.`product_id`) 
 				LEFT JOIN `product_to_college` p2c ON (`products`.`p_id` = `p2c`.`product_id`) 
 				LEFT JOIN `units` p3s ON (`products`.`unit_id` = `p3s`.`unit_id`) 
-				WHERE `p2s`.`store_id` = ? AND `p2c`.`college_id` = ? AND (`p2s`.`quantity_in_stock` > 0 OR `products`.`p_type` = 'service') AND `p2s`.`status` = ? AND `products`.`category_id` = ?{$where_query} GROUP BY  `p2s`.`product_id` {$limit_query}");
+				WHERE `p2c`.`status` = 1 AND `p2s`.`store_id` = ? AND `p2c`.`college_id` = ? AND (`p2s`.`quantity_in_stock` > 0 OR `products`.`p_type` = 'service') AND `p2s`.`status` = ? AND `products`.`category_id` = ?{$where_query} GROUP BY  `p2s`.`product_id` {$limit_query}");
 				$statement->execute(array($store_id, $college_id, 1, $category_id));
 			} else {
 
@@ -601,7 +601,7 @@ class ModelProduct extends Model
 				RIGHT JOIN `product_to_store` p2s ON (`products`.`p_id` = `p2s`.`product_id`) 
 				RIGHT JOIN `product_to_college` p2c ON (`products`.`p_id` = `p2c`.`product_id`) 
 				RIGHT JOIN `units` p3s ON (`products`.`unit_id` = `p3s`.`unit_id`) 
-				WHERE `p2s`.`store_id` = ? AND `p2c`.`college_id` = ? AND (`p2s`.`quantity_in_stock` > 0 OR `products`.`p_type` = 'service') AND `p2s`.`status` = ?{$where_query}
+				WHERE `p2c`.`status` = 1 AND `p2s`.`store_id` = ? AND `p2c`.`college_id` = ? AND (`p2s`.`quantity_in_stock` > 0 OR `products`.`p_type` = 'service') AND `p2s`.`status` = ?{$where_query}
 				GROUP BY `p2s`.`product_id` ORDER BY `total` DESC{$limit_query}");
 				$statement->execute(array($store_id, $college_id, 1));
 			}
@@ -613,14 +613,14 @@ class ModelProduct extends Model
 				LEFT JOIN `product_to_store` p2s ON (`products`.`p_id` = `p2s`.`product_id`) 
 				LEFT JOIN `product_to_college` p2c ON (`products`.`p_id` = `p2c`.`product_id`) 
 				LEFT JOIN `units` p3s ON (`products`.`unit_id` = `p3s`.`unit_id`) 
-				WHERE `p2s`.`store_id` = ? AND `p2c`.`college_id` = ? AND (`p2s`.`quantity_in_stock` > 0 OR `products`.`p_type` = 'service') AND (UPPER($field) LIKE '" . strtoupper($query_string) . "%' OR `products`.`p_code` = '{$query_string}') AND `p2s`.`status` = ? AND `products`.`category_id` = ?{$where_query}{$limit_query}");
+				WHERE `p2c`.`status` = 1 AND `p2s`.`store_id` = ? AND `p2c`.`college_id` = ? AND (`p2s`.`quantity_in_stock` > 0 OR `products`.`p_type` = 'service') AND (UPPER($field) LIKE '" . strtoupper($query_string) . "%' OR `products`.`p_code` = '{$query_string}') AND `p2s`.`status` = ? AND `products`.`category_id` = ?{$where_query}{$limit_query}");
 				$statement->execute(array($store_id, $college_id, 1, $category_id));
 			} else {
 				$statement = $this->db->prepare("SELECT * FROM `products` 
 				LEFT JOIN `product_to_store` p2s ON (`products`.`p_id` = `p2s`.`product_id`) 
 				LEFT JOIN `product_to_college` p2c ON (`products`.`p_id` = `p2c`.`product_id`) 
 				LEFT JOIN `units` p3s ON (`products`.`unit_id` = `p3s`.`unit_id`) 
-				WHERE `p2s`.`store_id` = ? AND `p2c`.`college_id` = ? AND (`p2s`.`quantity_in_stock` > 0 OR `products`.`p_type` = 'service') AND (UPPER($field) LIKE '" . strtoupper($query_string) . "%' OR `products`.`p_code` = '{$query_string}') AND `p2s`.`status` = ?{$where_query}{$limit_query}");
+				WHERE `p2c`.`status` = 1 AND `p2s`.`store_id` = ? AND `p2c`.`college_id` = ? AND (`p2s`.`quantity_in_stock` > 0 OR `products`.`p_type` = 'service') AND (UPPER($field) LIKE '" . strtoupper($query_string) . "%' OR `products`.`p_code` = '{$query_string}') AND `p2s`.`status` = ?{$where_query}{$limit_query}");
 				$statement->execute(array($store_id, $college_id, 1));
 			}
 			$products = $statement->fetchAll(PDO::FETCH_ASSOC);

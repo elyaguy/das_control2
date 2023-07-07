@@ -5236,6 +5236,32 @@ window.angularApp.factory("CollegeEditModal", ["API_URL", "window", "jQuery", "$
                 $scope.closeCollegeEditModal = function () {
                     $uibModalInstance.dismiss("cancel");
                 };
+
+                
+                var page = 1;
+                $scope.products;
+                $scope.showProductList = function (url) {
+                    $http({
+                        //url: url ? url : API_URL + "/_inc/pos.php?action_type=PRODUCTLIST&query_string=" + productCode + "&category_id=" + categoryId + "&field=p_name&page=" + page,
+                        url: url ? url : API_URL + "/_inc/college2.php?action_type=COLLEGE_PRODUCT_EDIT&college_id=" + college.college_id,
+                        method: "GET",
+                        cache: false,
+                        processData: false,
+                        contentType: false,
+                        dataType: "json"
+                    }).
+                        then(function (response) {
+                            console.log("okModal");
+                            $scope.products = response.data.products;
+
+                        }, function (response) {
+                            if (window.store.sound_effect == 1) {
+                                window.storeApp.playSound("error.mp3");
+                            }
+                            window.toastr.error(response.data.errorMsg, "ADVERTENCIA!");
+                        });
+                };
+                $scope.showProductList();
             },
             scope: $scope,
             size: "md",

@@ -119,6 +119,49 @@
         </div>
         <div class="tab-pane" id="product-setting">
           <div class="form-group">
+            <div class="box-body">
+              <div class="table-responsive">              
+                <div class="text-center">
+                  <!-- <h4><?/*php echo trans('text_return_item'); */?></h4> -->
+                </div>
+                <div class="table-responsive">
+                  <table id="product-college-list"  class="table table-bordered table-striped table-hover">
+                    <thead>
+                      <tr class="bg-gray">
+                        <th class="text-center w-10">Si/No</th>
+                        <th class="w-20"><?php echo trans('label_product_name'); ?></th>
+                        <th class="w-20"><?php echo trans('label_course'); ?></th>
+                        <th class="text-center w-70"><?php echo trans('label_estimated_sales'); ?></th>
+                      </tr>
+                    </thead>
+                    <tbody>
+                      <tr ng-repeat="product_college in products">
+                        <td class="text-center w-10 bg-gray">
+                        <!-- <input type="hidden" name="product_college[{{ product_college.p_id }}][p_id]" value="{{ product_college.p_id }}"> -->
+                        <input type="hidden" name="product_college[{{ product_college.p_id }}][p_id]" value="{{ product_college.p_id }}">
+                          <input type="checkbox" name="product_college[{{ product_college.p_id }}][check]" value="1" ng-checked="product_college.checkk" style="width:20px;height:20px;">
+                        </td>
+                        <td class="w-70">{{ product_college.p_name }}</td>
+                        <td class="w-70">{{ product_college.course_name }} </td>
+                        <td class="text-center w-20">
+                          <input class="text-center" type="text" name="product_college[{{ product_college.p_id }}][item_quantity]" value="{{ product_college.estimatedsales }}" onclick="this.select();" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" onKeyUp="if(this.value<0){this.value='0';}">
+                        </td>
+                      </tr>
+                      <!-- <tr>
+                        <td colspan="4">
+                          <textarea class="form-control no-resize" name="note" placeholder="<?/*php echo trans('placeholder_type_any_note'); */?>"></textarea>
+                        </td>
+                      </tr> -->
+                    </tbody>
+                  </table>
+                </div>   
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- <div class="tab-pane" id="product-setting">
+          <div class="form-group">
             <label class="col-sm-3 control-label"></label>
             <div class="col-sm-12 product-selector">
               <div class="checkbox selector">
@@ -127,24 +170,24 @@
                 </label>
               </div>
               <div class="filter-searchbox">
-                <input ng-model="search_product" class="form-control" type="text" id="search_product" placeholder="<?php echo trans('search'); ?>">
+                <input ng-model="search_product" class="form-control" type="text" id="search_product" placeholder="<?/*php echo trans('search'); */?>">
               </div>
               <div class="well well-sm product-well">
                 <div filter-list="search_product">
-                  <?php foreach (get_products_to_store_college() as $the_store) : ?>
+                  <?/*php foreach (get_products_to_store_college() as $the_store) : */?>
                     <div class="checkbox">
                       <label>
-                        <input type="checkbox" name="product_college[]" value="<?php echo $the_store['p_id']; ?>" <?php echo in_array($the_store['p_id'], get_product_store_college($college['college_id'])) ? 'checked' : null; ?>>
-                        <?php echo $the_store['p_name'] . ' [ Curso: ' . $the_store['course_name'] . ' ]'; ?>
+                        <input type="checkbox" name="product_college[]" value="<?/*php echo $the_store['p_id']; */?>" <?/*php echo in_array($the_store['p_id'], get_product_store_college($college['college_id'])) ? 'checked' : null; */?>>
+                        <?/*php echo $the_store['p_name'] . ' [ Curso: ' . $the_store['course_name'] . ' ]'; */?>
                       </label>
                     </div>
-                  <?php endforeach; ?>
+                  <?/*php endforeach; */?>
 
                 </div>
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
       </div>
     </div>
 

@@ -42,8 +42,51 @@ function validate_request_data($request)
     throw new Exception(trans('error_college_responsible'));
   }
 
+  //$request->post['product_college_ok'] = [];
+  $myArray = [];
   // Validate store
   if (!isset($request->post['product_college']) || empty($request->post['product_college'])) {
+    throw new Exception(trans('error_product_college'));
+  } else {
+    foreach ($request->post['product_college'] as $product) {
+      if (!isset($product['check']) && $request->post['action_type'] == 'CREATE') {
+        continue;
+      } else {
+        if ($request->post['action_type'] == 'UPDATE' && !isset($product['check'])) {
+          array_push($myArray, (object)[
+            'chk' => 0,
+            'p_id' => $product['p_id'],
+            'qty' => $product['item_quantity'],
+          ]);
+        } else {
+          if ($product['check'] == 1) {
+            if ($product['item_quantity'] <= 0) {
+              throw new Exception('Existen Productos sin especificar Ventas Estimadas!.');
+            } else {
+              array_push($myArray, (object)[
+                'chk' => 1,
+                'p_id' => $product['p_id'],
+                'qty' => $product['item_quantity'],
+              ]);
+            }
+          }
+        }
+
+
+        // else {
+        //   if ($request->post['action_type'] == 'UPDATE') {
+        //     array_push($myArray, (object)[
+        //       'chk' => 0,
+        //       'p_id' => $product['p_id'],
+        //       'qty' => $product['item_quantity'],
+        //     ]);
+        //   }
+        // }
+      }
+    }
+  }
+  $request->post['product_college_ok'] = $myArray;
+  if (empty($myArray)) {
     throw new Exception(trans('error_product_college'));
   }
 
@@ -102,11 +145,11 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action
     $college = $college_model->getCollege($college_id);
 
     // Add product to store
-    if (!empty($request->post['product_college'])) {
-      foreach ($request->post['product_college'] as $product_id) {
+    if (!empty($request->post['product_college_ok'])) {
+      foreach ($request->post['product_college_ok'] as $product_id) {
 
         // Fetch product info
-        $product_info = get_the_product($product_id);
+        $product_info = get_the_product($product_id->p_id);
 
         //--- Category to store ---//
 
@@ -142,8 +185,8 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action
 
         // REVISAR PASAR TODA LA INFO EDGAR
 
-        $statement = db()->prepare("INSERT INTO `product_to_college` SET `college_id` = ?, `product_id` = ?");
-        $statement->execute(array((int)$college_id, (int)$product_info['product_id']));
+        $statement = db()->prepare("INSERT INTO `product_to_college` SET `college_id` = ?, `product_id` = ?, `estimatedsales` = ?");
+        $statement->execute(array((int)$college_id, (int)$product_info['product_id'], $product_id->qty));
       }
     }
 
@@ -190,11 +233,11 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action
     $college = $college_model->editCollege($id, $request->post);
 
     // Add product to store
-    if (!empty($request->post['product_college'])) {
-      foreach ($request->post['product_college'] as $product_id) {
+    if (!empty($request->post['product_college_ok'])) {
+      foreach ($request->post['product_college_ok'] as $product_id) {
 
         // Fetch product info
-        $product_info = get_the_product($product_id, null);
+        $product_info = get_the_product($product_id->p_id, null);
 
         //--- Category to store ---//
 
@@ -228,11 +271,14 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action
 
         //--- Create product link ---//
         $statement = db()->prepare("SELECT * FROM `product_to_college` WHERE `college_id` = ? AND `product_id` = ?");
-        $statement->execute(array($id, (int)$product_id));
+        $statement->execute(array($id, (int)$product_id->p_id));
         $prodt = $statement->fetch(PDO::FETCH_ASSOC);
-        if (!$prodt) {
-          $statement = db()->prepare("INSERT INTO `product_to_college` SET `product_id` = ?, `college_id` = ?");
-          $statement->execute(array((int)$product_id, (int)$id, ));
+        if (!$prodt && $product_id->chk==1) {
+          $statement = db()->prepare("INSERT INTO `product_to_college` SET `estimatedsales` = ?, `product_id` = ?, `college_id` = ?");
+          $statement->execute(array((int)$product_id->qty, (int)$product_id->p_id, (int)$id,));
+        } else {
+          $statement = db()->prepare("UPDATE `product_to_college` SET `estimatedsales` = ?, `status` = ?  WHERE `college_id` = ? AND `product_id` = ?");
+          $statement->execute(array((int)$product_id->qty, $product_id->chk, $id, (int)$product_id->p_id));
         }
       }
     }
@@ -447,3 +493,113 @@ $Hooks->do_action('After_Showing_College_List');
  * END DATATABLE
  *===================
  */
+
+if (isset($request->get['info']) && $request->get['info'] == 'COLLEGE_PRODUCT') {
+
+  /**
+   *===================
+   * START DATATABLE
+   *===================
+   */
+  $Hooks->do_action('Before_Showing_Product_College_List');
+
+  $where_query = 'p1.store_id = ' . store_id();
+
+  // DB table to use
+  // $table = "(SELECT colleges.*, b2s.status, b2s.sort_order FROM colleges 
+  //   LEFT JOIN college_to_store b2s ON (colleges.college_id = b2s.college_id) 
+  //   WHERE $where_query GROUP by colleges.college_id
+  //   ) as colleges";
+  $table = "(SELECT p.p_id, p.p_name, c.course_name, 0 AS stimatedsales
+  FROM products p 
+  LEFT JOIN product_to_store p1 ON p1.product_id = p.p_id
+  LEFT JOIN courses c ON c.course_id = p1.course_id
+  WHERE $where_query GROUP by p.p_id
+) as products";
+
+  // Table's primary key
+  $primaryKey = 'p_id';
+
+  $columns = array(
+    array(
+      'db' => 'p_id',
+      'dt' => 'DT_RowId',
+      'formatter' => function ($d, $row) {
+        return 'row_' . $d;
+      }
+    ),
+    array(
+      'db' => 'p_id',
+      'dt' => 'select',
+      'formatter' => function ($d, $row) {
+        return '<input type="checkbox" name="selected[]" value="' . $row['p_id'] . '">';
+      }
+    ),
+    array('db' => 'p_id', 'dt' => 'p_id'),
+    array(
+      'db' => 'p_name',
+      'dt' => 'p_name',
+      'formatter' => function ($d, $row) {
+        return html_entity_decode($row['p_name']);
+      }
+    ),
+    array(
+      'db' => 'course_name',
+      'dt' => 'course_name',
+      'formatter' => function ($d, $row) {
+        return html_entity_decode($row['course_name']);
+      }
+    ),
+    array(
+      'db' => 'stimatedsales',
+      'dt' => 'stimatedsales',
+      'formatter' => function ($d, $row) {
+        return currency_format($row['stimatedsales']);
+      }
+    ),
+  );
+
+  echo json_encode(
+    SSP::simple($request->get, $sql_details, $table, $primaryKey, $columns)
+  );
+
+  $Hooks->do_action('After_Showing_Product_College_List');
+
+  /**
+   *===================
+   * END DATATABLE
+   *===================
+   */
+}
+
+if (isset($request->get['action_type']) && $request->get['action_type'] == 'COLLEGE_PRODUCT') {
+
+  $where_query = '`product_to_store`.`store_id` = ' . store_id();
+  // $items = array();
+  $statement = db()->prepare("SELECT `products`.`p_id`, `products`.`p_name`, `courses`.`course_name`, 0 AS estimatedsales
+        FROM `products` 
+        LEFT JOIN `product_to_store` ON (`product_to_store`.`product_id` = `products`.`p_id`)
+        LEFT JOIN `courses` ON (`courses`.`course_id` = `product_to_store`.`course_id`)
+        WHERE $where_query");
+  $statement->execute();
+  $rows = $statement->fetchAll(PDO::FETCH_ASSOC);
+  // $products = array();
+  // $i = 0;
+  // foreach ($rows as $row) {
+  //     $products[$i] = $row;
+  //     $i++;
+  // }
+
+  // $invoice_model = registry()->get('loader')->model('invoice');
+  // $payment_model = registry()->get('loader')->model('payment');
+  // $items = $invoice_model->getInvoiceItems($order['invoice_id'], store_id());
+  // $payments = $payment_model->getPayments($order['invoice_id'], store_id());
+  // $order['customer_name'] = get_the_customer($order['customer_id'], 'customer_name');
+  // $order['items']     = $items;
+  // $order['table']     = '';
+  // $order['payments']  = $payments;
+
+  header('Content-Type: application/json');
+  echo json_encode(array('msg' => trans('text_success'), 'products' => $rows));
+  exit();
+}
