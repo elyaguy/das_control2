@@ -3,7 +3,6 @@ storage/logs/v.txt
 old/
 storage/
 storage/qrcode.png
-/config.php
 error_log
 access.log
 error.log
