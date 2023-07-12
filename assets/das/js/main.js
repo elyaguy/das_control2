@@ -284,8 +284,8 @@ window.jQuery(window).on("load", function () {
 	$("#logout").on("click", function(e) {
 		e.preventDefault();
 		window.swal({
-          title: "Logout!",
-          text: "Do you want to logout?",
+          title: "¡Cerrar sesión!",
+          text: "¿Quieres cerrar sesión?",
           icon: "warning",
           buttons: true,
           dangerMode: false,

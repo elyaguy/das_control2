@@ -56,11 +56,13 @@ include("left_sidebar.php");
   <!-- Content Start -->
   <section class="content">
 
-    <?php if (DEMO) : ?>
+    <?php if (DEMO): ?>
       <div class="box">
         <div class="box-body">
           <div class="alert alert-info mb-0">
-            <p><span class="fa fa-fw fa-info-circle"></span> <?php echo $demo_text; ?></p>
+            <p><span class="fa fa-fw fa-info-circle"></span>
+              <?php echo $demo_text; ?>
+            </p>
           </div>
         </div>
       </div>
@@ -78,13 +80,13 @@ include("left_sidebar.php");
               <div class="btn-group">
                 <button type="button" class="btn btn-info">
                   <span class="fa fa-filter"></span>
-                  <?php if (current_nav() == 'report_sell_itemwise') : ?>
+                  <?php if (current_nav() == 'report_sell_itemwise'): ?>
                     <?php echo trans('button_itemwise'); ?>
-                  <?php elseif (current_nav() == 'report_sell_categorywise') : ?>
+                  <?php elseif (current_nav() == 'report_sell_categorywise'): ?>
                     <?php echo trans('button_categorywise'); ?>
-                  <?php elseif (current_nav() == 'report_sell_supplierwise') : ?>
+                  <?php elseif (current_nav() == 'report_sell_supplierwise'): ?>
                     <?php echo trans('button_supplierwise'); ?>
-                  <?php else : ?>
+                  <?php else: ?>
                     <?php echo trans('button_filter'); ?>
                   <?php endif; ?>
                 </button>
@@ -116,29 +118,49 @@ include("left_sidebar.php");
           <div class="box-body">
             <div class="table-responsive">
               <?php
-              $print_columns = '0,1,2,3,4,5';
-              $hide_colums = '';
+              $print_columns = '0,1,2,3,5';
+              $hide_colums = '4,6,7,';
+              // $hide_colums = '';
               // $print_columns = '0,1,2,3,4,5';
-              if (user_group_id() != 1) {
-                if (!has_permission('access', 'show_purchase_price')) {
-                   $print_columns = str_replace('6,', '', $print_columns);
-                }
-              }
-              // $hide_colums = "4,";
-              if (user_group_id() != 1) {
-                if (!has_permission('access', 'show_purchase_price')) {
-                   $hide_colums .= "6,";
-                }
-              }
+              
               // 6 proveedor 7 colegio
-              if (user_group_id() == 7) {
-                if (!has_permission('access', 'show_purchase_price')) {
-                   $hide_colums .= "6,7";
-                   $print_columns = '0,1,2,3,4,5';
+              if (user_group_id() != 1) {
+                if (has_permission('access', 'show_estimated_sales')) {
+                  $hide_colums = str_replace('4,', '', $hide_colums);
+                  $print_columns .= ",4";
+                }
+                if (has_permission('access', 'show_purchase_price')) {
+                  $hide_colums = str_replace('6,', '', $hide_colums);
+                  $print_columns .= ",6";
+                }
+                if (has_permission('access', 'show_selling_price')) {
+                  $hide_colums = str_replace('7,', '', $hide_colums);
+                  $print_columns .= ",7";
                 }
               }
+
+              if (user_group_id() == 1) {
+                $print_columns .= ",4,6,7";
+                $hide_colums = str_replace('6,', '', $hide_colums);
+                $hide_colums = str_replace('7,', '', $hide_colums);
+                $hide_colums = str_replace('4,', '', $hide_colums);
+              }
+
+              // if (user_group_id() == 6) {
+              //   if (!has_permission('access', 'show_purchase_price')) {
+              //     $hide_colums .= "6,7";
+              //     $print_columns = '0,1,2,3,4,5';
+              //   }
+              // }
+              // if (user_group_id() == 7) {
+              //   if (!has_permission('access', 'show_purchase_price')) {
+              //     $hide_colums .= "6,7";
+              //     $print_columns = '0,1,2,3,4,5';
+              //   }
+              // }
               ?>
-              <table id="report-report-list" class="table table-bordered table-striped table-hover" data-hide-colums="<?php echo $hide_colums; ?>" data-print-columns="<?php echo $print_columns; ?>">
+              <table id="report-report-list" class="table table-bordered table-striped table-hover"
+                data-hide-colums="<?php echo $hide_colums; ?>" data-print-columns="<?php echo $print_columns; ?>">
                 <thead>
                   <tr class="bg-gray">
                     <th class="w-5">

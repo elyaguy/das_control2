@@ -47,10 +47,10 @@
                         <?php endforeach; ?>
                     <?php endif; ?>
                     <div class="col-md-4 col-md-offset-2 form-group-lg">
-                        <input class="form-control date" type="date" name="from" value="<?php echo isset($request->get['from']) ? $request->get['from'] : null;?>" placeholder="From" readonly>
+                        <input class="form-control date" type="date" name="from" value="<?php echo isset($request->get['from']) ? $request->get['from'] : null;?>" placeholder="Desde" readonly>
                     </div>
                     <div class="col-md-4 form-group-lg">
-                        <input class="form-control date" type="date" name="to" value="<?php echo isset($request->get['to']) ? $request->get['to'] : null;?>" placeholder="To" readonly>
+                        <input class="form-control date" type="date" name="to" value="<?php echo isset($request->get['to']) ? $request->get['to'] : null;?>" placeholder="Hasta" readonly>
                     </div>
                 </div>
                 <div class="well r-50">

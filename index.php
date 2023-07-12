@@ -266,6 +266,8 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && $request->get['action_type']
     <!-- Login JS -->
     <script src="assets/das/js/login.js"></script>
 
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.18.1/moment.min.js"></script>
+
   <?php endif; ?>
 
 </head>

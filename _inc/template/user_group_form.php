@@ -255,6 +255,13 @@
 //   ),
 // );
 $permissions = array(
+  trans('dashboard') => array(
+    'read_dashboard_invoce_view'  => trans('read_dashboard_invoce_view'),
+    'read_dashboard_customer_view'  => trans('read_dashboard_customer_view'),
+    'read_dashboard_supplier_view'  => trans('read_dashboard_supplier_view'),
+    'read_dashboard_product_view'  => trans('read_dashboard_product_view'),
+    
+  ),
   trans('report') => array(
     'read_recent_activities'  => trans('read_recent_activities'),
     'read_dashboard_accounting_report'  => trans('read_dashboard_accounting_report'),
@@ -527,6 +534,8 @@ $permissions = array(
     'restore'  => trans('restore'),
     'reset'  => trans('reset'),
     'show_purchase_price'  => trans('show_purchase_price'),
+    'show_selling_price'  => trans('show_selling_price'),
+    'show_estimated_sales'  => trans('show_estimated_sales'),
     'show_profit'  => trans('show_profit'),
     'show_graph'  => trans('show_graph'),
   ),

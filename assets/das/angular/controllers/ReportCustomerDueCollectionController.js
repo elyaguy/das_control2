@@ -40,7 +40,8 @@ function (
     //================
 
     $("#invoice-invoice-list").dataTable({
-        "oLanguage": {sProcessing: "<img src='../assets/das/img/loading2.gif'>"},
+        // "oLanguage": { sProcessing: "<img src='../assets/das/img/loading2.gif'>" },
+            "oLanguage": idioma(),
         "processing": true,
         "dom": "lfBrtip",
         "serverSide": true,
