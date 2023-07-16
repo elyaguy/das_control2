@@ -357,9 +357,9 @@ $tab_active = isset($request->get['tab']) ? $request->get['tab'] : 'general';
             
           </div> -->
 
-          <div class="form-group">
+            <!-- <div class="form-group">
             <label class="col-sm-3 control-label">
-              <?php echo trans('label_store'); ?><i class="required">*</i>
+            <?/*php echo trans('label_store'); */?><i class="required">*</i>
             </label>
             <div class="col-sm-7 store-selector">
               <div class="checkbox selector">
@@ -368,25 +368,25 @@ $tab_active = isset($request->get['tab']) ? $request->get['tab'] : 'general';
                 </label>
               </div>
               <div class="filter-searchbox">
-                <input ng-model="search_store" class="form-control" type="text" id="search_store" placeholder="<?php echo trans('search'); ?>">
+                <input ng-model="search_store" class="form-control" type="text" id="search_store" placeholder="<?/*php echo trans('search'); */?>">
               </div>
               <div class="well well-sm store-well">
                 <div filter-list="search_store">
-                  <?php foreach (get_stores() as $the_store) : ?>
+                  <?/*php foreach (get_stores() as $the_store) : */?>
                     <div class="checkbox">
                       <label>
-                        <input type="checkbox" name="product_store[]" value="<?php echo $the_store['store_id']; ?>" <?php echo $the_store['store_id'] == store_id() ? 'checked' : null; ?>>
-                        <?php echo $the_store['name']; ?>
+                        <input type="checkbox" name="product_store[]" value="<?/*php echo $the_store['store_id']; */?>" <?/*php echo $the_store['store_id'] == store_id() ? 'checked' : null; */?>>
+                        <?/*php echo $the_store['name']; */?>
                       </label>
                     </div>
-                  <?php endforeach; ?>
+                  <?/*php endforeach; */?>
                 </div>
               </div>
             </div>
-          </div>
+          </div> -->
 
           <!-- <div ng-hide="hideAlertQuantity" class="form-group"> -->
-          <div class="form-group hidden">
+          <div class="form-group">
             <label for="unit_id" class="col-sm-3 control-label">
               <?php echo trans('label_unit'); ?><i class="required">*</i>
             </label>
@@ -398,8 +398,8 @@ $tab_active = isset($request->get['tab']) ? $request->get['tab'] : 'general';
                   </option>
                   <?php $inc = 1;
                   foreach (get_units() as $unit_row) : ?>
-                    <!-- <option value="<?php echo $unit_row['unit_id']; ?>">
-                      <?php echo $unit_row['unit_name']; ?>
+                    <!-- <option value="<?/*php echo $unit_row['unit_id']; */?>">
+                      <?/*php echo $unit_row['unit_name']; */?>
                     </option> -->
                     <option value="<?php echo $unit_row['unit_id']; ?>" <?php echo $inc == 1 ? 'selected' : null; ?>>
                       <?php echo $unit_row['unit_name']; ?>

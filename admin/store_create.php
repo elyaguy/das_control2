@@ -85,11 +85,11 @@ include ("left_sidebar.php");
 			          		<?php echo trans('text_payment_method'); ?>
 			          	</a>
 			          </li>
-			          <li class="">
+			          <!-- <li class="">
 			          	<a href="#product-setting" data-toggle="tab" aria-expanded="false">
-			          		<?php echo trans('text_product'); ?>
+			          		<?/*php echo trans('text_product'); */?>
 			          	</a>
-			          </li>
+			          </li> -->
 			          <li class="">
 			          	<a href="#receipt-template" data-toggle="tab" aria-expanded="false">
 			          		<?php echo trans('text_receipt_template'); ?>
@@ -546,7 +546,7 @@ include ("left_sidebar.php");
 					<!-- FTP Setting End -->
 
 					<!-- Product Setting Start -->
-					<div class="tab-pane" id="product-setting">
+					<!-- <div class="tab-pane" id="product-setting">
 						<div class="form-group">
 					      <label class="col-sm-3 control-label"></label>
 					      <div class="col-sm-7 product-selector">
@@ -556,23 +556,23 @@ include ("left_sidebar.php");
 					          </label>
 					        </div>
 					        <div class="filter-searchbox">
-					          <input ng-model="search_product" class="form-control" type="text" id="search_product" placeholder="<?php echo trans('search'); ?>">
+					          <input ng-model="search_product" class="form-control" type="text" id="search_product" placeholder="<?/*php echo trans('search'); */?>">
 					        </div>
 					        <div class="well well-sm product-well"> 
 					          <div filter-list="search_product">
-					          <?php foreach(get_products() as $the_product) : ?>                    
+					          <?/*php foreach(get_products() as $the_product) : */?>                    
 					            <div class="checkbox">
 					              <label>                         
-					                <input type="checkbox" name="product[]" value="<?php echo $the_product['p_id']; ?>">
-					                <?php echo $the_product['p_name']; ?>
+					                <input type="checkbox" name="product[]" value="<?/*php echo $the_product['p_id']; */?>">
+					                <?/*php echo $the_product['p_name']; */?>
 					              </label>
 					            </div>
-					          <?php endforeach; ?>
+					          <?/*php endforeach; */?>
 					          </div>
 					        </div>
 					      </div>
 					    </div>
-					</div>
+					</div> -->
 					<!-- Product Setting End -->
 
 					<!-- Receipt Template Start -->

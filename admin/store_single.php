@@ -95,11 +95,11 @@ $tab_active = isset($request->get['tab']) ? $request->get['tab'] : 'general';
 								<?php echo trans('text_general'); ?>
 							</a>
 						</li>
-						<li class="<?php echo $tab_active == 'product-setting' ? 'active' : null; ?>">
+						<!-- <li class="<?/*php echo $tab_active == 'product-setting' ? 'active' : null; */?>">
 							<a href="#product-setting" data-toggle="tab" aria-expanded="false">
-								<?php echo trans('text_product_setting'); ?>
+								<?/*php echo trans('text_product_setting'); */?>
 							</a>
-						</li>
+						</li> -->
 						<li class="<?php echo $tab_active == 'pos-setting' ? 'active' : null; ?>">
 							<a href="#pos-setting" data-toggle="tab" aria-expanded="false">
 								<?php echo trans('text_pos_setting'); ?>
@@ -438,7 +438,7 @@ $tab_active = isset($request->get['tab']) ? $request->get['tab'] : 'general';
 						<!-- General Setting End -->
 
 						<!-- Product Setting Start -->
-						<div class="tab-pane<?php echo $tab_active == 'product-product' ? ' active ' : null; ?>" id="product-setting">
+						<!-- <div class="tab-pane<?/*php echo $tab_active == 'product-product' ? ' active ' : null; */?>" id="product-setting">
 							<div class="form-group">
 								<label class="col-sm-3 control-label"></label>
 								<div class="col-sm-7 product-selector">
@@ -448,24 +448,24 @@ $tab_active = isset($request->get['tab']) ? $request->get['tab'] : 'general';
 										</label>
 									</div>
 									<div class="filter-searchbox">
-										<input ng-model="search_product" class="form-control" type="text" id="search_product" placeholder="<?php echo trans('search'); ?>">
+										<input ng-model="search_product" class="form-control" type="text" id="search_product" placeholder="<?/*php echo trans('search'); */?>">
 									</div>
 									<div class="well well-sm product-well">
 										<div filter-list="search_product">								
-											<?php foreach (get_products_to_store() as $the_store) : ?>
+											<?/*php foreach (get_products_to_store() as $the_store) : */?>
 												<div class="checkbox">
 													<label>
-														<input type="checkbox" name="product_store[]" value="<?php echo $the_store['p_id']; ?>" <?php echo in_array($the_store['p_id'], get_product_store()) ? 'checked' : null; ?>>
-														<?php echo $the_store['p_name']; ?>
+														<input type="checkbox" name="product_store[]" value="<?/*php echo $the_store['p_id']; */?>" <?/*php echo in_array($the_store['p_id'], get_product_store()) ? 'checked' : null; */?>>
+														<?/*php echo $the_store['p_name']; */?>
 													</label>
 												</div>
-											<?php endforeach; ?>
+											<?/*php endforeach; */?>
 											
 										</div>
 									</div>
 								</div>
 							</div>
-						</div>
+						</div> -->
 						<!-- Product Setting End -->
 
 

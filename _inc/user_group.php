@@ -1,7 +1,7 @@
-<?php 
+<?php
 ob_start();
 session_start();
-include ("../_init.php");
+include("../_init.php");
 
 // Check, if user logged in or not
 // If user is not logged in then return an alert message
@@ -25,8 +25,8 @@ if (user_group_id() != 1 && !has_permission('access', 'read_usergroup')) {
 $usergroup_model = registry()->get('loader')->model('usergroup');
 
 // Validate post data
-function validate_request_data($request) 
-{  
+function validate_request_data($request)
+{
   if (!validateString($request->post['name'])) {
     throw new Exception(trans('error_user_group_name'));
   }
@@ -38,7 +38,7 @@ function validate_request_data($request)
 // Validate, if exist or not
 function validate_existance($request, $id = 0)
 {
-  
+
 
   // Check Email address
   $statement = db()->prepare("SELECT * FROM `user_group` WHERE `name` = ? AND `group_id` != ?");
@@ -49,8 +49,7 @@ function validate_existance($request, $id = 0)
 }
 
 // Create usergroup
-if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action_type']) && $request->post['action_type'] == 'CREATE')
-{
+if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action_type']) && $request->post['action_type'] == 'CREATE') {
   try {
 
     // Check create permission
@@ -73,23 +72,22 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action
     $usergroup = $usergroup_model->getUsergroup($usergroup_id);
 
     $Hooks->do_action('After_Create_Usergroup', $usergroup);
-    
+
     header('Content-Type: application/json');
     echo json_encode(array('msg' => trans('text_success'), 'id' => $usergroup_id, 'usergroup' => $usergroup));
     exit();
 
-  } catch (Exception $e) { 
-    
+  } catch (Exception $e) {
+
     header('HTTP/1.1 422 Unprocessable Entity');
     header('Content-Type: application/json; charset=UTF-8');
     echo json_encode(array('errorMsg' => $e->getMessage()));
     exit();
   }
-} 
+}
 
 // Update usergroup
-if($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action_type']) && $request->post['action_type'] == 'UPDATE')
-{
+if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action_type']) && $request->post['action_type'] == 'UPDATE') {
   try {
 
     // Check update permission
@@ -136,24 +134,23 @@ if($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action_
     $usergroup = $usergroup_model->editUsergroup($id, $request->post, $permission);
 
     $Hooks->do_action('After_Update_Usergroup', $usergroup);
-    
+
     header('Content-Type: application/json');
     echo json_encode(array('msg' => trans('text_update_success'), 'id' => $id));
     exit();
 
-  } catch (Exception $e) { 
+  } catch (Exception $e) {
 
     $error_message = $e->getMessage();
     header('HTTP/1.1 422 Unprocessable Entity');
     header('Content-Type: application/json; charset=UTF-8');
     echo json_encode(array('errorMsg' => $error_message));
-   exit();
+    exit();
   }
-} 
+}
 
 // Delete usergroup
-if($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action_type']) && $request->post['action_type'] == 'DELETE') 
-{
+if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action_type']) && $request->post['action_type'] == 'DELETE') {
   try {
 
     // Check delete permission
@@ -216,12 +213,12 @@ if($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action_
     $usergroup = $usergroup_model->deleteUsergroup($id);
 
     $Hooks->do_action('After_Delete_Usergroup', $usergroup);
-    
+
     header('Content-Type: application/json');
     echo json_encode(array('msg' => trans('text_delete_success')));
     exit();
 
-  } catch (Exception $e) { 
+  } catch (Exception $e) {
 
     header('HTTP/1.1 422 Unprocessable Entity');
     header('Content-Type: application/json; charset=UTF-8');
@@ -231,15 +228,13 @@ if($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action_
 }
 
 // Usergroup create form
-if (isset($request->get['action_type']) && $request->get['action_type'] == 'CREATE') 
-{
+if (isset($request->get['action_type']) && $request->get['action_type'] == 'CREATE') {
   include 'template/user_group_create_form.php';
   exit();
 }
 
 // Usergroup edit form
-if (isset($request->get['group_id']) AND isset($request->get['action_type']) && $request->get['action_type'] == 'EDIT') 
-{
+if (isset($request->get['group_id']) and isset($request->get['action_type']) && $request->get['action_type'] == 'EDIT') {
   $usergroup = $usergroup_model->getUsergroup($request->get['group_id']);
   include 'template/user_group_form.php';
   exit();
@@ -247,8 +242,7 @@ if (isset($request->get['group_id']) AND isset($request->get['action_type']) && 
 }
 
 // Usergroup delete form
-if (isset($request->get['group_id']) AND isset($request->get['action_type']) && $request->get['action_type'] == 'DELETE') 
-{
+if (isset($request->get['group_id']) and isset($request->get['action_type']) && $request->get['action_type'] == 'DELETE') {
   $usergroup = $usergroup_model->getUsergroup($request->get['group_id']);
   include 'template/user_group_del_form.php';
   exit();
@@ -261,61 +255,69 @@ if (isset($request->get['group_id']) AND isset($request->get['action_type']) && 
  */
 
 $Hooks->do_action('Before_Showing_Usergroup_List');
- 
+
+
+if (user_id() == 1) {
+  $where_query = '1=1';
+} elseif (user_id() == 2) {
+  $where_query = 'group_id not in(1,3,2) ';
+}
 // DB table to use
-$table = 'user_group';
- 
+$table = "(SELECT user_group.* FROM user_group 
+  WHERE $where_query GROUP by user_group.group_id
+  ) as users";
+
 // Table's primary key
 $primaryKey = 'group_id';
- 
+
 $columns = array(
   array(
-      'db' => 'group_id',
-      'dt' => 'DT_RowId',
-      'formatter' => function( $d, $row ) {
-          return 'row_'.$d;
-      }
-  ),
-  array( 'db' => 'group_id', 'dt' => 'group_id' ),
-  array( 
-    'db' => 'name',   
-    'dt' => 'name' ,
-    'formatter' => function($d, $row) {
-        return $row['name'];
+    'db' => 'group_id',
+    'dt' => 'DT_RowId',
+    'formatter' => function ($d, $row) {
+      return 'row_' . $d;
     }
   ),
-  array( 'db' => 'slug', 'dt' => 'slug' ),
-  array( 
-    'db' => 'group_id',   
-    'dt' => 'total_user' ,
-    'formatter' => function($d, $row) {
-        return get_usergroup_user_count($row['group_id']);
+  array('db' => 'group_id', 'dt' => 'group_id'),
+  array(
+    'db' => 'name',
+    'dt' => 'name',
+    'formatter' => function ($d, $row) {
+      return $row['name'];
+    }
+  ),
+  array('db' => 'slug', 'dt' => 'slug'),
+  array(
+    'db' => 'group_id',
+    'dt' => 'total_user',
+    'formatter' => function ($d, $row) {
+      return get_usergroup_user_count($row['group_id']);
     }
   ),
   array(
-      'db' => 'group_id',
-      'dt' => 'btn_edit',
-      'formatter' => function( $d, $row ) {
-        if ((DEMO && ($row['group_id'] == 2 ||$row['group_id'] == 3)) || $row['group_id'] == 1) {          
-          return '<button class="btn btn-sm btn-block btn-default" type="button" disabled><i class="fa fa-fw fa-pencil"></i></button>';
-        }
-        return '<button id="edit-user-group" class="btn btn-sm btn-block btn-primary" type="button" title="'.trans('button_edit').'"><i class="fa fa-fw fa-pencil"></i></button>';
+    'db' => 'group_id',
+    'dt' => 'btn_edit',
+    'formatter' => function ($d, $row) {
+      if ((DEMO && ($row['group_id'] == 2 || $row['group_id'] == 3)) || $row['group_id'] == 1) {
+        return '<button class="btn btn-sm btn-block btn-default" type="button" disabled><i class="fa fa-fw fa-pencil"></i></button>';
       }
+      return '<button id="edit-user-group" class="btn btn-sm btn-block btn-primary" type="button" title="' . trans('button_edit') . '"><i class="fa fa-fw fa-pencil"></i></button>';
+    }
   ),
   array(
-      'db' => 'group_id',
-      'dt' => 'btn_delete',
-      'formatter' => function( $d, $row ) {
-        if (DEMO || $row['group_id'] == 1 || $row['group_id'] == 2 || user_group_id() == $row['group_id']) {          
-          return '<button class="btn btn-sm btn-block btn-default" type="button" disabled><i class="fa fa-fw fa-trash"></i></button>';
-        }
-        return '<button id="delete-user-group" class="btn btn-sm btn-block btn-danger" type="button" title="'.trans('button_delete').'"><i class="fa fa-fw fa-trash"></i></button>';
+    'db' => 'group_id',
+    'dt' => 'btn_delete',
+    'formatter' => function ($d, $row) {
+      if (DEMO || $row['group_id'] == 1 || $row['group_id'] == 2 || user_group_id() == $row['group_id']) {
+        return '<button class="btn btn-sm btn-block btn-default" type="button" disabled><i class="fa fa-fw fa-trash"></i></button>';
       }
+      return '<button id="delete-user-group" class="btn btn-sm btn-block btn-danger" type="button" title="' . trans('button_delete') . '"><i class="fa fa-fw fa-trash"></i></button>';
+    }
   )
 );
- 
+
 echo json_encode(
-    SSP::simple($request->get, $sql_details, $table, $primaryKey, $columns)
+  SSP::simple($request->get, $sql_details, $table, $primaryKey, $columns)
 );
 
 $Hooks->do_action('After_Showing_Usergroup_List');

@@ -44,6 +44,7 @@ function validate_request_data($request)
     throw new Exception(trans('error_user_email_or_mobile'));
   }
 
+  $request->post['fk_id'] = 0;
   // Validate user group id
   if (!validateInteger($request->post['group_id'])) {
     throw new Exception(trans('error_user_group'));
@@ -178,7 +179,7 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action
     $id = $request->post['id'];
 
 
-    if (DEMO && ($id == 1 || $id == 2 || $id == 3)) {
+    if (DEMO && ($id == 1 || $id == 2 || $id == 3 || $id == 4)) {
       throw new Exception(trans('error_update_permission'));
     }
 
@@ -243,7 +244,7 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action
     $id = $request->post['id'];
     $new_user_id = $request->post['new_user_id'];
 
-    if (DEMO && ($id == 1 || $id == 2 || $id == 3)) {
+    if (DEMO && ($id == 1 || $id == 2 || $id == 3 || $id == 4)) {
       throw new Exception(trans('error_delete_permission'));
     }
 
@@ -268,7 +269,8 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action
       // Check if relationship exist or not
       $statement = db()->prepare("SELECT * FROM `user_to_store` WHERE `user_id` = ? AND `store_id` = ?");
       $statement->execute(array($new_user_id, $the_store['store_id']));
-      if ($statement->rowCount() > 0) continue;
+      if ($statement->rowCount() > 0)
+        continue;
 
       // Create relationship
       $statement = db()->prepare("INSERT INTO `user_to_store` SET `user_id` = ?, `store_id` = ?");
@@ -341,6 +343,11 @@ $Hooks->do_action('Before_Showing_User_List');
 
 // DB table to use
 $where_query = 'u2s.store_id = ' . store_id();
+if (user_id() == 1) {
+  $where_query = '1=1';
+} elseif (user_id() == 2) {
+  $where_query = 'users.id not in(1,3,4) ';
+}
 
 // DB table to use
 $table = "(SELECT users.*, u2s.status, u2s.sort_order FROM users 
@@ -367,9 +374,9 @@ $columns = array(
       return ucfirst($row['username']);
     }
   ),
-  array('db' => 'email',  'dt' => 'email'),
-  array('db' => 'mobile',   'dt' => 'mobile'),
-  array('db' => 'group_id',   'dt' => 'group'),
+  array('db' => 'email', 'dt' => 'email'),
+  array('db' => 'mobile', 'dt' => 'mobile'),
+  array('db' => 'group_id', 'dt' => 'group'),
   array(
     'db' => 'group_id',
     'dt' => 'group',

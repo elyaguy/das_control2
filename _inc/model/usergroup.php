@@ -12,42 +12,46 @@
 | WEBSITE:			http://itsolution24.com
 | -----------------------------------------------------
 */
-class ModelUsergroup extends Model 
+class ModelUsergroup extends Model
 {
-	public function addUsergroup($data) 
+	public function addUsergroup($data)
 	{
-    	$statement = $this->db->prepare("INSERT INTO `user_group` (name, slug) VALUES (?, ?)");
-    	$statement->execute(array($data['name'], $data['slug']));
-    
-    	return $this->db->lastInsertId();    
+		$statement = $this->db->prepare("INSERT INTO `user_group` (name, slug) VALUES (?, ?)");
+		$statement->execute(array($data['name'], $data['slug']));
+
+		return $this->db->lastInsertId();
 	}
 
-	public function editUsergroup($group_id, $data, $permission) 
-	{    	
-    	$statement = $this->db->prepare("UPDATE `user_group` SET name = ?, slug = ?, `permission` =? WHERE `group_id` = ?");
-    	$statement->execute(array($data['name'], $data['slug'], serialize($permission), $group_id));
-    
-    	return $group_id;
-	}
-
-	public function deleteUsergroup($group_id) 
-	{    	
-    	$statement = $this->db->prepare("DELETE FROM `user_group` WHERE `group_id` = ? LIMIT 1");
-    	$statement->execute(array($group_id));
-
-        return $group_id;
-	}
-
-	public function getUsergroup($group_id) 
+	public function editUsergroup($group_id, $data, $permission)
 	{
-	    $statement = $this->db->prepare("SELECT * FROM `user_group` WHERE `group_id` = ?");
-  		$statement->execute(array($group_id));
-  		return $statement->fetch(PDO::FETCH_ASSOC);
+		$statement = $this->db->prepare("UPDATE `user_group` SET name = ?, slug = ?, `permission` =? WHERE `group_id` = ?");
+		$statement->execute(array($data['name'], $data['slug'], serialize($permission), $group_id));
+
+		return $group_id;
 	}
 
-	public function getUsergroups($data = array()) 
+	public function deleteUsergroup($group_id)
+	{
+		$statement = $this->db->prepare("DELETE FROM `user_group` WHERE `group_id` = ? LIMIT 1");
+		$statement->execute(array($group_id));
+
+		return $group_id;
+	}
+
+	public function getUsergroup($group_id)
+	{
+		$statement = $this->db->prepare("SELECT * FROM `user_group` WHERE `group_id` = ?");
+		$statement->execute(array($group_id));
+		return $statement->fetch(PDO::FETCH_ASSOC);
+	}
+
+	public function getUsergroups($data = array())
 	{
 		$sql = "SELECT * FROM `user_group` WHERE 1=1";
+
+		if (user_id() != 1) {
+			$sql .= ' AND `group_id` not in(1,2,3)';
+		}
 
 		if (isset($data['filter_name'])) {
 			$sql .= " AND `name` LIKE '" . $data['filter_name'] . "%'";
@@ -80,7 +84,7 @@ class ModelUsergroup extends Model
 				$data['limit'] = 20;
 			}
 
-			$sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
+			$sql .= " LIMIT " . (int) $data['start'] . "," . (int) $data['limit'];
 		}
 
 		$statement = $this->db->prepare($sql);

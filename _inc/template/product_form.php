@@ -321,9 +321,9 @@
           </div>
         </div>
 
-        <div class="col-sm-12 store-selector">
+        <!-- <div class="col-sm-12 store-selector">
           <label>
-            <?php echo trans('label_store'); ?><i class="required">*</i>
+            <?/*php echo trans('label_store'); */?><i class="required">*</i>
           </label>
           <div class="col-sm-12 store-selector">
             <div class="checkbox selector">
@@ -332,22 +332,22 @@
               </label>
             </div>
             <div class="filter-searchbox">
-              <input ng-model="search_store" class="form-control" type="text" id="search_store" placeholder="<?php echo trans('search'); ?>">
+              <input ng-model="search_store" class="form-control" type="text" id="search_store" placeholder="<?/*php echo trans('search'); */?>">
             </div>
             <div class="well well-sm store-well">
               <div filter-list="search_store">
-                <?php foreach (get_stores() as $the_store) : ?>
+                <?/*php foreach (get_stores() as $the_store) : */?>
                   <div class="checkbox">
                     <label>
-                      <input type="checkbox" name="product_store[]" value="<?php echo $the_store['store_id']; ?>" <?php echo in_array($the_store['store_id'], $product['stores']) ? 'checked' : null; ?>>
-                      <?php echo $the_store['name']; ?>
+                      <input type="checkbox" name="product_store[]" value="<?/*php echo $the_store['store_id']; */?>" <?/*php echo in_array($the_store['store_id'], $product['stores']) ? 'checked' : null; */?>>
+                      <?/*php echo $the_store['name']; */?>
                     </label>
                   </div>
-                <?php endforeach; ?>
+                <?/*php endforeach; */?>
               </div>
             </div>
           </div>
-        </div>
+        </div> -->
 
 
 
@@ -480,6 +480,11 @@
 
     </div>
     <!-- General End -->
+
+    <div class="form-group">
+    </div>
+    <div class="form-group">
+    </div>
 
     <div class="form-group">
       <label></label>

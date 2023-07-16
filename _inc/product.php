@@ -96,10 +96,10 @@ function validate_request_data($request)
     throw new Exception(trans('error_product_tax'));
   } 
 
-  // Validate store
-  if (!isset($request->post['product_store']) || empty($request->post['product_store'])) {
-    throw new Exception(trans('error_store'));
-  }
+  // // Validate store
+  // if (!isset($request->post['product_store']) || empty($request->post['product_store'])) {
+  //   throw new Exception(trans('error_store'));
+  // }
 
   // Validate status
   if (!is_numeric($request->post['status'])) {

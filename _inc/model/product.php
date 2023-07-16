@@ -23,55 +23,78 @@ class ModelProduct extends Model
 
 		$product_id = $this->db->lastInsertId();
 
-		if (isset($data['product_store']) && $product_id) {
-			foreach ($data['product_store'] as $store_id) {
 
-				//--- unit to store ---//
-
-				// $statement = $this->db->prepare("SELECT * FROM `unit_to_store` WHERE `store_id` = ? AND `uunit_id` = ?");
-				// $statement->execute(array($store_id, $data['unit_id']));
-				// $unit = $statement->fetch(PDO::FETCH_ASSOC);
-				// if (!$unit) {
-				// 	$statement = $this->db->prepare("INSERT INTO `unit_to_store` SET `uunit_id` = ?, `store_id` = ?");
-				// 	$statement->execute(array((int)$data['unit_id'], $store_id));
-				// }
-
-				//--- box to store ---//
-
-				// $statement = $this->db->prepare("SELECT * FROM `box_to_store` WHERE `store_id` = ? AND `box_id` = ?");
-				// $statement->execute(array($store_id, $data['box_id']));
-				// $box = $statement->fetch(PDO::FETCH_ASSOC);
-				// if (!$box) {
-				// 	$statement = $this->db->prepare("INSERT INTO `box_to_store` SET `box_id` = ?, `store_id` = ?");
-				// 	$statement->execute(array((int)$data['box_id'], $store_id));
-				// } 
-
-				//--- supplier to store ---//
-
-				$statement = $this->db->prepare("SELECT * FROM `supplier_to_store` WHERE `store_id` = ? AND `sup_id` = ?");
-				$statement->execute(array($store_id, $data['sup_id']));
-				$supplier = $statement->fetch(PDO::FETCH_ASSOC);
-				if (!$supplier) {
-					$statement = $this->db->prepare("INSERT INTO `supplier_to_store` SET `sup_id` = ?, `store_id` = ?");
-					$statement->execute(array((int)$data['sup_id'], $store_id));
-				}
-
-				//--- brand to store ---//
-
-				// $statement = $this->db->prepare("SELECT * FROM `brand_to_store` WHERE `store_id` = ? AND `brand_id` = ?");
-				// $statement->execute(array($store_id, $data['brand_id']));
-				// $brand = $statement->fetch(PDO::FETCH_ASSOC);
-				// if (!$brand) {
-				// 	$statement = $this->db->prepare("INSERT INTO `brand_to_store` SET `brand_id` = ?, `store_id` = ?");
-				// 	$statement->execute(array((int)$data['brand_id'], $store_id));
-				// }
-
-				//--- product to store ---//
-
-				$statement = $this->db->prepare("INSERT INTO `product_to_store` SET `product_id` = ?, `store_id` = ?, `purchase_price` = ?, `sell_price` = ?, `sup_id` = ?, `brand_id` = ?, `course_id` = ?, `box_id` = ?, `taxrate_id` = ?, `tax_method` = ?, `preference` = ?, `e_date` = ?, `alert_quantity` = ?, `p_date` = ?");
-				$statement->execute(array($product_id, $store_id, $data['purchase_price'], $data['sell_price'], $data['sup_id'], $data['brand_id'], $data['course_id'], $data['box_id'], $data['taxrate_id'], $data['tax_method'], $preference, $data['e_date'], $data['alert_quantity'], date('Y-m-d')));
+		//se cambia a insertar productos a todas las tiendas disponibles
+		//Edgar Yagual
+		// Fetch stores 
+		$statement = $this->db->prepare("SELECT * FROM `stores` ORDER BY `stores`.`store_id`");
+		$statement->execute();
+		$all_stores_ok = $statement->fetchAll(PDO::FETCH_ASSOC);
+		// $stores = array();
+		foreach ($all_stores_ok as $store_ok) {
+			$store_ok_id = $store_ok['store_id'];
+			$statement = $this->db->prepare("SELECT * FROM `supplier_to_store` WHERE `store_id` = ? AND `sup_id` = ?");
+			$statement->execute(array($store_ok_id, $data['sup_id']));
+			$supplier = $statement->fetch(PDO::FETCH_ASSOC);
+			if (!$supplier) {
+				$statement = $this->db->prepare("INSERT INTO `supplier_to_store` SET `sup_id` = ?, `store_id` = ?");
+				$statement->execute(array((int) $data['sup_id'], $store_ok_id));
 			}
+
+			$statement = $this->db->prepare("INSERT INTO `product_to_store` SET `product_id` = ?, `store_id` = ?, `purchase_price` = ?, `sell_price` = ?, `sup_id` = ?, `brand_id` = ?, `course_id` = ?, `box_id` = ?, `taxrate_id` = ?, `tax_method` = ?, `preference` = ?, `e_date` = ?, `alert_quantity` = ?, `p_date` = ?");
+			$statement->execute(array($product_id, $store_ok_id, $data['purchase_price'], $data['sell_price'], $data['sup_id'], $data['brand_id'], $data['course_id'], $data['box_id'], $data['taxrate_id'], $data['tax_method'], $preference, $data['e_date'], $data['alert_quantity'], date('Y-m-d')));
 		}
+
+
+		// if (isset($data['product_store']) && $product_id) {
+		// 	foreach ($data['product_store'] as $store_id) {
+
+		// 		//--- unit to store ---//
+
+		// 		// $statement = $this->db->prepare("SELECT * FROM `unit_to_store` WHERE `store_id` = ? AND `uunit_id` = ?");
+		// 		// $statement->execute(array($store_id, $data['unit_id']));
+		// 		// $unit = $statement->fetch(PDO::FETCH_ASSOC);
+		// 		// if (!$unit) {
+		// 		// 	$statement = $this->db->prepare("INSERT INTO `unit_to_store` SET `uunit_id` = ?, `store_id` = ?");
+		// 		// 	$statement->execute(array((int)$data['unit_id'], $store_id));
+		// 		// }
+
+		// 		//--- box to store ---//
+
+		// 		// $statement = $this->db->prepare("SELECT * FROM `box_to_store` WHERE `store_id` = ? AND `box_id` = ?");
+		// 		// $statement->execute(array($store_id, $data['box_id']));
+		// 		// $box = $statement->fetch(PDO::FETCH_ASSOC);
+		// 		// if (!$box) {
+		// 		// 	$statement = $this->db->prepare("INSERT INTO `box_to_store` SET `box_id` = ?, `store_id` = ?");
+		// 		// 	$statement->execute(array((int)$data['box_id'], $store_id));
+		// 		// } 
+
+		// 		//--- supplier to store ---//
+
+		// 		$statement = $this->db->prepare("SELECT * FROM `supplier_to_store` WHERE `store_id` = ? AND `sup_id` = ?");
+		// 		$statement->execute(array($store_id, $data['sup_id']));
+		// 		$supplier = $statement->fetch(PDO::FETCH_ASSOC);
+		// 		if (!$supplier) {
+		// 			$statement = $this->db->prepare("INSERT INTO `supplier_to_store` SET `sup_id` = ?, `store_id` = ?");
+		// 			$statement->execute(array((int)$data['sup_id'], $store_id));
+		// 		}
+
+		// 		//--- brand to store ---//
+
+		// 		// $statement = $this->db->prepare("SELECT * FROM `brand_to_store` WHERE `store_id` = ? AND `brand_id` = ?");
+		// 		// $statement->execute(array($store_id, $data['brand_id']));
+		// 		// $brand = $statement->fetch(PDO::FETCH_ASSOC);
+		// 		// if (!$brand) {
+		// 		// 	$statement = $this->db->prepare("INSERT INTO `brand_to_store` SET `brand_id` = ?, `store_id` = ?");
+		// 		// 	$statement->execute(array((int)$data['brand_id'], $store_id));
+		// 		// }
+
+		// 		//--- product to store ---//
+
+		// 		$statement = $this->db->prepare("INSERT INTO `product_to_store` SET `product_id` = ?, `store_id` = ?, `purchase_price` = ?, `sell_price` = ?, `sup_id` = ?, `brand_id` = ?, `course_id` = ?, `box_id` = ?, `taxrate_id` = ?, `tax_method` = ?, `preference` = ?, `e_date` = ?, `alert_quantity` = ?, `p_date` = ?");
+		// 		$statement->execute(array($product_id, $store_id, $data['purchase_price'], $data['sell_price'], $data['sup_id'], $data['brand_id'], $data['course_id'], $data['box_id'], $data['taxrate_id'], $data['tax_method'], $preference, $data['e_date'], $data['alert_quantity'], date('Y-m-d')));
+		// 	}
+		// }
 
 		if (isset($data['image'])) {
 			$this->syncImage($product_id, $data['image']);
@@ -98,14 +121,14 @@ class ModelProduct extends Model
 	{
 		$store_id = $store_id ? $store_id : store_id();
 		$statement = $this->db->prepare("UPDATE `product_to_store` SET `status` = ? WHERE `store_id` = ? AND `product_id` = ?");
-		$statement->execute(array((int)$status, $store_id, $product_id));
+		$statement->execute(array((int) $status, $store_id, $product_id));
 	}
 
 	public function updateSortOrder($product_id, $sort_order, $store_id = null)
 	{
 		$store_id = $store_id ? $store_id : store_id();
 		$statement = $this->db->prepare("UPDATE `product_to_store` SET `sort_order` = ? WHERE `store_id` = ? AND `product_id` = ?");
-		$statement->execute(array((int)$sort_order, $store_id, $product_id));
+		$statement->execute(array((int) $sort_order, $store_id, $product_id));
 	}
 
 	public function editProduct($product_id, $data)
@@ -116,124 +139,159 @@ class ModelProduct extends Model
 		$statement->execute(array($data['p_type'], $data['p_name'], $data['p_code'], $hsn_code, $data['barcode_symbology'], $data['category_id'], $data['unit_id'], $data['p_image'], $data['description'], $product_id));
 		$preference = isset($data['preference']) && !empty($data['preference']) ? serialize($data['preference']) : serialize(array());
 
-		// Insert product into store
-		if (isset($data['product_store'])) {
 
-			$store_ids = array();
-
-			foreach ($data['product_store'] as $store_id) {
-
-				//--- category to store ---//
-
-				// $statement = $this->db->prepare("SELECT * FROM `category_to_store` WHERE `store_id` = ? AND `ccategory_id` = ?");
-				// $statement->execute(array($store_id, $data['category_id']));
-				// $category = $statement->fetch(PDO::FETCH_ASSOC);
-				// if (!$category) {
-				// 	$statement = $this->db->prepare("INSERT INTO `category_to_store` SET `ccategory_id` = ?, `store_id` = ?");
-				// 	$statement->execute(array((int)$data['category_id'], $store_id));
-				// } 
-
-				//--- unit to store ---//
-
-				// $statement = $this->db->prepare("SELECT * FROM `unit_to_store` WHERE `store_id` = ? AND `uunit_id` = ?");
-				// $statement->execute(array($store_id, $data['unit_id']));
-				// $unit = $statement->fetch(PDO::FETCH_ASSOC);
-				// if (!$unit) {
-				// 	$statement = $this->db->prepare("INSERT INTO `unit_to_store` SET `uunit_id` = ?, `store_id` = ?");
-				// 	$statement->execute(array((int)$data['unit_id'], $store_id));
-				// }
-
-				//--- box to store ---//
-
-				// $statement = $this->db->prepare("SELECT * FROM `box_to_store` WHERE `store_id` = ? AND `box_id` = ?");
-				// $statement->execute(array($store_id, $data['box_id']));
-				// $box = $statement->fetch(PDO::FETCH_ASSOC);
-				// if (!$box) {
-				// 	$statement = $this->db->prepare("INSERT INTO `box_to_store` SET `box_id` = ?, `store_id` = ?");
-				// 	$statement->execute(array((int)$data['box_id'], $store_id));
-				// } 
-
-				//--- supplier to store ---//
-
-				$statement = $this->db->prepare("SELECT * FROM `supplier_to_store` WHERE `store_id` = ? AND `sup_id` = ?");
-				$statement->execute(array($store_id, $data['sup_id']));
-				$supplier = $statement->fetch(PDO::FETCH_ASSOC);
-				if (!$supplier) {
-					$statement = $this->db->prepare("INSERT INTO `supplier_to_store` SET `sup_id` = ?, `store_id` = ?");
-					$statement->execute(array((int)$data['sup_id'], $store_id));
-				}
-
-				//--- brand to store ---//
-
-				// $statement = $this->db->prepare("SELECT * FROM `brand_to_store` WHERE `store_id` = ? AND `brand_id` = ?");
-				// $statement->execute(array($store_id, $data['brand_id']));
-				// $brand = $statement->fetch(PDO::FETCH_ASSOC);
-				// if (!$brand) {
-				// 	$statement = $this->db->prepare("INSERT INTO `brand_to_store` SET `brand_id` = ?, `store_id` = ?");
-				// 	$statement->execute(array((int)$data['brand_id'], $store_id));
-				// } 
-
-				//--- course to store ---//
-
-				// $statement = $this->db->prepare("SELECT * FROM `course_to_store` WHERE `store_id` = ? AND `course_id` = ?");
-				// $statement->execute(array($store_id, $data['course_id']));
-				// $brand = $statement->fetch(PDO::FETCH_ASSOC);
-				// if (!$brand) {
-				// 	$statement = $this->db->prepare("INSERT INTO `course_to_store` SET `course_id` = ?, `store_id` = ?");
-				// 	$statement->execute(array((int)$data['course_id'], $store_id));
-				// } 
-
-				//--- product to store ---//
-
-				$statement = $this->db->prepare("SELECT * FROM `product_to_store` WHERE `store_id` = ? AND `product_id` = ?");
-				$statement->execute(array($store_id, $product_id));
-				$product = $statement->fetch(PDO::FETCH_ASSOC);
-				if (!$product) {
-					$statement = $this->db->prepare("INSERT INTO `product_to_store` SET `product_id` = ?, `store_id` = ?, `sup_id` = ?, `brand_id` = ?, `course_id` = ?, `box_id` = ?, `taxrate_id` = ?, `tax_method` = ?, `preference` = ?, `sell_price` = ?, `e_date` = ?, `alert_quantity` = ?, `p_date` = ?");
-					$statement->execute(array($product_id, $store_id, $data['sup_id'], $data['brand_id'], $data['course_id'], $data['box_id'], $data['taxrate_id'], $data['tax_method'], $preference, $data['sell_price'], $data['e_date'], $data['alert_quantity'], date('Y-m-d')));
-				} else {
-
-					$statement = $this->db->prepare("UPDATE `product_to_store` SET `sup_id` = ?, `brand_id` = ?, `course_id` = ?, `box_id` = ?, `taxrate_id` = ?, `tax_method` = ?, `preference` = ?, `purchase_price` = ?, `sell_price` = ?, `e_date` = ?, `alert_quantity` = ? WHERE `store_id` = ? AND `product_id` = ?");
-					$statement->execute(array($data['sup_id'], $data['brand_id'], $data['course_id'], $data['box_id'], $data['taxrate_id'], $data['tax_method'], $preference, $data['purchase_price'], $data['sell_price'], $data['e_date'], $data['alert_quantity'], $store_id, $product_id));
-				}
-
-				$store_ids[] = $store_id;
+		//se cambia a insertar productos a todas las tiendas disponibles
+		//Edgar Yagual
+		// Fetch stores 
+		$statement = $this->db->prepare("SELECT * FROM `stores` ORDER BY `stores`.`store_id`");
+		$statement->execute();
+		$all_stores_ok = $statement->fetchAll(PDO::FETCH_ASSOC);
+		// $stores = array();
+		foreach ($all_stores_ok as $store_ok) {
+			$store_ok_id = $store_ok['store_id'];
+			$statement = $this->db->prepare("SELECT * FROM `supplier_to_store` WHERE `store_id` = ? AND `sup_id` = ?");
+			$statement->execute(array($store_ok_id, $data['sup_id']));
+			$supplier = $statement->fetch(PDO::FETCH_ASSOC);
+			if (!$supplier) {
+				$statement = $this->db->prepare("INSERT INTO `supplier_to_store` SET `sup_id` = ?, `store_id` = ?");
+				$statement->execute(array((int) $data['sup_id'], $store_ok_id));
 			}
 
-			// Delete unwanted store
-			if (!empty($store_ids)) {
+			$statement = $this->db->prepare("SELECT * FROM `product_to_store` WHERE `store_id` = ? AND `product_id` = ?");
+			$statement->execute(array($store_ok_id, $product_id));
+			$product = $statement->fetch(PDO::FETCH_ASSOC);
+			if (!$product) {
+				$statement = $this->db->prepare("INSERT INTO `product_to_store` SET `product_id` = ?, `store_id` = ?, `purchase_price` = ?, `sell_price` = ?, `sup_id` = ?, `brand_id` = ?, `course_id` = ?, `box_id` = ?, `taxrate_id` = ?, `tax_method` = ?, `preference` = ?, `e_date` = ?, `alert_quantity` = ?, `p_date` = ?");
+				$statement->execute(array($product_id, $store_ok_id, $data['purchase_price'], $data['sell_price'], $data['sup_id'], $data['brand_id'], $data['course_id'], $data['box_id'], $data['taxrate_id'], $data['tax_method'], $preference, $data['e_date'], $data['alert_quantity'], date('Y-m-d')));
+				// $statement = $this->db->prepare("INSERT INTO `product_to_store` SET `product_id` = ?, `store_id` = ?, `sup_id` = ?, `brand_id` = ?, `course_id` = ?, `box_id` = ?, `taxrate_id` = ?, `tax_method` = ?, `preference` = ?, `sell_price` = ?, `e_date` = ?, `alert_quantity` = ?, `p_date` = ?");
+				// $statement->execute(array($product_id, $store_ok_id, $data['sup_id'], $data['brand_id'], $data['course_id'], $data['box_id'], $data['taxrate_id'], $data['tax_method'], $preference, $data['sell_price'], $data['e_date'], $data['alert_quantity'], date('Y-m-d')));
+			} else {
 
-				$unremoved_store_ids = array();
-
-				// get unwanted stores
-				$statement = $this->db->prepare("SELECT * FROM `product_to_store` WHERE `store_id` NOT IN (" . implode(',', $store_ids) . ")");
-				$statement->execute();
-				$unwanted_stores = $statement->fetchAll(PDO::FETCH_ASSOC);
-				foreach ($unwanted_stores as $store) {
-
-					$store_id = $store['store_id'];
-
-					// Fetch purchase invoice id
-					$statement = $this->db->prepare("SELECT * FROM `purchase_item` WHERE `store_id` = ? AND `item_id` = ?  AND `status` IN ('stock', 'active') AND `item_quantity` != `total_sell`");
-					$statement->execute(array($store_id, $product_id));
-					$item_available = $statement->fetch(PDO::FETCH_ASSOC);
-
-					// If item available then store in variable
-					if ($item_available) {
-						$unremoved_store_ids[$item_available['store_id']] = store_field('name', $item_available['store_id']);
-						continue;
-					}
-
-					// Delete unwanted store link
-					$statement = $this->db->prepare("DELETE FROM `product_to_store` WHERE `store_id` = ? AND `product_id` = ?");
-					$statement->execute(array($store_id, $product_id));
-				}
-
-				if (!empty($unremoved_store_ids)) {
-					throw new Exception('The product "' . $item_available['item_name'] . '" can not be removed. Because stock amount available in store ' . implode(', ', $unremoved_store_ids));
-				}
+				$statement = $this->db->prepare("UPDATE `product_to_store` SET `sup_id` = ?, `brand_id` = ?, `course_id` = ?, `box_id` = ?, `taxrate_id` = ?, `tax_method` = ?, `preference` = ?, `purchase_price` = ?, `sell_price` = ?, `e_date` = ?, `alert_quantity` = ? WHERE `store_id` = ? AND `product_id` = ?");
+				$statement->execute(array($data['sup_id'], $data['brand_id'], $data['course_id'], $data['box_id'], $data['taxrate_id'], $data['tax_method'], $preference, $data['purchase_price'], $data['sell_price'], $data['e_date'], $data['alert_quantity'], $store_ok_id, $product_id));
 			}
+
 		}
+
+
+		// // Insert product into store
+		// if (isset($data['product_store'])) {
+
+		// 	$store_ids = array();
+
+		// 	foreach ($data['product_store'] as $store_id) {
+
+		// 		//--- category to store ---//
+
+		// 		// $statement = $this->db->prepare("SELECT * FROM `category_to_store` WHERE `store_id` = ? AND `ccategory_id` = ?");
+		// 		// $statement->execute(array($store_id, $data['category_id']));
+		// 		// $category = $statement->fetch(PDO::FETCH_ASSOC);
+		// 		// if (!$category) {
+		// 		// 	$statement = $this->db->prepare("INSERT INTO `category_to_store` SET `ccategory_id` = ?, `store_id` = ?");
+		// 		// 	$statement->execute(array((int)$data['category_id'], $store_id));
+		// 		// } 
+
+		// 		//--- unit to store ---//
+
+		// 		// $statement = $this->db->prepare("SELECT * FROM `unit_to_store` WHERE `store_id` = ? AND `uunit_id` = ?");
+		// 		// $statement->execute(array($store_id, $data['unit_id']));
+		// 		// $unit = $statement->fetch(PDO::FETCH_ASSOC);
+		// 		// if (!$unit) {
+		// 		// 	$statement = $this->db->prepare("INSERT INTO `unit_to_store` SET `uunit_id` = ?, `store_id` = ?");
+		// 		// 	$statement->execute(array((int)$data['unit_id'], $store_id));
+		// 		// }
+
+		// 		//--- box to store ---//
+
+		// 		// $statement = $this->db->prepare("SELECT * FROM `box_to_store` WHERE `store_id` = ? AND `box_id` = ?");
+		// 		// $statement->execute(array($store_id, $data['box_id']));
+		// 		// $box = $statement->fetch(PDO::FETCH_ASSOC);
+		// 		// if (!$box) {
+		// 		// 	$statement = $this->db->prepare("INSERT INTO `box_to_store` SET `box_id` = ?, `store_id` = ?");
+		// 		// 	$statement->execute(array((int)$data['box_id'], $store_id));
+		// 		// } 
+
+		// 		//--- supplier to store ---//
+
+		// 		$statement = $this->db->prepare("SELECT * FROM `supplier_to_store` WHERE `store_id` = ? AND `sup_id` = ?");
+		// 		$statement->execute(array($store_id, $data['sup_id']));
+		// 		$supplier = $statement->fetch(PDO::FETCH_ASSOC);
+		// 		if (!$supplier) {
+		// 			$statement = $this->db->prepare("INSERT INTO `supplier_to_store` SET `sup_id` = ?, `store_id` = ?");
+		// 			$statement->execute(array((int) $data['sup_id'], $store_id));
+		// 		}
+
+		// 		//--- brand to store ---//
+
+		// 		// $statement = $this->db->prepare("SELECT * FROM `brand_to_store` WHERE `store_id` = ? AND `brand_id` = ?");
+		// 		// $statement->execute(array($store_id, $data['brand_id']));
+		// 		// $brand = $statement->fetch(PDO::FETCH_ASSOC);
+		// 		// if (!$brand) {
+		// 		// 	$statement = $this->db->prepare("INSERT INTO `brand_to_store` SET `brand_id` = ?, `store_id` = ?");
+		// 		// 	$statement->execute(array((int)$data['brand_id'], $store_id));
+		// 		// } 
+
+		// 		//--- course to store ---//
+
+		// 		// $statement = $this->db->prepare("SELECT * FROM `course_to_store` WHERE `store_id` = ? AND `course_id` = ?");
+		// 		// $statement->execute(array($store_id, $data['course_id']));
+		// 		// $brand = $statement->fetch(PDO::FETCH_ASSOC);
+		// 		// if (!$brand) {
+		// 		// 	$statement = $this->db->prepare("INSERT INTO `course_to_store` SET `course_id` = ?, `store_id` = ?");
+		// 		// 	$statement->execute(array((int)$data['course_id'], $store_id));
+		// 		// } 
+
+		// 		//--- product to store ---//
+
+		// 		$statement = $this->db->prepare("SELECT * FROM `product_to_store` WHERE `store_id` = ? AND `product_id` = ?");
+		// 		$statement->execute(array($store_id, $product_id));
+		// 		$product = $statement->fetch(PDO::FETCH_ASSOC);
+		// 		if (!$product) {
+		// 			$statement = $this->db->prepare("INSERT INTO `product_to_store` SET `product_id` = ?, `store_id` = ?, `sup_id` = ?, `brand_id` = ?, `course_id` = ?, `box_id` = ?, `taxrate_id` = ?, `tax_method` = ?, `preference` = ?, `sell_price` = ?, `e_date` = ?, `alert_quantity` = ?, `p_date` = ?");
+		// 			$statement->execute(array($product_id, $store_id, $data['sup_id'], $data['brand_id'], $data['course_id'], $data['box_id'], $data['taxrate_id'], $data['tax_method'], $preference, $data['sell_price'], $data['e_date'], $data['alert_quantity'], date('Y-m-d')));
+		// 		} else {
+
+		// 			$statement = $this->db->prepare("UPDATE `product_to_store` SET `sup_id` = ?, `brand_id` = ?, `course_id` = ?, `box_id` = ?, `taxrate_id` = ?, `tax_method` = ?, `preference` = ?, `purchase_price` = ?, `sell_price` = ?, `e_date` = ?, `alert_quantity` = ? WHERE `store_id` = ? AND `product_id` = ?");
+		// 			$statement->execute(array($data['sup_id'], $data['brand_id'], $data['course_id'], $data['box_id'], $data['taxrate_id'], $data['tax_method'], $preference, $data['purchase_price'], $data['sell_price'], $data['e_date'], $data['alert_quantity'], $store_id, $product_id));
+		// 		}
+
+		// 		$store_ids[] = $store_id;
+		// 	}
+
+		// // Delete unwanted store
+		// if (!empty($store_ids)) {
+
+		// 	$unremoved_store_ids = array();
+
+		// 	// get unwanted stores
+		// 	$statement = $this->db->prepare("SELECT * FROM `product_to_store` WHERE `store_id` NOT IN (" . implode(',', $store_ids) . ")");
+		// 	$statement->execute();
+		// 	$unwanted_stores = $statement->fetchAll(PDO::FETCH_ASSOC);
+		// 	foreach ($unwanted_stores as $store) {
+
+		// 		$store_id = $store['store_id'];
+
+		// 		// Fetch purchase invoice id
+		// 		$statement = $this->db->prepare("SELECT * FROM `purchase_item` WHERE `store_id` = ? AND `item_id` = ?  AND `status` IN ('stock', 'active') AND `item_quantity` != `total_sell`");
+		// 		$statement->execute(array($store_id, $product_id));
+		// 		$item_available = $statement->fetch(PDO::FETCH_ASSOC);
+
+		// 		// If item available then store in variable
+		// 		if ($item_available) {
+		// 			$unremoved_store_ids[$item_available['store_id']] = store_field('name', $item_available['store_id']);
+		// 			continue;
+		// 		}
+
+		// 		// Delete unwanted store link
+		// 		$statement = $this->db->prepare("DELETE FROM `product_to_store` WHERE `store_id` = ? AND `product_id` = ?");
+		// 		$statement->execute(array($store_id, $product_id));
+		// 	}
+
+		// 	if (!empty($unremoved_store_ids)) {
+		// 		throw new Exception('The product "' . $item_available['item_name'] . '" can not be removed. Because stock amount available in store ' . implode(', ', $unremoved_store_ids));
+		// 	}
+		// }
+		// }
 		// Delete unwanted store
 
 		if (isset($data['image'])) {
@@ -387,7 +445,7 @@ class ModelProduct extends Model
 				$data['limit'] = 20;
 			}
 
-			$sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
+			$sql .= " LIMIT " . (int) $data['start'] . "," . (int) $data['limit'];
 		}
 
 		$statement = $this->db->prepare($sql);
@@ -435,7 +493,7 @@ class ModelProduct extends Model
 				$data['limit'] = 20;
 			}
 
-			$sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
+			$sql .= " LIMIT " . (int) $data['start'] . "," . (int) $data['limit'];
 		}
 
 		$statement = $this->db->prepare($sql);
@@ -480,11 +538,11 @@ class ModelProduct extends Model
 		}
 
 		if (isset($data['filter_quantity']) && !is_null($data['filter_quantity'])) {
-			$sql .= " AND `p`.`quantity_in_stock` = '" . (int)$data['filter_quantity'] . "'";
+			$sql .= " AND `p`.`quantity_in_stock` = '" . (int) $data['filter_quantity'] . "'";
 		}
 
 		if (isset($data['filter_status']) && !is_null($data['filter_status'])) {
-			$sql .= " AND `p2s`.`status` = '" . (int)$data['filter_status'] . "'";
+			$sql .= " AND `p2s`.`status` = '" . (int) $data['filter_status'] . "'";
 		}
 
 		$sql .= " GROUP BY p.p_id";
@@ -518,7 +576,7 @@ class ModelProduct extends Model
 				$data['limit'] = 20;
 			}
 
-			$sql .= " LIMIT " . (int)$data['start'] . "," . (int)$data['limit'];
+			$sql .= " LIMIT " . (int) $data['start'] . "," . (int) $data['limit'];
 		}
 
 		$statement = $this->db->prepare($sql);
@@ -549,7 +607,7 @@ class ModelProduct extends Model
 		}
 		$limit_query = NULL;
 		if (isset($data['start']) && isset($data['limit'])) {
-			$limit_query =  " LIMIT $start,$limit";
+			$limit_query = " LIMIT $start,$limit";
 		}
 		// if (!$query_string) {
 		// 	if ($category_id) {
@@ -646,7 +704,7 @@ class ModelProduct extends Model
 		$statement->execute(array($item_id, $store_id));
 		$invoice = $statement->fetch(PDO::FETCH_ASSOC);
 
-		return (int)($invoice['total'] - $invoice['discount']);
+		return (int) ($invoice['total'] - $invoice['discount']);
 	}
 
 	public function getpurchasePrice($item_id, $from, $to, $store_id = null)
@@ -663,7 +721,7 @@ class ModelProduct extends Model
 		$statement->execute(array($item_id, $store_id));
 		$purchase_price = $statement->fetch(PDO::FETCH_ASSOC);
 
-		return (int)$purchase_price['total'];
+		return (int) $purchase_price['total'];
 	}
 
 	public function getQtyInStock($product_id, $store_id = null)

@@ -59,7 +59,7 @@ function validate_request_data($request)
   // }
 
   // Validate store cashiar name
-  if (!array_key_exists("cashier_id", $request ->post)) {
+  if (!array_key_exists("cashier_id", $request->post)) {
     throw new Exception(trans('error_cashier_name'));
   }
 
@@ -223,50 +223,80 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action
     $store_model->editPreference($store_id, $request->post['preference']);
 
     // Add product to store
-    if (!empty($request->post['product'])) {
-      foreach ($request->post['product'] as $product_id) {
+    $sqlProductOk = "INSERT INTO product_to_store ( product_id, store_id, purchase_price, sell_price, quantity_in_stock, alert_quantity, ";
+    $sqlProductOk .= "sup_id, brand_id, course_id, box_id, taxrate_id, tax_method, preference, e_date, p_date, status, sort_order) ";
+    $sqlProductOk .= " SELECT p.product_id,
+    ?,
+    p.purchase_price,
+    p.sell_price,
+    0,
+    p.alert_quantity,
+    p.sup_id,
+    p.brand_id,
+    p.course_id,
+    p.box_id,
+    p.taxrate_id,
+    p.tax_method,
+    p.preference,
+    p.e_date,
+    p.p_date,
+    p.status,
+    p.sort_order FROM product_to_store p WHERE p.store_id = 1;";
+    $statement = db()->prepare($sqlProductOk);
+    $statement->execute(array($store_id));
 
-        // Fetch product info
-        $product_info = get_the_product($product_id);
+    // Add supplier to store
+    $sqlSupplierOk = "INSERT supplier_to_store ( sup_id, store_id) ";
+    $sqlSupplierOk .= "SELECT DISTINCT s.sup_id, ? FROM supplier_to_store s WHERE s.store_id =1 ";
+    $statement = db()->prepare($sqlSupplierOk);
+    $statement->execute(array($store_id));
 
-        //--- Category to store ---//
 
-        // $statement = db()->prepare("SELECT * FROM `category_to_store` WHERE `store_id` = ? AND `ccategory_id` = ?");
-        // $statement->execute(array($store_id, $product_info['category_id']));
-        // $category = $statement->fetch(PDO::FETCH_ASSOC);
-        // if (!$category) {
-        //   $statement = db()->prepare("INSERT INTO `category_to_store` SET `ccategory_id` = ?, `store_id` = ?");
-        //   $statement->execute(array((int)$product_info['category_id'], (int)$store_id));
-        // }
 
-        //--- Box to store ---//
+    // if (!empty($request->post['product'])) {
+    //   foreach ($request->post['product'] as $product_id) {
 
-        // $statement = db()->prepare("SELECT * FROM `box_to_store` WHERE `store_id` = ? AND `box_id` = ?");
-        // $statement->execute(array($store_id, $product_info['box_id']));
-        // $box = $statement->fetch(PDO::FETCH_ASSOC);
-        // if (!$box) {
-        //   $statement = db()->prepare("INSERT INTO `box_to_store` SET `box_id` = ?, `store_id` = ?");
-        //   $statement->execute(array((int)$product_info['box_id'], (int)$store_id));
-        // }
+    //     // Fetch product info
+    //     $product_info = get_the_product($product_id);
 
-        //--- Supplier to store ---//
+    //     //--- Category to store ---//
 
-        $statement = db()->prepare("SELECT * FROM `supplier_to_store` WHERE `store_id` = ? AND `sup_id` = ?");
-        $statement->execute(array($store_id, $product_info['sup_id']));
-        $supplier = $statement->fetch(PDO::FETCH_ASSOC);
-        if (!$supplier) {
-          $statement = db()->prepare("INSERT INTO `supplier_to_store` SET `sup_id` = ?, `store_id` = ?");
-          $statement->execute(array((int)$product_info['sup_id'], (int)$store_id));
-        }
+    //     // $statement = db()->prepare("SELECT * FROM `category_to_store` WHERE `store_id` = ? AND `ccategory_id` = ?");
+    //     // $statement->execute(array($store_id, $product_info['category_id']));
+    //     // $category = $statement->fetch(PDO::FETCH_ASSOC);
+    //     // if (!$category) {
+    //     //   $statement = db()->prepare("INSERT INTO `category_to_store` SET `ccategory_id` = ?, `store_id` = ?");
+    //     //   $statement->execute(array((int)$product_info['category_id'], (int)$store_id));
+    //     // }
 
-        //--- Create product link ---//
+    //     //--- Box to store ---//
 
-        // REVISAR PASAR TODA LA INFO EDGAR
+    //     // $statement = db()->prepare("SELECT * FROM `box_to_store` WHERE `store_id` = ? AND `box_id` = ?");
+    //     // $statement->execute(array($store_id, $product_info['box_id']));
+    //     // $box = $statement->fetch(PDO::FETCH_ASSOC);
+    //     // if (!$box) {
+    //     //   $statement = db()->prepare("INSERT INTO `box_to_store` SET `box_id` = ?, `store_id` = ?");
+    //     //   $statement->execute(array((int)$product_info['box_id'], (int)$store_id));
+    //     // }
 
-        $statement = db()->prepare("INSERT INTO `product_to_store` SET `product_id` = ?, `store_id` = ?, `sup_id` = ?, `box_id` = ?, `e_date` = ?, `p_date` = ?");
-        $statement->execute(array((int)$product_id, (int)$store_id, (int)$product_info['sup_id'], (int)$product_info['box_id'], $product_info['e_date'], date('Y-m-d')));
-      }
-    }
+    //     //--- Supplier to store ---//
+
+    //     $statement = db()->prepare("SELECT * FROM `supplier_to_store` WHERE `store_id` = ? AND `sup_id` = ?");
+    //     $statement->execute(array($store_id, $product_info['sup_id']));
+    //     $supplier = $statement->fetch(PDO::FETCH_ASSOC);
+    //     if (!$supplier) {
+    //       $statement = db()->prepare("INSERT INTO `supplier_to_store` SET `sup_id` = ?, `store_id` = ?");
+    //       $statement->execute(array((int)$product_info['sup_id'], (int)$store_id));
+    //     }
+
+    //     //--- Create product link ---//
+
+    //     // REVISAR PASAR TODA LA INFO EDGAR
+
+    //     $statement = db()->prepare("INSERT INTO `product_to_store` SET `product_id` = ?, `store_id` = ?, `sup_id` = ?, `box_id` = ?, `e_date` = ?, `p_date` = ?");
+    //     $statement->execute(array((int)$product_id, (int)$store_id, (int)$product_info['sup_id'], (int)$product_info['box_id'], $product_info['e_date'], date('Y-m-d')));
+    //   }
+    // }
 
     // Add account to store
     $statement = db()->prepare("INSERT INTO `bank_account_to_store` SET `account_id` = ?, `store_id` = ?");
@@ -277,13 +307,13 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action
     // Add postemplate to store
     foreach ($request->post['postemplate'] as $template_id) {
       $statement = db()->prepare("INSERT INTO `pos_template_to_store` SET `store_id` = ?, `ttemplate_id` = ?, `is_active` = ?");
-      $statement->execute(array((int)$store_id, (int)$template_id, 1));
+      $statement->execute(array((int) $store_id, (int) $template_id, 1));
     }
 
     // Add printer to store
     foreach ($request->post['printer'] as $printer_id) {
       $statement = db()->prepare("INSERT INTO `printer_to_store` SET `store_id` = ?, `pprinter_id` = ?");
-      $statement->execute(array((int)$store_id, (int)$printer_id));
+      $statement->execute(array((int) $store_id, (int) $printer_id));
     }
 
     // // Add currency to store
@@ -311,8 +341,17 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action
     $statement->execute(array(1, $store_id));
 
     // Add current user to the store
-    $statement = db()->prepare("INSERT INTO `user_to_store` SET `user_id` = ?, `store_id` = ?");
-    $statement->execute(array(user_id(), $store_id));
+    if (user_id() != 1) {
+      $statement = db()->prepare("INSERT INTO `user_to_store` SET `user_id` = ?, `store_id` = ?");
+      $statement->execute(array(user_id(), $store_id));
+    }
+
+    if (user_id() != 2) {
+      // Add admin to the store
+      $statement = db()->prepare("INSERT INTO `user_to_store` SET `user_id` = ?, `store_id` = ?");
+      $statement->execute(array(2, $store_id));
+    }
+
 
     $Hooks->do_action('After_Create_Store', $store_id);
 
@@ -370,46 +409,46 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action
 
         //--- Category to store ---//
 
-          // $statement = db()->prepare("SELECT * FROM `category_to_store` WHERE `store_id` = ? AND `ccategory_id` = ?");
-          // $statement->execute(array($id, $product_info['category_id']));
-          // $category = $statement->fetch(PDO::FETCH_ASSOC);
-          // if (!$category) {
-          //    $statement = db()->prepare("INSERT INTO `category_to_store` SET `ccategory_id` = ?, `store_id` = ?");
-          //     $statement->execute(array((int)$product_info['category_id'], (int)$id));
-          // } 
+        // $statement = db()->prepare("SELECT * FROM `category_to_store` WHERE `store_id` = ? AND `ccategory_id` = ?");
+        // $statement->execute(array($id, $product_info['category_id']));
+        // $category = $statement->fetch(PDO::FETCH_ASSOC);
+        // if (!$category) {
+        //    $statement = db()->prepare("INSERT INTO `category_to_store` SET `ccategory_id` = ?, `store_id` = ?");
+        //     $statement->execute(array((int)$product_info['category_id'], (int)$id));
+        // } 
 
         //--- Box to store ---//
 
-          // $statement = db()->prepare("SELECT * FROM `box_to_store` WHERE `store_id` = ? AND `box_id` = ?");
-          // $statement->execute(array($id, $product_info['box_id']));
-          // $box = $statement->fetch(PDO::FETCH_ASSOC);
-          // if (!$box) {
-          //    $statement = db()->prepare("INSERT INTO `box_to_store` SET `box_id` = ?, `store_id` = ?");
-          //     $statement->execute(array((int)$product_info['box_id'], (int)$id));
-          // } 
+        // $statement = db()->prepare("SELECT * FROM `box_to_store` WHERE `store_id` = ? AND `box_id` = ?");
+        // $statement->execute(array($id, $product_info['box_id']));
+        // $box = $statement->fetch(PDO::FETCH_ASSOC);
+        // if (!$box) {
+        //    $statement = db()->prepare("INSERT INTO `box_to_store` SET `box_id` = ?, `store_id` = ?");
+        //     $statement->execute(array((int)$product_info['box_id'], (int)$id));
+        // } 
 
-      //--- Supplier to store ---//
+        //--- Supplier to store ---//
 
-          $statement = db()->prepare("SELECT * FROM `supplier_to_store` WHERE `store_id` = ? AND `sup_id` = ?");
-          $statement->execute(array($id, $product_info['sup_id']));
-          $supplier = $statement->fetch(PDO::FETCH_ASSOC);
-          if (!$supplier) {
-            $statement = db()->prepare("INSERT INTO `supplier_to_store` SET `sup_id` = ?, `store_id` = ?");
-            $statement->execute(array((int)$product_info['sup_id'], (int)$id));
-          }
+        $statement = db()->prepare("SELECT * FROM `supplier_to_store` WHERE `store_id` = ? AND `sup_id` = ?");
+        $statement->execute(array($id, $product_info['sup_id']));
+        $supplier = $statement->fetch(PDO::FETCH_ASSOC);
+        if (!$supplier) {
+          $statement = db()->prepare("INSERT INTO `supplier_to_store` SET `sup_id` = ?, `store_id` = ?");
+          $statement->execute(array((int) $product_info['sup_id'], (int) $id));
+        }
 
         //--- Create product link ---//
-          $statement = db()->prepare("SELECT * FROM `product_to_store` WHERE `store_id` = ? AND `product_id` = ?");
-          $statement->execute(array($id, (int)$product_id));
-          $prodt = $statement->fetch(PDO::FETCH_ASSOC);
-          if (!$prodt) {
-            $statement = db()->prepare("INSERT INTO `product_to_store` SET `product_id` = ?, `store_id` = ?, `sup_id` = ?, `box_id` = ?, `e_date` = ?, `p_date` = ?");
-            $statement->execute(array((int)$product_id, (int)$id, (int)$product_info['sup_id'], (int)$product_info['box_id'], $product_info['e_date'], date('Y-m-d')));
-  
-          }
+        $statement = db()->prepare("SELECT * FROM `product_to_store` WHERE `store_id` = ? AND `product_id` = ?");
+        $statement->execute(array($id, (int) $product_id));
+        $prodt = $statement->fetch(PDO::FETCH_ASSOC);
+        if (!$prodt) {
+          $statement = db()->prepare("INSERT INTO `product_to_store` SET `product_id` = ?, `store_id` = ?, `sup_id` = ?, `box_id` = ?, `e_date` = ?, `p_date` = ?");
+          $statement->execute(array((int) $product_id, (int) $id, (int) $product_info['sup_id'], (int) $product_info['box_id'], $product_info['e_date'], date('Y-m-d')));
+
+        }
 
 
-      
+
       }
     }
 
@@ -613,7 +652,7 @@ $columns = array(
     'dt' => 'status',
     'formatter' => function ($d, $row) {
       if ($row['status'] == 1) {
-        return  '<span class="label label-info">' . trans('text_active') . '</span>';
+        return '<span class="label label-info">' . trans('text_active') . '</span>';
       }
       return '<span class="label label-warning">' . trans('text_inactivate') . '</span>';
     }
@@ -645,7 +684,7 @@ $columns = array(
     'dt' => 'btn_action',
     'formatter' => function ($d, $row) {
       $store_id = $row['store_id'];
-      if (store_id() ==  $store_id) {
+      if (store_id() == $store_id) {
         return '<button class="btn btn-sm btn-block btn-success" type="button" title="' . trans('button_activated') . '" disabled><i class="fa fa-fw fa-check"></i></button>';
       } else {
         return '<a class="btn btn-sm btn-block btn-info activate-store" href="store.php?active_store_id=' . $store_id . '" title="' . trans('button_activate') . '"><i class="fa fa-fw fa-check"></i> ' . trans('button_activate') . '</button>';
