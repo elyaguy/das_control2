@@ -123,6 +123,13 @@ class ModelUser extends Model
 		$sql = "SELECT * FROM `users` LEFT JOIN `user_to_store` as `u2s` ON (`users`.`id` = `u2s`.`user_id`) 
 			WHERE `u2s`.`store_id` = ? AND `u2s`.`status` = ?";
 
+		if (user_id() == 1 || user_id() == 2) {
+			$sql = "SELECT * FROM `users` LEFT JOIN `user_to_store` as `u2s` ON (`users`.`id` = `u2s`.`user_id`) 
+			WHERE `u2s`.`status` = ?";
+		}
+
+
+
 		if (isset($data['filter_name'])) {
 			$sql .= " AND `username` LIKE '" . $data['filter_name'] . "%'";
 		}
@@ -138,6 +145,7 @@ class ModelUser extends Model
 		if (isset($data['filter_status']) && !is_null($data['filter_status'])) {
 			$sql .= " AND `u2s`.`status` = '" . (int) $data['filter_status'] . "'";
 		}
+		$sql .= ' AND `users`.`id` not in(1,3,4)';
 
 		$sql .= " GROUP BY `id`";
 
@@ -170,7 +178,11 @@ class ModelUser extends Model
 		}
 
 		$statement = $this->db->prepare($sql);
-		$statement->execute(array($store_id, 1));
+		if (user_id() == 1 || user_id() == 2) {
+			$statement->execute(array(1));
+		} else {
+			$statement->execute(array($store_id, 1));
+		}
 		return $statement->fetchAll(PDO::FETCH_ASSOC);
 	}
 

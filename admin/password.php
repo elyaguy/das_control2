@@ -34,7 +34,7 @@ if(isset($request->post['form_change_password']))
         throw new Exception(trans('error_password_user_found'));
       }
 
-      if (user_group_id() != 1) {
+      if (user_group_id() != 1 && user_group_id() != 4) {
 
         // Old Passwod Validation
         if(empty($request->post['old'])) {
@@ -183,7 +183,7 @@ include("left_sidebar.php");
           <div class="modal-body">   
             <form class="form-horizontal" action="" method="post" enctype="multipart/formdata">
               <div class="box-body">
-                <?php if (user_group_id() == 1) : ?>
+                <?php if (user_group_id() == 1 || user_group_id() == 4) : ?>
                   <div class="form-group">
                     <label for="old" class="col-sm-4 control-label">
                       <?php echo trans('label_password_user'); ?>
@@ -209,7 +209,7 @@ include("left_sidebar.php");
                     </div>
                   </div>
                 <?php endif; ?>
-                <?php if (user_group_id() != 1) : ?>
+                <?php if (user_group_id() != 1 && user_group_id() != 4) : ?>
                 <div class="form-group">
                   <label for="old" class="col-sm-4 control-label">
                     <?php echo trans('label_password_old'); ?>

@@ -27,11 +27,11 @@
     </div>
 
     <div class="form-group">
-      <label for="username" class="col-sm-3 control-label">
-        <?php echo sprintf(trans('label_name'), null); ?><i class="required">*</i>
+      <label for="mobile" class="col-sm-3 control-label">
+        <?php echo trans('label_mobile'); ?><i class="required">*</i>
       </label>
       <div class="col-sm-7">
-        <input type="text" class="form-control" id="username" value="<?php echo $the_user['username']; ?>" name="username" required>
+        <input type="text" class="form-control" id="mobile" value="<?php echo $the_user['mobile']; ?>" name="mobile">
       </div>
     </div>
 
@@ -45,13 +45,14 @@
     </div>
 
     <div class="form-group">
-      <label for="mobile" class="col-sm-3 control-label">
-        <?php echo trans('label_mobile'); ?><i class="required">*</i>
+      <label for="username" class="col-sm-3 control-label">
+        <?php echo sprintf(trans('label_names'), null); ?><i class="required">*</i>
       </label>
       <div class="col-sm-7">
-        <input type="text" class="form-control" id="mobile" value="<?php echo $the_user['mobile']; ?>" name="mobile">
+        <input type="text" class="form-control" id="username" value="<?php echo $the_user['username']; ?>" name="username" required>
       </div>
     </div>
+    
 
     <div class="form-group">
       <label for="group_id" class="col-sm-3 control-label">

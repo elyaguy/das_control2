@@ -16,11 +16,38 @@
     </div>
 
     <div class="form-group">
-      <label for="username" class="col-sm-3 control-label">
-        <?php echo sprintf(trans('label_name'), null); ?><i class="required">*</i>
+      <label for="mobile" class="col-sm-3 control-label">
+        <?php echo sprintf(trans('label_mobile'), null); ?><i class="required">*</i>
       </label>
       <div class="col-sm-7">
-        <input type="text" class="form-control" id="username" value="" name="username" required>
+        <input type="text" class="form-control" id="mobile" value="" name="mobile" required>
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="password" class="col-sm-3 control-label">
+        <?php echo trans('label_password'); ?><i class="required">*</i>
+      </label>
+      <div class="col-sm-2">
+        <input type="password" class="form-control" id="password" name="password" autocomplete="off" required>
+      </div>
+      <label for="password1" class="col-sm-3 control-label">
+        <?php echo trans('label_password_retype'); ?><i class="required">*</i>
+      </label>
+      <div class="col-sm-2">
+        <input type="password" class="form-control" id="password1" name="password1" autocomplete="off" required>
+      </div>
+    </div>
+
+
+
+    <div class="form-group">
+      <label for="username" class="col-sm-3 control-label">
+        <?php echo sprintf(trans('label_names'), null); ?>
+        <!-- <i class="required">*</i> -->
+      </label>
+      <div class="col-sm-7">
+        <input type="text" class="form-control" id="username" value="" name="username">
       </div>
     </div>
 
@@ -33,33 +60,9 @@
       </div>
     </div>
 
-    <div class="form-group">
-      <label for="mobile" class="col-sm-3 control-label">
-        <?php echo sprintf(trans('label_mobile'), null); ?><i class="required">*</i>
-      </label>
-      <div class="col-sm-7">
-        <input type="text" class="form-control" id="mobile" value="" name="mobile">
-      </div>
-    </div>
+   
 
-    <div class="form-group">
-      <label for="password" class="col-sm-3 control-label">
-        <?php echo trans('label_password'); ?><i class="required">*</i>
-      </label>
-      <div class="col-sm-7">
-        <input type="password" class="form-control" id="password" name="password" autocomplete="off" required>
-      </div>
-    </div>
-
-    <div class="form-group">
-      <label for="password1" class="col-sm-3 control-label">
-        <?php echo trans('label_password_retype'); ?><i class="required">*</i>
-      </label>
-      <div class="col-sm-7">
-        <input type="password" class="form-control" id="password1" name="password1" autocomplete="off" required>
-      </div>
-    </div>
-
+    
     <div class="form-group">
       <label for="group_id" class="col-sm-3 control-label">
         <?php echo trans('label_group'); ?><i class="required">*</i>

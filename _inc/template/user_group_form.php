@@ -446,6 +446,7 @@ $permissions = array(
   trans('user') => array(
     'read_user'  => trans('read_user'),
     'create_user'  => trans('create_user'),
+    'read_user_profile'  => trans('read_user_profile'),    
     'update_user'  => trans('update_user'),
     'delete_user'  => trans('delete_user'),
     'change_password'  => trans('change_password'),
