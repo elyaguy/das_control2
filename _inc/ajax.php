@@ -182,7 +182,7 @@ if($request->server['REQUEST_METHOD'] == 'POST' AND $request->get['type'] == 'PU
 	if ($sup_id) {
 		$query .= " AND `p2s`.`sup_id` = ?";
 	}
-	$query .= " AND (UPPER($type) LIKE '" . strtoupper($name) . "%' OR `p_code` = '{$name}') ORDER BY `p_id` DESC LIMIT 10";
+	$query .= " AND (UPPER($type) LIKE '%" . strtoupper($name) . "%' OR `p_code` = '{$name}') ORDER BY `p_id` DESC LIMIT 10";
 	$statement = db()->prepare($query);
 	if ($sup_id) {
 		$statement->execute(array(store_id(), 1, $sup_id));
@@ -223,7 +223,7 @@ if($request->server['REQUEST_METHOD'] == 'POST' AND $request->get['type'] == 'SE
 		$query .= " AND `p2s`.`sup_id` = ?";
 	}
 	// $query .= " AND UPPER($type) LIKE '" . strtoupper($name) . "%' ORDER BY `p_id` DESC LIMIT 10";
-	$query .= " AND (UPPER($type) LIKE '" . strtoupper($name) . "%' OR `p_code` = '{$name}') ORDER BY `p_id` DESC LIMIT 10";
+	$query .= " AND (UPPER($type) LIKE '%" . strtoupper($name) . "%' OR `p_code` = '{$name}') ORDER BY `p_id` DESC LIMIT 10";
 	$statement = db()->prepare($query);
 	if ($sup_id) {
 		$statement->execute(array(store_id(), 1, $sup_id));

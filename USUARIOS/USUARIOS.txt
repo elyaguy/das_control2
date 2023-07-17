@@ -3,3 +3,8 @@ Admin 	tusolutionweb@gmail.com 	tusolutionweb
         controldas@gmail.com ControlAdmin1
 Cashier 	cashier@gmail.com 	tusolutionweb
 Salesman 	salesman@gmail.com 	tusolutionweb
+
+Role 	        Username 	                Password
+Admin 	        tusolutionweb@gmail.com 	tusolutionweb
+Cashier 	cashier@gmail.com 	        tusolutionweb
+Salesman 	salesman@gmail.com 	        tusolutionweb

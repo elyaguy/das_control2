@@ -566,6 +566,7 @@ window.angularApp.controller("PurchaseController", [
             }
             var $this = $(this);
             $this.attr('autocomplete', 'off');
+            
             var type = $this.data("type");
             var autoTypeNo;
             if (type == "p_id") autoTypeNo = 0;
