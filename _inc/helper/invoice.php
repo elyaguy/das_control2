@@ -512,7 +512,8 @@ function get_postemplate_data($invoice_id)
       'checkout_status' => $invoice_info['checkout_status'] ? 'Yes' : 'No',
       'created_by' => get_the_user($invoice_info['created_by'],'username'),
       'invoice_note' => $invoice_info['invoice_note'],
-      'footer_text' => get_preference('invoice_footer_text'),
+    //   'footer_text' => get_preference('invoice_footer_text'),
+      'footer_text' => 'DOCUMENTO SIN VALIDEZ TRIBUTARIA, SU FACTURA ES ELECTRÓNICA POR FAVOR REVISAR SU CORREO ELECTRÓNICO',
 
       'subtotal' => currency_format($invoice_info['subtotal'] - $invoice_info['item_tax']),
       'discount_type' => ucfirst($invoice_info['discount_type']),

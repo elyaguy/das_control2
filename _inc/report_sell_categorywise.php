@@ -74,7 +74,7 @@ $columns = array(
       'dt' => 'purchase_price',
       'formatter' => function( $d, $row ) {
         $total = $row['purchase_price'];
-        return currency_format($total);
+        return get_currency_symbol().' '.currency_format($total);
       }
     ),
     array( 
@@ -83,7 +83,7 @@ $columns = array(
       'formatter' => function( $d, $row ) use($reprot_model) {
         $discount = $reprot_model->getTotalDiscountAmountBy('itemwise', $row['invoice_id'], from(), to(), store_id());
         $total = $row['sell_price'] - $discount;
-        return currency_format($total);
+        return get_currency_symbol().' '.currency_format($total);
 
       }
     ),
@@ -99,7 +99,7 @@ $columns = array(
       'dt' => 'discount',
       'formatter' => function( $d, $row ) use($reprot_model) {
         $discount = $reprot_model->getTotalDiscountAmountBy('itemwise', $row['invoice_id'], from(), to(), store_id());
-        return currency_format($discount);
+        return get_currency_symbol().' '.currency_format($discount);
 
       }
     ),
@@ -109,7 +109,7 @@ $columns = array(
       'formatter' => function( $d, $row ) use($reprot_model) {
         $discount = $reprot_model->getTotalDiscountAmountBy('itemwise', $row['invoice_id'], from(), to(), store_id());
         $total = ($row['sell_price'] - $row['purchase_price']) - $discount;
-        return currency_format($total);
+        return get_currency_symbol().' '.currency_format($total);
       }
     )
 );

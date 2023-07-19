@@ -100,12 +100,12 @@ include ("left_sidebar.php");
 			          		<?php echo trans('text_printer'); ?>
 			          	</a>
 			          </li>
-			          <li class="">
+			          <li class="hidden">
 			          	<a href="#email-setting" data-toggle="tab" aria-expanded="false">
 			          		<?php echo trans('text_email_setting'); ?>
 			          	</a>
 			          </li>
-			          <li class="">
+			          <li class="hidden">
 			          	<a href="#ftp-setting" data-toggle="tab" aria-expanded="false">
 			          		<?php echo trans('text_ftp_setting'); ?>
 			          	</a>
@@ -418,7 +418,7 @@ include ("left_sidebar.php");
 					<!-- General Setting End -->
 
 					<!-- Email Setting Start -->
-					<div class="tab-pane" id="email-setting">
+					<div class="tab-pane hidden" id="email-setting">
 
 						<div class="form-group">
 							<label for="preference[email_from]" class="col-sm-3 control-label">
@@ -517,7 +517,7 @@ include ("left_sidebar.php");
 					<!-- Email Setting End -->
 
 					<!-- FTP Setting Start -->
-					<div class="tab-pane" id="ftp-setting">
+					<div class="tab-pane hidden" id="ftp-setting">
 						<div class="form-group">
 							<label for="preference[ftp_hostname]" class="col-sm-3 control-label">
 								<?php echo trans('label_ftp_hostname'); ?>

@@ -140,7 +140,7 @@ include 'left_sidebar.php';
                 <?php if ($this_user['mobile']) : ?>
                 <h4>
                   <strong>
-                    <?php echo trans('label_phone'); ?>:
+                    <?php echo trans('label_mobile'); ?>:
                   </strong> 
                   <?php echo $this_user['mobile']; ?>
                 </h4>
@@ -153,14 +153,14 @@ include 'left_sidebar.php';
                     <?php echo $this_user['email']; ?>
                   </h4>
                 <?php endif; ?> 
-                <?php if ($this_user['dob']) : ?>
-                  <h4>
+                <?/*php if ($this_user['dob']) : */?>
+                  <!-- <h4>
                     <strong>
-                      <?php echo trans('label_date_of_birth'); ?>:
+                      <?/*php echo trans('label_date_of_birth'); */?>:
                     </strong> 
-                    <?php echo $this_user['dob']; ?>
-                  </h4>
-                <?php endif; ?>   
+                    <?/*php echo $this_user['dob']; */?>
+                  </h4> -->
+                <?/*php endif; */?>   
                 <?php if ($this_user['address']) : ?>
                   <h4>
                     <strong>

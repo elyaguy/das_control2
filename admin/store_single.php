@@ -106,12 +106,12 @@ $tab_active = isset($request->get['tab']) ? $request->get['tab'] : 'general';
 							</a>
 						</li>
 						<?php if (!DEMO) : ?>
-							<li class="<?php echo $tab_active == 'email-setting' ? 'active' : null; ?>">
+							<li class="<?php echo $tab_active == 'email-setting' ? 'active' : null; ?> hidden">
 								<a href="#email-setting" data-toggle="tab" aria-expanded="false">
 									<?php echo trans('text_email_setting'); ?>
 								</a>
 							</li>
-							<li class="<?php echo $tab_active == 'ftp-setting' ? 'active' : null; ?>">
+							<li class="<?php echo $tab_active == 'ftp-setting' ? 'active' : null; ?> hidden">
 								<a href="#ftp-setting" data-toggle="tab" aria-expanded="false">
 									<?php echo trans('text_ftp_setting'); ?>
 								</a>
@@ -663,7 +663,7 @@ $tab_active = isset($request->get['tab']) ? $request->get['tab'] : 'general';
 
 						<?php if (!DEMO) : ?>
 							<!-- Email Setting Start -->
-							<div class="tab-pane<?php echo $tab_active == 'email-setting' ? ' active' : null; ?>" id="email-setting">
+							<div class="tab-pane<?php echo $tab_active == 'email-setting' ? ' active' : null; ?> hidden" id="email-setting">
 								<div class="form-group">
 									<label for="preference[email_from]" class="col-sm-3 control-label">
 										<?php echo trans('label_email_from'); ?><i class="required">*</i>
@@ -766,7 +766,7 @@ $tab_active = isset($request->get['tab']) ? $request->get['tab'] : 'general';
 							<!-- Email Setting End -->
 
 							<!-- FTP setting start -->
-							<div class="tab-pane<?php echo $tab_active == 'general' ? ' ftp-setting' : null; ?>" id="ftp-setting">
+							<div class="tab-pane<?php echo $tab_active == 'general' ? ' ftp-setting' : null; ?> hidden" id="ftp-setting">
 								<div class="form-group">
 									<label for="preference[ftp_hostname]" class="col-sm-3 control-label">
 										<?php echo trans('label_ftp_hostname'); ?>
