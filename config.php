@@ -1,13 +1,13 @@
 <?php
 define('INSTALLED', true);
 
-$sql_details = array(
-	'host' => 'localhost',
-	'db' => 'das_control_online',
-	'user' => 'root',
-	'pass' => '',
-	'port' => '3306'
-);
+// $sql_details = array(
+// 	'host' => 'localhost',
+// 	'db' => 'das_control',
+// 	'user' => 'root',
+// 	'pass' => '',
+// 	'port' => '3306'
+// );
 
 // $sql_details = array(
 // 	'host' => 'localhost',
@@ -19,13 +19,13 @@ $sql_details = array(
 //
 
 //REMOTO
-// $sql_details = array(
-// 	'host' => 'srv689.hstgr.io',
-// 	'db' => 'u872772425_das_control',
-// 	'user' => 'u872772425_root',
-// 	'pass' => 'ControlD@s2023.',
-// 	'port' => '3306'
-// );
+$sql_details = array(
+	'host' => 'srv689.hstgr.io',
+	'db' => 'u872772425_das_control',
+	'user' => 'u872772425_root',
+	'pass' => 'ControlD@s2023.',
+	'port' => '3306'
+);
 
 
 /*
