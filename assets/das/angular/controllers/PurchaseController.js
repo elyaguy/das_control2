@@ -796,7 +796,10 @@ window.angularApp.controller("PurchaseController", [
                 subTotal = $(document).find("#subtotal-" + data.itemId);
                 subTotal.text(window.formatDecimal(parseFloat(subTotal.text()) + parseFloat(purchasePrice), 2));
             } else {
-                $(document).find("#product-table tbody").append(html);
+                // $(document).find("#product-table tbody").append(html);
+                 $(document).find("#product-table tbody").prepend(html);
+                //array_unshift($(document).find("#product-table tbody"), html);
+
             }
 
             $("#total-tax").val(totalTax);

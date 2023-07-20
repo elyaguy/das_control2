@@ -312,7 +312,7 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && $request->get['action_type']
               </svg>
             </div>
             <!-- <input type="text" class="form-control" value="tusolutionweb@gmail.com" placeholder="Email / Phone No." name="username"> -->
-            <input type="text" class="form-control" value="" placeholder='Correo o Teléfono' name="username">
+            <input type="text" class="form-control" value="" placeholder='Usuario o Correo' name="username">
           </div>
         </div>
 
