@@ -80,3 +80,6 @@ ALTER TABLE customer_to_store AUTO_INCREMENT = 1;
 
 DELETE FROM stores WHERE store_id>1;
 ALTER TABLE stores AUTO_INCREMENT = 1;
+
+
+SELECT * FROM language_translations l WHERE l.lang_key='label_usermane';

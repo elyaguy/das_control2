@@ -26,9 +26,12 @@ window.angularApp.controller("CollegeController", [
         "use strict";
 
         var dt = $("#college-college-list");
-        var dt2 = $("#product-college-list");
+        // var dt2 = $("#product-college-list");
         var supId;
         var i;
+
+        var quantity = 0;
+
 
         var hideColums = dt.data("hide-colums").split(",");
         var hideColumsArray = [];
@@ -248,82 +251,188 @@ window.angularApp.controller("CollegeController", [
         //================
 
 
+        // Add Product
+        $scope.addProduct = function (data) {
 
-        var page = 1;
-        $scope.products;
-        $scope.showProductList = function (url) {
-            $http({
-                //url: url ? url : API_URL + "/_inc/pos.php?action_type=PRODUCTLIST&query_string=" + productCode + "&category_id=" + categoryId + "&field=p_name&page=" + page,
-                url: url ? url : API_URL + "/_inc/college2.php?action_type=COLLEGE_PRODUCT",
-                method: "GET",
-                cache: false,
-                processData: false,
-                contentType: false,
-                dataType: "json"
-            }).
-                then(function (response) {
-                    $scope.products = response.data.products;
+            var html = "<tr id=\"" + data.p_id + "\" class=\"" + data.p_id + "\" data-item-id=\"" + data.p_id + "\">";
+            html += "<td class=\"text-center\" style=\"min-width:100px;\" data-title=\"Product Name\">";
+            html += "<input name=\"product_college[" + data.p_id + "][p_id]\" type=\"hidden\" class=\"item-id\" value=\"" + data.p_id + "\">";
+            html += "<input name=\"product_college[" + data.p_id + "][p_name]\" type=\"hidden\" class=\"item-name\" value=\"" + data.p_name + "\">";
+            html += "<span class=\"name\" id=\"name-" + data.p_id + "\">" + data.p_name + "-" + data.p_code + "</span>";
+            html += "</td>";
+            html += "<td style=\"padding:2px;\" data-title=\"Quantity\">";
+            html += "<input class=\"form-control input-sm text-center quantity\" name=\"product_college[" + data.p_id + "][quantity]\" type=\"text\" value=\"" + data.quantity + "\" data-id=\"" + data.p_id + "\" id=\"quantity-" + data.p_id + "\" onclick=\"this.select();\" onkeypress=\"return IsNumeric(event);\" ondrop=\"return false;\" onpaste=\"return false;\" onKeyUp=\"if(this.value<0){this.value='1';}\">";
+            html += "</td>";
+            html += "<td class=\"text-center\">";
+            html += "<i class=\"fa fa-close text-red pointer remove\" data-id=\"" + data.p_id + "\" title=\"Remove\"></i>";
+            html += "</td>";
+            html += "</tr>";
 
-                    // console.log(response.data.products);   
-                    // dt2.dataTable({
-                    //     paging: true,
-                    //     data: $scope.products,
-                    //     orderable: false,
-                    //     scrollCollapse: false,
-                    //     searching: false,
-                    //     editable:true,
-                    //     select: true,
-                    //     scrollY: '30vh',
-                    //     columnDefs: [
-                    //         {
-                    //             orderable: false,
-                    //             className: 'select-checkbox',
-                    //             targets: 0
-                    //         },
-                    //         {
-                    //             orderable: false,
-                    //             editable: true,
-                    //             targets: 2,
-                    //         }
-                    //     ],
-                    //     select: {
-                    //         style: 'os',
-                    //         selector: 'td:first-child'
-                    //     },
-                    //     order: [[1, 'asc']],
-                    //     columns: [
-                    //         { data: null },
-                    //         { data: 'p_name' },
-                    //         { data: 'course_name' },
-                    //         { data: 'estimatedsales' }
-                    //     ]
-                    // });
-                    // dt2.dataTable({
-                    //     data: $scope.products,
-                    //     select: true,
-                    //     aLengthMenu: [
-                    //         [5, 10, 25, 50, 100, 200, -1],
-                    //         [5, 10, 25, 50, 100, 200, "All"]
-                    //     ],
-                    //     columns: [
-                    //         { data: 'p_id' },
-                    //         { data: 'p_name' },
-                    //         { data: 'course_name' },
-                    //         { data: 'estimatedsales' }
-                    //     ]
-                    // });
+            // Update existing if find
+            if ($("#" + data.p_id).length) {
+                quantity = $(document).find("#quantity-" + data.p_id);
+                quantity.val(parseFloat(quantity.val()) + 1);
+                // unitPrice = $(document).find("#purchase-price-" + data.itemId);
+                // itemTaxMethod = $(document).find("#tax-method-" + data.itemId);
+                // itemTaxrate = $(document).find("#taxrate-" + data.itemId);
+                // itemTaxAmount = $(document).find("#tax-amount-" + data.itemId);
+                // taxAmount = $(document).find("#tax-amount-" + data.itemId);
+                // realItemTaxAmount = parseFloat((itemTaxrate.val() / 100) * parseFloat(unitPrice.val()));
+                // itemTaxAmount.val(parseFloat(quantity.val()) * realItemTaxAmount);
+                // taxAmount.val(parseFloat(parseFloat(quantity.val()) * realItemTaxAmount).toFixed(2));
+                // itemTaxAmountView = $(document).find("#tax-amount-view-" + data.itemId);
+                // itemTaxAmountView.text(itemTaxAmount.val());
+                // subTotal = $(document).find("#subtotal-" + data.itemId);
+                // subTotal.text(window.formatDecimal(parseFloat(subTotal.text()) + parseFloat(purchasePrice), 2));
+            } else {
+                // $(document).find("#product-table tbody").append(html);
+                $(document).find("#product-table tbody").prepend(html);
+                //array_unshift($(document).find("#product-table tbody"), html);
 
-                }, function (response) {
-                    if (window.store.sound_effect == 1) {
-                        window.storeApp.playSound("error.mp3");
-                    }
-                    window.toastr.error(response.data.errorMsg, "ADVERTENCIA!");
-                });
+            }
         };
-        $scope.showProductList();
 
 
-  
+        // Product Autocomplete
+        $(document).on("focus", ".autocomplete-product", function (e) {
+            e.stopImmediatePropagation();
+            e.stopPropagation();
+            e.preventDefault();
+
+            var $this = $(this);
+            $this.attr('autocomplete', 'off');
+
+
+            $this.autocomplete({
+                source: function (request, response) {
+                    return $http({
+                        url: window.baseUrl + "/_inc/ajax.php?type=ITEMCOLLEGE",
+                        dataType: "json",
+                        method: "post",
+                        data: $.param({
+                            name_starts_with: request.term
+                        }),
+                    })
+                        .then(function (data) {
+                            return response($.map(data.data, function (item) {
+                                var code = item.split("|");
+                                return {
+                                    label: code[1].replace(/&amp;/g, "&") + " (" + code[2] + ")",
+                                    value: code[0],
+                                    data: item
+                                };
+                            }));
+                        }, function (data) {
+                            window.swal("Ups!", response.data.errorMsg, "error");
+                        });
+                },
+                focusOpen: true,
+                autoFocus: true,
+                minLength: 0,
+                select: function (event, ui) {
+                    var names = ui.item.data.split("|");
+                    var data = {
+                        p_id: names[0],
+                        p_name: names[1],
+                        p_code: names[2],
+                        quantity: 1,
+                    };
+                    $scope.addProduct(data);
+                },
+                open: function () {
+                    $(".ui-autocomplete").perfectScrollbar();
+                    if ($(".ui-autocomplete .ui-menu-item").length == 1) {
+                        $(".ui-autocomplete .ui-menu-item:first-child").trigger("click");
+                        $("#add_item").val("");
+                        $("#add_item").focus();
+                    }
+                },
+                close: function () {
+                    $(document).find(".autocomplete-product").blur();
+                    $(document).find(".autocomplete-product").val("");
+                    $("#add_item").focus();
+                },
+            }).bind("focus", function () {
+                if ($("#add_item").val().length > 1) {
+                    $(this).autocomplete("search");
+                }
+            });
+        });
+
+        // var page = 1;
+        // $scope.products;
+        // $scope.showProductList = function (url) {
+        //     $http({
+        //         //url: url ? url : API_URL + "/_inc/pos.php?action_type=PRODUCTLIST&query_string=" + productCode + "&category_id=" + categoryId + "&field=p_name&page=" + page,
+        //         method: "GET",
+        //         cache: false,
+        //         processData: false,
+        //         contentType: false,
+        //         dataType: "json"
+        //     }).
+        //         then(function (response) {
+        //             $scope.products = response.data.products;
+
+        //             // console.log(response.data.products);   
+        //             // dt2.dataTable({
+        //             //     paging: true,
+        //             //     data: $scope.products,
+        //             //     orderable: false,
+        //             //     scrollCollapse: false,
+        //             //     searching: false,
+        //             //     editable:true,
+        //             //     select: true,
+        //             //     scrollY: '30vh',
+        //             //     columnDefs: [
+        //             //         {
+        //             //             orderable: false,
+        //             //             className: 'select-checkbox',
+        //             //             targets: 0
+        //             //         },
+        //             //         {
+        //             //             orderable: false,
+        //             //             editable: true,
+        //             //             targets: 2,
+        //             //         }
+        //             //     ],
+        //             //     select: {
+        //             //         style: 'os',
+        //             //         selector: 'td:first-child'
+        //             //     },
+        //             //     order: [[1, 'asc']],
+        //             //     columns: [
+        //             //         { data: null },
+        //             //         { data: 'p_name' },
+        //             //         { data: 'course_name' },
+        //             //         { data: 'estimatedsales' }
+        //             //     ]
+        //             // });
+        //             // dt2.dataTable({
+        //             //     data: $scope.products,
+        //             //     select: true,
+        //             //     aLengthMenu: [
+        //             //         [5, 10, 25, 50, 100, 200, -1],
+        //             //         [5, 10, 25, 50, 100, 200, "All"]
+        //             //     ],
+        //             //     columns: [
+        //             //         { data: 'p_id' },
+        //             //         { data: 'p_name' },
+        //             //         { data: 'course_name' },
+        //             //         { data: 'estimatedsales' }
+        //             //     ]
+        //             // });
+
+        //         }, function (response) {
+        //             if (window.store.sound_effect == 1) {
+        //                 window.storeApp.playSound("error.mp3");
+        //             }
+        //             window.toastr.error(response.data.errorMsg, "ADVERTENCIA!");
+        //         });
+        // };
+        // $scope.showProductList();
+
+
+
 
         //================
         // Start datatable
@@ -638,6 +747,16 @@ window.angularApp.controller("CollegeController", [
                 });
             }, false);
         }
+
+        // Reset form
+        $(document).delegate("#reset", "click", function (e) {
+            e.preventDefault();
+            quantity = 0;
+            $("#product-table tbody").empty();
+            $("#college_name").val('');
+            // $("#code_name").val('');
+        });
+
 
         // Append email button into datatable buttons
         if (window.sendReportEmail) { $(".dt-buttons").append("<button id=\"email-btn\" class=\"btn btn-default buttons-email\" tabindex=\"0\" aria-controls=\"invoice-invoice-list\" type=\"button\" title=\"Email\"><span><i class=\"fa fa-envelope\"></i></span></button>"); };

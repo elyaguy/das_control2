@@ -45,46 +45,116 @@ function validate_request_data($request)
   //$request->post['product_college_ok'] = [];
   $myArray = [];
   // Validate store
-  if (!isset($request->post['product_college']) || empty($request->post['product_college'])) {
-    throw new Exception(trans('error_product_college'));
-  } else {
-    foreach ($request->post['product_college'] as $product) {
-      if (!isset($product['check']) && $request->post['action_type'] == 'CREATE') {
-        continue;
-      } else {
-        if ($request->post['action_type'] == 'UPDATE' && !isset($product['check'])) {
-          array_push($myArray, (object)[
-            'chk' => 0,
-            'p_id' => $product['p_id'],
-            'qty' => $product['item_quantity'],
-          ]);
+
+  if ($request->post['action_type'] == 'CREATE') {
+    if (!isset($request->post['product_college']) || empty($request->post['product_college'])) {
+      throw new Exception(trans('error_product_college'));
+    } else {
+      foreach ($request->post['product_college'] as $product) {
+        if ($product['quantity'] <= 0) {
+          throw new Exception('Existen Productos sin especificar Ventas Estimadas!.');
         } else {
-          if ($product['check'] == 1) {
-            if ($product['item_quantity'] <= 0) {
-              throw new Exception('Existen Productos sin especificar Ventas Estimadas!.');
-            } else {
-              array_push($myArray, (object)[
-                'chk' => 1,
-                'p_id' => $product['p_id'],
-                'qty' => $product['item_quantity'],
-              ]);
-            }
-          }
+          array_push($myArray, (object)[
+            'chk' => 1,
+            'p_id' => $product['p_id'],
+            'qty' => $product['quantity'],
+          ]);
         }
-
-
-        // else {
-        //   if ($request->post['action_type'] == 'UPDATE') {
-        //     array_push($myArray, (object)[
-        //       'chk' => 0,
-        //       'p_id' => $product['p_id'],
-        //       'qty' => $product['item_quantity'],
-        //     ]);
-        //   }
-        // }
       }
     }
   }
+
+
+  if ($request->post['action_type'] == 'UPDATE') {
+    if (!isset($request->post['product_college_edit']) || empty($request->post['product_college_edit'])) {
+      throw new Exception(trans('error_product_college'));
+    } else {
+      foreach ($request->post['product_college_edit'] as $product) {
+        if ($product['quantity'] <= 0) {
+          throw new Exception('Existen Productos sin especificar Ventas Estimadas!.');
+        } else {
+          array_push($myArray, (object)[
+            'chk' => 1,
+            'p_id' => $product['p_id'],
+            'qty' => $product['quantity'],
+          ]);
+        }
+      }
+    }
+  }
+
+
+
+
+  // if (!isset($request->post['product_college']) || empty($request->post['product_college'])) {
+  //   throw new Exception(trans('error_product_college'));
+  // } else {
+  //   foreach ($request->post['product_college'] as $product) {
+  //     if ($request->post['action_type'] == 'CREATE') {
+  //       if ($product['quantity'] <= 0) {
+  //         throw new Exception('Existen Productos sin especificar Ventas Estimadas!.');
+  //       } else {
+  //         array_push($myArray, (object)[
+  //           'chk' => 1,
+  //           'p_id' => $product['p_id'],
+  //           'qty' => $product['quantity'],
+  //         ]);
+  //       }
+  //     } else {
+  //       if ($request->post['action_type'] == 'UPDATE') {
+  //         if ($product['quantity'] <= 0) {
+  //           throw new Exception('Existen Productos sin especificar Ventas Estimadas!.');
+  //         } else {
+  //           array_push($myArray, (object)[
+  //             'chk' => 1,
+  //             'p_id' => $product['p_id'],
+  //             'qty' => $product['quantity'],
+  //           ]);
+  //         }
+  //       }
+  //     }
+
+
+
+
+  //     // if (!isset($product['check']) && $request->post['action_type'] == 'CREATE') {
+  //     //   continue;
+  //     // } else {
+  //     //   if ($request->post['action_type'] == 'UPDATE' && !isset($product['check'])) {
+  //     //     array_push($myArray, (object)[
+  //     //       'chk' => 0,
+  //     //       'p_id' => $product['p_id'],
+  //     //       'qty' => $product['item_quantity'],
+  //     //     ]);
+  //     //   } else {
+  //     //     if ($product['check'] == 1) {
+  //     //       if ($product['item_quantity'] <= 0) {
+  //     //         throw new Exception('Existen Productos sin especificar Ventas Estimadas!.');
+  //     //       } else {
+  //     //         array_push($myArray, (object)[
+  //     //           'chk' => 1,
+  //     //           'p_id' => $product['p_id'],
+  //     //           'qty' => $product['item_quantity'],
+  //     //         ]);
+  //     //       }
+  //     //     }
+  //     //   }
+
+  //     //   // else {
+  //     //   //   if ($request->post['action_type'] == 'UPDATE') {
+  //     //   //     array_push($myArray, (object)[
+  //     //   //       'chk' => 0,
+  //     //   //       'p_id' => $product['p_id'],
+  //     //   //       'qty' => $product['item_quantity'],
+  //     //   //     ]);
+  //     //   //   }
+  //     //   // }
+  //     // }
+
+  //   }
+  // }
+
+
   $request->post['product_college_ok'] = $myArray;
   if (empty($myArray)) {
     throw new Exception(trans('error_product_college'));
@@ -273,7 +343,7 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action
         $statement = db()->prepare("SELECT * FROM `product_to_college` WHERE `college_id` = ? AND `product_id` = ?");
         $statement->execute(array($id, (int)$product_id->p_id));
         $prodt = $statement->fetch(PDO::FETCH_ASSOC);
-        if (!$prodt && $product_id->chk==1) {
+        if (!$prodt && $product_id->chk == 1) {
           $statement = db()->prepare("INSERT INTO `product_to_college` SET `estimatedsales` = ?, `product_id` = ?, `college_id` = ?");
           $statement->execute(array((int)$product_id->qty, (int)$product_id->p_id, (int)$id,));
         } else {

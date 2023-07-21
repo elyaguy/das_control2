@@ -361,7 +361,7 @@ include ("left_sidebar.php");
 							  <input type="number" class="form-control" id="datatable_item_limit" name="preference[datatable_item_limit]" value="<?php echo get_preference('datatable_item_limit'); ?>" onClick="this.select()" onKeyUp="if(this.value<0){this.value='0';}">
 							</div>
 						</div>
-						<div class="form-group">
+						<div class="form-group hidden">
 							<label for="invoice_footer_text" class="col-sm-3 control-label">
 								<?php echo trans('label_invoice_footer_text'); ?>
 								<span data-toggle="tooltip" title="" data-original-title="<?php echo trans('hint_invoice_footer_text'); ?>"></span>

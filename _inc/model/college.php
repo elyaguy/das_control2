@@ -50,6 +50,9 @@ class ModelCollege extends Model
     	$statement = $this->db->prepare("UPDATE `colleges` SET `college_name` = ?, `code_name` = ?, `college_details` = ?, `college_image` = ? WHERE `college_id` = ? ");
     	$statement->execute(array($data['college_name'], $data['code_name'], $data['college_details'], $data['college_image'], $college_id));
 		
+		$statement = $this->db->prepare("UPDATE `product_to_college` SET `status` = ? WHERE `college_id` = ? ");
+    	$statement->execute(array(0, $college_id));
+		
 		// // Insert college into store
     	// if (isset($data['college_store'])) 
     	// {

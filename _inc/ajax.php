@@ -1,47 +1,42 @@
 <?php
-include ("../_init.php");
+include("../_init.php");
 
 // Product Images
-if($request->server['REQUEST_METHOD'] == 'GET' AND $request->get['type'] == 'PRODUCTIMAGES') 
-{
+if ($request->server['REQUEST_METHOD'] == 'GET' and $request->get['type'] == 'PRODUCTIMAGES') {
 	try {
 		$p_id = $request->get['p_id'];
 		$images = get_product_images($p_id);
-	    header('Content-Type: application/json');
-	    echo json_encode(array('msg' => trans('text_success'), 'images' => $images));
-	    exit();
+		header('Content-Type: application/json');
+		echo json_encode(array('msg' => trans('text_success'), 'images' => $images));
+		exit();
+	} catch (Exception $e) {
 
-	  } catch (Exception $e) { 
-	    
-	    header('HTTP/1.1 422 Unprocessable Entity');
-	    header('Content-Type: application/json; charset=UTF-8');
-	    echo json_encode(array('errorMsg' => $e->getMessage()));
-	    exit();
-	  }
+		header('HTTP/1.1 422 Unprocessable Entity');
+		header('Content-Type: application/json; charset=UTF-8');
+		echo json_encode(array('errorMsg' => $e->getMessage()));
+		exit();
+	}
 }
 
 // Banner Images
-if($request->server['REQUEST_METHOD'] == 'GET' AND $request->get['type'] == 'BANNERIMAGES') 
-{
+if ($request->server['REQUEST_METHOD'] == 'GET' and $request->get['type'] == 'BANNERIMAGES') {
 	try {
 		$id = $request->get['id'];
 		$images = get_banner_images($id);
-	    header('Content-Type: application/json');
-	    echo json_encode(array('msg' => trans('text_banner_images'), 'images' => $images));
-	    exit();
+		header('Content-Type: application/json');
+		echo json_encode(array('msg' => trans('text_banner_images'), 'images' => $images));
+		exit();
+	} catch (Exception $e) {
 
-	  } catch (Exception $e) { 
-	    
-	    header('HTTP/1.1 422 Unprocessable Entity');
-	    header('Content-Type: application/json; charset=UTF-8');
-	    echo json_encode(array('errorMsg' => $e->getMessage()));
-	    exit();
-	  }
+		header('HTTP/1.1 422 Unprocessable Entity');
+		header('Content-Type: application/json; charset=UTF-8');
+		echo json_encode(array('errorMsg' => $e->getMessage()));
+		exit();
+	}
 }
 
 // Quotation info
-if($request->server['REQUEST_METHOD'] == 'POST' AND $request->get['type'] == 'QUOTATIONINFO') 
-{
+if ($request->server['REQUEST_METHOD'] == 'POST' and $request->get['type'] == 'QUOTATIONINFO') {
 	try {
 		$ref_no = $request->post['ref_no'];
 		$quotation_model = registry()->get('loader')->model('quotation');
@@ -51,8 +46,7 @@ if($request->server['REQUEST_METHOD'] == 'POST' AND $request->get['type'] == 'QU
 		header('Content-Type: application/json');
 		echo json_encode(array('msg' => trans('text_success'), 'quotation' => $quotation));
 		exit();
-
-	} catch (Exception $e) { 
+	} catch (Exception $e) {
 
 		header('HTTP/1.1 422 Unprocessable Entity');
 		header('Content-Type: application/json; charset=UTF-8');
@@ -62,13 +56,12 @@ if($request->server['REQUEST_METHOD'] == 'POST' AND $request->get['type'] == 'QU
 }
 
 // Update POS tempalte content
-if($request->server['REQUEST_METHOD'] == 'POST' AND $request->get['type'] == 'UPDATEPOSTEMPALTECONTENT') 
-{
+if ($request->server['REQUEST_METHOD'] == 'POST' and $request->get['type'] == 'UPDATEPOSTEMPALTECONTENT') {
 	try {
 
 		if (DEMO || (user_group_id() != 1 && !has_permission('access', 'receipt_template'))) {
-	      throw new Exception(trans('error_update_permission'));
-	    }
+			throw new Exception(trans('error_update_permission'));
+		}
 
 		$template_id = $request->post['template_id'];
 		$content = $request->post['content'];
@@ -78,25 +71,23 @@ if($request->server['REQUEST_METHOD'] == 'POST' AND $request->get['type'] == 'UP
 		header('Content-Type: application/json');
 		echo json_encode(array('msg' => trans('text_template_content_update_success')));
 		exit();
-
-	} catch (Exception $e) { 
+	} catch (Exception $e) {
 
 		header('HTTP/1.1 422 Unprocessable Entity');
 		header('Content-Type: application/json; charset=UTF-8');
 		echo json_encode(array('errorMsg' => $e->getMessage()));
-	exit();
+		exit();
 	}
 }
 
 // Update POS tempalte CSS
-if($request->server['REQUEST_METHOD'] == 'POST' AND $request->get['type'] == 'UPDATEPOSTEMPALTECSS') 
-{
+if ($request->server['REQUEST_METHOD'] == 'POST' and $request->get['type'] == 'UPDATEPOSTEMPALTECSS') {
 	try {
-	    
-	    if (DEMO || (user_group_id() != 1 && !has_permission('access', 'receipt_template'))) {
-	      throw new Exception(trans('error_update_permission'));
-	    }
-	    
+
+		if (DEMO || (user_group_id() != 1 && !has_permission('access', 'receipt_template'))) {
+			throw new Exception(trans('error_update_permission'));
+		}
+
 		$template_id = $request->post['template_id'];
 		$content = $request->post['content'];
 		$statement = db()->prepare("UPDATE `pos_templates` SET `template_css` = ? WHERE `template_id` = ?");
@@ -105,8 +96,7 @@ if($request->server['REQUEST_METHOD'] == 'POST' AND $request->get['type'] == 'UP
 		header('Content-Type: application/json');
 		echo json_encode(array('msg' => trans('text_template_css_update_success')));
 		exit();
-
-	} catch (Exception $e) { 
+	} catch (Exception $e) {
 
 		header('HTTP/1.1 422 Unprocessable Entity');
 		header('Content-Type: application/json; charset=UTF-8');
@@ -116,8 +106,7 @@ if($request->server['REQUEST_METHOD'] == 'POST' AND $request->get['type'] == 'UP
 }
 
 // Update opening balance
-if($request->server['REQUEST_METHOD'] == 'POST' AND $request->get['type'] == 'UPDATEOPENINGBALANCE') 
-{
+if ($request->server['REQUEST_METHOD'] == 'POST' and $request->get['type'] == 'UPDATEOPENINGBALANCE') {
 	try {
 		$balance = str_replace(',', '', $request->post['balance']);
 		if (!is_numeric($balance)) {
@@ -147,7 +136,7 @@ if($request->server['REQUEST_METHOD'] == 'POST' AND $request->get['type'] == 'UP
 
 		// UPDATE CLOSING BALANCE
 		$date = date('Y-m-d');
-		$from = date( 'Y-m-d', strtotime( $date . ' -1 day' ) );
+		$from = date('Y-m-d', strtotime($date . ' -1 day'));
 		$day = date('d', strtotime($from));
 		$month = date('m', strtotime($from));
 		$year = date('Y', strtotime($from));
@@ -160,8 +149,7 @@ if($request->server['REQUEST_METHOD'] == 'POST' AND $request->get['type'] == 'UP
 		header('Content-Type: application/json');
 		echo json_encode(array('msg' => trans('text_opening_balance_update_success')));
 		exit();
-
-	} catch (Exception $e) { 
+	} catch (Exception $e) {
 
 		header('HTTP/1.1 422 Unprocessable Entity');
 		header('Content-Type: application/json; charset=UTF-8');
@@ -170,8 +158,7 @@ if($request->server['REQUEST_METHOD'] == 'POST' AND $request->get['type'] == 'UP
 	}
 }
 
-if($request->server['REQUEST_METHOD'] == 'POST' AND $request->get['type'] == 'PURCHASEITEM') 
-{
+if ($request->server['REQUEST_METHOD'] == 'POST' and $request->get['type'] == 'PURCHASEITEM') {
 	$sup_id = isset($request->post['sup_id']) ? $request->post['sup_id'] : null;
 	$type = $request->post['type'];
 	$name = $request->post['name_starts_with'];
@@ -191,27 +178,26 @@ if($request->server['REQUEST_METHOD'] == 'POST' AND $request->get['type'] == 'PU
 	}
 	$products = $statement->fetchAll(PDO::FETCH_ASSOC);
 	$data = array();
-    foreach ($products as $product) {
-    	$purchase_price = $product['purchase_price'];
-    	$sell_price = $product['sell_price'];
-    	$tax_amount = 0;
-    	$tax_method = $product['tax_method'] ? $product['tax_method'] : 'exclusive';
-    	$taxrate = 0;
-    	$product_info = get_the_product($product['p_id']);
-    	if ($product_info && $product_info['taxrate']) {
-    		$taxrate = $product_info['taxrate']['taxrate'];
-    		$tax_amount = ($product_info['taxrate']['taxrate'] / 100 ) * $purchase_price;
-    	}
-		$name = $product['p_id'].'|'.$product['p_name'].'|'.$product['p_code'].'|'.$product['category_id'].'|'.$product['quantity_in_stock'].'|'.get_the_unit($product['unit_id'],'unit_name').'|'.$purchase_price .'|'.$sell_price.'|'.$tax_amount.'|'.$tax_method.'|'.$taxrate.'|'.$product['quantity_in_stock'];
+	foreach ($products as $product) {
+		$purchase_price = $product['purchase_price'];
+		$sell_price = $product['sell_price'];
+		$tax_amount = 0;
+		$tax_method = $product['tax_method'] ? $product['tax_method'] : 'exclusive';
+		$taxrate = 0;
+		$product_info = get_the_product($product['p_id']);
+		if ($product_info && $product_info['taxrate']) {
+			$taxrate = $product_info['taxrate']['taxrate'];
+			$tax_amount = ($product_info['taxrate']['taxrate'] / 100) * $purchase_price;
+		}
+		$name = $product['p_id'] . '|' . $product['p_name'] . '|' . $product['p_code'] . '|' . $product['category_id'] . '|' . $product['quantity_in_stock'] . '|' . get_the_unit($product['unit_id'], 'unit_name') . '|' . $purchase_price . '|' . $sell_price . '|' . $tax_amount . '|' . $tax_method . '|' . $taxrate . '|' . $product['quantity_in_stock'];
 		array_push($data, $name);
-    }
+	}
 	echo json_encode($data);
 	exit();
 }
 
 // Product list
-if($request->server['REQUEST_METHOD'] == 'POST' AND $request->get['type'] == 'SELLINGITEM') 
-{
+if ($request->server['REQUEST_METHOD'] == 'POST' and $request->get['type'] == 'SELLINGITEM') {
 	$sup_id = isset($request->post['sup_id']) ? $request->post['sup_id'] : null;
 	$type = $request->post['type'];
 	$name = $request->post['name_starts_with'];
@@ -232,49 +218,46 @@ if($request->server['REQUEST_METHOD'] == 'POST' AND $request->get['type'] == 'SE
 	}
 	$products = $statement->fetchAll(PDO::FETCH_ASSOC);
 	$data = array();
-    foreach ($products as $product) {
-    	$purchase_price = $product['purchase_price'];
-    	$sell_price = $product['sell_price'];
-    	$tax_amount = 0;
-    	$tax_method = $product['tax_method'] ? $product['tax_method'] : 'exclusive';
-    	$taxrate = 0;
-    	$product_info = get_the_product($product['p_id']);
-    	if ($product_info && $product_info['taxrate']) {
-    		$taxrate = $product_info['taxrate']['taxrate'];
-    		$tax_amount = ($product_info['taxrate']['taxrate'] / 100 ) * $sell_price;
-    	}
-		$name = $product['p_id'].'|'.$product['p_name'].'|'.$product['p_code'].'|'.$product['category_id'].'|'.$product['quantity_in_stock'].'|'.$purchase_price .'|'.$sell_price.'|'.$tax_amount.'|'.$tax_method.'|'.$taxrate;
+	foreach ($products as $product) {
+		$purchase_price = $product['purchase_price'];
+		$sell_price = $product['sell_price'];
+		$tax_amount = 0;
+		$tax_method = $product['tax_method'] ? $product['tax_method'] : 'exclusive';
+		$taxrate = 0;
+		$product_info = get_the_product($product['p_id']);
+		if ($product_info && $product_info['taxrate']) {
+			$taxrate = $product_info['taxrate']['taxrate'];
+			$tax_amount = ($product_info['taxrate']['taxrate'] / 100) * $sell_price;
+		}
+		$name = $product['p_id'] . '|' . $product['p_name'] . '|' . $product['p_code'] . '|' . $product['category_id'] . '|' . $product['quantity_in_stock'] . '|' . $purchase_price . '|' . $sell_price . '|' . $tax_amount . '|' . $tax_method . '|' . $taxrate;
 		array_push($data, $name);
-    }
+	}
 	echo json_encode($data);
 	exit();
 }
 
 // StockItems
-if($request->server['REQUEST_METHOD'] == 'GET' AND $request->get['type'] == 'STOCKITEMS') 
-{
+if ($request->server['REQUEST_METHOD'] == 'GET' and $request->get['type'] == 'STOCKITEMS') {
 	try {
 		$store_id = $request->get['store_id'] ? $request->get['store_id'] : store_id();
 		$statement = db()->prepare("SELECT `purchase_item`.*, `purchase_info`.`inv_type` FROM `purchase_item` LEFT JOIN `purchase_info` ON (`purchase_item`.`invoice_id` = `purchase_info`.`invoice_id`) WHERE `purchase_item`.`store_id` = ? AND `purchase_item`.`item_quantity` > `purchase_item`.`total_sell` AND `purchase_item`.`status` IN ('stock','active') AND `purchase_info`.`inv_type` = ?");
-	    $statement->execute(array($store_id, 'purchase'));
-	    $products = $statement->fetchAll(PDO::FETCH_ASSOC);
+		$statement->execute(array($store_id, 'purchase'));
+		$products = $statement->fetchAll(PDO::FETCH_ASSOC);
 
-	    header('Content-Type: application/json');
-	    echo json_encode(array('msg' => trans('text_success'), 'products' => $products));
-	    exit();
+		header('Content-Type: application/json');
+		echo json_encode(array('msg' => trans('text_success'), 'products' => $products));
+		exit();
+	} catch (Exception $e) {
 
-	  } catch (Exception $e) { 
-	    
-	    header('HTTP/1.1 422 Unprocessable Entity');
-	    header('Content-Type: application/json; charset=UTF-8');
-	    echo json_encode(array('errorMsg' => $e->getMessage()));
-	    exit();
-	  }
+		header('HTTP/1.1 422 Unprocessable Entity');
+		header('Content-Type: application/json; charset=UTF-8');
+		echo json_encode(array('errorMsg' => $e->getMessage()));
+		exit();
+	}
 }
 
 // StockItem
-if($request->server['REQUEST_METHOD'] == 'GET' AND $request->get['type'] == 'STOCKITEM') 
-{
+if ($request->server['REQUEST_METHOD'] == 'GET' and $request->get['type'] == 'STOCKITEM') {
 	try {
 		$id = $request->get['id'];
 		$quantity = $request->get['quantity'];
@@ -285,8 +268,7 @@ if($request->server['REQUEST_METHOD'] == 'GET' AND $request->get['type'] == 'STO
 		header('Content-Type: application/json');
 		echo json_encode(array('msg' => trans('text_success'), 'products' => $products));
 		exit();
-
-	} catch (Exception $e) { 
+	} catch (Exception $e) {
 
 		header('HTTP/1.1 422 Unprocessable Entity');
 		header('Content-Type: application/json; charset=UTF-8');
@@ -294,3 +276,61 @@ if($request->server['REQUEST_METHOD'] == 'GET' AND $request->get['type'] == 'STO
 		exit();
 	}
 }
+
+// Item College
+
+if ($request->server['REQUEST_METHOD'] == 'POST' and $request->get['type'] == 'ITEMCOLLEGE') {
+	$name = $request->post['name_starts_with'];
+	$query = "SELECT `p_id`, `p_name`, `p_code` FROM `products`";
+	$query .= " WHERE (UPPER(`p_name`) LIKE '%" . strtoupper($name) . "%' OR `p_code` = '{$name}') ORDER BY `p_id` DESC LIMIT 10";
+	$statement = db()->prepare($query);
+	$statement->execute();
+	$products = $statement->fetchAll(PDO::FETCH_ASSOC);
+	$data = array();
+	foreach ($products as $product) {
+		$name = $product['p_id'] . '|' . $product['p_name'] . '|' . $product['p_code'] . '|';
+		array_push($data, $name);
+	}
+	echo json_encode($data);
+	exit();
+}
+
+if ($request->server['REQUEST_METHOD'] == 'GET' and $request->get['type'] == 'COLLEGE_PRODUCT_EDIT') {
+	try {
+		$where_query1 = 'b.college_id = ' . $request->get['college_id'];
+		$query = "SELECT `a`.`p_id`, `a`.`p_name`, `a`.`p_code`, `b`.`estimatedsales` quantity  FROM `products` a
+					LEFT JOIN `product_to_college` b ON  `b`.`product_id` = `a`.`p_id`";
+		$query .= " WHERE `b`.`status` = 1 AND $where_query1  ORDER BY `a`.`p_name`";
+		$statement = db()->prepare($query);
+		$statement->execute();
+		$products = $statement->fetchAll(PDO::FETCH_ASSOC);
+		header('Content-Type: application/json');
+		echo json_encode(array('msg' => trans('text_success'), 'products' => $products));
+		exit();
+	} catch (Exception $e) {
+
+		header('HTTP/1.1 422 Unprocessable Entity');
+		header('Content-Type: application/json; charset=UTF-8');
+		echo json_encode(array('errorMsg' => $e->getMessage()));
+		exit();
+	}
+}
+// if ($request->server['REQUEST_METHOD'] == 'GET' and $request->get['type'] == 'ITEMCOLLEGE') {
+// 	try {
+// 		$statement = db()->prepare("SELECT p_id, p_name, p_code FROM `products` ORDER BY `p_name`");
+// 		$statement->execute();
+// 		$data = $statement->fetchAll(PDO::FETCH_ASSOC);
+
+// 		// header('Content-Type: application/json');
+// 		// echo json_encode(array('msg' => trans('text_success'), 'products' => $products));
+// 		// exit();
+// 		echo json_encode($data);
+// 		exit();
+// 	} catch (Exception $e) {
+
+// 		header('HTTP/1.1 422 Unprocessable Entity');
+// 		header('Content-Type: application/json; charset=UTF-8');
+// 		echo json_encode(array('errorMsg' => $e->getMessage()));
+// 		exit();
+// 	}
+// }
