@@ -3,7 +3,7 @@ define('INSTALLED', true);
 
 $sql_details = array(
 	'host' => 'localhost',
-	'db' => 'das_control_onine',
+	'db' => 'das_control_1',
 	'user' => 'root',
 	'pass' => '',
 	'port' => '3306'
@@ -16,7 +16,7 @@ $sql_details = array(
 // 	'pass' => 'ControlD@s2023.',
 // 	'port' => '3306'
 // );
-//
+
 
 //REMOTO
 // $sql_details = array(
@@ -73,7 +73,7 @@ define('SYNCSERVERURL', '');
 	 *
 	 * This is usefull when you will host the app inside a subdirectory of root
 	 */
-	define('SUBDIRECTORY', 'das');
+define('SUBDIRECTORY', 'das');
 	// define('SUBDIRECTORY', '');
 
 
@@ -95,7 +95,7 @@ define('FILEMANAGERPATH', ROOT . '/storage/products/');
 	 * If you use FTP for filemanger then just left it as blank
 	 * Example: http://modernpos/storage directory
 	 */
-	define('FILEMANAGERURL', 'http://localhost/das/storage/products');
+define('FILEMANAGERURL', 'http://localhost/das/storage/products');
 	// define('FILEMANAGERURL', 'http://localhost/storage/products');
 
 

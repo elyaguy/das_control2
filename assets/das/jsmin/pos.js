@@ -11100,7 +11100,7 @@ window.angularApp.factory("CollegeEditModal", ["API_URL", "window", "jQuery", "$
                     $uibModalInstance.dismiss("cancel");
                 };
 
-           
+
                 var page = 1;
                 $scope.products;
                 $scope.showProductList = function (url) {
@@ -12970,7 +12970,15 @@ window.angularApp.factory("PaymentFormModal", ["API_URL", "window", "jQuery", "$
                             if (window.store.sound_effect == 1) {
                                 window.storeApp.playSound("modify.mp3");
                             }
-                            if (window.store.auto_print == 1 && window.store.remote_printing == 1) {
+                            // if (window.store.auto_print == 1 && window.store.remote_printing == 1) {
+                            //     PrintReceiptModal($scope);
+                            // }
+                            // else {
+                            //     console.log('ok print test pos');
+                            //     PrintReceiptModal($scope);
+                            // }
+                            if (window.store.auto_print == 1) {
+                                console.log('ok print test pos');
                                 PrintReceiptModal($scope);
                             }
 
@@ -12994,6 +13002,7 @@ window.angularApp.factory("PaymentFormModal", ["API_URL", "window", "jQuery", "$
                                     window.open(window.baseUrl + "/admin/view_invoice.php?invoice_id=" + $scope.invoiceId);
                                 } else if (window.settings.after_sell_page == 'receipt_in_popup') {
                                     InvoiceViewModal({ 'invoice_id': $scope.invoiceId });
+
                                 } else if (window.settings.after_sell_page == 'toastr_msg') {
                                     window.toastr.success("ID: " + $scope.invoiceId, "ÉXITO!");
                                 } else if (window.settings.after_sell_page == 'sweet_alert_msg') {

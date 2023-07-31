@@ -399,6 +399,8 @@ $permissions = array(
     'update_supplier'  => trans('update_supplier'),
     'delete_supplier'  => trans('delete_supplier'),
     'read_supplier_profile'  => trans('read_supplier_profile'),
+    // 'read_supplier_transaction'  => trans('read_supplier_transaction'),
+    
   ),
   trans('brand') => array(
     'read_brand'  => trans('read_brand'),

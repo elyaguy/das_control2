@@ -150,22 +150,22 @@ include ("left_sidebar.php") ;
             <div class="table-responsive"> 
               <?php
               $hide_colums = "4,5,6,";
-              // $hide_colums = "";
+              //  $hide_colums = "";
               if (user_group_id() != 1) {
                 if (! has_permission('access', 'purchase_payment')) {
-                  $hide_colums .= "8,";
-                }
-                if (! has_permission('access', 'purchase_return')) {
                   $hide_colums .= "9,";
                 }
-                if (! has_permission('access', 'read_purchase_list')) {
-                  $hide_colums .= "1101,";
+                if (! has_permission('access', 'purchase_return')) {
+                  $hide_colums .= "10,";
                 }
-                if (! has_permission('access', 'update_purchase_invoice_info')) {
+                if (! has_permission('access', 'read_purchase_list')) {
                   $hide_colums .= "11,";
                 }
-                if (! has_permission('access', 'delete_purchase_invoice')) {
+                if (! has_permission('access', 'update_purchase_invoice_info')) {
                   $hide_colums .= "12,";
+                }
+                if (! has_permission('access', 'delete_purchase_invoice')) {
+                  $hide_colums .= "13,";
                 }
               }
               ?>  

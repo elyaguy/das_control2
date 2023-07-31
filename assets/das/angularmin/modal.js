@@ -7111,7 +7111,14 @@ window.angularApp.factory("PaymentFormModal", ["API_URL", "window", "jQuery", "$
                             if (window.store.sound_effect == 1) {
                                 window.storeApp.playSound("modify.mp3");
                             }
-                            if (window.store.auto_print == 1 && window.store.remote_printing == 1) {
+                            // if (window.store.auto_print == 1 && window.store.remote_printing == 1) {
+                            //     PrintReceiptModal($scope);
+                            // }else {
+                            //     console.log('ok print test modal');
+                            //     PrintReceiptModal($scope);
+                            // }
+                            if (window.store.auto_print == 1) {
+                                console.log('ok print test modal');
                                 PrintReceiptModal($scope);
                             }
 

@@ -29,7 +29,7 @@ class Escpos
     public function __construct() {}
 
     function load($printer) {
-        dd($printer);
+        // dd($printer);
         $this->char_per_line = $printer->char_per_line;
         if ($printer->type == 'network') {
             try {

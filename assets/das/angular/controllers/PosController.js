@@ -1069,7 +1069,7 @@ window.angularApp.controller("PosController", [
                     'logo': '',
                     'text': $scope.orderData
                 };
-                $.get(window.baseUrl + '_inc/print.php', { data: JSON.stringify(socket_data) });
+                $.get(window.baseUrl + '/_inc/print.php', { data: JSON.stringify(socket_data) });
             });
             return false;
         };
