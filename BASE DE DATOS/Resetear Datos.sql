@@ -34,7 +34,17 @@ SELECT * FROM suppliers b;
 SELECT * FROM users b;
 SELECT * FROM user_to_store b;
 SELECT * FROM settings s;
+SELECT * FROM transfer_items t;
+SELECT * FROM transfers t;
+SELECT * FROM installment_payments t;
+SELECT * FROM loan_payments t;
+SELECT * FROM payments t;
+SELECT * FROM purchase_payments t;
+SELECT * FROM transfers t;
 
+
+TRUNCATE TABLE transfer_items;
+TRUNCATE TABLE transfers;
 
 TRUNCATE TABLE colleges;
 TRUNCATE TABLE login_logs;
@@ -83,3 +93,19 @@ ALTER TABLE stores AUTO_INCREMENT = 1;
 
 
 SELECT * FROM language_translations l WHERE l.lang_key='label_usermane';
+
+
+
+TRUNCATE TABLE purchase_info ;
+TRUNCATE TABLE purchase_item ;
+TRUNCATE TABLE purchase_logs ;
+TRUNCATE TABLE purchase_payments ;
+TRUNCATE TABLE purchase_price ;
+TRUNCATE TABLE sell_logs ;
+TRUNCATE TABLE selling_info ;
+TRUNCATE TABLE selling_item ;
+TRUNCATE TABLE selling_price ;
+TRUNCATE TABLE payments ;
+TRUNCATE TABLE bank_transaction_info ;
+TRUNCATE TABLE bank_transaction_price ;
+UPDATE product_to_store pts SET pts.quantity_in_stock = 0;
