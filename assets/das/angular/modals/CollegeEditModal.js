@@ -101,8 +101,9 @@ window.angularApp.factory("CollegeEditModal", ["API_URL", "window", "jQuery", "$
                     $uibModalInstance.dismiss("cancel");
                 };
 
-         
+
                 var page = 1;
+                var p_del;
                 $scope.products;
                 $scope.showProductList = function (url) {
                     $http({
@@ -231,7 +232,11 @@ window.angularApp.factory("CollegeEditModal", ["API_URL", "window", "jQuery", "$
                     });
                 });
                 // Remove Product     
-
+                // Remove Product     
+                $(document).delegate(".remove", "click", function () {
+                    p_del = $(this).data("id");
+                    $("#" + p_del).remove();
+                });
             },
             scope: $scope,
             size: "md",

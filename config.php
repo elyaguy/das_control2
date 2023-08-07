@@ -3,7 +3,7 @@ define('INSTALLED', true);
 
 $sql_details = array(
 	'host' => 'localhost',
-	'db' => 'das2',
+	'db' => 'das_control',
 	'user' => 'root',
 	'pass' => '',
 	'port' => '3306'

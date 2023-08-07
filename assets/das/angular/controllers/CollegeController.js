@@ -29,7 +29,7 @@ window.angularApp.controller("CollegeController", [
         // var dt2 = $("#product-college-list");
         var supId;
         var i;
-
+        var p_del;
         var quantity = 0;
 
 
@@ -357,6 +357,12 @@ window.angularApp.controller("CollegeController", [
                     $(this).autocomplete("search");
                 }
             });
+        });
+
+        // Remove Product     
+        $(document).delegate(".remove", "click", function () {
+            var _p_id = $(this).data("p_id");
+            $("#" + _p_id).remove();
         });
 
         // var page = 1;
