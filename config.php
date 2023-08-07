@@ -1,21 +1,21 @@
 <?php
 define('INSTALLED', true);
 
-$sql_details = array(
-	'host' => 'localhost',
-	'db' => 'das_control',
-	'user' => 'root',
-	'pass' => '',
-	'port' => '3306'
-);
-
 // $sql_details = array(
 // 	'host' => 'localhost',
-// 	'db' => 'u872772425_das_control',
-// 	'user' => 'u872772425_root',
-// 	'pass' => 'ControlD@s2023.',
+// 	'db' => 'das_control',
+// 	'user' => 'root',
+// 	'pass' => '',
 // 	'port' => '3306'
 // );
+
+$sql_details = array(
+	'host' => 'localhost',
+	'db' => 'u872772425_das_control',
+	'user' => 'u872772425_root',
+	'pass' => 'ControlD@s2023.',
+	'port' => '3306'
+);
 
 
 //REMOTO
