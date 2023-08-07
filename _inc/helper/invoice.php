@@ -471,7 +471,8 @@ function get_postemplate_data($invoice_id)
     $taxes = $invoice_model->getInvoiceItemTaxes($invoice_id);
 
     $customer_name = get_the_customer($invoice_info['customer_id'],'customer_name');
-    if ($invoice_info['customer_mobile']) {
+    $customer_document = get_the_customer($invoice_info['customer_id'],'customer_document');
+     if ($invoice_info['customer_mobile']) {
       $customer_contact = $invoice_info['customer_mobile'];
     } else  {
       $customer_contact = $invoice_info['mobile_number'] ? $invoice_info['mobile_number'] : $invoice_info['customer_email'];
@@ -501,6 +502,7 @@ function get_postemplate_data($invoice_id)
       'time' => date('H:i:s', strtotime($invoice_info['created_at'])),
       'date_time' => format_date($invoice_info['created_at']),
       'customer_name' => $customer_name,
+      'customer_document' => $customer_document,
       'customer_address' => '',
       'customer_phone' => $invoice_info['customer_mobile'] ? $invoice_info['customer_mobile'] : $invoice_info['mobile_number'],
       'customer_email' => $invoice_info['customer_email'],
