@@ -145,19 +145,19 @@ include ("left_sidebar.php");
 				            $hide_colums = "";
 				            if (user_group_id() != 1) {
 				            	if (! has_permission('access', 'sell_payment')) {
-				                $hide_colums .= "4,";
-				              }
-				              if (! has_permission('access', 'create_sell_return')) {
 				                $hide_colums .= "5,";
 				              }
-				               if (! has_permission('access', 'read_sell_invoice')) {
+				              if (! has_permission('access', 'create_sell_return')) {
 				                $hide_colums .= "6,";
 				              }
-				              if (! has_permission('access', 'update_sell_invoice_info')) {
+				               if (! has_permission('access', 'read_sell_invoice')) {
 				                $hide_colums .= "7,";
 				              }
-				              if (! has_permission('access', 'delete_sell_invoice')) {
+				              if (! has_permission('access', 'update_sell_invoice_info')) {
 				                $hide_colums .= "8,";
+				              }
+				              if (! has_permission('access', 'delete_sell_invoice')) {
+				                $hide_colums .= "9,";
 				              }
 				            }
 				          ?>  
@@ -178,6 +178,9 @@ include ("left_sidebar.php");
 							        	<?php echo trans('label_status'); ?>
 							        </th>
 							        <th class="w-7">
+							        	<?php echo trans('label_SRI'); ?>
+							        </th>
+									<th class="w-7">
 							        	<?php echo trans('label_pay'); ?>
 							        </th>
 							        <th class="w-7">
@@ -209,6 +212,9 @@ include ("left_sidebar.php");
 							        	<?php echo trans('label_status'); ?>
 							        </th>
 							        <th class="w-7">
+							        	<?php echo trans('label_SRI'); ?>
+							        </th>
+									<th class="w-7">
 							        	<?php echo trans('label_pay'); ?>
 							        </th>
 							        <th class="w-7">

@@ -260,6 +260,34 @@ if($request->server['REQUEST_METHOD'] == 'POST' && $request->post['action_type']
   }
 }
 
+// Update invoice info SRI
+if($request->server['REQUEST_METHOD'] == 'POST' && $request->post['action_type'] == 'CHECK_SRI')
+{
+    try {              
+
+        $invoice_id = $request->post['invoice_id'];       
+        $Hooks->do_action('Before_Update_Invoice_Info_SRI', $invoice_id);       
+
+        $statement = db()->prepare("UPDATE `selling_info` SET `checkout_sri` = !`checkout_sri` WHERE `store_id` = ? AND `invoice_id` = ? LIMIT 1");
+        $statement->execute(array($store_id, $invoice_id));        
+
+        $Hooks->do_action('After_Update_Invoice_Info_SRI', $invoice_id);
+
+        // header('Content-Type: application/json');
+        // echo json_encode(array('msg' => trans('text_sell_update_success'), 'invoice_id' => $invoice_id, 'id' => $invoice_info['info_id']));
+        header('Content-Type: application/json');
+        echo json_encode(array('msg' => trans('text_sell_update_success')));
+        exit();
+
+    } catch(Exception $e) { 
+
+        header('HTTP/1.1 422 Unprocessable Entity');
+        header('Content-Type: application/json; charset=UTF-8');
+        echo json_encode(array('errorMsg' => $e->getMessage()));
+        exit();
+  }
+}
+
 // Invoice Info Edit Form
 if (isset($request->get['action_type']) AND $request->get['action_type'] == 'INVOICEINFOEDIT') 
 {
@@ -518,6 +546,7 @@ $columns = array(
         }
     ),
     array( 'db' => 'payment_status', 'dt' => 'payment_status' ),
+    array( 'db' => 'checkout_sri', 'dt' => 'checkout_sri' ),
     array( 'db' => 'is_installment', 'dt' => 'is_installment' ),
     array(
         'db' => 'invoice_id',
@@ -527,6 +556,22 @@ $columns = array(
                 return '<span class="label label-danger">'.trans('text_unpaid').'</span>';
             } else {
                 return '<span class="label label-success">'.trans('text_paid').'</span>';
+            }
+        }
+    ),
+    array(
+        'db' => 'invoice_id',
+        'dt' => 'btn_sri',
+        'formatter' => function($d, $row)  {
+            if ($row['checkout_sri']) {
+                return '<span id="sri_now_uncheck" class="label label-success">'.trans('text_ok').'</span>
+                <span id="sri_now"  class="pull-right"><a href="#activate" class="status" data-toggle="modal"><i class="fa fa-times-circle"></i></a></span>'
+                ;
+            } else {
+                return '<span class="label label-danger">'.trans('text_unpaid').'</span>
+                <span id="sri_now" class="pull-right"><a href="#activate" class="status" data-toggle="modal"><i class="fa fa-check-square-o"></i></a></span>';
+                // return '<button id="sri_now" class="btn btn-sm btn-block btn-warning" title="'.trans('text_unpaid').'" data-loading-text="..."><i class="fa fa-check-square-o"></i></button>';
+
             }
         }
     ),

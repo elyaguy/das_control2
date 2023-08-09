@@ -120,12 +120,19 @@ window.angularApp.controller("InvoiceController", [
                         $(td).attr('data-title', $("#invoice-invoice-list thead tr th:eq(8)").html());
                     }
                 },
+                {
+                    "targets": [9],
+                    'createdCell': function (td, cellData, rowData, row, col) {
+                        $(td).attr('data-title', $("#invoice-invoice-list thead tr th:eq(9)").html());
+                    }
+                },
             ],
             "aoColumns": [
                 { data: "invoice_id" },
                 { data: "created_at" },
                 { data: "customer_name" },
                 { data: "status" },
+                { data: "btn_sri" },
                 { data: "btn_pay" },
                 { data: "btn_return" },
                 { data: "btn_view" },
@@ -143,7 +150,8 @@ window.angularApp.controller("InvoiceController", [
                             i : 0;
                 };
             },
-            "pageLength": window.settings.datatable_item_limit,
+            // "pageLength": window.settings.datatable_item_limit,
+            "pageLength": -1,
             "buttons": [
                 {
                     extend: "print", footer: 'true',
@@ -341,6 +349,36 @@ window.angularApp.controller("InvoiceController", [
                         $tag.button("reset");
                     }, 300);
                 });
+        });
+
+        // SRI
+        $(document).delegate("#sri_now", "click", function (e) {
+            e.stopPropagation();
+            e.preventDefault();
+            var d = dt.DataTable().row($(this).closest("tr")).data();
+            var $tag = $(this);
+            var $btn = $tag.button("loading");
+            console.log(d.invoice_id)
+            $http({
+                method: "POST",
+                url: API_URL + "/_inc/invoice.php",
+                data: "invoice_id=" + d.id + "&action_type=CHECK_SRI",
+                dataType: "JSON"
+            })
+                .then(function (response) {
+                    dt.DataTable().ajax.reload(null, false);
+                    // window.swal("ÉXITO!", response.data.msg, "success");
+                    setTimeout(function () {
+                        $tag.button("reset");
+                    }, 300);
+                }, function (response) {
+                    // window.swal("Ups!", response.data.errorMsg, "error");
+                    setTimeout(function () {
+                        $tag.button("reset");
+                    }, 300);
+                });
+
+       
         });
 
         // Return From

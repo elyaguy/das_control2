@@ -106,16 +106,61 @@ window.angularApp.controller("ReportSellItemWiseController", [
                         $(td).attr('data-title', $("#report-report-list thead tr th:eq(7)").html());
                     }
                 },
+                {
+                    "targets": [8],
+                    'createdCell': function (td, cellData, rowData, row, col) {
+                        $(td).attr('data-title', $("#report-report-list thead tr th:eq(8)").html());
+                    }
+                },
+                {
+                    "targets": [9],
+                    'createdCell': function (td, cellData, rowData, row, col) {
+                        $(td).attr('data-title', $("#report-report-list thead tr th:eq(9)").html());
+                    }
+                },
+                {
+                    "targets": [10],
+                    'createdCell': function (td, cellData, rowData, row, col) {
+                        $(td).attr('data-title', $("#report-report-list thead tr th:eq(10)").html());
+                    }
+                },
             ],
             "aoColumns": [
                 { data: "sl" },//0
                 { data: "selling_date" },//1
+                { data: "college_name" },//6
                 { data: "item_name" },//2
                 { data: "course_name" },//6
                 { data: "estimated_sales" },//6
                 { data: "total_item" },//3
-                { data: "purchase_price" },//4
-                { data: "sell_price" },//5
+                {
+                    data: "purchase_price", render: function (data, type, row) {
+                        return type === 'export' ?
+                            data.replace(/[$,]/g, '') :
+                            data;
+                    }
+                },//4
+                {
+                    data: "sell_price", render: function (data, type, row) {
+                        return type === 'export' ?
+                            data.replace(/[$,]/g, '') :
+                            data;
+                    }
+                },//5
+                {
+                    data: "purchase_price_total", render: function (data, type, row) {
+                        return type === 'export' ?
+                            data.replace(/[$,]/g, '') :
+                            data;
+                    }
+                },//4
+                {
+                    data: "sell_price_total", render: function (data, type, row) {
+                        return type === 'export' ?
+                            data.replace(/[$,]/g, '') :
+                            data;
+                    }
+                },//5
             ],
             "footerCallback": function (row, data, start, end, display) {
                 var pageTotal;
@@ -130,18 +175,6 @@ window.angularApp.controller("ReportSellItemWiseController", [
 
                 // Total over all pages at column 3
                 pageTotal = api
-                    .column(5, { page: "current" })
-                    .data()
-                    .reduce(function (a, b) {
-                        return intVal(a) + intVal(b);
-                    }, 0);
-                // Update footer
-                $(api.column(5).footer()).html(
-                    window.formatDecimal(pageTotal, 2)
-                );
-
-                // Total over all pages at column 4
-                pageTotal = api
                     .column(6, { page: "current" })
                     .data()
                     .reduce(function (a, b) {
@@ -152,19 +185,32 @@ window.angularApp.controller("ReportSellItemWiseController", [
                     window.formatDecimal(pageTotal, 2)
                 );
 
-                // Total over all pages at column 5
+                // Total over all pages at column 4
                 pageTotal = api
-                    .column(7, { page: "current" })
+                    .column(8, { page: "current" })
                     .data()
                     .reduce(function (a, b) {
                         return intVal(a) + intVal(b);
                     }, 0);
                 // Update footer
-                $(api.column(7).footer()).html(
+                $(api.column(8).footer()).html(
+                    window.formatDecimal(pageTotal, 2)
+                );
+
+                // Total over all pages at column 5
+                pageTotal = api
+                    .column(10, { page: "current" })
+                    .data()
+                    .reduce(function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0);
+                // Update footer
+                $(api.column(10).footer()).html(
                     window.formatDecimal(pageTotal, 2)
                 );
             },
-            "pageLength": window.settings.datatable_item_limit,
+            // "pageLength": window.settings.datatable_item_limit,
+            "pageLength": -1,
             "buttons": [
                 {
                     extend: "print", footer: 'true',
@@ -207,7 +253,8 @@ window.angularApp.controller("ReportSellItemWiseController", [
                     titleAttr: "Excel",
                     title: window.store.name + " > Sell's Report (item wise)-" + from + " to " + to,
                     exportOptions: {
-                        columns: [printColumns]
+                        columns: [printColumns],
+                        orthogonal: 'export'
                     }
                 },
                 {

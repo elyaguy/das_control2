@@ -156,7 +156,7 @@ include("left_sidebar.php");
                       <?php echo trans('label_sup_name'); ?>
                     </th>
                     <th class="w-15">
-                      <?php echo trans('label_quantity'); ?>
+                      <?php echo trans('label_sales'); ?>
                     </th>
                     <th class="w-20">
                       <?php echo trans('label_purchase_price'); ?>
@@ -178,7 +178,7 @@ include("left_sidebar.php");
                       <?php echo trans('label_sup_name'); ?>
                     </th>
                     <th class="w-15">
-                      <?php echo trans('label_quantity'); ?>
+                      <?php echo trans('label_sales'); ?>
                     </th>
                     <th class="w-20">
                       <?php echo trans('label_purchase_price'); ?>

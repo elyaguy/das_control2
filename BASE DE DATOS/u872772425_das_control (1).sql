@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Aug 06, 2023 at 11:21 PM
+-- Generation Time: Aug 08, 2023 at 07:54 PM
 -- Server version: 10.5.19-MariaDB-cll-lve
 -- PHP Version: 7.2.34
 
@@ -50,7 +50,7 @@ CREATE TABLE `bank_accounts` (
 --
 
 INSERT INTO `bank_accounts` (`id`, `account_name`, `account_details`, `initial_balance`, `account_no`, `contact_person`, `phone_number`, `opening_date`, `url`, `total_deposit`, `total_withdraw`, `total_transfer_from_other`, `total_transfer_to_other`, `created_at`, `updated_at`) VALUES
-(1, 'Default Account', 'This is a default account for any store', '0.0000', '1234567890', 'iAngryboy', '+880133333333', '2019-05-15 08:27:03', 'https://controldas.com', '30797.7000', '0.0000', '0.0000', '0.0000', '2019-01-16 13:23:03', '2019-07-02 11:56:57');
+(1, 'Default Account', 'This is a default account for any store', '0.0000', '1234567890', 'iAngryboy', '+880133333333', '2019-05-15 08:27:03', 'https://controldas.com', '31945.7000', '0.0000', '0.0000', '0.0000', '2019-01-16 13:23:03', '2019-07-02 11:56:57');
 
 -- --------------------------------------------------------
 
@@ -76,7 +76,7 @@ CREATE TABLE `bank_account_to_store` (
 
 INSERT INTO `bank_account_to_store` (`ba2s`, `store_id`, `account_id`, `deposit`, `withdraw`, `transfer_from_other`, `transfer_to_other`, `status`, `sort_order`) VALUES
 (1, 1, 1, '0.0000', '0.0000', '0.0000', '0.0000', 1, 0),
-(2, 2, 1, '7032.1000', '23765.6000', '0.0000', '0.0000', 1, 0),
+(2, 2, 1, '8180.1000', '23765.6000', '0.0000', '0.0000', 1, 0),
 (4, 3, 1, '0.0000', '0.0000', '0.0000', '0.0000', 1, 0);
 
 -- --------------------------------------------------------
@@ -247,7 +247,14 @@ INSERT INTO `bank_transaction_info` (`info_id`, `store_id`, `transaction_type`, 
 (134, 2, 'withdraw', 1, 0, 1, 1, 10, 'W134', '22023/00000025', 'Debit while deleting sell invoice', 'Customer name: HUGO MUÑOZ', NULL, 1, 'NULL', 2, '2023-08-05 13:29:29', NULL),
 (135, 2, 'deposit', 0, 0, 1, 1, NULL, 'D135', '22023/00000025', 'Deposit for selling', 'Customer name: HUGO MUÑOZ', NULL, 1, 'NULL', 6, '2023-08-05 14:12:07', NULL),
 (136, 2, 'withdraw', 0, 0, 1, NULL, 9, 'W136', 'CLOGROS HISTORIA 2', 'Debit for Product Purchase', 'Supplier name: EDITORIALES HOLGUIN', NULL, 1, 'NULL', 6, '2023-08-05 14:19:17', NULL),
-(137, 2, 'deposit', 0, 0, 1, 1, NULL, 'D137', '22023/00000026', 'Deposit for selling', 'Customer name: MANUEL PANCHE ', NULL, 1, 'NULL', 6, '2023-08-05 14:24:32', NULL);
+(137, 2, 'deposit', 0, 0, 1, 1, NULL, 'D137', '22023/00000026', 'Deposit for selling', 'Customer name: MANUEL PANCHE ', NULL, 1, 'NULL', 6, '2023-08-05 14:24:32', NULL),
+(138, 2, 'deposit', 0, 0, 1, 1, NULL, 'D138', '22023/00000027', 'Deposit for selling', 'Customer name: CARMEN VALENCIA', NULL, 1, 'NULL', 6, '2023-08-07 12:26:37', NULL),
+(139, 2, 'deposit', 0, 0, 1, 1, NULL, 'D139', '22023/00000028', 'Deposit for selling', 'Customer name: HECTOR ALEJANDO MORALES PERES', NULL, 1, 'NULL', 6, '2023-08-07 14:45:35', NULL),
+(140, 2, 'deposit', 0, 0, 1, 1, NULL, 'D140', '22023/00000029', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 6, '2023-08-07 15:41:35', NULL),
+(141, 2, 'deposit', 0, 0, 1, 1, NULL, 'D141', '22023/00000030', 'Deposit for selling', 'Customer name: ESTEFANIA QUERIDO', NULL, 1, 'NULL', 6, '2023-08-08 10:23:06', NULL),
+(142, 2, 'deposit', 0, 0, 1, 1, NULL, 'D142', '22023/00000031', 'Deposit for selling', 'Customer name: DIEGO MOLINA ', NULL, 1, 'NULL', 6, '2023-08-08 10:47:23', NULL),
+(143, 2, 'deposit', 0, 0, 1, 1, NULL, 'D143', '22023/00000032', 'Deposit for selling', 'Customer name: KARINA LAVERDE', NULL, 1, 'NULL', 6, '2023-08-08 11:47:40', NULL),
+(144, 2, 'deposit', 0, 0, 1, 1, NULL, 'D144', '22023/00000033', 'Deposit for selling', 'Customer name: CARMEN BROUWN', NULL, 1, 'NULL', 6, '2023-08-08 12:39:49', NULL);
 
 -- --------------------------------------------------------
 
@@ -404,7 +411,14 @@ INSERT INTO `bank_transaction_price` (`price_id`, `store_id`, `info_id`, `ref_no
 (134, 2, 134, 'W134', '192.0000'),
 (135, 2, 135, 'D135', '180.0000'),
 (136, 2, 136, 'W136', '302.4000'),
-(137, 2, 137, 'D137', '180.0000');
+(137, 2, 137, 'D137', '180.0000'),
+(138, 2, 138, 'D138', '85.0000'),
+(139, 2, 139, 'D139', '164.0000'),
+(140, 2, 140, 'D140', '164.0000'),
+(141, 2, 141, 'D141', '164.0000'),
+(142, 2, 142, 'D142', '164.0000'),
+(143, 2, 143, 'D143', '322.0000'),
+(144, 2, 144, 'D144', '85.0000');
 
 -- --------------------------------------------------------
 
@@ -625,7 +639,13 @@ INSERT INTO `customers` (`customer_id`, `customer_document`, `customer_name`, `c
 (22, '0503387946', 'MARIA DE LOS ANGELES MAZAPANTA RIVADENEIRA', 'psico.ange.mr@gmail.com', '0998533552', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-04 15:09:42', NULL),
 (23, '0503328072001', 'FERNANDO LARA', 'fernandolaracrespo@hotmail.com', '', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-05 12:01:18', NULL),
 (24, '0502067028', 'HUGO MUÑOZ', 'verito261987@hotmail.com', '0997367992', 'LASSO ', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-05 12:11:51', NULL),
-(25, '0502059785', 'MANUEL PANCHE ', 'panchiman22@gmail.com', '0981937194', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-05 14:24:12', NULL);
+(25, '0502059785', 'MANUEL PANCHE ', 'panchiman22@gmail.com', '0981937194', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-05 14:24:12', NULL),
+(26, '0500559158', 'CARMEN VALENCIA', 'carcumvp@yahoo.es', '0996646083', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-07 12:25:56', NULL),
+(27, '0502256191', 'HECTOR ALEJANDO MORALES PERES', 'anafran410@gmail.com', '', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-07 14:45:19', NULL),
+(28, '0504348723', 'ESTEFANIA QUERIDO', 'ceciquerido@gmail.com', '0984612677', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-08 10:22:19', NULL),
+(29, '0502671860001', 'DIEGO MOLINA ', 'diegfml_2006@hotmail.com', '0999661606', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-08 10:46:17', NULL),
+(30, '0503154122', 'KARINA LAVERDE', 'immaginemoda@hotmail.com', '0997871520', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-08 11:46:30', NULL),
+(31, '1759915232', 'CARMEN BROUWN', 'care_brownm@hotmail.com', '0963115284', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-08 12:38:52', NULL);
 
 -- --------------------------------------------------------
 
@@ -674,7 +694,13 @@ INSERT INTO `customer_to_store` (`c2s_id`, `customer_id`, `store_id`, `balance`,
 (24, 23, 2, '0.0000', '0.0000', 1, 0),
 (25, 24, 2, '0.0000', '0.0000', 1, 0),
 (26, 25, 2, '0.0000', '0.0000', 1, 0),
-(27, 1, 3, '0.0000', '0.0000', 1, 0);
+(27, 1, 3, '0.0000', '0.0000', 1, 0),
+(28, 26, 2, '0.0000', '0.0000', 1, 0),
+(29, 27, 2, '0.0000', '0.0000', 1, 0),
+(30, 28, 2, '0.0000', '0.0000', 1, 0),
+(31, 29, 2, '0.0000', '0.0000', 1, 0),
+(32, 30, 2, '0.0000', '0.0000', 1, 0),
+(33, 31, 2, '0.0000', '0.0000', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -4449,7 +4475,22 @@ INSERT INTO `login_logs` (`id`, `user_id`, `username`, `ip`, `status`, `created_
 (133, 2, 'admin@controldas.com', '2800:bf0:a821:1122:1c0:dabe:8e3c:a474', 'success', '2023-08-05 19:18:52'),
 (134, 2, 'DAVID POLO', '2800:bf0:a821:1122:c19a:4347:44c9:df', 'success', '2023-08-05 19:28:18'),
 (135, 1, '0969237302', '2800:bf0:82d2:1038:55e3:7999:ae0f:b837', 'success', '2023-08-05 19:37:28'),
-(136, 2, 'admin@controldas.com', '45.224.98.149', 'success', '2023-08-06 23:20:26');
+(136, 2, 'admin@controldas.com', '45.224.98.149', 'success', '2023-08-06 23:20:26'),
+(137, 1, '0969237302', '45.224.98.149', 'success', '2023-08-07 00:12:14'),
+(138, 1, '0969237302', '45.224.98.149', 'success', '2023-08-07 01:02:46'),
+(139, 5, 'HERNAN', '181.188.200.92', 'success', '2023-08-07 15:28:13'),
+(140, 2, 'admin@controldas.com', '2800:bf0:a821:1122:cdfd:ce4d:4ed0:c98e', 'success', '2023-08-07 17:12:22'),
+(141, 2, 'admin@controldas.com', '2800:bf0:a821:1122:cdfd:ce4d:4ed0:c98e', 'success', '2023-08-07 17:17:19'),
+(142, 1, '0969237302', '200.115.36.38', 'success', '2023-08-07 20:25:40'),
+(143, 6, 'MAURICIO', '190.99.77.62', 'success', '2023-08-07 20:31:16'),
+(144, 6, 'MAURICIO', '190.99.77.62', 'success', '2023-08-07 20:38:10'),
+(145, 6, 'MAURICIO', '190.99.77.62', 'success', '2023-08-07 20:40:46'),
+(146, 5, 'HERNAN', '2800:bf0:2902:108e:809b:3c28:a283:21b6', 'success', '2023-08-08 02:45:11'),
+(147, 2, 'DAVID POLO', '181.199.42.39', 'success', '2023-08-08 14:52:28'),
+(150, 2, 'DAVID POLO', '181.199.42.39', 'success', '2023-08-08 14:55:56'),
+(151, 9, 'UEI COTOPAXI', '181.199.42.39', 'success', '2023-08-08 14:59:57'),
+(152, 2, 'DAVID POLO', '181.199.42.39', 'success', '2023-08-08 15:14:58'),
+(153, 6, 'MAURICIO', '190.99.77.62', 'success', '2023-08-08 15:21:15');
 
 -- --------------------------------------------------------
 
@@ -4541,7 +4582,14 @@ INSERT INTO `payments` (`id`, `type`, `is_profit`, `is_hide`, `store_id`, `invoi
 (23, 'sell', 1, 0, 2, '22023/00000023', NULL, 1, NULL, '76.7000', '164.0000', 'a:0:{}', NULL, '', '170.0000', '6.0000', 6, '2023-08-05 12:01:57'),
 (24, 'sell', 1, 0, 2, '22023/00000024', NULL, 1, NULL, '76.7000', '164.0000', 'a:0:{}', NULL, '', '164.0000', '0.0000', 6, '2023-08-05 12:30:13'),
 (26, 'sell', 1, 0, 2, '22023/00000025', NULL, 1, NULL, '72.4000', '180.0000', 'a:0:{}', NULL, '', '180.0000', '0.0000', 6, '2023-08-05 14:12:07'),
-(27, 'sell', 1, 0, 2, '22023/00000026', NULL, 1, NULL, '72.4000', '180.0000', 'a:0:{}', NULL, '', '180.0000', '0.0000', 6, '2023-08-05 14:24:32');
+(27, 'sell', 1, 0, 2, '22023/00000026', NULL, 1, NULL, '72.4000', '180.0000', 'a:0:{}', NULL, '', '180.0000', '0.0000', 6, '2023-08-05 14:24:32'),
+(28, 'sell', 1, 0, 2, '22023/00000027', NULL, 1, NULL, '41.0000', '85.0000', 'a:0:{}', NULL, '', '100.0000', '15.0000', 6, '2023-08-07 12:26:37'),
+(29, 'sell', 1, 0, 2, '22023/00000028', NULL, 1, NULL, '76.7000', '164.0000', 'a:0:{}', NULL, '', '170.0000', '6.0000', 6, '2023-08-07 14:45:35'),
+(30, 'sell', 1, 0, 2, '22023/00000029', NULL, 1, NULL, '76.7000', '164.0000', 'a:0:{}', NULL, '', '164.0000', '0.0000', 6, '2023-08-07 15:41:35'),
+(31, 'sell', 1, 0, 2, '22023/00000030', NULL, 1, NULL, '76.7000', '164.0000', 'a:0:{}', NULL, '', '164.0000', '0.0000', 6, '2023-08-08 10:23:06'),
+(32, 'sell', 1, 0, 2, '22023/00000031', NULL, 1, NULL, '76.7000', '164.0000', 'a:0:{}', NULL, 'TRANSFERENCIA', '164.0000', '0.0000', 6, '2023-08-08 10:47:23'),
+(33, 'sell', 1, 0, 2, '22023/00000032', NULL, 1, NULL, '132.8000', '322.0000', 'a:0:{}', NULL, 'transferencia 2 kit', '322.0000', '0.0000', 6, '2023-08-08 11:47:40'),
+(34, 'sell', 1, 0, 2, '22023/00000033', NULL, 1, NULL, '41.0000', '85.0000', 'a:0:{}', NULL, 'TRANSFERENCIA ', '85.0000', '0.0000', 6, '2023-08-08 12:39:49');
 
 -- --------------------------------------------------------
 
@@ -4614,7 +4662,7 @@ CREATE TABLE `pos_templates` (
 --
 
 INSERT INTO `pos_templates` (`template_id`, `template_name`, `template_content`, `template_css`, `created_at`, `updated_at`, `created_by`) VALUES
-(1, 'Default', '&lt;section class=&quot;receipt-template&quot;&gt;\n\n        &lt;header class=&quot;receipt-header&quot;&gt;\n            &lt;div class=&quot;logo-area&quot;&gt;\n                &lt;img class=&quot;logo&quot; src=&quot;{{ logo_url }}&quot;&gt;\n            &lt;/div&gt;\n            &lt;h2 class=&quot;store-name&quot;&gt;{{ store_name }}&lt;/h2&gt;\n            &lt;div class=&quot;address-area&quot;&gt;\n                &lt;span class=&quot;info address&quot;&gt;{{ store_address }}&lt;/span&gt;\n                &lt;div class=&quot;block&quot;&gt;\n                    &lt;span class=&quot;info phone&quot;&gt;Teléfono: {{ store_phone }}&lt;/span&gt;, &lt;span class=&quot;info email&quot;&gt;Correo: {{ store_email }}&lt;/span&gt;\n                &lt;/div&gt;\n            &lt;/div&gt;\n        &lt;/header&gt;\n        \n        &lt;section class=&quot;info-area&quot;&gt;\n            &lt;table&gt;\n                &lt;tr&gt;\n                    &lt;td class=&quot;w-30&quot;&gt;&lt;span&gt;Recibo No:&lt;/td&gt;\n                    &lt;td&gt;{{ invoice_id }}&lt;/td&gt;\n                &lt;/tr&gt;\n               &lt;!-- &lt;tr&gt;\n                    &lt;td class=&quot;w-30&quot;&gt;VAT-Reg:&lt;/td&gt;\n                    &lt;td&gt;{{ vat_reg }}&lt;/td&gt; \n                &lt;/tr&gt; --&gt;\n                &lt;tr&gt;\n                    &lt;td class=&quot;w-30&quot;&gt;&lt;span&gt;Fecha:&lt;/td&gt;\n                    &lt;td&gt;{{ date_time }}&lt;/td&gt;\n                &lt;/tr&gt;\n               &lt;!-- &lt;tr&gt;\n                    &lt;td class=&quot;w-30&quot;&gt;&lt;span&gt;GST Reg:&lt;/td&gt;\n                    &lt;td&gt;{{ gst_reg }}&lt;/td&gt;\n                &lt;/tr&gt; --&gt;\n                &lt;tr&gt;\n                    &lt;td class=&quot;w-30&quot;&gt;Cliente:&lt;/td&gt;\n                    &lt;td&gt;{{ customer_name }}&lt;/td&gt;\n                &lt;/tr&gt;\n                 &lt;tr&gt;\n                    &lt;td class=&quot;w-30&quot;&gt;Cédula / RUC:&lt;/td&gt;\n                    &lt;td&gt;{{ customer_document }}&lt;/td&gt;\n                &lt;/tr&gt;\n                &lt;tr&gt;\n                    &lt;td class=&quot;w-30&quot;&gt;Teléfono:&lt;/td&gt;\n                    &lt;td&gt;{{ customer_phone }}&lt;/td&gt;\n                &lt;/tr&gt;\n                &lt;!-- &lt;tr&gt;\n                    &lt;td class=&quot;w-30&quot;&gt;GTIN:&lt;/td&gt;\n                    &lt;td&gt;{{ gtin }}&lt;/td&gt;\n                &lt;/tr&gt; --&gt;\n            &lt;/table&gt;\n        &lt;/section&gt;\n        &lt;/br&gt;\n        \n       &lt;!-- &lt;h4 class=&quot;main-title&quot;&gt;INVOICE&lt;/h4&gt; --&gt;\n        \n        {{ if items }}\n        &lt;section class=&quot;listing-area item-list&quot;&gt;\n            &lt;table&gt;\n                &lt;thead&gt;\n                    &lt;tr&gt;\n                        &lt;td class=&quot;w-10 text-center&quot;&gt;Sl.&lt;/td&gt;\n                        &lt;td class=&quot;w-40 text-center&quot;&gt;Prod.&lt;/td&gt;\n                        &lt;td class=&quot;w-15 text-center&quot;&gt;Cant.&lt;/td&gt;\n                        &lt;td class=&quot;w-15 text-right&quot;&gt;PVP&lt;/td&gt;\n                        &lt;td class=&quot;w-20 text-right&quot;&gt;Total&lt;/td&gt;\n                    &lt;/tr&gt;\n                &lt;/thead&gt;\n                &lt;tbody&gt;\n                    {{ items }}\n                        &lt;tr&gt;\n                            &lt;td class=&quot;text-center&quot;&gt;{{ sl }}&lt;/td&gt;\n                            &lt;td&gt;{{ item_name }} \n                               &lt;!-- {{ if invoice_view == indian_gst }} \n                                    &lt;small&gt;[HSN-{{ hsn_code }}]&lt;/small&gt;\n                                {{ endif }} --&gt;\n                            &lt;/td&gt;\n                            &lt;td class=&quot;text-center&quot;&gt;{{ item_quantity }} &lt;!-- {{ unitName }} --&gt; &lt;/td&gt;\n                            &lt;td class=&quot;text-right&quot;&gt;{{ item_price }}&lt;/td&gt;\n                            &lt;td class=&quot;text-right&quot;&gt;{{ item_total }}&lt;/td&gt;   \n                        &lt;/tr&gt;\n                    {{ /items }}\n                &lt;/tbody&gt;\n            &lt;/table&gt;\n        &lt;/section&gt;\n        {{ endif }}\n        \n        &lt;section class=&quot;info-area calculation-area&quot;&gt;\n            &lt;table&gt;\n                &lt;tr&gt;\n                    &lt;td class=&quot;w-70&quot;&gt;SubTotal:&lt;/td&gt;\n                    &lt;td&gt;{{ subtotal }}&lt;/td&gt;\n                &lt;/tr&gt;\n                &lt;tr&gt;\n                    &lt;td class=&quot;w-70&quot;&gt;IVA:&lt;/td&gt;\n                    &lt;td&gt;{{ order_tax }}&lt;/td&gt;\n                &lt;/tr&gt;\n                &lt;tr&gt;\n                    &lt;td class=&quot;w-70&quot;&gt;Descuento:&lt;/td&gt;\n                    &lt;td&gt;{{ discount_amount }}&lt;/td&gt;\n                &lt;/tr&gt;\n                &lt;!-- &lt;tr&gt;\n                    &lt;td class=&quot;w-70&quot;&gt;Cargo Envío:&lt;/td&gt;\n                    &lt;td&gt;{{ shipping_amount }}&lt;/td&gt;\n                &lt;/tr&gt; --&gt;\n                &lt;!-- &lt;tr&gt;\n                    &lt;td class=&quot;w-70&quot;&gt;Otros Cargos:&lt;/td&gt;\n                    &lt;td&gt;{{ others_charge }}&lt;/td&gt;\n                &lt;/tr&gt; --&gt;\n                &lt;!-- &lt;tr&gt;\n                    &lt;td class=&quot;w-70&quot;&gt;Deuda Vencida:&lt;/td&gt;\n                    &lt;td&gt;{{ previous_due }}&lt;/td&gt;\n                &lt;/tr&gt; --&gt;\n                &lt;!-- &lt;tr&gt;\n                    &lt;td class=&quot;w-70&quot;&gt;Total Adeudado:&lt;/td&gt;\n                    &lt;td&gt;{{ payable_amount }}&lt;/td&gt;\n                &lt;/tr&gt; --&gt;\n                &lt;tr&gt;\n                    &lt;td class=&quot;w-70&quot;&gt;Total Pagado:&lt;/td&gt;\n                    &lt;td&gt;{{ paid_amount }}&lt;/td&gt;\n                &lt;/tr&gt;\n                &lt;tr&gt;\n                    &lt;td class=&quot;w-70&quot;&gt;Cambio:&lt;/td&gt;\n                    &lt;td&gt;{{ change }}&lt;/td&gt;\n                &lt;/tr&gt;\n                &lt;!-- &lt;tr&gt;\n                    &lt;td class=&quot;w-70&quot;&gt;Vencido:&lt;/td&gt;\n                    &lt;td&gt;{{ due }}&lt;/td&gt; --&gt;\n                &lt;/tr&gt;\n            &lt;/table&gt;\n        &lt;/section&gt;\n        \n        &lt;!-- &lt;section class=&quot;info-area italic&quot;&gt;\n            &lt;span class=&quot;text-small&quot;&gt;&lt;b&gt;In Text:&lt;/b&gt; {{ amount_in_text }}&lt;/span&gt;&lt;br&gt;\n            &lt;span class=&quot;text-small&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; {{ invoice_note }}&lt;/span&gt;\n        &lt;/section&gt; --&gt;\n\n       &lt;!-- {{ if return_items }}\n        &lt;section class=&quot;listing-area payment-list&quot;&gt;\n            &lt;div class=&quot;heading&quot;&gt;\n                &lt;h2 class=&quot;sub-title&quot;&gt;Returns&lt;/h2&gt;\n            &lt;/div&gt;\n            &lt;table&gt;\n                &lt;thead&gt;\n                    &lt;td class=&quot;w-5 text-center&quot;&gt;Sl.&lt;/td&gt;\n                    &lt;td class=&quot;w-25 text-center&quot;&gt;Returned at&lt;/td&gt;\n                    &lt;td class=&quot;w-30 text-center&quot;&gt;Item Name&lt;/td&gt;\n                    &lt;td class=&quot;w-20 text-right&quot;&gt;Qty&lt;/td&gt;\n                    &lt;td class=&quot;w-20 text-right&quot;&gt;Amt&lt;/td&gt;\n                &lt;/thead&gt;\n                &lt;tbody&gt;\n                    {{return_items}}\n                        &lt;tr&gt;\n                            &lt;td class=&quot;text-center&quot;&gt;{{ sl }}&lt;/td&gt;\n                            &lt;td class=&quot;text-center&quot;&gt;{{ created_at }}&lt;/td&gt;\n                            &lt;td class=&quot;text-center&quot;&gt;{{ item_name }}&lt;/td&gt;\n                            &lt;td class=&quot;text-right&quot;&gt;{{ item_quantity }}&lt;/td&gt;\n                            &lt;td class=&quot;text-right&quot;&gt;{{ item_total }}&lt;/td&gt; \n                        &lt;/tr&gt;\n                    {{/return_items}}\n                &lt;/tbody&gt;\n            &lt;/table&gt;\n        &lt;/section&gt;\n        {{ endif }} --&gt;\n        \n        {{ if payments }}\n        &lt;section class=&quot;listing-area payment-list&quot;&gt;\n            &lt;div class=&quot;heading&quot;&gt;\n                &lt;h2 class=&quot;sub-title&quot;&gt;Pagos&lt;/h2&gt;\n            &lt;/div&gt;\n            &lt;table&gt;\n                &lt;thead&gt;\n                    &lt;td class=&quot;w-10 text-center&quot;&gt;Sl.&lt;/td&gt;\n                    &lt;td class=&quot;w-50 text-center&quot;&gt;Método Pago&lt;/td&gt;\n                    &lt;td class=&quot;w-20 text-right&quot;&gt;Total&lt;/td&gt;\n                    &lt;td class=&quot;w-20 text-right&quot;&gt;Saldo&lt;/td&gt;\n                &lt;/thead&gt;\n                &lt;tbody&gt;\n                    {{ payments }}\n                        &lt;tr&gt;\n                            &lt;td class=&quot;text-center&quot;&gt;{{ sl }}&lt;/td&gt;\n                            &lt;td&gt;{{ name }} by {{ by }} on {{ created_at }}&lt;/td&gt;\n                            &lt;td class=&quot;text-right&quot;&gt;{{ amount }}&lt;/td&gt;\n                            &lt;td class=&quot;text-right&quot;&gt;{{ pos_balance }}&lt;/td&gt; \n                        &lt;/tr&gt;\n                    {{ /payments }}\n                &lt;/tbody&gt;\n            &lt;/table&gt;\n        &lt;/section&gt;\n        {{ endif }}\n           \n        {{ if invoice_view != \'standard\' }}\n        {{ if taxes }}\n        &lt;section class=&quot;listing-area payment-list&quot;&gt;\n            &lt;div class=&quot;heading&quot;&gt;\n                &lt;h2 class=&quot;sub-title&quot;&gt;Tax Information&lt;/h2&gt;\n            &lt;/div&gt;\n            &lt;table&gt;\n                &lt;thead&gt;\n                    &lt;td class=&quot;w-25&quot;&gt;Name&lt;/td&gt;\n                    &lt;td class=&quot;w-25 text-center&quot;&gt;Code&lt;/td&gt;\n                    &lt;td class=&quot;w-25 text-right&quot;&gt;Qty&lt;/td&gt;\n                    &lt;td class=&quot;w-25 text-right&quot;&gt;Tax Amt.&lt;/td&gt;\n                &lt;/thead&gt;\n                &lt;tbody&gt;\n                    {{ taxes }}\n                        &lt;tr&gt;\n                            &lt;td&gt;{{ taxrate_name }}&lt;/td&gt;\n                            &lt;td class=&quot;text-center&quot;&gt;{{ code_name }}&lt;/td&gt;\n                            &lt;td class=&quot;text-right&quot;&gt;{{ qty }}&lt;/td&gt; \n                            &lt;td class=&quot;text-right&quot;&gt;{{ item_tax }}&lt;/td&gt; \n                        &lt;/tr&gt;\n                    {{ /taxes }}\n                    {{ if invoice_view == \'indian_gst\' }}\n                        &lt;tr class=&quot;bg-gray&quot;&gt;\n                            &lt;td&gt;Order Tax: {{ order_tax }}&lt;/td&gt;\n                            &lt;td class=&quot;text-right&quot;&gt;CGST: {{ cgst }}&lt;/td&gt;\n                            &lt;td class=&quot;text-right&quot;&gt;SGST: {{ sgst }}&lt;/td&gt;\n                            &lt;td class=&quot;text-right&quot;&gt;IGST: {{ igst }}&lt;/td&gt;\n                        &lt;/tr&gt;\n                     {{ endif }}\n                &lt;/tbody&gt;\n            &lt;/table&gt;\n        &lt;/section&gt;\n        {{ endif }}\n        {{ endif }}\n        \n        {{ if barcode }}\n        &lt;section class=&quot;info-area barcode-area&quot;&gt;\n            {{ barcode }}\n        &lt;/section&gt;\n        {{ endif }}\n        \n        &lt;section class=&quot;info-area align-center footer-area&quot;&gt;\n           &lt;!-- &lt;span class=&quot;block&quot;&gt;Sold product No Claim. No Change, New product One Month Warranty.&lt;/span&gt; --&gt;\n            &lt;span class=&quot;block bold&quot;&gt;{{ footer_text }}&lt;/span&gt;\n        &lt;/section&gt;\n        \n &lt;/section&gt;', '/*Common CSS*/\n        .receipt-template {\n            width:302px;\n            margin:0 auto;\n        }\n        .receipt-template .text-small {\n            font-size: 10px;\n        }\n        .receipt-template .block {\n            display: block;\n        }\n        .receipt-template .inline-block {\n            display: inline-block;\n        }\n        .receipt-template .bold {\n            font-weight: 700;\n        }\n        .receipt-template .italic {\n            font-style: italic;\n        }\n        .receipt-template .align-right {\n            text-align: right;\n        }\n        .receipt-template .align-center {\n            text-align: center;\n        }\n        .receipt-template .main-title {\n            font-size: 14px;\n            font-weight: 700;\n            text-align: center;\n            margin: 10px 0 5px 0;\n            padding: 0;\n        }\n        .receipt-template .heading {\n            position: relation;\n        }\n        .receipt-template .title {\n            font-size: 16px;\n            font-weight: 700;\n            margin: 10px 0 5px 0;\n        }\n        .receipt-template .sub-title {\n            font-size: 12px;\n            font-weight: 700;\n            margin: 10px 0 5px 0;\n        }\n        .receipt-template table {\n            width: 100%;\n        }\n        .receipt-template td,\n        .receipt-template th {\n            font-size:12px;\n        }\n        .receipt-template .info-area {\n            font-size: 12px;      \n            line-height: 1.222;  \n        }\n        .receipt-template .listing-area {\n            line-height: 1.222;\n        }\n        .receipt-template .listing-area table {}\n        .receipt-template .listing-area table thead tr {\n            border-top: 1px solid #000;\n            border-bottom: 1px solid #000;\n            font-weight: 700;\n        }\n        .receipt-template .listing-area table tbody tr {\n            border-top: 1px dashed #000;\n            border-bottom: 1px dashed #000;\n        }\n        .receipt-template .listing-area table tbody tr:last-child {\n            border-bottom: none;\n        }\n        .receipt-template .listing-area table td {\n            vertical-align: top;\n        }\n        .receipt-template .info-area table {}\n        .receipt-template .info-area table thead tr {\n            border-top: 1px solid #000;\n            border-bottom: 1px solid #000;\n        }\n    \n /*Receipt Heading*/\n        .receipt-template .receipt-header {\n            text-align: center;\n        }\n        .receipt-template .receipt-header .logo-area {\n            width: 80px;\n            height: 80px;\n            margin: 0 auto;\n        }\n        .receipt-template .receipt-header .logo-area img.logo {\n            display: inline-block;\n            max-width: 100%;\n            max-height: 100%;\n        }\n        .receipt-template .receipt-header .address-area {\n            margin-bottom: 5px;\n            line-height: 1;\n        }\n        .receipt-template .receipt-header .info {\n            font-size: 12px;\n        }\n        .receipt-template .receipt-header .store-name {\n            font-size: 24px;\n            font-weight: 700;\n            margin: 0;\n            padding: 0;\n        }\n        \n        \n/*Invoice Info Area*/ \n    .receipt-template .invoice-info-area {}\n    \n/*Customer Customer Area*/\n    .receipt-template .customer-area {\n        margin-top:10px;\n    }\n\n/*Calculation Area*/\n    .receipt-template .calculation-area {\n        border-top: 2px solid #000;\n        font-weight: bold;\n    }\n    .receipt-template .calculation-area table td {\n        text-align: right;\n    }\n    .receipt-template .calculation-area table td:nth-child(2) {\n        border-bottom: 1px dashed #000;\n    }\n\n/*Item Listing*/\n    .receipt-template .item-list table tr {\n    }\n    \n/*Barcode Area*/\n    .receipt-template .barcode-area {\n        margin-top: 10px;\n        text-align: center;\n    }\n    .receipt-template .barcode-area img {\n        max-width: 100%;\n        display: inline-block;\n    }\n    \n/*Footer Area*/\n    .receipt-template .footer-area {\n        line-height: 1.222;\n        font-size: 10px;\n    }\n \n/*Media Query*/\n    @media print {\n        .receipt-template {\n            width: 100%;\n        }\n    }\n    @media all and (max-width: 215px) {}', '2019-05-10 12:35:05', '2019-07-02 21:06:02', 1),
+(1, 'Default', '&lt;section class=&quot;receipt-template&quot;&gt;\n\n        &lt;header class=&quot;receipt-header&quot;&gt;\n            &lt;div class=&quot;logo-area&quot;&gt;\n                &lt;img class=&quot;logo&quot; src=&quot;{{ logo_url }}&quot;&gt;\n            &lt;/div&gt;\n            &lt;h2 class=&quot;store-name&quot;&gt;{{ store_name }}&lt;/h2&gt;\n            &lt;div class=&quot;address-area&quot;&gt;\n                &lt;span class=&quot;info address&quot;&gt;{{ store_address }}&lt;/span&gt;\n                &lt;div class=&quot;block&quot;&gt;\n                    &lt;span class=&quot;info phone&quot;&gt;Teléfono: {{ store_phone }}&lt;/span&gt;, &lt;span class=&quot;info email&quot;&gt;Correo: {{ store_email }}&lt;/span&gt;\n                &lt;/div&gt;\n            &lt;/div&gt;\n        &lt;/header&gt;\n        \n        &lt;section class=&quot;info-area&quot;&gt;\n            &lt;table&gt;\n                &lt;tr&gt;\n                    &lt;td class=&quot;w-30&quot;&gt;&lt;span&gt;Recibo No:&lt;/td&gt;\n                    &lt;td&gt;{{ invoice_id }}&lt;/td&gt;\n                &lt;/tr&gt;\n               &lt;!-- &lt;tr&gt;\n                    &lt;td class=&quot;w-30&quot;&gt;VAT-Reg:&lt;/td&gt;\n                    &lt;td&gt;{{ vat_reg }}&lt;/td&gt; \n                &lt;/tr&gt; --&gt;\n                &lt;tr&gt;\n                    &lt;td class=&quot;w-30&quot;&gt;&lt;span&gt;Fecha:&lt;/td&gt;\n                    &lt;td&gt;{{ date_time }}&lt;/td&gt;\n                &lt;/tr&gt;\n               &lt;!-- &lt;tr&gt;\n                    &lt;td class=&quot;w-30&quot;&gt;&lt;span&gt;GST Reg:&lt;/td&gt;\n                    &lt;td&gt;{{ gst_reg }}&lt;/td&gt;\n                &lt;/tr&gt; --&gt;\n                &lt;tr&gt;\n                    &lt;td class=&quot;w-30&quot;&gt;Cliente:&lt;/td&gt;\n                    &lt;td&gt;{{ customer_name }}&lt;/td&gt;\n                &lt;/tr&gt;\n                 &lt;tr&gt;\n                    &lt;td class=&quot;w-30&quot;&gt;Cédula / RUC:&lt;/td&gt;\n                    &lt;td&gt;{{ customer_document }}&lt;/td&gt;\n                &lt;/tr&gt;\n                &lt;tr&gt;\n                    &lt;td class=&quot;w-30&quot;&gt;Correo:&lt;/td&gt;\n                    &lt;td&gt;{{ customer_email }}&lt;/td&gt;\n                &lt;/tr&gt;\n                &lt;!-- &lt;tr&gt;\n                    &lt;td class=&quot;w-30&quot;&gt;GTIN:&lt;/td&gt;\n                    &lt;td&gt;{{ gtin }}&lt;/td&gt;\n                &lt;/tr&gt; --&gt;\n            &lt;/table&gt;\n        &lt;/section&gt;\n        &lt;/br&gt;\n        \n       &lt;!-- &lt;h4 class=&quot;main-title&quot;&gt;INVOICE&lt;/h4&gt; --&gt;\n        \n        {{ if items }}\n        &lt;section class=&quot;listing-area item-list&quot;&gt;\n            &lt;table&gt;\n                &lt;thead&gt;\n                    &lt;tr&gt;\n                        &lt;td class=&quot;w-10 text-center&quot;&gt;Sl.&lt;/td&gt;\n                        &lt;td class=&quot;w-40 text-center&quot;&gt;Prod.&lt;/td&gt;\n                        &lt;td class=&quot;w-15 text-center&quot;&gt;Cant.&lt;/td&gt;\n                        &lt;td class=&quot;w-15 text-right&quot;&gt;PVP&lt;/td&gt;\n                        &lt;td class=&quot;w-20 text-right&quot;&gt;Total&lt;/td&gt;\n                    &lt;/tr&gt;\n                &lt;/thead&gt;\n                &lt;tbody&gt;\n                    {{ items }}\n                        &lt;tr&gt;\n                            &lt;td class=&quot;text-center&quot;&gt;{{ sl }}&lt;/td&gt;\n                            &lt;td&gt;{{ item_name }} \n                               &lt;!-- {{ if invoice_view == indian_gst }} \n                                    &lt;small&gt;[HSN-{{ hsn_code }}]&lt;/small&gt;\n                                {{ endif }} --&gt;\n                            &lt;/td&gt;\n                            &lt;td class=&quot;text-center&quot;&gt;{{ item_quantity }} &lt;!-- {{ unitName }} --&gt; &lt;/td&gt;\n                            &lt;td class=&quot;text-right&quot;&gt;{{ item_price }}&lt;/td&gt;\n                            &lt;td class=&quot;text-right&quot;&gt;{{ item_total }}&lt;/td&gt;   \n                        &lt;/tr&gt;\n                    {{ /items }}\n                &lt;/tbody&gt;\n            &lt;/table&gt;\n        &lt;/section&gt;\n        {{ endif }}\n        \n        &lt;section class=&quot;info-area calculation-area&quot;&gt;\n            &lt;table&gt;\n                &lt;tr&gt;\n                    &lt;td class=&quot;w-70&quot;&gt;SubTotal:&lt;/td&gt;\n                    &lt;td&gt;{{ subtotal }}&lt;/td&gt;\n                &lt;/tr&gt;\n                &lt;tr&gt;\n                    &lt;td class=&quot;w-70&quot;&gt;IVA:&lt;/td&gt;\n                    &lt;td&gt;{{ order_tax }}&lt;/td&gt;\n                &lt;/tr&gt;\n                &lt;tr&gt;\n                    &lt;td class=&quot;w-70&quot;&gt;Descuento:&lt;/td&gt;\n                    &lt;td&gt;{{ discount_amount }}&lt;/td&gt;\n                &lt;/tr&gt;\n                &lt;!-- &lt;tr&gt;\n                    &lt;td class=&quot;w-70&quot;&gt;Cargo Envío:&lt;/td&gt;\n                    &lt;td&gt;{{ shipping_amount }}&lt;/td&gt;\n                &lt;/tr&gt; --&gt;\n                &lt;!-- &lt;tr&gt;\n                    &lt;td class=&quot;w-70&quot;&gt;Otros Cargos:&lt;/td&gt;\n                    &lt;td&gt;{{ others_charge }}&lt;/td&gt;\n                &lt;/tr&gt; --&gt;\n                &lt;!-- &lt;tr&gt;\n                    &lt;td class=&quot;w-70&quot;&gt;Deuda Vencida:&lt;/td&gt;\n                    &lt;td&gt;{{ previous_due }}&lt;/td&gt;\n                &lt;/tr&gt; --&gt;\n                &lt;!-- &lt;tr&gt;\n                    &lt;td class=&quot;w-70&quot;&gt;Total Adeudado:&lt;/td&gt;\n                    &lt;td&gt;{{ payable_amount }}&lt;/td&gt;\n                &lt;/tr&gt; --&gt;\n                &lt;tr&gt;\n                    &lt;td class=&quot;w-70&quot;&gt;Total Pagado:&lt;/td&gt;\n                    &lt;td&gt;{{ paid_amount }}&lt;/td&gt;\n                &lt;/tr&gt;\n                &lt;tr&gt;\n                    &lt;td class=&quot;w-70&quot;&gt;Cambio:&lt;/td&gt;\n                    &lt;td&gt;{{ change }}&lt;/td&gt;\n                &lt;/tr&gt;\n                &lt;!-- &lt;tr&gt;\n                    &lt;td class=&quot;w-70&quot;&gt;Vencido:&lt;/td&gt;\n                    &lt;td&gt;{{ due }}&lt;/td&gt; --&gt;\n                &lt;/tr&gt;\n            &lt;/table&gt;\n        &lt;/section&gt;\n        \n        &lt;!-- &lt;section class=&quot;info-area italic&quot;&gt;\n            &lt;span class=&quot;text-small&quot;&gt;&lt;b&gt;In Text:&lt;/b&gt; {{ amount_in_text }}&lt;/span&gt;&lt;br&gt;\n            &lt;span class=&quot;text-small&quot;&gt;&lt;b&gt;Note:&lt;/b&gt; {{ invoice_note }}&lt;/span&gt;\n        &lt;/section&gt; --&gt;\n\n       &lt;!-- {{ if return_items }}\n        &lt;section class=&quot;listing-area payment-list&quot;&gt;\n            &lt;div class=&quot;heading&quot;&gt;\n                &lt;h2 class=&quot;sub-title&quot;&gt;Returns&lt;/h2&gt;\n            &lt;/div&gt;\n            &lt;table&gt;\n                &lt;thead&gt;\n                    &lt;td class=&quot;w-5 text-center&quot;&gt;Sl.&lt;/td&gt;\n                    &lt;td class=&quot;w-25 text-center&quot;&gt;Returned at&lt;/td&gt;\n                    &lt;td class=&quot;w-30 text-center&quot;&gt;Item Name&lt;/td&gt;\n                    &lt;td class=&quot;w-20 text-right&quot;&gt;Qty&lt;/td&gt;\n                    &lt;td class=&quot;w-20 text-right&quot;&gt;Amt&lt;/td&gt;\n                &lt;/thead&gt;\n                &lt;tbody&gt;\n                    {{return_items}}\n                        &lt;tr&gt;\n                            &lt;td class=&quot;text-center&quot;&gt;{{ sl }}&lt;/td&gt;\n                            &lt;td class=&quot;text-center&quot;&gt;{{ created_at }}&lt;/td&gt;\n                            &lt;td class=&quot;text-center&quot;&gt;{{ item_name }}&lt;/td&gt;\n                            &lt;td class=&quot;text-right&quot;&gt;{{ item_quantity }}&lt;/td&gt;\n                            &lt;td class=&quot;text-right&quot;&gt;{{ item_total }}&lt;/td&gt; \n                        &lt;/tr&gt;\n                    {{/return_items}}\n                &lt;/tbody&gt;\n            &lt;/table&gt;\n        &lt;/section&gt;\n        {{ endif }} --&gt;\n        \n        {{ if payments }}\n        &lt;section class=&quot;listing-area payment-list&quot;&gt;\n            &lt;div class=&quot;heading&quot;&gt;\n                &lt;h2 class=&quot;sub-title&quot;&gt;Pagos&lt;/h2&gt;\n            &lt;/div&gt;\n            &lt;table&gt;\n                &lt;thead&gt;\n                    &lt;td class=&quot;w-10 text-center&quot;&gt;Sl.&lt;/td&gt;\n                    &lt;td class=&quot;w-50 text-center&quot;&gt;Método Pago&lt;/td&gt;\n                    &lt;td class=&quot;w-20 text-right&quot;&gt;Total&lt;/td&gt;\n                    &lt;td class=&quot;w-20 text-right&quot;&gt;Saldo&lt;/td&gt;\n                &lt;/thead&gt;\n                &lt;tbody&gt;\n                    {{ payments }}\n                        &lt;tr&gt;\n                            &lt;td class=&quot;text-center&quot;&gt;{{ sl }}&lt;/td&gt;\n                            &lt;td&gt;{{ name }} by {{ by }} on {{ created_at }}&lt;/td&gt;\n                            &lt;td class=&quot;text-right&quot;&gt;{{ amount }}&lt;/td&gt;\n                            &lt;td class=&quot;text-right&quot;&gt;{{ pos_balance }}&lt;/td&gt; \n                        &lt;/tr&gt;\n                    {{ /payments }}\n                &lt;/tbody&gt;\n            &lt;/table&gt;\n        &lt;/section&gt;\n        {{ endif }}\n           \n        {{ if invoice_view != \'standard\' }}\n        {{ if taxes }}\n        &lt;section class=&quot;listing-area payment-list&quot;&gt;\n            &lt;div class=&quot;heading&quot;&gt;\n                &lt;h2 class=&quot;sub-title&quot;&gt;Tax Information&lt;/h2&gt;\n            &lt;/div&gt;\n            &lt;table&gt;\n                &lt;thead&gt;\n                    &lt;td class=&quot;w-25&quot;&gt;Name&lt;/td&gt;\n                    &lt;td class=&quot;w-25 text-center&quot;&gt;Code&lt;/td&gt;\n                    &lt;td class=&quot;w-25 text-right&quot;&gt;Qty&lt;/td&gt;\n                    &lt;td class=&quot;w-25 text-right&quot;&gt;Tax Amt.&lt;/td&gt;\n                &lt;/thead&gt;\n                &lt;tbody&gt;\n                    {{ taxes }}\n                        &lt;tr&gt;\n                            &lt;td&gt;{{ taxrate_name }}&lt;/td&gt;\n                            &lt;td class=&quot;text-center&quot;&gt;{{ code_name }}&lt;/td&gt;\n                            &lt;td class=&quot;text-right&quot;&gt;{{ qty }}&lt;/td&gt; \n                            &lt;td class=&quot;text-right&quot;&gt;{{ item_tax }}&lt;/td&gt; \n                        &lt;/tr&gt;\n                    {{ /taxes }}\n                    {{ if invoice_view == \'indian_gst\' }}\n                        &lt;tr class=&quot;bg-gray&quot;&gt;\n                            &lt;td&gt;Order Tax: {{ order_tax }}&lt;/td&gt;\n                            &lt;td class=&quot;text-right&quot;&gt;CGST: {{ cgst }}&lt;/td&gt;\n                            &lt;td class=&quot;text-right&quot;&gt;SGST: {{ sgst }}&lt;/td&gt;\n                            &lt;td class=&quot;text-right&quot;&gt;IGST: {{ igst }}&lt;/td&gt;\n                        &lt;/tr&gt;\n                     {{ endif }}\n                &lt;/tbody&gt;\n            &lt;/table&gt;\n        &lt;/section&gt;\n        {{ endif }}\n        {{ endif }}\n        \n        {{ if barcode }}\n        &lt;section class=&quot;info-area barcode-area&quot;&gt;\n            {{ barcode }}\n        &lt;/section&gt;\n        {{ endif }}\n        \n        &lt;section class=&quot;info-area align-center footer-area&quot;&gt;\n           &lt;!-- &lt;span class=&quot;block&quot;&gt;Sold product No Claim. No Change, New product One Month Warranty.&lt;/span&gt; --&gt;\n            &lt;span class=&quot;block bold&quot;&gt;{{ footer_text }}&lt;/span&gt;\n        &lt;/section&gt;\n        \n &lt;/section&gt;', '/*Common CSS*/\n        .receipt-template {\n            width:302px;\n            margin:0 auto;\n        }\n        .receipt-template .text-small {\n            font-size: 10px;\n        }\n        .receipt-template .block {\n            display: block;\n        }\n        .receipt-template .inline-block {\n            display: inline-block;\n        }\n        .receipt-template .bold {\n            font-weight: 700;\n        }\n        .receipt-template .italic {\n            font-style: italic;\n        }\n        .receipt-template .align-right {\n            text-align: right;\n        }\n        .receipt-template .align-center {\n            text-align: center;\n        }\n        .receipt-template .main-title {\n            font-size: 14px;\n            font-weight: 700;\n            text-align: center;\n            margin: 10px 0 5px 0;\n            padding: 0;\n        }\n        .receipt-template .heading {\n            position: relation;\n        }\n        .receipt-template .title {\n            font-size: 16px;\n            font-weight: 700;\n            margin: 10px 0 5px 0;\n        }\n        .receipt-template .sub-title {\n            font-size: 12px;\n            font-weight: 700;\n            margin: 10px 0 5px 0;\n        }\n        .receipt-template table {\n            width: 100%;\n        }\n        .receipt-template td,\n        .receipt-template th {\n            font-size:12px;\n        }\n        .receipt-template .info-area {\n            font-size: 12px;      \n            line-height: 1.222;  \n        }\n        .receipt-template .listing-area {\n            line-height: 1.222;\n        }\n        .receipt-template .listing-area table {}\n        .receipt-template .listing-area table thead tr {\n            border-top: 1px solid #000;\n            border-bottom: 1px solid #000;\n            font-weight: 700;\n        }\n        .receipt-template .listing-area table tbody tr {\n            border-top: 1px dashed #000;\n            border-bottom: 1px dashed #000;\n        }\n        .receipt-template .listing-area table tbody tr:last-child {\n            border-bottom: none;\n        }\n        .receipt-template .listing-area table td {\n            vertical-align: top;\n        }\n        .receipt-template .info-area table {}\n        .receipt-template .info-area table thead tr {\n            border-top: 1px solid #000;\n            border-bottom: 1px solid #000;\n        }\n    \n /*Receipt Heading*/\n        .receipt-template .receipt-header {\n            text-align: center;\n        }\n        .receipt-template .receipt-header .logo-area {\n            width: 80px;\n            height: 80px;\n            margin: 0 auto;\n        }\n        .receipt-template .receipt-header .logo-area img.logo {\n            display: inline-block;\n            max-width: 100%;\n            max-height: 100%;\n        }\n        .receipt-template .receipt-header .address-area {\n            margin-bottom: 5px;\n            line-height: 1;\n        }\n        .receipt-template .receipt-header .info {\n            font-size: 12px;\n        }\n        .receipt-template .receipt-header .store-name {\n            font-size: 24px;\n            font-weight: 700;\n            margin: 0;\n            padding: 0;\n        }\n        \n        \n/*Invoice Info Area*/ \n    .receipt-template .invoice-info-area {}\n    \n/*Customer Customer Area*/\n    .receipt-template .customer-area {\n        margin-top:10px;\n    }\n\n/*Calculation Area*/\n    .receipt-template .calculation-area {\n        border-top: 2px solid #000;\n        font-weight: bold;\n    }\n    .receipt-template .calculation-area table td {\n        text-align: right;\n    }\n    .receipt-template .calculation-area table td:nth-child(2) {\n        border-bottom: 1px dashed #000;\n    }\n\n/*Item Listing*/\n    .receipt-template .item-list table tr {\n    }\n    \n/*Barcode Area*/\n    .receipt-template .barcode-area {\n        margin-top: 10px;\n        text-align: center;\n    }\n    .receipt-template .barcode-area img {\n        max-width: 100%;\n        display: inline-block;\n    }\n    \n/*Footer Area*/\n    .receipt-template .footer-area {\n        line-height: 1.222;\n        font-size: 10px;\n    }\n \n/*Media Query*/\n    @media print {\n        .receipt-template {\n            width: 100%;\n        }\n    }\n    @media all and (max-width: 215px) {}', '2019-05-10 12:35:05', '2019-07-02 21:06:02', 1),
 (2, 'Minimal', '&lt;section class=&quot;receipt-template&quot;&gt;\n\n        &lt;header class=&quot;receipt-header&quot;&gt;\n            &lt;div class=&quot;logo-area&quot;&gt;\n                &lt;img class=&quot;logo&quot; src=&quot;{{  logo_url  }}&quot;&gt;\n            &lt;/div&gt;\n            &lt;h2 class=&quot;store-name&quot;&gt;{{ store_name }}&lt;/h2&gt;\n            &lt;div class=&quot;address-area&quot;&gt;\n                &lt;span class=&quot;info address&quot;&gt;{{ store_address }}&lt;/span&gt;\n                &lt;div class=&quot;block&quot;&gt;\n                    &lt;span class=&quot;info phone&quot;&gt;Mobile: {{ store_phone }}&lt;/span&gt;, &lt;span class=&quot;info email&quot;&gt;Email: {{ store_email }}&lt;/span&gt;\n                &lt;/div&gt;\n            &lt;/div&gt;\n        &lt;/header&gt;\n        \n        &lt;div class=&quot;heading&quot;&gt;\n            &lt;h2 class=&quot;title text-center zero-around title-lg&quot;&gt;INVOICE&lt;/h2&gt;\n        &lt;/div&gt;\n        \n        &lt;section class=&quot;info-area&quot;&gt;\n            &lt;table&gt;\n                &lt;tr&gt;\n                    &lt;td class=&quot;w-10&quot;&gt;&lt;span&gt;Bill #:&lt;/td&gt;\n                    &lt;td class=&quot;w-40 text-center sinfo billno&quot;&gt;&lt;span&gt;{{ invoice_id }}&lt;/span&gt;&lt;/td&gt;\n                    &lt;td class=&quot;w-10 text-right&quot;&gt;&lt;span&gt;Date:&lt;/td&gt;\n                    &lt;td class=&quot;w-40 text-center sinfo date&quot;&gt;&lt;span&gt;{{ date_time }}&lt;/span&gt;&lt;/td&gt;\n                &lt;/tr&gt;\n                &lt;tr&gt;\n                    &lt;td class=&quot;w-10&quot;&gt;M/S:&lt;/td&gt;\n                    &lt;td class=&quot;w-90&quot; colspan=&quot;3&quot;&gt;&lt;span class=&quot;text-lg&quot;&gt;{{ customer_name }}&lt;/span&gt;&lt;/td&gt;\n                &lt;/tr&gt;\n            &lt;/table&gt;\n        &lt;/section&gt;\n        \n        &lt;section class=&quot;listing-area item-list&quot;&gt;\n            &lt;table&gt;\n                &lt;thead&gt;\n                    &lt;tr&gt;\n                        &lt;td class=&quot;w-40 text-center&quot;&gt;DESC.&lt;/td&gt;\n                        &lt;td class=&quot;w-15 text-center&quot;&gt;Qty&lt;/td&gt;\n                        &lt;td class=&quot;w-15 text-right&quot;&gt;Price&lt;/td&gt;\n                        &lt;td class=&quot;w-20 text-right&quot;&gt;AMT&lt;/td&gt;\n                    &lt;/tr&gt;\n                &lt;/thead&gt;\n                &lt;tbody&gt;\n                    {{ items }}\n                        &lt;tr&gt;\n                            &lt;td&gt;{{ item_name }}&lt;/td&gt;\n                            &lt;td class=&quot;text-center&quot;&gt;{{ item_quantity }}&lt;/td&gt;\n                            &lt;td class=&quot;text-right&quot;&gt;{{ item_price }}&lt;/td&gt;\n                            &lt;td class=&quot;text-right&quot;&gt;{{ item_total }}&lt;/td&gt;   \n                        &lt;/tr&gt;\n                    {{ /items }}\n                &lt;/tbody&gt;\n            &lt;/table&gt;\n        &lt;/section&gt;\n        \n        &lt;section class=&quot;info-area calculation-area&quot;&gt;\n            &lt;table&gt;\n                &lt;tr&gt;\n                    &lt;td class=&quot;w-70&quot;&gt;Subtotal:&lt;/td&gt;\n                    &lt;td&gt;{{ subtotal }}&lt;/td&gt;\n                &lt;/tr&gt;\n                &lt;tr&gt;\n                    &lt;td class=&quot;w-70&quot;&gt;Impuesto:&lt;/td&gt;\n                    &lt;td&gt;{{ order_tax }}&lt;/td&gt;\n                &lt;/tr&gt;\n                &lt;tr&gt;\n                    &lt;td class=&quot;w-70&quot;&gt;Descuento:&lt;/td&gt;\n                    &lt;td&gt;{{ discount_amount }}&lt;/td&gt;\n                &lt;/tr&gt;\n                &lt;tr&gt;\n                    &lt;td class=&quot;w-70&quot;&gt;Cargo Envío:&lt;/td&gt;\n                    &lt;td&gt;{{ shipping_amount }}&lt;/td&gt;\n                &lt;/tr&gt;\n                &lt;tr&gt;\n                    &lt;td class=&quot;w-70&quot;&gt;Otros Cargos:&lt;/td&gt;\n                    &lt;td&gt;{{ others_charge }}&lt;/td&gt;\n                &lt;/tr&gt;\n                &lt;tr&gt;\n                    &lt;td class=&quot;w-70&quot;&gt;Previous Due:&lt;/td&gt;\n                    &lt;td&gt;{{ previous_due }}&lt;/td&gt;\n                &lt;/tr&gt;\n                &lt;tr&gt;\n                    &lt;td class=&quot;w-70&quot;&gt;Amount Total:&lt;/td&gt;\n                    &lt;td&gt;{{ payable_amount }}&lt;/td&gt;\n                &lt;/tr&gt;\n                &lt;tr&gt;\n                    &lt;td class=&quot;w-70&quot;&gt;Amount Paid:&lt;/td&gt;\n                    &lt;td&gt;{{ paid_amount }}&lt;/td&gt;\n                &lt;/tr&gt;\n                &lt;tr&gt;\n                    &lt;td class=&quot;w-70&quot;&gt;Due:&lt;/td&gt;\n                    &lt;td&gt;{{ due }}&lt;/td&gt;\n                &lt;/tr&gt;\n                &lt;tr&gt;\n                    &lt;td class=&quot;w-70&quot;&gt;Change:&lt;/td&gt;\n                    &lt;td&gt;{{ change }}&lt;/td&gt;\n                &lt;/tr&gt;\n            &lt;/table&gt;\n        &lt;/section&gt;\n        \n        &lt;section class=&quot;stylish-footer text-center&quot;&gt;\n            &lt;span&gt;Impreso el: {{ printed_on }}&lt;/span&gt;\n        &lt;/section&gt;\n        \n        &lt;section class=&quot;info-area align-center footer-area&quot;&gt;\n            &lt;!-- &lt;span class=&quot;block&quot;&gt;Sold product No Claim. No Change, New product One Month Warranty.&lt;/span&gt; --&gt;\n            &lt;span class=&quot;block bold&quot;&gt;Gracias por elegirnos.&lt;/span&gt;\n        &lt;/section&gt;\n        \n &lt;/section&gt;', '/*Common CSS*/\n        .receipt-template {\n            width:302px;\n            margin:0 auto;\n        }\n        .receipt-template .text-small {\n            font-size: 10px;\n        }\n        .receipt-template .block {\n            display: block;\n        }\n        .receipt-template .inline-block {\n            display: inline-block;\n        }\n        .receipt-template .bold {\n            font-weight: 700;\n        }\n        .receipt-template .italic {\n            font-style: italic;\n        }\n        .receipt-template .align-right {\n            text-align: right;\n        }\n        .receipt-template .align-center {\n            text-align: center;\n        }\n        .receipt-template .heading {\n            position: relation;\n        }\n        .receipt-template .title {\n            font-size: 16px;\n            font-weight: 700;\n            margin: 10px 0 5px 0;\n        }\n        .receipt-template .sub-title {\n            font-size: 12px;\n            font-weight: 700;\n            margin: 10px 0 5px 0;\n        }\n        .receipt-template table {\n            width: 100%;\n        }\n        .receipt-template td,\n        .receipt-template th {\n            font-size:10px;\n        }\n        .receipt-template .info-area {\n            font-size: 12px;      \n            line-height: 1.222;  \n        }\n        .receipt-template .listing-area {\n            line-height: 1.222;\n        }\n        .receipt-template .listing-area table {}\n        .receipt-template .listing-area table thead tr {\n            border-top: 1px solid #000;\n            border-bottom: 1px solid #000;\n            font-weight: 700;\n        }\n        .receipt-template .listing-area table tbody tr {\n            border-top: 1px dashed #000;\n            border-bottom: 1px dashed #000;\n        }\n        .receipt-template .listing-area table tbody tr:last-child {\n            border-bottom: none;\n        }\n        .receipt-template .listing-area table td {\n            vertical-align: top;\n        }\n        .receipt-template .info-area table {}\n        .receipt-template .info-area table thead tr {\n            border-top: 1px solid #000;\n            border-bottom: 1px solid #000;\n        }\n\n /*Receipt Heading*/\n        .receipt-template .receipt-header {\n            text-align: center;\n        }\n        .receipt-template .receipt-header .logo-area {\n            width: 80px;\n            height: 80px;\n            margin: 0 auto;\n        }\n        .receipt-template .receipt-header .logo-area img.logo {\n            display: inline-block;\n            max-width: 100%;\n            max-height: 100%;\n        }\n        .receipt-template .receipt-header .address-area {\n            margin-bottom: 5px;\n            line-height: 1;\n        }\n        .receipt-template .receipt-header .info {\n            font-size: 12px;\n        }\n        .receipt-template .receipt-header .store-name {\n            font-size: 28px;\n            font-weight: 700;\n            margin: 0;\n            padding: 0;\n        }\n        \n        \n/*Invoice Info Area*/ \n    .receipt-template .invoice-info-area {}\n    \n/*Customer Info Area*/\n    .receipt-template .customer-area {\n        margin-top:10px;\n    }\n\n/*Calculation Area*/\n    .receipt-template .calculation-area {\n        border-top: 2px solid #000;\n    }\n    .receipt-template .calculation-area table td {\n        text-align: right;\n    }\n    .receipt-template .calculation-area table td:nth-child(2) {\n        border-bottom: 1px dashed #000;\n    }\n\n/*Item Listing*/\n    .receipt-template .item-list table tr {\n    }\n    \n/*Barcode Area*/\n    .receipt-template .barcode-area {\n        margin-top: 10px;\n        text-align: center;\n    }\n    .receipt-template .barcode-area img {\n        max-width: 100%;\n        display: inline-block;\n    }\n    \n/*Footer Area*/\n    .receipt-template .footer-area {\n        line-height: 1.222;\n        font-size: 10px;\n    }\n \n/*Media Query*/\n    @media print {\n        .receipt-template {\n            width: 100%;\n        }\n    }\n    @media all and (max-width: 215px) {}\n    \n    \n/* Additional */\n        .receipt-template .zero-around {\n            margin:0;\n            padding: 0;\n        }\n        .receipt-template .title-lg {\n            font-size: 18px!important;\n            margin-bottom: 5px;\n         }\n         .receipt-template .text-lg {\n             font-size: 18px;\n             font-weight: 700;\n         }\n         .receipt-template .info-area td {\n             vertical-align: center;\n         }\n         .receipt-template .info-area td.sinfo {\n             padding: 1px!important;\n         }\n         .receipt-template .info-area td.sinfo span {\n             display: block;\n             font-weight: 700;\n             border: 1px solid #000;\n             padding: 2px;\n         }\n         .receipt-template .listing-area td, .receipt-template .listing-area th, .receipt-template .calculation-area table td {\n             font-size: 13px;\n             font-weight: 700;\n         }\n         .receipt-template .item-list table thead td {\n             text-align: center;\n             padding: 3px;\n             border: 2px solid #000;\n          }\n          .receipt-template .stylish-footer {\n              margin: 10px 0 5px 0;\n          }\n          .receipt-template .stylish-footer span {\n              display: inline-block;\n              font-size: 12px;\n              border-top: 1px dashed #000;\n              border-bottom: 1px dashed #000; \n          }\n', '2019-05-14 19:02:11', '2019-07-02 16:16:59', 1);
 
 -- --------------------------------------------------------
@@ -4686,7 +4734,9 @@ CREATE TABLE `printer_to_store` (
 --
 
 INSERT INTO `printer_to_store` (`p2s_id`, `pprinter_id`, `store_id`, `path`, `ip_address`, `port`, `status`, `sort_order`) VALUES
-(2, 1, 2, 'POS-80C', '', '9100', 1, 0);
+(1, 1, 2, 'POS-80C', '', '9100', 1, 0),
+(2, 1, 3, NULL, NULL, NULL, 1, 0),
+(3, 1, 1, NULL, NULL, NULL, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -4825,7 +4875,40 @@ INSERT INTO `products` (`p_id`, `p_type`, `p_code`, `hsn_code`, `barcode_symbolo
 (111, 'standard', '44073539', NULL, 'code128', 'MI TUTORIAL DIGITAL QUIMICA 2BGU', 2, 1, '', ''),
 (112, 'standard', '74070107', NULL, 'code128', 'QUIMICA 1 BGU CERIT ', 2, 1, '', ''),
 (113, 'standard', '38847908', NULL, 'code128', 'QUIMICA 2 BGU CERIT', 2, 1, '', ''),
-(114, 'standard', '66710782', NULL, 'code128', 'QUIMICA 3 BGU CERIT ', 2, 1, '', '');
+(114, 'standard', '66710782', NULL, 'code128', 'QUIMICA 3 BGU CERIT ', 2, 1, '', ''),
+(115, 'standard', '58902647', NULL, 'code128', 'ARTETICS 1', 1, 1, '', ''),
+(116, 'standard', '18630040', NULL, 'code128', 'ARTETICS 2', 1, 1, '', ''),
+(117, 'standard', '76498313', NULL, 'code128', 'ARTETICS 3', 1, 1, '', ''),
+(118, 'standard', '92253813', NULL, 'code128', 'ARTETICS 4', 1, 1, '', ''),
+(119, 'standard', '80698074', NULL, 'code128', 'ARTETICS 5', 1, 1, '', ''),
+(120, 'standard', '20010234', NULL, 'code128', 'ARTETICS 6', 1, 1, '', ''),
+(121, 'standard', '21930897', NULL, 'code128', 'ARTETICS 7', 1, 1, '', ''),
+(122, 'standard', '02230164', NULL, 'code128', 'DESTRESAS EMOCIONALES Y VALORES 8', 1, 1, '', ''),
+(123, 'standard', '62057082', NULL, 'code128', 'DESTRESAS EMOCIONALES Y VALORES 9', 1, 1, '', ''),
+(124, 'standard', '47679109', NULL, 'code128', 'DESTRESAS EMOCIONALES Y VALORES 10', 1, 1, '', ''),
+(125, 'standard', '94677024', NULL, 'code128', 'CALIGRAFIA Y ORTOGRAFIA MB 1', 1, 1, '', ''),
+(126, 'standard', '20387912', NULL, 'code128', 'CALIGRAFIA Y ORTOGRAFIA MB 2', 1, 1, '', ''),
+(127, 'standard', '12390024', NULL, 'code128', 'CALIGRAFIA Y ORTOGRAFIA MB 3', 1, 1, '', ''),
+(128, 'standard', '57215916', NULL, 'code128', 'CALIGRAFIA Y ORTOGRAFIA MB 4', 1, 1, '', ''),
+(129, 'standard', '09165720', NULL, 'code128', 'CALIGRAFIA Y ORTOGRAFIA MB 5', 1, 1, '', ''),
+(130, 'standard', '38957392', NULL, 'code128', 'CALIGRAFIA Y ORTOGRAFIA MB 6', 1, 1, '', ''),
+(131, 'standard', '73172640', NULL, 'code128', 'CALIGRAFIA Y ORTOGRAFIA MB 7', 1, 1, '', ''),
+(132, 'standard', '66096306', NULL, 'code128', 'DESTRESAS EMOCIONALES Y VALORES 1BGU', 1, 1, '', ''),
+(133, 'standard', '61146065', NULL, 'code128', 'DESTRESAS EMOCIONALES Y VALORES 2 BGU', 1, 1, '', ''),
+(134, 'standard', '33258485', NULL, 'code128', 'DESTRESAS EMOCIONALES Y VALORES 3 BGU', 1, 1, '', ''),
+(135, 'standard', '60952706', NULL, 'code128', 'INGLES MB 1', 1, 1, '', ''),
+(136, 'standard', '31671929', NULL, 'code128', 'INGLES MB 2', 1, 1, '', ''),
+(137, 'standard', '06228294', NULL, 'code128', 'INGLES MB 3', 1, 1, '', ''),
+(138, 'standard', '74621265', NULL, 'code128', 'INGLES MB 4', 1, 1, '', ''),
+(139, 'standard', '07889479', NULL, 'code128', 'INGLES MB 5', 1, 1, '', ''),
+(140, 'standard', '88643307', NULL, 'code128', 'INGLES MB 6', 1, 1, '', ''),
+(141, 'standard', '88456939', NULL, 'code128', 'INGLES MB 7', 1, 1, '', ''),
+(142, 'standard', '83903811', NULL, 'code128', 'CALIGRAFIA Y ORTOGRAFIA MB 8', 1, 1, '', ''),
+(143, 'standard', '67601388', NULL, 'code128', 'CALIGRAFIA Y ORTOGRAFIA MB 9', 1, 1, '', ''),
+(144, 'standard', '03410794', NULL, 'code128', 'CALIGRAFIA Y ORTOGRAFIA MB 10', 1, 1, '', ''),
+(145, 'standard', '60173741', NULL, 'code128', 'EVERYDAY ENGLISH 1 STA MARIANA AMBATO', 1, 1, '', ''),
+(146, 'standard', '11845077', NULL, 'code128', 'EVERYDAY ENGLISH 2 STA MARIANA AMBATO', 1, 1, '', ''),
+(147, 'standard', '79581210', NULL, 'code128', 'MI LECTURA DIRIGIDA 7', 1, 1, '', '');
 
 -- --------------------------------------------------------
 
@@ -5063,43 +5146,43 @@ INSERT INTO `product_to_store` (`id`, `product_id`, `store_id`, `purchase_price`
 (210, 81, 1, 14, 14, '0.0000', '10.0000', 1, 0, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-06-16', '2023-06-17', 1, 0),
 (213, 82, 1, 14, 14, '0.0000', '10.0000', 1, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-06-16', '2023-06-17', 1, 0),
 (214, 1, 2, 20, 40, '19.0000', '10.0000', 1, 1, 11, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
-(215, 2, 2, 20, 40, '31.0000', '10.0000', 1, 1, 12, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
-(216, 3, 2, 20, 40, '26.0000', '10.0000', 1, 1, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
-(217, 4, 2, 10.8, 27, '21.0000', '10.0000', 1, 1, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
-(218, 5, 2, 10.8, 27, '17.0000', '10.0000', 1, 1, 3, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(215, 2, 2, 20, 40, '30.0000', '10.0000', 1, 1, 12, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(216, 3, 2, 20, 40, '25.0000', '10.0000', 1, 1, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(217, 4, 2, 10.8, 27, '20.0000', '10.0000', 1, 1, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(218, 5, 2, 10.8, 27, '15.0000', '10.0000', 1, 1, 3, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
 (219, 6, 2, 10.8, 27, '19.0000', '10.0000', 1, 1, 4, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
-(220, 7, 2, 10.8, 27, '26.0000', '10.0000', 1, 1, 5, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(220, 7, 2, 10.8, 27, '25.0000', '10.0000', 1, 1, 5, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
 (221, 8, 2, 10.8, 27, '24.0000', '10.0000', 1, 1, 6, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
 (222, 9, 2, 10.8, 27, '17.0000', '10.0000', 1, 1, 7, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
-(223, 10, 2, 10.8, 27, '19.0000', '10.0000', 1, 1, 2, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
-(224, 11, 2, 10.8, 27, '16.0000', '10.0000', 1, 1, 3, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(223, 10, 2, 10.8, 27, '18.0000', '10.0000', 1, 1, 2, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(224, 11, 2, 10.8, 27, '14.0000', '10.0000', 1, 1, 3, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
 (225, 12, 2, 10.8, 27, '22.0000', '10.0000', 1, 1, 4, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
-(226, 13, 2, 10.8, 27, '25.0000', '10.0000', 1, 1, 5, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(226, 13, 2, 10.8, 27, '24.0000', '10.0000', 1, 1, 5, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
 (227, 14, 2, 10.8, 27, '23.0000', '10.0000', 1, 1, 6, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
 (228, 15, 2, 10.8, 27, '21.0000', '10.0000', 1, 1, 7, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
 (229, 16, 2, 10.8, 27, '22.0000', '10.0000', 1, 1, 8, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
-(230, 17, 2, 10.8, 27, '25.0000', '10.0000', 1, 1, 9, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(230, 17, 2, 10.8, 27, '24.0000', '10.0000', 1, 1, 9, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
 (231, 18, 2, 10.8, 27, '6.0000', '10.0000', 1, 1, 10, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
 (232, 19, 2, 10.8, 27, '28.0000', '10.0000', 1, 1, 8, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
 (233, 20, 2, 10.8, 27, '28.0000', '10.0000', 1, 1, 9, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
 (234, 21, 2, 10.8, 27, '29.0000', '10.0000', 1, 1, 10, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
-(235, 22, 2, 10.8, 27, '22.0000', '10.0000', 1, 1, 2, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
-(236, 23, 2, 10.8, 27, '19.0000', '10.0000', 1, 1, 3, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(235, 22, 2, 10.8, 27, '21.0000', '10.0000', 1, 1, 2, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(236, 23, 2, 10.8, 27, '17.0000', '10.0000', 1, 1, 3, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
 (237, 24, 2, 10.8, 27, '11.0000', '10.0000', 1, 1, 4, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
-(238, 25, 2, 10.8, 27, '22.0000', '10.0000', 1, 1, 5, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(238, 25, 2, 10.8, 27, '21.0000', '10.0000', 1, 1, 5, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
 (239, 26, 2, 10.8, 27, '9.0000', '10.0000', 1, 1, 6, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
 (240, 27, 2, 10.8, 27, '15.0000', '10.0000', 1, 1, 7, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
 (241, 28, 2, 10.8, 27, '31.0000', '10.0000', 1, 1, 8, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
-(242, 29, 2, 10.8, 27, '28.0000', '10.0000', 1, 1, 9, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(242, 29, 2, 10.8, 27, '27.0000', '10.0000', 1, 1, 9, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
 (243, 30, 2, 10.8, 27, '30.0000', '10.0000', 1, 1, 10, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
-(244, 31, 2, 10.8, 27, '24.0000', '10.0000', 1, 1, 2, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
-(245, 32, 2, 10.8, 27, '20.0000', '10.0000', 1, 1, 3, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(244, 31, 2, 10.8, 27, '23.0000', '10.0000', 1, 1, 2, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(245, 32, 2, 10.8, 27, '18.0000', '10.0000', 1, 1, 3, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
 (246, 33, 2, 10.8, 27, '22.0000', '10.0000', 1, 1, 4, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
-(247, 34, 2, 10.8, 27, '25.0000', '10.0000', 1, 1, 5, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(247, 34, 2, 10.8, 27, '24.0000', '10.0000', 1, 1, 5, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
 (248, 35, 2, 10.8, 27, '28.0000', '10.0000', 1, 1, 6, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
 (249, 36, 2, 10.8, 27, '25.0000', '10.0000', 1, 1, 7, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
 (250, 37, 2, 10.8, 27, '30.0000', '10.0000', 1, 1, 8, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
-(251, 38, 2, 10.8, 27, '27.0000', '10.0000', 1, 1, 9, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(251, 38, 2, 10.8, 27, '26.0000', '10.0000', 1, 1, 9, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
 (252, 39, 2, 10.8, 27, '29.0000', '10.0000', 1, 1, 10, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
 (253, 40, 2, 10, 25, '32.0000', '10.0000', 1, 1, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
 (254, 41, 2, 10, 25, '8.0000', '10.0000', 1, 1, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
@@ -5114,13 +5197,13 @@ INSERT INTO `product_to_store` (`id`, `product_id`, `store_id`, `purchase_price`
 (263, 50, 2, 5.6, 14, '23.0000', '10.0000', 1, 1, 9, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
 (264, 51, 2, 5.6, 14, '22.0000', '10.0000', 1, 1, 10, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
 (265, 52, 2, 10.8, 27, '9.0000', '10.0000', 1, 1, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
-(266, 53, 2, 10.8, 27, '28.0000', '10.0000', 1, 1, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(266, 53, 2, 10.8, 27, '27.0000', '10.0000', 1, 1, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
 (267, 54, 2, 10.8, 27, '27.0000', '10.0000', 1, 1, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
 (268, 55, 2, 10.8, 27, '26.0000', '10.0000', 1, 1, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
-(269, 56, 2, 10.8, 27, '24.0000', '10.0000', 1, 1, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(269, 56, 2, 10.8, 27, '23.0000', '10.0000', 1, 1, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
 (270, 57, 2, 10.8, 27, '23.0000', '10.0000', 1, 1, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
 (271, 58, 2, 10.8, 27, '0.0000', '10.0000', 1, 1, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
-(272, 59, 2, 10.8, 27, '27.0000', '10.0000', 1, 1, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(272, 59, 2, 10.8, 27, '26.0000', '10.0000', 1, 1, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
 (273, 60, 2, 10.8, 27, '18.0000', '10.0000', 1, 1, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
 (274, 61, 2, 10.8, 27, '0.0000', '10.0000', 1, 1, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
 (275, 62, 2, 10.8, 27, '0.0000', '10.0000', 1, 1, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
@@ -5145,63 +5228,63 @@ INSERT INTO `product_to_store` (`id`, `product_id`, `store_id`, `purchase_price`
 (294, 81, 2, 14, 14, '0.0000', '10.0000', 1, 0, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-06-16', '2023-06-17', 1, 0),
 (295, 82, 2, 14, 14, '0.0000', '10.0000', 1, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-06-16', '2023-06-17', 1, 0),
 (341, 83, 1, 21, 45, '0.0000', '10.0000', 4, 0, 12, 1, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
-(342, 83, 2, 21, 45, '14.0000', '10.0000', 4, 0, 12, 1, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(342, 83, 2, 21, 45, '13.0000', '10.0000', 4, 0, 12, 1, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (343, 84, 1, 21, 45, '0.0000', '10.0000', 4, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
-(344, 84, 2, 21, 45, '3.0000', '10.0000', 4, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(344, 84, 2, 21, 45, '2.0000', '10.0000', 4, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (345, 85, 1, 6.5, 10, '0.0000', '10.0000', 7, 0, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
-(346, 85, 2, 6.5, 10, '9.0000', '10.0000', 7, 0, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(346, 85, 2, 6.5, 10, '8.0000', '10.0000', 7, 0, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (347, 86, 1, 6.5, 10, '0.0000', '10.0000', 7, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
-(348, 86, 2, 6.5, 10, '4.0000', '10.0000', 7, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(348, 86, 2, 6.5, 10, '2.0000', '10.0000', 7, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (349, 87, 1, 6.5, 10, '0.0000', '10.0000', 7, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (350, 87, 2, 6.5, 10, '7.0000', '10.0000', 7, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (351, 88, 1, 6.5, 10, '0.0000', '10.0000', 7, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
-(352, 88, 2, 6.5, 10, '8.0000', '10.0000', 7, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(352, 88, 2, 6.5, 10, '7.0000', '10.0000', 7, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (353, 89, 1, 6.5, 10, '0.0000', '10.0000', 7, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (354, 89, 2, 6.5, 10, '6.0000', '10.0000', 7, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (355, 90, 1, 6.5, 10, '0.0000', '10.0000', 7, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (356, 90, 2, 6.5, 10, '7.0000', '10.0000', 7, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (357, 91, 1, 27, 46, '0.0000', '10.0000', 4, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
-(358, 91, 2, 27, 46, '14.0000', '10.0000', 4, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(358, 91, 2, 27, 46, '13.0000', '10.0000', 4, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (359, 92, 1, 27, 46, '0.0000', '10.0000', 4, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
-(360, 92, 2, 27, 46, '9.0000', '10.0000', 4, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(360, 92, 2, 27, 46, '7.0000', '10.0000', 4, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (361, 93, 1, 27, 46, '0.0000', '10.0000', 4, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (362, 93, 2, 27, 46, '6.0000', '10.0000', 4, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (363, 94, 1, 27, 46, '0.0000', '10.0000', 4, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
-(364, 94, 2, 27, 46, '8.0000', '10.0000', 4, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(364, 94, 2, 27, 46, '7.0000', '10.0000', 4, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (365, 95, 1, 27, 46, '0.0000', '10.0000', 4, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (366, 95, 2, 27, 46, '6.0000', '10.0000', 4, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (367, 96, 1, 22, 46, '0.0000', '10.0000', 4, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (368, 96, 2, 22, 46, '6.0000', '10.0000', 4, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (369, 97, 1, 22, 46, '0.0000', '10.0000', 4, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
-(370, 97, 2, 22, 46, '6.0000', '10.0000', 4, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(370, 97, 2, 22, 46, '5.0000', '10.0000', 4, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (371, 98, 1, 22, 46, '0.0000', '10.0000', 4, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (372, 98, 2, 22, 46, '0.0000', '10.0000', 4, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (373, 99, 1, 22, 46, '0.0000', '10.0000', 4, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (374, 99, 2, 22, 46, '0.0000', '10.0000', 4, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (375, 100, 1, 22, 54, '0.0000', '10.0000', 4, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
-(376, 100, 2, 22, 54, '7.0000', '10.0000', 4, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(376, 100, 2, 22, 54, '6.0000', '10.0000', 4, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (377, 101, 1, 22, 54, '0.0000', '10.0000', 4, 0, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (378, 101, 2, 22, 54, '2.0000', '10.0000', 4, 0, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (379, 102, 1, 22, 46, '0.0000', '10.0000', 4, 0, 7, 1, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (380, 102, 2, 22, 46, '7.0000', '10.0000', 4, 0, 7, 1, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (381, 103, 1, 6, 15, '0.0000', '10.0000', 1, 0, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
-(382, 103, 2, 6, 15, '27.0000', '10.0000', 1, 0, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(382, 103, 2, 6, 15, '26.0000', '10.0000', 1, 0, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (383, 104, 1, 6, 15, '0.0000', '10.0000', 1, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (384, 104, 2, 6, 15, '29.0000', '10.0000', 1, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (385, 105, 1, 6, 15, '0.0000', '10.0000', 1, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
-(386, 105, 2, 6, 15, '5.0000', '10.0000', 1, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(386, 105, 2, 6, 15, '4.0000', '10.0000', 1, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (387, 106, 1, 6, 15, '0.0000', '10.0000', 1, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (388, 106, 2, 6, 15, '0.0000', '10.0000', 1, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (389, 107, 1, 6, 15, '0.0000', '10.0000', 1, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (390, 107, 2, 6, 15, '0.0000', '10.0000', 1, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (391, 108, 1, 6, 15, '0.0000', '10.0000', 1, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
-(392, 108, 2, 6, 15, '6.0000', '10.0000', 1, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(392, 108, 2, 6, 15, '5.0000', '10.0000', 1, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (393, 109, 1, 6, 15, '0.0000', '10.0000', 1, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (394, 109, 2, 6, 15, '6.0000', '10.0000', 1, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (395, 110, 1, 6, 15, '0.0000', '10.0000', 1, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (396, 110, 2, 6, 15, '0.0000', '10.0000', 1, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (397, 111, 1, 6, 15, '0.0000', '10.0000', 1, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
-(398, 111, 2, 6, 15, '19.0000', '10.0000', 1, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(398, 111, 2, 6, 15, '18.0000', '10.0000', 1, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (399, 112, 1, 10.5, 20.25, '0.0000', '10.0000', 1, 0, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-07-27', '2023-07-28', 1, 0),
 (400, 112, 2, 10.5, 20.25, '0.0000', '10.0000', 1, 0, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-07-27', '2023-07-28', 1, 0),
 (401, 113, 1, 10.8, 20.25, '0.0000', '10.0000', 1, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-07-27', '2023-07-28', 1, 0),
@@ -5321,7 +5404,107 @@ INSERT INTO `product_to_store` (`id`, `product_id`, `store_id`, `purchase_price`
 (515, 111, 3, 6, 15, '0.0000', '10.0000', 1, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (516, 112, 3, 10.5, 20.25, '0.0000', '10.0000', 1, 0, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-07-27', '2023-07-28', 1, 0),
 (517, 113, 3, 10.8, 20.25, '0.0000', '10.0000', 1, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-07-27', '2023-07-28', 1, 0),
-(518, 114, 3, 10.8, 20.25, '0.0000', '10.0000', 1, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-07-27', '2023-07-28', 1, 0);
+(518, 114, 3, 10.8, 20.25, '0.0000', '10.0000', 1, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-07-27', '2023-07-28', 1, 0),
+(532, 115, 1, 4, 14, '0.0000', '10.0000', 3, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(533, 115, 2, 4, 14, '0.0000', '10.0000', 3, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(534, 115, 3, 4, 14, '0.0000', '10.0000', 3, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(535, 116, 1, 4, 14, '0.0000', '10.0000', 3, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(536, 116, 2, 4, 14, '0.0000', '10.0000', 3, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(537, 116, 3, 4, 14, '0.0000', '10.0000', 3, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(538, 117, 1, 4, 14, '0.0000', '10.0000', 3, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(539, 117, 2, 4, 14, '0.0000', '10.0000', 3, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(540, 117, 3, 4, 14, '0.0000', '10.0000', 3, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(541, 118, 1, 4, 14, '0.0000', '10.0000', 3, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(542, 118, 2, 4, 14, '0.0000', '10.0000', 3, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(543, 118, 3, 4, 14, '0.0000', '10.0000', 3, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(544, 119, 1, 4, 14, '0.0000', '10.0000', 3, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(545, 119, 2, 4, 14, '0.0000', '10.0000', 3, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(546, 119, 3, 4, 14, '0.0000', '10.0000', 3, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(547, 120, 1, 4, 14, '0.0000', '10.0000', 3, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(548, 120, 2, 4, 14, '0.0000', '10.0000', 3, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(549, 120, 3, 4, 14, '0.0000', '10.0000', 3, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(550, 121, 1, 4, 14, '0.0000', '10.0000', 3, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(551, 121, 2, 4, 14, '0.0000', '10.0000', 3, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(552, 121, 3, 4, 14, '0.0000', '10.0000', 3, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(553, 122, 1, 3, 14, '0.0000', '10.0000', 3, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(554, 122, 2, 3, 14, '0.0000', '10.0000', 3, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(555, 122, 3, 3, 14, '0.0000', '10.0000', 3, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(556, 123, 1, 3, 14, '0.0000', '10.0000', 3, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(557, 123, 2, 3, 14, '0.0000', '10.0000', 3, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(558, 123, 3, 3, 14, '0.0000', '10.0000', 3, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(559, 124, 1, 3, 14, '0.0000', '10.0000', 3, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(560, 124, 2, 3, 14, '0.0000', '10.0000', 3, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(561, 124, 3, 3, 14, '0.0000', '10.0000', 3, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(562, 125, 1, 4, 12, '0.0000', '10.0000', 3, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(563, 125, 2, 4, 12, '0.0000', '10.0000', 3, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(564, 125, 3, 4, 12, '0.0000', '10.0000', 3, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(565, 126, 1, 4, 12, '0.0000', '10.0000', 3, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(566, 126, 2, 4, 12, '0.0000', '10.0000', 3, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(567, 126, 3, 4, 12, '0.0000', '10.0000', 3, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(568, 127, 1, 4, 12, '0.0000', '10.0000', 3, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(569, 127, 2, 4, 12, '0.0000', '10.0000', 3, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(570, 127, 3, 4, 12, '0.0000', '10.0000', 3, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(571, 128, 1, 4, 12, '0.0000', '10.0000', 3, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(572, 128, 2, 4, 12, '0.0000', '10.0000', 3, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(573, 128, 3, 4, 12, '0.0000', '10.0000', 3, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(574, 129, 1, 4, 12, '0.0000', '10.0000', 3, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(575, 129, 2, 4, 12, '0.0000', '10.0000', 3, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(576, 129, 3, 4, 12, '0.0000', '10.0000', 3, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(577, 130, 1, 4, 12, '0.0000', '10.0000', 3, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(578, 130, 2, 4, 12, '0.0000', '10.0000', 3, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(579, 130, 3, 4, 12, '0.0000', '10.0000', 3, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(580, 131, 1, 4, 12, '0.0000', '10.0000', 3, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(581, 131, 2, 4, 12, '0.0000', '10.0000', 3, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(582, 131, 3, 4, 12, '0.0000', '10.0000', 3, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(583, 132, 1, 4, 12, '0.0000', '10.0000', 3, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(584, 132, 2, 4, 12, '0.0000', '10.0000', 3, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(585, 132, 3, 4, 12, '0.0000', '10.0000', 3, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(586, 133, 1, 4, 12, '0.0000', '10.0000', 3, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(587, 133, 2, 4, 12, '0.0000', '10.0000', 3, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(588, 133, 3, 4, 12, '0.0000', '10.0000', 3, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(589, 134, 1, 4, 12, '0.0000', '10.0000', 3, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(590, 134, 2, 4, 12, '0.0000', '10.0000', 3, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(591, 134, 3, 4, 12, '0.0000', '10.0000', 3, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(592, 135, 1, 4, 12, '0.0000', '10.0000', 3, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(593, 135, 2, 4, 12, '0.0000', '10.0000', 3, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(594, 135, 3, 4, 12, '0.0000', '10.0000', 3, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(595, 136, 1, 4, 13, '0.0000', '10.0000', 3, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(596, 136, 2, 4, 13, '0.0000', '10.0000', 3, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(597, 136, 3, 4, 13, '0.0000', '10.0000', 3, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(598, 137, 1, 4, 13, '0.0000', '10.0000', 3, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(599, 137, 2, 4, 13, '0.0000', '10.0000', 3, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(600, 137, 3, 4, 13, '0.0000', '10.0000', 3, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(601, 138, 1, 4, 13, '0.0000', '10.0000', 3, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(602, 138, 2, 4, 13, '0.0000', '10.0000', 3, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(603, 138, 3, 4, 13, '0.0000', '10.0000', 3, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(604, 139, 1, 4, 13, '0.0000', '10.0000', 3, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(605, 139, 2, 4, 13, '0.0000', '10.0000', 3, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(606, 139, 3, 4, 13, '0.0000', '10.0000', 3, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(607, 140, 1, 4, 13, '0.0000', '10.0000', 3, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(608, 140, 2, 4, 13, '0.0000', '10.0000', 3, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(609, 140, 3, 4, 13, '0.0000', '10.0000', 3, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(610, 141, 1, 4, 13, '0.0000', '10.0000', 3, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(611, 141, 2, 4, 13, '0.0000', '10.0000', 3, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(612, 141, 3, 4, 13, '0.0000', '10.0000', 3, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(613, 142, 1, 4, 14, '0.0000', '10.0000', 3, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(614, 142, 2, 4, 14, '0.0000', '10.0000', 3, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(615, 142, 3, 4, 14, '0.0000', '10.0000', 3, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(616, 143, 1, 4, 14, '0.0000', '10.0000', 3, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(617, 143, 2, 4, 14, '0.0000', '10.0000', 3, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(618, 143, 3, 4, 14, '0.0000', '10.0000', 3, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(619, 144, 1, 4, 14, '0.0000', '10.0000', 3, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(620, 144, 2, 4, 14, '0.0000', '10.0000', 3, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(621, 144, 3, 4, 14, '0.0000', '10.0000', 3, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(622, 145, 1, 21, 37.7, '0.0000', '10.0000', 4, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(623, 145, 2, 21, 37.7, '0.0000', '10.0000', 4, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(624, 145, 3, 21, 37.7, '0.0000', '10.0000', 4, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(625, 146, 1, 21, 37.7, '0.0000', '10.0000', 4, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(626, 146, 2, 21, 37.7, '0.0000', '10.0000', 4, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(627, 146, 3, 21, 37.7, '0.0000', '10.0000', 4, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(628, 147, 1, 4, 14, '0.0000', '10.0000', 3, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0);
+INSERT INTO `product_to_store` (`id`, `product_id`, `store_id`, `purchase_price`, `sell_price`, `quantity_in_stock`, `alert_quantity`, `sup_id`, `brand_id`, `course_id`, `box_id`, `taxrate_id`, `tax_method`, `preference`, `e_date`, `p_date`, `status`, `sort_order`) VALUES
+(629, 147, 2, 4, 14, '0.0000', '10.0000', 3, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(630, 147, 3, 4, 14, '0.0000', '10.0000', 3, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -5493,26 +5676,26 @@ INSERT INTO `purchase_item` (`id`, `invoice_id`, `store_id`, `item_id`, `categor
 (1, 'CINVENTARIO DAS', 2, 54, 1, 1, 'LOGROS LENGUA Y LITERATURA 3 BACH + PLATAFORMA', '10.8000', '27.0000', '28.0000', '1.0000', 'active', '302.4000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (2, 'CCINVENTARIO DAS', 2, 55, 1, 1, 'LOGROS BIOLOGÍA 1+ PLATAFORMA', '10.8000', '27.0000', '26.0000', '0.0000', 'active', '280.8000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (3, 'CHUVGH', 2, 9, 1, 1, 'LOGROS LENGUA Y LITERATURA 7 + PLATAFORMA', '10.8000', '27.0000', '20.0000', '3.0000', 'active', '216.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(4, 'CMATEMATICAS SEGUNDO', 2, 10, 1, 1, 'LOGROS MATEMÁTICAS 2 + PLATAFORMA', '10.8000', '27.0000', '20.0000', '1.0000', 'active', '216.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(5, 'CDAS INGLES', 2, 91, 1, 0, 'LEARNING ZONE SB + ONLINE 1', '27.0000', '46.0000', '15.0000', '1.0000', 'active', '405.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(6, 'CDAS LOGROS CIENCIAS', 2, 23, 1, 1, 'LOGROS CIENCIAS NATURALES 3 + PLATAFORMA', '10.8000', '27.0000', '25.0000', '6.0000', 'active', '270.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(4, 'CMATEMATICAS SEGUNDO', 2, 10, 1, 1, 'LOGROS MATEMÁTICAS 2 + PLATAFORMA', '10.8000', '27.0000', '20.0000', '2.0000', 'active', '216.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(5, 'CDAS INGLES', 2, 91, 1, 0, 'LEARNING ZONE SB + ONLINE 1', '27.0000', '46.0000', '15.0000', '2.0000', 'active', '405.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(6, 'CDAS LOGROS CIENCIAS', 2, 23, 1, 1, 'LOGROS CIENCIAS NATURALES 3 + PLATAFORMA', '10.8000', '27.0000', '25.0000', '8.0000', 'active', '270.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (7, 'CDAS MANUAL PARA EMPRESAS', 2, 75, 1, 1, 'MANUAL DE FINANCIAMIENTO PARA EMPRESAS ( PARA CONTABILIDAD BANCARIA, DE COSTOS Y GENERAL DE BACHILLE', '10.0000', '25.0000', '31.0000', '0.0000', 'active', '310.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(8, 'CDAS LOGROS LENGUAJE BASICA', 2, 4, 1, 1, 'LOGROS LENGUA Y LITERATURA 2 + PLATAFORMA', '10.8000', '27.0000', '22.0000', '1.0000', 'active', '237.6000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(9, 'CDAS INGLES 2', 2, 92, 1, 0, 'LEARNING ZONE SB + ONLINE 2', '27.0000', '46.0000', '15.0000', '6.0000', 'active', '405.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(8, 'CDAS LOGROS LENGUAJE BASICA', 2, 4, 1, 1, 'LOGROS LENGUA Y LITERATURA 2 + PLATAFORMA', '10.8000', '27.0000', '22.0000', '2.0000', 'active', '237.6000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(9, 'CDAS INGLES 2', 2, 92, 1, 0, 'LEARNING ZONE SB + ONLINE 2', '27.0000', '46.0000', '15.0000', '8.0000', 'active', '405.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (10, 'CDAS LOGROS LENGUAJE ', 2, 18, 1, 1, 'LOGROS LENGUA Y LITERATURA 10 + PLATAFORMA', '10.8000', '27.0000', '6.0000', '0.0000', 'active', '64.8000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(12, 'CLOGROS SOCIALES SEGUNDO', 2, 31, 1, 1, 'LOGROS ESTUDIOS SOCIALES 2 + PLATAFORMA', '10.8000', '27.0000', '25.0000', '1.0000', 'active', '270.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(12, 'CLOGROS SOCIALES SEGUNDO', 2, 31, 1, 1, 'LOGROS ESTUDIOS SOCIALES 2 + PLATAFORMA', '10.8000', '27.0000', '25.0000', '2.0000', 'active', '270.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (13, 'CLOGROS MATEMATICAS 4', 2, 12, 1, 1, 'LOGROS MATEMÁTICAS 4 + PLATAFORMA', '10.8000', '27.0000', '25.0000', '3.0000', 'active', '270.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(14, 'CDAS INGLES ELLEVATE 2', 2, 97, 1, 0, 'ELLEVATE ENGLISH TEEN  SB FULL 2', '22.0000', '46.0000', '8.0000', '2.0000', 'active', '176.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(15, 'CLOGROS CIENCIAS NATURALES 5', 2, 25, 1, 1, 'LOGROS CIENCIAS NATURALES 5 + PLATAFORMA', '10.8000', '27.0000', '24.0000', '2.0000', 'active', '259.2000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(14, 'CDAS INGLES ELLEVATE 2', 2, 97, 1, 0, 'ELLEVATE ENGLISH TEEN  SB FULL 2', '22.0000', '46.0000', '8.0000', '3.0000', 'active', '176.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(15, 'CLOGROS CIENCIAS NATURALES 5', 2, 25, 1, 1, 'LOGROS CIENCIAS NATURALES 5 + PLATAFORMA', '10.8000', '27.0000', '24.0000', '3.0000', 'active', '259.2000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (16, 'CGUCHITO 3-4 AÑOS', 2, 1, 1, 1, 'KIT EXPLORA Y APRENDE CON GUCHITO 3 - 4 AÑOS + PLATAFORMA', '20.0000', '40.0000', '19.0000', '0.0000', 'active', '380.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (17, 'CLOGROS CIENCIAS 6', 2, 26, 1, 1, 'LOGROS CIENCIAS NATURALES 6 + PLATAFORMA', '10.8000', '27.0000', '1.0000', '1.0000', 'sold', '10.8000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(18, 'CLOGROS LENGUAJE 5', 2, 7, 1, 1, 'LOGROS LENGUA Y LITERATURA 5 + PLATAFORMA', '10.8000', '27.0000', '28.0000', '2.0000', 'active', '302.4000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(19, 'CLOGROS CIENCIAS 9', 2, 29, 1, 1, 'LOGROS CIENCIAS NATURALES 9 + PLATAFORMA', '10.8000', '27.0000', '30.0000', '2.0000', 'active', '324.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(18, 'CLOGROS LENGUAJE 5', 2, 7, 1, 1, 'LOGROS LENGUA Y LITERATURA 5 + PLATAFORMA', '10.8000', '27.0000', '28.0000', '3.0000', 'active', '302.4000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(19, 'CLOGROS CIENCIAS 9', 2, 29, 1, 1, 'LOGROS CIENCIAS NATURALES 9 + PLATAFORMA', '10.8000', '27.0000', '30.0000', '3.0000', 'active', '324.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (20, 'CMARAVILLAS DE LEER 2', 2, 43, 1, 1, 'LOGROS LA MARAVILLA DE LEER 2 + PLATAFORMA', '5.6000', '14.0000', '21.0000', '0.0000', 'active', '117.6000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (21, 'CLOGROS FILOSOFIA 1', 2, 68, 1, 1, 'LOGROS FILOSOFÍA 1 + PLATAFORMA', '10.8000', '27.0000', '4.0000', '0.0000', 'active', '43.2000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(22, 'CEVERYDAY 1', 2, 83, 1, 0, 'EVERYDAY ENGLISH 1', '21.0000', '45.0000', '15.0000', '1.0000', 'active', '315.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(22, 'CEVERYDAY 1', 2, 83, 1, 0, 'EVERYDAY ENGLISH 1', '21.0000', '45.0000', '15.0000', '2.0000', 'active', '315.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (24, 'CLOGROS ANTISTICA 1', 2, 70, 1, 1, 'LOGROS EDUCACIÓN CULTURAL Y ARTÍSTICA 1 + PLATAFORMA', '25.0000', '25.0000', '3.0000', '0.0000', 'active', '75.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(26, 'CGUCHITO PREPARATORIA', 2, 3, 1, 1, 'KIT CREA Y APRENDE CON GUCHITO (PRIMERO DE BÁSICA)+ PLATAFORMA', '20.0000', '40.0000', '28.0000', '2.0000', 'active', '560.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(26, 'CGUCHITO PREPARATORIA', 2, 3, 1, 1, 'KIT CREA Y APRENDE CON GUCHITO (PRIMERO DE BÁSICA)+ PLATAFORMA', '20.0000', '40.0000', '28.0000', '3.0000', 'active', '560.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (27, 'CMARAVILLA DE LEER 6', 2, 47, 1, 1, 'LOGROS LA MARAVILLA DE LEER 6 + PLATAFORMA', '5.6000', '14.0000', '22.0000', '0.0000', 'active', '123.2000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (28, 'CLOGROS CONTABILIAD 9', 2, 41, 1, 1, 'CONTABILIDAD 9 + PLATAFORMA', '10.0000', '25.0000', '8.0000', '0.0000', 'active', '80.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (29, 'CLOGROS LENGUAJE 8', 2, 16, 1, 1, 'LOGROS LENGUA Y LITERATURA 8 + PLATAFORMA', '10.8000', '27.0000', '22.0000', '0.0000', 'active', '237.6000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
@@ -5521,36 +5704,36 @@ INSERT INTO `purchase_item` (`id`, `invoice_id`, `store_id`, `item_id`, `categor
 (33, 'CBIOLOGIA 3', 2, 57, 1, 1, 'LOGROS BIOLOGÍA 3 + PLATAFORMA', '10.8000', '27.0000', '24.0000', '1.0000', 'active', '259.2000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (34, 'CEMPRENDIMIENTO 1', 2, 66, 1, 1, 'LOGROS EMPRENDIMIENTO 1 + PLATAFORMA', '10.8000', '27.0000', '5.0000', '0.0000', 'active', '54.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (35, 'CMARAVILLA DE LEER 3', 2, 44, 1, 1, 'LOGROS LA MARAVILLA DE LEER 3 + PLATAFORMA', '5.6000', '14.0000', '29.0000', '0.0000', 'active', '162.4000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(36, 'CLEARNING 4', 2, 94, 1, 0, 'LEARNING ZONE SB + ONLINE 4', '27.0000', '46.0000', '10.0000', '2.0000', 'active', '270.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(37, 'CLENGUAJE 3BASICA', 2, 5, 1, 1, 'LOGROS LENGUA Y LITERATURA 3 + PLATAFORMA', '10.8000', '27.0000', '23.0000', '6.0000', 'active', '248.4000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(36, 'CLEARNING 4', 2, 94, 1, 0, 'LEARNING ZONE SB + ONLINE 4', '27.0000', '46.0000', '10.0000', '3.0000', 'active', '270.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(37, 'CLENGUAJE 3BASICA', 2, 5, 1, 1, 'LOGROS LENGUA Y LITERATURA 3 + PLATAFORMA', '10.8000', '27.0000', '23.0000', '8.0000', 'active', '248.4000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (38, 'CELLEVATE FULL 6', 2, 101, 1, 0, 'ELLEVATE ENGLISH TEEN  SB FULL 6', '22.0000', '46.0000', '3.0000', '1.0000', 'active', '66.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(39, 'CSOCIALES 5', 2, 34, 1, 1, 'LOGROS ESTUDIOS SOCIALES 5 + PLATAFORMA', '10.8000', '27.0000', '27.0000', '2.0000', 'active', '291.6000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(40, 'CCIENCIAS NATURALES 2', 2, 22, 1, 1, 'LOGROS CIENCIAS NATURALES 2 + PLATAFORMA', '10.8000', '27.0000', '23.0000', '1.0000', 'active', '248.4000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(41, 'CLENGUAJE 2BGU', 2, 53, 1, 1, 'LOGROS LENGUA Y LITERATURA 2 BACH + PLATAFORMA', '10.8000', '27.0000', '29.0000', '1.0000', 'active', '313.2000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(39, 'CSOCIALES 5', 2, 34, 1, 1, 'LOGROS ESTUDIOS SOCIALES 5 + PLATAFORMA', '10.8000', '27.0000', '27.0000', '3.0000', 'active', '291.6000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(40, 'CCIENCIAS NATURALES 2', 2, 22, 1, 1, 'LOGROS CIENCIAS NATURALES 2 + PLATAFORMA', '10.8000', '27.0000', '23.0000', '2.0000', 'active', '248.4000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(41, 'CLENGUAJE 2BGU', 2, 53, 1, 1, 'LOGROS LENGUA Y LITERATURA 2 BACH + PLATAFORMA', '10.8000', '27.0000', '29.0000', '2.0000', 'active', '313.2000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (43, 'CSOCIALES 7', 2, 36, 1, 1, 'LOGROS ESTUDIOS SOCIALES 7 + PLATAFORMA', '10.8000', '27.0000', '28.0000', '3.0000', 'active', '302.4000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (44, 'CPORTAFOLIO EXPERIMENTAL 9', 2, 50, 1, 1, 'PORTAFOLIO EXPERIMENTAL DE CIENCIAS NATURALES 9+ PLATAFORMA', '5.6000', '14.0000', '23.0000', '0.0000', 'active', '128.8000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (45, 'CLOGROS MATEMATICAS 9', 2, 20, 1, 1, 'LOGROS MATEMÁTICAS 9 + PLATAFORMA', '10.8000', '27.0000', '28.0000', '0.0000', 'active', '302.4000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (46, 'CLOGROS SOCIALES 6', 2, 35, 1, 1, 'LOGROS ESTUDIOS SOCIALES 6 + PLATAFORMA', '10.8000', '27.0000', '32.0000', '4.0000', 'active', '345.6000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(47, 'CLOGROS BIOLOGIA 2', 2, 56, 1, 1, 'LOGROS BIOLOGÍA 2 + PLATAFORMA', '10.8000', '27.0000', '25.0000', '1.0000', 'active', '270.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(47, 'CLOGROS BIOLOGIA 2', 2, 56, 1, 1, 'LOGROS BIOLOGÍA 2 + PLATAFORMA', '10.8000', '27.0000', '25.0000', '2.0000', 'active', '270.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (48, 'CLOGROS MATEMATICAS 8', 2, 19, 1, 1, 'LOGROS MATEMÁTICAS 8 + PLATAFORMA', '10.8000', '27.0000', '28.0000', '0.0000', 'active', '302.4000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(49, 'CELLEVATE FULL 5', 2, 100, 1, 0, 'ELLEVATE ENGLISH TEEN  SB FULL 5', '22.0000', '46.0000', '8.0000', '1.0000', 'active', '176.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(49, 'CELLEVATE FULL 5', 2, 100, 1, 0, 'ELLEVATE ENGLISH TEEN  SB FULL 5', '22.0000', '46.0000', '8.0000', '2.0000', 'active', '176.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (50, 'CLEARNING ZONE 5', 2, 95, 1, 0, 'LEARNING ZONE SB + ONLINE 5', '27.0000', '46.0000', '10.0000', '4.0000', 'active', '270.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (51, 'CLOGROS CIENCIAS NATURALES 4', 2, 24, 1, 1, 'LOGROS CIENCIAS NATURALES 4 + PLATAFORMA', '10.8000', '27.0000', '2.0000', '2.0000', 'sold', '21.6000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (52, 'CLOGROS FILOSOFIA 2', 2, 69, 1, 1, 'LOGROS FILOSOFÍA 2 + PLATAFORMA', '10.8000', '27.0000', '32.0000', '0.0000', 'active', '345.6000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(53, 'CLOGROS MATEMATICAS 3', 2, 11, 1, 1, 'LOGROS MATEMÁTICAS 3 + PLATAFORMA', '10.8000', '27.0000', '22.0000', '6.0000', 'active', '237.6000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(53, 'CLOGROS MATEMATICAS 3', 2, 11, 1, 1, 'LOGROS MATEMÁTICAS 3 + PLATAFORMA', '10.8000', '27.0000', '22.0000', '8.0000', 'active', '237.6000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (54, 'CLOGROS CIENCIAS 10', 2, 30, 1, 1, 'LOGROS CIENCIAS NATURALES 10 + PLATAFORMA', '10.8000', '27.0000', '30.0000', '0.0000', 'active', '324.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (55, 'CCONTABILIDAD 8', 2, 40, 1, 1, 'CONTABILIDAD 8 + PLATAFORMA', '10.0000', '25.0000', '32.0000', '0.0000', 'active', '320.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (56, 'CLOGROS LENGUAJE 4', 2, 6, 1, 1, 'LOGROS LENGUA Y LITERATURA 4 + PLATAFORMA', '10.8000', '27.0000', '22.0000', '3.0000', 'active', '237.6000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (57, 'CPORTAFOLIO EXPERIMENTAL 10', 2, 51, 1, 1, 'PORTAFOLIO EXPERIMENTAL DE CIENCIAS NATURALES 10 + PLATAFORMA', '5.6000', '14.0000', '22.0000', '0.0000', 'active', '123.2000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (58, 'CPROBLEMAS DEL MUNDO CONTEPORANEO', 2, 72, 1, 1, 'LOGROS PROBLEMAS DEL MUNDO CONTEMPORÁNEO + PLATAFORMA', '10.0000', '25.0000', '25.0000', '0.0000', 'active', '250.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(59, 'CLOGROS LENGUAJE 9', 2, 17, 1, 1, 'LOGROS LENGUA Y LITERATURA 9 + PLATAFORMA', '10.8000', '27.0000', '27.0000', '2.0000', 'active', '291.6000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(59, 'CLOGROS LENGUAJE 9', 2, 17, 1, 1, 'LOGROS LENGUA Y LITERATURA 9 + PLATAFORMA', '10.8000', '27.0000', '27.0000', '3.0000', 'active', '291.6000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (60, 'CPORTAFOLIO EXPERIMENTAL 8', 2, 49, 1, 1, 'PORTAFOLIO EXPERIMENTAL DE CIENCIAS NATURALES 8 + PLATAFORMA', '5.6000', '14.0000', '22.0000', '0.0000', 'active', '123.2000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (61, 'CLOGROS SOCIALES 8', 2, 37, 1, 1, 'LOGROS ESTUDIOS SOCIALES 8 + PLATAFORMA', '10.8000', '27.0000', '30.0000', '0.0000', 'active', '324.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(62, 'CGUCHITO 4-5AÑOS', 2, 2, 1, 1, 'KIT DESCUBRE Y APRENDE CON GUCHITO 4 - 5 AÑOS + PLATAFORMA', '20.0000', '40.0000', '32.0000', '1.0000', 'active', '640.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(62, 'CGUCHITO 4-5AÑOS', 2, 2, 1, 1, 'KIT DESCUBRE Y APRENDE CON GUCHITO 4 - 5 AÑOS + PLATAFORMA', '20.0000', '40.0000', '32.0000', '2.0000', 'active', '640.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (63, 'CLOGROS LENGUAJE 6', 2, 8, 1, 1, 'LOGROS LENGUA Y LITERATURA 6 + PLATAFORMA', '10.8000', '27.0000', '28.0000', '4.0000', 'active', '302.4000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(64, 'CLOGROS SOCIALES 9', 2, 38, 1, 1, 'LOGROS ESTUDIOS SOCIALES 9 + PLATAFORMA', '10.8000', '27.0000', '29.0000', '2.0000', 'active', '313.2000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(64, 'CLOGROS SOCIALES 9', 2, 38, 1, 1, 'LOGROS ESTUDIOS SOCIALES 9 + PLATAFORMA', '10.8000', '27.0000', '29.0000', '3.0000', 'active', '313.2000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (65, 'CLOGROS SOCIALLES 10', 2, 39, 1, 1, 'LOGROS ESTUDIOS SOCIALES 10 + PLATAFORMA', '10.8000', '27.0000', '29.0000', '0.0000', 'active', '313.2000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(66, 'CEVERYDAY 2', 2, 84, 1, 0, 'EVERYDAY INGLISH 2', '21.0000', '45.0000', '5.0000', '2.0000', 'active', '105.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(66, 'CEVERYDAY 2', 2, 84, 1, 0, 'EVERYDAY INGLISH 2', '21.0000', '45.0000', '5.0000', '3.0000', 'active', '105.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (67, 'CECA 2BGU', 2, 71, 1, 1, 'LOGROS EDUCACIÓN CULTURAL Y ARTÍSTICA  2 BGU + PLATAFORMA', '25.0000', '25.0000', '28.0000', '0.0000', 'active', '700.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (68, 'CLEARNING ZONE 3', 2, 93, 1, 0, 'LEARNING ZONE SB + ONLINE 3', '27.0000', '46.0000', '9.0000', '3.0000', 'active', '243.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (69, 'CCONTABILIDAD 1BGU', 2, 74, 1, 1, 'CONTABILIDAD 1 BACH + PLATAFORMA', '10.0000', '25.0000', '36.0000', '0.0000', 'active', '360.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
@@ -5560,35 +5743,35 @@ INSERT INTO `purchase_item` (`id`, `invoice_id`, `store_id`, `item_id`, `categor
 (73, 'CLOGROS MATEMATICAS 10', 2, 21, 1, 1, 'LOGROS MATEMÁTICAS 10 + PLATAFORMA', '10.8000', '27.0000', '29.0000', '0.0000', 'active', '313.2000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (74, 'CLOGROS CIENCIAS 8', 2, 28, 1, 1, 'LOGROS CIENCIAS NATURALES 8 + PLATAFORMA', '10.8000', '27.0000', '31.0000', '0.0000', 'active', '334.8000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (75, 'CLOGROS MATEMATICAS 7', 2, 15, 1, 1, 'LOGROS MATEMÁTICAS 7 + PLATAFORMA', '10.8000', '27.0000', '24.0000', '3.0000', 'active', '259.2000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(76, 'CLOGROS MATEMATICAS 5', 2, 13, 1, 1, 'LOGROS MATEMÁTICAS 5 + PLATAFORMA', '10.8000', '27.0000', '27.0000', '2.0000', 'active', '291.6000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(76, 'CLOGROS MATEMATICAS 5', 2, 13, 1, 1, 'LOGROS MATEMÁTICAS 5 + PLATAFORMA', '10.8000', '27.0000', '27.0000', '3.0000', 'active', '291.6000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (77, 'CMARAVILLA DE LEER 7', 2, 48, 1, 1, 'LOGROS LA MARAVILLA DE LEER 7 + PLATAFORMA', '5.6000', '14.0000', '23.0000', '0.0000', 'active', '128.8000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(78, 'CLOGROS SOCIALES 3', 2, 32, 1, 1, 'LOGROS ESTUDIOS SOCIALES 3 + PLATAFORMA', '10.8000', '27.0000', '26.0000', '6.0000', 'active', '280.8000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(78, 'CLOGROS SOCIALES 3', 2, 32, 1, 1, 'LOGROS ESTUDIOS SOCIALES 3 + PLATAFORMA', '10.8000', '27.0000', '26.0000', '8.0000', 'active', '280.8000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (79, 'CMARAVILLA DE LEER 4', 2, 45, 1, 1, 'LOGROS LA MARAVILLA DE LEER 4 + PLATAFORMA', '5.6000', '14.0000', '29.0000', '0.0000', 'active', '162.4000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (80, 'CLOGROS LENGUAJE 1BGU', 2, 52, 1, 1, 'LOGROS LENGUA Y LITERATURA 1 BACH + PLATAFORMA', '10.8000', '27.0000', '9.0000', '0.0000', 'active', '97.2000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (81, 'CLOGROS SOCIALES 4', 2, 33, 1, 1, 'LOGROS ESTUDIOS SOCIALES 4 + PLATAFORMA', '10.8000', '27.0000', '25.0000', '3.0000', 'active', '270.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (82, 'CLEARNING ZONE 6', 2, 102, 1, 0, 'LEARNING ZONE SB + ONLINE 6', '22.0000', '46.0000', '10.0000', '3.0000', 'active', '220.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (83, 'CELLEVATE TEEN 1', 2, 96, 1, 0, 'ELLEVATE ENGLISH TEEN  SB FULL 1', '22.0000', '46.0000', '6.0000', '0.0000', 'active', '132.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(84, 'CMI TUTORIAL DIGITAL 2BGU', 2, 111, 2, 0, 'MI TUTORIAL DIGITAL QUIMICA 2BGU', '6.0000', '15.0000', '20.0000', '1.0000', 'active', '120.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(84, 'CMI TUTORIAL DIGITAL 2BGU', 2, 111, 2, 0, 'MI TUTORIAL DIGITAL QUIMICA 2BGU', '6.0000', '15.0000', '20.0000', '2.0000', 'active', '120.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (85, 'CMI TUTORIAL DIGITAL 3BGU', 2, 78, 1, 1, 'MI TUTORIAL DIGITAL QUIMICA 3BGU', '6.0000', '15.0000', '20.0000', '1.0000', 'active', '120.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (86, 'CMI TUTORIAL DIGITAL MATEMATICAS 8', 2, 77, 1, 1, 'MI TUTORIAL DIGITAL MATEMATICAS 8', '6.0000', '15.0000', '7.0000', '0.0000', 'active', '42.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(87, 'CMI TUTORIAL DIGITAL MATEMATICAS 2BGU', 2, 108, 2, 0, 'MI TUTORIAL DIGITAL MATEMATICAS 2 BGU', '6.0000', '15.0000', '7.0000', '1.0000', 'active', '42.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(87, 'CMI TUTORIAL DIGITAL MATEMATICAS 2BGU', 2, 108, 2, 0, 'MI TUTORIAL DIGITAL MATEMATICAS 2 BGU', '6.0000', '15.0000', '7.0000', '2.0000', 'active', '42.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (88, 'CMI TUTORIAL DIGITAL MATEMATICAS 3BGU', 2, 109, 2, 0, 'MI TUTORIAL DIGITAL MATEMATICAS 3 BGU', '6.0000', '15.0000', '7.0000', '1.0000', 'active', '42.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (89, 'CMI TUTORIAL DIGITAL FISICA 3BGU', 2, 104, 2, 0, 'MI TUTORIAL DIGITAL FISICA 3 BGU', '6.0000', '15.0000', '30.0000', '1.0000', 'active', '180.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(90, 'CMI TUTORIAL DIGITAL FISICA 2BGU', 2, 103, 2, 0, 'MI TUTORIAL DIGITAL FISICA 2 BGU', '6.0000', '15.0000', '28.0000', '1.0000', 'active', '168.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(91, 'CREFUERZO ESCOLAR 2', 2, 85, 1, 0, 'REFUERZO ESCOLAR 2', '6.5000', '10.0000', '10.0000', '1.0000', 'active', '65.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(92, 'CREFUERZO ESCOLAR 3', 2, 86, 1, 0, 'REFUERZO ESCOLAR 3', '6.5000', '10.0000', '10.0000', '6.0000', 'active', '65.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(93, 'CREFUERZO ESCOLAR 5', 2, 88, 1, 0, 'REFUERZO ESCOLAR 5', '6.5000', '10.0000', '10.0000', '2.0000', 'active', '65.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(90, 'CMI TUTORIAL DIGITAL FISICA 2BGU', 2, 103, 2, 0, 'MI TUTORIAL DIGITAL FISICA 2 BGU', '6.0000', '15.0000', '28.0000', '2.0000', 'active', '168.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(91, 'CREFUERZO ESCOLAR 2', 2, 85, 1, 0, 'REFUERZO ESCOLAR 2', '6.5000', '10.0000', '10.0000', '2.0000', 'active', '65.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(92, 'CREFUERZO ESCOLAR 3', 2, 86, 1, 0, 'REFUERZO ESCOLAR 3', '6.5000', '10.0000', '10.0000', '8.0000', 'active', '65.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(93, 'CREFUERZO ESCOLAR 5', 2, 88, 1, 0, 'REFUERZO ESCOLAR 5', '6.5000', '10.0000', '10.0000', '3.0000', 'active', '65.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (94, 'CREFUERZO ESCOLAR 6', 2, 89, 1, 0, 'REFUERZO ESCOLAR 6', '6.5000', '10.0000', '10.0000', '4.0000', 'active', '65.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (95, 'CREFUERZO ESCOLAR 4', 2, 87, 1, 0, 'REFUERZO ESCOLAR 4', '6.5000', '10.0000', '10.0000', '3.0000', 'active', '65.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (96, 'CREFUERZO ESCOLAR 7', 2, 90, 1, 0, 'REFUERZO ESCOLAR 7', '6.5000', '10.0000', '10.0000', '3.0000', 'active', '65.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (97, 'CBGU QUIMICA ORGANICA ', 2, 112, 2, 0, 'QUIMICA 1 BGU CERIT ', '10.5000', '20.2500', '24.0000', '24.0000', 'sold', '252.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (98, 'C3BGU CERIT', 2, 114, 2, 0, 'QUIMICA 3 BGU CERIT ', '10.8000', '20.2500', '18.0000', '18.0000', 'sold', '194.4000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (99, 'C2BGU CERIT', 2, 113, 2, 0, 'QUIMICA 2 BGU CERIT', '10.8000', '20.2500', '28.0000', '28.0000', 'sold', '302.4000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(100, 'CMI TUTORIAL DIGITAL 9', 2, 105, 2, 0, 'MI TUTORIAL DIGITAL MATEMATICAS 9', '6.0000', '15.0000', '7.0000', '2.0000', 'active', '42.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(100, 'CMI TUTORIAL DIGITAL 9', 2, 105, 2, 0, 'MI TUTORIAL DIGITAL MATEMATICAS 9', '6.0000', '15.0000', '7.0000', '3.0000', 'active', '42.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (101, 'CLOGROS CIENCIAS NATURALES 6', 2, 26, 1, 1, 'LOGROS CIENCIAS NATURALES 6 + PLATAFORMA', '10.8000', '27.0000', '12.0000', '3.0000', 'active', '129.6000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (102, 'CLOGROS CIENCIAS NATURALES 4.', 2, 24, 1, 1, 'LOGROS CIENCIAS NATURALES 4 + PLATAFORMA', '10.8000', '27.0000', '12.0000', '1.0000', 'active', '129.6000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (103, 'CHISTORIA 3BGU', 2, 60, 1, 1, 'LOGROS HISTORIA 3 + PLATAFORMA', '10.8000', '27.0000', '19.0000', '1.0000', 'active', '205.2000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(104, 'CLOGROS HISTORIA 2', 2, 59, 1, 1, 'LOGROS HISTORIA 2 + PLATAFORMA', '10.8000', '27.0000', '28.0000', '1.0000', 'active', '302.4000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000');
+(104, 'CLOGROS HISTORIA 2', 2, 59, 1, 1, 'LOGROS HISTORIA 2 + PLATAFORMA', '10.8000', '27.0000', '28.0000', '2.0000', 'active', '302.4000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000');
 
 -- --------------------------------------------------------
 
@@ -6229,7 +6412,14 @@ INSERT INTO `selling_info` (`info_id`, `invoice_id`, `edit_counter`, `inv_type`,
 (23, '22023/00000023', 0, 'sell', 2, 23, 'fernandolaracrespo@h', 2, NULL, 0, '', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-05 12:01:57', NULL),
 (24, '22023/00000024', 0, 'sell', 2, 24, '0997367992', 2, NULL, 0, '', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-05 12:30:13', NULL),
 (26, '22023/00000025', 0, 'sell', 2, 24, '0997367992', 2, NULL, 0, '', 7, 0, 1, 1, 'paid', 1, 6, '2023-08-05 14:12:07', NULL),
-(27, '22023/00000026', 0, 'sell', 2, 25, '0981937194', 2, NULL, 0, '', 7, 0, 1, 1, 'paid', 1, 6, '2023-08-05 14:24:32', NULL);
+(27, '22023/00000026', 0, 'sell', 2, 25, '0981937194', 2, NULL, 0, '', 7, 0, 1, 1, 'paid', 1, 6, '2023-08-05 14:24:32', NULL),
+(28, '22023/00000027', 0, 'sell', 2, 26, '0996646083', 2, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 6, '2023-08-07 12:26:37', NULL),
+(29, '22023/00000028', 0, 'sell', 2, 27, 'anafran410@gmail.com', 2, NULL, 0, '', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-07 14:45:35', NULL),
+(30, '22023/00000029', 0, 'sell', 2, 1, '', 2, NULL, 0, '', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-07 15:41:35', NULL),
+(31, '22023/00000030', 0, 'sell', 2, 28, '0984612677', 2, NULL, 0, '', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-08 10:23:06', NULL),
+(32, '22023/00000031', 0, 'sell', 2, 29, '0999661606', 2, NULL, 0, 'TRANSFERENCIA', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-08 10:47:23', NULL),
+(33, '22023/00000032', 0, 'sell', 2, 30, '0997871520', 2, NULL, 0, 'transferencia 2 kit', 12, 0, 1, 1, 'paid', 1, 6, '2023-08-08 11:47:40', NULL),
+(34, '22023/00000033', 0, 'sell', 2, 31, '0963115284', 2, NULL, 0, 'TRANSFERENCIA ', 2, 0, 1, 1, 'paid', 1, 6, '2023-08-08 12:39:49', NULL);
 
 -- --------------------------------------------------------
 
@@ -6419,7 +6609,47 @@ INSERT INTO `selling_item` (`id`, `invoice_id`, `category_id`, `brand_id`, `sup_
 (151, '22023/00000026', 2, 0, 1, 2, 2, 103, 'MI TUTORIAL DIGITAL FISICA 2 BGU', '15.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '6.0000', '15.0000', 'CMI TUTORIAL DIGITAL FISICA 2BGU', 0, NULL, NULL, '0.0000', NULL),
 (152, '22023/00000026', 2, 0, 1, 2, 2, 108, 'MI TUTORIAL DIGITAL MATEMATICAS 2 BGU', '15.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '6.0000', '15.0000', 'CMI TUTORIAL DIGITAL MATEMATICAS 2BGU', 0, NULL, NULL, '0.0000', NULL),
 (153, '22023/00000026', 2, 0, 1, 2, 2, 111, 'MI TUTORIAL DIGITAL QUIMICA 2BGU', '15.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '6.0000', '15.0000', 'CMI TUTORIAL DIGITAL 2BGU', 0, NULL, NULL, '0.0000', NULL),
-(154, '22023/00000026', 1, 1, 1, 2, 2, 56, 'LOGROS BIOLOGÍA 2 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS BIOLOGIA 2', 0, NULL, NULL, '0.0000', NULL);
+(154, '22023/00000026', 1, 1, 1, 2, 2, 56, 'LOGROS BIOLOGÍA 2 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS BIOLOGIA 2', 0, NULL, NULL, '0.0000', NULL),
+(155, '22023/00000027', 1, 0, 4, 2, 2, 84, 'EVERYDAY INGLISH 2', '45.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '21.0000', '45.0000', 'CEVERYDAY 2', 0, NULL, NULL, '0.0000', NULL),
+(156, '22023/00000027', 1, 1, 1, 2, 2, 3, 'KIT CREA Y APRENDE CON GUCHITO (PRIMERO DE BÁSICA)+ PLATAFORMA', '40.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '20.0000', '40.0000', 'CGUCHITO PREPARATORIA', 0, NULL, NULL, '0.0000', NULL),
+(157, '22023/00000028', 1, 0, 4, 2, 2, 94, 'LEARNING ZONE SB + ONLINE 4', '46.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '27.0000', '46.0000', 'CLEARNING 4', 0, NULL, NULL, '0.0000', NULL),
+(158, '22023/00000028', 1, 1, 1, 2, 2, 25, 'LOGROS CIENCIAS NATURALES 5 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS CIENCIAS NATURALES 5', 0, NULL, NULL, '0.0000', NULL),
+(159, '22023/00000028', 1, 1, 1, 2, 2, 34, 'LOGROS ESTUDIOS SOCIALES 5 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CSOCIALES 5', 0, NULL, NULL, '0.0000', NULL),
+(160, '22023/00000028', 1, 1, 1, 2, 2, 7, 'LOGROS LENGUA Y LITERATURA 5 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS LENGUAJE 5', 0, NULL, NULL, '0.0000', NULL),
+(161, '22023/00000028', 1, 1, 1, 2, 2, 13, 'LOGROS MATEMÁTICAS 5 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS MATEMATICAS 5', 0, NULL, NULL, '0.0000', NULL),
+(162, '22023/00000028', 1, 0, 7, 2, 2, 88, 'REFUERZO ESCOLAR 5', '10.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '6.5000', '10.0000', 'CREFUERZO ESCOLAR 5', 0, NULL, NULL, '0.0000', NULL),
+(163, '22023/00000029', 1, 0, 4, 2, 2, 92, 'LEARNING ZONE SB + ONLINE 2', '46.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '27.0000', '46.0000', 'CDAS INGLES 2', 0, NULL, NULL, '0.0000', NULL),
+(164, '22023/00000029', 1, 1, 1, 2, 2, 23, 'LOGROS CIENCIAS NATURALES 3 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CDAS LOGROS CIENCIAS', 0, NULL, NULL, '0.0000', NULL),
+(165, '22023/00000029', 1, 1, 1, 2, 2, 32, 'LOGROS ESTUDIOS SOCIALES 3 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS SOCIALES 3', 0, NULL, NULL, '0.0000', NULL),
+(166, '22023/00000029', 1, 1, 1, 2, 2, 5, 'LOGROS LENGUA Y LITERATURA 3 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLENGUAJE 3BASICA', 0, NULL, NULL, '0.0000', NULL),
+(167, '22023/00000029', 1, 1, 1, 2, 2, 11, 'LOGROS MATEMÁTICAS 3 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS MATEMATICAS 3', 0, NULL, NULL, '0.0000', NULL),
+(168, '22023/00000029', 1, 0, 7, 2, 2, 86, 'REFUERZO ESCOLAR 3', '10.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '6.5000', '10.0000', 'CREFUERZO ESCOLAR 3', 0, NULL, NULL, '0.0000', NULL),
+(169, '22023/00000030', 1, 0, 4, 2, 2, 91, 'LEARNING ZONE SB + ONLINE 1', '46.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '27.0000', '46.0000', 'CDAS INGLES', 0, NULL, NULL, '0.0000', NULL),
+(170, '22023/00000030', 1, 1, 1, 2, 2, 22, 'LOGROS CIENCIAS NATURALES 2 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CCIENCIAS NATURALES 2', 0, NULL, NULL, '0.0000', NULL),
+(171, '22023/00000030', 1, 1, 1, 2, 2, 31, 'LOGROS ESTUDIOS SOCIALES 2 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS SOCIALES SEGUNDO', 0, NULL, NULL, '0.0000', NULL),
+(172, '22023/00000030', 1, 1, 1, 2, 2, 10, 'LOGROS MATEMÁTICAS 2 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CMATEMATICAS SEGUNDO', 0, NULL, NULL, '0.0000', NULL),
+(173, '22023/00000030', 1, 0, 7, 2, 2, 85, 'REFUERZO ESCOLAR 2', '10.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '6.5000', '10.0000', 'CREFUERZO ESCOLAR 2', 0, NULL, NULL, '0.0000', NULL),
+(174, '22023/00000030', 1, 1, 1, 2, 2, 4, 'LOGROS LENGUA Y LITERATURA 2 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CDAS LOGROS LENGUAJE BASICA', 0, NULL, NULL, '0.0000', NULL),
+(175, '22023/00000031', 1, 0, 4, 2, 2, 92, 'LEARNING ZONE SB + ONLINE 2', '46.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '27.0000', '46.0000', 'CDAS INGLES 2', 0, NULL, NULL, '0.0000', NULL),
+(176, '22023/00000031', 1, 1, 1, 2, 2, 23, 'LOGROS CIENCIAS NATURALES 3 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CDAS LOGROS CIENCIAS', 0, NULL, NULL, '0.0000', NULL),
+(177, '22023/00000031', 1, 1, 1, 2, 2, 32, 'LOGROS ESTUDIOS SOCIALES 3 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS SOCIALES 3', 0, NULL, NULL, '0.0000', NULL),
+(178, '22023/00000031', 1, 1, 1, 2, 2, 5, 'LOGROS LENGUA Y LITERATURA 3 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLENGUAJE 3BASICA', 0, NULL, NULL, '0.0000', NULL),
+(179, '22023/00000031', 1, 1, 1, 2, 2, 11, 'LOGROS MATEMÁTICAS 3 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS MATEMATICAS 3', 0, NULL, NULL, '0.0000', NULL),
+(180, '22023/00000031', 1, 0, 7, 2, 2, 86, 'REFUERZO ESCOLAR 3', '10.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '6.5000', '10.0000', 'CREFUERZO ESCOLAR 3', 0, NULL, NULL, '0.0000', NULL),
+(181, '22023/00000032', 1, 0, 4, 2, 2, 97, 'ELLEVATE ENGLISH TEEN  SB FULL 2', '46.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '22.0000', '46.0000', 'CDAS INGLES ELLEVATE 2', 0, NULL, NULL, '0.0000', NULL),
+(182, '22023/00000032', 1, 1, 1, 2, 2, 29, 'LOGROS CIENCIAS NATURALES 9 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS CIENCIAS 9', 0, NULL, NULL, '0.0000', NULL),
+(183, '22023/00000032', 1, 1, 1, 2, 2, 38, 'LOGROS ESTUDIOS SOCIALES 9 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS SOCIALES 9', 0, NULL, NULL, '0.0000', NULL),
+(184, '22023/00000032', 1, 1, 1, 2, 2, 17, 'LOGROS LENGUA Y LITERATURA 9 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS LENGUAJE 9', 0, NULL, NULL, '0.0000', NULL),
+(185, '22023/00000032', 2, 0, 1, 2, 2, 105, 'MI TUTORIAL DIGITAL MATEMATICAS 9', '15.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '6.0000', '15.0000', 'CMI TUTORIAL DIGITAL 9', 0, NULL, NULL, '0.0000', NULL),
+(186, '22023/00000032', 1, 0, 4, 2, 2, 100, 'ELLEVATE ENGLISH TEEN  SB FULL 5 COTOPAXI', '54.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '22.0000', '54.0000', 'CELLEVATE FULL 5', 0, NULL, NULL, '0.0000', NULL),
+(187, '22023/00000032', 1, 1, 1, 2, 2, 59, 'LOGROS HISTORIA 2 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS HISTORIA 2', 0, NULL, NULL, '0.0000', NULL),
+(188, '22023/00000032', 1, 1, 1, 2, 2, 53, 'LOGROS LENGUA Y LITERATURA 2 BACH + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLENGUAJE 2BGU', 0, NULL, NULL, '0.0000', NULL),
+(189, '22023/00000032', 1, 1, 1, 2, 2, 56, 'LOGROS BIOLOGÍA 2 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS BIOLOGIA 2', 0, NULL, NULL, '0.0000', NULL),
+(190, '22023/00000032', 2, 0, 1, 2, 2, 103, 'MI TUTORIAL DIGITAL FISICA 2 BGU', '15.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '6.0000', '15.0000', 'CMI TUTORIAL DIGITAL FISICA 2BGU', 0, NULL, NULL, '0.0000', NULL),
+(191, '22023/00000032', 2, 0, 1, 2, 2, 108, 'MI TUTORIAL DIGITAL MATEMATICAS 2 BGU', '15.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '6.0000', '15.0000', 'CMI TUTORIAL DIGITAL MATEMATICAS 2BGU', 0, NULL, NULL, '0.0000', NULL),
+(192, '22023/00000032', 2, 0, 1, 2, 2, 111, 'MI TUTORIAL DIGITAL QUIMICA 2BGU', '15.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '6.0000', '15.0000', 'CMI TUTORIAL DIGITAL 2BGU', 0, NULL, NULL, '0.0000', NULL),
+(193, '22023/00000033', 1, 0, 4, 2, 2, 83, 'EVERYDAY ENGLISH 1', '45.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '21.0000', '45.0000', 'CEVERYDAY 1', 0, NULL, NULL, '0.0000', NULL),
+(194, '22023/00000033', 1, 1, 1, 2, 2, 2, 'KIT DESCUBRE Y APRENDE CON GUCHITO 4 - 5 AÑOS + PLATAFORMA', '40.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '20.0000', '40.0000', 'CGUCHITO 4-5AÑOS', 0, NULL, NULL, '0.0000', NULL);
 
 -- --------------------------------------------------------
 
@@ -6486,7 +6716,14 @@ INSERT INTO `selling_price` (`price_id`, `invoice_id`, `store_id`, `subtotal`, `
 (23, '22023/00000023', 2, '164.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '76.7000', 'plain', '0.0000', '0.0000', '164.0000', '164.0000', '0.0000', '0.0000', '0.0000', '6.0000', '87.3000', '0.0000', '0.0000'),
 (24, '22023/00000024', 2, '164.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '76.7000', 'plain', '0.0000', '0.0000', '164.0000', '164.0000', '0.0000', '0.0000', '0.0000', '0.0000', '87.3000', '0.0000', '0.0000'),
 (26, '22023/00000025', 2, '180.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '72.4000', 'plain', '0.0000', '0.0000', '180.0000', '180.0000', '0.0000', '0.0000', '0.0000', '0.0000', '107.6000', '0.0000', '0.0000'),
-(27, '22023/00000026', 2, '180.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '72.4000', 'plain', '0.0000', '0.0000', '180.0000', '180.0000', '0.0000', '0.0000', '0.0000', '0.0000', '107.6000', '0.0000', '0.0000');
+(27, '22023/00000026', 2, '180.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '72.4000', 'plain', '0.0000', '0.0000', '180.0000', '180.0000', '0.0000', '0.0000', '0.0000', '0.0000', '107.6000', '0.0000', '0.0000'),
+(28, '22023/00000027', 2, '85.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '41.0000', 'plain', '0.0000', '0.0000', '85.0000', '85.0000', '0.0000', '0.0000', '0.0000', '15.0000', '44.0000', '0.0000', '0.0000'),
+(29, '22023/00000028', 2, '164.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '76.7000', 'plain', '0.0000', '0.0000', '164.0000', '164.0000', '0.0000', '0.0000', '0.0000', '6.0000', '87.3000', '0.0000', '0.0000'),
+(30, '22023/00000029', 2, '164.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '76.7000', 'plain', '0.0000', '0.0000', '164.0000', '164.0000', '0.0000', '0.0000', '0.0000', '0.0000', '87.3000', '0.0000', '0.0000'),
+(31, '22023/00000030', 2, '164.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '76.7000', 'plain', '0.0000', '0.0000', '164.0000', '164.0000', '0.0000', '0.0000', '0.0000', '0.0000', '87.3000', '0.0000', '0.0000'),
+(32, '22023/00000031', 2, '164.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '76.7000', 'plain', '0.0000', '0.0000', '164.0000', '164.0000', '0.0000', '0.0000', '0.0000', '0.0000', '87.3000', '0.0000', '0.0000'),
+(33, '22023/00000032', 2, '322.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '132.8000', 'plain', '0.0000', '0.0000', '322.0000', '322.0000', '0.0000', '0.0000', '0.0000', '0.0000', '189.2000', '0.0000', '0.0000'),
+(34, '22023/00000033', 2, '85.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '41.0000', 'plain', '0.0000', '0.0000', '85.0000', '85.0000', '0.0000', '0.0000', '0.0000', '0.0000', '44.0000', '0.0000', '0.0000');
 
 -- --------------------------------------------------------
 
@@ -6541,7 +6778,14 @@ INSERT INTO `sell_logs` (`id`, `customer_id`, `college_id`, `reference_no`, `ref
 (24, 24, 2, 'CT23080522024', '22023/00000024', 'sell', 1, 'Paid while selling', '164.0000', 2, 6, '2023-08-05 12:30:13', NULL),
 (25, 24, 2, 'CT23080522025', '22023/00000025', 'sell', 1, 'Paid while selling', '192.0000', 2, 6, '2023-08-05 12:34:42', NULL),
 (26, 24, 2, 'CT23080522026', '22023/00000025', 'sell', 1, 'Paid while selling', '180.0000', 2, 6, '2023-08-05 14:12:07', NULL),
-(27, 25, 2, 'CT23080522027', '22023/00000026', 'sell', 1, 'Paid while selling', '180.0000', 2, 6, '2023-08-05 14:24:32', NULL);
+(27, 25, 2, 'CT23080522027', '22023/00000026', 'sell', 1, 'Paid while selling', '180.0000', 2, 6, '2023-08-05 14:24:32', NULL),
+(28, 26, 2, 'CT23080722028', '22023/00000027', 'sell', 1, 'Paid while selling', '85.0000', 2, 6, '2023-08-07 12:26:37', NULL),
+(29, 27, 2, 'CT23080722029', '22023/00000028', 'sell', 1, 'Paid while selling', '164.0000', 2, 6, '2023-08-07 14:45:35', NULL),
+(30, 1, 2, 'CT23080722030', '22023/00000029', 'sell', 1, 'Paid while selling', '164.0000', 2, 6, '2023-08-07 15:41:35', NULL),
+(31, 28, 2, 'CT23080822031', '22023/00000030', 'sell', 1, 'Paid while selling', '164.0000', 2, 6, '2023-08-08 10:23:06', NULL),
+(32, 29, 2, 'CT23080822032', '22023/00000031', 'sell', 1, 'Paid while selling', '164.0000', 2, 6, '2023-08-08 10:47:23', NULL),
+(33, 30, 2, 'CT23080822033', '22023/00000032', 'sell', 1, 'Paid while selling', '322.0000', 2, 6, '2023-08-08 11:47:40', NULL),
+(34, 31, 2, 'CT23080822034', '22023/00000033', 'sell', 1, 'Paid while selling', '85.0000', 2, 6, '2023-08-08 12:39:49', NULL);
 
 -- --------------------------------------------------------
 
@@ -6912,14 +7156,15 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `group_id`, `username`, `email`, `mobile`, `dob`, `sex`, `password`, `raw_password`, `pass_reset_code`, `reset_code_time`, `login_try`, `last_login`, `ip`, `address`, `preference`, `user_image`, `fk_id`, `created_at`, `updated_at`) VALUES
-(1, 1, 'EDGAR YAGUAL', 'eye_layla@hotmail.com', '0969237302', '1990-09-08', 'M', 'c4221155b59e510664712215ed60e476', 'Administrator2023DAS', '', NULL, 0, '2023-08-05 14:37:28', '2800:bf0:82d2:1038:55e3:7999:ae0f:b837', NULL, 'a:4:{s:10:\"base_color\";s:6:\"purple\";s:14:\"pos_side_panel\";s:4:\"left\";s:11:\"pos_pattern\";s:15:\"brick-color.jpg\";s:8:\"language\";s:2:\"es\";}', '/edgartm.jpg', NULL, '2019-12-14 22:27:47', '2019-07-03 22:29:20'),
-(2, 4, 'DAVID POLO', 'admin@controldas.com', 'DAVID POLO', '1990-01-01', 'M', 'a618780a5f901e3d81b8b0bfe0281385', 'ControlAdmin1', '', NULL, 0, '2023-08-06 18:20:26', '45.224.98.149', NULL, 'a:4:{s:8:\"language\";s:2:\"es\";s:10:\"base_color\";s:6:\"purple\";s:14:\"pos_side_panel\";s:5:\"right\";s:11:\"pos_pattern\";s:9:\"space.jpg\";}', '', 0, '2019-12-14 22:27:47', '2019-07-02 16:28:15'),
+(1, 1, 'EDGAR YAGUAL', 'eye_layla@hotmail.com', '0969237302', '1990-09-08', 'M', 'c4221155b59e510664712215ed60e476', 'Administrator2023DAS', '', NULL, 0, '2023-08-07 15:25:40', '181.198.104.222', NULL, 'a:4:{s:10:\"base_color\";s:6:\"purple\";s:14:\"pos_side_panel\";s:4:\"left\";s:11:\"pos_pattern\";s:15:\"brick-color.jpg\";s:8:\"language\";s:2:\"es\";}', '/edgartm.jpg', NULL, '2019-12-14 22:27:47', '2019-07-03 22:29:20'),
+(2, 4, 'DAVID POLO', 'admin@controldas.com', 'DAVID POLO', '1990-01-01', 'M', 'a618780a5f901e3d81b8b0bfe0281385', 'ControlAdmin1', '', NULL, 0, '2023-08-08 10:14:58', '181.199.42.39', NULL, 'a:4:{s:8:\"language\";s:2:\"es\";s:10:\"base_color\";s:6:\"purple\";s:14:\"pos_side_panel\";s:5:\"right\";s:11:\"pos_pattern\";s:9:\"space.jpg\";}', '', 0, '2019-12-14 22:27:47', '2019-07-02 16:28:15'),
 (3, 2, 'Cashier', 'cashier@controldas.com', '0113743700', '1990-01-01', 'M', 'a618780a5f901e3d81b8b0bfe0281385', 'ControlAdmin1', '', NULL, 0, '2023-06-13 14:01:19', '::1', NULL, 'a:4:{s:10:\"base_color\";s:4:\"blue\";s:14:\"pos_side_panel\";s:4:\"left\";s:11:\"pos_pattern\";s:13:\"brickwall.jpg\";s:8:\"language\";s:2:\"es\";}', '', NULL, '2019-12-14 22:27:47', '2019-07-02 21:35:07'),
 (4, 3, 'Salesman', 'salesman@controldas.com', '1234567890', '0000-00-00', 'M', 'a618780a5f901e3d81b8b0bfe0281385', 'ControlAdmin1', NULL, NULL, 0, '2023-06-14 21:58:20', '127.0.0.1', NULL, 'a:1:{s:8:\"language\";s:2:\"es\";}', '', NULL, '2023-06-14 21:57:48', NULL),
-(5, 8, 'HERNAN EIVAR', 'hernaneivar@controldas.com', 'HERNAN', '0000-00-00', 'M', '314a4e69e0cf213e0d9cfd14a5ead1f2', '0983171925', NULL, NULL, 0, '2023-08-03 18:37:11', '181.199.42.39', NULL, 'a:1:{s:8:\"language\";s:2:\"es\";}', '', 0, '2023-07-20 14:52:36', NULL),
-(6, 5, 'MAURICIO CASTILLO', 'mauriciocastillo@controldas.com', 'MAURICIO ', '0000-00-00', 'M', '56740f5615802370aa445aadfb0be840', '0980948929', NULL, NULL, 0, '2023-08-05 14:15:47', '190.99.77.62', NULL, 'a:1:{s:8:\"language\";s:2:\"en\";}', '', 0, '2023-07-20 15:01:04', NULL),
+(5, 8, 'HERNAN EIVAR', 'hernaneivar@controldas.com', 'HERNAN', '0000-00-00', 'M', '314a4e69e0cf213e0d9cfd14a5ead1f2', '0983171925', NULL, NULL, 0, '2023-08-07 21:45:11', '2800:bf0:2902:108e:809b:3c28:a283:21b6', NULL, 'a:1:{s:8:\"language\";s:2:\"es\";}', '', 0, '2023-07-20 14:52:36', NULL),
+(6, 5, 'MAURICIO CASTILLO', 'mauriciocastillo@controldas.com', 'MAURICIO ', '0000-00-00', 'M', '56740f5615802370aa445aadfb0be840', '0980948929', NULL, NULL, 0, '2023-08-08 10:21:15', '190.99.77.62', NULL, 'a:1:{s:8:\"language\";s:2:\"en\";}', '', 0, '2023-07-20 15:01:04', NULL),
 (7, 5, 'DALILA SEGURA', 'dalila_segura@controldas.com', 'DALI', '0000-00-00', 'M', '5a612297eef412bc00bd0ca726f53fdb', '0939684718', NULL, NULL, 0, '2023-07-31 17:15:11', '2800:bf0:a821:1122:4457:7a58:99c6:9b14', NULL, 'a:1:{s:8:\"language\";s:2:\"en\";}', '', 0, '2023-07-21 08:21:08', NULL),
-(8, 6, 'HOLGUIN EDICIONES', 'E@', 'HOLGUIN ', '0000-00-00', 'M', '827ccb0eea8a706c4c34a16891f84e7b', '12345', NULL, NULL, 0, '2023-08-03 18:42:46', '181.199.42.39', NULL, 'a:1:{s:8:\"language\";s:2:\"en\";}', '', 1, '2023-08-03 18:42:30', NULL);
+(8, 6, 'HOLGUIN EDICIONES', 'E@', 'HOLGUIN ', '0000-00-00', 'M', '827ccb0eea8a706c4c34a16891f84e7b', '12345', NULL, NULL, 0, '2023-08-03 18:42:46', '181.199.42.39', NULL, 'a:1:{s:8:\"language\";s:2:\"en\";}', '', 1, '2023-08-03 18:42:30', NULL),
+(9, 7, 'UE COTOPAXI', 'DJD', 'UEI COTOPAXI', '0000-00-00', 'M', 'e10adc3949ba59abbe56e057f20f883e', '123456', NULL, NULL, 0, '2023-08-08 09:59:57', '181.199.42.39', NULL, 'a:1:{s:8:\"language\";s:2:\"en\";}', '', 2, '2023-08-08 09:55:05', NULL);
 
 -- --------------------------------------------------------
 
@@ -6945,7 +7190,7 @@ INSERT INTO `user_group` (`group_id`, `name`, `slug`, `sort_order`, `status`, `p
 (2, 'Cajero', 'cashier', 2, 1, 'a:0:{}'),
 (3, 'Vendedor', 'salesman', 3, 1, 'a:0:{}'),
 (4, 'Admin DAS', 'admin_das', 0, 1, 'a:1:{s:6:\"access\";a:95:{s:26:\"read_dashboard_invoce_view\";s:4:\"true\";s:28:\"read_dashboard_customer_view\";s:4:\"true\";s:28:\"read_dashboard_supplier_view\";s:4:\"true\";s:27:\"read_dashboard_product_view\";s:4:\"true\";s:22:\"read_recent_activities\";s:4:\"true\";s:16:\"read_sell_report\";s:4:\"true\";s:14:\"read_analytics\";s:4:\"true\";s:20:\"read_purchase_report\";s:4:\"true\";s:17:\"read_stock_report\";s:4:\"true\";s:17:\"read_sell_invoice\";s:4:\"true\";s:14:\"read_sell_list\";s:4:\"true\";s:19:\"create_sell_invoice\";s:4:\"true\";s:24:\"update_sell_invoice_info\";s:4:\"true\";s:19:\"delete_sell_invoice\";s:4:\"true\";s:12:\"sell_payment\";s:4:\"true\";s:15:\"create_sell_due\";s:4:\"true\";s:18:\"create_sell_return\";s:4:\"true\";s:16:\"read_sell_return\";s:4:\"true\";s:18:\"update_sell_return\";s:4:\"true\";s:18:\"delete_sell_return\";s:4:\"true\";s:16:\"sms_sell_invoice\";s:4:\"true\";s:18:\"email_sell_invoice\";s:4:\"true\";s:13:\"read_sell_log\";s:4:\"true\";s:23:\"create_purchase_invoice\";s:4:\"true\";s:18:\"read_purchase_list\";s:4:\"true\";s:28:\"update_purchase_invoice_info\";s:4:\"true\";s:17:\"read_purchase_log\";s:4:\"true\";s:12:\"read_product\";s:4:\"true\";s:14:\"create_product\";s:4:\"true\";s:14:\"update_product\";s:4:\"true\";s:14:\"delete_product\";s:4:\"true\";s:13:\"read_category\";s:4:\"true\";s:15:\"create_category\";s:4:\"true\";s:15:\"update_category\";s:4:\"true\";s:15:\"delete_category\";s:4:\"true\";s:16:\"read_stock_alert\";s:4:\"true\";s:20:\"read_expired_product\";s:4:\"true\";s:13:\"read_supplier\";s:4:\"true\";s:15:\"create_supplier\";s:4:\"true\";s:15:\"update_supplier\";s:4:\"true\";s:15:\"delete_supplier\";s:4:\"true\";s:21:\"read_supplier_profile\";s:4:\"true\";s:10:\"read_brand\";s:4:\"true\";s:12:\"create_brand\";s:4:\"true\";s:12:\"update_brand\";s:4:\"true\";s:12:\"delete_brand\";s:4:\"true\";s:18:\"read_brand_profile\";s:4:\"true\";s:9:\"read_unit\";s:4:\"true\";s:12:\"read_taxrate\";s:4:\"true\";s:13:\"read_customer\";s:4:\"true\";s:21:\"read_customer_profile\";s:4:\"true\";s:15:\"create_customer\";s:4:\"true\";s:15:\"update_customer\";s:4:\"true\";s:15:\"delete_customer\";s:4:\"true\";s:20:\"add_customer_balance\";s:4:\"true\";s:26:\"substract_customer_balance\";s:4:\"true\";s:25:\"read_customer_transaction\";s:4:\"true\";s:9:\"read_user\";s:4:\"true\";s:11:\"create_user\";s:4:\"true\";s:17:\"read_user_profile\";s:4:\"true\";s:11:\"update_user\";s:4:\"true\";s:11:\"delete_user\";s:4:\"true\";s:15:\"change_password\";s:4:\"true\";s:13:\"read_user_log\";s:4:\"true\";s:14:\"read_usergroup\";s:4:\"true\";s:12:\"read_pmethod\";s:4:\"true\";s:10:\"read_store\";s:4:\"true\";s:12:\"create_store\";s:4:\"true\";s:12:\"update_store\";s:4:\"true\";s:12:\"delete_store\";s:4:\"true\";s:14:\"activate_store\";s:4:\"true\";s:14:\"upload_favicon\";s:4:\"true\";s:11:\"upload_logo\";s:4:\"true\";s:12:\"read_college\";s:4:\"true\";s:14:\"create_college\";s:4:\"true\";s:14:\"update_college\";s:4:\"true\";s:14:\"delete_college\";s:4:\"true\";s:16:\"activate_college\";s:4:\"true\";s:11:\"read_course\";s:4:\"true\";s:13:\"create_course\";s:4:\"true\";s:13:\"update_course\";s:4:\"true\";s:13:\"delete_course\";s:4:\"true\";s:15:\"activate_course\";s:4:\"true\";s:12:\"read_printer\";s:4:\"true\";s:14:\"create_printer\";s:4:\"true\";s:14:\"update_printer\";s:4:\"true\";s:16:\"receipt_template\";s:4:\"true\";s:20:\"read_user_preference\";s:4:\"true\";s:22:\"update_user_preference\";s:4:\"true\";s:9:\"filtering\";s:4:\"true\";s:19:\"show_purchase_price\";s:4:\"true\";s:18:\"show_selling_price\";s:4:\"true\";s:20:\"show_estimated_sales\";s:4:\"true\";s:11:\"show_profit\";s:4:\"true\";s:10:\"show_graph\";s:4:\"true\";}}'),
-(5, 'Administrador Sucursal', 'administrador_sucursal', 0, 1, 'a:1:{s:6:\"access\";a:25:{s:16:\"read_sell_report\";s:4:\"true\";s:17:\"read_stock_report\";s:4:\"true\";s:17:\"read_sell_invoice\";s:4:\"true\";s:14:\"read_sell_list\";s:4:\"true\";s:19:\"create_sell_invoice\";s:4:\"true\";s:12:\"sell_payment\";s:4:\"true\";s:13:\"read_sell_log\";s:4:\"true\";s:20:\"create_holding_order\";s:4:\"true\";s:18:\"read_holding_order\";s:4:\"true\";s:23:\"create_purchase_invoice\";s:4:\"true\";s:18:\"read_purchase_list\";s:4:\"true\";s:28:\"update_purchase_invoice_info\";s:4:\"true\";s:17:\"read_purchase_log\";s:4:\"true\";s:12:\"read_product\";s:4:\"true\";s:16:\"read_stock_alert\";s:4:\"true\";s:20:\"read_expired_product\";s:4:\"true\";s:13:\"read_customer\";s:4:\"true\";s:21:\"read_customer_profile\";s:4:\"true\";s:15:\"create_customer\";s:4:\"true\";s:15:\"update_customer\";s:4:\"true\";s:15:\"change_password\";s:4:\"true\";s:20:\"read_user_preference\";s:4:\"true\";s:22:\"update_user_preference\";s:4:\"true\";s:9:\"filtering\";s:4:\"true\";s:20:\"show_estimated_sales\";s:4:\"true\";}}'),
+(5, 'Administrador Sucursal', 'administrador_sucursal', 0, 1, 'a:1:{s:6:\"access\";a:26:{s:16:\"read_sell_report\";s:4:\"true\";s:17:\"read_stock_report\";s:4:\"true\";s:17:\"read_sell_invoice\";s:4:\"true\";s:14:\"read_sell_list\";s:4:\"true\";s:19:\"create_sell_invoice\";s:4:\"true\";s:12:\"sell_payment\";s:4:\"true\";s:13:\"read_sell_log\";s:4:\"true\";s:20:\"create_holding_order\";s:4:\"true\";s:18:\"read_holding_order\";s:4:\"true\";s:23:\"create_purchase_invoice\";s:4:\"true\";s:18:\"read_purchase_list\";s:4:\"true\";s:28:\"update_purchase_invoice_info\";s:4:\"true\";s:17:\"read_purchase_log\";s:4:\"true\";s:12:\"read_product\";s:4:\"true\";s:16:\"read_stock_alert\";s:4:\"true\";s:20:\"read_expired_product\";s:4:\"true\";s:13:\"read_customer\";s:4:\"true\";s:21:\"read_customer_profile\";s:4:\"true\";s:15:\"create_customer\";s:4:\"true\";s:15:\"update_customer\";s:4:\"true\";s:15:\"change_password\";s:4:\"true\";s:20:\"read_user_preference\";s:4:\"true\";s:22:\"update_user_preference\";s:4:\"true\";s:9:\"filtering\";s:4:\"true\";s:18:\"show_selling_price\";s:4:\"true\";s:20:\"show_estimated_sales\";s:4:\"true\";}}'),
 (6, 'Proveedor Visor', 'proveedor_visor', 0, 1, 'a:1:{s:6:\"access\";a:6:{s:16:\"read_sell_report\";s:4:\"true\";s:17:\"read_stock_report\";s:4:\"true\";s:16:\"read_stock_alert\";s:4:\"true\";s:15:\"change_password\";s:4:\"true\";s:9:\"filtering\";s:4:\"true\";s:19:\"show_purchase_price\";s:4:\"true\";}}'),
 (7, 'Colegio Visor', 'colegio_visor', 0, 1, 'a:1:{s:6:\"access\";a:4:{s:16:\"read_sell_report\";s:4:\"true\";s:15:\"change_password\";s:4:\"true\";s:9:\"filtering\";s:4:\"true\";s:20:\"show_estimated_sales\";s:4:\"true\";}}'),
 (8, 'Ejecutivo de Ventas', 'ejecutivo_de_ventas', 0, 1, 'a:1:{s:6:\"access\";a:14:{s:16:\"read_sell_report\";s:4:\"true\";s:15:\"change_password\";s:4:\"true\";s:12:\"read_college\";s:4:\"true\";s:14:\"create_college\";s:4:\"true\";s:14:\"update_college\";s:4:\"true\";s:14:\"delete_college\";s:4:\"true\";s:16:\"activate_college\";s:4:\"true\";s:11:\"read_course\";s:4:\"true\";s:13:\"create_course\";s:4:\"true\";s:13:\"update_course\";s:4:\"true\";s:13:\"delete_course\";s:4:\"true\";s:15:\"activate_course\";s:4:\"true\";s:9:\"filtering\";s:4:\"true\";s:20:\"show_estimated_sales\";s:4:\"true\";}}');
@@ -6984,7 +7229,10 @@ INSERT INTO `user_to_store` (`u2s_id`, `user_id`, `store_id`, `status`, `sort_or
 (35, 8, 2, 1, 0),
 (36, 3, 3, 1, 0),
 (37, 1, 3, 1, 0),
-(38, 2, 3, 1, 0);
+(38, 2, 3, 1, 0),
+(42, 9, 1, 1, 0),
+(43, 9, 2, 1, 0),
+(44, 9, 3, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -7645,13 +7893,13 @@ ALTER TABLE `bank_account_to_store`
 -- AUTO_INCREMENT for table `bank_transaction_info`
 --
 ALTER TABLE `bank_transaction_info`
-  MODIFY `info_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=138;
+  MODIFY `info_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=145;
 
 --
 -- AUTO_INCREMENT for table `bank_transaction_price`
 --
 ALTER TABLE `bank_transaction_price`
-  MODIFY `price_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=138;
+  MODIFY `price_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=145;
 
 --
 -- AUTO_INCREMENT for table `boxes`
@@ -7693,13 +7941,13 @@ ALTER TABLE `currency`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `customer_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=26;
+  MODIFY `customer_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
 
 --
 -- AUTO_INCREMENT for table `customer_to_store`
 --
 ALTER TABLE `customer_to_store`
-  MODIFY `c2s_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `c2s_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
 
 --
 -- AUTO_INCREMENT for table `customer_transactions`
@@ -7801,7 +8049,7 @@ ALTER TABLE `loan_payments`
 -- AUTO_INCREMENT for table `login_logs`
 --
 ALTER TABLE `login_logs`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=137;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=154;
 
 --
 -- AUTO_INCREMENT for table `mail_sms_tag`
@@ -7813,7 +8061,7 @@ ALTER TABLE `mail_sms_tag`
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `pmethods`
@@ -7849,13 +8097,13 @@ ALTER TABLE `printers`
 -- AUTO_INCREMENT for table `printer_to_store`
 --
 ALTER TABLE `printer_to_store`
-  MODIFY `p2s_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `p2s_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `p_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
+  MODIFY `p_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=148;
 
 --
 -- AUTO_INCREMENT for table `product_images`
@@ -7873,7 +8121,7 @@ ALTER TABLE `product_to_college`
 -- AUTO_INCREMENT for table `product_to_store`
 --
 ALTER TABLE `product_to_store`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=532;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=631;
 
 --
 -- AUTO_INCREMENT for table `purchase_info`
@@ -7951,25 +8199,25 @@ ALTER TABLE `return_items`
 -- AUTO_INCREMENT for table `selling_info`
 --
 ALTER TABLE `selling_info`
-  MODIFY `info_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `info_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `selling_item`
 --
 ALTER TABLE `selling_item`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=155;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=195;
 
 --
 -- AUTO_INCREMENT for table `selling_price`
 --
 ALTER TABLE `selling_price`
-  MODIFY `price_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `price_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `sell_logs`
 --
 ALTER TABLE `sell_logs`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=28;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
 
 --
 -- AUTO_INCREMENT for table `settings`
@@ -8041,7 +8289,7 @@ ALTER TABLE `units`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
 
 --
 -- AUTO_INCREMENT for table `user_group`
@@ -8053,7 +8301,7 @@ ALTER TABLE `user_group`
 -- AUTO_INCREMENT for table `user_to_store`
 --
 ALTER TABLE `user_to_store`
-  MODIFY `u2s_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
+  MODIFY `u2s_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
 
 --
 -- AUTO_INCREMENT for table `_box_to_store_`
