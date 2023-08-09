@@ -73,7 +73,7 @@ define('SYNCSERVERURL', '');
 	 *
 	 * This is usefull when you will host the app inside a subdirectory of root
 	 */
-define('SUBDIRECTORY', 'das');
+define('SUBDIRECTORY', '');
 	// define('SUBDIRECTORY', '');
 
 
@@ -95,7 +95,7 @@ define('FILEMANAGERPATH', ROOT . '/storage/products/');
 	 * If you use FTP for filemanger then just left it as blank
 	 * Example: http://modernpos/storage directory
 	 */
-define('FILEMANAGERURL', 'http://localhost/das/storage/products');
+define('FILEMANAGERURL', 'http://localhost/storage/products');
 	// define('FILEMANAGERURL', 'http://localhost/storage/products');
 
 
