@@ -188,13 +188,13 @@ window.angularApp.controller("ReportSellItemWiseController", [
 
                 // Total over all pages at column 4
                 pageTotal = api
-                    .column(8, { page: "current" })
+                    .column(9, { page: "current" })
                     .data()
                     .reduce(function (a, b) {
                         return intVal(a) + intVal(b);
                     }, 0);
                 // Update footer
-                $(api.column(8).footer()).html(
+                $(api.column(9).footer()).html(
                     window.formatDecimal(pageTotal, 2)
                 );
 
