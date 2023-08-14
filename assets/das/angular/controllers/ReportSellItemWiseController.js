@@ -26,6 +26,7 @@ window.angularApp.controller("ReportSellItemWiseController", [
         var $p_id = window.getParameterByName("p_id");
         var $from = window.getParameterByName("from");
         var $to = window.getParameterByName("to");
+        var $college_id = window.getParameterByName("college_id");
 
         var printColumns = dt.data("print-columns");
         var i;
@@ -47,7 +48,7 @@ window.angularApp.controller("ReportSellItemWiseController", [
             "processing": true,
             "dom": "lfBrtip",
             "serverSide": true,
-            "ajax": API_URL + "/_inc/report_sell_itemwise.php?from=" + $from + "&to=" + $to + "&pid=" + $p_id,
+            "ajax": API_URL + "/_inc/report_sell_itemwise.php?from=" + $from + "&to=" + $to + "&pid=" + $p_id+ "&collegeid=" + $college_id,
             "fixedHeader": true,
             "order": [[0, "desc"]],
             "aLengthMenu": [
@@ -334,6 +335,17 @@ window.angularApp.controller("ReportSellItemWiseController", [
         //================
         // End datatable
         //================
+
+        $(document).delegate("#college_id", "select2:select", function (e) {
+            e.preventDefault();
+            e.stopPropagation();
+            var data = e.params.data;
+            window.location = window.baseUrl+"/admin/report_sell_itemwise.php?college_id="+data.element.value;
+        });
+    
+        if (window.getParameterByName('college_id')) {
+            $("#college_id").val(window.getParameterByName('college_id')).trigger("change");
+        }
 
         // Append email button into datatable buttons
         if (window.sendReportEmail) { $(".dt-buttons").append("<button id=\"email-btn\" class=\"btn btn-default buttons-email\" tabindex=\"0\" aria-controls=\"invoice-invoice-list\" type=\"button\" title=\"Email\"><span><i class=\"fa fa-envelope\"></i></span></button>"); };

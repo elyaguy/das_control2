@@ -113,6 +113,26 @@ include("left_sidebar.php");
                 </ul>
               </div>
 
+            <!-- </div>
+            <div class="box-tools pull-right"> -->
+              <div class="btn-group" style="max-width:280px;">
+                <div class="input-group">
+                  <div class="input-group-addon no-print" style="padding: 2px 8px; border-right: 0;">
+                    <i class="fa fa-users" id="addIcon" style="font-size: 1.2em;"></i>
+                  </div>
+                  <select id="college_id" class="form-control" name="college_id">
+                    <option value=""><?php echo trans('text_select'); ?></option>
+                    <?php foreach (get_colleges() as $the_supplier) : ?>
+                      <option value="<?php echo $the_supplier['college_id']; ?>">
+                        <?php echo $the_supplier['college_name']; ?>
+                      </option>
+                    <?php endforeach; ?>
+                  </select>
+                  <div class="input-group-addon no-print" style="padding: 2px 8px; border-left: 0;">
+                    <i class="fa fa-search" id="addIcon" style="font-size: 1.2em;"></i>
+                  </div>
+                </div>
+              </div>
             </div>
           </div>
           <div class="box-body">
@@ -128,20 +148,20 @@ include("left_sidebar.php");
               if (user_group_id() != 1) {
                 if (has_permission('access', 'show_estimated_sales')) {
                   $hide_colums = str_replace('5,', '', $hide_colums);
-                  // $print_columns .= ",4";
+                  $print_columns .= ",5";
                 }
-                // if (has_permission('access', 'show_purchase_price')) {
-                //   $hide_colums = str_replace('7,', '', $hide_colums);
-                //   $print_columns .= ",7";
-                // }
+                if (has_permission('access', 'show_purchase_price')) {
+                  $hide_colums = str_replace('7,', '', $hide_colums);
+                  $print_columns .= ",7";
+                }
                 if (has_permission('access', 'show_selling_price')) {
                   $hide_colums = str_replace('8,', '', $hide_colums);
                   $print_columns .= ",8";
                 }
-                // if (has_permission('access', 'show_purchase_price')) {
-                //   $hide_colums = str_replace('9,', '', $hide_colums);
-                //   $print_columns .= ",9";
-                // }
+                if (has_permission('access', 'show_purchase_price')) {
+                  $hide_colums = str_replace('9,', '', $hide_colums);
+                  $print_columns .= ",9";
+                }
                 if (has_permission('access', 'show_selling_price')) {
                   $hide_colums = str_replace('10,', '', $hide_colums);
                   $print_columns .= ",10";
@@ -149,12 +169,12 @@ include("left_sidebar.php");
               }
 
               if (user_group_id() == 1) {
-                // $print_columns .= ",5,7,8,9,10";
-                $print_columns .= ",5,8,10";
+                $print_columns .= ",5,7,8,9,10";
+                // $print_columns .= ",5,8,10";
                 $hide_colums = str_replace('5,', '', $hide_colums);
-                // $hide_colums = str_replace('7,', '', $hide_colums);
+                $hide_colums = str_replace('7,', '', $hide_colums);
                 $hide_colums = str_replace('8,', '', $hide_colums);
-                // $hide_colums = str_replace('9,', '', $hide_colums);
+                $hide_colums = str_replace('9,', '', $hide_colums);
                 $hide_colums = str_replace('10,', '', $hide_colums);
               }
 

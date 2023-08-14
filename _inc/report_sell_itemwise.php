@@ -34,6 +34,9 @@ $where_query = "selling_info.inv_type != 'due_paid' AND selling_info.store_id = 
 if (isset($request->get['pid']) && $request->get['pid'] && $request->get['pid'] != 'null') {
   $where_query .= " AND item_id = " . $request->get['pid'];
 }
+if (isset($request->get['collegeid']) && $request->get['collegeid'] != 'null' && $request->get['collegeid'] != '') {
+  $where_query .= " AND selling_info.college_id=" . $request->get['collegeid'];
+}
 //Para cuando sea rol de colegio y proveedor
 // 6 proveedor 7 colegio
 if (user_group_id() == 7) {
@@ -58,7 +61,6 @@ course_name , product_to_college.estimatedsales as estimated_sales, college_name
   LEFT JOIN product_to_college ON (selling_item.item_id = product_to_college.product_id AND selling_item.college_id = product_to_college.college_id)
   LEFT JOIN courses ON (product_to_store.course_id = courses.course_id)
   LEFT JOIN colleges ON(selling_info.college_id = colleges.college_id)
-
   WHERE $where_query
   GROUP BY selling_item.item_id,college_name
   ORDER BY CAST(selling_info.created_at AS date) DESC) as selling_item";
