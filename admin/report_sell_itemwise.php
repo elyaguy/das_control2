@@ -225,7 +225,7 @@ include("left_sidebar.php");
                       <?php echo trans('label_purchase_total'); ?>
                     </th>
                     <th class="w-20">
-                      <?php echo trans('label_total'); ?>
+                      <?php echo trans('label_sales_total'); ?>
                     </th>
                   </tr>
                 </thead>
@@ -262,7 +262,7 @@ include("left_sidebar.php");
                       <?php echo trans('label_purchase_total'); ?>
                     </th>
                     <th class="w-20">
-                      <?php echo trans('label_total'); ?>
+                      <?php echo trans('label_sales_total'); ?>
                     </th>
 
                   </tr>
