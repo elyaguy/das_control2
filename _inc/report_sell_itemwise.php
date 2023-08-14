@@ -51,7 +51,7 @@ $where_query .= date_range_filter($from, $to);
 $table = "(SELECT @sl:=@sl+1 AS sl, selling_info.invoice_id, CAST(selling_info.created_at AS date) as created_at, 
 selling_item.id, selling_item.item_id, selling_item.item_name, SUM(selling_item.item_quantity) as total_item, 
 SUM(selling_item.item_discount) as discount, SUM(selling_item.item_tax) as tax, 
-selling_item.item_purchase_price as purchase_price, selling_item.item_price as sell_price , 
+product_to_store.purchase_price as purchase_price, selling_item.item_price as sell_price , 
 SUM(selling_item.item_purchase_price) as purchase_price_total, SUM(selling_item.item_total) as sell_price_total , 
 course_name , product_to_college.estimatedsales as estimated_sales, college_name
   FROM selling_item 
