@@ -39,6 +39,10 @@ if (isset($request->get['collegeid']) && $request->get['collegeid'] != 'null' &&
 }
 //Para cuando sea rol de colegio y proveedor
 // 6 proveedor 7 colegio
+if (user_group_id() == 6) {
+  $where_query .= " AND product_to_store.sup_id = " . userFK_id();
+}
+
 if (user_group_id() == 7) {
   $where_query .= " AND selling_item.college_id = " . userFK_id();
 }
