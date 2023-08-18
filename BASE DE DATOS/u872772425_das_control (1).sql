@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Aug 08, 2023 at 07:54 PM
+-- Generation Time: Aug 18, 2023 at 09:21 PM
 -- Server version: 10.5.19-MariaDB-cll-lve
 -- PHP Version: 7.2.34
 
@@ -50,7 +50,7 @@ CREATE TABLE `bank_accounts` (
 --
 
 INSERT INTO `bank_accounts` (`id`, `account_name`, `account_details`, `initial_balance`, `account_no`, `contact_person`, `phone_number`, `opening_date`, `url`, `total_deposit`, `total_withdraw`, `total_transfer_from_other`, `total_transfer_to_other`, `created_at`, `updated_at`) VALUES
-(1, 'Default Account', 'This is a default account for any store', '0.0000', '1234567890', 'iAngryboy', '+880133333333', '2019-05-15 08:27:03', 'https://controldas.com', '31945.7000', '0.0000', '0.0000', '0.0000', '2019-01-16 13:23:03', '2019-07-02 11:56:57');
+(1, 'Default Account', 'This is a default account for any store', '0.0000', '1234567890', 'iAngryboy', '+880133333333', '2019-05-15 08:27:03', 'https://controldas.com', '40007.4500', '0.0000', '0.0000', '0.0000', '2019-01-16 13:23:03', '2019-07-02 11:56:57');
 
 -- --------------------------------------------------------
 
@@ -76,8 +76,9 @@ CREATE TABLE `bank_account_to_store` (
 
 INSERT INTO `bank_account_to_store` (`ba2s`, `store_id`, `account_id`, `deposit`, `withdraw`, `transfer_from_other`, `transfer_to_other`, `status`, `sort_order`) VALUES
 (1, 1, 1, '0.0000', '0.0000', '0.0000', '0.0000', 1, 0),
-(2, 2, 1, '8180.1000', '23765.6000', '0.0000', '0.0000', 1, 0),
-(4, 3, 1, '0.0000', '0.0000', '0.0000', '0.0000', 1, 0);
+(2, 2, 1, '13110.1000', '23791.6000', '0.0000', '0.0000', 1, 0),
+(4, 3, 1, '676.0000', '2429.7500', '0.0000', '0.0000', 1, 0),
+(5, 4, 1, '0.0000', '0.0000', '0.0000', '0.0000', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -254,7 +255,57 @@ INSERT INTO `bank_transaction_info` (`info_id`, `store_id`, `transaction_type`, 
 (141, 2, 'deposit', 0, 0, 1, 1, NULL, 'D141', '22023/00000030', 'Deposit for selling', 'Customer name: ESTEFANIA QUERIDO', NULL, 1, 'NULL', 6, '2023-08-08 10:23:06', NULL),
 (142, 2, 'deposit', 0, 0, 1, 1, NULL, 'D142', '22023/00000031', 'Deposit for selling', 'Customer name: DIEGO MOLINA ', NULL, 1, 'NULL', 6, '2023-08-08 10:47:23', NULL),
 (143, 2, 'deposit', 0, 0, 1, 1, NULL, 'D143', '22023/00000032', 'Deposit for selling', 'Customer name: KARINA LAVERDE', NULL, 1, 'NULL', 6, '2023-08-08 11:47:40', NULL),
-(144, 2, 'deposit', 0, 0, 1, 1, NULL, 'D144', '22023/00000033', 'Deposit for selling', 'Customer name: CARMEN BROUWN', NULL, 1, 'NULL', 6, '2023-08-08 12:39:49', NULL);
+(144, 2, 'deposit', 0, 0, 1, 1, NULL, 'D144', '22023/00000033', 'Deposit for selling', 'Customer name: CARMEN BROUWN', NULL, 1, 'NULL', 6, '2023-08-08 12:39:49', NULL),
+(145, 2, 'deposit', 0, 0, 1, 1, NULL, 'D145', '22023/00000034', 'Deposit for selling', 'Customer name: FERNANDO CASCO', NULL, 1, 'NULL', 6, '2023-08-08 15:10:47', NULL),
+(146, 2, 'deposit', 0, 0, 1, 1, NULL, 'D146', '22023/00000035', 'Deposit for selling', 'Customer name: ELIANA PAZUÑA MENA', NULL, 1, 'NULL', 6, '2023-08-09 11:38:41', NULL),
+(147, 2, 'deposit', 0, 0, 1, 1, NULL, 'D147', '22023/00000036', 'Deposit for selling', 'Customer name: JAIME GONZALO MORENO VILLARUEL', NULL, 1, 'NULL', 6, '2023-08-09 11:40:14', NULL),
+(148, 2, 'deposit', 0, 0, 1, 1, NULL, 'D148', '22023/00000037', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 6, '2023-08-09 13:20:26', NULL),
+(149, 2, 'deposit', 0, 0, 1, 1, NULL, 'D149', '22023/00000038', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 6, '2023-08-09 16:00:26', NULL),
+(150, 2, 'deposit', 0, 0, 1, 1, NULL, 'D150', '22023/00000039', 'Deposit for selling', 'Customer name: OSCAR ROBAYO', NULL, 1, 'NULL', 6, '2023-08-10 11:14:50', NULL),
+(151, 2, 'deposit', 0, 0, 1, 1, NULL, 'D151', '22023/00000040', 'Deposit for selling', 'Customer name: EVELYN GUAMANGALIO', NULL, 1, 'NULL', 6, '2023-08-10 11:33:18', NULL),
+(152, 2, 'deposit', 0, 0, 1, 1, NULL, 'D152', '22023/00000041', 'Deposit for selling', 'Customer name: KATY PATRICIA LUZ VEINTIMILLA', NULL, 1, 'NULL', 6, '2023-08-10 11:42:22', NULL),
+(153, 2, 'deposit', 0, 0, 1, 1, NULL, 'D153', '22023/00000042', 'Deposit for selling', 'Customer name: VICTOR GUILCA', NULL, 1, 'NULL', 6, '2023-08-14 12:37:10', NULL),
+(154, 2, 'deposit', 0, 0, 1, 1, NULL, 'D154', '22023/00000043', 'Deposit for selling', 'Customer name: edwin osorio', NULL, 1, 'NULL', 6, '2023-08-14 12:43:05', NULL),
+(155, 2, 'deposit', 0, 0, 1, 1, NULL, 'D155', '22023/00000044', 'Deposit for selling', 'Customer name: lourdes masabanda ', NULL, 1, 'NULL', 6, '2023-08-14 12:55:20', NULL),
+(156, 2, 'deposit', 0, 0, 1, 1, NULL, 'D156', '22023/00000045', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 6, '2023-08-15 10:44:48', NULL),
+(157, 2, 'deposit', 0, 0, 1, 1, NULL, 'D157', '22023/00000046', 'Deposit for selling', 'Customer name: ANDRADE FLOR PAMELA', NULL, 1, 'NULL', 6, '2023-08-15 14:30:22', NULL),
+(158, 3, 'withdraw', 0, 0, 1, NULL, 9, 'W158', 'C1', 'Debit for Product Purchase', 'Supplier name: EDITORIAL LEA MAS ', NULL, 1, 'NULL', 2, '2023-08-15 20:07:45', NULL),
+(159, 3, 'withdraw', 0, 0, 1, NULL, 9, 'W159', 'C2', 'Debit for Product Purchase', 'Supplier name: MARCO BOSMEDIANO', NULL, 1, 'NULL', 2, '2023-08-15 20:09:07', NULL),
+(160, 3, 'withdraw', 0, 0, 1, NULL, 9, 'W160', 'C3', 'Debit for Product Purchase', 'Supplier name: EDITORIALES HOLGUIN', NULL, 1, 'NULL', 2, '2023-08-15 20:10:25', NULL),
+(161, 3, 'withdraw', 0, 0, 1, NULL, 9, 'W161', 'C4', 'Debit for Product Purchase', 'Supplier name: HERNAN EIVAR', NULL, 1, 'NULL', 2, '2023-08-15 20:28:02', NULL),
+(162, 3, 'deposit', 0, 0, 1, 1, NULL, 'D162', '300000001', 'Deposit for selling', 'Customer name: Monica Paulina Torres Supe ', NULL, 1, 'NULL', 10, '2023-08-16 10:08:45', NULL),
+(163, 2, 'deposit', 0, 0, 1, 1, NULL, 'D163', '22023/00000047', 'Deposit for selling', 'Customer name: angel guananga', NULL, 1, 'NULL', 6, '2023-08-16 10:21:24', NULL),
+(164, 2, 'withdraw', 0, 0, 1, NULL, 9, 'W164', 'Crefuerzo3', 'Debit for Product Purchase', 'Supplier name: HERNAN EIVAR', NULL, 1, 'NULL', 6, '2023-08-16 10:48:24', NULL),
+(165, 2, 'deposit', 0, 0, 1, 1, NULL, 'D165', '22023/00000048', 'Deposit for selling', 'Customer name: MONICA CHIGUANO', NULL, 1, 'NULL', 6, '2023-08-16 10:49:14', NULL),
+(166, 3, 'deposit', 0, 0, 1, 1, NULL, 'D166', '300000002', 'Deposit for selling', 'Customer name: Wilson Gonzalo morales Villacres ', NULL, 1, 'NULL', 10, '2023-08-16 13:13:12', NULL),
+(167, 3, 'deposit', 0, 0, 1, 1, NULL, 'D167', '300000003', 'Deposit for selling', 'Customer name: Miryam Susana Santana lopez ', NULL, 1, 'NULL', 10, '2023-08-16 13:18:08', NULL),
+(168, 2, 'withdraw', 0, 0, 1, NULL, 9, 'W168', 'Crefuerzo 3.', 'Debit for Product Purchase', 'Supplier name: HERNAN EIVAR', NULL, 1, 'NULL', 6, '2023-08-16 14:20:33', NULL),
+(169, 2, 'deposit', 0, 0, 1, 1, NULL, 'D169', '22023/00000049', 'Deposit for selling', 'Customer name: TOMAS CARRILLO', NULL, 1, 'NULL', 6, '2023-08-16 14:21:51', NULL),
+(170, 2, 'deposit', 0, 0, 1, 1, NULL, 'D170', '22023/00000050', 'Deposit for selling', 'Customer name: WILMER CUNUHAY', NULL, 1, 'NULL', 6, '2023-08-16 15:20:55', NULL),
+(171, 3, 'deposit', 0, 0, 1, 1, NULL, 'D171', '300000004', 'Deposit for selling', 'Customer name: Miguel Ángel Arnijos flores ', NULL, 1, 'NULL', 10, '2023-08-17 13:08:37', NULL),
+(172, 3, 'deposit', 0, 0, 1, 1, NULL, 'D172', '300000005', 'Deposit for selling', 'Customer name: Jomara Morayma Villena Villacis ', NULL, 1, 'NULL', 10, '2023-08-17 13:15:03', NULL),
+(173, 3, 'deposit', 0, 0, 1, 1, NULL, 'D173', '300000006', 'Deposit for selling', 'Customer name: Sanchez Bonilla rommel fabricio ', NULL, 1, 'NULL', 10, '2023-08-17 14:13:37', NULL),
+(174, 3, 'withdraw', 1, 0, 1, 1, 10, 'W174', '300000004', 'Debit while deleting sell invoice', 'Customer name: Miguel Ángel Arnijos flores ', NULL, 1, 'NULL', 2, '2023-08-17 14:14:27', NULL),
+(175, 3, 'deposit', 0, 0, 1, 1, NULL, 'D175', '300000007', 'Deposit for selling', 'Customer name: Alex Ortiz ', NULL, 1, 'NULL', 10, '2023-08-17 14:54:10', NULL),
+(176, 3, 'withdraw', 0, 0, 1, NULL, 9, 'W176', 'C7', 'Debit for Product Purchase', 'Supplier name: MARCO BOSMEDIANO', NULL, 1, 'NULL', 2, '2023-08-17 14:58:03', NULL),
+(177, 3, 'deposit', 0, 0, 1, 1, NULL, 'D177', '300000008', 'Deposit for selling', 'Customer name: Susana ramos ', NULL, 1, 'NULL', 10, '2023-08-17 14:59:34', NULL),
+(178, 3, 'deposit', 0, 0, 1, 1, NULL, 'D178', '300000009', 'Deposit for selling', 'Customer name: Ángel Avilez ', NULL, 1, 'NULL', 10, '2023-08-17 15:05:46', NULL),
+(179, 3, 'deposit', 0, 0, 1, 1, NULL, 'D179', '300000010', 'Deposit for selling', 'Customer name: Alejandra García ', NULL, 1, 'NULL', 10, '2023-08-17 15:08:06', NULL),
+(180, 2, 'deposit', 0, 0, 1, 1, NULL, 'D180', '22023/00000051', 'Deposit for selling', 'Customer name: sergio gomez', NULL, 1, 'NULL', 6, '2023-08-17 15:50:53', NULL),
+(181, 3, 'deposit', 0, 0, 1, 1, NULL, 'D181', '300000011', 'Deposit for selling', 'Customer name: Miguel Ángel Arnijos flores ', NULL, 1, 'NULL', 10, '2023-08-17 15:51:49', NULL),
+(182, 3, 'deposit', 0, 0, 1, 1, NULL, 'D182', '300000012', 'Deposit for selling', 'Customer name: Lemiton vinicio bastidas llamuca ', NULL, 1, 'NULL', 10, '2023-08-17 15:54:27', NULL),
+(183, 2, 'deposit', 0, 0, 1, 1, NULL, 'D183', '22023/00000052', 'Deposit for selling', 'Customer name: GUIDO CACERES', NULL, 1, 'NULL', 6, '2023-08-17 15:58:20', NULL),
+(184, 3, 'deposit', 0, 0, 1, 1, NULL, 'D184', '300000013', 'Deposit for selling', 'Customer name: Alejandra Echeverría ', NULL, 1, 'NULL', 10, '2023-08-17 17:09:11', NULL),
+(185, 3, 'deposit', 0, 0, 1, 1, NULL, 'D185', '300000014', 'Deposit for selling', 'Customer name: Dario reyes ', NULL, 1, 'NULL', 10, '2023-08-17 17:12:44', NULL),
+(186, 3, 'deposit', 0, 0, 1, 1, NULL, 'D186', '300000015', 'Deposit for selling', 'Customer name: Rothman Velasteguí naranjo ', NULL, 1, 'NULL', 10, '2023-08-17 17:14:13', NULL),
+(187, 2, 'deposit', 0, 0, 1, 1, NULL, 'D187', '22023/00000053', 'Deposit for selling', 'Customer name: xavier moreno', NULL, 1, 'NULL', 6, '2023-08-18 11:45:41', NULL),
+(188, 2, 'deposit', 0, 0, 1, 1, NULL, 'D188', '22023/00000054', 'Deposit for selling', 'Customer name: TATIANA SANGUCHO', NULL, 1, 'NULL', 6, '2023-08-18 13:19:00', NULL),
+(189, 2, 'withdraw', 0, 0, 1, NULL, 9, 'W189', 'Crefuerzo 3..', 'Debit for Product Purchase', 'Supplier name: HERNAN EIVAR', NULL, 1, 'NULL', 6, '2023-08-18 13:41:31', NULL),
+(190, 2, 'deposit', 0, 0, 1, 1, NULL, 'D190', '22023/00000055', 'Deposit for selling', 'Customer name: isabel jima', NULL, 1, 'NULL', 6, '2023-08-18 13:46:22', NULL),
+(191, 3, 'deposit', 0, 0, 1, 1, NULL, 'D191', '300000016', 'Deposit for selling', 'Customer name: Verónica Ávila ', NULL, 1, 'NULL', 10, '2023-08-18 15:02:40', NULL),
+(192, 2, 'deposit', 0, 0, 1, 1, NULL, 'D192', '22023/00000056', 'Deposit for selling', 'Customer name: ANA TAPIA', NULL, 1, 'NULL', 6, '2023-08-18 15:57:05', NULL),
+(193, 2, 'withdraw', 0, 0, 1, NULL, 9, 'W193', 'Crefuerzo escolar 3.', 'Debit for Product Purchase', 'Supplier name: HERNAN EIVAR', NULL, 1, 'NULL', 6, '2023-08-18 16:06:28', NULL),
+(194, 2, 'deposit', 0, 0, 1, 1, NULL, 'D194', '22023/00000057', 'Deposit for selling', 'Customer name: ivan cerda', NULL, 1, 'NULL', 6, '2023-08-18 16:07:07', NULL);
 
 -- --------------------------------------------------------
 
@@ -418,7 +469,57 @@ INSERT INTO `bank_transaction_price` (`price_id`, `store_id`, `info_id`, `ref_no
 (141, 2, 141, 'D141', '164.0000'),
 (142, 2, 142, 'D142', '164.0000'),
 (143, 2, 143, 'D143', '322.0000'),
-(144, 2, 144, 'D144', '85.0000');
+(144, 2, 144, 'D144', '85.0000'),
+(145, 2, 145, 'D145', '164.0000'),
+(146, 2, 146, 'D146', '142.0000'),
+(147, 2, 147, 'D147', '85.0000'),
+(148, 2, 148, 'D148', '142.0000'),
+(149, 2, 149, 'D149', '344.0000'),
+(150, 2, 150, 'D150', '85.0000'),
+(151, 2, 151, 'D151', '164.0000'),
+(152, 2, 152, 'D152', '142.0000'),
+(153, 2, 153, 'D153', '344.0000'),
+(154, 2, 154, 'D154', '164.0000'),
+(155, 2, 155, 'D155', '85.0000'),
+(156, 2, 156, 'D156', '164.0000'),
+(157, 2, 157, 'D157', '164.0000'),
+(158, 3, 158, 'W158', '790.0000'),
+(159, 3, 159, 'W159', '950.0000'),
+(160, 3, 160, 'W160', '520.8000'),
+(161, 3, 161, 'W161', '82.9500'),
+(162, 3, 162, 'D162', '40.0000'),
+(163, 2, 163, 'D163', '164.0000'),
+(164, 2, 164, 'W164', '6.5000'),
+(165, 2, 165, 'D165', '164.0000'),
+(166, 3, 166, 'D166', '26.0000'),
+(167, 3, 167, 'D167', '66.0000'),
+(168, 2, 168, 'W168', '6.5000'),
+(169, 2, 169, 'D169', '306.0000'),
+(170, 2, 170, 'D170', '306.0000'),
+(171, 3, 171, 'D171', '26.0000'),
+(172, 3, 172, 'D172', '40.0000'),
+(173, 3, 173, 'D173', '52.0000'),
+(174, 3, 174, 'W174', '26.0000'),
+(175, 3, 175, 'D175', '40.0000'),
+(176, 3, 176, 'W176', '60.0000'),
+(177, 3, 177, 'D177', '40.0000'),
+(178, 3, 178, 'D178', '40.0000'),
+(179, 3, 179, 'D179', '26.0000'),
+(180, 2, 180, 'D180', '306.0000'),
+(181, 3, 181, 'D181', '40.0000'),
+(182, 3, 182, 'D182', '40.0000'),
+(183, 2, 183, 'D183', '328.0000'),
+(184, 3, 184, 'D184', '40.0000'),
+(185, 3, 185, 'D185', '40.0000'),
+(186, 3, 186, 'D186', '40.0000'),
+(187, 2, 187, 'D187', '164.0000'),
+(188, 2, 188, 'D188', '142.0000'),
+(189, 2, 189, 'W189', '6.5000'),
+(190, 2, 190, 'D190', '306.0000'),
+(191, 3, 191, 'D191', '80.0000'),
+(192, 2, 192, 'D192', '391.0000'),
+(193, 2, 193, 'W193', '6.5000'),
+(194, 2, 194, 'D194', '164.0000');
 
 -- --------------------------------------------------------
 
@@ -516,7 +617,8 @@ INSERT INTO `colleges` (`college_id`, `college_name`, `code_name`, `college_deta
 (1, 'U.E PASTOCALLE ', 'u.e_pastocalle', 'LCDO FABIAN MOSQUERA', '', 1, '2023-07-21 13:52:10', NULL),
 (2, 'U.E INTERNACIONAL COTOPAXI ', 'u.e_internacional_cotopaxi', 'MGS. JOHANA PROAÑO ', '', 1, '2023-07-21 14:31:41', NULL),
 (3, 'PCI JATARI UNANCHA/PUJILI ', 'pci_jatari_unancha/pujili', 'ING. DARIO GANCHALA', '', 1, '2023-07-21 14:37:11', NULL),
-(4, 'CERIT', 'cerit', 'JOSE SANTO MENA\r\nruc 0500843222001\r\nCEL 0960463639\r\nEMAIL planificacionbuho@gmail.com\r\nDIRECCION Quito y Tarqui diagonal a la notaria 3ra', '', 1, '2023-07-26 16:31:09', NULL);
+(4, 'CERIT', 'cerit', 'JOSE SANTO MENA\r\nruc 0500843222001\r\nCEL 0960463639\r\nEMAIL planificacionbuho@gmail.com\r\nDIRECCION Quito y Tarqui diagonal a la notaria 3ra', '', 1, '2023-07-26 16:31:09', NULL),
+(5, 'EGB SANTA MARIANITA AMBATO', 'egb_santa_marianita_ambato', 'ZHONIA CASTRO\r\n0995213609', '', 1, '2023-08-15 19:54:41', NULL);
 
 -- --------------------------------------------------------
 
@@ -616,36 +718,72 @@ CREATE TABLE `customers` (
 
 INSERT INTO `customers` (`customer_id`, `customer_document`, `customer_name`, `customer_email`, `customer_mobile`, `customer_address`, `dob`, `customer_sex`, `customer_age`, `gtin`, `customer_city`, `customer_state`, `customer_country`, `is_giftcard`, `password`, `raw_password`, `created_at`, `updated_at`) VALUES
 (1, '9999999999', 'Cliente Final', 'default@controldas.com', '', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1993-01-01', 1, 20, '', 'AN', 'AN', 'AD', 0, 'c33367701511b4f6020ec61ded352059', '654321', '2018-04-29 14:18:37', '2019-07-02 13:50:11'),
-(2, '0500875133', 'hermogenes mena dominguez', 'carmen.fm61@hotmail.com', '', '', '1969-12-31', 1, 0, '', 'Latacunga', '', 'AD', 0, NULL, NULL, '2023-07-26 14:19:54', NULL),
-(3, 'COLEGIO LATACUNGA', 'COLEGIO CERIT ', '3253e2@gmail.com', '', 'VENTA EN PUNTO DE VENTA PROPIO', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-07-28 09:24:18', NULL),
-(4, '0502567621', 'JOHANNA ALEJANDRA BORJA BRAZALES', 'eduallmighty@yahoo.com', '0987317953', 'EL LOREDO CASA 5', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-02 11:27:46', NULL),
-(5, '0503692993', 'JORGE ANDRES PARRA PARRA', 'jorgeandres.j@hotmail.com', '0987716930', 'LATACUNGA', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-02 11:30:14', NULL),
-(6, '0922967286', 'PATRICIA PILCO', 'patriciapilco1990@gmail.com', '0998590760', 'LATACUNGA', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-02 11:34:45', NULL),
-(7, '0503888141', 'PAMELA DEL ROSARIO CHIMBA MAIGUASHIA', 'pamer199212@gmail.com', '', 'LATACUNGA', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-02 11:37:58', NULL),
-(8, '0503030850', 'JESSICA GUALPA', 'jessicagualpa35@gmail.com', '0979483868', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-02 11:40:21', NULL),
-(9, '0503020406', 'SILVIA ALBAN ', 'silvialban28@gmail.com', '0999076270', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-02 11:41:48', NULL),
-(10, '1709527178', 'MILTON HERNANDEZ', 'milton_her@hotmail.com', '', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-02 11:44:02', NULL),
-(11, '0502002876', 'MARCO ORLANDO CHILE', 'mark_bust@hotmail.com', '0984874677', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-02 11:45:23', NULL),
-(12, '0502655780', 'FERNANDO XAVIER CALVOPIÑA PROAÑO', 'fernandofae85@gmail.com', '', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-02 11:56:40', NULL),
-(13, '0303051534', 'EDGAR GEOVANNY GALLO MOLINA', 'vanfrangaith66@gmail.com', '', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-02 11:59:06', NULL),
-(14, '0503352122', 'NANCY MOREANO ', 'nancymoreano_23@hotmail.com', '0984559024', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-02 12:08:14', NULL),
-(15, '0501048169', 'GUILINTON FABRICIO MERIZABLE VILLAMARIN ', 'guilintin18@hotmail.com', '0987874870', '', '1969-12-31', 1, 0, '', 'LATACUNGA ', '', 'AD', 0, NULL, NULL, '2023-08-03 10:26:26', NULL),
-(16, '0504426578', 'YESENIA YUGSI', 'yesseniayugsi3k@gmail.com', '', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-03 10:58:30', NULL),
-(17, '0500168331', 'JOSE CHILUISA ', 'marco.chulisa@gmail.com', '0987085359', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-03 13:54:25', NULL),
-(18, '0503071816001', 'KATHERYN SEMBLANTES ', 'brigite@live.com', '0998568141', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-03 14:56:14', NULL),
-(19, '1718904731', 'BOLIVAR CAMACHO ', 'bolo.77@hotmail.com', '0985377936', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-04 11:19:29', NULL),
-(20, '053143414', 'CRISTHIAN BASANTES', 'cristhianbasantes@hotmail.com', '0998066143', '', '1969-12-31', 1, 0, '', '', '', 'AD', 0, NULL, NULL, '2023-08-04 13:36:04', NULL),
-(21, '1104170301', 'DANIELO CUENCA', 'cuencawilber1983@gmail.com', '0961800733', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-04 14:40:08', NULL),
-(22, '0503387946', 'MARIA DE LOS ANGELES MAZAPANTA RIVADENEIRA', 'psico.ange.mr@gmail.com', '0998533552', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-04 15:09:42', NULL),
-(23, '0503328072001', 'FERNANDO LARA', 'fernandolaracrespo@hotmail.com', '', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-05 12:01:18', NULL),
-(24, '0502067028', 'HUGO MUÑOZ', 'verito261987@hotmail.com', '0997367992', 'LASSO ', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-05 12:11:51', NULL),
-(25, '0502059785', 'MANUEL PANCHE ', 'panchiman22@gmail.com', '0981937194', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-05 14:24:12', NULL),
-(26, '0500559158', 'CARMEN VALENCIA', 'carcumvp@yahoo.es', '0996646083', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-07 12:25:56', NULL),
-(27, '0502256191', 'HECTOR ALEJANDO MORALES PERES', 'anafran410@gmail.com', '', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-07 14:45:19', NULL),
-(28, '0504348723', 'ESTEFANIA QUERIDO', 'ceciquerido@gmail.com', '0984612677', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-08 10:22:19', NULL),
-(29, '0502671860001', 'DIEGO MOLINA ', 'diegfml_2006@hotmail.com', '0999661606', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-08 10:46:17', NULL),
-(30, '0503154122', 'KARINA LAVERDE', 'immaginemoda@hotmail.com', '0997871520', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-08 11:46:30', NULL),
-(31, '1759915232', 'CARMEN BROUWN', 'care_brownm@hotmail.com', '0963115284', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-08 12:38:52', NULL);
+(2, '0500875133', 'hermogenes mena dominguez', 'carmen.fm61@hotmail.com', '', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-07-26 14:19:54', NULL),
+(3, 'COLEGIO LATACUNGA', 'COLEGIO CERIT ', '3253e2@gmail.com', '', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-07-28 09:24:18', NULL),
+(4, '0502567621', 'JOHANNA ALEJANDRA BORJA BRAZALES', 'eduallmighty@yahoo.com', '0987317953', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-02 11:27:46', NULL),
+(5, '0503692993', 'JORGE ANDRES PARRA PARRA', 'jorgeandres.j@hotmail.com', '0987716930', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-02 11:30:14', NULL),
+(6, '0922967286', 'PATRICIA PILCO', 'patriciapilco1990@gmail.com', '0998590760', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-02 11:34:45', NULL),
+(7, '0503888141', 'PAMELA DEL ROSARIO CHIMBA MAIGUASHIA', 'pamer199212@gmail.com', '', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-02 11:37:58', NULL),
+(8, '0503030850', 'JESSICA GUALPA', 'jessicagualpa35@gmail.com', '0979483868', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-02 11:40:21', NULL),
+(9, '0503020406', 'SILVIA ALBAN ', 'silvialban28@gmail.com', '0999076270', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-02 11:41:48', NULL),
+(10, '1709527178', 'MILTON HERNANDEZ', 'milton_her@hotmail.com', '', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-02 11:44:02', NULL),
+(11, '0502002876', 'MARCO ORLANDO CHILE', 'mark_bust@hotmail.com', '0984874677', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-02 11:45:23', NULL),
+(12, '0502655780', 'FERNANDO XAVIER CALVOPIÑA PROAÑO', 'fernandofae85@gmail.com', '', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-02 11:56:40', NULL),
+(13, '0303051534', 'EDGAR GEOVANNY GALLO MOLINA', 'vanfrangaith66@gmail.com', '', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-02 11:59:06', NULL),
+(14, '0503352122', 'NANCY MOREANO ', 'nancymoreano_23@hotmail.com', '0984559024', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-02 12:08:14', NULL),
+(15, '0501048169', 'GUILINTON FABRICIO MERIZABLE VILLAMARIN ', 'guilintin18@hotmail.com', '0987874870', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-03 10:26:26', NULL),
+(16, '0504426578', 'YESENIA YUGSI', 'yesseniayugsi3k@gmail.com', '', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-03 10:58:30', NULL),
+(17, '0500168331', 'JOSE CHILUISA ', 'marco.chulisa@gmail.com', '0987085359', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-03 13:54:25', NULL),
+(18, '0503071816001', 'KATHERYN SEMBLANTES ', 'brigite@live.com', '0998568141', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-03 14:56:14', NULL),
+(19, '1718904731', 'BOLIVAR CAMACHO ', 'bolo.77@hotmail.com', '0985377936', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-04 11:19:29', NULL),
+(20, '053143414', 'CRISTHIAN BASANTES', 'cristhianbasantes@hotmail.com', '0998066143', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-04 13:36:04', NULL),
+(21, '1104170301', 'DANIELO CUENCA', 'cuencawilber1983@gmail.com', '0961800733', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-04 14:40:08', NULL),
+(22, '0503387946', 'MARIA DE LOS ANGELES MAZAPANTA RIVADENEIRA', 'psico.ange.mr@gmail.com', '0998533552', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-04 15:09:42', NULL),
+(23, '0503328072001', 'FERNANDO LARA', 'fernandolaracrespo@hotmail.com', '', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-05 12:01:18', NULL),
+(24, '0502067028', 'HUGO MUÑOZ', 'verito261987@hotmail.com', '0997367992', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-05 12:11:51', NULL),
+(25, '0502059785', 'MANUEL PANCHE ', 'panchiman22@gmail.com', '0981937194', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-05 14:24:12', NULL),
+(26, '0500559158', 'CARMEN VALENCIA', 'carcumvp@yahoo.es', '0996646083', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-07 12:25:56', NULL),
+(27, '0502256191', 'HECTOR ALEJANDO MORALES PERES', 'anafran410@gmail.com', '', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-07 14:45:19', NULL),
+(28, '0504348723', 'ESTEFANIA QUERIDO', 'ceciquerido@gmail.com', '0984612677', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-08 10:22:19', NULL),
+(29, '0502671860001', 'DIEGO MOLINA ', 'diegfml_2006@hotmail.com', '0999661606', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-08 10:46:17', NULL),
+(30, '0503154122', 'KARINA LAVERDE', 'immaginemoda@hotmail.com', '0997871520', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-08 11:46:30', NULL),
+(31, '1759915232', 'CARMEN BROUWN', 'care_brownm@hotmail.com', '0963115284', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-08 12:38:52', NULL),
+(32, '0502788334', 'FERNANDO CASCO', 'farmajessy37@gmail.com', '0987959993', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-08 15:09:16', NULL),
+(33, '1804219317001', 'ELIANA PAZUÑA MENA', 'opticalosalpeslatacunga@hotmail.com', '0983989270', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-09 11:38:16', NULL),
+(34, '0502673650', 'JAIME GONZALO MORENO VILLARUEL', 'morenojaime205@gmail.com', '0984817718', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-09 11:39:55', NULL),
+(35, '0501318240', 'OSCAR ROBAYO', 'fumigadoracotopaxi@yahoo.es', '0998977769', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-10 11:12:01', NULL),
+(36, '0504454992', 'EVELYN GUAMANGALIO', 'evelynguamangalio@gmail.com', '0987335001', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-10 11:32:58', NULL),
+(37, '0502499072', 'KATY PATRICIA LUZ VEINTIMILLA', 'katycruz45@hotmail.es', '0987972954', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-10 11:41:12', NULL),
+(38, '0503051666001', 'VICTOR GUILCA', 'victorh_1987hotmail.com', '0992812157', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-14 12:33:01', NULL),
+(39, '0501992770', 'edwin osorio', 'edwin_oso45@hotmail.com', '0999908892', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-14 12:42:38', NULL),
+(40, '0503511719', 'lourdes masabanda ', 'marymasabanda92@gmail.com', '0999296582', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-14 12:54:10', NULL),
+(41, '0802650852', 'ANDRADE FLOR PAMELA', 'pamela_9327@hotmail.com', '0960924626', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-15 14:30:02', NULL),
+(42, '1721025029', 'MONICA CHIGUANO', 'mchiguano10@gmail.com', '0998296631', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-16 10:04:54', NULL),
+(43, '1804363784', 'Monica Paulina Torres Supe ', 'monicatorres03@gmail.com', '0992851734', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-16 10:08:02', NULL),
+(44, '1804228102', 'angel guananga', 'leoguananga7@gmail.com', '0988597992', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-16 10:20:43', NULL),
+(45, '1802543619', 'Wilson Gonzalo morales Villacres ', 'moralesw1971@yahoo.com', '0993533846', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-16 13:12:39', NULL),
+(46, '1802833002', 'Miryam Susana Santana lopez ', 'miryamsantana15@hotmail.com', '', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-16 13:17:31', NULL),
+(47, '0503379042', 'TOMAS CARRILLO', 'tomascarrillotj@hotmail.com', '0984545603', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-16 14:17:26', NULL),
+(48, '0502395700', 'WILMER CUNUHAY', 'wilmer.cunuhay@utc.edu.ec', '0983285783', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-16 15:19:59', NULL),
+(49, '1803544707', 'Miguel Ángel Arnijos flores ', 'marnijos777@hotmail.com', '0987213681', '', '1969-12-31', 1, 0, '', 'Ambato', '', 'AD', 0, NULL, NULL, '2023-08-17 13:07:55', NULL),
+(50, '1850977917', 'Jomara Morayma Villena Villacis ', 'jomiville36@gmail.com', '0979199578', '', '1969-12-31', 1, 0, '', 'Ambato ', '', 'AD', 0, NULL, NULL, '2023-08-17 13:11:35', NULL),
+(51, '0201431780', 'Sanchez Bonilla rommel fabricio ', 'rommel6sb@yahoo.com', '0962299852', '', '1969-12-31', 1, 0, '', 'Ambato ', '', 'AD', 0, NULL, NULL, '2023-08-17 14:12:58', NULL),
+(52, '1804497228', 'Alex Ortiz ', 'alex.ortiz.b@outlook.com', '0987716108', '', '1969-12-31', 1, 0, '', 'Ambato ', '', 'AD', 0, NULL, NULL, '2023-08-17 14:53:43', NULL),
+(53, '1803807799', 'Susana ramos ', 'edithsusanramos83@gmail.com', '0987803497', '', '1969-12-31', 1, 0, '', 'Ambato ', '', 'AD', 0, NULL, NULL, '2023-08-17 14:59:08', NULL),
+(54, '0202012118', 'Ángel Avilez ', 'avilesangel_1993@hotmail.com', '', '', '1969-12-31', 1, 0, '', 'Ambato ', '', 'AD', 0, NULL, NULL, '2023-08-17 15:04:51', NULL),
+(55, '1804462156', 'Alejandra García ', 'Jessi-1012@hotmail.com', '', '', '1969-12-31', 1, 0, '', 'Ambato ', '', 'AD', 0, NULL, NULL, '2023-08-17 15:07:43', NULL),
+(56, '1310219132', 'sergio gomez', 'sergiongq@gmail.com', '0963658091', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-17 15:49:54', NULL),
+(57, '1802533743001', 'Lemiton vinicio bastidas llamuca ', 'laleyproducciones@gmail.com', '', '', '1969-12-31', 1, 0, '', 'Ambato', '', 'AD', 0, NULL, NULL, '2023-08-17 15:53:27', NULL),
+(58, '0500452578', 'GUIDO CACERES', 'guidomcaceres@hotmail.com', '0987037254', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-17 15:57:24', NULL),
+(59, '1803790185', 'Alejandra Echeverría ', 'alegiss_31@hotmail.com', '', '', '1969-12-31', 1, 0, '', 'Ambato', '', 'AD', 0, NULL, NULL, '2023-08-17 17:08:28', NULL),
+(60, '1804344750', 'Dario reyes ', 'dario10reyes@gmail.com', '0989675951', '', '1969-12-31', 1, 0, '', 'Ambato', '', 'AD', 0, NULL, NULL, '2023-08-17 17:12:12', NULL),
+(61, '1803241510', 'Rothman Velasteguí naranjo ', 'rotwenday1979@gmail.com', '0983378010', '', '1969-12-31', 1, 0, '', 'Ambato', '', 'AD', 0, NULL, NULL, '2023-08-17 17:13:55', NULL),
+(62, '0502287220', 'xavier moreno', 'vero_moreno1983@hotmail.com', '0987274313', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-18 11:44:27', NULL),
+(63, '0503850836', 'TATIANA SANGUCHO', 'tsangucho.60@gmail.com', '0983705972', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-18 13:18:02', NULL),
+(64, '0503157505', 'isabel jima', 'isabeljima1403@hotmail.com', '0992602975', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-18 13:38:37', NULL),
+(65, '1803535374', 'Verónica Ávila ', 'veronik753@hotmail.com', '0987390089', '\r\n\r\n', '1969-12-31', 1, 0, '', 'Ambato', '', 'AD', 0, NULL, NULL, '2023-08-18 15:02:04', NULL),
+(66, '0503149635001', 'ANA TAPIA', 'idegamventas@gmail.com', '0987721742', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-18 15:55:57', NULL),
+(67, '0501703094', 'ivan cerda', 'addesnavi@hotmail.com', '0998098310', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-18 16:05:30', NULL);
 
 -- --------------------------------------------------------
 
@@ -700,7 +838,44 @@ INSERT INTO `customer_to_store` (`c2s_id`, `customer_id`, `store_id`, `balance`,
 (30, 28, 2, '0.0000', '0.0000', 1, 0),
 (31, 29, 2, '0.0000', '0.0000', 1, 0),
 (32, 30, 2, '0.0000', '0.0000', 1, 0),
-(33, 31, 2, '0.0000', '0.0000', 1, 0);
+(33, 31, 2, '0.0000', '0.0000', 1, 0),
+(34, 32, 2, '0.0000', '0.0000', 1, 0),
+(35, 33, 2, '0.0000', '0.0000', 1, 0),
+(36, 34, 2, '0.0000', '0.0000', 1, 0),
+(37, 35, 2, '0.0000', '0.0000', 1, 0),
+(38, 36, 2, '0.0000', '0.0000', 1, 0),
+(39, 37, 2, '0.0000', '0.0000', 1, 0),
+(40, 38, 2, '0.0000', '0.0000', 1, 0),
+(41, 39, 2, '0.0000', '0.0000', 1, 0),
+(42, 40, 2, '0.0000', '0.0000', 1, 0),
+(43, 41, 2, '0.0000', '0.0000', 1, 0),
+(44, 42, 2, '0.0000', '0.0000', 1, 0),
+(45, 43, 3, '0.0000', '0.0000', 1, 0),
+(46, 44, 2, '0.0000', '0.0000', 1, 0),
+(47, 45, 3, '0.0000', '0.0000', 1, 0),
+(48, 46, 3, '0.0000', '0.0000', 1, 0),
+(49, 47, 2, '0.0000', '0.0000', 1, 0),
+(50, 48, 2, '0.0000', '0.0000', 1, 0),
+(51, 49, 3, '0.0000', '0.0000', 1, 0),
+(52, 50, 3, '0.0000', '0.0000', 1, 0),
+(53, 51, 3, '0.0000', '0.0000', 1, 0),
+(54, 52, 3, '0.0000', '0.0000', 1, 0),
+(55, 53, 3, '0.0000', '0.0000', 1, 0),
+(56, 54, 3, '0.0000', '0.0000', 1, 0),
+(57, 55, 3, '0.0000', '0.0000', 1, 0),
+(58, 56, 2, '0.0000', '0.0000', 1, 0),
+(59, 57, 3, '0.0000', '0.0000', 1, 0),
+(60, 58, 2, '0.0000', '0.0000', 1, 0),
+(61, 59, 3, '0.0000', '0.0000', 1, 0),
+(62, 60, 3, '0.0000', '0.0000', 1, 0),
+(63, 61, 3, '0.0000', '0.0000', 1, 0),
+(64, 1, 4, '0.0000', '0.0000', 1, 0),
+(65, 62, 2, '0.0000', '0.0000', 1, 0),
+(66, 63, 2, '0.0000', '0.0000', 1, 0),
+(67, 64, 2, '0.0000', '0.0000', 1, 0),
+(68, 65, 3, '0.0000', '0.0000', 1, 0),
+(69, 66, 2, '0.0000', '0.0000', 1, 0),
+(70, 67, 2, '0.0000', '0.0000', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -4293,7 +4468,14 @@ INSERT INTO `language_translations` (`id`, `lang_id`, `lang_key`, `key_type`, `l
 (4396, 1, 'error_create_permission', 'specific', NULL),
 (4397, 1, 'error_delete_permission', 'specific', NULL),
 (4398, 1, 'error_return_permission', 'specific', NULL),
-(4399, 1, 'error_store_exist', 'specific', NULL);
+(4399, 1, 'error_store_exist', 'specific', NULL),
+(4400, 1, 'label_sales', 'specific', 'Ventas'),
+(4401, 1, 'label_P.V.P', 'specific', NULL),
+(4402, 1, 'label_purchase_total', 'specific', 'Total Compras'),
+(4403, 1, 'label_SRI', 'specific', NULL),
+(4404, 1, 'text_ok', 'specific', NULL),
+(4405, 1, 'label_sales_total', 'specific', 'Total Ventas'),
+(4406, 1, 'error_create_due_permission', 'specific', NULL);
 
 -- --------------------------------------------------------
 
@@ -4490,7 +4672,92 @@ INSERT INTO `login_logs` (`id`, `user_id`, `username`, `ip`, `status`, `created_
 (150, 2, 'DAVID POLO', '181.199.42.39', 'success', '2023-08-08 14:55:56'),
 (151, 9, 'UEI COTOPAXI', '181.199.42.39', 'success', '2023-08-08 14:59:57'),
 (152, 2, 'DAVID POLO', '181.199.42.39', 'success', '2023-08-08 15:14:58'),
-(153, 6, 'MAURICIO', '190.99.77.62', 'success', '2023-08-08 15:21:15');
+(153, 6, 'MAURICIO', '190.99.77.62', 'success', '2023-08-08 15:21:15'),
+(154, 6, 'MAURICIO', '190.99.77.62', 'success', '2023-08-08 20:08:11'),
+(155, 2, 'DAVID POLO', '2800:bf0:a821:1122:60d0:627c:9997:744d', 'success', '2023-08-08 20:16:58'),
+(156, 2, 'admin@controldas.com', '2800:bf0:a821:1122:5d52:4038:1fc8:ae4f', 'success', '2023-08-08 20:46:35'),
+(157, 5, 'HERNAN', '2800:bf0:a821:1122:60d0:627c:9997:744d', 'success', '2023-08-08 20:48:13'),
+(158, 2, 'DAVID POLO', '181.199.42.39', 'success', '2023-08-08 22:55:49'),
+(159, 5, 'HERNAN', '2800:bf0:2902:108e:809b:3c28:a283:21b6', 'success', '2023-08-09 02:35:09'),
+(160, 2, 'DAVID POLO', '181.199.42.39', 'success', '2023-08-09 14:08:36'),
+(161, 9, 'UEI COTOPAXI', '181.199.42.39', 'success', '2023-08-09 14:11:10'),
+(162, 2, 'DAVID POLO', '181.199.42.39', 'success', '2023-08-09 14:13:04'),
+(163, 2, 'DAVID POLO', '181.199.42.39', 'success', '2023-08-09 14:25:18'),
+(164, 2, 'DAVID POLO', '181.199.42.39', 'success', '2023-08-09 14:50:28'),
+(165, 9, 'UEI COTOPAXI', '181.199.42.39', 'success', '2023-08-09 14:51:23'),
+(166, 2, 'DAVID POLO', '181.199.42.39', 'success', '2023-08-09 14:55:34'),
+(167, 6, 'MAURICIO', '190.99.77.62', 'success', '2023-08-09 15:01:41'),
+(168, 6, 'MAURICIO', '190.99.77.62', 'success', '2023-08-09 15:02:46'),
+(169, 2, 'admin@controldas.com', '2800:bf0:a821:1122:69c3:7406:cf1f:bcd5', 'success', '2023-08-09 17:42:21'),
+(170, 2, 'admin@controldas.com', '181.198.104.222', 'success', '2023-08-09 19:39:44'),
+(171, 2, 'admin@controldas.com', '200.115.36.38', 'success', '2023-08-09 20:03:43'),
+(172, 1, '0969237302', '200.115.36.38', 'success', '2023-08-09 20:06:42'),
+(173, 6, 'MAURICIO', '190.99.77.62', 'success', '2023-08-09 20:54:27'),
+(174, 2, 'DAVID POLO', '181.199.42.39', 'success', '2023-08-09 21:19:17'),
+(175, 9, 'UEI COTOPAXI', '181.199.42.39', 'success', '2023-08-09 21:58:09'),
+(176, 2, 'DAVID POLO', '181.199.42.39', 'success', '2023-08-09 21:58:47'),
+(177, 2, 'admin@controldas.com', '181.199.42.39', 'success', '2023-08-09 22:08:30'),
+(179, 8, 'HOLGUIN', '181.199.42.39', 'success', '2023-08-09 22:31:41'),
+(180, 8, 'HOLGUIN', '181.199.42.39', 'success', '2023-08-09 22:48:09'),
+(181, 2, 'DAVID POLO', '181.199.42.39', 'success', '2023-08-09 22:48:21'),
+(182, 2, 'DAVID POLO', '181.199.42.39', 'success', '2023-08-09 22:55:39'),
+(183, 6, 'MAURICIO', '190.99.77.62', 'success', '2023-08-10 14:51:09'),
+(184, 1, '0969237302', '2800:bf0:82d2:1038:75cc:af00:e93a:24bf', 'success', '2023-08-13 15:49:23'),
+(185, 1, '0969237302', '200.115.36.38', 'success', '2023-08-14 13:28:37'),
+(186, 6, 'MAURICIO', '190.99.77.62', 'success', '2023-08-14 15:04:01'),
+(187, 5, 'HERNAN', '2800:430:b200:ef32:683b:bea4:c8fe:2394', 'success', '2023-08-14 15:28:33'),
+(188, 2, 'admin@controldas.com', '181.198.104.222', 'success', '2023-08-14 15:49:56'),
+(189, 8, 'HOLGUIN', '2800:430:b200:ef32:683b:bea4:c8fe:2394', 'success', '2023-08-14 15:52:12'),
+(190, 8, 'HOLGUIN', '2800:430:b200:ef32:683b:bea4:c8fe:2394', 'success', '2023-08-14 15:53:53'),
+(191, 2, 'DAVID POLO', '2800:430:b200:ef32:683b:bea4:c8fe:2394', 'success', '2023-08-14 15:57:19'),
+(192, 6, 'MAURICIO', '2800:430:b200:ef32:683b:bea4:c8fe:2394', 'success', '2023-08-14 16:03:32'),
+(193, 8, 'HOLGUIN', '2800:430:b200:ef32:683b:bea4:c8fe:2394', 'success', '2023-08-14 16:10:22'),
+(194, 2, 'DAVID POLO', '2800:430:b200:ef32:683b:bea4:c8fe:2394', 'success', '2023-08-14 16:11:50'),
+(195, 11, 'HERNANE', '2800:430:b200:ef32:683b:bea4:c8fe:2394', 'success', '2023-08-14 16:14:11'),
+(196, 6, 'MAURICIO', '190.63.254.36', 'success', '2023-08-14 17:49:50'),
+(197, 10, 'domi', '157.100.63.41', 'success', '2023-08-15 15:20:56'),
+(198, 6, 'mauricio', '200.115.36.38', 'success', '2023-08-15 15:23:45'),
+(199, 10, 'domi', '157.100.63.41', 'success', '2023-08-15 15:33:22'),
+(200, 10, 'domi', '157.100.63.41', 'success', '2023-08-15 18:46:38'),
+(201, 2, 'admin@controldas.com', '2800:bf0:a821:1122:a875:79ee:6a69:e261', 'success', '2023-08-15 18:59:33'),
+(202, 2, 'DAVID POLO', '157.100.63.41', 'success', '2023-08-16 00:33:02'),
+(203, 10, 'domi', '157.100.63.41', 'success', '2023-08-16 01:20:43'),
+(204, 5, 'HERNAN', '2800:bf0:2902:108e:e0c0:7e4f:b33c:5ef0', 'success', '2023-08-16 03:10:37'),
+(205, 5, 'HERNAN', '2800:bf0:2902:108e:e0c0:7e4f:b33c:5ef0', 'success', '2023-08-16 03:26:00'),
+(206, 5, 'HERNAN', '2800:bf0:2902:108e:e0c0:7e4f:b33c:5ef0', 'success', '2023-08-16 03:30:46'),
+(207, 10, 'domi', '157.100.63.41', 'success', '2023-08-16 14:41:06'),
+(208, 10, 'domi', '157.100.63.41', 'success', '2023-08-16 14:41:40'),
+(209, 6, 'MAURICIO', '190.99.77.62', 'success', '2023-08-16 15:02:13'),
+(210, 10, 'domi', '157.100.63.41', 'success', '2023-08-16 15:07:01'),
+(211, 10, 'domi', '157.100.63.41', 'success', '2023-08-16 15:32:09'),
+(212, 10, 'domi', '157.100.63.41', 'success', '2023-08-16 18:11:16'),
+(213, 10, 'domi', '157.100.63.41', 'success', '2023-08-16 18:15:42'),
+(214, 6, 'MAURICIO', '190.99.77.62', 'success', '2023-08-16 18:30:45'),
+(215, 2, 'DAVID POLO', '190.99.77.62', 'success', '2023-08-16 18:34:08'),
+(216, 8, 'HOLGUIN', '190.99.77.62', 'success', '2023-08-16 18:35:44'),
+(217, 2, 'admin@controldas.com', '2800:bf0:a821:1122:20ca:3131:3a31:3e0b', 'success', '2023-08-16 19:10:25'),
+(218, 2, 'admin@controldas.com', '200.115.36.38', 'success', '2023-08-16 19:48:30'),
+(219, 5, 'HERNAN', '2800:bf0:2902:108e:809b:3c28:a283:21b6', 'success', '2023-08-17 00:53:02'),
+(220, 10, 'domi', '157.100.63.41', 'success', '2023-08-17 18:06:28'),
+(221, 2, 'admin@controldas.com', '2800:430:1281:8b8b:413d:2ce5:35fa:b462', 'success', '2023-08-17 19:12:25'),
+(222, 10, 'domi', '157.100.63.41', 'success', '2023-08-17 19:47:12'),
+(223, 2, 'DAVID POLO', '2800:430:1281:8b8b:685b:ae40:8978:ab98', 'success', '2023-08-17 19:52:13'),
+(224, 2, 'admin@controldas.com', '2800:430:1281:8b8b:413d:2ce5:35fa:b462', 'success', '2023-08-17 21:09:31'),
+(225, 5, 'HERNAN', '181.198.135.168', 'success', '2023-08-18 00:47:26'),
+(226, 5, 'HERNAN', '181.198.135.168', 'success', '2023-08-18 00:48:15'),
+(227, 2, 'DAVID POLO', '2800:430:1281:8b8b:8002:9f07:7100:abf6', 'success', '2023-08-18 00:59:23'),
+(228, 5, 'HERNAN', '181.198.135.168', 'success', '2023-08-18 00:59:55'),
+(229, 5, 'HERNAN', '181.198.135.168', 'success', '2023-08-18 01:01:18'),
+(230, 5, 'HERNAN', '181.198.135.168', 'success', '2023-08-18 01:02:26'),
+(231, 5, 'HERNAN', '181.198.135.168', 'success', '2023-08-18 01:05:12'),
+(235, 5, 'HERNAN', '181.198.135.168', 'success', '2023-08-18 01:06:18'),
+(236, 5, 'HERNAN', '181.198.135.168', 'success', '2023-08-18 02:25:01'),
+(237, 1, '0969237302', '200.115.36.38', 'success', '2023-08-18 13:42:50'),
+(238, 2, 'admin@controldas.com', '2800:430:b289:b30c:655e:a524:7137:4047', 'success', '2023-08-18 18:00:05'),
+(239, 10, 'domi', '157.100.63.41', 'success', '2023-08-18 19:58:18'),
+(240, 10, 'domi', '157.100.63.41', 'success', '2023-08-18 19:58:40'),
+(241, 10, 'domi', '157.100.63.41', 'success', '2023-08-18 19:59:04'),
+(242, 10, 'domi', '157.100.63.41', 'success', '2023-08-18 20:00:56');
 
 -- --------------------------------------------------------
 
@@ -4589,7 +4856,46 @@ INSERT INTO `payments` (`id`, `type`, `is_profit`, `is_hide`, `store_id`, `invoi
 (31, 'sell', 1, 0, 2, '22023/00000030', NULL, 1, NULL, '76.7000', '164.0000', 'a:0:{}', NULL, '', '164.0000', '0.0000', 6, '2023-08-08 10:23:06'),
 (32, 'sell', 1, 0, 2, '22023/00000031', NULL, 1, NULL, '76.7000', '164.0000', 'a:0:{}', NULL, 'TRANSFERENCIA', '164.0000', '0.0000', 6, '2023-08-08 10:47:23'),
 (33, 'sell', 1, 0, 2, '22023/00000032', NULL, 1, NULL, '132.8000', '322.0000', 'a:0:{}', NULL, 'transferencia 2 kit', '322.0000', '0.0000', 6, '2023-08-08 11:47:40'),
-(34, 'sell', 1, 0, 2, '22023/00000033', NULL, 1, NULL, '41.0000', '85.0000', 'a:0:{}', NULL, 'TRANSFERENCIA ', '85.0000', '0.0000', 6, '2023-08-08 12:39:49');
+(34, 'sell', 1, 0, 2, '22023/00000033', NULL, 1, NULL, '41.0000', '85.0000', 'a:0:{}', NULL, 'TRANSFERENCIA ', '85.0000', '0.0000', 6, '2023-08-08 12:39:49'),
+(35, 'sell', 1, 0, 2, '22023/00000034', NULL, 1, NULL, '76.7000', '164.0000', 'a:0:{}', NULL, '', '165.0000', '1.0000', 6, '2023-08-08 15:10:47'),
+(36, 'sell', 1, 0, 2, '22023/00000035', NULL, 1, NULL, '60.4000', '142.0000', 'a:0:{}', NULL, 'TRANSFERENCIA', '142.0000', '0.0000', 6, '2023-08-09 11:38:41'),
+(37, 'sell', 1, 0, 2, '22023/00000036', NULL, 1, NULL, '41.0000', '85.0000', 'a:0:{}', NULL, 'TRANSFERENCIA', '85.0000', '0.0000', 6, '2023-08-09 11:40:14'),
+(38, 'sell', 1, 0, 2, '22023/00000037', NULL, 1, NULL, '60.4000', '142.0000', 'a:0:{}', NULL, '', '142.0000', '0.0000', 6, '2023-08-09 13:20:26'),
+(39, 'sell', 1, 0, 2, '22023/00000038', NULL, 1, NULL, '149.1000', '344.0000', 'a:0:{}', NULL, 'PAGO EN CHEQUES- 3291-3290-3288-3287-3289', '344.0000', '0.0000', 6, '2023-08-09 16:00:26'),
+(40, 'sell', 1, 0, 2, '22023/00000039', NULL, 1, NULL, '41.0000', '85.0000', 'a:0:{}', NULL, 'TRANSFERENCIA ', '85.0000', '0.0000', 6, '2023-08-10 11:14:50'),
+(41, 'sell', 1, 0, 2, '22023/00000040', NULL, 1, NULL, '76.7000', '164.0000', 'a:0:{}', NULL, 'TRANSFERENCIA', '164.0000', '0.0000', 6, '2023-08-10 11:33:18'),
+(42, 'sell', 1, 0, 2, '22023/00000041', NULL, 1, NULL, '60.4000', '142.0000', 'a:0:{}', NULL, '', '142.0000', '0.0000', 6, '2023-08-10 11:42:22'),
+(43, 'sell', 1, 0, 2, '22023/00000042', NULL, 1, NULL, '149.1000', '344.0000', 'a:0:{}', NULL, '', '350.0000', '6.0000', 6, '2023-08-14 12:37:10'),
+(44, 'sell', 1, 0, 2, '22023/00000043', NULL, 1, NULL, '76.7000', '164.0000', 'a:0:{}', NULL, '', '170.0000', '6.0000', 6, '2023-08-14 12:43:05'),
+(45, 'sell', 1, 0, 2, '22023/00000044', NULL, 1, NULL, '41.0000', '85.0000', 'a:0:{}', NULL, '', '85.0000', '0.0000', 6, '2023-08-14 12:55:20'),
+(46, 'sell', 1, 0, 2, '22023/00000045', NULL, 1, NULL, '76.7000', '164.0000', 'a:0:{}', NULL, '', '164.0000', '0.0000', 6, '2023-08-15 10:44:48'),
+(47, 'sell', 1, 0, 2, '22023/00000046', NULL, 1, NULL, '76.7000', '164.0000', 'a:0:{}', NULL, '', '165.0000', '1.0000', 6, '2023-08-15 14:30:22'),
+(48, 'sell', 1, 0, 3, '300000001', NULL, 1, NULL, '13.5500', '40.0000', 'a:0:{}', NULL, '', '40.0000', '0.0000', 10, '2023-08-16 10:08:45'),
+(49, 'sell', 1, 0, 2, '22023/00000047', NULL, 1, NULL, '71.7000', '164.0000', 'a:0:{}', NULL, '', '170.0000', '6.0000', 6, '2023-08-16 10:21:24'),
+(50, 'sell', 1, 0, 2, '22023/00000048', NULL, 1, NULL, '76.7000', '164.0000', 'a:0:{}', NULL, 'transferencia el dia de ayer', '164.0000', '0.0000', 6, '2023-08-16 10:49:14'),
+(51, 'sell', 1, 0, 3, '300000002', NULL, 1, NULL, '6.9500', '26.0000', 'a:0:{}', NULL, '', '40.0000', '14.0000', 10, '2023-08-16 13:13:12'),
+(52, 'sell', 1, 0, 3, '300000003', NULL, 1, NULL, '20.5000', '66.0000', 'a:0:{}', NULL, 'Transferencia ', '66.0000', '0.0000', 10, '2023-08-16 13:18:08'),
+(53, 'sell', 1, 0, 2, '22023/00000049', NULL, 1, NULL, '137.1000', '306.0000', 'a:0:{}', NULL, '', '310.0000', '4.0000', 6, '2023-08-16 14:21:51'),
+(54, 'sell', 1, 0, 2, '22023/00000050', NULL, 1, NULL, '137.1000', '306.0000', 'a:0:{}', NULL, '', '310.0000', '4.0000', 6, '2023-08-16 15:20:55'),
+(56, 'sell', 1, 0, 3, '300000005', NULL, 1, NULL, '13.5500', '40.0000', 'a:0:{}', NULL, '', '40.0000', '0.0000', 10, '2023-08-17 13:15:03'),
+(57, 'sell', 1, 0, 3, '300000006', NULL, 1, NULL, '13.9000', '52.0000', 'a:0:{}', NULL, '', '60.0000', '8.0000', 10, '2023-08-17 14:13:37'),
+(58, 'sell', 1, 0, 3, '300000007', NULL, 1, NULL, '13.5500', '40.0000', 'a:0:{}', NULL, '', '40.0000', '0.0000', 10, '2023-08-17 14:54:10'),
+(59, 'sell', 1, 0, 3, '300000008', NULL, 1, NULL, '13.5500', '40.0000', 'a:0:{}', NULL, '', '40.0000', '0.0000', 10, '2023-08-17 14:59:34'),
+(60, 'sell', 1, 0, 3, '300000009', NULL, 1, NULL, '13.5500', '40.0000', 'a:0:{}', NULL, '', '40.0000', '0.0000', 10, '2023-08-17 15:05:46'),
+(61, 'sell', 1, 0, 3, '300000010', NULL, 1, NULL, '6.9500', '26.0000', 'a:0:{}', NULL, '', '26.0000', '0.0000', 10, '2023-08-17 15:08:06'),
+(62, 'sell', 1, 0, 2, '22023/00000051', NULL, 1, NULL, '137.1000', '306.0000', 'a:0:{}', NULL, 'transferencia', '306.0000', '0.0000', 6, '2023-08-17 15:50:53'),
+(63, 'sell', 1, 0, 3, '300000011', NULL, 1, NULL, '11.9500', '40.0000', 'a:0:{}', NULL, 'Por entregar mis lecturas dirigidas 7mo ', '40.0000', '0.0000', 10, '2023-08-17 15:51:49'),
+(64, 'sell', 1, 0, 3, '300000012', NULL, 1, NULL, '11.9500', '40.0000', 'a:0:{}', NULL, 'X entregar libro lecturas dirigidas 7mo', '40.0000', '0.0000', 10, '2023-08-17 15:54:27'),
+(65, 'sell', 1, 0, 2, '22023/00000052', NULL, 1, NULL, '153.4000', '328.0000', 'a:0:{}', NULL, 'TRANSFERENCIA', '328.0000', '0.0000', 6, '2023-08-17 15:58:20'),
+(66, 'sell', 1, 0, 3, '300000013', NULL, 1, NULL, '13.5500', '40.0000', 'a:0:{}', NULL, '', '40.0000', '0.0000', 10, '2023-08-17 17:09:11'),
+(67, 'sell', 1, 0, 3, '300000014', NULL, 1, NULL, '13.5500', '40.0000', 'a:0:{}', NULL, '', '40.0000', '0.0000', 10, '2023-08-17 17:12:44'),
+(68, 'sell', 1, 0, 3, '300000015', NULL, 1, NULL, '13.5500', '40.0000', 'a:0:{}', NULL, '', '40.0000', '0.0000', 10, '2023-08-17 17:14:13'),
+(69, 'sell', 1, 0, 2, '22023/00000053', NULL, 1, NULL, '76.7000', '164.0000', 'a:0:{}', NULL, '', '164.0000', '0.0000', 6, '2023-08-18 11:45:41'),
+(70, 'sell', 1, 0, 2, '22023/00000054', NULL, 1, NULL, '60.4000', '142.0000', 'a:0:{}', NULL, '', '142.0000', '0.0000', 6, '2023-08-18 13:19:00'),
+(71, 'sell', 1, 0, 2, '22023/00000055', NULL, 1, NULL, '137.1000', '306.0000', 'a:0:{}', NULL, '', '306.0000', '0.0000', 6, '2023-08-18 13:46:22'),
+(72, 'sell', 1, 0, 3, '300000016', NULL, 1, NULL, '27.1000', '80.0000', 'a:0:{}', NULL, '', '80.0000', '0.0000', 10, '2023-08-18 15:02:40'),
+(73, 'sell', 1, 0, 2, '22023/00000056', NULL, 1, NULL, '178.1000', '391.0000', 'a:0:{}', NULL, '', '400.0000', '9.0000', 6, '2023-08-18 15:57:05'),
+(74, 'sell', 1, 0, 2, '22023/00000057', NULL, 1, NULL, '76.7000', '164.0000', 'a:0:{}', NULL, '', '164.0000', '0.0000', 6, '2023-08-18 16:07:07');
 
 -- --------------------------------------------------------
 
@@ -4688,7 +4994,8 @@ INSERT INTO `pos_template_to_store` (`pt2s`, `store_id`, `ttemplate_id`, `is_act
 (1, 1, 1, 1, 1, 0),
 (2, 1, 2, 1, 1, 0),
 (3, 2, 1, 1, 1, 0),
-(4, 3, 1, 1, 1, 0);
+(4, 3, 1, 1, 1, 0),
+(5, 4, 1, 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -4736,7 +5043,8 @@ CREATE TABLE `printer_to_store` (
 INSERT INTO `printer_to_store` (`p2s_id`, `pprinter_id`, `store_id`, `path`, `ip_address`, `port`, `status`, `sort_order`) VALUES
 (1, 1, 2, 'POS-80C', '', '9100', 1, 0),
 (2, 1, 3, NULL, NULL, NULL, 1, 0),
-(3, 1, 1, NULL, NULL, NULL, 1, 0);
+(3, 1, 1, NULL, NULL, NULL, 1, 0),
+(4, 1, 4, NULL, NULL, NULL, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -4908,7 +5216,23 @@ INSERT INTO `products` (`p_id`, `p_type`, `p_code`, `hsn_code`, `barcode_symbolo
 (144, 'standard', '03410794', NULL, 'code128', 'CALIGRAFIA Y ORTOGRAFIA MB 10', 1, 1, '', ''),
 (145, 'standard', '60173741', NULL, 'code128', 'EVERYDAY ENGLISH 1 STA MARIANA AMBATO', 1, 1, '', ''),
 (146, 'standard', '11845077', NULL, 'code128', 'EVERYDAY ENGLISH 2 STA MARIANA AMBATO', 1, 1, '', ''),
-(147, 'standard', '79581210', NULL, 'code128', 'MI LECTURA DIRIGIDA 7', 1, 1, '', '');
+(147, 'standard', '79581210', NULL, 'code128', 'MI LECTURA DIRIGIDA 7', 1, 1, '', ''),
+(148, 'standard', '34724090', NULL, 'code128', 'ME DIVIERTO Y APRENDO CALIGRAFIA Y ORTOGRAFIA 2 ', 1, 1, '', ''),
+(149, 'standard', '12821506', NULL, 'code128', 'ME DIVIERTO Y APRENDO CALIGRAFIA Y ORTOGRAFIA 3', 1, 1, '', ''),
+(150, 'standard', '89135754', NULL, 'code128', 'ME DIVIERTO Y APRENDO CALIGRAFIA Y ORTOGRAFIA 4', 1, 1, '', ''),
+(151, 'standard', '82879278', NULL, 'code128', 'ME DIVIERTO Y APRENDO CALIGRAFIA Y ORTOGRAFIA 5', 1, 1, '', ''),
+(152, 'standard', '83548433', NULL, 'code128', 'ME DIVIERTO Y APRENDO CALIGRAFIA Y ORTOGRAFIA 6', 1, 1, '', ''),
+(153, 'standard', '99227462', NULL, 'code128', 'ME DIVIERTO Y APRENDO CALIGRAFIA Y ORTOGRAFIA 7', 1, 1, '', ''),
+(154, 'standard', '98222901', NULL, 'code128', 'CALIGRAFIA Y ORTOGRAFIA INTEGRADA A', 1, 1, '', ''),
+(155, 'standard', '63311135', NULL, 'code128', 'MAGICA ORTOGRAFIA Y CALIGRAFIA 9', 1, 1, '', ''),
+(156, 'standard', '79226489', NULL, 'code128', 'MAGICA ORTOGRAFIA Y CALIGRAFIA 10', 1, 1, '', ''),
+(157, 'standard', '67346637', NULL, 'code128', 'EDUCACION FISICA APRENDIENDO EN MOVIMIENTO 1', 1, 1, '', ''),
+(158, 'standard', '49665698', NULL, 'code128', 'EVERYDAY ENGLISH 1 ECO RIO', 1, 1, '', ''),
+(159, 'standard', '57262396', NULL, 'code128', 'EVERYDAY ENGLISH 2 ECO RIO', 1, 1, '', ''),
+(160, 'standard', '90590291', NULL, 'code128', 'EVERYDAY ENGLISH 3 ECO RIO', 1, 1, '', ''),
+(161, 'standard', '37327263', NULL, 'code128', 'MI GUCHITO INICIAL 1 ECO RIO', 1, 1, '', ''),
+(162, 'standard', '73911967', NULL, 'code128', 'MI GUCHITO INICIAL 2 ECO RIO', 1, 1, '', ''),
+(163, 'standard', '02406133', NULL, 'code128', 'MI GUCHITO PREPARATORIA ECO RIO', 1, 1, '', '');
 
 -- --------------------------------------------------------
 
@@ -5029,7 +5353,36 @@ INSERT INTO `product_to_college` (`id`, `product_id`, `college_id`, `estimatedsa
 (84, 113, 4, 30, 1, 0),
 (85, 114, 4, 30, 1, 0),
 (86, 57, 2, 1, 1, 0),
-(87, 56, 2, 15, 1, 0);
+(87, 56, 2, 15, 1, 0),
+(88, 153, 5, 30, 1, 0),
+(89, 152, 5, 30, 1, 0),
+(90, 151, 5, 30, 1, 0),
+(91, 150, 5, 30, 1, 0),
+(92, 149, 5, 30, 1, 0),
+(93, 148, 5, 30, 1, 0),
+(94, 124, 5, 15, 1, 0),
+(95, 123, 5, 15, 1, 0),
+(96, 122, 5, 15, 1, 0),
+(97, 147, 5, 30, 1, 0),
+(98, 48, 5, 30, 1, 0),
+(99, 47, 5, 30, 1, 0),
+(100, 46, 5, 30, 1, 0),
+(101, 45, 5, 30, 1, 0),
+(102, 44, 5, 30, 1, 0),
+(103, 43, 5, 30, 1, 0),
+(104, 121, 5, 30, 1, 0),
+(105, 120, 5, 30, 1, 0),
+(106, 119, 5, 30, 1, 0),
+(107, 118, 5, 30, 1, 0),
+(108, 117, 5, 30, 1, 0),
+(109, 116, 5, 30, 1, 0),
+(110, 115, 5, 30, 1, 0),
+(111, 146, 5, 30, 1, 0),
+(112, 145, 5, 30, 1, 0),
+(113, 154, 5, 30, 1, 0),
+(114, 156, 5, 20, 1, 0),
+(115, 155, 5, 20, 1, 0),
+(116, 157, 5, 30, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -5146,43 +5499,43 @@ INSERT INTO `product_to_store` (`id`, `product_id`, `store_id`, `purchase_price`
 (210, 81, 1, 14, 14, '0.0000', '10.0000', 1, 0, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-06-16', '2023-06-17', 1, 0),
 (213, 82, 1, 14, 14, '0.0000', '10.0000', 1, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-06-16', '2023-06-17', 1, 0),
 (214, 1, 2, 20, 40, '19.0000', '10.0000', 1, 1, 11, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
-(215, 2, 2, 20, 40, '30.0000', '10.0000', 1, 1, 12, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
-(216, 3, 2, 20, 40, '25.0000', '10.0000', 1, 1, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
-(217, 4, 2, 10.8, 27, '20.0000', '10.0000', 1, 1, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
-(218, 5, 2, 10.8, 27, '15.0000', '10.0000', 1, 1, 3, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
-(219, 6, 2, 10.8, 27, '19.0000', '10.0000', 1, 1, 4, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
-(220, 7, 2, 10.8, 27, '25.0000', '10.0000', 1, 1, 5, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
-(221, 8, 2, 10.8, 27, '24.0000', '10.0000', 1, 1, 6, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
-(222, 9, 2, 10.8, 27, '17.0000', '10.0000', 1, 1, 7, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
-(223, 10, 2, 10.8, 27, '18.0000', '10.0000', 1, 1, 2, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
-(224, 11, 2, 10.8, 27, '14.0000', '10.0000', 1, 1, 3, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
-(225, 12, 2, 10.8, 27, '22.0000', '10.0000', 1, 1, 4, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
-(226, 13, 2, 10.8, 27, '24.0000', '10.0000', 1, 1, 5, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
-(227, 14, 2, 10.8, 27, '23.0000', '10.0000', 1, 1, 6, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
-(228, 15, 2, 10.8, 27, '21.0000', '10.0000', 1, 1, 7, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
-(229, 16, 2, 10.8, 27, '22.0000', '10.0000', 1, 1, 8, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
-(230, 17, 2, 10.8, 27, '24.0000', '10.0000', 1, 1, 9, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(215, 2, 2, 20, 40, '27.0000', '10.0000', 1, 1, 12, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(216, 3, 2, 20, 40, '24.0000', '10.0000', 1, 1, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(217, 4, 2, 10.8, 27, '15.0000', '10.0000', 1, 1, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(218, 5, 2, 10.8, 27, '9.0000', '10.0000', 1, 1, 3, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(219, 6, 2, 10.8, 27, '17.0000', '10.0000', 1, 1, 4, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(220, 7, 2, 10.8, 27, '24.0000', '10.0000', 1, 1, 5, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(221, 8, 2, 10.8, 27, '21.0000', '10.0000', 1, 1, 6, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(222, 9, 2, 10.8, 27, '16.0000', '10.0000', 1, 1, 7, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(223, 10, 2, 10.8, 27, '13.0000', '10.0000', 1, 1, 2, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(224, 11, 2, 10.8, 27, '8.0000', '10.0000', 1, 1, 3, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(225, 12, 2, 10.8, 27, '20.0000', '10.0000', 1, 1, 4, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(226, 13, 2, 10.8, 27, '23.0000', '10.0000', 1, 1, 5, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(227, 14, 2, 10.8, 27, '20.0000', '10.0000', 1, 1, 6, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(228, 15, 2, 10.8, 27, '20.0000', '10.0000', 1, 1, 7, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(229, 16, 2, 10.8, 27, '16.0000', '10.0000', 1, 1, 8, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(230, 17, 2, 10.8, 27, '21.0000', '10.0000', 1, 1, 9, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
 (231, 18, 2, 10.8, 27, '6.0000', '10.0000', 1, 1, 10, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
 (232, 19, 2, 10.8, 27, '28.0000', '10.0000', 1, 1, 8, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
 (233, 20, 2, 10.8, 27, '28.0000', '10.0000', 1, 1, 9, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
 (234, 21, 2, 10.8, 27, '29.0000', '10.0000', 1, 1, 10, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
-(235, 22, 2, 10.8, 27, '21.0000', '10.0000', 1, 1, 2, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
-(236, 23, 2, 10.8, 27, '17.0000', '10.0000', 1, 1, 3, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
-(237, 24, 2, 10.8, 27, '11.0000', '10.0000', 1, 1, 4, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
-(238, 25, 2, 10.8, 27, '21.0000', '10.0000', 1, 1, 5, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
-(239, 26, 2, 10.8, 27, '9.0000', '10.0000', 1, 1, 6, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
-(240, 27, 2, 10.8, 27, '15.0000', '10.0000', 1, 1, 7, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
-(241, 28, 2, 10.8, 27, '31.0000', '10.0000', 1, 1, 8, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
-(242, 29, 2, 10.8, 27, '27.0000', '10.0000', 1, 1, 9, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(235, 22, 2, 10.8, 27, '16.0000', '10.0000', 1, 1, 2, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(236, 23, 2, 10.8, 27, '11.0000', '10.0000', 1, 1, 3, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(237, 24, 2, 10.8, 27, '9.0000', '10.0000', 1, 1, 4, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(238, 25, 2, 10.8, 27, '20.0000', '10.0000', 1, 1, 5, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(239, 26, 2, 10.8, 27, '6.0000', '10.0000', 1, 1, 6, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(240, 27, 2, 10.8, 27, '14.0000', '10.0000', 1, 1, 7, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(241, 28, 2, 10.8, 27, '25.0000', '10.0000', 1, 1, 8, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(242, 29, 2, 10.8, 27, '24.0000', '10.0000', 1, 1, 9, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
 (243, 30, 2, 10.8, 27, '30.0000', '10.0000', 1, 1, 10, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
-(244, 31, 2, 10.8, 27, '23.0000', '10.0000', 1, 1, 2, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
-(245, 32, 2, 10.8, 27, '18.0000', '10.0000', 1, 1, 3, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
-(246, 33, 2, 10.8, 27, '22.0000', '10.0000', 1, 1, 4, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
-(247, 34, 2, 10.8, 27, '24.0000', '10.0000', 1, 1, 5, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
-(248, 35, 2, 10.8, 27, '28.0000', '10.0000', 1, 1, 6, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
-(249, 36, 2, 10.8, 27, '25.0000', '10.0000', 1, 1, 7, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
-(250, 37, 2, 10.8, 27, '30.0000', '10.0000', 1, 1, 8, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
-(251, 38, 2, 10.8, 27, '26.0000', '10.0000', 1, 1, 9, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(244, 31, 2, 10.8, 27, '18.0000', '10.0000', 1, 1, 2, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(245, 32, 2, 10.8, 27, '12.0000', '10.0000', 1, 1, 3, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(246, 33, 2, 10.8, 27, '20.0000', '10.0000', 1, 1, 4, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(247, 34, 2, 10.8, 27, '23.0000', '10.0000', 1, 1, 5, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(248, 35, 2, 10.8, 27, '25.0000', '10.0000', 1, 1, 6, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(249, 36, 2, 10.8, 27, '24.0000', '10.0000', 1, 1, 7, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(250, 37, 2, 10.8, 27, '24.0000', '10.0000', 1, 1, 8, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(251, 38, 2, 10.8, 27, '23.0000', '10.0000', 1, 1, 9, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
 (252, 39, 2, 10.8, 27, '29.0000', '10.0000', 1, 1, 10, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
 (253, 40, 2, 10, 25, '32.0000', '10.0000', 1, 1, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
 (254, 41, 2, 10, 25, '8.0000', '10.0000', 1, 1, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
@@ -5197,14 +5550,14 @@ INSERT INTO `product_to_store` (`id`, `product_id`, `store_id`, `purchase_price`
 (263, 50, 2, 5.6, 14, '23.0000', '10.0000', 1, 1, 9, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
 (264, 51, 2, 5.6, 14, '22.0000', '10.0000', 1, 1, 10, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
 (265, 52, 2, 10.8, 27, '9.0000', '10.0000', 1, 1, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
-(266, 53, 2, 10.8, 27, '27.0000', '10.0000', 1, 1, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
-(267, 54, 2, 10.8, 27, '27.0000', '10.0000', 1, 1, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(266, 53, 2, 10.8, 27, '26.0000', '10.0000', 1, 1, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(267, 54, 2, 10.8, 27, '26.0000', '10.0000', 1, 1, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
 (268, 55, 2, 10.8, 27, '26.0000', '10.0000', 1, 1, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
-(269, 56, 2, 10.8, 27, '23.0000', '10.0000', 1, 1, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
-(270, 57, 2, 10.8, 27, '23.0000', '10.0000', 1, 1, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(269, 56, 2, 10.8, 27, '22.0000', '10.0000', 1, 1, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(270, 57, 2, 10.8, 27, '22.0000', '10.0000', 1, 1, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
 (271, 58, 2, 10.8, 27, '0.0000', '10.0000', 1, 1, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
-(272, 59, 2, 10.8, 27, '26.0000', '10.0000', 1, 1, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
-(273, 60, 2, 10.8, 27, '18.0000', '10.0000', 1, 1, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(272, 59, 2, 10.8, 27, '25.0000', '10.0000', 1, 1, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(273, 60, 2, 10.8, 27, '17.0000', '10.0000', 1, 1, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
 (274, 61, 2, 10.8, 27, '0.0000', '10.0000', 1, 1, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
 (275, 62, 2, 10.8, 27, '0.0000', '10.0000', 1, 1, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
 (276, 63, 2, 10.8, 27, '0.0000', '10.0000', 1, 1, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
@@ -5221,70 +5574,70 @@ INSERT INTO `product_to_store` (`id`, `product_id`, `store_id`, `purchase_price`
 (287, 74, 2, 10, 25, '36.0000', '10.0000', 1, 1, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
 (288, 75, 2, 10, 25, '31.0000', '10.0000', 1, 1, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
 (289, 76, 2, 10, 25, '0.0000', '10.0000', 1, 1, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
-(290, 77, 2, 6, 15, '7.0000', '10.0000', 1, 1, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
-(291, 78, 2, 6, 15, '19.0000', '10.0000', 1, 1, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(290, 77, 2, 6, 15, '1.0000', '10.0000', 1, 1, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(291, 78, 2, 6, 15, '18.0000', '10.0000', 1, 1, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
 (292, 79, 2, 6, 15, '0.0000', '10.0000', 1, 1, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
 (293, 80, 2, 14, 14, '0.0000', '10.0000', 1, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-06-16', '2023-06-17', 1, 0),
 (294, 81, 2, 14, 14, '0.0000', '10.0000', 1, 0, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-06-16', '2023-06-17', 1, 0),
 (295, 82, 2, 14, 14, '0.0000', '10.0000', 1, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-06-16', '2023-06-17', 1, 0),
 (341, 83, 1, 21, 45, '0.0000', '10.0000', 4, 0, 12, 1, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
-(342, 83, 2, 21, 45, '13.0000', '10.0000', 4, 0, 12, 1, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(342, 83, 2, 21, 45, '10.0000', '10.0000', 4, 0, 12, 1, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (343, 84, 1, 21, 45, '0.0000', '10.0000', 4, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
-(344, 84, 2, 21, 45, '2.0000', '10.0000', 4, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(344, 84, 2, 21, 45, '1.0000', '10.0000', 4, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (345, 85, 1, 6.5, 10, '0.0000', '10.0000', 7, 0, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
-(346, 85, 2, 6.5, 10, '8.0000', '10.0000', 7, 0, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(346, 85, 2, 6.5, 10, '3.0000', '10.0000', 7, 0, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (347, 86, 1, 6.5, 10, '0.0000', '10.0000', 7, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
-(348, 86, 2, 6.5, 10, '2.0000', '10.0000', 7, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(348, 86, 2, 6.5, 10, '0.0000', '10.0000', 7, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (349, 87, 1, 6.5, 10, '0.0000', '10.0000', 7, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
-(350, 87, 2, 6.5, 10, '7.0000', '10.0000', 7, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(350, 87, 2, 6.5, 10, '5.0000', '10.0000', 7, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (351, 88, 1, 6.5, 10, '0.0000', '10.0000', 7, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
-(352, 88, 2, 6.5, 10, '7.0000', '10.0000', 7, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(352, 88, 2, 6.5, 10, '6.0000', '10.0000', 7, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (353, 89, 1, 6.5, 10, '0.0000', '10.0000', 7, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
-(354, 89, 2, 6.5, 10, '6.0000', '10.0000', 7, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(354, 89, 2, 6.5, 10, '3.0000', '10.0000', 7, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (355, 90, 1, 6.5, 10, '0.0000', '10.0000', 7, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
-(356, 90, 2, 6.5, 10, '7.0000', '10.0000', 7, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(356, 90, 2, 6.5, 10, '6.0000', '10.0000', 7, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (357, 91, 1, 27, 46, '0.0000', '10.0000', 4, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
-(358, 91, 2, 27, 46, '13.0000', '10.0000', 4, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(358, 91, 2, 27, 46, '8.0000', '10.0000', 4, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (359, 92, 1, 27, 46, '0.0000', '10.0000', 4, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
-(360, 92, 2, 27, 46, '7.0000', '10.0000', 4, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(360, 92, 2, 27, 46, '1.0000', '10.0000', 4, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (361, 93, 1, 27, 46, '0.0000', '10.0000', 4, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
-(362, 93, 2, 27, 46, '6.0000', '10.0000', 4, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(362, 93, 2, 27, 46, '4.0000', '10.0000', 4, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (363, 94, 1, 27, 46, '0.0000', '10.0000', 4, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
-(364, 94, 2, 27, 46, '7.0000', '10.0000', 4, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(364, 94, 2, 27, 46, '6.0000', '10.0000', 4, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (365, 95, 1, 27, 46, '0.0000', '10.0000', 4, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
-(366, 95, 2, 27, 46, '6.0000', '10.0000', 4, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(366, 95, 2, 27, 46, '3.0000', '10.0000', 4, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (367, 96, 1, 22, 46, '0.0000', '10.0000', 4, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
-(368, 96, 2, 22, 46, '6.0000', '10.0000', 4, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(368, 96, 2, 22, 46, '0.0000', '10.0000', 4, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (369, 97, 1, 22, 46, '0.0000', '10.0000', 4, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
-(370, 97, 2, 22, 46, '5.0000', '10.0000', 4, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(370, 97, 2, 22, 46, '2.0000', '10.0000', 4, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (371, 98, 1, 22, 46, '0.0000', '10.0000', 4, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (372, 98, 2, 22, 46, '0.0000', '10.0000', 4, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (373, 99, 1, 22, 46, '0.0000', '10.0000', 4, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (374, 99, 2, 22, 46, '0.0000', '10.0000', 4, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (375, 100, 1, 22, 54, '0.0000', '10.0000', 4, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
-(376, 100, 2, 22, 54, '6.0000', '10.0000', 4, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(376, 100, 2, 22, 54, '5.0000', '10.0000', 4, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (377, 101, 1, 22, 54, '0.0000', '10.0000', 4, 0, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
-(378, 101, 2, 22, 54, '2.0000', '10.0000', 4, 0, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(378, 101, 2, 22, 54, '1.0000', '10.0000', 4, 0, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (379, 102, 1, 22, 46, '0.0000', '10.0000', 4, 0, 7, 1, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
-(380, 102, 2, 22, 46, '7.0000', '10.0000', 4, 0, 7, 1, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(380, 102, 2, 22, 46, '6.0000', '10.0000', 4, 0, 7, 1, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (381, 103, 1, 6, 15, '0.0000', '10.0000', 1, 0, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
-(382, 103, 2, 6, 15, '26.0000', '10.0000', 1, 0, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(382, 103, 2, 6, 15, '25.0000', '10.0000', 1, 0, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (383, 104, 1, 6, 15, '0.0000', '10.0000', 1, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
-(384, 104, 2, 6, 15, '29.0000', '10.0000', 1, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(384, 104, 2, 6, 15, '28.0000', '10.0000', 1, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (385, 105, 1, 6, 15, '0.0000', '10.0000', 1, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
-(386, 105, 2, 6, 15, '4.0000', '10.0000', 1, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(386, 105, 2, 6, 15, '1.0000', '10.0000', 1, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (387, 106, 1, 6, 15, '0.0000', '10.0000', 1, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (388, 106, 2, 6, 15, '0.0000', '10.0000', 1, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (389, 107, 1, 6, 15, '0.0000', '10.0000', 1, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (390, 107, 2, 6, 15, '0.0000', '10.0000', 1, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (391, 108, 1, 6, 15, '0.0000', '10.0000', 1, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
-(392, 108, 2, 6, 15, '5.0000', '10.0000', 1, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(392, 108, 2, 6, 15, '4.0000', '10.0000', 1, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (393, 109, 1, 6, 15, '0.0000', '10.0000', 1, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
-(394, 109, 2, 6, 15, '6.0000', '10.0000', 1, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(394, 109, 2, 6, 15, '5.0000', '10.0000', 1, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (395, 110, 1, 6, 15, '0.0000', '10.0000', 1, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (396, 110, 2, 6, 15, '0.0000', '10.0000', 1, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (397, 111, 1, 6, 15, '0.0000', '10.0000', 1, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
-(398, 111, 2, 6, 15, '18.0000', '10.0000', 1, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(398, 111, 2, 6, 15, '17.0000', '10.0000', 1, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (399, 112, 1, 10.5, 20.25, '0.0000', '10.0000', 1, 0, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-07-27', '2023-07-28', 1, 0),
 (400, 112, 2, 10.5, 20.25, '0.0000', '10.0000', 1, 0, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-07-27', '2023-07-28', 1, 0),
 (401, 113, 1, 10.8, 20.25, '0.0000', '10.0000', 1, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-07-27', '2023-07-28', 1, 0),
@@ -5333,11 +5686,11 @@ INSERT INTO `product_to_store` (`id`, `product_id`, `store_id`, `purchase_price`
 (444, 40, 3, 10, 25, '0.0000', '10.0000', 1, 1, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
 (445, 41, 3, 10, 25, '0.0000', '10.0000', 1, 1, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
 (446, 42, 3, 10, 25, '0.0000', '10.0000', 1, 1, 10, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
-(447, 43, 3, 5.6, 14, '0.0000', '10.0000', 1, 1, 2, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
-(448, 44, 3, 5.6, 14, '0.0000', '10.0000', 1, 1, 3, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
-(449, 45, 3, 5.6, 14, '0.0000', '10.0000', 1, 1, 4, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
-(450, 46, 3, 5.6, 14, '0.0000', '10.0000', 1, 1, 5, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
-(451, 47, 3, 5.6, 14, '0.0000', '10.0000', 1, 1, 6, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(447, 43, 3, 5.6, 14, '15.0000', '10.0000', 1, 1, 2, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(448, 44, 3, 5.6, 14, '22.0000', '10.0000', 1, 1, 3, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(449, 45, 3, 5.6, 14, '22.0000', '10.0000', 1, 1, 4, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(450, 46, 3, 5.6, 14, '11.0000', '10.0000', 1, 1, 5, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(451, 47, 3, 5.6, 14, '12.0000', '10.0000', 1, 1, 6, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
 (452, 48, 3, 5.6, 14, '0.0000', '10.0000', 1, 1, 7, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
 (453, 49, 3, 5.6, 14, '0.0000', '10.0000', 1, 1, 8, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
 (454, 50, 3, 5.6, 14, '0.0000', '10.0000', 1, 1, 9, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
@@ -5407,34 +5760,34 @@ INSERT INTO `product_to_store` (`id`, `product_id`, `store_id`, `purchase_price`
 (518, 114, 3, 10.8, 20.25, '0.0000', '10.0000', 1, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-07-27', '2023-07-28', 1, 0),
 (532, 115, 1, 4, 14, '0.0000', '10.0000', 3, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
 (533, 115, 2, 4, 14, '0.0000', '10.0000', 3, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
-(534, 115, 3, 4, 14, '0.0000', '10.0000', 3, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(534, 115, 3, 4, 14, '30.0000', '10.0000', 3, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
 (535, 116, 1, 4, 14, '0.0000', '10.0000', 3, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
 (536, 116, 2, 4, 14, '0.0000', '10.0000', 3, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
-(537, 116, 3, 4, 14, '0.0000', '10.0000', 3, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(537, 116, 3, 4, 14, '35.0000', '10.0000', 3, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
 (538, 117, 1, 4, 14, '0.0000', '10.0000', 3, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
 (539, 117, 2, 4, 14, '0.0000', '10.0000', 3, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
-(540, 117, 3, 4, 14, '0.0000', '10.0000', 3, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(540, 117, 3, 4, 14, '29.0000', '10.0000', 3, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
 (541, 118, 1, 4, 14, '0.0000', '10.0000', 3, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
 (542, 118, 2, 4, 14, '0.0000', '10.0000', 3, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
-(543, 118, 3, 4, 14, '0.0000', '10.0000', 3, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(543, 118, 3, 4, 14, '29.0000', '10.0000', 3, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
 (544, 119, 1, 4, 14, '0.0000', '10.0000', 3, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
 (545, 119, 2, 4, 14, '0.0000', '10.0000', 3, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
-(546, 119, 3, 4, 14, '0.0000', '10.0000', 3, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(546, 119, 3, 4, 14, '25.0000', '10.0000', 3, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
 (547, 120, 1, 4, 14, '0.0000', '10.0000', 3, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
 (548, 120, 2, 4, 14, '0.0000', '10.0000', 3, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
-(549, 120, 3, 4, 14, '0.0000', '10.0000', 3, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(549, 120, 3, 4, 14, '26.0000', '10.0000', 3, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
 (550, 121, 1, 4, 14, '0.0000', '10.0000', 3, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
 (551, 121, 2, 4, 14, '0.0000', '10.0000', 3, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
-(552, 121, 3, 4, 14, '0.0000', '10.0000', 3, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(552, 121, 3, 4, 14, '28.0000', '10.0000', 3, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
 (553, 122, 1, 3, 14, '0.0000', '10.0000', 3, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
 (554, 122, 2, 3, 14, '0.0000', '10.0000', 3, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
 (555, 122, 3, 3, 14, '0.0000', '10.0000', 3, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
 (556, 123, 1, 3, 14, '0.0000', '10.0000', 3, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
 (557, 123, 2, 3, 14, '0.0000', '10.0000', 3, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
-(558, 123, 3, 3, 14, '0.0000', '10.0000', 3, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(558, 123, 3, 3, 14, '14.0000', '10.0000', 3, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
 (559, 124, 1, 3, 14, '0.0000', '10.0000', 3, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
 (560, 124, 2, 3, 14, '0.0000', '10.0000', 3, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
-(561, 124, 3, 3, 14, '0.0000', '10.0000', 3, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(561, 124, 3, 3, 14, '11.0000', '10.0000', 3, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
 (562, 125, 1, 4, 12, '0.0000', '10.0000', 3, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
 (563, 125, 2, 4, 12, '0.0000', '10.0000', 3, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
 (564, 125, 3, 4, 12, '0.0000', '10.0000', 3, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
@@ -5501,10 +5854,221 @@ INSERT INTO `product_to_store` (`id`, `product_id`, `store_id`, `purchase_price`
 (625, 146, 1, 21, 37.7, '0.0000', '10.0000', 4, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
 (626, 146, 2, 21, 37.7, '0.0000', '10.0000', 4, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
 (627, 146, 3, 21, 37.7, '0.0000', '10.0000', 4, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
-(628, 147, 1, 4, 14, '0.0000', '10.0000', 3, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0);
+(628, 147, 1, 4, 14, '15.0000', '10.0000', 3, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0);
 INSERT INTO `product_to_store` (`id`, `product_id`, `store_id`, `purchase_price`, `sell_price`, `quantity_in_stock`, `alert_quantity`, `sup_id`, `brand_id`, `course_id`, `box_id`, `taxrate_id`, `tax_method`, `preference`, `e_date`, `p_date`, `status`, `sort_order`) VALUES
 (629, 147, 2, 4, 14, '0.0000', '10.0000', 3, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
-(630, 147, 3, 4, 14, '0.0000', '10.0000', 3, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0);
+(630, 147, 3, 4, 14, '13.0000', '10.0000', 3, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(631, 148, 1, 3.95, 12, '0.0000', '10.0000', 2, 0, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(632, 148, 2, 3.95, 12, '0.0000', '10.0000', 2, 0, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(633, 148, 3, 3.95, 12, '35.0000', '10.0000', 2, 0, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(634, 149, 1, 3.95, 12, '0.0000', '10.0000', 2, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(635, 149, 2, 3.95, 12, '0.0000', '10.0000', 2, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(636, 149, 3, 3.95, 12, '29.0000', '10.0000', 2, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(637, 150, 1, 3.95, 12, '0.0000', '10.0000', 2, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(638, 150, 2, 3.95, 12, '0.0000', '10.0000', 2, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(639, 150, 3, 3.95, 12, '29.0000', '10.0000', 2, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(640, 151, 1, 3.95, 12, '0.0000', '10.0000', 2, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(641, 151, 2, 3.95, 12, '0.0000', '10.0000', 2, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(642, 151, 3, 3.95, 12, '25.0000', '10.0000', 2, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(643, 152, 1, 3.95, 12, '0.0000', '10.0000', 2, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(644, 152, 2, 3.95, 12, '0.0000', '10.0000', 2, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(645, 152, 3, 3.95, 12, '26.0000', '10.0000', 2, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(646, 153, 1, 3.95, 12, '0.0000', '10.0000', 2, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(647, 153, 2, 3.95, 12, '0.0000', '10.0000', 2, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(648, 153, 3, 3.95, 12, '28.0000', '10.0000', 2, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(649, 154, 1, 3.95, 12, '0.0000', '10.0000', 2, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(650, 154, 2, 3.95, 12, '0.0000', '10.0000', 2, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(651, 154, 3, 3.95, 12, '15.0000', '10.0000', 2, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(652, 155, 1, 3.95, 12, '0.0000', '10.0000', 7, 0, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(653, 155, 2, 3.95, 12, '0.0000', '10.0000', 7, 0, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(654, 155, 3, 3.95, 12, '10.0000', '10.0000', 7, 0, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(655, 156, 1, 3.95, 12, '0.0000', '10.0000', 7, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(656, 156, 2, 3.95, 12, '0.0000', '10.0000', 7, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(657, 156, 3, 3.95, 12, '6.0000', '10.0000', 7, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(658, 157, 1, 0, 10, '0.0000', '10.0000', 7, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-08-15', '2023-08-16', 1, 0),
+(659, 157, 2, 0, 10, '0.0000', '10.0000', 7, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-08-15', '2023-08-16', 1, 0),
+(660, 157, 3, 0, 10, '0.0000', '10.0000', 7, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-08-15', '2023-08-16', 1, 0),
+(661, 1, 4, 20, 40, '0.0000', '10.0000', 1, 1, 11, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(662, 2, 4, 20, 40, '0.0000', '10.0000', 1, 1, 12, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(663, 3, 4, 20, 40, '0.0000', '10.0000', 1, 1, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(664, 4, 4, 10.8, 27, '0.0000', '10.0000', 1, 1, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(665, 5, 4, 10.8, 27, '0.0000', '10.0000', 1, 1, 3, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(666, 6, 4, 10.8, 27, '0.0000', '10.0000', 1, 1, 4, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(667, 7, 4, 10.8, 27, '0.0000', '10.0000', 1, 1, 5, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(668, 8, 4, 10.8, 27, '0.0000', '10.0000', 1, 1, 6, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(669, 9, 4, 10.8, 27, '0.0000', '10.0000', 1, 1, 7, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(670, 10, 4, 10.8, 27, '0.0000', '10.0000', 1, 1, 2, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(671, 11, 4, 10.8, 27, '0.0000', '10.0000', 1, 1, 3, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(672, 12, 4, 10.8, 27, '0.0000', '10.0000', 1, 1, 4, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(673, 13, 4, 10.8, 27, '0.0000', '10.0000', 1, 1, 5, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(674, 14, 4, 10.8, 27, '0.0000', '10.0000', 1, 1, 6, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(675, 15, 4, 10.8, 27, '0.0000', '10.0000', 1, 1, 7, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(676, 16, 4, 10.8, 27, '0.0000', '10.0000', 1, 1, 8, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(677, 17, 4, 10.8, 27, '0.0000', '10.0000', 1, 1, 9, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(678, 18, 4, 10.8, 27, '0.0000', '10.0000', 1, 1, 10, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(679, 19, 4, 10.8, 27, '0.0000', '10.0000', 1, 1, 8, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(680, 20, 4, 10.8, 27, '0.0000', '10.0000', 1, 1, 9, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(681, 21, 4, 10.8, 27, '0.0000', '10.0000', 1, 1, 10, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(682, 22, 4, 10.8, 27, '0.0000', '10.0000', 1, 1, 2, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(683, 23, 4, 10.8, 27, '0.0000', '10.0000', 1, 1, 3, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(684, 24, 4, 10.8, 27, '0.0000', '10.0000', 1, 1, 4, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(685, 25, 4, 10.8, 27, '0.0000', '10.0000', 1, 1, 5, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(686, 26, 4, 10.8, 27, '0.0000', '10.0000', 1, 1, 6, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(687, 27, 4, 10.8, 27, '0.0000', '10.0000', 1, 1, 7, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(688, 28, 4, 10.8, 27, '0.0000', '10.0000', 1, 1, 8, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(689, 29, 4, 10.8, 27, '0.0000', '10.0000', 1, 1, 9, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(690, 30, 4, 10.8, 27, '0.0000', '10.0000', 1, 1, 10, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(691, 31, 4, 10.8, 27, '0.0000', '10.0000', 1, 1, 2, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(692, 32, 4, 10.8, 27, '0.0000', '10.0000', 1, 1, 3, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(693, 33, 4, 10.8, 27, '0.0000', '10.0000', 1, 1, 4, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(694, 34, 4, 10.8, 27, '0.0000', '10.0000', 1, 1, 5, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(695, 35, 4, 10.8, 27, '0.0000', '10.0000', 1, 1, 6, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(696, 36, 4, 10.8, 27, '0.0000', '10.0000', 1, 1, 7, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(697, 37, 4, 10.8, 27, '0.0000', '10.0000', 1, 1, 8, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(698, 38, 4, 10.8, 27, '0.0000', '10.0000', 1, 1, 9, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(699, 39, 4, 10.8, 27, '0.0000', '10.0000', 1, 1, 10, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(700, 40, 4, 10, 25, '0.0000', '10.0000', 1, 1, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(701, 41, 4, 10, 25, '0.0000', '10.0000', 1, 1, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(702, 42, 4, 10, 25, '0.0000', '10.0000', 1, 1, 10, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(703, 43, 4, 5.6, 14, '0.0000', '10.0000', 1, 1, 2, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(704, 44, 4, 5.6, 14, '0.0000', '10.0000', 1, 1, 3, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(705, 45, 4, 5.6, 14, '0.0000', '10.0000', 1, 1, 4, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(706, 46, 4, 5.6, 14, '0.0000', '10.0000', 1, 1, 5, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(707, 47, 4, 5.6, 14, '0.0000', '10.0000', 1, 1, 6, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(708, 48, 4, 5.6, 14, '0.0000', '10.0000', 1, 1, 7, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(709, 49, 4, 5.6, 14, '0.0000', '10.0000', 1, 1, 8, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(710, 50, 4, 5.6, 14, '0.0000', '10.0000', 1, 1, 9, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(711, 51, 4, 5.6, 14, '0.0000', '10.0000', 1, 1, 10, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(712, 52, 4, 10.8, 27, '0.0000', '10.0000', 1, 1, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(713, 53, 4, 10.8, 27, '0.0000', '10.0000', 1, 1, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(714, 54, 4, 10.8, 27, '0.0000', '10.0000', 1, 1, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(715, 55, 4, 10.8, 27, '0.0000', '10.0000', 1, 1, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(716, 56, 4, 10.8, 27, '0.0000', '10.0000', 1, 1, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(717, 57, 4, 10.8, 27, '0.0000', '10.0000', 1, 1, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(718, 58, 4, 10.8, 27, '0.0000', '10.0000', 1, 1, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(719, 59, 4, 10.8, 27, '0.0000', '10.0000', 1, 1, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(720, 60, 4, 10.8, 27, '0.0000', '10.0000', 1, 1, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(721, 61, 4, 10.8, 27, '0.0000', '10.0000', 1, 1, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(722, 62, 4, 10.8, 27, '0.0000', '10.0000', 1, 1, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(723, 63, 4, 10.8, 27, '0.0000', '10.0000', 1, 1, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(724, 64, 4, 10.8, 27, '0.0000', '10.0000', 1, 1, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(725, 65, 4, 10.8, 27, '0.0000', '10.0000', 1, 1, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(726, 66, 4, 10.8, 27, '0.0000', '10.0000', 1, 1, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(727, 67, 4, 10.8, 27, '0.0000', '10.0000', 1, 1, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(728, 68, 4, 10.8, 27, '0.0000', '10.0000', 1, 1, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(729, 69, 4, 10.8, 27, '0.0000', '10.0000', 1, 1, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(730, 70, 4, 25, 25, '0.0000', '10.0000', 1, 1, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(731, 71, 4, 25, 25, '0.0000', '10.0000', 1, 1, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(732, 72, 4, 10, 25, '0.0000', '10.0000', 1, 1, 0, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(733, 73, 4, 10, 25, '0.0000', '10.0000', 1, 1, 0, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(734, 74, 4, 10, 25, '0.0000', '10.0000', 1, 1, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(735, 75, 4, 10, 25, '0.0000', '10.0000', 1, 1, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(736, 76, 4, 10, 25, '0.0000', '10.0000', 1, 1, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(737, 77, 4, 6, 15, '0.0000', '10.0000', 1, 1, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(738, 78, 4, 6, 15, '0.0000', '10.0000', 1, 1, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(739, 79, 4, 6, 15, '0.0000', '10.0000', 1, 1, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(740, 80, 4, 14, 14, '0.0000', '10.0000', 1, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-06-16', '2023-06-17', 1, 0),
+(741, 81, 4, 14, 14, '0.0000', '10.0000', 1, 0, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-06-16', '2023-06-17', 1, 0),
+(742, 82, 4, 14, 14, '0.0000', '10.0000', 1, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-06-16', '2023-06-17', 1, 0),
+(743, 83, 4, 21, 45, '0.0000', '10.0000', 4, 0, 12, 1, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(744, 84, 4, 21, 45, '0.0000', '10.0000', 4, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(745, 85, 4, 6.5, 10, '0.0000', '10.0000', 7, 0, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(746, 86, 4, 6.5, 10, '0.0000', '10.0000', 7, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(747, 87, 4, 6.5, 10, '0.0000', '10.0000', 7, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(748, 88, 4, 6.5, 10, '0.0000', '10.0000', 7, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(749, 89, 4, 6.5, 10, '0.0000', '10.0000', 7, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(750, 90, 4, 6.5, 10, '0.0000', '10.0000', 7, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(751, 91, 4, 27, 46, '0.0000', '10.0000', 4, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(752, 92, 4, 27, 46, '0.0000', '10.0000', 4, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(753, 93, 4, 27, 46, '0.0000', '10.0000', 4, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(754, 94, 4, 27, 46, '0.0000', '10.0000', 4, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(755, 95, 4, 27, 46, '0.0000', '10.0000', 4, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(756, 96, 4, 22, 46, '0.0000', '10.0000', 4, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(757, 97, 4, 22, 46, '0.0000', '10.0000', 4, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(758, 98, 4, 22, 46, '0.0000', '10.0000', 4, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(759, 99, 4, 22, 46, '0.0000', '10.0000', 4, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(760, 100, 4, 22, 54, '0.0000', '10.0000', 4, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(761, 101, 4, 22, 54, '0.0000', '10.0000', 4, 0, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(762, 102, 4, 22, 46, '0.0000', '10.0000', 4, 0, 7, 1, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(763, 103, 4, 6, 15, '0.0000', '10.0000', 1, 0, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(764, 104, 4, 6, 15, '0.0000', '10.0000', 1, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(765, 105, 4, 6, 15, '0.0000', '10.0000', 1, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(766, 106, 4, 6, 15, '0.0000', '10.0000', 1, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(767, 107, 4, 6, 15, '0.0000', '10.0000', 1, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(768, 108, 4, 6, 15, '0.0000', '10.0000', 1, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(769, 109, 4, 6, 15, '0.0000', '10.0000', 1, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(770, 110, 4, 6, 15, '0.0000', '10.0000', 1, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(771, 111, 4, 6, 15, '0.0000', '10.0000', 1, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(772, 112, 4, 10.5, 20.25, '0.0000', '10.0000', 1, 0, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-07-27', '2023-07-28', 1, 0),
+(773, 113, 4, 10.8, 20.25, '0.0000', '10.0000', 1, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-07-27', '2023-07-28', 1, 0),
+(774, 114, 4, 10.8, 20.25, '0.0000', '10.0000', 1, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-07-27', '2023-07-28', 1, 0),
+(775, 115, 4, 4, 14, '0.0000', '10.0000', 3, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(776, 116, 4, 4, 14, '0.0000', '10.0000', 3, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(777, 117, 4, 4, 14, '0.0000', '10.0000', 3, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(778, 118, 4, 4, 14, '0.0000', '10.0000', 3, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(779, 119, 4, 4, 14, '0.0000', '10.0000', 3, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(780, 120, 4, 4, 14, '0.0000', '10.0000', 3, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(781, 121, 4, 4, 14, '0.0000', '10.0000', 3, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(782, 122, 4, 3, 14, '0.0000', '10.0000', 3, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(783, 123, 4, 3, 14, '0.0000', '10.0000', 3, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(784, 124, 4, 3, 14, '0.0000', '10.0000', 3, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(785, 125, 4, 4, 12, '0.0000', '10.0000', 3, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(786, 126, 4, 4, 12, '0.0000', '10.0000', 3, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(787, 127, 4, 4, 12, '0.0000', '10.0000', 3, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(788, 128, 4, 4, 12, '0.0000', '10.0000', 3, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(789, 129, 4, 4, 12, '0.0000', '10.0000', 3, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(790, 130, 4, 4, 12, '0.0000', '10.0000', 3, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(791, 131, 4, 4, 12, '0.0000', '10.0000', 3, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(792, 132, 4, 4, 12, '0.0000', '10.0000', 3, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(793, 133, 4, 4, 12, '0.0000', '10.0000', 3, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(794, 134, 4, 4, 12, '0.0000', '10.0000', 3, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(795, 135, 4, 4, 12, '0.0000', '10.0000', 3, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(796, 136, 4, 4, 13, '0.0000', '10.0000', 3, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(797, 137, 4, 4, 13, '0.0000', '10.0000', 3, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(798, 138, 4, 4, 13, '0.0000', '10.0000', 3, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(799, 139, 4, 4, 13, '0.0000', '10.0000', 3, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(800, 140, 4, 4, 13, '0.0000', '10.0000', 3, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(801, 141, 4, 4, 13, '0.0000', '10.0000', 3, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(802, 142, 4, 4, 14, '0.0000', '10.0000', 3, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(803, 143, 4, 4, 14, '0.0000', '10.0000', 3, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(804, 144, 4, 4, 14, '0.0000', '10.0000', 3, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(805, 145, 4, 21, 37.7, '0.0000', '10.0000', 4, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(806, 146, 4, 21, 37.7, '0.0000', '10.0000', 4, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(807, 147, 4, 4, 14, '0.0000', '10.0000', 3, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(808, 148, 4, 3.95, 12, '0.0000', '10.0000', 2, 0, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(809, 149, 4, 3.95, 12, '0.0000', '10.0000', 2, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(810, 150, 4, 3.95, 12, '0.0000', '10.0000', 2, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(811, 151, 4, 3.95, 12, '0.0000', '10.0000', 2, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(812, 152, 4, 3.95, 12, '0.0000', '10.0000', 2, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(813, 153, 4, 3.95, 12, '0.0000', '10.0000', 2, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(814, 154, 4, 3.95, 12, '0.0000', '10.0000', 2, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(815, 155, 4, 3.95, 12, '0.0000', '10.0000', 7, 0, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(816, 156, 4, 3.95, 12, '0.0000', '10.0000', 7, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(817, 157, 4, 0, 10, '0.0000', '10.0000', 7, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-08-15', '2023-08-16', 1, 0),
+(916, 158, 1, 21, 48.75, '0.0000', '10.0000', 4, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-08-16', '2023-08-17', 1, 0),
+(917, 158, 2, 21, 48.75, '0.0000', '10.0000', 4, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-08-16', '2023-08-17', 1, 0),
+(918, 158, 3, 21, 48.75, '0.0000', '10.0000', 4, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-08-16', '2023-08-17', 1, 0),
+(919, 158, 4, 21, 48.75, '0.0000', '10.0000', 4, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-08-16', '2023-08-17', 1, 0),
+(920, 159, 1, 21, 48.75, '0.0000', '10.0000', 4, 0, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-08-16', '2023-08-17', 1, 0),
+(921, 159, 2, 21, 48.75, '0.0000', '10.0000', 4, 0, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-08-16', '2023-08-17', 1, 0),
+(922, 159, 3, 21, 48.75, '0.0000', '10.0000', 4, 0, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-08-16', '2023-08-17', 1, 0),
+(923, 159, 4, 21, 48.75, '0.0000', '10.0000', 4, 0, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-08-16', '2023-08-17', 1, 0),
+(924, 160, 1, 21, 48.75, '0.0000', '10.0000', 4, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-16', '2023-08-17', 1, 0),
+(925, 160, 2, 21, 48.75, '0.0000', '10.0000', 4, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-16', '2023-08-17', 1, 0),
+(926, 160, 3, 21, 48.75, '0.0000', '10.0000', 4, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-16', '2023-08-17', 1, 0),
+(927, 160, 4, 21, 48.75, '0.0000', '10.0000', 4, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-16', '2023-08-17', 1, 0),
+(928, 161, 1, 20, 48.75, '0.0000', '10.0000', 1, 0, 11, 0, 2, 'inclusive', 'a:0:{}', '2024-08-16', '2023-08-17', 1, 0),
+(929, 161, 2, 20, 48.75, '0.0000', '10.0000', 1, 0, 11, 0, 2, 'inclusive', 'a:0:{}', '2024-08-16', '2023-08-17', 1, 0),
+(930, 161, 3, 20, 48.75, '0.0000', '10.0000', 1, 0, 11, 0, 2, 'inclusive', 'a:0:{}', '2024-08-16', '2023-08-17', 1, 0),
+(931, 161, 4, 20, 48.75, '0.0000', '10.0000', 1, 0, 11, 0, 2, 'inclusive', 'a:0:{}', '2024-08-16', '2023-08-17', 1, 0),
+(932, 162, 1, 20, 48.75, '0.0000', '10.0000', 1, 0, 12, 0, 2, 'inclusive', 'a:0:{}', '2024-08-16', '2023-08-17', 1, 0),
+(933, 162, 2, 20, 48.75, '0.0000', '10.0000', 1, 0, 12, 0, 2, 'inclusive', 'a:0:{}', '2024-08-16', '2023-08-17', 1, 0),
+(934, 162, 3, 20, 48.75, '0.0000', '10.0000', 1, 0, 12, 0, 2, 'inclusive', 'a:0:{}', '2024-08-16', '2023-08-17', 1, 0),
+(935, 162, 4, 20, 48.75, '0.0000', '10.0000', 1, 0, 12, 0, 2, 'inclusive', 'a:0:{}', '2024-08-16', '2023-08-17', 1, 0),
+(936, 163, 1, 20, 48.75, '0.0000', '10.0000', 1, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-08-16', '2023-08-17', 1, 0),
+(937, 163, 2, 20, 48.75, '0.0000', '10.0000', 1, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-08-16', '2023-08-17', 1, 0),
+(938, 163, 3, 20, 48.75, '0.0000', '10.0000', 1, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-08-16', '2023-08-17', 1, 0),
+(939, 163, 4, 20, 48.75, '0.0000', '10.0000', 1, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-08-16', '2023-08-17', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -5636,7 +6200,17 @@ INSERT INTO `purchase_info` (`info_id`, `invoice_id`, `inv_type`, `store_id`, `s
 (101, 'CLOGROS CIENCIAS NATURALES 6', 'purchase', 2, 1, '1.0000', 'stock', '0.0000', '', '', 1, 'paid', 1, 'received', 6, '2023-08-02 00:00:00', '2023-08-02 12:03:10', NULL),
 (102, 'CLOGROS CIENCIAS NATURALES 4.', 'purchase', 2, 1, '1.0000', 'stock', '0.0000', '', '', 1, 'paid', 1, 'received', 6, '2023-08-02 00:00:00', '2023-08-02 12:06:29', NULL),
 (103, 'CHISTORIA 3BGU', 'purchase', 2, 1, '1.0000', 'stock', '0.0000', '', '', 1, 'paid', 1, 'received', 6, '2023-08-05 00:00:00', '2023-08-05 12:16:20', NULL),
-(104, 'CLOGROS HISTORIA 2', 'purchase', 2, 1, '1.0000', 'stock', '0.0000', '', '', 1, 'paid', 1, 'received', 6, '2023-08-05 00:00:00', '2023-08-05 14:19:17', NULL);
+(104, 'CLOGROS HISTORIA 2', 'purchase', 2, 1, '1.0000', 'stock', '0.0000', '', '', 1, 'paid', 1, 'received', 6, '2023-08-05 00:00:00', '2023-08-05 14:19:17', NULL),
+(105, 'C1', 'purchase', 3, 2, '7.0000', 'stock', '0.0000', '', '', 1, 'paid', 1, 'received', 2, '2023-08-15 00:00:00', '2023-08-15 20:07:44', NULL),
+(106, 'C2', 'purchase', 3, 3, '9.0000', 'stock', '0.0000', '', '', 1, 'paid', 1, 'received', 2, '2023-08-15 00:00:00', '2023-08-15 20:09:07', NULL),
+(107, 'C3', 'purchase', 3, 1, '5.0000', 'stock', '0.0000', '', '', 1, 'paid', 1, 'received', 2, '2023-08-15 00:00:00', '2023-08-15 20:10:25', NULL),
+(108, 'C4', 'purchase', 3, 7, '2.0000', 'stock', '0.0000', '', '', 1, 'paid', 1, 'received', 2, '2023-08-15 00:00:00', '2023-08-15 20:28:02', NULL),
+(109, 'Crefuerzo3', 'purchase', 2, 7, '1.0000', 'stock', '0.0000', 'ingreso', '', 1, 'paid', 1, 'received', 6, '2023-08-16 00:00:00', '2023-08-16 10:48:23', NULL),
+(110, 'Crefuerzo 3.', 'purchase', 2, 7, '1.0000', 'stock', '0.0000', '', '', 1, 'paid', 1, 'received', 6, '2023-08-16 00:00:00', '2023-08-16 14:20:33', NULL),
+(111, 'C6', 'purchase', 1, 3, '1.0000', 'stock', '0.0000', 'PRODUCTO POR LLEGAR', '', 1, 'paid', 1, 'received', 2, '2023-08-17 00:00:00', '2023-08-17 14:54:06', NULL),
+(112, 'C7', 'purchase', 3, 3, '1.0000', 'stock', '0.0000', 'PRODUCTO POR LLEGAR', '', 1, 'paid', 1, 'received', 2, '2023-08-17 00:00:00', '2023-08-17 14:58:03', NULL),
+(113, 'Crefuerzo 3..', 'purchase', 2, 7, '1.0000', 'stock', '0.0000', 'a', '', 1, 'paid', 1, 'received', 6, '2023-08-18 00:00:00', '2023-08-18 13:41:31', NULL),
+(114, 'Crefuerzo escolar 3.', 'purchase', 2, 7, '1.0000', 'stock', '0.0000', 'c', '', 1, 'paid', 1, 'received', 6, '2023-08-18 00:00:00', '2023-08-18 16:06:28', NULL);
 
 -- --------------------------------------------------------
 
@@ -5673,105 +6247,134 @@ CREATE TABLE `purchase_item` (
 --
 
 INSERT INTO `purchase_item` (`id`, `invoice_id`, `store_id`, `item_id`, `category_id`, `brand_id`, `item_name`, `item_purchase_price`, `item_selling_price`, `item_quantity`, `total_sell`, `status`, `item_total`, `item_tax`, `tax_method`, `tax`, `gst`, `cgst`, `sgst`, `igst`, `return_quantity`) VALUES
-(1, 'CINVENTARIO DAS', 2, 54, 1, 1, 'LOGROS LENGUA Y LITERATURA 3 BACH + PLATAFORMA', '10.8000', '27.0000', '28.0000', '1.0000', 'active', '302.4000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(1, 'CINVENTARIO DAS', 2, 54, 1, 1, 'LOGROS LENGUA Y LITERATURA 3 BACH + PLATAFORMA', '10.8000', '27.0000', '28.0000', '2.0000', 'active', '302.4000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (2, 'CCINVENTARIO DAS', 2, 55, 1, 1, 'LOGROS BIOLOGÍA 1+ PLATAFORMA', '10.8000', '27.0000', '26.0000', '0.0000', 'active', '280.8000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(3, 'CHUVGH', 2, 9, 1, 1, 'LOGROS LENGUA Y LITERATURA 7 + PLATAFORMA', '10.8000', '27.0000', '20.0000', '3.0000', 'active', '216.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(4, 'CMATEMATICAS SEGUNDO', 2, 10, 1, 1, 'LOGROS MATEMÁTICAS 2 + PLATAFORMA', '10.8000', '27.0000', '20.0000', '2.0000', 'active', '216.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(5, 'CDAS INGLES', 2, 91, 1, 0, 'LEARNING ZONE SB + ONLINE 1', '27.0000', '46.0000', '15.0000', '2.0000', 'active', '405.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(6, 'CDAS LOGROS CIENCIAS', 2, 23, 1, 1, 'LOGROS CIENCIAS NATURALES 3 + PLATAFORMA', '10.8000', '27.0000', '25.0000', '8.0000', 'active', '270.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(3, 'CHUVGH', 2, 9, 1, 1, 'LOGROS LENGUA Y LITERATURA 7 + PLATAFORMA', '10.8000', '27.0000', '20.0000', '4.0000', 'active', '216.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(4, 'CMATEMATICAS SEGUNDO', 2, 10, 1, 1, 'LOGROS MATEMÁTICAS 2 + PLATAFORMA', '10.8000', '27.0000', '20.0000', '7.0000', 'active', '216.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(5, 'CDAS INGLES', 2, 91, 1, 0, 'LEARNING ZONE SB + ONLINE 1', '27.0000', '46.0000', '15.0000', '7.0000', 'active', '405.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(6, 'CDAS LOGROS CIENCIAS', 2, 23, 1, 1, 'LOGROS CIENCIAS NATURALES 3 + PLATAFORMA', '10.8000', '27.0000', '25.0000', '14.0000', 'active', '270.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (7, 'CDAS MANUAL PARA EMPRESAS', 2, 75, 1, 1, 'MANUAL DE FINANCIAMIENTO PARA EMPRESAS ( PARA CONTABILIDAD BANCARIA, DE COSTOS Y GENERAL DE BACHILLE', '10.0000', '25.0000', '31.0000', '0.0000', 'active', '310.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(8, 'CDAS LOGROS LENGUAJE BASICA', 2, 4, 1, 1, 'LOGROS LENGUA Y LITERATURA 2 + PLATAFORMA', '10.8000', '27.0000', '22.0000', '2.0000', 'active', '237.6000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(9, 'CDAS INGLES 2', 2, 92, 1, 0, 'LEARNING ZONE SB + ONLINE 2', '27.0000', '46.0000', '15.0000', '8.0000', 'active', '405.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(8, 'CDAS LOGROS LENGUAJE BASICA', 2, 4, 1, 1, 'LOGROS LENGUA Y LITERATURA 2 + PLATAFORMA', '10.8000', '27.0000', '22.0000', '7.0000', 'active', '237.6000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(9, 'CDAS INGLES 2', 2, 92, 1, 0, 'LEARNING ZONE SB + ONLINE 2', '27.0000', '46.0000', '15.0000', '14.0000', 'active', '405.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (10, 'CDAS LOGROS LENGUAJE ', 2, 18, 1, 1, 'LOGROS LENGUA Y LITERATURA 10 + PLATAFORMA', '10.8000', '27.0000', '6.0000', '0.0000', 'active', '64.8000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(12, 'CLOGROS SOCIALES SEGUNDO', 2, 31, 1, 1, 'LOGROS ESTUDIOS SOCIALES 2 + PLATAFORMA', '10.8000', '27.0000', '25.0000', '2.0000', 'active', '270.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(13, 'CLOGROS MATEMATICAS 4', 2, 12, 1, 1, 'LOGROS MATEMÁTICAS 4 + PLATAFORMA', '10.8000', '27.0000', '25.0000', '3.0000', 'active', '270.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(14, 'CDAS INGLES ELLEVATE 2', 2, 97, 1, 0, 'ELLEVATE ENGLISH TEEN  SB FULL 2', '22.0000', '46.0000', '8.0000', '3.0000', 'active', '176.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(15, 'CLOGROS CIENCIAS NATURALES 5', 2, 25, 1, 1, 'LOGROS CIENCIAS NATURALES 5 + PLATAFORMA', '10.8000', '27.0000', '24.0000', '3.0000', 'active', '259.2000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(12, 'CLOGROS SOCIALES SEGUNDO', 2, 31, 1, 1, 'LOGROS ESTUDIOS SOCIALES 2 + PLATAFORMA', '10.8000', '27.0000', '25.0000', '7.0000', 'active', '270.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(13, 'CLOGROS MATEMATICAS 4', 2, 12, 1, 1, 'LOGROS MATEMÁTICAS 4 + PLATAFORMA', '10.8000', '27.0000', '25.0000', '5.0000', 'active', '270.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(14, 'CDAS INGLES ELLEVATE 2', 2, 97, 1, 0, 'ELLEVATE ENGLISH TEEN  SB FULL 2', '22.0000', '46.0000', '8.0000', '6.0000', 'active', '176.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(15, 'CLOGROS CIENCIAS NATURALES 5', 2, 25, 1, 1, 'LOGROS CIENCIAS NATURALES 5 + PLATAFORMA', '10.8000', '27.0000', '24.0000', '4.0000', 'active', '259.2000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (16, 'CGUCHITO 3-4 AÑOS', 2, 1, 1, 1, 'KIT EXPLORA Y APRENDE CON GUCHITO 3 - 4 AÑOS + PLATAFORMA', '20.0000', '40.0000', '19.0000', '0.0000', 'active', '380.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (17, 'CLOGROS CIENCIAS 6', 2, 26, 1, 1, 'LOGROS CIENCIAS NATURALES 6 + PLATAFORMA', '10.8000', '27.0000', '1.0000', '1.0000', 'sold', '10.8000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(18, 'CLOGROS LENGUAJE 5', 2, 7, 1, 1, 'LOGROS LENGUA Y LITERATURA 5 + PLATAFORMA', '10.8000', '27.0000', '28.0000', '3.0000', 'active', '302.4000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(19, 'CLOGROS CIENCIAS 9', 2, 29, 1, 1, 'LOGROS CIENCIAS NATURALES 9 + PLATAFORMA', '10.8000', '27.0000', '30.0000', '3.0000', 'active', '324.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(18, 'CLOGROS LENGUAJE 5', 2, 7, 1, 1, 'LOGROS LENGUA Y LITERATURA 5 + PLATAFORMA', '10.8000', '27.0000', '28.0000', '4.0000', 'active', '302.4000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(19, 'CLOGROS CIENCIAS 9', 2, 29, 1, 1, 'LOGROS CIENCIAS NATURALES 9 + PLATAFORMA', '10.8000', '27.0000', '30.0000', '6.0000', 'active', '324.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (20, 'CMARAVILLAS DE LEER 2', 2, 43, 1, 1, 'LOGROS LA MARAVILLA DE LEER 2 + PLATAFORMA', '5.6000', '14.0000', '21.0000', '0.0000', 'active', '117.6000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (21, 'CLOGROS FILOSOFIA 1', 2, 68, 1, 1, 'LOGROS FILOSOFÍA 1 + PLATAFORMA', '10.8000', '27.0000', '4.0000', '0.0000', 'active', '43.2000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(22, 'CEVERYDAY 1', 2, 83, 1, 0, 'EVERYDAY ENGLISH 1', '21.0000', '45.0000', '15.0000', '2.0000', 'active', '315.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(22, 'CEVERYDAY 1', 2, 83, 1, 0, 'EVERYDAY ENGLISH 1', '21.0000', '45.0000', '15.0000', '5.0000', 'active', '315.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (24, 'CLOGROS ANTISTICA 1', 2, 70, 1, 1, 'LOGROS EDUCACIÓN CULTURAL Y ARTÍSTICA 1 + PLATAFORMA', '25.0000', '25.0000', '3.0000', '0.0000', 'active', '75.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(26, 'CGUCHITO PREPARATORIA', 2, 3, 1, 1, 'KIT CREA Y APRENDE CON GUCHITO (PRIMERO DE BÁSICA)+ PLATAFORMA', '20.0000', '40.0000', '28.0000', '3.0000', 'active', '560.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(26, 'CGUCHITO PREPARATORIA', 2, 3, 1, 1, 'KIT CREA Y APRENDE CON GUCHITO (PRIMERO DE BÁSICA)+ PLATAFORMA', '20.0000', '40.0000', '28.0000', '4.0000', 'active', '560.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (27, 'CMARAVILLA DE LEER 6', 2, 47, 1, 1, 'LOGROS LA MARAVILLA DE LEER 6 + PLATAFORMA', '5.6000', '14.0000', '22.0000', '0.0000', 'active', '123.2000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (28, 'CLOGROS CONTABILIAD 9', 2, 41, 1, 1, 'CONTABILIDAD 9 + PLATAFORMA', '10.0000', '25.0000', '8.0000', '0.0000', 'active', '80.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(29, 'CLOGROS LENGUAJE 8', 2, 16, 1, 1, 'LOGROS LENGUA Y LITERATURA 8 + PLATAFORMA', '10.8000', '27.0000', '22.0000', '0.0000', 'active', '237.6000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(29, 'CLOGROS LENGUAJE 8', 2, 16, 1, 1, 'LOGROS LENGUA Y LITERATURA 8 + PLATAFORMA', '10.8000', '27.0000', '22.0000', '6.0000', 'active', '237.6000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (30, 'CMARAVILLA DE LEER 5', 2, 46, 1, 1, 'LOGROS LA MARAVILLA DE LEER 5 + PLATAFORMA', '5.6000', '14.0000', '22.0000', '0.0000', 'active', '123.2000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(32, 'CLOGROS CIENCIAS 7', 2, 27, 1, 1, 'LOGROS CIENCIAS NATURALES 7 + PLATAFORMA', '10.8000', '27.0000', '18.0000', '3.0000', 'active', '194.4000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(33, 'CBIOLOGIA 3', 2, 57, 1, 1, 'LOGROS BIOLOGÍA 3 + PLATAFORMA', '10.8000', '27.0000', '24.0000', '1.0000', 'active', '259.2000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(32, 'CLOGROS CIENCIAS 7', 2, 27, 1, 1, 'LOGROS CIENCIAS NATURALES 7 + PLATAFORMA', '10.8000', '27.0000', '18.0000', '4.0000', 'active', '194.4000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(33, 'CBIOLOGIA 3', 2, 57, 1, 1, 'LOGROS BIOLOGÍA 3 + PLATAFORMA', '10.8000', '27.0000', '24.0000', '2.0000', 'active', '259.2000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (34, 'CEMPRENDIMIENTO 1', 2, 66, 1, 1, 'LOGROS EMPRENDIMIENTO 1 + PLATAFORMA', '10.8000', '27.0000', '5.0000', '0.0000', 'active', '54.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (35, 'CMARAVILLA DE LEER 3', 2, 44, 1, 1, 'LOGROS LA MARAVILLA DE LEER 3 + PLATAFORMA', '5.6000', '14.0000', '29.0000', '0.0000', 'active', '162.4000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(36, 'CLEARNING 4', 2, 94, 1, 0, 'LEARNING ZONE SB + ONLINE 4', '27.0000', '46.0000', '10.0000', '3.0000', 'active', '270.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(37, 'CLENGUAJE 3BASICA', 2, 5, 1, 1, 'LOGROS LENGUA Y LITERATURA 3 + PLATAFORMA', '10.8000', '27.0000', '23.0000', '8.0000', 'active', '248.4000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(38, 'CELLEVATE FULL 6', 2, 101, 1, 0, 'ELLEVATE ENGLISH TEEN  SB FULL 6', '22.0000', '46.0000', '3.0000', '1.0000', 'active', '66.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(39, 'CSOCIALES 5', 2, 34, 1, 1, 'LOGROS ESTUDIOS SOCIALES 5 + PLATAFORMA', '10.8000', '27.0000', '27.0000', '3.0000', 'active', '291.6000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(40, 'CCIENCIAS NATURALES 2', 2, 22, 1, 1, 'LOGROS CIENCIAS NATURALES 2 + PLATAFORMA', '10.8000', '27.0000', '23.0000', '2.0000', 'active', '248.4000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(41, 'CLENGUAJE 2BGU', 2, 53, 1, 1, 'LOGROS LENGUA Y LITERATURA 2 BACH + PLATAFORMA', '10.8000', '27.0000', '29.0000', '2.0000', 'active', '313.2000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(43, 'CSOCIALES 7', 2, 36, 1, 1, 'LOGROS ESTUDIOS SOCIALES 7 + PLATAFORMA', '10.8000', '27.0000', '28.0000', '3.0000', 'active', '302.4000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(36, 'CLEARNING 4', 2, 94, 1, 0, 'LEARNING ZONE SB + ONLINE 4', '27.0000', '46.0000', '10.0000', '4.0000', 'active', '270.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(37, 'CLENGUAJE 3BASICA', 2, 5, 1, 1, 'LOGROS LENGUA Y LITERATURA 3 + PLATAFORMA', '10.8000', '27.0000', '23.0000', '14.0000', 'active', '248.4000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(38, 'CELLEVATE FULL 6', 2, 101, 1, 0, 'ELLEVATE ENGLISH TEEN  SB FULL 6', '22.0000', '46.0000', '3.0000', '2.0000', 'active', '66.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(39, 'CSOCIALES 5', 2, 34, 1, 1, 'LOGROS ESTUDIOS SOCIALES 5 + PLATAFORMA', '10.8000', '27.0000', '27.0000', '4.0000', 'active', '291.6000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(40, 'CCIENCIAS NATURALES 2', 2, 22, 1, 1, 'LOGROS CIENCIAS NATURALES 2 + PLATAFORMA', '10.8000', '27.0000', '23.0000', '7.0000', 'active', '248.4000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(41, 'CLENGUAJE 2BGU', 2, 53, 1, 1, 'LOGROS LENGUA Y LITERATURA 2 BACH + PLATAFORMA', '10.8000', '27.0000', '29.0000', '3.0000', 'active', '313.2000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(43, 'CSOCIALES 7', 2, 36, 1, 1, 'LOGROS ESTUDIOS SOCIALES 7 + PLATAFORMA', '10.8000', '27.0000', '28.0000', '4.0000', 'active', '302.4000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (44, 'CPORTAFOLIO EXPERIMENTAL 9', 2, 50, 1, 1, 'PORTAFOLIO EXPERIMENTAL DE CIENCIAS NATURALES 9+ PLATAFORMA', '5.6000', '14.0000', '23.0000', '0.0000', 'active', '128.8000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (45, 'CLOGROS MATEMATICAS 9', 2, 20, 1, 1, 'LOGROS MATEMÁTICAS 9 + PLATAFORMA', '10.8000', '27.0000', '28.0000', '0.0000', 'active', '302.4000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(46, 'CLOGROS SOCIALES 6', 2, 35, 1, 1, 'LOGROS ESTUDIOS SOCIALES 6 + PLATAFORMA', '10.8000', '27.0000', '32.0000', '4.0000', 'active', '345.6000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(47, 'CLOGROS BIOLOGIA 2', 2, 56, 1, 1, 'LOGROS BIOLOGÍA 2 + PLATAFORMA', '10.8000', '27.0000', '25.0000', '2.0000', 'active', '270.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(46, 'CLOGROS SOCIALES 6', 2, 35, 1, 1, 'LOGROS ESTUDIOS SOCIALES 6 + PLATAFORMA', '10.8000', '27.0000', '32.0000', '7.0000', 'active', '345.6000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(47, 'CLOGROS BIOLOGIA 2', 2, 56, 1, 1, 'LOGROS BIOLOGÍA 2 + PLATAFORMA', '10.8000', '27.0000', '25.0000', '3.0000', 'active', '270.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (48, 'CLOGROS MATEMATICAS 8', 2, 19, 1, 1, 'LOGROS MATEMÁTICAS 8 + PLATAFORMA', '10.8000', '27.0000', '28.0000', '0.0000', 'active', '302.4000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(49, 'CELLEVATE FULL 5', 2, 100, 1, 0, 'ELLEVATE ENGLISH TEEN  SB FULL 5', '22.0000', '46.0000', '8.0000', '2.0000', 'active', '176.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(50, 'CLEARNING ZONE 5', 2, 95, 1, 0, 'LEARNING ZONE SB + ONLINE 5', '27.0000', '46.0000', '10.0000', '4.0000', 'active', '270.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(49, 'CELLEVATE FULL 5', 2, 100, 1, 0, 'ELLEVATE ENGLISH TEEN  SB FULL 5', '22.0000', '46.0000', '8.0000', '3.0000', 'active', '176.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(50, 'CLEARNING ZONE 5', 2, 95, 1, 0, 'LEARNING ZONE SB + ONLINE 5', '27.0000', '46.0000', '10.0000', '7.0000', 'active', '270.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (51, 'CLOGROS CIENCIAS NATURALES 4', 2, 24, 1, 1, 'LOGROS CIENCIAS NATURALES 4 + PLATAFORMA', '10.8000', '27.0000', '2.0000', '2.0000', 'sold', '21.6000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (52, 'CLOGROS FILOSOFIA 2', 2, 69, 1, 1, 'LOGROS FILOSOFÍA 2 + PLATAFORMA', '10.8000', '27.0000', '32.0000', '0.0000', 'active', '345.6000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(53, 'CLOGROS MATEMATICAS 3', 2, 11, 1, 1, 'LOGROS MATEMÁTICAS 3 + PLATAFORMA', '10.8000', '27.0000', '22.0000', '8.0000', 'active', '237.6000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(53, 'CLOGROS MATEMATICAS 3', 2, 11, 1, 1, 'LOGROS MATEMÁTICAS 3 + PLATAFORMA', '10.8000', '27.0000', '22.0000', '14.0000', 'active', '237.6000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (54, 'CLOGROS CIENCIAS 10', 2, 30, 1, 1, 'LOGROS CIENCIAS NATURALES 10 + PLATAFORMA', '10.8000', '27.0000', '30.0000', '0.0000', 'active', '324.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (55, 'CCONTABILIDAD 8', 2, 40, 1, 1, 'CONTABILIDAD 8 + PLATAFORMA', '10.0000', '25.0000', '32.0000', '0.0000', 'active', '320.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(56, 'CLOGROS LENGUAJE 4', 2, 6, 1, 1, 'LOGROS LENGUA Y LITERATURA 4 + PLATAFORMA', '10.8000', '27.0000', '22.0000', '3.0000', 'active', '237.6000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(56, 'CLOGROS LENGUAJE 4', 2, 6, 1, 1, 'LOGROS LENGUA Y LITERATURA 4 + PLATAFORMA', '10.8000', '27.0000', '22.0000', '5.0000', 'active', '237.6000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (57, 'CPORTAFOLIO EXPERIMENTAL 10', 2, 51, 1, 1, 'PORTAFOLIO EXPERIMENTAL DE CIENCIAS NATURALES 10 + PLATAFORMA', '5.6000', '14.0000', '22.0000', '0.0000', 'active', '123.2000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (58, 'CPROBLEMAS DEL MUNDO CONTEPORANEO', 2, 72, 1, 1, 'LOGROS PROBLEMAS DEL MUNDO CONTEMPORÁNEO + PLATAFORMA', '10.0000', '25.0000', '25.0000', '0.0000', 'active', '250.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(59, 'CLOGROS LENGUAJE 9', 2, 17, 1, 1, 'LOGROS LENGUA Y LITERATURA 9 + PLATAFORMA', '10.8000', '27.0000', '27.0000', '3.0000', 'active', '291.6000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(59, 'CLOGROS LENGUAJE 9', 2, 17, 1, 1, 'LOGROS LENGUA Y LITERATURA 9 + PLATAFORMA', '10.8000', '27.0000', '27.0000', '6.0000', 'active', '291.6000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (60, 'CPORTAFOLIO EXPERIMENTAL 8', 2, 49, 1, 1, 'PORTAFOLIO EXPERIMENTAL DE CIENCIAS NATURALES 8 + PLATAFORMA', '5.6000', '14.0000', '22.0000', '0.0000', 'active', '123.2000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(61, 'CLOGROS SOCIALES 8', 2, 37, 1, 1, 'LOGROS ESTUDIOS SOCIALES 8 + PLATAFORMA', '10.8000', '27.0000', '30.0000', '0.0000', 'active', '324.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(62, 'CGUCHITO 4-5AÑOS', 2, 2, 1, 1, 'KIT DESCUBRE Y APRENDE CON GUCHITO 4 - 5 AÑOS + PLATAFORMA', '20.0000', '40.0000', '32.0000', '2.0000', 'active', '640.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(63, 'CLOGROS LENGUAJE 6', 2, 8, 1, 1, 'LOGROS LENGUA Y LITERATURA 6 + PLATAFORMA', '10.8000', '27.0000', '28.0000', '4.0000', 'active', '302.4000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(64, 'CLOGROS SOCIALES 9', 2, 38, 1, 1, 'LOGROS ESTUDIOS SOCIALES 9 + PLATAFORMA', '10.8000', '27.0000', '29.0000', '3.0000', 'active', '313.2000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(61, 'CLOGROS SOCIALES 8', 2, 37, 1, 1, 'LOGROS ESTUDIOS SOCIALES 8 + PLATAFORMA', '10.8000', '27.0000', '30.0000', '6.0000', 'active', '324.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(62, 'CGUCHITO 4-5AÑOS', 2, 2, 1, 1, 'KIT DESCUBRE Y APRENDE CON GUCHITO 4 - 5 AÑOS + PLATAFORMA', '20.0000', '40.0000', '32.0000', '5.0000', 'active', '640.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(63, 'CLOGROS LENGUAJE 6', 2, 8, 1, 1, 'LOGROS LENGUA Y LITERATURA 6 + PLATAFORMA', '10.8000', '27.0000', '28.0000', '7.0000', 'active', '302.4000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(64, 'CLOGROS SOCIALES 9', 2, 38, 1, 1, 'LOGROS ESTUDIOS SOCIALES 9 + PLATAFORMA', '10.8000', '27.0000', '29.0000', '6.0000', 'active', '313.2000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (65, 'CLOGROS SOCIALLES 10', 2, 39, 1, 1, 'LOGROS ESTUDIOS SOCIALES 10 + PLATAFORMA', '10.8000', '27.0000', '29.0000', '0.0000', 'active', '313.2000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(66, 'CEVERYDAY 2', 2, 84, 1, 0, 'EVERYDAY INGLISH 2', '21.0000', '45.0000', '5.0000', '3.0000', 'active', '105.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(66, 'CEVERYDAY 2', 2, 84, 1, 0, 'EVERYDAY INGLISH 2', '21.0000', '45.0000', '5.0000', '4.0000', 'active', '105.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (67, 'CECA 2BGU', 2, 71, 1, 1, 'LOGROS EDUCACIÓN CULTURAL Y ARTÍSTICA  2 BGU + PLATAFORMA', '25.0000', '25.0000', '28.0000', '0.0000', 'active', '700.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(68, 'CLEARNING ZONE 3', 2, 93, 1, 0, 'LEARNING ZONE SB + ONLINE 3', '27.0000', '46.0000', '9.0000', '3.0000', 'active', '243.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(68, 'CLEARNING ZONE 3', 2, 93, 1, 0, 'LEARNING ZONE SB + ONLINE 3', '27.0000', '46.0000', '9.0000', '5.0000', 'active', '243.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (69, 'CCONTABILIDAD 1BGU', 2, 74, 1, 1, 'CONTABILIDAD 1 BACH + PLATAFORMA', '10.0000', '25.0000', '36.0000', '0.0000', 'active', '360.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (70, 'CCONTABILIDAD 10', 2, 42, 1, 1, 'CONTABILIDAD 10 + PLATAFORMA', '10.0000', '25.0000', '33.0000', '0.0000', 'active', '330.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (71, 'CLOGROS EMPRENDIMIENTO 2', 2, 67, 1, 1, 'LOGROS EMPRENDIMIENTO 2 + PLATAFORMA', '10.8000', '27.0000', '22.0000', '0.0000', 'active', '237.6000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(72, 'CLOGROS MATEMATICAS ', 2, 14, 1, 1, 'LOGROS MATEMÁTICAS 6 + PLATAFORMA', '10.8000', '27.0000', '27.0000', '4.0000', 'active', '291.6000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(72, 'CLOGROS MATEMATICAS ', 2, 14, 1, 1, 'LOGROS MATEMÁTICAS 6 + PLATAFORMA', '10.8000', '27.0000', '27.0000', '7.0000', 'active', '291.6000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (73, 'CLOGROS MATEMATICAS 10', 2, 21, 1, 1, 'LOGROS MATEMÁTICAS 10 + PLATAFORMA', '10.8000', '27.0000', '29.0000', '0.0000', 'active', '313.2000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(74, 'CLOGROS CIENCIAS 8', 2, 28, 1, 1, 'LOGROS CIENCIAS NATURALES 8 + PLATAFORMA', '10.8000', '27.0000', '31.0000', '0.0000', 'active', '334.8000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(75, 'CLOGROS MATEMATICAS 7', 2, 15, 1, 1, 'LOGROS MATEMÁTICAS 7 + PLATAFORMA', '10.8000', '27.0000', '24.0000', '3.0000', 'active', '259.2000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(76, 'CLOGROS MATEMATICAS 5', 2, 13, 1, 1, 'LOGROS MATEMÁTICAS 5 + PLATAFORMA', '10.8000', '27.0000', '27.0000', '3.0000', 'active', '291.6000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(74, 'CLOGROS CIENCIAS 8', 2, 28, 1, 1, 'LOGROS CIENCIAS NATURALES 8 + PLATAFORMA', '10.8000', '27.0000', '31.0000', '6.0000', 'active', '334.8000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(75, 'CLOGROS MATEMATICAS 7', 2, 15, 1, 1, 'LOGROS MATEMÁTICAS 7 + PLATAFORMA', '10.8000', '27.0000', '24.0000', '4.0000', 'active', '259.2000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(76, 'CLOGROS MATEMATICAS 5', 2, 13, 1, 1, 'LOGROS MATEMÁTICAS 5 + PLATAFORMA', '10.8000', '27.0000', '27.0000', '4.0000', 'active', '291.6000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (77, 'CMARAVILLA DE LEER 7', 2, 48, 1, 1, 'LOGROS LA MARAVILLA DE LEER 7 + PLATAFORMA', '5.6000', '14.0000', '23.0000', '0.0000', 'active', '128.8000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(78, 'CLOGROS SOCIALES 3', 2, 32, 1, 1, 'LOGROS ESTUDIOS SOCIALES 3 + PLATAFORMA', '10.8000', '27.0000', '26.0000', '8.0000', 'active', '280.8000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(78, 'CLOGROS SOCIALES 3', 2, 32, 1, 1, 'LOGROS ESTUDIOS SOCIALES 3 + PLATAFORMA', '10.8000', '27.0000', '26.0000', '14.0000', 'active', '280.8000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (79, 'CMARAVILLA DE LEER 4', 2, 45, 1, 1, 'LOGROS LA MARAVILLA DE LEER 4 + PLATAFORMA', '5.6000', '14.0000', '29.0000', '0.0000', 'active', '162.4000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (80, 'CLOGROS LENGUAJE 1BGU', 2, 52, 1, 1, 'LOGROS LENGUA Y LITERATURA 1 BACH + PLATAFORMA', '10.8000', '27.0000', '9.0000', '0.0000', 'active', '97.2000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(81, 'CLOGROS SOCIALES 4', 2, 33, 1, 1, 'LOGROS ESTUDIOS SOCIALES 4 + PLATAFORMA', '10.8000', '27.0000', '25.0000', '3.0000', 'active', '270.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(82, 'CLEARNING ZONE 6', 2, 102, 1, 0, 'LEARNING ZONE SB + ONLINE 6', '22.0000', '46.0000', '10.0000', '3.0000', 'active', '220.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(83, 'CELLEVATE TEEN 1', 2, 96, 1, 0, 'ELLEVATE ENGLISH TEEN  SB FULL 1', '22.0000', '46.0000', '6.0000', '0.0000', 'active', '132.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(84, 'CMI TUTORIAL DIGITAL 2BGU', 2, 111, 2, 0, 'MI TUTORIAL DIGITAL QUIMICA 2BGU', '6.0000', '15.0000', '20.0000', '2.0000', 'active', '120.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(85, 'CMI TUTORIAL DIGITAL 3BGU', 2, 78, 1, 1, 'MI TUTORIAL DIGITAL QUIMICA 3BGU', '6.0000', '15.0000', '20.0000', '1.0000', 'active', '120.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(86, 'CMI TUTORIAL DIGITAL MATEMATICAS 8', 2, 77, 1, 1, 'MI TUTORIAL DIGITAL MATEMATICAS 8', '6.0000', '15.0000', '7.0000', '0.0000', 'active', '42.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(87, 'CMI TUTORIAL DIGITAL MATEMATICAS 2BGU', 2, 108, 2, 0, 'MI TUTORIAL DIGITAL MATEMATICAS 2 BGU', '6.0000', '15.0000', '7.0000', '2.0000', 'active', '42.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(88, 'CMI TUTORIAL DIGITAL MATEMATICAS 3BGU', 2, 109, 2, 0, 'MI TUTORIAL DIGITAL MATEMATICAS 3 BGU', '6.0000', '15.0000', '7.0000', '1.0000', 'active', '42.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(89, 'CMI TUTORIAL DIGITAL FISICA 3BGU', 2, 104, 2, 0, 'MI TUTORIAL DIGITAL FISICA 3 BGU', '6.0000', '15.0000', '30.0000', '1.0000', 'active', '180.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(90, 'CMI TUTORIAL DIGITAL FISICA 2BGU', 2, 103, 2, 0, 'MI TUTORIAL DIGITAL FISICA 2 BGU', '6.0000', '15.0000', '28.0000', '2.0000', 'active', '168.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(91, 'CREFUERZO ESCOLAR 2', 2, 85, 1, 0, 'REFUERZO ESCOLAR 2', '6.5000', '10.0000', '10.0000', '2.0000', 'active', '65.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(92, 'CREFUERZO ESCOLAR 3', 2, 86, 1, 0, 'REFUERZO ESCOLAR 3', '6.5000', '10.0000', '10.0000', '8.0000', 'active', '65.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(93, 'CREFUERZO ESCOLAR 5', 2, 88, 1, 0, 'REFUERZO ESCOLAR 5', '6.5000', '10.0000', '10.0000', '3.0000', 'active', '65.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(94, 'CREFUERZO ESCOLAR 6', 2, 89, 1, 0, 'REFUERZO ESCOLAR 6', '6.5000', '10.0000', '10.0000', '4.0000', 'active', '65.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(95, 'CREFUERZO ESCOLAR 4', 2, 87, 1, 0, 'REFUERZO ESCOLAR 4', '6.5000', '10.0000', '10.0000', '3.0000', 'active', '65.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(96, 'CREFUERZO ESCOLAR 7', 2, 90, 1, 0, 'REFUERZO ESCOLAR 7', '6.5000', '10.0000', '10.0000', '3.0000', 'active', '65.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(81, 'CLOGROS SOCIALES 4', 2, 33, 1, 1, 'LOGROS ESTUDIOS SOCIALES 4 + PLATAFORMA', '10.8000', '27.0000', '25.0000', '5.0000', 'active', '270.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(82, 'CLEARNING ZONE 6', 2, 102, 1, 0, 'LEARNING ZONE SB + ONLINE 6', '22.0000', '46.0000', '10.0000', '4.0000', 'active', '220.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(83, 'CELLEVATE TEEN 1', 2, 96, 1, 0, 'ELLEVATE ENGLISH TEEN  SB FULL 1', '22.0000', '46.0000', '6.0000', '6.0000', 'sold', '132.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(84, 'CMI TUTORIAL DIGITAL 2BGU', 2, 111, 2, 0, 'MI TUTORIAL DIGITAL QUIMICA 2BGU', '6.0000', '15.0000', '20.0000', '3.0000', 'active', '120.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(85, 'CMI TUTORIAL DIGITAL 3BGU', 2, 78, 1, 1, 'MI TUTORIAL DIGITAL QUIMICA 3BGU', '6.0000', '15.0000', '20.0000', '2.0000', 'active', '120.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(86, 'CMI TUTORIAL DIGITAL MATEMATICAS 8', 2, 77, 1, 1, 'MI TUTORIAL DIGITAL MATEMATICAS 8', '6.0000', '15.0000', '7.0000', '6.0000', 'active', '42.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(87, 'CMI TUTORIAL DIGITAL MATEMATICAS 2BGU', 2, 108, 2, 0, 'MI TUTORIAL DIGITAL MATEMATICAS 2 BGU', '6.0000', '15.0000', '7.0000', '3.0000', 'active', '42.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(88, 'CMI TUTORIAL DIGITAL MATEMATICAS 3BGU', 2, 109, 2, 0, 'MI TUTORIAL DIGITAL MATEMATICAS 3 BGU', '6.0000', '15.0000', '7.0000', '2.0000', 'active', '42.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(89, 'CMI TUTORIAL DIGITAL FISICA 3BGU', 2, 104, 2, 0, 'MI TUTORIAL DIGITAL FISICA 3 BGU', '6.0000', '15.0000', '30.0000', '2.0000', 'active', '180.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(90, 'CMI TUTORIAL DIGITAL FISICA 2BGU', 2, 103, 2, 0, 'MI TUTORIAL DIGITAL FISICA 2 BGU', '6.0000', '15.0000', '28.0000', '3.0000', 'active', '168.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(91, 'CREFUERZO ESCOLAR 2', 2, 85, 1, 0, 'REFUERZO ESCOLAR 2', '6.5000', '10.0000', '10.0000', '7.0000', 'active', '65.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(92, 'CREFUERZO ESCOLAR 3', 2, 86, 1, 0, 'REFUERZO ESCOLAR 3', '6.5000', '10.0000', '10.0000', '10.0000', 'sold', '65.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(93, 'CREFUERZO ESCOLAR 5', 2, 88, 1, 0, 'REFUERZO ESCOLAR 5', '6.5000', '10.0000', '10.0000', '4.0000', 'active', '65.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(94, 'CREFUERZO ESCOLAR 6', 2, 89, 1, 0, 'REFUERZO ESCOLAR 6', '6.5000', '10.0000', '10.0000', '7.0000', 'active', '65.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(95, 'CREFUERZO ESCOLAR 4', 2, 87, 1, 0, 'REFUERZO ESCOLAR 4', '6.5000', '10.0000', '10.0000', '5.0000', 'active', '65.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(96, 'CREFUERZO ESCOLAR 7', 2, 90, 1, 0, 'REFUERZO ESCOLAR 7', '6.5000', '10.0000', '10.0000', '4.0000', 'active', '65.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (97, 'CBGU QUIMICA ORGANICA ', 2, 112, 2, 0, 'QUIMICA 1 BGU CERIT ', '10.5000', '20.2500', '24.0000', '24.0000', 'sold', '252.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (98, 'C3BGU CERIT', 2, 114, 2, 0, 'QUIMICA 3 BGU CERIT ', '10.8000', '20.2500', '18.0000', '18.0000', 'sold', '194.4000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (99, 'C2BGU CERIT', 2, 113, 2, 0, 'QUIMICA 2 BGU CERIT', '10.8000', '20.2500', '28.0000', '28.0000', 'sold', '302.4000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(100, 'CMI TUTORIAL DIGITAL 9', 2, 105, 2, 0, 'MI TUTORIAL DIGITAL MATEMATICAS 9', '6.0000', '15.0000', '7.0000', '3.0000', 'active', '42.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(101, 'CLOGROS CIENCIAS NATURALES 6', 2, 26, 1, 1, 'LOGROS CIENCIAS NATURALES 6 + PLATAFORMA', '10.8000', '27.0000', '12.0000', '3.0000', 'active', '129.6000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(102, 'CLOGROS CIENCIAS NATURALES 4.', 2, 24, 1, 1, 'LOGROS CIENCIAS NATURALES 4 + PLATAFORMA', '10.8000', '27.0000', '12.0000', '1.0000', 'active', '129.6000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(103, 'CHISTORIA 3BGU', 2, 60, 1, 1, 'LOGROS HISTORIA 3 + PLATAFORMA', '10.8000', '27.0000', '19.0000', '1.0000', 'active', '205.2000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(104, 'CLOGROS HISTORIA 2', 2, 59, 1, 1, 'LOGROS HISTORIA 2 + PLATAFORMA', '10.8000', '27.0000', '28.0000', '2.0000', 'active', '302.4000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000');
+(100, 'CMI TUTORIAL DIGITAL 9', 2, 105, 2, 0, 'MI TUTORIAL DIGITAL MATEMATICAS 9', '6.0000', '15.0000', '7.0000', '6.0000', 'active', '42.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(101, 'CLOGROS CIENCIAS NATURALES 6', 2, 26, 1, 1, 'LOGROS CIENCIAS NATURALES 6 + PLATAFORMA', '10.8000', '27.0000', '12.0000', '6.0000', 'active', '129.6000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(102, 'CLOGROS CIENCIAS NATURALES 4.', 2, 24, 1, 1, 'LOGROS CIENCIAS NATURALES 4 + PLATAFORMA', '10.8000', '27.0000', '12.0000', '3.0000', 'active', '129.6000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(103, 'CHISTORIA 3BGU', 2, 60, 1, 1, 'LOGROS HISTORIA 3 + PLATAFORMA', '10.8000', '27.0000', '19.0000', '2.0000', 'active', '205.2000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(104, 'CLOGROS HISTORIA 2', 2, 59, 1, 1, 'LOGROS HISTORIA 2 + PLATAFORMA', '10.8000', '27.0000', '28.0000', '3.0000', 'active', '302.4000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(105, 'C1', 3, 154, 1, 0, 'CALOIGRAFIA Y ORTOGRAFIA INTEGRADA A', '3.9500', '12.0000', '15.0000', '0.0000', 'active', '59.2500', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(106, 'C1', 3, 153, 1, 0, 'ME DIVIERTO Y APRENDO CALIGRAFIA Y ORTOGRAFIA 7', '3.9500', '12.0000', '30.0000', '2.0000', 'active', '118.5000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(107, 'C1', 3, 152, 1, 0, 'ME DIVIERTO Y APRENDO CALIGRAFIA Y ORTOGRAFIA 6', '3.9500', '12.0000', '30.0000', '4.0000', 'active', '118.5000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(108, 'C1', 3, 151, 1, 0, 'ME DIVIERTO Y APRENDO CALIGRAFIA Y ORTOGRAFIA 5', '3.9500', '12.0000', '30.0000', '5.0000', 'active', '118.5000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(109, 'C1', 3, 150, 1, 0, 'ME DIVIERTO Y APRENDO CALIGRAFIA Y ORTOGRAFIA 4', '3.9500', '12.0000', '30.0000', '1.0000', 'active', '118.5000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(110, 'C1', 3, 149, 1, 0, 'ME DIVIERTO Y APRENDO CALIGRAFIA Y ORTOGRAFIA 3', '3.9500', '12.0000', '30.0000', '1.0000', 'active', '118.5000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(111, 'C1', 3, 148, 1, 0, 'ME DIVIERTO Y APRENDO CALIGRAFIA Y ORTOGRAFIA 2 ', '3.9500', '12.0000', '35.0000', '0.0000', 'active', '138.2500', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(112, 'C2', 3, 124, 1, 0, 'DESTRESAS EMOCIONALES Y VALORES 10', '3.0000', '14.0000', '15.0000', '4.0000', 'active', '45.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(113, 'C2', 3, 123, 1, 0, 'DESTRESAS EMOCIONALES Y VALORES 9', '3.0000', '14.0000', '15.0000', '1.0000', 'active', '45.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(114, 'C2', 3, 121, 1, 0, 'ARTETICS 7', '4.0000', '14.0000', '30.0000', '2.0000', 'active', '120.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(115, 'C2', 3, 120, 1, 0, 'ARTETICS 6', '4.0000', '14.0000', '30.0000', '4.0000', 'active', '120.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(116, 'C2', 3, 119, 1, 0, 'ARTETICS 5', '4.0000', '14.0000', '30.0000', '5.0000', 'active', '120.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(117, 'C2', 3, 118, 1, 0, 'ARTETICS 4', '4.0000', '14.0000', '30.0000', '1.0000', 'active', '120.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(118, 'C2', 3, 117, 1, 0, 'ARTETICS 3', '4.0000', '14.0000', '30.0000', '1.0000', 'active', '120.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(119, 'C2', 3, 116, 1, 0, 'ARTETICS 2', '4.0000', '14.0000', '35.0000', '0.0000', 'active', '140.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(120, 'C2', 3, 115, 1, 0, 'ARTETICS 1', '4.0000', '14.0000', '30.0000', '0.0000', 'active', '120.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(121, 'C3', 3, 47, 1, 1, 'LOGROS LA MARAVILLA DE LEER 6 + PLATAFORMA', '5.6000', '14.0000', '16.0000', '4.0000', 'active', '89.6000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(122, 'C3', 3, 46, 1, 1, 'LOGROS LA MARAVILLA DE LEER 5 + PLATAFORMA', '5.6000', '14.0000', '16.0000', '5.0000', 'active', '89.6000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(123, 'C3', 3, 45, 1, 1, 'LOGROS LA MARAVILLA DE LEER 4 + PLATAFORMA', '5.6000', '14.0000', '23.0000', '1.0000', 'active', '128.8000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(124, 'C3', 3, 44, 1, 1, 'LOGROS LA MARAVILLA DE LEER 3 + PLATAFORMA', '5.6000', '14.0000', '23.0000', '1.0000', 'active', '128.8000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(125, 'C3', 3, 43, 1, 1, 'LOGROS LA MARAVILLA DE LEER 2 + PLATAFORMA', '5.6000', '14.0000', '15.0000', '0.0000', 'active', '84.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(126, 'C4', 3, 156, 1, 0, 'MAGICA ORTOGRAFIA Y CALIGRAFIA 10', '3.9500', '12.0000', '10.0000', '4.0000', 'active', '39.5000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(127, 'C4', 3, 155, 1, 0, 'MAGICA ORTOGRAFIA Y CALIGRAFIA 9', '3.9500', '12.0000', '11.0000', '1.0000', 'active', '43.4500', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(128, 'Crefuerzo3', 2, 86, 1, 0, 'REFUERZO ESCOLAR 3', '6.5000', '10.0000', '1.0000', '1.0000', 'sold', '6.5000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(129, 'Crefuerzo 3.', 2, 86, 1, 0, 'REFUERZO ESCOLAR 3', '6.5000', '10.0000', '1.0000', '1.0000', 'sold', '6.5000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(130, 'C6', 1, 147, 1, 0, 'MI LECTURA DIRIGIDA 7', '4.0000', '14.0000', '15.0000', '0.0000', 'active', '60.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(131, 'C7', 3, 147, 1, 0, 'MI LECTURA DIRIGIDA 7', '4.0000', '14.0000', '15.0000', '2.0000', 'active', '60.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(132, 'Crefuerzo 3..', 2, 86, 1, 0, 'REFUERZO ESCOLAR 3', '6.5000', '10.0000', '1.0000', '1.0000', 'sold', '6.5000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(133, 'Crefuerzo escolar 3.', 2, 86, 1, 0, 'REFUERZO ESCOLAR 3', '6.5000', '10.0000', '1.0000', '1.0000', 'sold', '6.5000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000');
 
 -- --------------------------------------------------------
 
@@ -5902,7 +6505,17 @@ INSERT INTO `purchase_logs` (`id`, `sup_id`, `reference_no`, `ref_invoice_id`, `
 (101, 1, 'CT23080222101', 'CLOGROS CIENCIAS NATURALES 6', 'purchase', 1, 'Paid while purchasing', '129.6000', 2, 6, '2023-08-02 12:03:10', NULL),
 (102, 1, 'CT23080222102', 'CLOGROS CIENCIAS NATURALES 4.', 'purchase', 1, 'Paid while purchasing', '129.6000', 2, 6, '2023-08-02 12:06:29', NULL),
 (103, 1, 'CT23080522103', 'CHISTORIA 3BGU', 'purchase', 1, 'Paid while purchasing', '205.2000', 2, 6, '2023-08-05 12:16:20', NULL),
-(104, 1, 'CT23080522104', 'CLOGROS HISTORIA 2', 'purchase', 1, 'Paid while purchasing', '302.4000', 2, 6, '2023-08-05 14:19:17', NULL);
+(104, 1, 'CT23080522104', 'CLOGROS HISTORIA 2', 'purchase', 1, 'Paid while purchasing', '302.4000', 2, 6, '2023-08-05 14:19:17', NULL),
+(105, 2, 'CT230815300001', 'C1', 'purchase', 1, 'Paid while purchasing', '790.0000', 3, 2, '2023-08-15 20:07:44', NULL),
+(106, 3, 'CT2308153002', 'C2', 'purchase', 1, 'Paid while purchasing', '950.0000', 3, 2, '2023-08-15 20:09:07', NULL),
+(107, 1, 'CT23081533003', 'C3', 'purchase', 1, 'Paid while purchasing', '520.8000', 3, 2, '2023-08-15 20:10:25', NULL),
+(108, 7, 'CT23081533004', 'C4', 'purchase', 1, 'Paid while purchasing', '82.9500', 3, 2, '2023-08-15 20:28:02', NULL),
+(109, 7, 'CT23081622105', 'Crefuerzo3', 'purchase', 1, 'Paid while purchasing', '6.5000', 2, 6, '2023-08-16 10:48:23', NULL),
+(110, 7, 'CT23081622106', 'Crefuerzo 3.', 'purchase', 1, 'Paid while purchasing', '6.5000', 2, 6, '2023-08-16 14:20:33', NULL),
+(111, 3, 'CT230817100001', 'C6', 'purchase', 1, 'Paid while purchasing', '60.0000', 1, 2, '2023-08-17 14:54:06', NULL),
+(112, 3, 'CT23081733005', 'C7', 'purchase', 1, 'Paid while purchasing', '60.0000', 3, 2, '2023-08-17 14:58:03', NULL),
+(113, 7, 'CT23081822107', 'Crefuerzo 3..', 'purchase', 1, 'Paid while purchasing', '6.5000', 2, 6, '2023-08-18 13:41:31', NULL),
+(114, 7, 'CT23081822108', 'Crefuerzo escolar 3.', 'purchase', 1, 'Paid while purchasing', '6.5000', 2, 6, '2023-08-18 16:06:28', NULL);
 
 -- --------------------------------------------------------
 
@@ -6032,7 +6645,17 @@ INSERT INTO `purchase_payments` (`id`, `type`, `is_hide`, `store_id`, `invoice_i
 (101, 'purchase', 0, 2, 'CLOGROS CIENCIAS NATURALES 6', NULL, 1, NULL, NULL, NULL, '', '129.6000', '129.6000', '0.0000', 6, '2023-08-02 12:03:10'),
 (102, 'purchase', 0, 2, 'CLOGROS CIENCIAS NATURALES 4.', NULL, 1, NULL, NULL, NULL, '', '129.6000', '129.6000', '0.0000', 6, '2023-08-02 12:06:29'),
 (103, 'purchase', 0, 2, 'CHISTORIA 3BGU', NULL, 1, NULL, NULL, NULL, '', '205.2000', '205.2000', '0.0000', 6, '2023-08-05 12:16:20'),
-(104, 'purchase', 0, 2, 'CLOGROS HISTORIA 2', NULL, 1, NULL, NULL, NULL, '', '302.4000', '302.4000', '0.0000', 6, '2023-08-05 14:19:17');
+(104, 'purchase', 0, 2, 'CLOGROS HISTORIA 2', NULL, 1, NULL, NULL, NULL, '', '302.4000', '302.4000', '0.0000', 6, '2023-08-05 14:19:17'),
+(105, 'purchase', 0, 3, 'C1', NULL, 1, NULL, NULL, NULL, '', '790.0000', '790.0000', '0.0000', 2, '2023-08-15 20:07:44'),
+(106, 'purchase', 0, 3, 'C2', NULL, 1, NULL, NULL, NULL, '', '950.0000', '950.0000', '0.0000', 2, '2023-08-15 20:09:07'),
+(107, 'purchase', 0, 3, 'C3', NULL, 1, NULL, NULL, NULL, '', '520.8000', '520.8000', '0.0000', 2, '2023-08-15 20:10:25'),
+(108, 'purchase', 0, 3, 'C4', NULL, 1, NULL, NULL, NULL, '', '82.9500', '82.9500', '0.0000', 2, '2023-08-15 20:28:02'),
+(109, 'purchase', 0, 2, 'Crefuerzo3', NULL, 1, NULL, NULL, NULL, 'ingreso', '6.5000', '6.5000', '0.0000', 6, '2023-08-16 10:48:23'),
+(110, 'purchase', 0, 2, 'Crefuerzo 3.', NULL, 1, NULL, NULL, NULL, '', '6.5000', '6.5000', '0.0000', 6, '2023-08-16 14:20:33'),
+(111, 'purchase', 0, 1, 'C6', NULL, 1, NULL, NULL, NULL, 'PRODUCTO POR LLEGAR', '60.0000', '60.0000', '0.0000', 2, '2023-08-17 14:54:06'),
+(112, 'purchase', 0, 3, 'C7', NULL, 1, NULL, NULL, NULL, 'PRODUCTO POR LLEGAR', '60.0000', '60.0000', '0.0000', 2, '2023-08-17 14:58:03'),
+(113, 'purchase', 0, 2, 'Crefuerzo 3..', NULL, 1, NULL, NULL, NULL, 'a', '6.5000', '6.5000', '0.0000', 6, '2023-08-18 13:41:31'),
+(114, 'purchase', 0, 2, 'Crefuerzo escolar 3.', NULL, 1, NULL, NULL, NULL, 'c', '6.5000', '6.5000', '0.0000', 6, '2023-08-18 16:06:28');
 
 -- --------------------------------------------------------
 
@@ -6166,7 +6789,17 @@ INSERT INTO `purchase_price` (`price_id`, `invoice_id`, `store_id`, `subtotal`, 
 (101, 'CLOGROS CIENCIAS NATURALES 6', 2, '129.6000', 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '129.6000', '129.6000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (102, 'CLOGROS CIENCIAS NATURALES 4.', 2, '129.6000', 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '129.6000', '129.6000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (103, 'CHISTORIA 3BGU', 2, '205.2000', 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '205.2000', '205.2000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(104, 'CLOGROS HISTORIA 2', 2, '302.4000', 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '302.4000', '302.4000', '0.0000', '0.0000', '0.0000', '0.0000');
+(104, 'CLOGROS HISTORIA 2', 2, '302.4000', 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '302.4000', '302.4000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(105, 'C1', 3, '790.0000', 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '790.0000', '790.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(106, 'C2', 3, '950.0000', 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '950.0000', '950.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(107, 'C3', 3, '520.8000', 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '520.8000', '520.8000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(108, 'C4', 3, '82.9500', 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '82.9500', '82.9500', '0.0000', '0.0000', '0.0000', '0.0000'),
+(109, 'Crefuerzo3', 2, '6.5000', 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '6.5000', '6.5000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(110, 'Crefuerzo 3.', 2, '6.5000', 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '6.5000', '6.5000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(111, 'C6', 1, '60.0000', 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '60.0000', '60.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(112, 'C7', 3, '60.0000', 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '60.0000', '60.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(113, 'Crefuerzo 3..', 2, '6.5000', 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '6.5000', '6.5000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(114, 'Crefuerzo escolar 3.', 2, '6.5000', 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '6.5000', '6.5000', '0.0000', '0.0000', '0.0000', '0.0000');
 
 -- --------------------------------------------------------
 
@@ -6379,47 +7012,87 @@ CREATE TABLE `selling_info` (
   `checkout_status` tinyint(1) NOT NULL DEFAULT 0,
   `created_by` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `created_at` datetime DEFAULT NULL,
-  `updated_at` timestamp NULL DEFAULT NULL
+  `updated_at` timestamp NULL DEFAULT NULL,
+  `checkout_sri` tinyint(1) DEFAULT 0
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
 
 --
 -- Dumping data for table `selling_info`
 --
 
-INSERT INTO `selling_info` (`info_id`, `invoice_id`, `edit_counter`, `inv_type`, `store_id`, `customer_id`, `customer_mobile`, `college_id`, `ref_invoice_id`, `ref_user_id`, `invoice_note`, `total_items`, `is_installment`, `status`, `pmethod_id`, `payment_status`, `checkout_status`, `created_by`, `created_at`, `updated_at`) VALUES
-(1, '22023/00000001', 0, 'sell', 2, 2, '', 2, NULL, 0, '', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-02 11:21:03', NULL),
-(2, '22023/00000002', 0, 'sell', 2, 4, '0987317953', 2, NULL, 0, '', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-02 11:28:33', NULL),
-(3, '22023/00000003', 0, 'sell', 2, 5, '0987716930', 2, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 6, '2023-08-02 11:31:26', NULL),
-(4, '22023/00000004', 0, 'sell', 2, 1, '', 2, NULL, 0, '', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-02 11:32:36', NULL),
-(5, '22023/00000005', 0, 'sell', 2, 6, '0998590760', 2, NULL, 0, '', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-02 11:36:25', NULL),
-(6, '22023/00000006', 0, 'sell', 2, 7, 'pamer199212@gmail.co', 2, NULL, 0, '', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-02 11:38:24', NULL),
-(7, '22023/00000007', 0, 'sell', 2, 8, '0979483868', 2, NULL, 0, '', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-02 11:40:41', NULL),
-(8, '22023/00000008', 0, 'sell', 2, 9, '0999076270', 2, NULL, 0, '', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-02 11:43:07', NULL),
-(9, '22023/00000009', 0, 'sell', 2, 10, 'milton_her@hotmail.c', 2, NULL, 0, '', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-02 11:44:19', NULL),
-(10, '22023/00000010', 0, 'sell', 2, 11, '0984874677', 2, NULL, 0, 'TRANSFERENCIA', 11, 0, 1, 1, 'paid', 1, 6, '2023-08-02 11:50:32', NULL),
-(11, '22023/00000011', 0, 'sell', 2, 12, 'fernandofae85@gmail.', 2, NULL, 0, '', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-02 11:57:23', NULL),
-(12, '22023/00000012', 0, 'sell', 2, 13, '', 2, NULL, 0, '', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-02 12:07:02', NULL),
-(13, '22023/00000013', 0, 'sell', 2, 14, '0984559024', 2, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 6, '2023-08-02 12:08:41', NULL),
-(14, '22023/00000014', 0, 'sell', 2, 1, '', 4, NULL, 0, '', 3, 0, 1, 1, 'paid', 1, 6, '2023-08-02 12:18:19', NULL),
-(15, '22023/00000015', 0, 'sell', 2, 15, '0987874870', 2, NULL, 0, '', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-03 10:26:48', NULL),
-(16, '22023/00000016', 0, 'sell', 2, 16, 'yesseniayugsi3k@gmai', 2, NULL, 0, '', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-03 10:58:55', NULL),
-(17, '22023/00000017', 0, 'sell', 2, 17, '0987085359', 2, NULL, 0, 'TRANSFERENCIA ', 2, 0, 1, 1, 'paid', 1, 6, '2023-08-03 13:54:55', NULL),
-(18, '22023/00000018', 0, 'sell', 2, 18, '0998568141', 2, NULL, 0, 'TRANSFERENCIA', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-03 14:56:44', NULL),
-(19, '22023/00000019', 0, 'sell', 2, 19, '0985377936', 2, NULL, 0, 'TRANSFERENCIA', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-04 11:19:57', NULL),
-(20, '22023/00000020', 0, 'sell', 2, 20, '0998066143', 2, NULL, 0, '', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-04 13:36:29', NULL),
-(21, '22023/00000021', 0, 'sell', 2, 21, '0961800733', 2, NULL, 0, '', 5, 0, 1, 1, 'paid', 1, 6, '2023-08-04 14:40:26', NULL),
-(22, '22023/00000022', 0, 'sell', 2, 22, '0998533552', 2, NULL, 0, '', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-04 15:09:58', NULL),
-(23, '22023/00000023', 0, 'sell', 2, 23, 'fernandolaracrespo@h', 2, NULL, 0, '', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-05 12:01:57', NULL),
-(24, '22023/00000024', 0, 'sell', 2, 24, '0997367992', 2, NULL, 0, '', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-05 12:30:13', NULL),
-(26, '22023/00000025', 0, 'sell', 2, 24, '0997367992', 2, NULL, 0, '', 7, 0, 1, 1, 'paid', 1, 6, '2023-08-05 14:12:07', NULL),
-(27, '22023/00000026', 0, 'sell', 2, 25, '0981937194', 2, NULL, 0, '', 7, 0, 1, 1, 'paid', 1, 6, '2023-08-05 14:24:32', NULL),
-(28, '22023/00000027', 0, 'sell', 2, 26, '0996646083', 2, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 6, '2023-08-07 12:26:37', NULL),
-(29, '22023/00000028', 0, 'sell', 2, 27, 'anafran410@gmail.com', 2, NULL, 0, '', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-07 14:45:35', NULL),
-(30, '22023/00000029', 0, 'sell', 2, 1, '', 2, NULL, 0, '', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-07 15:41:35', NULL),
-(31, '22023/00000030', 0, 'sell', 2, 28, '0984612677', 2, NULL, 0, '', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-08 10:23:06', NULL),
-(32, '22023/00000031', 0, 'sell', 2, 29, '0999661606', 2, NULL, 0, 'TRANSFERENCIA', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-08 10:47:23', NULL),
-(33, '22023/00000032', 0, 'sell', 2, 30, '0997871520', 2, NULL, 0, 'transferencia 2 kit', 12, 0, 1, 1, 'paid', 1, 6, '2023-08-08 11:47:40', NULL),
-(34, '22023/00000033', 0, 'sell', 2, 31, '0963115284', 2, NULL, 0, 'TRANSFERENCIA ', 2, 0, 1, 1, 'paid', 1, 6, '2023-08-08 12:39:49', NULL);
+INSERT INTO `selling_info` (`info_id`, `invoice_id`, `edit_counter`, `inv_type`, `store_id`, `customer_id`, `customer_mobile`, `college_id`, `ref_invoice_id`, `ref_user_id`, `invoice_note`, `total_items`, `is_installment`, `status`, `pmethod_id`, `payment_status`, `checkout_status`, `created_by`, `created_at`, `updated_at`, `checkout_sri`) VALUES
+(1, '22023/00000001', 0, 'sell', 2, 2, '', 2, NULL, 0, '', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-02 11:21:03', NULL, 1),
+(2, '22023/00000002', 0, 'sell', 2, 4, '0987317953', 2, NULL, 0, '', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-02 11:28:33', NULL, 1),
+(3, '22023/00000003', 0, 'sell', 2, 5, '0987716930', 2, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 6, '2023-08-02 11:31:26', NULL, 1),
+(4, '22023/00000004', 0, 'sell', 2, 1, '', 2, NULL, 0, '', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-02 11:32:36', NULL, 1),
+(5, '22023/00000005', 0, 'sell', 2, 6, '0998590760', 2, NULL, 0, '', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-02 11:36:25', NULL, 1),
+(6, '22023/00000006', 0, 'sell', 2, 7, 'pamer199212@gmail.co', 2, NULL, 0, '', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-02 11:38:24', NULL, 1),
+(7, '22023/00000007', 0, 'sell', 2, 8, '0979483868', 2, NULL, 0, '', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-02 11:40:41', NULL, 1),
+(8, '22023/00000008', 0, 'sell', 2, 9, '0999076270', 2, NULL, 0, '', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-02 11:43:07', NULL, 1),
+(9, '22023/00000009', 0, 'sell', 2, 10, 'milton_her@hotmail.c', 2, NULL, 0, '', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-02 11:44:19', NULL, 1),
+(10, '22023/00000010', 0, 'sell', 2, 11, '0984874677', 2, NULL, 0, 'TRANSFERENCIA', 11, 0, 1, 1, 'paid', 1, 6, '2023-08-02 11:50:32', NULL, 1),
+(11, '22023/00000011', 0, 'sell', 2, 12, 'fernandofae85@gmail.', 2, NULL, 0, '', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-02 11:57:23', NULL, 1),
+(12, '22023/00000012', 0, 'sell', 2, 13, '', 2, NULL, 0, '', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-02 12:07:02', NULL, 1),
+(13, '22023/00000013', 0, 'sell', 2, 14, '0984559024', 2, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 6, '2023-08-02 12:08:41', NULL, 1),
+(14, '22023/00000014', 0, 'sell', 2, 1, '', 4, NULL, 0, '', 3, 0, 1, 1, 'paid', 1, 6, '2023-08-02 12:18:19', NULL, 1),
+(15, '22023/00000015', 0, 'sell', 2, 15, '0987874870', 2, NULL, 0, '', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-03 10:26:48', NULL, 1),
+(16, '22023/00000016', 0, 'sell', 2, 16, 'yesseniayugsi3k@gmai', 2, NULL, 0, '', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-03 10:58:55', NULL, 1),
+(17, '22023/00000017', 0, 'sell', 2, 17, '0987085359', 2, NULL, 0, 'TRANSFERENCIA ', 2, 0, 1, 1, 'paid', 1, 6, '2023-08-03 13:54:55', NULL, 1),
+(18, '22023/00000018', 0, 'sell', 2, 18, '0998568141', 2, NULL, 0, 'TRANSFERENCIA', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-03 14:56:44', NULL, 1),
+(19, '22023/00000019', 0, 'sell', 2, 19, '0985377936', 2, NULL, 0, 'TRANSFERENCIA', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-04 11:19:57', NULL, 1),
+(20, '22023/00000020', 0, 'sell', 2, 20, '0998066143', 2, NULL, 0, '', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-04 13:36:29', NULL, 1),
+(21, '22023/00000021', 0, 'sell', 2, 21, '0961800733', 2, NULL, 0, '', 5, 0, 1, 1, 'paid', 1, 6, '2023-08-04 14:40:26', NULL, 1),
+(22, '22023/00000022', 0, 'sell', 2, 22, '0998533552', 2, NULL, 0, '', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-04 15:09:58', NULL, 1),
+(23, '22023/00000023', 0, 'sell', 2, 23, 'fernandolaracrespo@h', 2, NULL, 0, '', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-05 12:01:57', NULL, 1),
+(24, '22023/00000024', 0, 'sell', 2, 24, '0997367992', 2, NULL, 0, '', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-05 12:30:13', NULL, 1),
+(26, '22023/00000025', 0, 'sell', 2, 24, '0997367992', 2, NULL, 0, '', 7, 0, 1, 1, 'paid', 1, 6, '2023-08-05 14:12:07', NULL, 1),
+(27, '22023/00000026', 0, 'sell', 2, 25, '0981937194', 2, NULL, 0, '', 7, 0, 1, 1, 'paid', 1, 6, '2023-08-05 14:24:32', NULL, 1),
+(28, '22023/00000027', 0, 'sell', 2, 26, '0996646083', 2, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 6, '2023-08-07 12:26:37', NULL, 1),
+(29, '22023/00000028', 0, 'sell', 2, 27, 'anafran410@gmail.com', 2, NULL, 0, '', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-07 14:45:35', NULL, 1),
+(30, '22023/00000029', 0, 'sell', 2, 1, '', 2, NULL, 0, '', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-07 15:41:35', NULL, 1),
+(31, '22023/00000030', 0, 'sell', 2, 28, '0984612677', 2, NULL, 0, '', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-08 10:23:06', NULL, 1),
+(32, '22023/00000031', 0, 'sell', 2, 29, '0999661606', 2, NULL, 0, 'TRANSFERENCIA', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-08 10:47:23', NULL, 1),
+(33, '22023/00000032', 0, 'sell', 2, 30, '0997871520', 2, NULL, 0, 'transferencia 2 kit', 12, 0, 1, 1, 'paid', 1, 6, '2023-08-08 11:47:40', NULL, 1),
+(34, '22023/00000033', 0, 'sell', 2, 31, '0963115284', 2, NULL, 0, 'TRANSFERENCIA ', 2, 0, 1, 1, 'paid', 1, 6, '2023-08-08 12:39:49', NULL, 1),
+(35, '22023/00000034', 0, 'sell', 2, 32, '0987959993', 2, NULL, 0, '', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-08 15:10:47', NULL, 1),
+(36, '22023/00000035', 0, 'sell', 2, 33, '0983989270', 2, NULL, 0, 'TRANSFERENCIA', 5, 0, 1, 1, 'paid', 1, 6, '2023-08-09 11:38:41', NULL, 1),
+(37, '22023/00000036', 0, 'sell', 2, 34, '0984817718', 2, NULL, 0, 'TRANSFERENCIA', 2, 0, 1, 1, 'paid', 1, 6, '2023-08-09 11:40:14', NULL, 1),
+(38, '22023/00000037', 0, 'sell', 2, 1, '', 2, NULL, 0, '', 5, 0, 1, 1, 'paid', 1, 6, '2023-08-09 13:20:26', NULL, 1),
+(39, '22023/00000038', 0, 'sell', 2, 1, '', 2, NULL, 0, 'PAGO EN CHEQUES- 3291-3290-3288-3287-3289', 13, 0, 1, 1, 'paid', 1, 6, '2023-08-09 16:00:26', NULL, 1),
+(40, '22023/00000039', 0, 'sell', 2, 35, '0998977769', 2, NULL, 0, 'TRANSFERENCIA ', 2, 0, 1, 1, 'paid', 1, 6, '2023-08-10 11:14:50', NULL, 1),
+(41, '22023/00000040', 0, 'sell', 2, 36, '0987335001', 2, NULL, 0, 'TRANSFERENCIA', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-10 11:33:18', NULL, 1),
+(42, '22023/00000041', 0, 'sell', 2, 37, '0987972954', 2, NULL, 0, '', 5, 0, 1, 1, 'paid', 1, 6, '2023-08-10 11:42:22', NULL, 1),
+(43, '22023/00000042', 0, 'sell', 2, 38, '0992812157', 2, NULL, 0, '', 13, 0, 1, 1, 'paid', 1, 6, '2023-08-14 12:37:10', NULL, 1),
+(44, '22023/00000043', 0, 'sell', 2, 39, '0999908892', 2, NULL, 0, '', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-14 12:43:05', NULL, 1),
+(45, '22023/00000044', 0, 'sell', 2, 40, '0999296582', 2, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 6, '2023-08-14 12:55:20', NULL, 1),
+(46, '22023/00000045', 0, 'sell', 2, 1, '', 2, NULL, 0, '', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-15 10:44:48', NULL, 1),
+(47, '22023/00000046', 0, 'sell', 2, 41, '0960924626', 2, NULL, 0, '', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-15 14:30:22', NULL, 1),
+(48, '300000001', 0, 'sell', 3, 43, '0992851734', 5, NULL, 0, '', 3, 0, 1, 1, 'paid', 1, 10, '2023-08-16 10:08:45', NULL, 0),
+(49, '22023/00000047', 0, 'sell', 2, 44, '0988597992', 2, NULL, 0, '', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-16 10:21:24', NULL, 1),
+(50, '22023/00000048', 0, 'sell', 2, 42, '0998296631', 2, NULL, 0, 'transferencia el dia de ayer', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-16 10:49:14', NULL, 1),
+(51, '300000002', 0, 'sell', 3, 45, '0993533846', 5, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 10, '2023-08-16 13:13:12', NULL, 0),
+(52, '300000003', 0, 'sell', 3, 46, 'miryamsantana15@hotm', 5, NULL, 0, 'Transferencia ', 5, 0, 1, 1, 'paid', 1, 10, '2023-08-16 13:18:08', NULL, 0),
+(53, '22023/00000049', 0, 'sell', 2, 47, '0984545603', 2, NULL, 0, '', 11, 0, 1, 1, 'paid', 1, 6, '2023-08-16 14:21:51', NULL, 1),
+(54, '22023/00000050', 0, 'sell', 2, 48, '0983285783', 2, NULL, 0, '', 11, 0, 1, 1, 'paid', 1, 6, '2023-08-16 15:20:55', NULL, 1),
+(56, '300000005', 0, 'sell', 3, 50, '0979199578', 5, NULL, 0, '', 3, 0, 1, 1, 'paid', 1, 10, '2023-08-17 13:15:03', NULL, 0),
+(57, '300000006', 0, 'sell', 3, 51, '0962299852', 5, NULL, 0, '', 4, 0, 1, 1, 'paid', 1, 10, '2023-08-17 14:13:37', NULL, 0),
+(58, '300000007', 0, 'sell', 3, 52, '0987716108', 5, NULL, 0, '', 3, 0, 1, 1, 'paid', 1, 10, '2023-08-17 14:54:10', NULL, 0),
+(59, '300000008', 0, 'sell', 3, 53, '0987803497', 5, NULL, 0, '', 3, 0, 1, 1, 'paid', 1, 10, '2023-08-17 14:59:34', NULL, 0),
+(60, '300000009', 0, 'sell', 3, 54, 'avilesangel_1993@hot', 5, NULL, 0, '', 3, 0, 1, 1, 'paid', 1, 10, '2023-08-17 15:05:46', NULL, 0),
+(61, '300000010', 0, 'sell', 3, 55, 'Jessi-1012@hotmail.c', 5, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 10, '2023-08-17 15:08:06', NULL, 0),
+(62, '22023/00000051', 0, 'sell', 2, 56, '0963658091', 2, NULL, 0, 'transferencia', 11, 0, 1, 1, 'paid', 1, 6, '2023-08-17 15:50:53', NULL, 1),
+(63, '300000011', 0, 'sell', 3, 49, '0987213681', 5, NULL, 0, 'Por entregar mis lecturas dirigidas 7mo ', 3, 0, 1, 1, 'paid', 1, 10, '2023-08-17 15:51:49', NULL, 0),
+(64, '300000012', 0, 'sell', 3, 57, '', 5, NULL, 0, 'X entregar libro lecturas dirigidas 7mo', 3, 0, 1, 1, 'paid', 1, 10, '2023-08-17 15:54:27', NULL, 0),
+(65, '22023/00000052', 0, 'sell', 2, 58, '0987037254', 2, NULL, 0, 'TRANSFERENCIA', 12, 0, 1, 1, 'paid', 1, 6, '2023-08-17 15:58:20', NULL, 1),
+(66, '300000013', 0, 'sell', 3, 59, 'alegiss_31@hotmail.c', 5, NULL, 0, '', 3, 0, 1, 1, 'paid', 1, 10, '2023-08-17 17:09:11', NULL, 0),
+(67, '300000014', 0, 'sell', 3, 60, '0989675951', 5, NULL, 0, '', 3, 0, 1, 1, 'paid', 1, 10, '2023-08-17 17:12:44', NULL, 0),
+(68, '300000015', 0, 'sell', 3, 61, '0983378010', 5, NULL, 0, '', 3, 0, 1, 1, 'paid', 1, 10, '2023-08-17 17:14:13', NULL, 0),
+(69, '22023/00000053', 0, 'sell', 2, 62, '0987274313', 2, NULL, 0, '', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-18 11:45:41', NULL, 0),
+(70, '22023/00000054', 0, 'sell', 2, 63, '0983705972', 2, NULL, 0, '', 5, 0, 1, 1, 'paid', 1, 6, '2023-08-18 13:19:00', NULL, 0),
+(71, '22023/00000055', 0, 'sell', 2, 64, '0992602975', 2, NULL, 0, '', 11, 0, 1, 1, 'paid', 1, 6, '2023-08-18 13:46:22', NULL, 0),
+(72, '300000016', 0, 'sell', 3, 65, '0987390089', 5, NULL, 0, '', 6, 0, 1, 1, 'paid', 1, 10, '2023-08-18 15:02:40', NULL, 0),
+(73, '22023/00000056', 0, 'sell', 2, 66, '0987721742', 2, NULL, 0, '', 13, 0, 1, 1, 'paid', 1, 6, '2023-08-18 15:57:05', NULL, 0),
+(74, '22023/00000057', 0, 'sell', 2, 67, '0998098310', 2, NULL, 0, '', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-18 16:07:07', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -6649,7 +7322,233 @@ INSERT INTO `selling_item` (`id`, `invoice_id`, `category_id`, `brand_id`, `sup_
 (191, '22023/00000032', 2, 0, 1, 2, 2, 108, 'MI TUTORIAL DIGITAL MATEMATICAS 2 BGU', '15.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '6.0000', '15.0000', 'CMI TUTORIAL DIGITAL MATEMATICAS 2BGU', 0, NULL, NULL, '0.0000', NULL),
 (192, '22023/00000032', 2, 0, 1, 2, 2, 111, 'MI TUTORIAL DIGITAL QUIMICA 2BGU', '15.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '6.0000', '15.0000', 'CMI TUTORIAL DIGITAL 2BGU', 0, NULL, NULL, '0.0000', NULL),
 (193, '22023/00000033', 1, 0, 4, 2, 2, 83, 'EVERYDAY ENGLISH 1', '45.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '21.0000', '45.0000', 'CEVERYDAY 1', 0, NULL, NULL, '0.0000', NULL),
-(194, '22023/00000033', 1, 1, 1, 2, 2, 2, 'KIT DESCUBRE Y APRENDE CON GUCHITO 4 - 5 AÑOS + PLATAFORMA', '40.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '20.0000', '40.0000', 'CGUCHITO 4-5AÑOS', 0, NULL, NULL, '0.0000', NULL);
+(194, '22023/00000033', 1, 1, 1, 2, 2, 2, 'KIT DESCUBRE Y APRENDE CON GUCHITO 4 - 5 AÑOS + PLATAFORMA', '40.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '20.0000', '40.0000', 'CGUCHITO 4-5AÑOS', 0, NULL, NULL, '0.0000', NULL),
+(195, '22023/00000034', 1, 0, 4, 2, 2, 91, 'LEARNING ZONE SB + ONLINE 1', '46.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '27.0000', '46.0000', 'CDAS INGLES', 0, NULL, NULL, '0.0000', NULL),
+(196, '22023/00000034', 1, 1, 1, 2, 2, 22, 'LOGROS CIENCIAS NATURALES 2 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CCIENCIAS NATURALES 2', 0, NULL, NULL, '0.0000', NULL);
+INSERT INTO `selling_item` (`id`, `invoice_id`, `category_id`, `brand_id`, `sup_id`, `store_id`, `college_id`, `item_id`, `item_name`, `item_price`, `item_discount`, `item_tax`, `tax_method`, `taxrate_id`, `tax`, `gst`, `cgst`, `sgst`, `igst`, `item_quantity`, `item_purchase_price`, `item_total`, `purchase_invoice_id`, `print_counter`, `print_counter_time`, `printed_by`, `return_quantity`, `created_at`) VALUES
+(197, '22023/00000034', 1, 1, 1, 2, 2, 4, 'LOGROS LENGUA Y LITERATURA 2 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CDAS LOGROS LENGUAJE BASICA', 0, NULL, NULL, '0.0000', NULL),
+(198, '22023/00000034', 1, 1, 1, 2, 2, 31, 'LOGROS ESTUDIOS SOCIALES 2 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS SOCIALES SEGUNDO', 0, NULL, NULL, '0.0000', NULL),
+(199, '22023/00000034', 1, 0, 7, 2, 2, 85, 'REFUERZO ESCOLAR 2', '10.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '6.5000', '10.0000', 'CREFUERZO ESCOLAR 2', 0, NULL, NULL, '0.0000', NULL),
+(200, '22023/00000034', 1, 1, 1, 2, 2, 10, 'LOGROS MATEMÁTICAS 2 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CMATEMATICAS SEGUNDO', 0, NULL, NULL, '0.0000', NULL),
+(201, '22023/00000035', 1, 0, 4, 2, 2, 96, 'ELLEVATE ENGLISH TEEN  SB FULL 1', '46.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '22.0000', '46.0000', 'CELLEVATE TEEN 1', 0, NULL, NULL, '0.0000', NULL),
+(202, '22023/00000035', 1, 1, 1, 2, 2, 28, 'LOGROS CIENCIAS NATURALES 8 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS CIENCIAS 8', 0, NULL, NULL, '0.0000', NULL),
+(203, '22023/00000035', 1, 1, 1, 2, 2, 37, 'LOGROS ESTUDIOS SOCIALES 8 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS SOCIALES 8', 0, NULL, NULL, '0.0000', NULL),
+(204, '22023/00000035', 1, 1, 1, 2, 2, 16, 'LOGROS LENGUA Y LITERATURA 8 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS LENGUAJE 8', 0, NULL, NULL, '0.0000', NULL),
+(205, '22023/00000035', 1, 1, 1, 2, 2, 77, 'MI TUTORIAL DIGITAL MATEMATICAS 8', '15.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '6.0000', '15.0000', 'CMI TUTORIAL DIGITAL MATEMATICAS 8', 0, NULL, NULL, '0.0000', NULL),
+(206, '22023/00000036', 1, 0, 4, 2, 2, 84, 'EVERYDAY INGLISH 2', '45.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '21.0000', '45.0000', 'CEVERYDAY 2', 0, NULL, NULL, '0.0000', NULL),
+(207, '22023/00000036', 1, 1, 1, 2, 2, 3, 'KIT CREA Y APRENDE CON GUCHITO (PRIMERO DE BÁSICA)+ PLATAFORMA', '40.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '20.0000', '40.0000', 'CGUCHITO PREPARATORIA', 0, NULL, NULL, '0.0000', NULL),
+(208, '22023/00000037', 1, 0, 4, 2, 2, 97, 'ELLEVATE ENGLISH TEEN  SB FULL 2', '46.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '22.0000', '46.0000', 'CDAS INGLES ELLEVATE 2', 0, NULL, NULL, '0.0000', NULL),
+(209, '22023/00000037', 1, 1, 1, 2, 2, 29, 'LOGROS CIENCIAS NATURALES 9 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS CIENCIAS 9', 0, NULL, NULL, '0.0000', NULL),
+(210, '22023/00000037', 1, 1, 1, 2, 2, 38, 'LOGROS ESTUDIOS SOCIALES 9 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS SOCIALES 9', 0, NULL, NULL, '0.0000', NULL),
+(211, '22023/00000037', 1, 1, 1, 2, 2, 17, 'LOGROS LENGUA Y LITERATURA 9 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS LENGUAJE 9', 0, NULL, NULL, '0.0000', NULL),
+(212, '22023/00000037', 2, 0, 1, 2, 2, 105, 'MI TUTORIAL DIGITAL MATEMATICAS 9', '15.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '6.0000', '15.0000', 'CMI TUTORIAL DIGITAL 9', 0, NULL, NULL, '0.0000', NULL),
+(213, '22023/00000038', 1, 0, 4, 2, 2, 94, 'LEARNING ZONE SB + ONLINE 4', '46.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '27.0000', '46.0000', 'CLEARNING 4', 0, NULL, NULL, '0.0000', NULL),
+(214, '22023/00000038', 1, 1, 1, 2, 2, 25, 'LOGROS CIENCIAS NATURALES 5 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS CIENCIAS NATURALES 5', 0, NULL, NULL, '0.0000', NULL),
+(215, '22023/00000038', 1, 1, 1, 2, 2, 34, 'LOGROS ESTUDIOS SOCIALES 5 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CSOCIALES 5', 0, NULL, NULL, '0.0000', NULL),
+(216, '22023/00000038', 1, 1, 1, 2, 2, 7, 'LOGROS LENGUA Y LITERATURA 5 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS LENGUAJE 5', 0, NULL, NULL, '0.0000', NULL),
+(217, '22023/00000038', 1, 1, 1, 2, 2, 13, 'LOGROS MATEMÁTICAS 5 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS MATEMATICAS 5', 0, NULL, NULL, '0.0000', NULL),
+(218, '22023/00000038', 1, 0, 7, 2, 2, 88, 'REFUERZO ESCOLAR 5', '10.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '6.5000', '10.0000', 'CREFUERZO ESCOLAR 5', 0, NULL, NULL, '0.0000', NULL),
+(219, '22023/00000038', 1, 0, 4, 2, 2, 101, 'ELLEVATE ENGLISH TEEN  SB FULL 6 COTOPAXI', '54.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '22.0000', '54.0000', 'CELLEVATE FULL 6', 0, NULL, NULL, '0.0000', NULL),
+(220, '22023/00000038', 1, 1, 1, 2, 2, 60, 'LOGROS HISTORIA 3 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CHISTORIA 3BGU', 0, NULL, NULL, '0.0000', NULL),
+(221, '22023/00000038', 1, 1, 1, 2, 2, 54, 'LOGROS LENGUA Y LITERATURA 3 BACH + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CINVENTARIO DAS', 0, NULL, NULL, '0.0000', NULL),
+(222, '22023/00000038', 1, 1, 1, 2, 2, 57, 'LOGROS BIOLOGÍA 3 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CBIOLOGIA 3', 0, NULL, NULL, '0.0000', NULL),
+(223, '22023/00000038', 2, 0, 1, 2, 2, 104, 'MI TUTORIAL DIGITAL FISICA 3 BGU', '15.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '6.0000', '15.0000', 'CMI TUTORIAL DIGITAL FISICA 3BGU', 0, NULL, NULL, '0.0000', NULL),
+(224, '22023/00000038', 2, 0, 1, 2, 2, 109, 'MI TUTORIAL DIGITAL MATEMATICAS 3 BGU', '15.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '6.0000', '15.0000', 'CMI TUTORIAL DIGITAL MATEMATICAS 3BGU', 0, NULL, NULL, '0.0000', NULL),
+(225, '22023/00000038', 1, 1, 1, 2, 2, 78, 'MI TUTORIAL DIGITAL QUIMICA 3BGU', '15.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '6.0000', '15.0000', 'CMI TUTORIAL DIGITAL 3BGU', 0, NULL, NULL, '0.0000', NULL),
+(226, '22023/00000039', 1, 0, 4, 2, 2, 83, 'EVERYDAY ENGLISH 1', '45.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '21.0000', '45.0000', 'CEVERYDAY 1', 0, NULL, NULL, '0.0000', NULL),
+(227, '22023/00000039', 1, 1, 1, 2, 2, 2, 'KIT DESCUBRE Y APRENDE CON GUCHITO 4 - 5 AÑOS + PLATAFORMA', '40.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '20.0000', '40.0000', 'CGUCHITO 4-5AÑOS', 0, NULL, NULL, '0.0000', NULL),
+(228, '22023/00000040', 1, 0, 4, 2, 2, 92, 'LEARNING ZONE SB + ONLINE 2', '46.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '27.0000', '46.0000', 'CDAS INGLES 2', 0, NULL, NULL, '0.0000', NULL),
+(229, '22023/00000040', 1, 1, 1, 2, 2, 23, 'LOGROS CIENCIAS NATURALES 3 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CDAS LOGROS CIENCIAS', 0, NULL, NULL, '0.0000', NULL),
+(230, '22023/00000040', 1, 1, 1, 2, 2, 32, 'LOGROS ESTUDIOS SOCIALES 3 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS SOCIALES 3', 0, NULL, NULL, '0.0000', NULL),
+(231, '22023/00000040', 1, 1, 1, 2, 2, 5, 'LOGROS LENGUA Y LITERATURA 3 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLENGUAJE 3BASICA', 0, NULL, NULL, '0.0000', NULL),
+(232, '22023/00000040', 1, 1, 1, 2, 2, 11, 'LOGROS MATEMÁTICAS 3 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS MATEMATICAS 3', 0, NULL, NULL, '0.0000', NULL),
+(233, '22023/00000040', 1, 0, 7, 2, 2, 86, 'REFUERZO ESCOLAR 3', '10.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '6.5000', '10.0000', 'CREFUERZO ESCOLAR 3', 0, NULL, NULL, '0.0000', NULL),
+(234, '22023/00000041', 1, 0, 4, 2, 2, 97, 'ELLEVATE ENGLISH TEEN  SB FULL 2', '46.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '22.0000', '46.0000', 'CDAS INGLES ELLEVATE 2', 0, NULL, NULL, '0.0000', NULL),
+(235, '22023/00000041', 1, 1, 1, 2, 2, 29, 'LOGROS CIENCIAS NATURALES 9 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS CIENCIAS 9', 0, NULL, NULL, '0.0000', NULL),
+(236, '22023/00000041', 1, 1, 1, 2, 2, 38, 'LOGROS ESTUDIOS SOCIALES 9 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS SOCIALES 9', 0, NULL, NULL, '0.0000', NULL),
+(237, '22023/00000041', 1, 1, 1, 2, 2, 17, 'LOGROS LENGUA Y LITERATURA 9 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS LENGUAJE 9', 0, NULL, NULL, '0.0000', NULL),
+(238, '22023/00000041', 2, 0, 1, 2, 2, 105, 'MI TUTORIAL DIGITAL MATEMATICAS 9', '15.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '6.0000', '15.0000', 'CMI TUTORIAL DIGITAL 9', 0, NULL, NULL, '0.0000', NULL),
+(239, '22023/00000042', 1, 0, 4, 2, 2, 95, 'LEARNING ZONE SB + ONLINE 5', '46.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '27.0000', '46.0000', 'CLEARNING ZONE 5', 0, NULL, NULL, '0.0000', NULL),
+(240, '22023/00000042', 1, 1, 1, 2, 2, 26, 'LOGROS CIENCIAS NATURALES 6 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS CIENCIAS NATURALES 6', 0, NULL, NULL, '0.0000', NULL),
+(241, '22023/00000042', 1, 1, 1, 2, 2, 35, 'LOGROS ESTUDIOS SOCIALES 6 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS SOCIALES 6', 0, NULL, NULL, '0.0000', NULL),
+(242, '22023/00000042', 1, 1, 1, 2, 2, 8, 'LOGROS LENGUA Y LITERATURA 6 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS LENGUAJE 6', 0, NULL, NULL, '0.0000', NULL),
+(243, '22023/00000042', 1, 1, 1, 2, 2, 14, 'LOGROS MATEMÁTICAS 6 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS MATEMATICAS ', 0, NULL, NULL, '0.0000', NULL),
+(244, '22023/00000042', 1, 0, 7, 2, 2, 89, 'REFUERZO ESCOLAR 6', '10.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '6.5000', '10.0000', 'CREFUERZO ESCOLAR 6', 0, NULL, NULL, '0.0000', NULL),
+(245, '22023/00000042', 1, 0, 4, 2, 2, 100, 'ELLEVATE ENGLISH TEEN  SB FULL 5 COTOPAXI', '54.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '22.0000', '54.0000', 'CELLEVATE FULL 5', 0, NULL, NULL, '0.0000', NULL),
+(246, '22023/00000042', 1, 1, 1, 2, 2, 59, 'LOGROS HISTORIA 2 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS HISTORIA 2', 0, NULL, NULL, '0.0000', NULL),
+(247, '22023/00000042', 1, 1, 1, 2, 2, 53, 'LOGROS LENGUA Y LITERATURA 2 BACH + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLENGUAJE 2BGU', 0, NULL, NULL, '0.0000', NULL),
+(248, '22023/00000042', 1, 1, 1, 2, 2, 56, 'LOGROS BIOLOGÍA 2 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS BIOLOGIA 2', 0, NULL, NULL, '0.0000', NULL),
+(249, '22023/00000042', 2, 0, 1, 2, 2, 103, 'MI TUTORIAL DIGITAL FISICA 2 BGU', '15.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '6.0000', '15.0000', 'CMI TUTORIAL DIGITAL FISICA 2BGU', 0, NULL, NULL, '0.0000', NULL),
+(250, '22023/00000042', 2, 0, 1, 2, 2, 108, 'MI TUTORIAL DIGITAL MATEMATICAS 2 BGU', '15.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '6.0000', '15.0000', 'CMI TUTORIAL DIGITAL MATEMATICAS 2BGU', 0, NULL, NULL, '0.0000', NULL),
+(251, '22023/00000042', 2, 0, 1, 2, 2, 111, 'MI TUTORIAL DIGITAL QUIMICA 2BGU', '15.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '6.0000', '15.0000', 'CMI TUTORIAL DIGITAL 2BGU', 0, NULL, NULL, '0.0000', NULL),
+(252, '22023/00000043', 1, 0, 4, 2, 2, 92, 'LEARNING ZONE SB + ONLINE 2', '46.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '27.0000', '46.0000', 'CDAS INGLES 2', 0, NULL, NULL, '0.0000', NULL),
+(253, '22023/00000043', 1, 1, 1, 2, 2, 23, 'LOGROS CIENCIAS NATURALES 3 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CDAS LOGROS CIENCIAS', 0, NULL, NULL, '0.0000', NULL),
+(254, '22023/00000043', 1, 1, 1, 2, 2, 32, 'LOGROS ESTUDIOS SOCIALES 3 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS SOCIALES 3', 0, NULL, NULL, '0.0000', NULL),
+(255, '22023/00000043', 1, 1, 1, 2, 2, 5, 'LOGROS LENGUA Y LITERATURA 3 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLENGUAJE 3BASICA', 0, NULL, NULL, '0.0000', NULL),
+(256, '22023/00000043', 1, 1, 1, 2, 2, 11, 'LOGROS MATEMÁTICAS 3 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS MATEMATICAS 3', 0, NULL, NULL, '0.0000', NULL),
+(257, '22023/00000043', 1, 0, 7, 2, 2, 86, 'REFUERZO ESCOLAR 3', '10.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '6.5000', '10.0000', 'CREFUERZO ESCOLAR 3', 0, NULL, NULL, '0.0000', NULL),
+(258, '22023/00000044', 1, 0, 4, 2, 2, 83, 'EVERYDAY ENGLISH 1', '45.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '21.0000', '45.0000', 'CEVERYDAY 1', 0, NULL, NULL, '0.0000', NULL),
+(259, '22023/00000044', 1, 1, 1, 2, 2, 2, 'KIT DESCUBRE Y APRENDE CON GUCHITO 4 - 5 AÑOS + PLATAFORMA', '40.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '20.0000', '40.0000', 'CGUCHITO 4-5AÑOS', 0, NULL, NULL, '0.0000', NULL),
+(260, '22023/00000045', 1, 0, 4, 2, 2, 91, 'LEARNING ZONE SB + ONLINE 1', '46.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '27.0000', '46.0000', 'CDAS INGLES', 0, NULL, NULL, '0.0000', NULL),
+(261, '22023/00000045', 1, 1, 1, 2, 2, 22, 'LOGROS CIENCIAS NATURALES 2 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CCIENCIAS NATURALES 2', 0, NULL, NULL, '0.0000', NULL),
+(262, '22023/00000045', 1, 1, 1, 2, 2, 31, 'LOGROS ESTUDIOS SOCIALES 2 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS SOCIALES SEGUNDO', 0, NULL, NULL, '0.0000', NULL),
+(263, '22023/00000045', 1, 1, 1, 2, 2, 4, 'LOGROS LENGUA Y LITERATURA 2 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CDAS LOGROS LENGUAJE BASICA', 0, NULL, NULL, '0.0000', NULL),
+(264, '22023/00000045', 1, 1, 1, 2, 2, 10, 'LOGROS MATEMÁTICAS 2 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CMATEMATICAS SEGUNDO', 0, NULL, NULL, '0.0000', NULL),
+(265, '22023/00000045', 1, 0, 7, 2, 2, 85, 'REFUERZO ESCOLAR 2', '10.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '6.5000', '10.0000', 'CREFUERZO ESCOLAR 2', 0, NULL, NULL, '0.0000', NULL),
+(266, '22023/00000046', 1, 0, 4, 2, 2, 91, 'LEARNING ZONE SB + ONLINE 1', '46.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '27.0000', '46.0000', 'CDAS INGLES', 0, NULL, NULL, '0.0000', NULL),
+(267, '22023/00000046', 1, 1, 1, 2, 2, 22, 'LOGROS CIENCIAS NATURALES 2 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CCIENCIAS NATURALES 2', 0, NULL, NULL, '0.0000', NULL),
+(268, '22023/00000046', 1, 1, 1, 2, 2, 31, 'LOGROS ESTUDIOS SOCIALES 2 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS SOCIALES SEGUNDO', 0, NULL, NULL, '0.0000', NULL),
+(269, '22023/00000046', 1, 1, 1, 2, 2, 4, 'LOGROS LENGUA Y LITERATURA 2 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CDAS LOGROS LENGUAJE BASICA', 0, NULL, NULL, '0.0000', NULL),
+(270, '22023/00000046', 1, 1, 1, 2, 2, 10, 'LOGROS MATEMÁTICAS 2 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CMATEMATICAS SEGUNDO', 0, NULL, NULL, '0.0000', NULL),
+(271, '22023/00000046', 1, 0, 7, 2, 2, 85, 'REFUERZO ESCOLAR 2', '10.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '6.5000', '10.0000', 'CREFUERZO ESCOLAR 2', 0, NULL, NULL, '0.0000', NULL),
+(272, '300000001', 1, 1, 1, 3, 5, 46, 'LOGROS LA MARAVILLA DE LEER 5 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'C3', 0, NULL, NULL, '0.0000', NULL),
+(273, '300000001', 1, 0, 3, 3, 5, 119, 'ARTETICS 5', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.0000', '14.0000', 'C2', 0, NULL, NULL, '0.0000', NULL),
+(274, '300000001', 1, 0, 2, 3, 5, 151, 'ME DIVIERTO Y APRENDO CALIGRAFIA Y ORTOGRAFIA 5', '12.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '3.9500', '12.0000', 'C1', 0, NULL, NULL, '0.0000', NULL),
+(275, '22023/00000047', 1, 0, 4, 2, 2, 102, 'LEARNING ZONE SB + ONLINE 6', '46.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '22.0000', '46.0000', 'CLEARNING ZONE 6', 0, NULL, NULL, '0.0000', NULL),
+(276, '22023/00000047', 1, 1, 1, 2, 2, 27, 'LOGROS CIENCIAS NATURALES 7 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS CIENCIAS 7', 0, NULL, NULL, '0.0000', NULL),
+(277, '22023/00000047', 1, 1, 1, 2, 2, 36, 'LOGROS ESTUDIOS SOCIALES 7 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CSOCIALES 7', 0, NULL, NULL, '0.0000', NULL),
+(278, '22023/00000047', 1, 1, 1, 2, 2, 9, 'LOGROS LENGUA Y LITERATURA 7 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CHUVGH', 0, NULL, NULL, '0.0000', NULL),
+(279, '22023/00000047', 1, 1, 1, 2, 2, 15, 'LOGROS MATEMÁTICAS 7 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS MATEMATICAS 7', 0, NULL, NULL, '0.0000', NULL),
+(280, '22023/00000047', 1, 0, 7, 2, 2, 90, 'REFUERZO ESCOLAR 7', '10.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '6.5000', '10.0000', 'CREFUERZO ESCOLAR 7', 0, NULL, NULL, '0.0000', NULL),
+(281, '22023/00000048', 1, 0, 4, 2, 2, 92, 'LEARNING ZONE SB + ONLINE 2', '46.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '27.0000', '46.0000', 'CDAS INGLES 2', 0, NULL, NULL, '0.0000', NULL),
+(282, '22023/00000048', 1, 1, 1, 2, 2, 23, 'LOGROS CIENCIAS NATURALES 3 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CDAS LOGROS CIENCIAS', 0, NULL, NULL, '0.0000', NULL),
+(283, '22023/00000048', 1, 1, 1, 2, 2, 32, 'LOGROS ESTUDIOS SOCIALES 3 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS SOCIALES 3', 0, NULL, NULL, '0.0000', NULL),
+(284, '22023/00000048', 1, 1, 1, 2, 2, 5, 'LOGROS LENGUA Y LITERATURA 3 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLENGUAJE 3BASICA', 0, NULL, NULL, '0.0000', NULL),
+(285, '22023/00000048', 1, 1, 1, 2, 2, 11, 'LOGROS MATEMÁTICAS 3 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS MATEMATICAS 3', 0, NULL, NULL, '0.0000', NULL),
+(286, '22023/00000048', 1, 0, 7, 2, 2, 86, 'REFUERZO ESCOLAR 3', '10.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '6.5000', '10.0000', 'Crefuerzo3', 0, NULL, NULL, '0.0000', NULL),
+(287, '300000002', 1, 0, 3, 3, 5, 124, 'DESTRESAS EMOCIONALES Y VALORES 10', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '3.0000', '14.0000', 'C2', 0, NULL, NULL, '0.0000', NULL),
+(288, '300000002', 1, 0, 7, 3, 5, 156, 'MAGICA ORTOGRAFIA Y CALIGRAFIA 10', '12.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '3.9500', '12.0000', 'C4', 0, NULL, NULL, '0.0000', NULL),
+(289, '300000003', 1, 1, 1, 3, 5, 46, 'LOGROS LA MARAVILLA DE LEER 5 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'C3', 0, NULL, NULL, '0.0000', NULL),
+(290, '300000003', 1, 0, 3, 3, 5, 119, 'ARTETICS 5', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.0000', '14.0000', 'C2', 0, NULL, NULL, '0.0000', NULL),
+(291, '300000003', 1, 0, 2, 3, 5, 151, 'ME DIVIERTO Y APRENDO CALIGRAFIA Y ORTOGRAFIA 5', '12.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '3.9500', '12.0000', 'C1', 0, NULL, NULL, '0.0000', NULL),
+(292, '300000003', 1, 0, 3, 3, 5, 124, 'DESTRESAS EMOCIONALES Y VALORES 10', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '3.0000', '14.0000', 'C2', 0, NULL, NULL, '0.0000', NULL),
+(293, '300000003', 1, 0, 7, 3, 5, 156, 'MAGICA ORTOGRAFIA Y CALIGRAFIA 10', '12.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '3.9500', '12.0000', 'C4', 0, NULL, NULL, '0.0000', NULL),
+(294, '22023/00000049', 1, 0, 4, 2, 2, 92, 'LEARNING ZONE SB + ONLINE 2', '46.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '27.0000', '46.0000', 'CDAS INGLES 2', 0, NULL, NULL, '0.0000', NULL),
+(295, '22023/00000049', 1, 1, 1, 2, 2, 23, 'LOGROS CIENCIAS NATURALES 3 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CDAS LOGROS CIENCIAS', 0, NULL, NULL, '0.0000', NULL),
+(296, '22023/00000049', 1, 1, 1, 2, 2, 32, 'LOGROS ESTUDIOS SOCIALES 3 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS SOCIALES 3', 0, NULL, NULL, '0.0000', NULL),
+(297, '22023/00000049', 1, 1, 1, 2, 2, 5, 'LOGROS LENGUA Y LITERATURA 3 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLENGUAJE 3BASICA', 0, NULL, NULL, '0.0000', NULL),
+(298, '22023/00000049', 1, 1, 1, 2, 2, 11, 'LOGROS MATEMÁTICAS 3 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS MATEMATICAS 3', 0, NULL, NULL, '0.0000', NULL),
+(299, '22023/00000049', 1, 0, 7, 2, 2, 86, 'REFUERZO ESCOLAR 3', '10.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '6.5000', '10.0000', 'Crefuerzo 3.', 0, NULL, NULL, '0.0000', NULL),
+(300, '22023/00000049', 1, 0, 4, 2, 2, 96, 'ELLEVATE ENGLISH TEEN  SB FULL 1', '46.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '22.0000', '46.0000', 'CELLEVATE TEEN 1', 0, NULL, NULL, '0.0000', NULL),
+(301, '22023/00000049', 1, 1, 1, 2, 2, 28, 'LOGROS CIENCIAS NATURALES 8 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS CIENCIAS 8', 0, NULL, NULL, '0.0000', NULL),
+(302, '22023/00000049', 1, 1, 1, 2, 2, 37, 'LOGROS ESTUDIOS SOCIALES 8 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS SOCIALES 8', 0, NULL, NULL, '0.0000', NULL),
+(303, '22023/00000049', 1, 1, 1, 2, 2, 16, 'LOGROS LENGUA Y LITERATURA 8 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS LENGUAJE 8', 0, NULL, NULL, '0.0000', NULL),
+(304, '22023/00000049', 1, 1, 1, 2, 2, 77, 'MI TUTORIAL DIGITAL MATEMATICAS 8', '15.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '6.0000', '15.0000', 'CMI TUTORIAL DIGITAL MATEMATICAS 8', 0, NULL, NULL, '0.0000', NULL),
+(305, '22023/00000050', 1, 0, 4, 2, 2, 93, 'LEARNING ZONE SB + ONLINE 3', '46.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '27.0000', '46.0000', 'CLEARNING ZONE 3', 0, NULL, NULL, '0.0000', NULL),
+(306, '22023/00000050', 1, 1, 1, 2, 2, 24, 'LOGROS CIENCIAS NATURALES 4 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS CIENCIAS NATURALES 4.', 0, NULL, NULL, '0.0000', NULL),
+(307, '22023/00000050', 1, 1, 1, 2, 2, 33, 'LOGROS ESTUDIOS SOCIALES 4 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS SOCIALES 4', 0, NULL, NULL, '0.0000', NULL),
+(308, '22023/00000050', 1, 1, 1, 2, 2, 6, 'LOGROS LENGUA Y LITERATURA 4 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS LENGUAJE 4', 0, NULL, NULL, '0.0000', NULL),
+(309, '22023/00000050', 1, 1, 1, 2, 2, 12, 'LOGROS MATEMÁTICAS 4 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS MATEMATICAS 4', 0, NULL, NULL, '0.0000', NULL),
+(310, '22023/00000050', 1, 0, 7, 2, 2, 87, 'REFUERZO ESCOLAR 4', '10.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '6.5000', '10.0000', 'CREFUERZO ESCOLAR 4', 0, NULL, NULL, '0.0000', NULL),
+(311, '22023/00000050', 1, 0, 4, 2, 2, 96, 'ELLEVATE ENGLISH TEEN  SB FULL 1', '46.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '22.0000', '46.0000', 'CELLEVATE TEEN 1', 0, NULL, NULL, '0.0000', NULL),
+(312, '22023/00000050', 1, 1, 1, 2, 2, 28, 'LOGROS CIENCIAS NATURALES 8 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS CIENCIAS 8', 0, NULL, NULL, '0.0000', NULL),
+(313, '22023/00000050', 1, 1, 1, 2, 2, 37, 'LOGROS ESTUDIOS SOCIALES 8 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS SOCIALES 8', 0, NULL, NULL, '0.0000', NULL),
+(314, '22023/00000050', 1, 1, 1, 2, 2, 16, 'LOGROS LENGUA Y LITERATURA 8 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS LENGUAJE 8', 0, NULL, NULL, '0.0000', NULL),
+(315, '22023/00000050', 1, 1, 1, 2, 2, 77, 'MI TUTORIAL DIGITAL MATEMATICAS 8', '15.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '6.0000', '15.0000', 'CMI TUTORIAL DIGITAL MATEMATICAS 8', 0, NULL, NULL, '0.0000', NULL),
+(318, '300000005', 1, 1, 1, 3, 5, 45, 'LOGROS LA MARAVILLA DE LEER 4 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'C3', 0, NULL, NULL, '0.0000', NULL),
+(319, '300000005', 1, 0, 3, 3, 5, 118, 'ARTETICS 4', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.0000', '14.0000', 'C2', 0, NULL, NULL, '0.0000', NULL),
+(320, '300000005', 1, 0, 2, 3, 5, 150, 'ME DIVIERTO Y APRENDO CALIGRAFIA Y ORTOGRAFIA 4', '12.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '3.9500', '12.0000', 'C1', 0, NULL, NULL, '0.0000', NULL),
+(321, '300000006', 1, 0, 3, 3, 5, 124, 'DESTRESAS EMOCIONALES Y VALORES 10', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '3.0000', '14.0000', 'C2', 0, NULL, NULL, '0.0000', NULL),
+(322, '300000006', 1, 0, 7, 3, 5, 156, 'MAGICA ORTOGRAFIA Y CALIGRAFIA 10', '12.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '3.9500', '12.0000', 'C4', 0, NULL, NULL, '0.0000', NULL),
+(323, '300000006', 1, 0, 3, 3, 5, 123, 'DESTRESAS EMOCIONALES Y VALORES 9', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '3.0000', '14.0000', 'C2', 0, NULL, NULL, '0.0000', NULL),
+(324, '300000006', 1, 0, 7, 3, 5, 155, 'MAGICA ORTOGRAFIA Y CALIGRAFIA 9', '12.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '3.9500', '12.0000', 'C4', 0, NULL, NULL, '0.0000', NULL),
+(325, '300000007', 1, 1, 1, 3, 5, 47, 'LOGROS LA MARAVILLA DE LEER 6 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'C3', 0, NULL, NULL, '0.0000', NULL),
+(326, '300000007', 1, 0, 3, 3, 5, 120, 'ARTETICS 6', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.0000', '14.0000', 'C2', 0, NULL, NULL, '0.0000', NULL),
+(327, '300000007', 1, 0, 2, 3, 5, 152, 'ME DIVIERTO Y APRENDO CALIGRAFIA Y ORTOGRAFIA 6', '12.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '3.9500', '12.0000', 'C1', 0, NULL, NULL, '0.0000', NULL),
+(328, '300000008', 1, 1, 1, 3, 5, 46, 'LOGROS LA MARAVILLA DE LEER 5 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'C3', 0, NULL, NULL, '0.0000', NULL),
+(329, '300000008', 1, 0, 3, 3, 5, 119, 'ARTETICS 5', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.0000', '14.0000', 'C2', 0, NULL, NULL, '0.0000', NULL),
+(330, '300000008', 1, 0, 2, 3, 5, 151, 'ME DIVIERTO Y APRENDO CALIGRAFIA Y ORTOGRAFIA 5', '12.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '3.9500', '12.0000', 'C1', 0, NULL, NULL, '0.0000', NULL),
+(331, '300000009', 1, 1, 1, 3, 5, 47, 'LOGROS LA MARAVILLA DE LEER 6 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'C3', 0, NULL, NULL, '0.0000', NULL),
+(332, '300000009', 1, 0, 3, 3, 5, 120, 'ARTETICS 6', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.0000', '14.0000', 'C2', 0, NULL, NULL, '0.0000', NULL),
+(333, '300000009', 1, 0, 2, 3, 5, 152, 'ME DIVIERTO Y APRENDO CALIGRAFIA Y ORTOGRAFIA 6', '12.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '3.9500', '12.0000', 'C1', 0, NULL, NULL, '0.0000', NULL),
+(334, '300000010', 1, 0, 3, 3, 5, 124, 'DESTRESAS EMOCIONALES Y VALORES 10', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '3.0000', '14.0000', 'C2', 0, NULL, NULL, '0.0000', NULL),
+(335, '300000010', 1, 0, 7, 3, 5, 156, 'MAGICA ORTOGRAFIA Y CALIGRAFIA 10', '12.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '3.9500', '12.0000', 'C4', 0, NULL, NULL, '0.0000', NULL),
+(336, '22023/00000051', 1, 0, 4, 2, 2, 91, 'LEARNING ZONE SB + ONLINE 1', '46.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '27.0000', '46.0000', 'CDAS INGLES', 0, NULL, NULL, '0.0000', NULL),
+(337, '22023/00000051', 1, 1, 1, 2, 2, 22, 'LOGROS CIENCIAS NATURALES 2 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CCIENCIAS NATURALES 2', 0, NULL, NULL, '0.0000', NULL),
+(338, '22023/00000051', 1, 1, 1, 2, 2, 31, 'LOGROS ESTUDIOS SOCIALES 2 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS SOCIALES SEGUNDO', 0, NULL, NULL, '0.0000', NULL),
+(339, '22023/00000051', 1, 1, 1, 2, 2, 4, 'LOGROS LENGUA Y LITERATURA 2 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CDAS LOGROS LENGUAJE BASICA', 0, NULL, NULL, '0.0000', NULL),
+(340, '22023/00000051', 1, 1, 1, 2, 2, 10, 'LOGROS MATEMÁTICAS 2 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CMATEMATICAS SEGUNDO', 0, NULL, NULL, '0.0000', NULL),
+(341, '22023/00000051', 1, 0, 7, 2, 2, 85, 'REFUERZO ESCOLAR 2', '10.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '6.5000', '10.0000', 'CREFUERZO ESCOLAR 2', 0, NULL, NULL, '0.0000', NULL),
+(342, '22023/00000051', 1, 0, 4, 2, 2, 96, 'ELLEVATE ENGLISH TEEN  SB FULL 1', '46.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '22.0000', '46.0000', 'CELLEVATE TEEN 1', 0, NULL, NULL, '0.0000', NULL),
+(343, '22023/00000051', 1, 1, 1, 2, 2, 28, 'LOGROS CIENCIAS NATURALES 8 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS CIENCIAS 8', 0, NULL, NULL, '0.0000', NULL),
+(344, '22023/00000051', 1, 1, 1, 2, 2, 37, 'LOGROS ESTUDIOS SOCIALES 8 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS SOCIALES 8', 0, NULL, NULL, '0.0000', NULL),
+(345, '22023/00000051', 1, 1, 1, 2, 2, 16, 'LOGROS LENGUA Y LITERATURA 8 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS LENGUAJE 8', 0, NULL, NULL, '0.0000', NULL),
+(346, '22023/00000051', 1, 1, 1, 2, 2, 77, 'MI TUTORIAL DIGITAL MATEMATICAS 8', '15.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '6.0000', '15.0000', 'CMI TUTORIAL DIGITAL MATEMATICAS 8', 0, NULL, NULL, '0.0000', NULL),
+(347, '300000011', 1, 0, 3, 3, 5, 147, 'MI LECTURA DIRIGIDA 7', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.0000', '14.0000', 'C7', 0, NULL, NULL, '0.0000', NULL),
+(348, '300000011', 1, 0, 3, 3, 5, 121, 'ARTETICS 7', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.0000', '14.0000', 'C2', 0, NULL, NULL, '0.0000', NULL),
+(349, '300000011', 1, 0, 2, 3, 5, 153, 'ME DIVIERTO Y APRENDO CALIGRAFIA Y ORTOGRAFIA 7', '12.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '3.9500', '12.0000', 'C1', 0, NULL, NULL, '0.0000', NULL),
+(350, '300000012', 1, 0, 3, 3, 5, 121, 'ARTETICS 7', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.0000', '14.0000', 'C2', 0, NULL, NULL, '0.0000', NULL),
+(351, '300000012', 1, 0, 2, 3, 5, 153, 'ME DIVIERTO Y APRENDO CALIGRAFIA Y ORTOGRAFIA 7', '12.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '3.9500', '12.0000', 'C1', 0, NULL, NULL, '0.0000', NULL),
+(352, '300000012', 1, 0, 3, 3, 5, 147, 'MI LECTURA DIRIGIDA 7', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.0000', '14.0000', 'C7', 0, NULL, NULL, '0.0000', NULL),
+(353, '22023/00000052', 1, 0, 4, 2, 2, 91, 'LEARNING ZONE SB + ONLINE 1', '46.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '27.0000', '46.0000', 'CDAS INGLES', 0, NULL, NULL, '0.0000', NULL),
+(354, '22023/00000052', 1, 1, 1, 2, 2, 22, 'LOGROS CIENCIAS NATURALES 2 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CCIENCIAS NATURALES 2', 0, NULL, NULL, '0.0000', NULL),
+(355, '22023/00000052', 1, 1, 1, 2, 2, 31, 'LOGROS ESTUDIOS SOCIALES 2 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS SOCIALES SEGUNDO', 0, NULL, NULL, '0.0000', NULL),
+(356, '22023/00000052', 1, 1, 1, 2, 2, 4, 'LOGROS LENGUA Y LITERATURA 2 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CDAS LOGROS LENGUAJE BASICA', 0, NULL, NULL, '0.0000', NULL),
+(357, '22023/00000052', 1, 1, 1, 2, 2, 10, 'LOGROS MATEMÁTICAS 2 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CMATEMATICAS SEGUNDO', 0, NULL, NULL, '0.0000', NULL),
+(358, '22023/00000052', 1, 0, 7, 2, 2, 85, 'REFUERZO ESCOLAR 2', '10.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '6.5000', '10.0000', 'CREFUERZO ESCOLAR 2', 0, NULL, NULL, '0.0000', NULL),
+(359, '22023/00000052', 1, 0, 4, 2, 2, 95, 'LEARNING ZONE SB + ONLINE 5', '46.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '27.0000', '46.0000', 'CLEARNING ZONE 5', 0, NULL, NULL, '0.0000', NULL),
+(360, '22023/00000052', 1, 1, 1, 2, 2, 26, 'LOGROS CIENCIAS NATURALES 6 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS CIENCIAS NATURALES 6', 0, NULL, NULL, '0.0000', NULL),
+(361, '22023/00000052', 1, 1, 1, 2, 2, 35, 'LOGROS ESTUDIOS SOCIALES 6 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS SOCIALES 6', 0, NULL, NULL, '0.0000', NULL),
+(362, '22023/00000052', 1, 1, 1, 2, 2, 8, 'LOGROS LENGUA Y LITERATURA 6 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS LENGUAJE 6', 0, NULL, NULL, '0.0000', NULL),
+(363, '22023/00000052', 1, 1, 1, 2, 2, 14, 'LOGROS MATEMÁTICAS 6 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS MATEMATICAS ', 0, NULL, NULL, '0.0000', NULL),
+(364, '22023/00000052', 1, 0, 7, 2, 2, 89, 'REFUERZO ESCOLAR 6', '10.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '6.5000', '10.0000', 'CREFUERZO ESCOLAR 6', 0, NULL, NULL, '0.0000', NULL),
+(365, '300000013', 1, 1, 1, 3, 5, 44, 'LOGROS LA MARAVILLA DE LEER 3 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'C3', 0, NULL, NULL, '0.0000', NULL),
+(366, '300000013', 1, 0, 3, 3, 5, 117, 'ARTETICS 3', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.0000', '14.0000', 'C2', 0, NULL, NULL, '0.0000', NULL),
+(367, '300000013', 1, 0, 2, 3, 5, 149, 'ME DIVIERTO Y APRENDO CALIGRAFIA Y ORTOGRAFIA 3', '12.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '3.9500', '12.0000', 'C1', 0, NULL, NULL, '0.0000', NULL),
+(368, '300000014', 1, 1, 1, 3, 5, 46, 'LOGROS LA MARAVILLA DE LEER 5 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'C3', 0, NULL, NULL, '0.0000', NULL),
+(369, '300000014', 1, 0, 3, 3, 5, 119, 'ARTETICS 5', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.0000', '14.0000', 'C2', 0, NULL, NULL, '0.0000', NULL),
+(370, '300000014', 1, 0, 2, 3, 5, 151, 'ME DIVIERTO Y APRENDO CALIGRAFIA Y ORTOGRAFIA 5', '12.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '3.9500', '12.0000', 'C1', 0, NULL, NULL, '0.0000', NULL),
+(371, '300000015', 1, 1, 1, 3, 5, 47, 'LOGROS LA MARAVILLA DE LEER 6 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'C3', 0, NULL, NULL, '0.0000', NULL),
+(372, '300000015', 1, 0, 3, 3, 5, 120, 'ARTETICS 6', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.0000', '14.0000', 'C2', 0, NULL, NULL, '0.0000', NULL),
+(373, '300000015', 1, 0, 2, 3, 5, 152, 'ME DIVIERTO Y APRENDO CALIGRAFIA Y ORTOGRAFIA 6', '12.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '3.9500', '12.0000', 'C1', 0, NULL, NULL, '0.0000', NULL),
+(374, '22023/00000053', 1, 0, 4, 2, 2, 95, 'LEARNING ZONE SB + ONLINE 5', '46.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '27.0000', '46.0000', 'CLEARNING ZONE 5', 0, NULL, NULL, '0.0000', NULL),
+(375, '22023/00000053', 1, 1, 1, 2, 2, 26, 'LOGROS CIENCIAS NATURALES 6 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS CIENCIAS NATURALES 6', 0, NULL, NULL, '0.0000', NULL),
+(376, '22023/00000053', 1, 1, 1, 2, 2, 35, 'LOGROS ESTUDIOS SOCIALES 6 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS SOCIALES 6', 0, NULL, NULL, '0.0000', NULL),
+(377, '22023/00000053', 1, 1, 1, 2, 2, 8, 'LOGROS LENGUA Y LITERATURA 6 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS LENGUAJE 6', 0, NULL, NULL, '0.0000', NULL),
+(378, '22023/00000053', 1, 1, 1, 2, 2, 14, 'LOGROS MATEMÁTICAS 6 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS MATEMATICAS ', 0, NULL, NULL, '0.0000', NULL),
+(379, '22023/00000053', 1, 0, 7, 2, 2, 89, 'REFUERZO ESCOLAR 6', '10.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '6.5000', '10.0000', 'CREFUERZO ESCOLAR 6', 0, NULL, NULL, '0.0000', NULL),
+(380, '22023/00000054', 1, 0, 4, 2, 2, 97, 'ELLEVATE ENGLISH TEEN  SB FULL 2', '46.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '22.0000', '46.0000', 'CDAS INGLES ELLEVATE 2', 0, NULL, NULL, '0.0000', NULL),
+(381, '22023/00000054', 1, 1, 1, 2, 2, 29, 'LOGROS CIENCIAS NATURALES 9 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS CIENCIAS 9', 0, NULL, NULL, '0.0000', NULL),
+(382, '22023/00000054', 1, 1, 1, 2, 2, 38, 'LOGROS ESTUDIOS SOCIALES 9 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS SOCIALES 9', 0, NULL, NULL, '0.0000', NULL),
+(383, '22023/00000054', 1, 1, 1, 2, 2, 17, 'LOGROS LENGUA Y LITERATURA 9 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS LENGUAJE 9', 0, NULL, NULL, '0.0000', NULL),
+(384, '22023/00000054', 2, 0, 1, 2, 2, 105, 'MI TUTORIAL DIGITAL MATEMATICAS 9', '15.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '6.0000', '15.0000', 'CMI TUTORIAL DIGITAL 9', 0, NULL, NULL, '0.0000', NULL),
+(385, '22023/00000055', 1, 0, 4, 2, 2, 92, 'LEARNING ZONE SB + ONLINE 2', '46.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '27.0000', '46.0000', 'CDAS INGLES 2', 0, NULL, NULL, '0.0000', NULL),
+(386, '22023/00000055', 1, 1, 1, 2, 2, 23, 'LOGROS CIENCIAS NATURALES 3 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CDAS LOGROS CIENCIAS', 0, NULL, NULL, '0.0000', NULL),
+(387, '22023/00000055', 1, 1, 1, 2, 2, 32, 'LOGROS ESTUDIOS SOCIALES 3 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS SOCIALES 3', 0, NULL, NULL, '0.0000', NULL),
+(388, '22023/00000055', 1, 1, 1, 2, 2, 5, 'LOGROS LENGUA Y LITERATURA 3 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLENGUAJE 3BASICA', 0, NULL, NULL, '0.0000', NULL),
+(389, '22023/00000055', 1, 1, 1, 2, 2, 11, 'LOGROS MATEMÁTICAS 3 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS MATEMATICAS 3', 0, NULL, NULL, '0.0000', NULL),
+(390, '22023/00000055', 1, 0, 7, 2, 2, 86, 'REFUERZO ESCOLAR 3', '10.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '6.5000', '10.0000', 'Crefuerzo 3..', 0, NULL, NULL, '0.0000', NULL);
+INSERT INTO `selling_item` (`id`, `invoice_id`, `category_id`, `brand_id`, `sup_id`, `store_id`, `college_id`, `item_id`, `item_name`, `item_price`, `item_discount`, `item_tax`, `tax_method`, `taxrate_id`, `tax`, `gst`, `cgst`, `sgst`, `igst`, `item_quantity`, `item_purchase_price`, `item_total`, `purchase_invoice_id`, `print_counter`, `print_counter_time`, `printed_by`, `return_quantity`, `created_at`) VALUES
+(391, '22023/00000055', 1, 0, 4, 2, 2, 96, 'ELLEVATE ENGLISH TEEN  SB FULL 1', '46.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '22.0000', '46.0000', 'CELLEVATE TEEN 1', 0, NULL, NULL, '0.0000', NULL),
+(392, '22023/00000055', 1, 1, 1, 2, 2, 28, 'LOGROS CIENCIAS NATURALES 8 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS CIENCIAS 8', 0, NULL, NULL, '0.0000', NULL),
+(393, '22023/00000055', 1, 1, 1, 2, 2, 37, 'LOGROS ESTUDIOS SOCIALES 8 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS SOCIALES 8', 0, NULL, NULL, '0.0000', NULL),
+(394, '22023/00000055', 1, 1, 1, 2, 2, 16, 'LOGROS LENGUA Y LITERATURA 8 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS LENGUAJE 8', 0, NULL, NULL, '0.0000', NULL),
+(395, '22023/00000055', 1, 1, 1, 2, 2, 77, 'MI TUTORIAL DIGITAL MATEMATICAS 8', '15.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '6.0000', '15.0000', 'CMI TUTORIAL DIGITAL MATEMATICAS 8', 0, NULL, NULL, '0.0000', NULL),
+(396, '300000016', 1, 1, 1, 3, 5, 46, 'LOGROS LA MARAVILLA DE LEER 5 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'C3', 0, NULL, NULL, '0.0000', NULL),
+(397, '300000016', 1, 0, 3, 3, 5, 119, 'ARTETICS 5', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.0000', '14.0000', 'C2', 0, NULL, NULL, '0.0000', NULL),
+(398, '300000016', 1, 0, 2, 3, 5, 151, 'ME DIVIERTO Y APRENDO CALIGRAFIA Y ORTOGRAFIA 5', '12.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '3.9500', '12.0000', 'C1', 0, NULL, NULL, '0.0000', NULL),
+(399, '300000016', 1, 1, 1, 3, 5, 47, 'LOGROS LA MARAVILLA DE LEER 6 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'C3', 0, NULL, NULL, '0.0000', NULL),
+(400, '300000016', 1, 0, 3, 3, 5, 120, 'ARTETICS 6', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.0000', '14.0000', 'C2', 0, NULL, NULL, '0.0000', NULL),
+(401, '300000016', 1, 0, 2, 3, 5, 152, 'ME DIVIERTO Y APRENDO CALIGRAFIA Y ORTOGRAFIA 6', '12.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '3.9500', '12.0000', 'C1', 0, NULL, NULL, '0.0000', NULL),
+(402, '22023/00000056', 1, 0, 4, 2, 2, 93, 'LEARNING ZONE SB + ONLINE 3', '46.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '27.0000', '46.0000', 'CLEARNING ZONE 3', 0, NULL, NULL, '0.0000', NULL),
+(403, '22023/00000056', 1, 1, 1, 2, 2, 24, 'LOGROS CIENCIAS NATURALES 4 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS CIENCIAS NATURALES 4.', 0, NULL, NULL, '0.0000', NULL),
+(404, '22023/00000056', 1, 1, 1, 2, 2, 33, 'LOGROS ESTUDIOS SOCIALES 4 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS SOCIALES 4', 0, NULL, NULL, '0.0000', NULL),
+(405, '22023/00000056', 1, 1, 1, 2, 2, 6, 'LOGROS LENGUA Y LITERATURA 4 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS LENGUAJE 4', 0, NULL, NULL, '0.0000', NULL),
+(406, '22023/00000056', 1, 1, 1, 2, 2, 12, 'LOGROS MATEMÁTICAS 4 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS MATEMATICAS 4', 0, NULL, NULL, '0.0000', NULL),
+(407, '22023/00000056', 1, 0, 7, 2, 2, 87, 'REFUERZO ESCOLAR 4', '10.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '6.5000', '10.0000', 'CREFUERZO ESCOLAR 4', 0, NULL, NULL, '0.0000', NULL),
+(408, '22023/00000056', 1, 0, 4, 2, 2, 96, 'ELLEVATE ENGLISH TEEN  SB FULL 1', '46.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '22.0000', '46.0000', 'CELLEVATE TEEN 1', 0, NULL, NULL, '0.0000', NULL),
+(409, '22023/00000056', 1, 1, 1, 2, 2, 28, 'LOGROS CIENCIAS NATURALES 8 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS CIENCIAS 8', 0, NULL, NULL, '0.0000', NULL),
+(410, '22023/00000056', 1, 1, 1, 2, 2, 37, 'LOGROS ESTUDIOS SOCIALES 8 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS SOCIALES 8', 0, NULL, NULL, '0.0000', NULL),
+(411, '22023/00000056', 1, 1, 1, 2, 2, 16, 'LOGROS LENGUA Y LITERATURA 8 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS LENGUAJE 8', 0, NULL, NULL, '0.0000', NULL),
+(412, '22023/00000056', 1, 1, 1, 2, 2, 77, 'MI TUTORIAL DIGITAL MATEMATICAS 8', '15.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '6.0000', '15.0000', 'CMI TUTORIAL DIGITAL MATEMATICAS 8', 0, NULL, NULL, '0.0000', NULL),
+(413, '22023/00000056', 1, 0, 4, 2, 2, 83, 'EVERYDAY ENGLISH 1', '45.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '21.0000', '45.0000', 'CEVERYDAY 1', 0, NULL, NULL, '0.0000', NULL),
+(414, '22023/00000056', 1, 1, 1, 2, 2, 2, 'KIT DESCUBRE Y APRENDE CON GUCHITO 4 - 5 AÑOS + PLATAFORMA', '40.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '20.0000', '40.0000', 'CGUCHITO 4-5AÑOS', 0, NULL, NULL, '0.0000', NULL),
+(415, '22023/00000057', 1, 0, 4, 2, 2, 92, 'LEARNING ZONE SB + ONLINE 2', '46.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '27.0000', '46.0000', 'CDAS INGLES 2', 0, NULL, NULL, '0.0000', NULL),
+(416, '22023/00000057', 1, 1, 1, 2, 2, 23, 'LOGROS CIENCIAS NATURALES 3 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CDAS LOGROS CIENCIAS', 0, NULL, NULL, '0.0000', NULL),
+(417, '22023/00000057', 1, 1, 1, 2, 2, 32, 'LOGROS ESTUDIOS SOCIALES 3 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS SOCIALES 3', 0, NULL, NULL, '0.0000', NULL),
+(418, '22023/00000057', 1, 1, 1, 2, 2, 5, 'LOGROS LENGUA Y LITERATURA 3 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLENGUAJE 3BASICA', 0, NULL, NULL, '0.0000', NULL),
+(419, '22023/00000057', 1, 1, 1, 2, 2, 11, 'LOGROS MATEMÁTICAS 3 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS MATEMATICAS 3', 0, NULL, NULL, '0.0000', NULL),
+(420, '22023/00000057', 1, 0, 7, 2, 2, 86, 'REFUERZO ESCOLAR 3', '10.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '6.5000', '10.0000', 'Crefuerzo escolar 3.', 0, NULL, NULL, '0.0000', NULL);
 
 -- --------------------------------------------------------
 
@@ -6723,7 +7622,46 @@ INSERT INTO `selling_price` (`price_id`, `invoice_id`, `store_id`, `subtotal`, `
 (31, '22023/00000030', 2, '164.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '76.7000', 'plain', '0.0000', '0.0000', '164.0000', '164.0000', '0.0000', '0.0000', '0.0000', '0.0000', '87.3000', '0.0000', '0.0000'),
 (32, '22023/00000031', 2, '164.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '76.7000', 'plain', '0.0000', '0.0000', '164.0000', '164.0000', '0.0000', '0.0000', '0.0000', '0.0000', '87.3000', '0.0000', '0.0000'),
 (33, '22023/00000032', 2, '322.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '132.8000', 'plain', '0.0000', '0.0000', '322.0000', '322.0000', '0.0000', '0.0000', '0.0000', '0.0000', '189.2000', '0.0000', '0.0000'),
-(34, '22023/00000033', 2, '85.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '41.0000', 'plain', '0.0000', '0.0000', '85.0000', '85.0000', '0.0000', '0.0000', '0.0000', '0.0000', '44.0000', '0.0000', '0.0000');
+(34, '22023/00000033', 2, '85.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '41.0000', 'plain', '0.0000', '0.0000', '85.0000', '85.0000', '0.0000', '0.0000', '0.0000', '0.0000', '44.0000', '0.0000', '0.0000'),
+(35, '22023/00000034', 2, '164.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '76.7000', 'plain', '0.0000', '0.0000', '164.0000', '164.0000', '0.0000', '0.0000', '0.0000', '1.0000', '87.3000', '0.0000', '0.0000'),
+(36, '22023/00000035', 2, '142.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '60.4000', 'plain', '0.0000', '0.0000', '142.0000', '142.0000', '0.0000', '0.0000', '0.0000', '0.0000', '81.6000', '0.0000', '0.0000'),
+(37, '22023/00000036', 2, '85.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '41.0000', 'plain', '0.0000', '0.0000', '85.0000', '85.0000', '0.0000', '0.0000', '0.0000', '0.0000', '44.0000', '0.0000', '0.0000'),
+(38, '22023/00000037', 2, '142.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '60.4000', 'plain', '0.0000', '0.0000', '142.0000', '142.0000', '0.0000', '0.0000', '0.0000', '0.0000', '81.6000', '0.0000', '0.0000'),
+(39, '22023/00000038', 2, '344.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '149.1000', 'plain', '0.0000', '0.0000', '344.0000', '344.0000', '0.0000', '0.0000', '0.0000', '0.0000', '194.9000', '0.0000', '0.0000'),
+(40, '22023/00000039', 2, '85.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '41.0000', 'plain', '0.0000', '0.0000', '85.0000', '85.0000', '0.0000', '0.0000', '0.0000', '0.0000', '44.0000', '0.0000', '0.0000'),
+(41, '22023/00000040', 2, '164.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '76.7000', 'plain', '0.0000', '0.0000', '164.0000', '164.0000', '0.0000', '0.0000', '0.0000', '0.0000', '87.3000', '0.0000', '0.0000'),
+(42, '22023/00000041', 2, '142.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '60.4000', 'plain', '0.0000', '0.0000', '142.0000', '142.0000', '0.0000', '0.0000', '0.0000', '0.0000', '81.6000', '0.0000', '0.0000'),
+(43, '22023/00000042', 2, '344.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '149.1000', 'plain', '0.0000', '0.0000', '344.0000', '344.0000', '0.0000', '0.0000', '0.0000', '6.0000', '194.9000', '0.0000', '0.0000'),
+(44, '22023/00000043', 2, '164.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '76.7000', 'plain', '0.0000', '0.0000', '164.0000', '164.0000', '0.0000', '0.0000', '0.0000', '6.0000', '87.3000', '0.0000', '0.0000'),
+(45, '22023/00000044', 2, '85.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '41.0000', 'plain', '0.0000', '0.0000', '85.0000', '85.0000', '0.0000', '0.0000', '0.0000', '0.0000', '44.0000', '0.0000', '0.0000'),
+(46, '22023/00000045', 2, '164.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '76.7000', 'plain', '0.0000', '0.0000', '164.0000', '164.0000', '0.0000', '0.0000', '0.0000', '0.0000', '87.3000', '0.0000', '0.0000'),
+(47, '22023/00000046', 2, '164.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '76.7000', 'plain', '0.0000', '0.0000', '164.0000', '164.0000', '0.0000', '0.0000', '0.0000', '1.0000', '87.3000', '0.0000', '0.0000'),
+(48, '300000001', 3, '40.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '13.5500', 'plain', '0.0000', '0.0000', '40.0000', '40.0000', '0.0000', '0.0000', '0.0000', '0.0000', '26.4500', '0.0000', '0.0000'),
+(49, '22023/00000047', 2, '164.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '71.7000', 'plain', '0.0000', '0.0000', '164.0000', '164.0000', '0.0000', '0.0000', '0.0000', '6.0000', '92.3000', '0.0000', '0.0000'),
+(50, '22023/00000048', 2, '164.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '76.7000', 'plain', '0.0000', '0.0000', '164.0000', '164.0000', '0.0000', '0.0000', '0.0000', '0.0000', '87.3000', '0.0000', '0.0000'),
+(51, '300000002', 3, '26.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '6.9500', 'plain', '0.0000', '0.0000', '26.0000', '26.0000', '0.0000', '0.0000', '0.0000', '14.0000', '19.0500', '0.0000', '0.0000'),
+(52, '300000003', 3, '66.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '20.5000', 'plain', '0.0000', '0.0000', '66.0000', '66.0000', '0.0000', '0.0000', '0.0000', '0.0000', '45.5000', '0.0000', '0.0000'),
+(53, '22023/00000049', 2, '306.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '137.1000', 'plain', '0.0000', '0.0000', '306.0000', '306.0000', '0.0000', '0.0000', '0.0000', '4.0000', '168.9000', '0.0000', '0.0000'),
+(54, '22023/00000050', 2, '306.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '137.1000', 'plain', '0.0000', '0.0000', '306.0000', '306.0000', '0.0000', '0.0000', '0.0000', '4.0000', '168.9000', '0.0000', '0.0000'),
+(56, '300000005', 3, '40.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '13.5500', 'plain', '0.0000', '0.0000', '40.0000', '40.0000', '0.0000', '0.0000', '0.0000', '0.0000', '26.4500', '0.0000', '0.0000'),
+(57, '300000006', 3, '52.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '13.9000', 'plain', '0.0000', '0.0000', '52.0000', '52.0000', '0.0000', '0.0000', '0.0000', '8.0000', '38.1000', '0.0000', '0.0000'),
+(58, '300000007', 3, '40.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '13.5500', 'plain', '0.0000', '0.0000', '40.0000', '40.0000', '0.0000', '0.0000', '0.0000', '0.0000', '26.4500', '0.0000', '0.0000'),
+(59, '300000008', 3, '40.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '13.5500', 'plain', '0.0000', '0.0000', '40.0000', '40.0000', '0.0000', '0.0000', '0.0000', '0.0000', '26.4500', '0.0000', '0.0000'),
+(60, '300000009', 3, '40.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '13.5500', 'plain', '0.0000', '0.0000', '40.0000', '40.0000', '0.0000', '0.0000', '0.0000', '0.0000', '26.4500', '0.0000', '0.0000'),
+(61, '300000010', 3, '26.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '6.9500', 'plain', '0.0000', '0.0000', '26.0000', '26.0000', '0.0000', '0.0000', '0.0000', '0.0000', '19.0500', '0.0000', '0.0000'),
+(62, '22023/00000051', 2, '306.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '137.1000', 'plain', '0.0000', '0.0000', '306.0000', '306.0000', '0.0000', '0.0000', '0.0000', '0.0000', '168.9000', '0.0000', '0.0000'),
+(63, '300000011', 3, '40.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '11.9500', 'plain', '0.0000', '0.0000', '40.0000', '40.0000', '0.0000', '0.0000', '0.0000', '0.0000', '28.0500', '0.0000', '0.0000'),
+(64, '300000012', 3, '40.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '11.9500', 'plain', '0.0000', '0.0000', '40.0000', '40.0000', '0.0000', '0.0000', '0.0000', '0.0000', '28.0500', '0.0000', '0.0000'),
+(65, '22023/00000052', 2, '328.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '153.4000', 'plain', '0.0000', '0.0000', '328.0000', '328.0000', '0.0000', '0.0000', '0.0000', '0.0000', '174.6000', '0.0000', '0.0000'),
+(66, '300000013', 3, '40.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '13.5500', 'plain', '0.0000', '0.0000', '40.0000', '40.0000', '0.0000', '0.0000', '0.0000', '0.0000', '26.4500', '0.0000', '0.0000'),
+(67, '300000014', 3, '40.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '13.5500', 'plain', '0.0000', '0.0000', '40.0000', '40.0000', '0.0000', '0.0000', '0.0000', '0.0000', '26.4500', '0.0000', '0.0000'),
+(68, '300000015', 3, '40.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '13.5500', 'plain', '0.0000', '0.0000', '40.0000', '40.0000', '0.0000', '0.0000', '0.0000', '0.0000', '26.4500', '0.0000', '0.0000'),
+(69, '22023/00000053', 2, '164.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '76.7000', 'plain', '0.0000', '0.0000', '164.0000', '164.0000', '0.0000', '0.0000', '0.0000', '0.0000', '87.3000', '0.0000', '0.0000'),
+(70, '22023/00000054', 2, '142.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '60.4000', 'plain', '0.0000', '0.0000', '142.0000', '142.0000', '0.0000', '0.0000', '0.0000', '0.0000', '81.6000', '0.0000', '0.0000'),
+(71, '22023/00000055', 2, '306.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '137.1000', 'plain', '0.0000', '0.0000', '306.0000', '306.0000', '0.0000', '0.0000', '0.0000', '0.0000', '168.9000', '0.0000', '0.0000'),
+(72, '300000016', 3, '80.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '27.1000', 'plain', '0.0000', '0.0000', '80.0000', '80.0000', '0.0000', '0.0000', '0.0000', '0.0000', '52.9000', '0.0000', '0.0000'),
+(73, '22023/00000056', 2, '391.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '178.1000', 'plain', '0.0000', '0.0000', '391.0000', '391.0000', '0.0000', '0.0000', '0.0000', '9.0000', '212.9000', '0.0000', '0.0000'),
+(74, '22023/00000057', 2, '164.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '76.7000', 'plain', '0.0000', '0.0000', '164.0000', '164.0000', '0.0000', '0.0000', '0.0000', '0.0000', '87.3000', '0.0000', '0.0000');
 
 -- --------------------------------------------------------
 
@@ -6785,7 +7723,47 @@ INSERT INTO `sell_logs` (`id`, `customer_id`, `college_id`, `reference_no`, `ref
 (31, 28, 2, 'CT23080822031', '22023/00000030', 'sell', 1, 'Paid while selling', '164.0000', 2, 6, '2023-08-08 10:23:06', NULL),
 (32, 29, 2, 'CT23080822032', '22023/00000031', 'sell', 1, 'Paid while selling', '164.0000', 2, 6, '2023-08-08 10:47:23', NULL),
 (33, 30, 2, 'CT23080822033', '22023/00000032', 'sell', 1, 'Paid while selling', '322.0000', 2, 6, '2023-08-08 11:47:40', NULL),
-(34, 31, 2, 'CT23080822034', '22023/00000033', 'sell', 1, 'Paid while selling', '85.0000', 2, 6, '2023-08-08 12:39:49', NULL);
+(34, 31, 2, 'CT23080822034', '22023/00000033', 'sell', 1, 'Paid while selling', '85.0000', 2, 6, '2023-08-08 12:39:49', NULL),
+(35, 32, 2, 'CT23080822035', '22023/00000034', 'sell', 1, 'Paid while selling', '164.0000', 2, 6, '2023-08-08 15:10:47', NULL),
+(36, 33, 2, 'CT23080922036', '22023/00000035', 'sell', 1, 'Paid while selling', '142.0000', 2, 6, '2023-08-09 11:38:41', NULL),
+(37, 34, 2, 'CT23080922037', '22023/00000036', 'sell', 1, 'Paid while selling', '85.0000', 2, 6, '2023-08-09 11:40:14', NULL),
+(38, 1, 2, 'CT23080922038', '22023/00000037', 'sell', 1, 'Paid while selling', '142.0000', 2, 6, '2023-08-09 13:20:26', NULL),
+(39, 1, 2, 'CT23080922039', '22023/00000038', 'sell', 1, 'Paid while selling', '344.0000', 2, 6, '2023-08-09 16:00:26', NULL),
+(40, 35, 2, 'CT23081022040', '22023/00000039', 'sell', 1, 'Paid while selling', '85.0000', 2, 6, '2023-08-10 11:14:50', NULL),
+(41, 36, 2, 'CT23081022041', '22023/00000040', 'sell', 1, 'Paid while selling', '164.0000', 2, 6, '2023-08-10 11:33:18', NULL),
+(42, 37, 2, 'CT23081022042', '22023/00000041', 'sell', 1, 'Paid while selling', '142.0000', 2, 6, '2023-08-10 11:42:22', NULL),
+(43, 38, 2, 'CT23081422043', '22023/00000042', 'sell', 1, 'Paid while selling', '344.0000', 2, 6, '2023-08-14 12:37:10', NULL),
+(44, 39, 2, 'CT23081422044', '22023/00000043', 'sell', 1, 'Paid while selling', '164.0000', 2, 6, '2023-08-14 12:43:05', NULL),
+(45, 40, 2, 'CT23081422045', '22023/00000044', 'sell', 1, 'Paid while selling', '85.0000', 2, 6, '2023-08-14 12:55:20', NULL),
+(46, 1, 2, 'CT23081522046', '22023/00000045', 'sell', 1, 'Paid while selling', '164.0000', 2, 6, '2023-08-15 10:44:48', NULL),
+(47, 41, 2, 'CT23081522047', '22023/00000046', 'sell', 1, 'Paid while selling', '164.0000', 2, 6, '2023-08-15 14:30:22', NULL),
+(48, 43, 5, 'CT230816300001', '300000001', 'sell', 1, 'Paid while selling', '40.0000', 3, 10, '2023-08-16 10:08:45', NULL),
+(49, 44, 2, 'CT23081622048', '22023/00000047', 'sell', 1, 'Paid while selling', '164.0000', 2, 6, '2023-08-16 10:21:24', NULL),
+(50, 42, 2, 'CT23081622049', '22023/00000048', 'sell', 1, 'Paid while selling', '164.0000', 2, 6, '2023-08-16 10:49:14', NULL),
+(51, 45, 5, 'CT2308163002', '300000002', 'sell', 1, 'Paid while selling', '26.0000', 3, 10, '2023-08-16 13:13:12', NULL),
+(52, 46, 5, 'CT23081633003', '300000003', 'sell', 1, 'Paid while selling', '66.0000', 3, 10, '2023-08-16 13:18:08', NULL),
+(53, 47, 2, 'CT23081622050', '22023/00000049', 'sell', 1, 'Paid while selling', '306.0000', 2, 6, '2023-08-16 14:21:51', NULL),
+(54, 48, 2, 'CT23081622051', '22023/00000050', 'sell', 1, 'Paid while selling', '306.0000', 2, 6, '2023-08-16 15:20:55', NULL),
+(55, 49, 5, 'CT23081733004', '300000004', 'sell', 1, 'Paid while selling', '26.0000', 3, 10, '2023-08-17 13:08:37', NULL),
+(56, 50, 5, 'CT23081733005', '300000005', 'sell', 1, 'Paid while selling', '40.0000', 3, 10, '2023-08-17 13:15:03', NULL),
+(57, 51, 5, 'CT23081733006', '300000006', 'sell', 1, 'Paid while selling', '52.0000', 3, 10, '2023-08-17 14:13:37', NULL),
+(58, 52, 5, 'CT23081733007', '300000007', 'sell', 1, 'Paid while selling', '40.0000', 3, 10, '2023-08-17 14:54:10', NULL),
+(59, 53, 5, 'CT23081733008', '300000008', 'sell', 1, 'Paid while selling', '40.0000', 3, 10, '2023-08-17 14:59:34', NULL),
+(60, 54, 5, 'CT23081733009', '300000009', 'sell', 1, 'Paid while selling', '40.0000', 3, 10, '2023-08-17 15:05:46', NULL),
+(61, 55, 5, 'CT23081733010', '300000010', 'sell', 1, 'Paid while selling', '26.0000', 3, 10, '2023-08-17 15:08:06', NULL),
+(62, 56, 2, 'CT23081722052', '22023/00000051', 'sell', 1, 'Paid while selling', '306.0000', 2, 6, '2023-08-17 15:50:53', NULL),
+(63, 49, 5, 'CT23081733011', '300000011', 'sell', 1, 'Paid while selling', '40.0000', 3, 10, '2023-08-17 15:51:49', NULL),
+(64, 57, 5, 'CT23081733012', '300000012', 'sell', 1, 'Paid while selling', '40.0000', 3, 10, '2023-08-17 15:54:27', NULL),
+(65, 58, 2, 'CT23081722053', '22023/00000052', 'sell', 1, 'Paid while selling', '328.0000', 2, 6, '2023-08-17 15:58:20', NULL),
+(66, 59, 5, 'CT23081733013', '300000013', 'sell', 1, 'Paid while selling', '40.0000', 3, 10, '2023-08-17 17:09:11', NULL),
+(67, 60, 5, 'CT23081733014', '300000014', 'sell', 1, 'Paid while selling', '40.0000', 3, 10, '2023-08-17 17:12:44', NULL),
+(68, 61, 5, 'CT23081733015', '300000015', 'sell', 1, 'Paid while selling', '40.0000', 3, 10, '2023-08-17 17:14:13', NULL),
+(69, 62, 2, 'CT23081822054', '22023/00000053', 'sell', 1, 'Paid while selling', '164.0000', 2, 6, '2023-08-18 11:45:41', NULL),
+(70, 63, 2, 'CT23081822055', '22023/00000054', 'sell', 1, 'Paid while selling', '142.0000', 2, 6, '2023-08-18 13:19:00', NULL),
+(71, 64, 2, 'CT23081822056', '22023/00000055', 'sell', 1, 'Paid while selling', '306.0000', 2, 6, '2023-08-18 13:46:22', NULL),
+(72, 65, 5, 'CT23081833016', '300000016', 'sell', 1, 'Paid while selling', '80.0000', 3, 10, '2023-08-18 15:02:40', NULL),
+(73, 66, 2, 'CT23081822057', '22023/00000056', 'sell', 1, 'Paid while selling', '391.0000', 2, 6, '2023-08-18 15:57:05', NULL),
+(74, 67, 2, 'CT23081822058', '22023/00000057', 'sell', 1, 'Paid while selling', '164.0000', 2, 6, '2023-08-18 16:07:07', NULL);
 
 -- --------------------------------------------------------
 
@@ -6963,7 +7941,8 @@ CREATE TABLE `stores` (
 INSERT INTO `stores` (`store_id`, `name`, `code_name`, `mobile`, `email`, `country`, `zip_code`, `currency`, `vat_reg_no`, `cashier_id`, `address`, `receipt_printer`, `cash_drawer_codes`, `char_per_line`, `remote_printing`, `printer`, `order_printers`, `auto_print`, `local_printers`, `logo`, `favicon`, `preference`, `sound_effect`, `sort_order`, `feedback_status`, `feedback_at`, `deposit_account_id`, `thumbnail`, `status`, `created_at`) VALUES
 (1, 'AGENCIA CENTRAL', 'agencia_central', '231321', 'polorenan@hotmail.com', 'EC', '1200', 'USD', '', 3, 'LA LIBERTAD', '1', NULL, 42, 0, 1, '[\"1\"]', 1, 1, '1_logo.jpg', '1_favicon.png', 'a:32:{s:10:\"gst_reg_no\";s:0:\"\";s:8:\"timezone\";s:12:\"America/Lima\";s:21:\"invoice_edit_lifespan\";s:4:\"1440\";s:26:\"invoice_edit_lifespan_unit\";s:6:\"minute\";s:23:\"invoice_delete_lifespan\";s:4:\"1440\";s:28:\"invoice_delete_lifespan_unit\";s:6:\"minute\";s:3:\"tax\";s:1:\"0\";s:11:\"sms_gateway\";s:10:\"Clickatell\";s:9:\"sms_alert\";s:1:\"0\";s:24:\"expiring_soon_alert_days\";s:0:\"\";s:20:\"datatable_item_limit\";s:2:\"25\";s:16:\"reference_format\";s:8:\"sequence\";s:22:\"sales_reference_prefix\";s:1:\"V\";s:16:\"receipt_template\";s:1:\"1\";s:12:\"invoice_view\";s:8:\"standard\";s:14:\"business_state\";s:2:\"AN\";s:31:\"change_item_price_while_billing\";s:1:\"0\";s:25:\"pos_product_display_limit\";s:0:\"\";s:15:\"after_sell_page\";s:16:\"receipt_in_popup\";s:19:\"invoice_footer_text\";s:25:\"Gracias por Preferirnos!.\";s:10:\"email_from\";s:13:\"tusolutionweb\";s:13:\"email_address\";s:2:\"US\";s:12:\"email_driver\";s:11:\"smtp_server\";s:14:\"send_mail_path\";s:18:\"/usr/sbin/sendmail\";s:9:\"smtp_host\";s:15:\"smtp.google.com\";s:13:\"smtp_username\";s:0:\"\";s:13:\"smtp_password\";s:0:\"\";s:9:\"smtp_port\";s:3:\"465\";s:7:\"ssl_tls\";s:3:\"ssl\";s:12:\"ftp_hostname\";s:0:\"\";s:12:\"ftp_username\";s:0:\"\";s:12:\"ftp_password\";s:0:\"\";}', 1, 0, 'ready', '2019-03-01 14:29:18', 0, NULL, 1, '2018-09-24 18:00:00'),
 (2, 'SUCURSAL LATACUNGA ', 'sucursal_latacunga', '', 'importadorapoloapolo@hotmail.com', 'AD', '', 'USD', '', 3, 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1', NULL, 42, 0, NULL, NULL, 1, NULL, '2_logo.jpg', NULL, 'a:32:{s:10:\"gst_reg_no\";s:0:\"\";s:8:\"timezone\";s:12:\"America/Lima\";s:21:\"invoice_edit_lifespan\";s:4:\"1440\";s:26:\"invoice_edit_lifespan_unit\";s:6:\"minute\";s:23:\"invoice_delete_lifespan\";s:4:\"1440\";s:28:\"invoice_delete_lifespan_unit\";s:6:\"minute\";s:3:\"tax\";s:1:\"0\";s:11:\"sms_gateway\";s:10:\"Clickatell\";s:9:\"sms_alert\";s:1:\"0\";s:24:\"expiring_soon_alert_days\";s:0:\"\";s:20:\"datatable_item_limit\";s:2:\"25\";s:16:\"reference_format\";s:13:\"year_sequence\";s:22:\"sales_reference_prefix\";s:0:\"\";s:16:\"receipt_template\";s:1:\"1\";s:12:\"invoice_view\";s:8:\"standard\";s:14:\"business_state\";s:2:\"AN\";s:31:\"change_item_price_while_billing\";s:1:\"0\";s:25:\"pos_product_display_limit\";s:0:\"\";s:15:\"after_sell_page\";s:16:\"receipt_in_popup\";s:19:\"invoice_footer_text\";s:0:\"\";s:10:\"email_from\";s:13:\"tusolutionweb\";s:13:\"email_address\";s:2:\"US\";s:12:\"email_driver\";s:11:\"smtp_server\";s:14:\"send_mail_path\";s:18:\"/usr/sbin/sendmail\";s:9:\"smtp_host\";s:15:\"smtp.google.com\";s:13:\"smtp_username\";s:0:\"\";s:13:\"smtp_password\";s:0:\"\";s:9:\"smtp_port\";s:3:\"465\";s:7:\"ssl_tls\";s:3:\"ssl\";s:12:\"ftp_hostname\";s:0:\"\";s:12:\"ftp_username\";s:0:\"\";s:12:\"ftp_password\";s:0:\"\";}', 1, 0, 'ready', NULL, 1, NULL, 1, '2023-07-20 14:45:05'),
-(3, 'SUCURSAL AMBATO', 'sucursal_ambato', '', 'ambato@controldas.com', 'AD', '', 'USD', '', 3, 'AMBATO', '', NULL, 42, 0, NULL, NULL, 1, NULL, NULL, NULL, 'a:21:{s:8:\"timezone\";s:12:\"America/Lima\";s:21:\"invoice_edit_lifespan\";s:4:\"1440\";s:26:\"invoice_edit_lifespan_unit\";s:6:\"minute\";s:23:\"invoice_delete_lifespan\";s:4:\"1440\";s:28:\"invoice_delete_lifespan_unit\";s:6:\"minute\";s:15:\"after_sell_page\";s:3:\"pos\";s:3:\"tax\";s:1:\"0\";s:20:\"stock_alert_quantity\";s:0:\"\";s:20:\"datatable_item_limit\";s:2:\"25\";s:19:\"invoice_footer_text\";s:0:\"\";s:10:\"email_from\";s:13:\"tusolutionweb\";s:13:\"email_address\";s:2:\"US\";s:12:\"email_driver\";s:11:\"smtp_server\";s:9:\"smtp_host\";s:15:\"smtp.google.com\";s:13:\"smtp_username\";s:0:\"\";s:13:\"smtp_password\";s:0:\"\";s:9:\"smtp_port\";s:3:\"465\";s:7:\"ssl_tls\";s:3:\"ssl\";s:12:\"ftp_hostname\";s:0:\"\";s:12:\"ftp_username\";s:0:\"\";s:12:\"ftp_password\";s:0:\"\";}', 1, 0, 'ready', NULL, 1, NULL, 1, '2023-08-05 14:30:29');
+(3, 'SUCURSAL AMBATO', 'sucursal_ambato', '', 'ambato@controldas.com', 'AD', '', 'USD', '', 3, 'AMBATO', '', NULL, 42, 0, NULL, NULL, 1, NULL, NULL, NULL, 'a:21:{s:8:\"timezone\";s:12:\"America/Lima\";s:21:\"invoice_edit_lifespan\";s:4:\"1440\";s:26:\"invoice_edit_lifespan_unit\";s:6:\"minute\";s:23:\"invoice_delete_lifespan\";s:4:\"1440\";s:28:\"invoice_delete_lifespan_unit\";s:6:\"minute\";s:15:\"after_sell_page\";s:3:\"pos\";s:3:\"tax\";s:1:\"0\";s:20:\"stock_alert_quantity\";s:0:\"\";s:20:\"datatable_item_limit\";s:2:\"25\";s:19:\"invoice_footer_text\";s:0:\"\";s:10:\"email_from\";s:13:\"tusolutionweb\";s:13:\"email_address\";s:2:\"US\";s:12:\"email_driver\";s:11:\"smtp_server\";s:9:\"smtp_host\";s:15:\"smtp.google.com\";s:13:\"smtp_username\";s:0:\"\";s:13:\"smtp_password\";s:0:\"\";s:9:\"smtp_port\";s:3:\"465\";s:7:\"ssl_tls\";s:3:\"ssl\";s:12:\"ftp_hostname\";s:0:\"\";s:12:\"ftp_username\";s:0:\"\";s:12:\"ftp_password\";s:0:\"\";}', 1, 0, 'ready', NULL, 1, NULL, 1, '2023-08-05 14:30:29'),
+(4, 'AGENCIA RIOBAMBA', 'agencia_riobamba', '', 'YG@KNDSF.COM', 'AD', '', 'USD', '', 3, 'RIOBAMBA', '1', NULL, 42, 0, NULL, NULL, 1, NULL, NULL, NULL, 'a:21:{s:8:\"timezone\";s:12:\"America/Lima\";s:21:\"invoice_edit_lifespan\";s:4:\"1440\";s:26:\"invoice_edit_lifespan_unit\";s:6:\"minute\";s:23:\"invoice_delete_lifespan\";s:4:\"1440\";s:28:\"invoice_delete_lifespan_unit\";s:6:\"minute\";s:15:\"after_sell_page\";s:3:\"pos\";s:3:\"tax\";s:1:\"0\";s:20:\"stock_alert_quantity\";s:0:\"\";s:20:\"datatable_item_limit\";s:2:\"25\";s:19:\"invoice_footer_text\";s:0:\"\";s:10:\"email_from\";s:13:\"tusolutionweb\";s:13:\"email_address\";s:2:\"US\";s:12:\"email_driver\";s:11:\"smtp_server\";s:9:\"smtp_host\";s:15:\"smtp.google.com\";s:13:\"smtp_username\";s:0:\"\";s:13:\"smtp_password\";s:0:\"\";s:9:\"smtp_port\";s:3:\"465\";s:7:\"ssl_tls\";s:3:\"ssl\";s:12:\"ftp_hostname\";s:0:\"\";s:12:\"ftp_username\";s:0:\"\";s:12:\"ftp_password\";s:0:\"\";}', 1, 0, 'ready', NULL, 1, NULL, 1, '2023-08-17 19:57:55');
 
 -- --------------------------------------------------------
 
@@ -7040,7 +8019,14 @@ INSERT INTO `supplier_to_store` (`s2s_id`, `sup_id`, `store_id`, `balance`, `sta
 (18, 4, 3, '0.0000', 1, 0),
 (19, 5, 3, '0.0000', 1, 0),
 (20, 6, 3, '0.0000', 1, 0),
-(21, 7, 3, '0.0000', 1, 0);
+(21, 7, 3, '0.0000', 1, 0),
+(22, 1, 4, '0.0000', 1, 0),
+(23, 2, 4, '0.0000', 1, 0),
+(24, 3, 4, '0.0000', 1, 0),
+(25, 4, 4, '0.0000', 1, 0),
+(26, 5, 4, '0.0000', 1, 0),
+(27, 6, 4, '0.0000', 1, 0),
+(28, 7, 4, '0.0000', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -7156,15 +8142,17 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `group_id`, `username`, `email`, `mobile`, `dob`, `sex`, `password`, `raw_password`, `pass_reset_code`, `reset_code_time`, `login_try`, `last_login`, `ip`, `address`, `preference`, `user_image`, `fk_id`, `created_at`, `updated_at`) VALUES
-(1, 1, 'EDGAR YAGUAL', 'eye_layla@hotmail.com', '0969237302', '1990-09-08', 'M', 'c4221155b59e510664712215ed60e476', 'Administrator2023DAS', '', NULL, 0, '2023-08-07 15:25:40', '181.198.104.222', NULL, 'a:4:{s:10:\"base_color\";s:6:\"purple\";s:14:\"pos_side_panel\";s:4:\"left\";s:11:\"pos_pattern\";s:15:\"brick-color.jpg\";s:8:\"language\";s:2:\"es\";}', '/edgartm.jpg', NULL, '2019-12-14 22:27:47', '2019-07-03 22:29:20'),
-(2, 4, 'DAVID POLO', 'admin@controldas.com', 'DAVID POLO', '1990-01-01', 'M', 'a618780a5f901e3d81b8b0bfe0281385', 'ControlAdmin1', '', NULL, 0, '2023-08-08 10:14:58', '181.199.42.39', NULL, 'a:4:{s:8:\"language\";s:2:\"es\";s:10:\"base_color\";s:6:\"purple\";s:14:\"pos_side_panel\";s:5:\"right\";s:11:\"pos_pattern\";s:9:\"space.jpg\";}', '', 0, '2019-12-14 22:27:47', '2019-07-02 16:28:15'),
+(1, 1, 'EDGAR YAGUAL', 'eye_layla@hotmail.com', '0969237302', '1990-09-08', 'M', 'c4221155b59e510664712215ed60e476', 'Administrator2023DAS', '', NULL, 0, '2023-08-18 08:42:50', '200.115.36.38', NULL, 'a:4:{s:10:\"base_color\";s:6:\"purple\";s:14:\"pos_side_panel\";s:4:\"left\";s:11:\"pos_pattern\";s:15:\"brick-color.jpg\";s:8:\"language\";s:2:\"es\";}', '/edgartm.jpg', NULL, '2019-12-14 22:27:47', '2019-07-03 22:29:20'),
+(2, 4, 'DAVID POLO', 'admin@controldas.com', 'DAVID POLO', '1990-01-01', 'M', 'a618780a5f901e3d81b8b0bfe0281385', 'ControlAdmin1', '', NULL, 0, '2023-08-18 13:00:05', '181.198.104.222', NULL, 'a:4:{s:8:\"language\";s:2:\"es\";s:10:\"base_color\";s:6:\"purple\";s:14:\"pos_side_panel\";s:5:\"right\";s:11:\"pos_pattern\";s:9:\"space.jpg\";}', '', 0, '2019-12-14 22:27:47', '2019-07-02 16:28:15'),
 (3, 2, 'Cashier', 'cashier@controldas.com', '0113743700', '1990-01-01', 'M', 'a618780a5f901e3d81b8b0bfe0281385', 'ControlAdmin1', '', NULL, 0, '2023-06-13 14:01:19', '::1', NULL, 'a:4:{s:10:\"base_color\";s:4:\"blue\";s:14:\"pos_side_panel\";s:4:\"left\";s:11:\"pos_pattern\";s:13:\"brickwall.jpg\";s:8:\"language\";s:2:\"es\";}', '', NULL, '2019-12-14 22:27:47', '2019-07-02 21:35:07'),
 (4, 3, 'Salesman', 'salesman@controldas.com', '1234567890', '0000-00-00', 'M', 'a618780a5f901e3d81b8b0bfe0281385', 'ControlAdmin1', NULL, NULL, 0, '2023-06-14 21:58:20', '127.0.0.1', NULL, 'a:1:{s:8:\"language\";s:2:\"es\";}', '', NULL, '2023-06-14 21:57:48', NULL),
-(5, 8, 'HERNAN EIVAR', 'hernaneivar@controldas.com', 'HERNAN', '0000-00-00', 'M', '314a4e69e0cf213e0d9cfd14a5ead1f2', '0983171925', NULL, NULL, 0, '2023-08-07 21:45:11', '2800:bf0:2902:108e:809b:3c28:a283:21b6', NULL, 'a:1:{s:8:\"language\";s:2:\"es\";}', '', 0, '2023-07-20 14:52:36', NULL),
-(6, 5, 'MAURICIO CASTILLO', 'mauriciocastillo@controldas.com', 'MAURICIO ', '0000-00-00', 'M', '56740f5615802370aa445aadfb0be840', '0980948929', NULL, NULL, 0, '2023-08-08 10:21:15', '190.99.77.62', NULL, 'a:1:{s:8:\"language\";s:2:\"en\";}', '', 0, '2023-07-20 15:01:04', NULL),
+(5, 8, 'HERNAN EIVAR', 'hernaneivar@controldas.com', 'HERNAN', '0000-00-00', 'M', '314a4e69e0cf213e0d9cfd14a5ead1f2', '0983171925', NULL, NULL, 0, '2023-08-17 21:25:01', '181.198.135.168', NULL, 'a:1:{s:8:\"language\";s:2:\"es\";}', '', 0, '2023-07-20 14:52:36', NULL),
+(6, 5, 'MAURICIO CASTILLO', 'mauriciocastillo@controldas.com', 'MAURICIO ', '0000-00-00', 'M', '56740f5615802370aa445aadfb0be840', '0980948929', NULL, NULL, 0, '2023-08-16 13:30:45', '190.99.77.62', NULL, 'a:1:{s:8:\"language\";s:2:\"en\";}', '', 0, '2023-07-20 15:01:04', NULL),
 (7, 5, 'DALILA SEGURA', 'dalila_segura@controldas.com', 'DALI', '0000-00-00', 'M', '5a612297eef412bc00bd0ca726f53fdb', '0939684718', NULL, NULL, 0, '2023-07-31 17:15:11', '2800:bf0:a821:1122:4457:7a58:99c6:9b14', NULL, 'a:1:{s:8:\"language\";s:2:\"en\";}', '', 0, '2023-07-21 08:21:08', NULL),
-(8, 6, 'HOLGUIN EDICIONES', 'E@', 'HOLGUIN ', '0000-00-00', 'M', '827ccb0eea8a706c4c34a16891f84e7b', '12345', NULL, NULL, 0, '2023-08-03 18:42:46', '181.199.42.39', NULL, 'a:1:{s:8:\"language\";s:2:\"en\";}', '', 1, '2023-08-03 18:42:30', NULL),
-(9, 7, 'UE COTOPAXI', 'DJD', 'UEI COTOPAXI', '0000-00-00', 'M', 'e10adc3949ba59abbe56e057f20f883e', '123456', NULL, NULL, 0, '2023-08-08 09:59:57', '181.199.42.39', NULL, 'a:1:{s:8:\"language\";s:2:\"en\";}', '', 2, '2023-08-08 09:55:05', NULL);
+(8, 6, 'HOLGUIN EDICIONES', 'E@', 'HOLGUIN ', '0000-00-00', 'M', '827ccb0eea8a706c4c34a16891f84e7b', '12345', NULL, NULL, 0, '2023-08-16 13:35:44', '2800:430:1281:8b8b:685b:ae40:8978:ab98', NULL, 'a:1:{s:8:\"language\";s:2:\"en\";}', '', 1, '2023-08-03 18:42:30', NULL),
+(9, 7, 'UE COTOPAXI', 'DJD', 'UEI COTOPAXI', '0000-00-00', 'M', 'e10adc3949ba59abbe56e057f20f883e', '123456', NULL, NULL, 0, '2023-08-09 16:58:09', '181.199.42.39', NULL, 'a:1:{s:8:\"language\";s:2:\"en\";}', '', 2, '2023-08-08 09:55:05', NULL),
+(10, 5, 'DOMINIQUE VALLE', 'SDPK', 'DOMI', '0000-00-00', 'M', '7fa74007d4d000d82294c460bac3a3e2', '0963821009', NULL, NULL, 0, '2023-08-18 15:00:56', '157.100.63.41', NULL, 'a:1:{s:8:\"language\";s:2:\"en\";}', '', 0, '2023-08-14 11:03:09', NULL),
+(11, 6, 'PROVEEDOR HERNAN EIVAR', 'SDF', 'HERNANE', '0000-00-00', 'M', '314a4e69e0cf213e0d9cfd14a5ead1f2', '0983171925', NULL, NULL, 0, '2023-08-14 11:14:11', '190.63.254.36', NULL, 'a:1:{s:8:\"language\";s:2:\"en\";}', '', 7, '2023-08-14 11:13:44', NULL);
 
 -- --------------------------------------------------------
 
@@ -7189,7 +8177,7 @@ INSERT INTO `user_group` (`group_id`, `name`, `slug`, `sort_order`, `status`, `p
 (1, 'Admin', 'admin', 1, 1, 'a:1:{s:6:\"access\";a:122:{s:16:\"read_sell_report\";s:4:\"true\";s:20:\"read_overview_report\";s:4:\"true\";s:22:\"read_collection_report\";s:4:\"true\";s:27:\"read_full_collection_report\";s:4:\"true\";s:35:\"read_customer_due_collection_report\";s:4:\"true\";s:29:\"read_supplier_due_paid_report\";s:4:\"true\";s:14:\"read_analytics\";s:4:\"true\";s:24:\"read_sell_payment_report\";s:4:\"true\";s:20:\"read_sell_tax_report\";s:4:\"true\";s:24:\"read_tax_overview_report\";s:4:\"true\";s:17:\"read_stock_report\";s:4:\"true\";s:21:\"send_report_via_email\";s:4:\"true\";s:8:\"withdraw\";s:4:\"true\";s:7:\"deposit\";s:4:\"true\";s:8:\"transfer\";s:4:\"true\";s:17:\"read_bank_account\";s:4:\"true\";s:23:\"read_bank_account_sheet\";s:4:\"true\";s:18:\"read_bank_transfer\";s:4:\"true\";s:22:\"read_bank_transactions\";s:4:\"true\";s:19:\"create_bank_account\";s:4:\"true\";s:19:\"update_bank_account\";s:4:\"true\";s:19:\"delete_bank_account\";s:4:\"true\";s:12:\"read_expense\";s:4:\"true\";s:14:\"create_expense\";s:4:\"true\";s:14:\"update_expense\";s:4:\"true\";s:14:\"delete_expense\";s:4:\"true\";s:21:\"read_sell_transaction\";s:4:\"true\";s:23:\"create_purchase_invoice\";s:4:\"true\";s:18:\"read_purchase_list\";s:4:\"true\";s:28:\"update_purchase_invoice_info\";s:4:\"true\";s:23:\"delete_purchase_invoice\";s:4:\"true\";s:16:\"purchase_payment\";s:4:\"true\";s:13:\"read_transfer\";s:4:\"true\";s:12:\"add_transfer\";s:4:\"true\";s:15:\"update_transfer\";s:4:\"true\";s:13:\"read_giftcard\";s:4:\"true\";s:12:\"add_giftcard\";s:4:\"true\";s:15:\"update_giftcard\";s:4:\"true\";s:15:\"delete_giftcard\";s:4:\"true\";s:14:\"giftcard_topup\";s:4:\"true\";s:19:\"read_giftcard_topup\";s:4:\"true\";s:21:\"delete_giftcard_topup\";s:4:\"true\";s:12:\"read_product\";s:4:\"true\";s:14:\"create_product\";s:4:\"true\";s:14:\"update_product\";s:4:\"true\";s:14:\"delete_product\";s:4:\"true\";s:14:\"import_product\";s:4:\"true\";s:19:\"product_bulk_action\";s:4:\"true\";s:18:\"delete_all_product\";s:4:\"true\";s:13:\"read_category\";s:4:\"true\";s:15:\"create_category\";s:4:\"true\";s:15:\"update_category\";s:4:\"true\";s:15:\"delete_category\";s:4:\"true\";s:16:\"read_stock_alert\";s:4:\"true\";s:20:\"read_expired_product\";s:4:\"true\";s:19:\"restore_all_product\";s:4:\"true\";s:13:\"read_supplier\";s:4:\"true\";s:15:\"create_supplier\";s:4:\"true\";s:15:\"update_supplier\";s:4:\"true\";s:15:\"delete_supplier\";s:4:\"true\";s:21:\"read_supplier_profile\";s:4:\"true\";s:8:\"read_box\";s:4:\"true\";s:10:\"create_box\";s:4:\"true\";s:10:\"update_box\";s:4:\"true\";s:10:\"delete_box\";s:4:\"true\";s:9:\"read_unit\";s:4:\"true\";s:11:\"create_unit\";s:4:\"true\";s:11:\"update_unit\";s:4:\"true\";s:11:\"delete_unit\";s:4:\"true\";s:12:\"read_taxrate\";s:4:\"true\";s:14:\"create_taxrate\";s:4:\"true\";s:14:\"update_taxrate\";s:4:\"true\";s:14:\"delete_taxrate\";s:4:\"true\";s:9:\"read_loan\";s:4:\"true\";s:17:\"read_loan_summary\";s:4:\"true\";s:9:\"take_loan\";s:4:\"true\";s:11:\"update_loan\";s:4:\"true\";s:11:\"delete_loan\";s:4:\"true\";s:8:\"loan_pay\";s:4:\"true\";s:13:\"read_customer\";s:4:\"true\";s:21:\"read_customer_profile\";s:4:\"true\";s:15:\"create_customer\";s:4:\"true\";s:15:\"update_customer\";s:4:\"true\";s:15:\"delete_customer\";s:4:\"true\";s:9:\"read_user\";s:4:\"true\";s:11:\"create_user\";s:4:\"true\";s:11:\"update_user\";s:4:\"true\";s:11:\"delete_user\";s:4:\"true\";s:15:\"change_password\";s:4:\"true\";s:14:\"read_usergroup\";s:4:\"true\";s:16:\"create_usergroup\";s:4:\"true\";s:16:\"update_usergroup\";s:4:\"true\";s:16:\"delete_usergroup\";s:4:\"true\";s:13:\"read_currency\";s:4:\"true\";s:15:\"create_currency\";s:4:\"true\";s:15:\"update_currency\";s:4:\"true\";s:15:\"change_currency\";s:4:\"true\";s:15:\"delete_currency\";s:4:\"true\";s:16:\"read_filemanager\";s:4:\"true\";s:12:\"read_pmethod\";s:4:\"true\";s:14:\"create_pmethod\";s:4:\"true\";s:14:\"update_pmethod\";s:4:\"true\";s:14:\"delete_pmethod\";s:4:\"true\";s:10:\"read_store\";s:4:\"true\";s:12:\"create_store\";s:4:\"true\";s:12:\"update_store\";s:4:\"true\";s:12:\"delete_store\";s:4:\"true\";s:14:\"activate_store\";s:4:\"true\";s:14:\"upload_favicon\";s:4:\"true\";s:11:\"upload_logo\";s:4:\"true\";s:12:\"read_printer\";s:4:\"true\";s:14:\"create_printer\";s:4:\"true\";s:14:\"update_printer\";s:4:\"true\";s:14:\"delete_printer\";s:4:\"true\";s:20:\"read_user_preference\";s:4:\"true\";s:22:\"update_user_preference\";s:4:\"true\";s:9:\"filtering\";s:4:\"true\";s:13:\"language_sync\";s:4:\"true\";s:6:\"backup\";s:4:\"true\";s:7:\"restore\";s:4:\"true\";s:11:\"show_profit\";s:4:\"true\";s:10:\"show_graph\";s:4:\"true\";}}'),
 (2, 'Cajero', 'cashier', 2, 1, 'a:0:{}'),
 (3, 'Vendedor', 'salesman', 3, 1, 'a:0:{}'),
-(4, 'Admin DAS', 'admin_das', 0, 1, 'a:1:{s:6:\"access\";a:95:{s:26:\"read_dashboard_invoce_view\";s:4:\"true\";s:28:\"read_dashboard_customer_view\";s:4:\"true\";s:28:\"read_dashboard_supplier_view\";s:4:\"true\";s:27:\"read_dashboard_product_view\";s:4:\"true\";s:22:\"read_recent_activities\";s:4:\"true\";s:16:\"read_sell_report\";s:4:\"true\";s:14:\"read_analytics\";s:4:\"true\";s:20:\"read_purchase_report\";s:4:\"true\";s:17:\"read_stock_report\";s:4:\"true\";s:17:\"read_sell_invoice\";s:4:\"true\";s:14:\"read_sell_list\";s:4:\"true\";s:19:\"create_sell_invoice\";s:4:\"true\";s:24:\"update_sell_invoice_info\";s:4:\"true\";s:19:\"delete_sell_invoice\";s:4:\"true\";s:12:\"sell_payment\";s:4:\"true\";s:15:\"create_sell_due\";s:4:\"true\";s:18:\"create_sell_return\";s:4:\"true\";s:16:\"read_sell_return\";s:4:\"true\";s:18:\"update_sell_return\";s:4:\"true\";s:18:\"delete_sell_return\";s:4:\"true\";s:16:\"sms_sell_invoice\";s:4:\"true\";s:18:\"email_sell_invoice\";s:4:\"true\";s:13:\"read_sell_log\";s:4:\"true\";s:23:\"create_purchase_invoice\";s:4:\"true\";s:18:\"read_purchase_list\";s:4:\"true\";s:28:\"update_purchase_invoice_info\";s:4:\"true\";s:17:\"read_purchase_log\";s:4:\"true\";s:12:\"read_product\";s:4:\"true\";s:14:\"create_product\";s:4:\"true\";s:14:\"update_product\";s:4:\"true\";s:14:\"delete_product\";s:4:\"true\";s:13:\"read_category\";s:4:\"true\";s:15:\"create_category\";s:4:\"true\";s:15:\"update_category\";s:4:\"true\";s:15:\"delete_category\";s:4:\"true\";s:16:\"read_stock_alert\";s:4:\"true\";s:20:\"read_expired_product\";s:4:\"true\";s:13:\"read_supplier\";s:4:\"true\";s:15:\"create_supplier\";s:4:\"true\";s:15:\"update_supplier\";s:4:\"true\";s:15:\"delete_supplier\";s:4:\"true\";s:21:\"read_supplier_profile\";s:4:\"true\";s:10:\"read_brand\";s:4:\"true\";s:12:\"create_brand\";s:4:\"true\";s:12:\"update_brand\";s:4:\"true\";s:12:\"delete_brand\";s:4:\"true\";s:18:\"read_brand_profile\";s:4:\"true\";s:9:\"read_unit\";s:4:\"true\";s:12:\"read_taxrate\";s:4:\"true\";s:13:\"read_customer\";s:4:\"true\";s:21:\"read_customer_profile\";s:4:\"true\";s:15:\"create_customer\";s:4:\"true\";s:15:\"update_customer\";s:4:\"true\";s:15:\"delete_customer\";s:4:\"true\";s:20:\"add_customer_balance\";s:4:\"true\";s:26:\"substract_customer_balance\";s:4:\"true\";s:25:\"read_customer_transaction\";s:4:\"true\";s:9:\"read_user\";s:4:\"true\";s:11:\"create_user\";s:4:\"true\";s:17:\"read_user_profile\";s:4:\"true\";s:11:\"update_user\";s:4:\"true\";s:11:\"delete_user\";s:4:\"true\";s:15:\"change_password\";s:4:\"true\";s:13:\"read_user_log\";s:4:\"true\";s:14:\"read_usergroup\";s:4:\"true\";s:12:\"read_pmethod\";s:4:\"true\";s:10:\"read_store\";s:4:\"true\";s:12:\"create_store\";s:4:\"true\";s:12:\"update_store\";s:4:\"true\";s:12:\"delete_store\";s:4:\"true\";s:14:\"activate_store\";s:4:\"true\";s:14:\"upload_favicon\";s:4:\"true\";s:11:\"upload_logo\";s:4:\"true\";s:12:\"read_college\";s:4:\"true\";s:14:\"create_college\";s:4:\"true\";s:14:\"update_college\";s:4:\"true\";s:14:\"delete_college\";s:4:\"true\";s:16:\"activate_college\";s:4:\"true\";s:11:\"read_course\";s:4:\"true\";s:13:\"create_course\";s:4:\"true\";s:13:\"update_course\";s:4:\"true\";s:13:\"delete_course\";s:4:\"true\";s:15:\"activate_course\";s:4:\"true\";s:12:\"read_printer\";s:4:\"true\";s:14:\"create_printer\";s:4:\"true\";s:14:\"update_printer\";s:4:\"true\";s:16:\"receipt_template\";s:4:\"true\";s:20:\"read_user_preference\";s:4:\"true\";s:22:\"update_user_preference\";s:4:\"true\";s:9:\"filtering\";s:4:\"true\";s:19:\"show_purchase_price\";s:4:\"true\";s:18:\"show_selling_price\";s:4:\"true\";s:20:\"show_estimated_sales\";s:4:\"true\";s:11:\"show_profit\";s:4:\"true\";s:10:\"show_graph\";s:4:\"true\";}}'),
+(4, 'Admin DAS', 'admin_das', 0, 1, 'a:1:{s:6:\"access\";a:96:{s:26:\"read_dashboard_invoce_view\";s:4:\"true\";s:28:\"read_dashboard_customer_view\";s:4:\"true\";s:28:\"read_dashboard_supplier_view\";s:4:\"true\";s:27:\"read_dashboard_product_view\";s:4:\"true\";s:22:\"read_recent_activities\";s:4:\"true\";s:16:\"read_sell_report\";s:4:\"true\";s:14:\"read_analytics\";s:4:\"true\";s:20:\"read_purchase_report\";s:4:\"true\";s:17:\"read_stock_report\";s:4:\"true\";s:17:\"read_sell_invoice\";s:4:\"true\";s:14:\"read_sell_list\";s:4:\"true\";s:19:\"create_sell_invoice\";s:4:\"true\";s:24:\"update_sell_invoice_info\";s:4:\"true\";s:19:\"delete_sell_invoice\";s:4:\"true\";s:12:\"sell_payment\";s:4:\"true\";s:15:\"create_sell_due\";s:4:\"true\";s:18:\"create_sell_return\";s:4:\"true\";s:16:\"read_sell_return\";s:4:\"true\";s:18:\"update_sell_return\";s:4:\"true\";s:18:\"delete_sell_return\";s:4:\"true\";s:16:\"sms_sell_invoice\";s:4:\"true\";s:18:\"email_sell_invoice\";s:4:\"true\";s:13:\"read_sell_log\";s:4:\"true\";s:23:\"create_purchase_invoice\";s:4:\"true\";s:18:\"read_purchase_list\";s:4:\"true\";s:28:\"update_purchase_invoice_info\";s:4:\"true\";s:23:\"delete_purchase_invoice\";s:4:\"true\";s:17:\"read_purchase_log\";s:4:\"true\";s:12:\"read_product\";s:4:\"true\";s:14:\"create_product\";s:4:\"true\";s:14:\"update_product\";s:4:\"true\";s:14:\"delete_product\";s:4:\"true\";s:13:\"read_category\";s:4:\"true\";s:15:\"create_category\";s:4:\"true\";s:15:\"update_category\";s:4:\"true\";s:15:\"delete_category\";s:4:\"true\";s:16:\"read_stock_alert\";s:4:\"true\";s:20:\"read_expired_product\";s:4:\"true\";s:13:\"read_supplier\";s:4:\"true\";s:15:\"create_supplier\";s:4:\"true\";s:15:\"update_supplier\";s:4:\"true\";s:15:\"delete_supplier\";s:4:\"true\";s:21:\"read_supplier_profile\";s:4:\"true\";s:10:\"read_brand\";s:4:\"true\";s:12:\"create_brand\";s:4:\"true\";s:12:\"update_brand\";s:4:\"true\";s:12:\"delete_brand\";s:4:\"true\";s:18:\"read_brand_profile\";s:4:\"true\";s:9:\"read_unit\";s:4:\"true\";s:12:\"read_taxrate\";s:4:\"true\";s:13:\"read_customer\";s:4:\"true\";s:21:\"read_customer_profile\";s:4:\"true\";s:15:\"create_customer\";s:4:\"true\";s:15:\"update_customer\";s:4:\"true\";s:15:\"delete_customer\";s:4:\"true\";s:20:\"add_customer_balance\";s:4:\"true\";s:26:\"substract_customer_balance\";s:4:\"true\";s:25:\"read_customer_transaction\";s:4:\"true\";s:9:\"read_user\";s:4:\"true\";s:11:\"create_user\";s:4:\"true\";s:17:\"read_user_profile\";s:4:\"true\";s:11:\"update_user\";s:4:\"true\";s:11:\"delete_user\";s:4:\"true\";s:15:\"change_password\";s:4:\"true\";s:13:\"read_user_log\";s:4:\"true\";s:14:\"read_usergroup\";s:4:\"true\";s:12:\"read_pmethod\";s:4:\"true\";s:10:\"read_store\";s:4:\"true\";s:12:\"create_store\";s:4:\"true\";s:12:\"update_store\";s:4:\"true\";s:12:\"delete_store\";s:4:\"true\";s:14:\"activate_store\";s:4:\"true\";s:14:\"upload_favicon\";s:4:\"true\";s:11:\"upload_logo\";s:4:\"true\";s:12:\"read_college\";s:4:\"true\";s:14:\"create_college\";s:4:\"true\";s:14:\"update_college\";s:4:\"true\";s:14:\"delete_college\";s:4:\"true\";s:16:\"activate_college\";s:4:\"true\";s:11:\"read_course\";s:4:\"true\";s:13:\"create_course\";s:4:\"true\";s:13:\"update_course\";s:4:\"true\";s:13:\"delete_course\";s:4:\"true\";s:15:\"activate_course\";s:4:\"true\";s:12:\"read_printer\";s:4:\"true\";s:14:\"create_printer\";s:4:\"true\";s:14:\"update_printer\";s:4:\"true\";s:16:\"receipt_template\";s:4:\"true\";s:20:\"read_user_preference\";s:4:\"true\";s:22:\"update_user_preference\";s:4:\"true\";s:9:\"filtering\";s:4:\"true\";s:19:\"show_purchase_price\";s:4:\"true\";s:18:\"show_selling_price\";s:4:\"true\";s:20:\"show_estimated_sales\";s:4:\"true\";s:11:\"show_profit\";s:4:\"true\";s:10:\"show_graph\";s:4:\"true\";}}'),
 (5, 'Administrador Sucursal', 'administrador_sucursal', 0, 1, 'a:1:{s:6:\"access\";a:26:{s:16:\"read_sell_report\";s:4:\"true\";s:17:\"read_stock_report\";s:4:\"true\";s:17:\"read_sell_invoice\";s:4:\"true\";s:14:\"read_sell_list\";s:4:\"true\";s:19:\"create_sell_invoice\";s:4:\"true\";s:12:\"sell_payment\";s:4:\"true\";s:13:\"read_sell_log\";s:4:\"true\";s:20:\"create_holding_order\";s:4:\"true\";s:18:\"read_holding_order\";s:4:\"true\";s:23:\"create_purchase_invoice\";s:4:\"true\";s:18:\"read_purchase_list\";s:4:\"true\";s:28:\"update_purchase_invoice_info\";s:4:\"true\";s:17:\"read_purchase_log\";s:4:\"true\";s:12:\"read_product\";s:4:\"true\";s:16:\"read_stock_alert\";s:4:\"true\";s:20:\"read_expired_product\";s:4:\"true\";s:13:\"read_customer\";s:4:\"true\";s:21:\"read_customer_profile\";s:4:\"true\";s:15:\"create_customer\";s:4:\"true\";s:15:\"update_customer\";s:4:\"true\";s:15:\"change_password\";s:4:\"true\";s:20:\"read_user_preference\";s:4:\"true\";s:22:\"update_user_preference\";s:4:\"true\";s:9:\"filtering\";s:4:\"true\";s:18:\"show_selling_price\";s:4:\"true\";s:20:\"show_estimated_sales\";s:4:\"true\";}}'),
 (6, 'Proveedor Visor', 'proveedor_visor', 0, 1, 'a:1:{s:6:\"access\";a:6:{s:16:\"read_sell_report\";s:4:\"true\";s:17:\"read_stock_report\";s:4:\"true\";s:16:\"read_stock_alert\";s:4:\"true\";s:15:\"change_password\";s:4:\"true\";s:9:\"filtering\";s:4:\"true\";s:19:\"show_purchase_price\";s:4:\"true\";}}'),
 (7, 'Colegio Visor', 'colegio_visor', 0, 1, 'a:1:{s:6:\"access\";a:4:{s:16:\"read_sell_report\";s:4:\"true\";s:15:\"change_password\";s:4:\"true\";s:9:\"filtering\";s:4:\"true\";s:20:\"show_estimated_sales\";s:4:\"true\";}}'),
@@ -7219,8 +8207,6 @@ INSERT INTO `user_to_store` (`u2s_id`, `user_id`, `store_id`, `status`, `sort_or
 (23, 1, 1, 1, 1),
 (24, 3, 2, 1, 0),
 (25, 1, 2, 1, 0),
-(27, 5, 1, 1, 0),
-(28, 5, 2, 1, 0),
 (29, 2, 1, 1, 0),
 (30, 2, 2, 1, 0),
 (31, 6, 2, 1, 0),
@@ -7232,7 +8218,19 @@ INSERT INTO `user_to_store` (`u2s_id`, `user_id`, `store_id`, `status`, `sort_or
 (38, 2, 3, 1, 0),
 (42, 9, 1, 1, 0),
 (43, 9, 2, 1, 0),
-(44, 9, 3, 1, 0);
+(44, 9, 3, 1, 0),
+(49, 10, 3, 1, 0),
+(50, 3, 4, 1, 0),
+(51, 1, 4, 1, 0),
+(52, 2, 4, 1, 0),
+(53, 11, 1, 1, 0),
+(54, 11, 2, 1, 0),
+(55, 11, 3, 1, 0),
+(56, 11, 4, 1, 0),
+(57, 5, 1, 1, 0),
+(58, 5, 2, 1, 0),
+(59, 5, 3, 1, 0),
+(60, 5, 4, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -7887,19 +8885,19 @@ ALTER TABLE `bank_accounts`
 -- AUTO_INCREMENT for table `bank_account_to_store`
 --
 ALTER TABLE `bank_account_to_store`
-  MODIFY `ba2s` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `ba2s` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `bank_transaction_info`
 --
 ALTER TABLE `bank_transaction_info`
-  MODIFY `info_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=145;
+  MODIFY `info_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=195;
 
 --
 -- AUTO_INCREMENT for table `bank_transaction_price`
 --
 ALTER TABLE `bank_transaction_price`
-  MODIFY `price_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=145;
+  MODIFY `price_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=195;
 
 --
 -- AUTO_INCREMENT for table `boxes`
@@ -7923,7 +8921,7 @@ ALTER TABLE `categorys`
 -- AUTO_INCREMENT for table `colleges`
 --
 ALTER TABLE `colleges`
-  MODIFY `college_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `college_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `courses`
@@ -7941,13 +8939,13 @@ ALTER TABLE `currency`
 -- AUTO_INCREMENT for table `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `customer_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=32;
+  MODIFY `customer_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=68;
 
 --
 -- AUTO_INCREMENT for table `customer_to_store`
 --
 ALTER TABLE `customer_to_store`
-  MODIFY `c2s_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `c2s_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT for table `customer_transactions`
@@ -8031,7 +9029,7 @@ ALTER TABLE `languages`
 -- AUTO_INCREMENT for table `language_translations`
 --
 ALTER TABLE `language_translations`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4400;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4407;
 
 --
 -- AUTO_INCREMENT for table `loans`
@@ -8049,7 +9047,7 @@ ALTER TABLE `loan_payments`
 -- AUTO_INCREMENT for table `login_logs`
 --
 ALTER TABLE `login_logs`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=154;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=243;
 
 --
 -- AUTO_INCREMENT for table `mail_sms_tag`
@@ -8061,7 +9059,7 @@ ALTER TABLE `mail_sms_tag`
 -- AUTO_INCREMENT for table `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT for table `pmethods`
@@ -8085,7 +9083,7 @@ ALTER TABLE `pos_templates`
 -- AUTO_INCREMENT for table `pos_template_to_store`
 --
 ALTER TABLE `pos_template_to_store`
-  MODIFY `pt2s` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `pt2s` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `printers`
@@ -8097,13 +9095,13 @@ ALTER TABLE `printers`
 -- AUTO_INCREMENT for table `printer_to_store`
 --
 ALTER TABLE `printer_to_store`
-  MODIFY `p2s_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `p2s_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `p_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=148;
+  MODIFY `p_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=164;
 
 --
 -- AUTO_INCREMENT for table `product_images`
@@ -8115,43 +9113,43 @@ ALTER TABLE `product_images`
 -- AUTO_INCREMENT for table `product_to_college`
 --
 ALTER TABLE `product_to_college`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=88;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=117;
 
 --
 -- AUTO_INCREMENT for table `product_to_store`
 --
 ALTER TABLE `product_to_store`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=631;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=940;
 
 --
 -- AUTO_INCREMENT for table `purchase_info`
 --
 ALTER TABLE `purchase_info`
-  MODIFY `info_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
+  MODIFY `info_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
 
 --
 -- AUTO_INCREMENT for table `purchase_item`
 --
 ALTER TABLE `purchase_item`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=134;
 
 --
 -- AUTO_INCREMENT for table `purchase_logs`
 --
 ALTER TABLE `purchase_logs`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
 
 --
 -- AUTO_INCREMENT for table `purchase_payments`
 --
 ALTER TABLE `purchase_payments`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
 
 --
 -- AUTO_INCREMENT for table `purchase_price`
 --
 ALTER TABLE `purchase_price`
-  MODIFY `price_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=105;
+  MODIFY `price_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
 
 --
 -- AUTO_INCREMENT for table `purchase_returns`
@@ -8199,25 +9197,25 @@ ALTER TABLE `return_items`
 -- AUTO_INCREMENT for table `selling_info`
 --
 ALTER TABLE `selling_info`
-  MODIFY `info_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `info_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT for table `selling_item`
 --
 ALTER TABLE `selling_item`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=195;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=421;
 
 --
 -- AUTO_INCREMENT for table `selling_price`
 --
 ALTER TABLE `selling_price`
-  MODIFY `price_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `price_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT for table `sell_logs`
 --
 ALTER TABLE `sell_logs`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=35;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=75;
 
 --
 -- AUTO_INCREMENT for table `settings`
@@ -8247,7 +9245,7 @@ ALTER TABLE `sms_setting`
 -- AUTO_INCREMENT for table `stores`
 --
 ALTER TABLE `stores`
-  MODIFY `store_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `store_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `suppliers`
@@ -8259,7 +9257,7 @@ ALTER TABLE `suppliers`
 -- AUTO_INCREMENT for table `supplier_to_store`
 --
 ALTER TABLE `supplier_to_store`
-  MODIFY `s2s_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=22;
+  MODIFY `s2s_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=29;
 
 --
 -- AUTO_INCREMENT for table `taxrates`
@@ -8289,7 +9287,7 @@ ALTER TABLE `units`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
 
 --
 -- AUTO_INCREMENT for table `user_group`
@@ -8301,7 +9299,7 @@ ALTER TABLE `user_group`
 -- AUTO_INCREMENT for table `user_to_store`
 --
 ALTER TABLE `user_to_store`
-  MODIFY `u2s_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=45;
+  MODIFY `u2s_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
 
 --
 -- AUTO_INCREMENT for table `_box_to_store_`
