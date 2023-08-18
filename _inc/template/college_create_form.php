@@ -121,6 +121,15 @@
                         <th class="w-15 text-center">
                           <?php echo trans('label_estimated_sales'); ?>
                         </th>
+                        <th class="w-15 text-center">
+                          <?php echo trans('label_PVP_new'); ?>
+                        </th>
+                        <th class="w-15 text-center">
+                          <?php echo trans('label_commission_percent'); ?>
+                        </th>
+                        <th class="w-15 text-center">
+                          <?php echo trans('label_commission_USD'); ?>
+                        </th>
                         <th class="w-5 text-center">
                           <i class="fa fa-trash-o"></i>
                         </th>

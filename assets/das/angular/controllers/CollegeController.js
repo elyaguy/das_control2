@@ -263,6 +263,18 @@ window.angularApp.controller("CollegeController", [
             html += "<td style=\"padding:2px;\" data-title=\"Quantity\">";
             html += "<input class=\"form-control input-sm text-center quantity\" name=\"product_college[" + data.p_id + "][quantity]\" type=\"text\" value=\"" + data.quantity + "\" data-id=\"" + data.p_id + "\" id=\"quantity-" + data.p_id + "\" onclick=\"this.select();\" onkeypress=\"return IsNumeric(event);\" ondrop=\"return false;\" onpaste=\"return false;\" onKeyUp=\"if(this.value<0){this.value='1';}\">";
             html += "</td>";
+            html += "<td style=\"padding:2px;\" data-title=\"Quantity\">";
+            html += "<input class=\"form-control input-sm text-center quantity\" name=\"product_college[" + data.p_id + "][quantity]\" type=\"text\" value=\"" + data.quantity + "\" data-id=\"" + data.p_id + "\" id=\"quantity-" + data.p_id + "\" onclick=\"this.select();\" onkeypress=\"return IsNumeric(event);\" ondrop=\"return false;\" onpaste=\"return false;\" onKeyUp=\"if(this.value<0){this.value='1';}\">";
+            html += "</td>";
+            html += "<td style=\"padding:2px;\" data-title=\"Quantity\">";
+            html += "<input class=\"form-control input-sm text-center quantity\" name=\"product_college[" + data.p_id + "][quantity]\" type=\"text\" value=\"" + data.quantity + "\" data-id=\"" + data.p_id + "\" id=\"quantity-" + data.p_id + "\" onclick=\"this.select();\" onkeypress=\"return IsNumeric(event);\" ondrop=\"return false;\" onpaste=\"return false;\" onKeyUp=\"if(this.value<0){this.value='1';}\">";
+            html += "</td>";
+            html += "<td style=\"padding:2px;\" data-title=\"Quantity\">";
+            html += "<input class=\"form-control input-sm text-center quantity\" name=\"product_college[" + data.p_id + "][quantity]\" type=\"text\" value=\"" + data.quantity + "\" data-id=\"" + data.p_id + "\" id=\"quantity-" + data.p_id + "\" onclick=\"this.select();\" onkeypress=\"return IsNumeric(event);\" ondrop=\"return false;\" onpaste=\"return false;\" onKeyUp=\"if(this.value<0){this.value='1';}\">";
+            html += "</td>";
+            html += "<td style=\"padding:2px;\" data-title=\"Quantity\">";
+            html += "<input class=\"form-control input-sm text-center quantity\" name=\"product_college[" + data.p_id + "][quantity]\" type=\"text\" value=\"" + data.quantity + "\" data-id=\"" + data.p_id + "\" id=\"quantity-" + data.p_id + "\" onclick=\"this.select();\" onkeypress=\"return IsNumeric(event);\" ondrop=\"return false;\" onpaste=\"return false;\" onKeyUp=\"if(this.value<0){this.value='1';}\">";
+            html += "</td>";
             html += "<td class=\"text-center\">";
             html += "<i class=\"fa fa-close text-red pointer remove\" data-id=\"" + data.p_id + "\" title=\"Remove\"></i>";
             html += "</td>";
