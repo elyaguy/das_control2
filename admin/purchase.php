@@ -188,7 +188,7 @@ include ("left_sidebar.php") ;
                       <?php echo trans('label_quantity_product'); ?>
                     </th>
                     <th class="w-10">
-                      <?php echo trans('label_amount'); ?>
+                      <?php echo trans('label_amount_invoice'); ?>
                     </th>
                     <th class="w-10">
                       <?php echo trans('label_invoice_paid'); ?>
@@ -234,7 +234,7 @@ include ("left_sidebar.php") ;
                       <?php echo trans('label_quantity_product'); ?>
                     </th>
                     <th class="w-10">
-                      <?php echo trans('label_amount'); ?> 
+                      <?php echo trans('label_amount_invoice'); ?> 
                     </th>
                     <th class="w-10">
                       <?php echo trans('label_invoice_paid'); ?>
