@@ -149,8 +149,8 @@ include ("left_sidebar.php") ;
             
             <div class="table-responsive"> 
               <?php
-              $hide_colums = "4,5,6,";
-              //  $hide_colums = "";
+              // $hide_colums = "4,5,6,";
+               $hide_colums = "";
               if (user_group_id() != 1) {
                 if (! has_permission('access', 'purchase_payment')) {
                   $hide_colums .= "9,";
@@ -185,6 +185,9 @@ include ("left_sidebar.php") ;
                       <?php echo trans('label_creator'); ?>
                     </th>              
                     <th class="w-10">
+                      <?php echo trans('label_quantity_product'); ?>
+                    </th>
+                    <th class="w-10">
                       <?php echo trans('label_amount'); ?>
                     </th>
                     <th class="w-10">
@@ -192,10 +195,7 @@ include ("left_sidebar.php") ;
                     </th>
                     <th class="w-10">
                       <?php echo trans('label_due'); ?>
-                    </th>
-                    <th class="w-10">
-                      <?php echo trans('label_quantity_product'); ?>
-                    </th>
+                    </th>                    
                     <th class="w-5">
                       <?php echo trans('label_status'); ?>
                     </th>
@@ -231,6 +231,9 @@ include ("left_sidebar.php") ;
                       <?php echo trans('label_creator'); ?>
                     </th>
                     <th class="w-10">
+                      <?php echo trans('label_quantity_product'); ?>
+                    </th>
+                    <th class="w-10">
                       <?php echo trans('label_amount'); ?> 
                     </th>
                     <th class="w-10">
@@ -238,10 +241,7 @@ include ("left_sidebar.php") ;
                     </th>
                     <th class="w-10">
                       <?php echo trans('label_due'); ?>
-                    </th>
-                    <th class="w-10">
-                      <?php echo trans('label_quantity_product'); ?>
-                    </th>
+                    </th>               
                     <th class="w-5">
                       <?php echo trans('label_status'); ?>
                     </th>

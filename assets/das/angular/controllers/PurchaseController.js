@@ -150,16 +150,22 @@ window.angularApp.controller("PurchaseController", [
                         $(td).attr('data-title', $("#invoice-invoice-list thead tr th:eq(12)").html());
                     }
                 },
+                {
+                    "targets": [13],
+                    'createdCell': function (td, cellData, rowData, row, col) {
+                        $(td).attr('data-title', $("#invoice-invoice-list thead tr th:eq(13)").html());
+                    }
+                },
             ],
             "aoColumns": [
                 { data: "created_at" },
                 { data: "invoice_id" },
                 { data: "sup_name" },
                 { data: "created_by" },
+                { data: "qty" },
                 { data: "invoice_amount" },
                 { data: "paid_amount" },
                 { data: "due" },
-                { data: "qty" },
                 { data: "status" },
                 { data: "btn_pay" },
                 { data: "btn_return" },
@@ -247,7 +253,7 @@ window.angularApp.controller("PurchaseController", [
                             .css('font-size', 'inherit');
                     },
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6]
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
                     }
                 },
                 {
@@ -256,7 +262,7 @@ window.angularApp.controller("PurchaseController", [
                     titleAttr: "Copy",
                     title: window.store.name + " > Purchase Listing-" + from + " to " + to,
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6]
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
                     }
                 },
                 {
@@ -265,7 +271,7 @@ window.angularApp.controller("PurchaseController", [
                     titleAttr: "Excel",
                     title: window.store.name + " > Purchase Listing-" + from + " to " + to,
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6]
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
                     }
                 },
                 {
@@ -274,7 +280,7 @@ window.angularApp.controller("PurchaseController", [
                     titleAttr: "CSV",
                     title: window.store.name + " > Purchase Listing-" + from + " to " + to,
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6]
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
                     }
                 },
                 {
@@ -284,7 +290,7 @@ window.angularApp.controller("PurchaseController", [
                     download: "open",
                     title: window.store.name + " > Purchase Listing-" + from + " to " + to,
                     exportOptions: {
-                        columns: [0, 1, 2, 3, 4, 5, 6]
+                        columns: [0, 1, 2, 3, 4, 5, 6, 7, 8, 9]
                     },
                     customize: function (doc) {
                         doc.content[1].table.widths = Array(doc.content[1].table.body[0].length + 1).join('*').split('');
