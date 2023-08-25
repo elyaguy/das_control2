@@ -276,7 +276,7 @@ $tab_active = isset($request->get['tab']) ? $request->get['tab'] : 'general';
 									</select>
 								</div>
 							</div>
-							<div class="form-group hidden">
+							<div class="form-group">
 								<label for="invoice_edit_lifespan" class="col-sm-3 control-label">
 									<?php echo trans('label_invoice_edit_lifespan'); ?><i class="required">*</i>
 									<span data-toggle="tooltip" title="" data-original-title="<?php echo trans('hint_invoice_edit_lifespan'); ?>">
@@ -295,7 +295,7 @@ $tab_active = isset($request->get['tab']) ? $request->get['tab'] : 'general';
 									</select>
 								</div>
 							</div>
-							<div class="form-group hidden">
+							<div class="form-group">
 								<label for="invoice_delete_lifespan" class="col-sm-3 control-label">
 									<?php echo trans('label_invoice_delete_lifespan'); ?><i class="required">*</i>
 									<span data-toggle="tooltip" title="" data-original-title="<?php echo trans('hint_invoice_delete_lifespan'); ?>">

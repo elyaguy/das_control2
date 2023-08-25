@@ -1,7 +1,7 @@
 <form id="form-transfer" class="form-horizontal" action="transfer.php" method="post">
   <input type="hidden" id="action_type" name="action_type" value="TRANSFER">  
   <div class="box-body">
-    <div class="form-group">
+    <div class="form-group hidden">
       <label for="image" class="col-sm-3 control-label">
         <?php echo trans('label_attachment'); ?>
       </label>
