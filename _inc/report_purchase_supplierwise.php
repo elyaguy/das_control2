@@ -33,7 +33,7 @@ $to = to();
 $where_query .= date_range_filter2($from, $to);
 
 // DB table to use
-$table = "(SELECT purchase_info.*, suppliers.sup_name, purchase_item.item_quantity, SUM(purchase_item.item_total) as purchase_price, SUM(purchase_item.item_quantity) as total_stock, SUM(purchase_price.paid_amount) as paid_amount FROM purchase_info 
+$table = "(SELECT purchase_info.*, suppliers.sup_name, purchase_item.item_quantity, SUM(purchase_item.item_total) as purchase_price, SUM(purchase_item.item_quantity) as total_stock, (purchase_price.paid_amount) as paid_amount FROM purchase_info 
       LEFT JOIN suppliers ON (purchase_info.sup_id = suppliers.sup_id)
       LEFT JOIN purchase_item ON (purchase_info.invoice_id = purchase_item.invoice_id)
       LEFT JOIN purchase_price ON (purchase_info.invoice_id = purchase_price.invoice_id)

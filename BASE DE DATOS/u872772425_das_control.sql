@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1:3306
--- Generation Time: Aug 25, 2023 at 05:22 PM
+-- Generation Time: Aug 26, 2023 at 02:04 AM
 -- Server version: 10.5.19-MariaDB-cll-lve
 -- PHP Version: 7.2.34
 
@@ -50,7 +50,7 @@ CREATE TABLE `bank_accounts` (
 --
 
 INSERT INTO `bank_accounts` (`id`, `account_name`, `account_details`, `initial_balance`, `account_no`, `contact_person`, `phone_number`, `opening_date`, `url`, `total_deposit`, `total_withdraw`, `total_transfer_from_other`, `total_transfer_to_other`, `created_at`, `updated_at`) VALUES
-(1, 'Default Account', 'This is a default account for any store', '0.0000', '1234567890', 'iAngryboy', '+880133333333', '2019-05-15 08:27:03', 'https://controldas.com', '75263.4000', '0.0000', '0.0000', '0.0000', '2019-01-16 13:23:03', '2019-07-02 11:56:57');
+(1, 'Default Account', 'This is a default account for any store', '0.0000', '1234567890', 'iAngryboy', '+880133333333', '2019-05-15 08:27:03', 'https://controldas.com', '105151.8500', '0.0000', '0.0000', '0.0000', '2019-01-16 13:23:03', '2019-07-02 11:56:57');
 
 -- --------------------------------------------------------
 
@@ -77,8 +77,9 @@ CREATE TABLE `bank_account_to_store` (
 INSERT INTO `bank_account_to_store` (`ba2s`, `store_id`, `account_id`, `deposit`, `withdraw`, `transfer_from_other`, `transfer_to_other`, `status`, `sort_order`) VALUES
 (1, 1, 1, '0.0000', '0.0000', '0.0000', '0.0000', 1, 0),
 (2, 2, 1, '17099.1000', '24456.1000', '0.0000', '0.0000', 1, 0),
-(4, 3, 1, '1390.0000', '32318.2000', '0.0000', '0.0000', 1, 0),
-(5, 4, 1, '0.0000', '0.0000', '0.0000', '0.0000', 1, 0);
+(4, 3, 1, '31278.4500', '32318.2000', '0.0000', '0.0000', 1, 0),
+(5, 4, 1, '0.0000', '0.0000', '0.0000', '0.0000', 1, 0),
+(6, 5, 1, '0.0000', '0.0000', '0.0000', '0.0000', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -355,7 +356,10 @@ INSERT INTO `bank_transaction_info` (`info_id`, `store_id`, `transaction_type`, 
 (241, 2, 'withdraw', 0, 0, 1, NULL, 9, 'W241', 'CELLEVATEN TEEN', 'Debit for Product Purchase', 'Supplier name: ELT SOLUTIONS', NULL, 1, 'NULL', 6, '2023-08-25 10:02:22', NULL),
 (242, 2, 'deposit', 0, 0, 1, 1, NULL, 'D242', '22023/00000077', 'Deposit for selling', 'Customer name: ROCIO ECHEVERRIA ', NULL, 1, 'NULL', 6, '2023-08-25 10:03:05', NULL),
 (243, 2, 'deposit', 0, 0, 1, 1, NULL, 'D243', '22023/00000078', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 6, '2023-08-25 10:05:48', NULL),
-(244, 2, 'deposit', 0, 0, 1, 1, NULL, 'D244', '22023/00000079', 'Deposit for selling', 'Customer name: ROCIO ECHEVERRIA ', NULL, 1, 'NULL', 6, '2023-08-25 10:08:00', NULL);
+(244, 2, 'deposit', 0, 0, 1, 1, NULL, 'D244', '22023/00000079', 'Deposit for selling', 'Customer name: ROCIO ECHEVERRIA ', NULL, 1, 'NULL', 6, '2023-08-25 10:08:00', NULL),
+(245, 3, 'deposit', 0, 0, 1, 9, NULL, 'D245', 'C04-06-2023', 'Deposit for purchase delete', 'Supplier name: JUAN ORTIZ', NULL, 1, 'NULL', 2, '2023-08-25 19:56:26', NULL),
+(246, 3, 'deposit', 0, 0, 1, 9, NULL, 'D246', 'C05-05-2023', 'Deposit for purchase delete', 'Supplier name: JUAN ORTIZ', NULL, 1, 'NULL', 2, '2023-08-25 19:56:33', NULL),
+(247, 3, 'deposit', 0, 0, 1, 9, NULL, 'D247', 'C03-04-2023', 'Deposit for purchase delete', 'Supplier name: JUAN ORTIZ', NULL, 1, 'NULL', 2, '2023-08-25 19:56:40', NULL);
 
 -- --------------------------------------------------------
 
@@ -619,7 +623,10 @@ INSERT INTO `bank_transaction_price` (`price_id`, `store_id`, `info_id`, `ref_no
 (241, 2, 241, 'W241', '22.0000'),
 (242, 2, 242, 'D242', '142.0000'),
 (243, 2, 243, 'D243', '96.0000'),
-(244, 2, 244, 'D244', '96.0000');
+(244, 2, 244, 'D244', '96.0000'),
+(245, 3, 245, 'D245', '8090.0000'),
+(246, 3, 246, 'D246', '19432.4500'),
+(247, 3, 247, 'D247', '2366.0000');
 
 -- --------------------------------------------------------
 
@@ -817,95 +824,95 @@ CREATE TABLE `customers` (
 --
 
 INSERT INTO `customers` (`customer_id`, `customer_document`, `customer_name`, `customer_email`, `customer_mobile`, `customer_address`, `dob`, `customer_sex`, `customer_age`, `gtin`, `customer_city`, `customer_state`, `customer_country`, `is_giftcard`, `password`, `raw_password`, `created_at`, `updated_at`) VALUES
-(1, '9999999999', 'Cliente Final', 'default@controldas.com', '', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1993-01-01', 1, 20, '', 'AN', 'AN', 'AD', 0, 'c33367701511b4f6020ec61ded352059', '654321', '2018-04-29 14:18:37', '2019-07-02 13:50:11'),
-(2, '0500875133', 'hermogenes mena dominguez', 'carmen.fm61@hotmail.com', '', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-07-26 14:19:54', NULL),
-(3, 'COLEGIO LATACUNGA', 'COLEGIO CERIT ', '3253e2@gmail.com', '', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-07-28 09:24:18', NULL),
-(4, '0502567621', 'JOHANNA ALEJANDRA BORJA BRAZALES', 'eduallmighty@yahoo.com', '0987317953', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-02 11:27:46', NULL),
-(5, '0503692993', 'JORGE ANDRES PARRA PARRA', 'jorgeandres.j@hotmail.com', '0987716930', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-02 11:30:14', NULL),
-(6, '0922967286', 'PATRICIA PILCO', 'patriciapilco1990@gmail.com', '0998590760', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-02 11:34:45', NULL),
-(7, '0503888141', 'PAMELA DEL ROSARIO CHIMBA MAIGUASHIA', 'pamer199212@gmail.com', '', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-02 11:37:58', NULL),
-(8, '0503030850', 'JESSICA GUALPA', 'jessicagualpa35@gmail.com', '0979483868', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-02 11:40:21', NULL),
-(9, '0503020406', 'SILVIA ALBAN ', 'silvialban28@gmail.com', '0999076270', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-02 11:41:48', NULL),
-(10, '1709527178', 'MILTON HERNANDEZ', 'milton_her@hotmail.com', '', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-02 11:44:02', NULL),
-(11, '0502002876', 'MARCO ORLANDO CHILE', 'mark_bust@hotmail.com', '0984874677', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-02 11:45:23', NULL),
-(12, '0502655780', 'FERNANDO XAVIER CALVOPIÑA PROAÑO', 'fernandofae85@gmail.com', '', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-02 11:56:40', NULL),
-(13, '0303051534', 'EDGAR GEOVANNY GALLO MOLINA', 'vanfrangaith66@gmail.com', '', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-02 11:59:06', NULL),
-(14, '0503352122', 'NANCY MOREANO ', 'nancymoreano_23@hotmail.com', '0984559024', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-02 12:08:14', NULL),
-(15, '0501048169', 'GUILINTON FABRICIO MERIZABLE VILLAMARIN ', 'guilintin18@hotmail.com', '0987874870', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-03 10:26:26', NULL),
-(16, '0504426578', 'YESENIA YUGSI', 'yesseniayugsi3k@gmail.com', '', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-03 10:58:30', NULL),
-(17, '0500168331', 'JOSE CHILUISA ', 'marco.chulisa@gmail.com', '0987085359', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-03 13:54:25', NULL),
-(18, '0503071816001', 'KATHERYN SEMBLANTES ', 'brigite@live.com', '0998568141', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-03 14:56:14', NULL),
-(19, '1718904731', 'BOLIVAR CAMACHO ', 'bolo.77@hotmail.com', '0985377936', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-04 11:19:29', NULL),
-(20, '053143414', 'CRISTHIAN BASANTES', 'cristhianbasantes@hotmail.com', '0998066143', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-04 13:36:04', NULL),
-(21, '1104170301', 'DANIELO CUENCA', 'cuencawilber1983@gmail.com', '0961800733', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-04 14:40:08', NULL),
-(22, '0503387946', 'MARIA DE LOS ANGELES MAZAPANTA RIVADENEIRA', 'psico.ange.mr@gmail.com', '0998533552', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-04 15:09:42', NULL),
-(23, '0503328072001', 'FERNANDO LARA', 'fernandolaracrespo@hotmail.com', '', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-05 12:01:18', NULL),
-(24, '0502067028', 'HUGO MUÑOZ', 'verito261987@hotmail.com', '0997367992', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-05 12:11:51', NULL),
-(25, '0502059785', 'MANUEL PANCHE ', 'panchiman22@gmail.com', '0981937194', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-05 14:24:12', NULL),
-(26, '0500559158', 'CARMEN VALENCIA', 'carcumvp@yahoo.es', '0996646083', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-07 12:25:56', NULL),
-(27, '0502256191', 'HECTOR ALEJANDO MORALES PERES', 'anafran410@gmail.com', '', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-07 14:45:19', NULL),
-(28, '0504348723', 'ESTEFANIA QUERIDO', 'ceciquerido@gmail.com', '0984612677', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-08 10:22:19', NULL),
-(29, '0502671860001', 'DIEGO MOLINA ', 'diegfml_2006@hotmail.com', '0999661606', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-08 10:46:17', NULL),
-(30, '0503154122', 'KARINA LAVERDE', 'immaginemoda@hotmail.com', '0997871520', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-08 11:46:30', NULL),
-(31, '1759915232', 'CARMEN BROUWN', 'care_brownm@hotmail.com', '0963115284', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-08 12:38:52', NULL),
-(32, '0502788334', 'FERNANDO CASCO', 'farmajessy37@gmail.com', '0987959993', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-08 15:09:16', NULL),
-(33, '1804219317001', 'ELIANA PAZUÑA MENA', 'opticalosalpeslatacunga@hotmail.com', '0983989270', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-09 11:38:16', NULL),
-(34, '0502673650', 'JAIME GONZALO MORENO VILLARUEL', 'morenojaime205@gmail.com', '0984817718', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-09 11:39:55', NULL),
-(35, '0501318240', 'OSCAR ROBAYO', 'fumigadoracotopaxi@yahoo.es', '0998977769', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-10 11:12:01', NULL),
-(36, '0504454992', 'EVELYN GUAMANGALIO', 'evelynguamangalio@gmail.com', '0987335001', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-10 11:32:58', NULL),
-(37, '0502499072', 'KATY PATRICIA LUZ VEINTIMILLA', 'katycruz45@hotmail.es', '0987972954', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-10 11:41:12', NULL),
-(38, '0503051666001', 'VICTOR GUILCA', 'victorh_1987hotmail.com', '0992812157', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-14 12:33:01', NULL),
-(39, '0501992770', 'edwin osorio', 'edwin_oso45@hotmail.com', '0999908892', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-14 12:42:38', NULL),
-(40, '0503511719', 'lourdes masabanda ', 'marymasabanda92@gmail.com', '0999296582', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-14 12:54:10', NULL),
-(41, '0802650852', 'ANDRADE FLOR PAMELA', 'pamela_9327@hotmail.com', '0960924626', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-15 14:30:02', NULL),
-(42, '1721025029', 'MONICA CHIGUANO', 'mchiguano10@gmail.com', '0998296631', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-16 10:04:54', NULL),
-(43, '1804363784', 'Monica Paulina Torres Supe ', 'monicatorres03@gmail.com', '0992851734', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-16 10:08:02', NULL),
-(44, '1804228102', 'angel guananga', 'leoguananga7@gmail.com', '0988597992', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-16 10:20:43', NULL),
-(45, '1802543619', 'Wilson Gonzalo morales Villacres ', 'moralesw1971@yahoo.com', '0993533846', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-16 13:12:39', NULL),
-(46, '1802833002', 'Miryam Susana Santana lopez ', 'miryamsantana15@hotmail.com', '', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-16 13:17:31', NULL),
-(47, '0503379042', 'TOMAS CARRILLO', 'tomascarrillotj@hotmail.com', '0984545603', 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-16 14:17:26', NULL),
-(48, '0502395700', 'WILMER CUNUHAY', 'wilmer.cunuhay@utc.edu.ec', '0983285783', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-16 15:19:59', NULL),
-(49, '1803544707', 'Miguel Ángel Arnijos flores ', 'marnijos777@hotmail.com', '0987213681', '', '1969-12-31', 1, 0, '', 'Ambato', '', 'AD', 0, NULL, NULL, '2023-08-17 13:07:55', NULL),
-(50, '1850977917', 'Jomara Morayma Villena Villacis ', 'jomiville36@gmail.com', '0979199578', '', '1969-12-31', 1, 0, '', 'Ambato ', '', 'AD', 0, NULL, NULL, '2023-08-17 13:11:35', NULL),
-(51, '0201431780', 'Sanchez Bonilla rommel fabricio ', 'rommel6sb@yahoo.com', '0962299852', '', '1969-12-31', 1, 0, '', 'Ambato ', '', 'AD', 0, NULL, NULL, '2023-08-17 14:12:58', NULL),
-(52, '1804497228', 'Alex Ortiz ', 'alex.ortiz.b@outlook.com', '0987716108', '', '1969-12-31', 1, 0, '', 'Ambato ', '', 'AD', 0, NULL, NULL, '2023-08-17 14:53:43', NULL),
-(53, '1803807799', 'Susana ramos ', 'edithsusanramos83@gmail.com', '0987803497', '', '1969-12-31', 1, 0, '', 'Ambato ', '', 'AD', 0, NULL, NULL, '2023-08-17 14:59:08', NULL),
-(54, '0202012118', 'Ángel Avilez ', 'avilesangel_1993@hotmail.com', '', '', '1969-12-31', 1, 0, '', 'Ambato ', '', 'AD', 0, NULL, NULL, '2023-08-17 15:04:51', NULL),
-(55, '1804462156', 'Alejandra García ', 'Jessi-1012@hotmail.com', '', '', '1969-12-31', 1, 0, '', 'Ambato ', '', 'AD', 0, NULL, NULL, '2023-08-17 15:07:43', NULL),
-(56, '1310219132', 'sergio gomez', 'sergiongq@gmail.com', '0963658091', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-17 15:49:54', NULL),
-(57, '1802533743001', 'Lemiton vinicio bastidas llamuca ', 'laleyproducciones@gmail.com', '', '', '1969-12-31', 1, 0, '', 'Ambato', '', 'AD', 0, NULL, NULL, '2023-08-17 15:53:27', NULL),
-(58, '0500452578', 'GUIDO CACERES', 'guidomcaceres@hotmail.com', '0987037254', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-17 15:57:24', NULL),
-(59, '1803790185', 'Alejandra Echeverría ', 'alegiss_31@hotmail.com', '', '', '1969-12-31', 1, 0, '', 'Ambato', '', 'AD', 0, NULL, NULL, '2023-08-17 17:08:28', NULL),
-(60, '1804344750', 'Dario reyes ', 'dario10reyes@gmail.com', '0989675951', '', '1969-12-31', 1, 0, '', 'Ambato', '', 'AD', 0, NULL, NULL, '2023-08-17 17:12:12', NULL),
-(61, '1803241510', 'Rothman Velasteguí naranjo ', 'rotwenday1979@gmail.com', '0983378010', '', '1969-12-31', 1, 0, '', 'Ambato', '', 'AD', 0, NULL, NULL, '2023-08-17 17:13:55', NULL),
-(62, '0502287220', 'xavier moreno', 'vero_moreno1983@hotmail.com', '0987274313', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-18 11:44:27', NULL),
-(63, '0503850836', 'TATIANA SANGUCHO', 'tsangucho.60@gmail.com', '0983705972', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-18 13:18:02', NULL),
-(64, '0503157505', 'isabel jima', 'isabeljima1403@hotmail.com', '0992602975', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-18 13:38:37', NULL),
-(65, '1803535374', 'Verónica Ávila ', 'veronik753@hotmail.com', '0987390089', '\r\n\r\n', '1969-12-31', 1, 0, '', 'Ambato', '', 'AD', 0, NULL, NULL, '2023-08-18 15:02:04', NULL),
-(66, '0503149635001', 'ANA TAPIA', 'idegamventas@gmail.com', '0987721742', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-18 15:55:57', NULL),
-(67, '0501703094', 'ivan cerda', 'addesnavi@hotmail.com', '0998098310', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-18 16:05:30', NULL),
-(68, '1803436862', 'Nancy Salazar valle ', 'nancysalazarvalle@hotmail.com', '0995149808', '\r\n', '1969-12-31', 1, 0, '', 'Ambato', '', 'AD', 0, NULL, NULL, '2023-08-18 16:48:11', NULL),
-(69, '1802589562', 'Mariana chamba ', 'angyjc0@gmail.com', '0987556339', '', '1969-12-31', 1, 0, '', 'Ambato ', '', 'AD', 0, NULL, NULL, '2023-08-18 17:20:08', NULL),
-(70, '0986081388', 'RUBEN MAMANI', 'davidyoni95@hotmail.com', '0986081388', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-21 13:52:53', NULL),
-(71, '0504008772', 'sergio vinocumga', 'sergiovinocumga98@gmail.com', '0998272351', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-21 14:06:37', NULL),
-(72, '0502425291001', 'rene moreno ', 'grupomorenorene2012@hotmail.com', '0995791148', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-21 14:18:07', NULL),
-(73, '1801897362', 'Sixto manobanda ', 'sixtomanobanda25@gmail.com', '', '\r\n\r\n', '1969-12-31', 1, 0, '', 'Ambato', '', 'AD', 0, NULL, NULL, '2023-08-21 16:47:26', NULL),
-(74, '1803123221', 'Diana moposita ', 'sybermovistar1@hotmail.com', '0999975347', '', '1969-12-31', 1, 0, '', 'Ambato', '', 'AD', 0, NULL, NULL, '2023-08-21 20:39:52', NULL),
-(75, '1803587466', 'Johana Morales ', 'moralesjoha33@gmail.com', '0984462161', '', '1969-12-31', 1, 0, '', 'Ambato', '', 'AD', 0, NULL, NULL, '2023-08-22 15:40:20', NULL),
-(76, '1703959435', 'Josefina toaquiza ', 'josefinatoaquiza68@gmail.com', '0995724826', '', '1969-12-31', 1, 0, '', 'Ambato', '', 'AD', 0, NULL, NULL, '2023-08-22 15:43:40', NULL),
-(77, '05028667906', 'LUIS FLORES', 'luisflores@hotmail.com', '', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-22 16:01:46', NULL),
-(78, '1804852356', 'Tania Maricela Oñate pilataxi ', 'taniaonate16@gmail.com', '0983794844', '', '1969-12-31', 1, 0, '', 'Ambato', '', 'AD', 0, NULL, NULL, '2023-08-22 16:05:59', NULL),
-(79, '0502363237001', 'maria jose sampedro', 'smegacopy@gmail.com', '0964076020', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-22 16:08:03', NULL),
-(80, '0502501778', 'adriana zapata', 'adrianazapata79@yahoo.es', '0960184601', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-22 16:46:08', NULL),
-(81, '0503587875', 'DARIO LOPEZ', 'washingtondario@hotmail.com', '0987734381', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-22 18:15:15', NULL),
-(82, '1803093796001', 'Juan Israel ', 'juanisraelcordova@hotmail.com', '0992558313', '', '1969-12-31', 1, 0, '', 'Ambato', '', 'AD', 0, NULL, NULL, '2023-08-23 10:43:57', NULL),
-(83, '1850249598', 'Teress del pilar Aguilar ', 'jose4545p@hotmail.com', '0968233030', '', '1969-12-31', 1, 0, '', 'Ambato ', '', 'AD', 0, NULL, NULL, '2023-08-23 10:50:06', NULL),
-(84, '1804291597', 'Danilo Sánchez ', 'sanchezdanilo719@gmail.com', '0984657117', '', '1969-12-31', 1, 0, '', 'Ambato ', '', 'AD', 0, NULL, NULL, '2023-08-23 10:58:30', NULL),
-(85, '1714881123001', 'CLAUDIA TINAJERO', 'cadymary@hotmail.com', '0997046368', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-23 12:42:04', NULL),
-(86, '0502342660', 'WILLIAN ESTRELLA', 'willian39018@gmail.com', '0987431906', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-23 15:43:55', NULL),
-(87, '0202523767', 'Karen Valeria rosillo ', 'vrosillo33@gmail.com', '', '', '1969-12-31', 1, 0, '', 'Ambato', '', 'AD', 0, NULL, NULL, '2023-08-24 11:09:34', NULL),
-(88, '1707216477', 'ROBERTO CASTRO', 'c3090b@gmail.com', '0998397167', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-24 13:28:28', NULL),
-(89, '0502508765', 'ROCIO ECHEVERRIA ', 'RousseARIAS13@gmail.com', '0998081408', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-08-25 09:41:58', NULL);
+(1, '9999999999', 'Cliente Final', 'default@controldas.com', '', 'RIOBAMBA', '1993-01-01', 1, 20, '', 'AN', 'AN', 'AD', 0, 'c33367701511b4f6020ec61ded352059', '654321', '2018-04-29 14:18:37', '2019-07-02 13:50:11'),
+(2, '0500875133', 'hermogenes mena dominguez', 'carmen.fm61@hotmail.com', '', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-07-26 14:19:54', NULL),
+(3, 'COLEGIO LATACUNGA', 'COLEGIO CERIT ', '3253e2@gmail.com', '', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-07-28 09:24:18', NULL),
+(4, '0502567621', 'JOHANNA ALEJANDRA BORJA BRAZALES', 'eduallmighty@yahoo.com', '0987317953', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-02 11:27:46', NULL),
+(5, '0503692993', 'JORGE ANDRES PARRA PARRA', 'jorgeandres.j@hotmail.com', '0987716930', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-02 11:30:14', NULL),
+(6, '0922967286', 'PATRICIA PILCO', 'patriciapilco1990@gmail.com', '0998590760', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-02 11:34:45', NULL),
+(7, '0503888141', 'PAMELA DEL ROSARIO CHIMBA MAIGUASHIA', 'pamer199212@gmail.com', '', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-02 11:37:58', NULL),
+(8, '0503030850', 'JESSICA GUALPA', 'jessicagualpa35@gmail.com', '0979483868', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-02 11:40:21', NULL),
+(9, '0503020406', 'SILVIA ALBAN ', 'silvialban28@gmail.com', '0999076270', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-02 11:41:48', NULL),
+(10, '1709527178', 'MILTON HERNANDEZ', 'milton_her@hotmail.com', '', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-02 11:44:02', NULL),
+(11, '0502002876', 'MARCO ORLANDO CHILE', 'mark_bust@hotmail.com', '0984874677', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-02 11:45:23', NULL),
+(12, '0502655780', 'FERNANDO XAVIER CALVOPIÑA PROAÑO', 'fernandofae85@gmail.com', '', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-02 11:56:40', NULL),
+(13, '0303051534', 'EDGAR GEOVANNY GALLO MOLINA', 'vanfrangaith66@gmail.com', '', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-02 11:59:06', NULL),
+(14, '0503352122', 'NANCY MOREANO ', 'nancymoreano_23@hotmail.com', '0984559024', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-02 12:08:14', NULL),
+(15, '0501048169', 'GUILINTON FABRICIO MERIZABLE VILLAMARIN ', 'guilintin18@hotmail.com', '0987874870', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-03 10:26:26', NULL),
+(16, '0504426578', 'YESENIA YUGSI', 'yesseniayugsi3k@gmail.com', '', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-03 10:58:30', NULL),
+(17, '0500168331', 'JOSE CHILUISA ', 'marco.chulisa@gmail.com', '0987085359', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-03 13:54:25', NULL),
+(18, '0503071816001', 'KATHERYN SEMBLANTES ', 'brigite@live.com', '0998568141', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-03 14:56:14', NULL),
+(19, '1718904731', 'BOLIVAR CAMACHO ', 'bolo.77@hotmail.com', '0985377936', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-04 11:19:29', NULL),
+(20, '053143414', 'CRISTHIAN BASANTES', 'cristhianbasantes@hotmail.com', '0998066143', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-04 13:36:04', NULL),
+(21, '1104170301', 'DANIELO CUENCA', 'cuencawilber1983@gmail.com', '0961800733', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-04 14:40:08', NULL),
+(22, '0503387946', 'MARIA DE LOS ANGELES MAZAPANTA RIVADENEIRA', 'psico.ange.mr@gmail.com', '0998533552', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-04 15:09:42', NULL),
+(23, '0503328072001', 'FERNANDO LARA', 'fernandolaracrespo@hotmail.com', '', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-05 12:01:18', NULL),
+(24, '0502067028', 'HUGO MUÑOZ', 'verito261987@hotmail.com', '0997367992', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-05 12:11:51', NULL),
+(25, '0502059785', 'MANUEL PANCHE ', 'panchiman22@gmail.com', '0981937194', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-05 14:24:12', NULL),
+(26, '0500559158', 'CARMEN VALENCIA', 'carcumvp@yahoo.es', '0996646083', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-07 12:25:56', NULL),
+(27, '0502256191', 'HECTOR ALEJANDO MORALES PERES', 'anafran410@gmail.com', '', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-07 14:45:19', NULL),
+(28, '0504348723', 'ESTEFANIA QUERIDO', 'ceciquerido@gmail.com', '0984612677', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-08 10:22:19', NULL),
+(29, '0502671860001', 'DIEGO MOLINA ', 'diegfml_2006@hotmail.com', '0999661606', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-08 10:46:17', NULL),
+(30, '0503154122', 'KARINA LAVERDE', 'immaginemoda@hotmail.com', '0997871520', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-08 11:46:30', NULL),
+(31, '1759915232', 'CARMEN BROUWN', 'care_brownm@hotmail.com', '0963115284', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-08 12:38:52', NULL),
+(32, '0502788334', 'FERNANDO CASCO', 'farmajessy37@gmail.com', '0987959993', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-08 15:09:16', NULL),
+(33, '1804219317001', 'ELIANA PAZUÑA MENA', 'opticalosalpeslatacunga@hotmail.com', '0983989270', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-09 11:38:16', NULL),
+(34, '0502673650', 'JAIME GONZALO MORENO VILLARUEL', 'morenojaime205@gmail.com', '0984817718', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-09 11:39:55', NULL),
+(35, '0501318240', 'OSCAR ROBAYO', 'fumigadoracotopaxi@yahoo.es', '0998977769', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-10 11:12:01', NULL),
+(36, '0504454992', 'EVELYN GUAMANGALIO', 'evelynguamangalio@gmail.com', '0987335001', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-10 11:32:58', NULL),
+(37, '0502499072', 'KATY PATRICIA LUZ VEINTIMILLA', 'katycruz45@hotmail.es', '0987972954', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-10 11:41:12', NULL),
+(38, '0503051666001', 'VICTOR GUILCA', 'victorh_1987hotmail.com', '0992812157', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-14 12:33:01', NULL),
+(39, '0501992770', 'edwin osorio', 'edwin_oso45@hotmail.com', '0999908892', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-14 12:42:38', NULL),
+(40, '0503511719', 'lourdes masabanda ', 'marymasabanda92@gmail.com', '0999296582', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-14 12:54:10', NULL),
+(41, '0802650852', 'ANDRADE FLOR PAMELA', 'pamela_9327@hotmail.com', '0960924626', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-15 14:30:02', NULL),
+(42, '1721025029', 'MONICA CHIGUANO', 'mchiguano10@gmail.com', '0998296631', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-16 10:04:54', NULL),
+(43, '1804363784', 'Monica Paulina Torres Supe ', 'monicatorres03@gmail.com', '0992851734', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-16 10:08:02', NULL),
+(44, '1804228102', 'angel guananga', 'leoguananga7@gmail.com', '0988597992', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-16 10:20:43', NULL),
+(45, '1802543619', 'Wilson Gonzalo morales Villacres ', 'moralesw1971@yahoo.com', '0993533846', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-16 13:12:39', NULL),
+(46, '1802833002', 'Miryam Susana Santana lopez ', 'miryamsantana15@hotmail.com', '', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-16 13:17:31', NULL),
+(47, '0503379042', 'TOMAS CARRILLO', 'tomascarrillotj@hotmail.com', '0984545603', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-16 14:17:26', NULL),
+(48, '0502395700', 'WILMER CUNUHAY', 'wilmer.cunuhay@utc.edu.ec', '0983285783', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-16 15:19:59', NULL),
+(49, '1803544707', 'Miguel Ángel Arnijos flores ', 'marnijos777@hotmail.com', '0987213681', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-17 13:07:55', NULL),
+(50, '1850977917', 'Jomara Morayma Villena Villacis ', 'jomiville36@gmail.com', '0979199578', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-17 13:11:35', NULL),
+(51, '0201431780', 'Sanchez Bonilla rommel fabricio ', 'rommel6sb@yahoo.com', '0962299852', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-17 14:12:58', NULL),
+(52, '1804497228', 'Alex Ortiz ', 'alex.ortiz.b@outlook.com', '0987716108', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-17 14:53:43', NULL),
+(53, '1803807799', 'Susana ramos ', 'edithsusanramos83@gmail.com', '0987803497', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-17 14:59:08', NULL),
+(54, '0202012118', 'Ángel Avilez ', 'avilesangel_1993@hotmail.com', '', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-17 15:04:51', NULL),
+(55, '1804462156', 'Alejandra García ', 'Jessi-1012@hotmail.com', '', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-17 15:07:43', NULL),
+(56, '1310219132', 'sergio gomez', 'sergiongq@gmail.com', '0963658091', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-17 15:49:54', NULL),
+(57, '1802533743001', 'Lemiton vinicio bastidas llamuca ', 'laleyproducciones@gmail.com', '', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-17 15:53:27', NULL),
+(58, '0500452578', 'GUIDO CACERES', 'guidomcaceres@hotmail.com', '0987037254', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-17 15:57:24', NULL),
+(59, '1803790185', 'Alejandra Echeverría ', 'alegiss_31@hotmail.com', '', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-17 17:08:28', NULL),
+(60, '1804344750', 'Dario reyes ', 'dario10reyes@gmail.com', '0989675951', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-17 17:12:12', NULL),
+(61, '1803241510', 'Rothman Velasteguí naranjo ', 'rotwenday1979@gmail.com', '0983378010', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-17 17:13:55', NULL),
+(62, '0502287220', 'xavier moreno', 'vero_moreno1983@hotmail.com', '0987274313', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-18 11:44:27', NULL),
+(63, '0503850836', 'TATIANA SANGUCHO', 'tsangucho.60@gmail.com', '0983705972', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-18 13:18:02', NULL),
+(64, '0503157505', 'isabel jima', 'isabeljima1403@hotmail.com', '0992602975', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-18 13:38:37', NULL),
+(65, '1803535374', 'Verónica Ávila ', 'veronik753@hotmail.com', '0987390089', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-18 15:02:04', NULL),
+(66, '0503149635001', 'ANA TAPIA', 'idegamventas@gmail.com', '0987721742', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-18 15:55:57', NULL),
+(67, '0501703094', 'ivan cerda', 'addesnavi@hotmail.com', '0998098310', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-18 16:05:30', NULL),
+(68, '1803436862', 'Nancy Salazar valle ', 'nancysalazarvalle@hotmail.com', '0995149808', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-18 16:48:11', NULL),
+(69, '1802589562', 'Mariana chamba ', 'angyjc0@gmail.com', '0987556339', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-18 17:20:08', NULL),
+(70, '0986081388', 'RUBEN MAMANI', 'davidyoni95@hotmail.com', '0986081388', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-21 13:52:53', NULL),
+(71, '0504008772', 'sergio vinocumga', 'sergiovinocumga98@gmail.com', '0998272351', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-21 14:06:37', NULL),
+(72, '0502425291001', 'rene moreno ', 'grupomorenorene2012@hotmail.com', '0995791148', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-21 14:18:07', NULL),
+(73, '1801897362', 'Sixto manobanda ', 'sixtomanobanda25@gmail.com', '', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-21 16:47:26', NULL),
+(74, '1803123221', 'Diana moposita ', 'sybermovistar1@hotmail.com', '0999975347', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-21 20:39:52', NULL),
+(75, '1803587466', 'Johana Morales ', 'moralesjoha33@gmail.com', '0984462161', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-22 15:40:20', NULL),
+(76, '1703959435', 'Josefina toaquiza ', 'josefinatoaquiza68@gmail.com', '0995724826', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-22 15:43:40', NULL),
+(77, '05028667906', 'LUIS FLORES', 'luisflores@hotmail.com', '', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-22 16:01:46', NULL),
+(78, '1804852356', 'Tania Maricela Oñate pilataxi ', 'taniaonate16@gmail.com', '0983794844', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-22 16:05:59', NULL),
+(79, '0502363237001', 'maria jose sampedro', 'smegacopy@gmail.com', '0964076020', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-22 16:08:03', NULL),
+(80, '0502501778', 'adriana zapata', 'adrianazapata79@yahoo.es', '0960184601', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-22 16:46:08', NULL),
+(81, '0503587875', 'DARIO LOPEZ', 'washingtondario@hotmail.com', '0987734381', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-22 18:15:15', NULL),
+(82, '1803093796001', 'Juan Israel ', 'juanisraelcordova@hotmail.com', '0992558313', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-23 10:43:57', NULL),
+(83, '1850249598', 'Teress del pilar Aguilar ', 'jose4545p@hotmail.com', '0968233030', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-23 10:50:06', NULL),
+(84, '1804291597', 'Danilo Sánchez ', 'sanchezdanilo719@gmail.com', '0984657117', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-23 10:58:30', NULL),
+(85, '1714881123001', 'CLAUDIA TINAJERO', 'cadymary@hotmail.com', '0997046368', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-23 12:42:04', NULL),
+(86, '0502342660', 'WILLIAN ESTRELLA', 'willian39018@gmail.com', '0987431906', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-23 15:43:55', NULL),
+(87, '0202523767', 'Karen Valeria rosillo ', 'vrosillo33@gmail.com', '', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-24 11:09:34', NULL),
+(88, '1707216477', 'ROBERTO CASTRO', 'c3090b@gmail.com', '0998397167', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-24 13:28:28', NULL),
+(89, '0502508765', 'ROCIO ECHEVERRIA ', 'RousseARIAS13@gmail.com', '0998081408', 'RIOBAMBA', '1969-12-31', 1, 0, '', 'AN', 'AN', 'AD', 0, NULL, NULL, '2023-08-25 09:41:58', NULL);
 
 -- --------------------------------------------------------
 
@@ -1019,7 +1026,8 @@ INSERT INTO `customer_to_store` (`c2s_id`, `customer_id`, `store_id`, `balance`,
 (89, 86, 2, '0.0000', '0.0000', 1, 0),
 (90, 87, 3, '0.0000', '0.0000', 1, 0),
 (91, 88, 2, '0.0000', '0.0000', 1, 0),
-(92, 89, 2, '0.0000', '0.0000', 1, 0);
+(92, 89, 2, '0.0000', '0.0000', 1, 0),
+(93, 1, 5, '0.0000', '0.0000', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -4684,13 +4692,6 @@ CREATE TABLE `login_logs` (
 --
 
 INSERT INTO `login_logs` (`id`, `user_id`, `username`, `ip`, `status`, `created_at`) VALUES
-(58, 5, 'HERNAN', '2800:bf0:2902:108e:64f2:cf1a:eb5d:517c', 'success', '2023-07-26 15:01:00'),
-(59, 5, 'HERNAN', '190.99.77.62', 'success', '2023-07-26 16:07:09'),
-(60, 2, 'admin@controldas.com', '2800:430:b281:5ef3:91d7:a4b6:de2c:b0cc', 'success', '2023-07-26 16:37:30'),
-(61, 5, 'HERNAN', '190.99.77.62', 'success', '2023-07-26 17:52:44'),
-(62, 5, 'HERNAN', '190.99.77.62', 'success', '2023-07-26 18:12:11'),
-(63, 5, 'HERNAN', '190.99.77.62', 'success', '2023-07-26 18:13:44'),
-(64, 6, 'MAURICIO', '190.99.77.62', 'success', '2023-07-26 19:15:50'),
 (65, 5, 'HERNAN', '2800:bf0:2902:108e:4d66:a527:f12e:45df', 'success', '2023-07-26 21:02:09'),
 (66, 5, 'HERNAN', '181.188.200.168', 'success', '2023-07-26 22:18:08'),
 (67, 5, 'HERNAN', '2800:bf0:2902:108e:4d66:a527:f12e:45df', 'success', '2023-07-26 22:37:21'),
@@ -4908,7 +4909,17 @@ INSERT INTO `login_logs` (`id`, `user_id`, `username`, `ip`, `status`, `created_
 (305, 6, 'MAURICIO', '190.99.77.62', 'success', '2023-08-25 15:13:39'),
 (306, 7, 'DALI', '2800:bf0:a821:1122:8063:7874:79a4:3bd9', 'success', '2023-08-25 15:59:13'),
 (307, 2, 'admin@controldas.com', '2800:430:1209:9c05:74d5:1cb3:3b12:10b4', 'success', '2023-08-25 16:57:13'),
-(308, 7, 'DALI', '2800:bf0:a821:1122:8063:7874:79a4:3bd9', 'success', '2023-08-25 17:06:44');
+(308, 7, 'DALI', '2800:bf0:a821:1122:8063:7874:79a4:3bd9', 'success', '2023-08-25 17:06:44'),
+(309, 2, 'admin@controldas.com', '2800:bf0:a821:1122:8063:7874:79a4:3bd9', 'success', '2023-08-25 17:26:13'),
+(310, 7, 'DALI', '2800:bf0:a821:1122:8063:7874:79a4:3bd9', 'success', '2023-08-25 17:27:01'),
+(311, 2, 'admin@controldas.com', '2800:bf0:a821:1122:8063:7874:79a4:3bd9', 'success', '2023-08-25 17:57:56'),
+(312, 2, 'admin@controldas.com', '2800:bf0:a821:1122:8063:7874:79a4:3bd9', 'success', '2023-08-25 18:09:07'),
+(313, 2, 'admin@controldas.com', '2800:bf0:a821:1122:8063:7874:79a4:3bd9', 'success', '2023-08-25 18:09:25'),
+(314, 7, 'DALI', '2800:bf0:a821:1122:8063:7874:79a4:3bd9', 'success', '2023-08-25 19:26:06'),
+(315, 2, 'admin@controldas.com', '2800:bf0:a821:1122:8063:7874:79a4:3bd9', 'success', '2023-08-25 20:02:06'),
+(316, 7, 'DALI', '2800:bf0:a821:1122:8063:7874:79a4:3bd9', 'success', '2023-08-25 20:02:36'),
+(317, 1, '0969237302', '200.115.36.38', 'success', '2023-08-25 20:17:53'),
+(318, 2, 'DAVID POLO', '2800:bf0:2902:3007:3843:bfee:60c2:96ac', 'success', '2023-08-26 00:46:52');
 
 -- --------------------------------------------------------
 
@@ -5185,7 +5196,8 @@ INSERT INTO `pos_template_to_store` (`pt2s`, `store_id`, `ttemplate_id`, `is_act
 (2, 1, 2, 1, 1, 0),
 (3, 2, 1, 1, 1, 0),
 (4, 3, 1, 1, 1, 0),
-(5, 4, 1, 1, 1, 0);
+(5, 4, 1, 1, 1, 0),
+(6, 5, 1, 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -5234,7 +5246,8 @@ INSERT INTO `printer_to_store` (`p2s_id`, `pprinter_id`, `store_id`, `path`, `ip
 (1, 1, 2, 'POS-80C', '', '9100', 1, 0),
 (2, 1, 3, NULL, NULL, NULL, 1, 0),
 (3, 1, 1, NULL, NULL, NULL, 1, 0),
-(4, 1, 4, NULL, NULL, NULL, 1, 0);
+(4, 1, 4, NULL, NULL, NULL, 1, 0),
+(5, 1, 5, NULL, NULL, NULL, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -5487,7 +5500,12 @@ INSERT INTO `products` (`p_id`, `p_type`, `p_code`, `hsn_code`, `barcode_symbolo
 (225, 'standard', '96358150', NULL, 'code128', 'CALIGRAFIA DIDACTICA 9', 1, 1, '', ''),
 (226, 'standard', '98176131', NULL, 'code128', 'CALIGRAFIA DIDACTICA 10', 1, 1, '', ''),
 (227, 'standard', '40576780', NULL, 'code128', 'OBRAS LITERARIAS LICEO', 1, 1, '', ''),
-(228, 'standard', '44260503', NULL, 'code128', 'ROBOTICA 0', 1, 1, '', '');
+(228, 'standard', '44260503', NULL, 'code128', 'ROBOTICA 0', 1, 1, '', ''),
+(229, 'standard', '42953836', NULL, 'code128', 'ROBOTICA 0 INTERMEDIO', 1, 1, '', ''),
+(230, 'standard', '64526488', NULL, 'code128', 'ROBOTICA 1 BASICO', 1, 1, '', ''),
+(231, 'standard', '76311082', NULL, 'code128', 'ROBOTICA 1 INTERMEDIO', 1, 1, '', ''),
+(232, 'standard', '29594169', NULL, 'code128', 'ROBOTICA 2 BASICO', 1, 1, '', ''),
+(233, 'standard', '30089988', NULL, 'code128', 'ROBOTICA 2 INTERMEDIO', 1, 1, '', '');
 
 -- --------------------------------------------------------
 
@@ -6109,7 +6127,7 @@ INSERT INTO `product_to_store` (`id`, `product_id`, `store_id`, `purchase_price`
 (625, 146, 1, 21, 37.7, '0.0000', '10.0000', 4, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
 (626, 146, 2, 21, 37.7, '0.0000', '10.0000', 4, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
 (627, 146, 3, 21, 37.7, '0.0000', '10.0000', 4, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
-(628, 147, 1, 4, 14, '15.0000', '10.0000', 3, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0);
+(628, 147, 1, 4, 14, '0.0000', '10.0000', 3, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0);
 INSERT INTO `product_to_store` (`id`, `product_id`, `store_id`, `purchase_price`, `sell_price`, `quantity_in_stock`, `alert_quantity`, `sup_id`, `brand_id`, `course_id`, `box_id`, `taxrate_id`, `tax_method`, `preference`, `e_date`, `p_date`, `status`, `sort_order`) VALUES
 (629, 147, 2, 4, 14, '0.0000', '10.0000', 3, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
 (630, 147, 3, 4, 14, '11.0000', '10.0000', 3, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
@@ -6336,11 +6354,11 @@ INSERT INTO `product_to_store` (`id`, `product_id`, `store_id`, `purchase_price`
 (949, 166, 2, 29, 30, '0.0000', '10.0000', 8, 0, 11, 1, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (950, 166, 3, 29, 30, '20.0000', '10.0000', 8, 0, 11, 1, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (951, 166, 4, 29, 30, '0.0000', '10.0000', 8, 0, 11, 1, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
-(952, 167, 1, 24, 25, '30.0000', '10.0000', 8, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(952, 167, 1, 24, 25, '60.0000', '10.0000', 8, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (953, 167, 2, 24, 25, '0.0000', '10.0000', 8, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (954, 167, 3, 24, 25, '50.0000', '10.0000', 8, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (955, 167, 4, 24, 25, '0.0000', '10.0000', 8, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
-(956, 168, 1, 24, 25, '22.0000', '10.0000', 8, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(956, 168, 1, 24, 25, '102.0000', '10.0000', 8, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (957, 168, 2, 24, 25, '22.0000', '10.0000', 8, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (958, 168, 3, 24, 25, '50.0000', '10.0000', 8, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (959, 168, 4, 24, 25, '0.0000', '10.0000', 8, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
@@ -6348,35 +6366,35 @@ INSERT INTO `product_to_store` (`id`, `product_id`, `store_id`, `purchase_price`
 (961, 169, 2, 24, 25, '0.0000', '10.0000', 8, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (962, 169, 3, 24, 25, '50.0000', '10.0000', 8, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (963, 169, 4, 24, 25, '0.0000', '10.0000', 8, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
-(964, 170, 1, 26, 27, '60.0000', '10.0000', 8, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(964, 170, 1, 26, 27, '85.0000', '10.0000', 8, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (965, 170, 2, 26, 27, '0.0000', '10.0000', 8, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (966, 170, 3, 26, 27, '0.0000', '10.0000', 8, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (967, 170, 4, 26, 27, '0.0000', '10.0000', 8, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
-(968, 171, 1, 26, 27, '20.0000', '10.0000', 8, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(968, 171, 1, 26, 27, '70.0000', '10.0000', 8, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (969, 171, 2, 26, 27, '0.0000', '10.0000', 8, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (970, 171, 3, 26, 27, '50.0000', '10.0000', 8, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (971, 171, 4, 26, 27, '0.0000', '10.0000', 8, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
-(972, 172, 1, 26, 27, '30.0000', '10.0000', 8, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(972, 172, 1, 26, 27, '60.0000', '10.0000', 8, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (973, 172, 2, 26, 27, '0.0000', '10.0000', 8, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (974, 172, 3, 26, 27, '50.0000', '10.0000', 8, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (975, 172, 4, 26, 27, '0.0000', '10.0000', 8, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
-(976, 173, 1, 23, 24, '40.0000', '10.0000', 8, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(976, 173, 1, 23, 24, '58.0000', '10.0000', 8, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (977, 173, 2, 23, 24, '0.0000', '10.0000', 8, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (978, 173, 3, 23, 24, '50.0000', '10.0000', 8, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (979, 173, 4, 23, 24, '0.0000', '10.0000', 8, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
-(980, 174, 1, 23, 24, '20.0000', '10.0000', 8, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(980, 174, 1, 23, 24, '40.0000', '10.0000', 8, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (981, 174, 2, 23, 24, '0.0000', '10.0000', 8, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
-(982, 174, 3, 23, 24, '50.0000', '10.0000', 8, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(982, 174, 3, 23, 24, '-1263.0000', '10.0000', 8, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (983, 174, 4, 23, 24, '0.0000', '10.0000', 8, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
-(984, 175, 1, 26, 27, '30.0000', '10.0000', 8, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(984, 175, 1, 26, 27, '40.0000', '10.0000', 8, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (985, 175, 2, 26, 27, '0.0000', '10.0000', 8, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (986, 175, 3, 26, 27, '50.0000', '10.0000', 8, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (987, 175, 4, 26, 27, '0.0000', '10.0000', 8, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
-(988, 176, 1, 26, 27, '30.0000', '10.0000', 8, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(988, 176, 1, 26, 27, '59.0000', '10.0000', 8, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (989, 176, 2, 26, 27, '0.0000', '10.0000', 8, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (990, 176, 3, 26, 27, '50.0000', '10.0000', 8, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (991, 176, 4, 26, 27, '0.0000', '10.0000', 8, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
-(992, 177, 1, 26, 27, '35.0000', '10.0000', 8, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(992, 177, 1, 26, 27, '60.0000', '10.0000', 8, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (993, 177, 2, 26, 27, '0.0000', '10.0000', 8, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (994, 177, 3, 26, 27, '50.0000', '10.0000', 8, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (995, 177, 4, 26, 27, '0.0000', '10.0000', 8, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
@@ -6384,11 +6402,11 @@ INSERT INTO `product_to_store` (`id`, `product_id`, `store_id`, `purchase_price`
 (997, 178, 2, 26, 27, '0.0000', '10.0000', 8, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (998, 178, 3, 26, 27, '0.0000', '10.0000', 8, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (999, 178, 4, 26, 27, '0.0000', '10.0000', 8, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
-(1000, 179, 1, 26, 27, '40.0000', '10.0000', 8, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1000, 179, 1, 26, 27, '70.0000', '10.0000', 8, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1001, 179, 2, 26, 27, '0.0000', '10.0000', 8, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1002, 179, 3, 26, 27, '0.0000', '10.0000', 8, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1003, 179, 4, 26, 27, '0.0000', '10.0000', 8, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
-(1004, 180, 1, 26, 27, '30.0000', '10.0000', 8, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1004, 180, 1, 26, 27, '62.0000', '10.0000', 8, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1005, 180, 2, 26, 27, '0.0000', '10.0000', 8, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1006, 180, 3, 26, 27, '0.0000', '10.0000', 8, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1007, 180, 4, 26, 27, '0.0000', '10.0000', 8, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
@@ -6416,15 +6434,15 @@ INSERT INTO `product_to_store` (`id`, `product_id`, `store_id`, `purchase_price`
 (1029, 186, 2, 26, 27, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1030, 186, 3, 26, 27, '35.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1031, 186, 4, 26, 27, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
-(1032, 187, 1, 26, 27, '40.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1032, 187, 1, 26, 27, '60.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1033, 187, 2, 26, 27, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1034, 187, 3, 26, 27, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1035, 187, 4, 26, 27, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
-(1036, 188, 1, 26, 27, '60.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1036, 188, 1, 26, 27, '80.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1037, 188, 2, 26, 27, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1038, 188, 3, 26, 27, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1039, 188, 4, 26, 27, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
-(1040, 189, 1, 26, 27, '60.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1040, 189, 1, 26, 27, '100.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1041, 189, 2, 26, 27, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1042, 189, 3, 26, 27, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1043, 189, 4, 26, 27, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
@@ -6432,11 +6450,11 @@ INSERT INTO `product_to_store` (`id`, `product_id`, `store_id`, `purchase_price`
 (1045, 190, 2, 26, 27, '0.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1046, 190, 3, 26, 27, '0.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1047, 190, 4, 26, 27, '0.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
-(1048, 191, 1, 26, 27, '18.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1048, 191, 1, 26, 27, '28.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1049, 191, 2, 26, 27, '0.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
-(1050, 191, 3, 26, 27, '13.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1050, 191, 3, 26, 27, '-72.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1051, 191, 4, 26, 27, '0.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
-(1052, 192, 1, 26, 27, '40.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1052, 192, 1, 26, 27, '55.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1053, 192, 2, 26, 27, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1054, 192, 3, 26, 27, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1055, 192, 4, 26, 27, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
@@ -6452,15 +6470,15 @@ INSERT INTO `product_to_store` (`id`, `product_id`, `store_id`, `purchase_price`
 (1065, 195, 2, 26, 27, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1066, 195, 3, 26, 27, '15.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1067, 195, 4, 26, 27, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
-(1068, 196, 1, 26, 27, '80.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1068, 196, 1, 26, 27, '90.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1069, 196, 2, 26, 27, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1070, 196, 3, 26, 27, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1071, 196, 4, 26, 27, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
-(1072, 197, 1, 26, 27, '60.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1072, 197, 1, 26, 27, '80.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1073, 197, 2, 26, 27, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1074, 197, 3, 26, 27, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1075, 197, 4, 26, 27, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
-(1076, 198, 1, 26, 27, '55.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1076, 198, 1, 26, 27, '100.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1077, 198, 2, 26, 27, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1078, 198, 3, 26, 27, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1079, 198, 4, 26, 27, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
@@ -6468,11 +6486,11 @@ INSERT INTO `product_to_store` (`id`, `product_id`, `store_id`, `purchase_price`
 (1081, 199, 2, 26, 27, '0.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1082, 199, 3, 26, 27, '15.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1083, 199, 4, 26, 27, '0.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
-(1084, 200, 1, 26, 27, '50.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1084, 200, 1, 26, 27, '70.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1085, 200, 2, 26, 27, '0.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1086, 200, 3, 26, 27, '15.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1087, 200, 4, 26, 27, '0.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
-(1088, 201, 1, 26, 27, '44.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1088, 201, 1, 26, 27, '64.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1089, 201, 2, 26, 27, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1090, 201, 3, 26, 27, '15.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1091, 201, 4, 26, 27, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
@@ -6488,15 +6506,15 @@ INSERT INTO `product_to_store` (`id`, `product_id`, `store_id`, `purchase_price`
 (1101, 204, 2, 26, 27, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1102, 204, 3, 26, 27, '15.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1103, 204, 4, 26, 27, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
-(1104, 205, 1, 26, 27, '69.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1104, 205, 1, 26, 27, '108.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1105, 205, 2, 26, 27, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1106, 205, 3, 26, 27, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1107, 205, 4, 26, 27, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
-(1108, 206, 1, 26, 27, '58.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1108, 206, 1, 26, 27, '78.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1109, 206, 2, 26, 27, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1110, 206, 3, 26, 27, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1111, 206, 4, 26, 27, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
-(1112, 207, 1, 26, 27, '60.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1112, 207, 1, 26, 27, '80.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1113, 207, 2, 26, 27, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1114, 207, 3, 26, 27, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1115, 207, 4, 26, 27, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
@@ -6522,17 +6540,17 @@ INSERT INTO `product_to_store` (`id`, `product_id`, `store_id`, `purchase_price`
 (1135, 212, 4, 26, 27, '0.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1136, 213, 1, 26, 27, '50.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1137, 213, 2, 26, 27, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
-(1138, 213, 3, 26, 27, '15.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1138, 213, 3, 26, 27, '-270.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1139, 213, 4, 26, 27, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
-(1140, 214, 1, 26, 27, '47.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1140, 214, 1, 26, 27, '57.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1141, 214, 2, 26, 27, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1142, 214, 3, 26, 27, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1143, 214, 4, 26, 27, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
-(1144, 215, 1, 26, 27, '62.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1144, 215, 1, 26, 27, '82.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1145, 215, 2, 26, 27, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1146, 215, 3, 26, 27, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1147, 215, 4, 26, 27, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
-(1148, 216, 1, 26, 27, '64.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1148, 216, 1, 26, 27, '84.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1149, 216, 2, 26, 27, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1150, 216, 3, 26, 27, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1151, 216, 4, 26, 27, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
@@ -6540,24 +6558,24 @@ INSERT INTO `product_to_store` (`id`, `product_id`, `store_id`, `purchase_price`
 (1153, 217, 2, 15.5, 16, '0.0000', '10.0000', 8, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1154, 217, 3, 15.5, 16, '0.0000', '10.0000', 8, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1155, 217, 4, 15.5, 16, '0.0000', '10.0000', 8, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
-(1156, 218, 1, 15.5, 16, '30.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1156, 218, 1, 15.5, 16, '31.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1157, 218, 2, 15.5, 16, '0.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1158, 218, 3, 15.5, 16, '0.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0);
 INSERT INTO `product_to_store` (`id`, `product_id`, `store_id`, `purchase_price`, `sell_price`, `quantity_in_stock`, `alert_quantity`, `sup_id`, `brand_id`, `course_id`, `box_id`, `taxrate_id`, `tax_method`, `preference`, `e_date`, `p_date`, `status`, `sort_order`) VALUES
 (1159, 218, 4, 15.5, 16, '0.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
-(1160, 219, 1, 15.5, 16, '30.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1160, 219, 1, 15.5, 16, '31.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1161, 219, 2, 15.5, 16, '0.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1162, 219, 3, 15.5, 16, '0.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1163, 219, 4, 15.5, 16, '0.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
-(1164, 220, 1, 15.5, 16, '30.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1164, 220, 1, 15.5, 16, '31.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1165, 220, 2, 15.5, 16, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1166, 220, 3, 15.5, 16, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1167, 220, 4, 15.5, 16, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
-(1168, 221, 1, 15.5, 16, '0.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1168, 221, 1, 15.5, 16, '35.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1169, 221, 2, 15.5, 16, '0.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1170, 221, 3, 15.5, 16, '0.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1171, 221, 4, 15.5, 16, '0.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
-(1172, 222, 1, 15.5, 16, '30.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1172, 222, 1, 15.5, 16, '45.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1173, 222, 2, 15.5, 16, '0.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1174, 222, 3, 15.5, 16, '0.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1175, 222, 4, 15.5, 16, '0.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
@@ -6565,26 +6583,279 @@ INSERT INTO `product_to_store` (`id`, `product_id`, `store_id`, `purchase_price`
 (1177, 223, 2, 15.5, 16, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1178, 223, 3, 15.5, 16, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1179, 223, 4, 15.5, 16, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
-(1180, 224, 1, 13.5, 14, '85.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1180, 224, 1, 13.5, 14, '110.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1181, 224, 2, 13.5, 14, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1182, 224, 3, 13.5, 14, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1183, 224, 4, 13.5, 14, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
-(1184, 225, 1, 13.5, 14, '44.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1184, 225, 1, 13.5, 14, '64.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1185, 225, 2, 13.5, 14, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1186, 225, 3, 13.5, 14, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1187, 225, 4, 13.5, 14, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
-(1188, 226, 1, 13.5, 14, '60.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1188, 226, 1, 13.5, 14, '80.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1189, 226, 2, 13.5, 14, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1190, 226, 3, 13.5, 14, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1191, 226, 4, 13.5, 14, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
-(1192, 227, 1, 8.65, 8.9, '426.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1192, 227, 1, 8.65, 8.9, '943.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1193, 227, 2, 8.65, 8.9, '0.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1194, 227, 3, 8.65, 8.9, '813.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1195, 227, 4, 8.65, 8.9, '0.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
 (1196, 228, 1, 15.5, 16, '0.0000', '10.0000', 8, 0, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-08-23', '2023-08-24', 1, 0),
 (1197, 228, 2, 15.5, 16, '0.0000', '10.0000', 8, 0, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-08-23', '2023-08-24', 1, 0),
 (1198, 228, 3, 15.5, 16, '0.0000', '10.0000', 8, 0, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-08-23', '2023-08-24', 1, 0),
-(1199, 228, 4, 15.5, 16, '0.0000', '10.0000', 8, 0, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-08-23', '2023-08-24', 1, 0);
+(1199, 228, 4, 15.5, 16, '0.0000', '10.0000', 8, 0, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-08-23', '2023-08-24', 1, 0),
+(1200, 1, 5, 20, 40, '0.0000', '10.0000', 1, 1, 11, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(1201, 2, 5, 20, 40, '0.0000', '10.0000', 1, 1, 12, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(1202, 3, 5, 20, 40, '0.0000', '10.0000', 1, 1, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(1203, 4, 5, 10.8, 27, '0.0000', '10.0000', 1, 1, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(1204, 5, 5, 10.8, 27, '0.0000', '10.0000', 1, 1, 3, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(1205, 6, 5, 10.8, 27, '0.0000', '10.0000', 1, 1, 4, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(1206, 7, 5, 10.8, 27, '0.0000', '10.0000', 1, 1, 5, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(1207, 8, 5, 10.8, 27, '0.0000', '10.0000', 1, 1, 6, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(1208, 9, 5, 10.8, 27, '0.0000', '10.0000', 1, 1, 7, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(1209, 10, 5, 10.8, 27, '0.0000', '10.0000', 1, 1, 2, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(1210, 11, 5, 10.8, 27, '0.0000', '10.0000', 1, 1, 3, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(1211, 12, 5, 10.8, 27, '0.0000', '10.0000', 1, 1, 4, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(1212, 13, 5, 10.8, 27, '0.0000', '10.0000', 1, 1, 5, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(1213, 14, 5, 10.8, 27, '0.0000', '10.0000', 1, 1, 6, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(1214, 15, 5, 10.8, 27, '0.0000', '10.0000', 1, 1, 7, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(1215, 16, 5, 10.8, 27, '0.0000', '10.0000', 1, 1, 8, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(1216, 17, 5, 10.8, 27, '0.0000', '10.0000', 1, 1, 9, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(1217, 18, 5, 10.8, 27, '0.0000', '10.0000', 1, 1, 10, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(1218, 19, 5, 10.8, 27, '0.0000', '10.0000', 1, 1, 8, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(1219, 20, 5, 10.8, 27, '0.0000', '10.0000', 1, 1, 9, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(1220, 21, 5, 10.8, 27, '0.0000', '10.0000', 1, 1, 10, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(1221, 22, 5, 10.8, 27, '0.0000', '10.0000', 1, 1, 2, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(1222, 23, 5, 10.8, 27, '0.0000', '10.0000', 1, 1, 3, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(1223, 24, 5, 10.8, 27, '0.0000', '10.0000', 1, 1, 4, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(1224, 25, 5, 10.8, 27, '0.0000', '10.0000', 1, 1, 5, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(1225, 26, 5, 10.8, 27, '0.0000', '10.0000', 1, 1, 6, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(1226, 27, 5, 10.8, 27, '0.0000', '10.0000', 1, 1, 7, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(1227, 28, 5, 10.8, 27, '0.0000', '10.0000', 1, 1, 8, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(1228, 29, 5, 10.8, 27, '0.0000', '10.0000', 1, 1, 9, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(1229, 30, 5, 10.8, 27, '0.0000', '10.0000', 1, 1, 10, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(1230, 31, 5, 10.8, 27, '0.0000', '10.0000', 1, 1, 2, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(1231, 32, 5, 10.8, 27, '0.0000', '10.0000', 1, 1, 3, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(1232, 33, 5, 10.8, 27, '0.0000', '10.0000', 1, 1, 4, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(1233, 34, 5, 10.8, 27, '0.0000', '10.0000', 1, 1, 5, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(1234, 35, 5, 10.8, 27, '0.0000', '10.0000', 1, 1, 6, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(1235, 36, 5, 10.8, 27, '0.0000', '10.0000', 1, 1, 7, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(1236, 37, 5, 10.8, 27, '0.0000', '10.0000', 1, 1, 8, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(1237, 38, 5, 10.8, 27, '0.0000', '10.0000', 1, 1, 9, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(1238, 39, 5, 10.8, 27, '0.0000', '10.0000', 1, 1, 10, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(1239, 40, 5, 10, 25, '0.0000', '10.0000', 1, 1, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(1240, 41, 5, 10, 25, '0.0000', '10.0000', 1, 1, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(1241, 42, 5, 10, 25, '0.0000', '10.0000', 1, 1, 10, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(1242, 43, 5, 5.6, 14, '0.0000', '10.0000', 1, 1, 2, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(1243, 44, 5, 5.6, 14, '0.0000', '10.0000', 1, 1, 3, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(1244, 45, 5, 5.6, 14, '0.0000', '10.0000', 1, 1, 4, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(1245, 46, 5, 5.6, 14, '0.0000', '10.0000', 1, 1, 5, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(1246, 47, 5, 5.6, 14, '0.0000', '10.0000', 1, 1, 6, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(1247, 48, 5, 5.6, 14, '0.0000', '10.0000', 1, 1, 7, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(1248, 49, 5, 5.6, 14, '0.0000', '10.0000', 1, 1, 8, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(1249, 50, 5, 5.6, 14, '0.0000', '10.0000', 1, 1, 9, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(1250, 51, 5, 5.6, 14, '0.0000', '10.0000', 1, 1, 10, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(1251, 52, 5, 10.8, 27, '0.0000', '10.0000', 1, 1, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(1252, 53, 5, 10.8, 27, '0.0000', '10.0000', 1, 1, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(1253, 54, 5, 10.8, 27, '0.0000', '10.0000', 1, 1, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(1254, 55, 5, 10.8, 27, '0.0000', '10.0000', 1, 1, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(1255, 56, 5, 10.8, 27, '0.0000', '10.0000', 1, 1, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(1256, 57, 5, 10.8, 27, '0.0000', '10.0000', 1, 1, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(1257, 58, 5, 10.8, 27, '0.0000', '10.0000', 1, 1, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(1258, 59, 5, 10.8, 27, '0.0000', '10.0000', 1, 1, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(1259, 60, 5, 10.8, 27, '0.0000', '10.0000', 1, 1, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(1260, 61, 5, 10.8, 27, '0.0000', '10.0000', 1, 1, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(1261, 62, 5, 10.8, 27, '0.0000', '10.0000', 1, 1, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(1262, 63, 5, 10.8, 27, '0.0000', '10.0000', 1, 1, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(1263, 64, 5, 10.8, 27, '0.0000', '10.0000', 1, 1, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(1264, 65, 5, 10.8, 27, '0.0000', '10.0000', 1, 1, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(1265, 66, 5, 10.8, 27, '0.0000', '10.0000', 1, 1, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(1266, 67, 5, 10.8, 27, '0.0000', '10.0000', 1, 1, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(1267, 68, 5, 10.8, 27, '0.0000', '10.0000', 1, 1, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(1268, 69, 5, 10.8, 27, '0.0000', '10.0000', 1, 1, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(1269, 70, 5, 25, 25, '0.0000', '10.0000', 1, 1, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(1270, 71, 5, 25, 25, '0.0000', '10.0000', 1, 1, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(1271, 72, 5, 10, 25, '0.0000', '10.0000', 1, 1, 0, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(1272, 73, 5, 10, 25, '0.0000', '10.0000', 1, 1, 0, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(1273, 74, 5, 10, 25, '0.0000', '10.0000', 1, 1, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(1274, 75, 5, 10, 25, '0.0000', '10.0000', 1, 1, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(1275, 76, 5, 10, 25, '0.0000', '10.0000', 1, 1, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(1276, 77, 5, 6, 15, '0.0000', '10.0000', 1, 1, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(1277, 78, 5, 6, 15, '0.0000', '10.0000', 1, 1, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(1278, 79, 5, 6, 15, '0.0000', '10.0000', 1, 1, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(1279, 80, 5, 14, 14, '0.0000', '10.0000', 1, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-06-16', '2023-06-17', 1, 0),
+(1280, 81, 5, 14, 14, '0.0000', '10.0000', 1, 0, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-06-16', '2023-06-17', 1, 0),
+(1281, 82, 5, 14, 14, '0.0000', '10.0000', 1, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-06-16', '2023-06-17', 1, 0),
+(1282, 83, 5, 21, 45, '0.0000', '10.0000', 4, 0, 12, 1, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(1283, 84, 5, 21, 45, '0.0000', '10.0000', 4, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(1284, 85, 5, 6.5, 10, '0.0000', '10.0000', 7, 0, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(1285, 86, 5, 6.5, 10, '0.0000', '10.0000', 7, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(1286, 87, 5, 6.5, 10, '0.0000', '10.0000', 7, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(1287, 88, 5, 6.5, 10, '0.0000', '10.0000', 7, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(1288, 89, 5, 6.5, 10, '0.0000', '10.0000', 7, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(1289, 90, 5, 6.5, 10, '0.0000', '10.0000', 7, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(1290, 91, 5, 27, 46, '0.0000', '10.0000', 4, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(1291, 92, 5, 27, 46, '0.0000', '10.0000', 4, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(1292, 93, 5, 27, 46, '0.0000', '10.0000', 4, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(1293, 94, 5, 27, 46, '0.0000', '10.0000', 4, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(1294, 95, 5, 27, 46, '0.0000', '10.0000', 4, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(1295, 96, 5, 22, 46, '0.0000', '10.0000', 4, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(1296, 97, 5, 22, 46, '0.0000', '10.0000', 4, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(1297, 98, 5, 22, 46, '0.0000', '10.0000', 4, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(1298, 99, 5, 22, 46, '0.0000', '10.0000', 4, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(1299, 100, 5, 22, 54, '0.0000', '10.0000', 4, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(1300, 101, 5, 22, 54, '0.0000', '10.0000', 4, 0, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(1301, 102, 5, 22, 46, '0.0000', '10.0000', 4, 0, 7, 1, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(1302, 103, 5, 6, 15, '0.0000', '10.0000', 1, 0, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(1303, 104, 5, 6, 15, '0.0000', '10.0000', 1, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(1304, 105, 5, 6, 15, '0.0000', '10.0000', 1, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(1305, 106, 5, 6, 15, '0.0000', '10.0000', 1, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(1306, 107, 5, 6, 15, '0.0000', '10.0000', 1, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(1307, 108, 5, 6, 15, '0.0000', '10.0000', 1, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(1308, 109, 5, 6, 15, '0.0000', '10.0000', 1, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(1309, 110, 5, 6, 15, '0.0000', '10.0000', 1, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(1310, 111, 5, 6, 15, '0.0000', '10.0000', 1, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(1311, 112, 5, 10.5, 20.25, '0.0000', '10.0000', 1, 0, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-07-27', '2023-07-28', 1, 0),
+(1312, 113, 5, 10.8, 20.25, '0.0000', '10.0000', 1, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-07-27', '2023-07-28', 1, 0),
+(1313, 114, 5, 10.8, 20.25, '0.0000', '10.0000', 1, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-07-27', '2023-07-28', 1, 0),
+(1314, 115, 5, 4, 14, '0.0000', '10.0000', 3, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(1315, 116, 5, 4, 14, '0.0000', '10.0000', 3, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(1316, 117, 5, 4, 14, '0.0000', '10.0000', 3, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(1317, 118, 5, 4, 14, '0.0000', '10.0000', 3, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(1318, 119, 5, 4, 14, '0.0000', '10.0000', 3, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(1319, 120, 5, 4, 14, '0.0000', '10.0000', 3, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(1320, 121, 5, 4, 14, '0.0000', '10.0000', 3, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(1321, 122, 5, 3, 14, '0.0000', '10.0000', 3, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(1322, 123, 5, 3, 14, '0.0000', '10.0000', 3, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(1323, 124, 5, 3, 14, '0.0000', '10.0000', 3, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(1324, 125, 5, 4, 12, '0.0000', '10.0000', 3, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(1325, 126, 5, 4, 12, '0.0000', '10.0000', 3, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(1326, 127, 5, 4, 12, '0.0000', '10.0000', 3, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(1327, 128, 5, 4, 12, '0.0000', '10.0000', 3, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(1328, 129, 5, 4, 12, '0.0000', '10.0000', 3, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(1329, 130, 5, 4, 12, '0.0000', '10.0000', 3, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(1330, 131, 5, 4, 12, '0.0000', '10.0000', 3, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(1331, 132, 5, 4, 12, '0.0000', '10.0000', 3, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(1332, 133, 5, 4, 12, '0.0000', '10.0000', 3, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(1333, 134, 5, 4, 12, '0.0000', '10.0000', 3, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(1334, 135, 5, 4, 12, '0.0000', '10.0000', 3, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(1335, 136, 5, 4, 13, '0.0000', '10.0000', 3, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(1336, 137, 5, 4, 13, '0.0000', '10.0000', 3, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(1337, 138, 5, 4, 13, '0.0000', '10.0000', 3, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(1338, 139, 5, 4, 13, '0.0000', '10.0000', 3, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(1339, 140, 5, 4, 13, '0.0000', '10.0000', 3, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(1340, 141, 5, 4, 13, '0.0000', '10.0000', 3, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(1341, 142, 5, 4, 14, '0.0000', '10.0000', 3, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(1342, 143, 5, 4, 14, '0.0000', '10.0000', 3, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(1343, 144, 5, 4, 14, '0.0000', '10.0000', 3, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(1344, 145, 5, 21, 37.7, '0.0000', '10.0000', 4, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(1345, 146, 5, 21, 37.7, '0.0000', '10.0000', 4, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(1346, 147, 5, 4, 14, '0.0000', '10.0000', 3, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(1347, 148, 5, 3.95, 12, '0.0000', '10.0000', 2, 0, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(1348, 149, 5, 3.95, 12, '0.0000', '10.0000', 2, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(1349, 150, 5, 3.95, 12, '0.0000', '10.0000', 2, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(1350, 151, 5, 3.95, 12, '0.0000', '10.0000', 2, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(1351, 152, 5, 3.95, 12, '0.0000', '10.0000', 2, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(1352, 153, 5, 3.95, 12, '0.0000', '10.0000', 2, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(1353, 154, 5, 3.95, 12, '0.0000', '10.0000', 2, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(1354, 155, 5, 3.95, 12, '0.0000', '10.0000', 7, 0, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(1355, 156, 5, 3.95, 12, '0.0000', '10.0000', 7, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(1356, 157, 5, 0, 10, '0.0000', '10.0000', 7, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-08-15', '2023-08-16', 1, 0),
+(1357, 158, 5, 21, 48.75, '0.0000', '10.0000', 4, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-08-16', '2023-08-17', 1, 0),
+(1358, 159, 5, 21, 48.75, '0.0000', '10.0000', 4, 0, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-08-16', '2023-08-17', 1, 0),
+(1359, 160, 5, 21, 48.75, '0.0000', '10.0000', 4, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-16', '2023-08-17', 1, 0),
+(1360, 161, 5, 20, 48.75, '0.0000', '10.0000', 1, 0, 11, 0, 2, 'inclusive', 'a:0:{}', '2024-08-16', '2023-08-17', 1, 0),
+(1361, 162, 5, 20, 48.75, '0.0000', '10.0000', 1, 0, 12, 0, 2, 'inclusive', 'a:0:{}', '2024-08-16', '2023-08-17', 1, 0),
+(1362, 163, 5, 20, 48.75, '0.0000', '10.0000', 1, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-08-16', '2023-08-17', 1, 0),
+(1363, 164, 5, 29, 30, '0.0000', '10.0000', 8, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1364, 165, 5, 29, 30, '0.0000', '10.0000', 8, 0, 12, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1365, 166, 5, 29, 30, '0.0000', '10.0000', 8, 0, 11, 1, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1366, 167, 5, 24, 25, '0.0000', '10.0000', 8, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1367, 168, 5, 24, 25, '0.0000', '10.0000', 8, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1368, 169, 5, 24, 25, '0.0000', '10.0000', 8, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1369, 170, 5, 26, 27, '0.0000', '10.0000', 8, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1370, 171, 5, 26, 27, '0.0000', '10.0000', 8, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1371, 172, 5, 26, 27, '0.0000', '10.0000', 8, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1372, 173, 5, 23, 24, '0.0000', '10.0000', 8, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1373, 174, 5, 23, 24, '0.0000', '10.0000', 8, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1374, 175, 5, 26, 27, '0.0000', '10.0000', 8, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1375, 176, 5, 26, 27, '0.0000', '10.0000', 8, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1376, 177, 5, 26, 27, '0.0000', '10.0000', 8, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1377, 178, 5, 26, 27, '0.0000', '10.0000', 8, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1378, 179, 5, 26, 27, '0.0000', '10.0000', 8, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1379, 180, 5, 26, 27, '0.0000', '10.0000', 8, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1380, 181, 5, 26, 27, '0.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1381, 182, 5, 26, 27, '0.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1382, 183, 5, 26, 27, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1383, 184, 5, 26, 27, '0.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1384, 185, 5, 26, 27, '0.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1385, 186, 5, 26, 27, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1386, 187, 5, 26, 27, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1387, 188, 5, 26, 27, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1388, 189, 5, 26, 27, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1389, 190, 5, 26, 27, '0.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1390, 191, 5, 26, 27, '0.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1391, 192, 5, 26, 27, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1392, 193, 5, 26, 27, '0.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1393, 194, 5, 26, 27, '0.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1394, 195, 5, 26, 27, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1395, 196, 5, 26, 27, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1396, 197, 5, 26, 27, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1397, 198, 5, 26, 27, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1398, 199, 5, 26, 27, '0.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1399, 200, 5, 26, 27, '0.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1400, 201, 5, 26, 27, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1401, 202, 5, 26, 27, '0.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1402, 203, 5, 26, 27, '0.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1403, 204, 5, 26, 27, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1404, 205, 5, 26, 27, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1405, 206, 5, 26, 27, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1406, 207, 5, 26, 27, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1407, 208, 5, 26, 27, '0.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1408, 209, 5, 26, 27, '0.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1409, 210, 5, 26, 27, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1410, 211, 5, 26, 27, '0.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1411, 212, 5, 26, 27, '0.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1412, 213, 5, 26, 27, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1413, 214, 5, 26, 27, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1414, 215, 5, 26, 27, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1415, 216, 5, 26, 27, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1416, 217, 5, 15.5, 16, '0.0000', '10.0000', 8, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1417, 218, 5, 15.5, 16, '0.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1418, 219, 5, 15.5, 16, '0.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1419, 220, 5, 15.5, 16, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1420, 221, 5, 15.5, 16, '0.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1421, 222, 5, 15.5, 16, '0.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1422, 223, 5, 15.5, 16, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1423, 224, 5, 13.5, 14, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1424, 225, 5, 13.5, 14, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1425, 226, 5, 13.5, 14, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1426, 227, 5, 8.65, 8.9, '0.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(1427, 228, 5, 15.5, 16, '0.0000', '10.0000', 8, 0, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-08-23', '2023-08-24', 1, 0),
+(1455, 229, 1, 15.5, 16, '0.0000', '10.0000', 8, 0, 3, 1, 2, 'inclusive', 'a:0:{}', '2024-08-24', '2023-08-25', 1, 0),
+(1456, 229, 2, 15.5, 16, '0.0000', '10.0000', 8, 0, 3, 1, 2, 'inclusive', 'a:0:{}', '2024-08-24', '2023-08-25', 1, 0),
+(1457, 229, 3, 15.5, 16, '0.0000', '10.0000', 8, 0, 3, 1, 2, 'inclusive', 'a:0:{}', '2024-08-24', '2023-08-25', 1, 0),
+(1458, 229, 4, 15.5, 16, '0.0000', '10.0000', 8, 0, 3, 1, 2, 'inclusive', 'a:0:{}', '2024-08-24', '2023-08-25', 1, 0),
+(1459, 229, 5, 15.5, 16, '0.0000', '10.0000', 8, 0, 3, 1, 2, 'inclusive', 'a:0:{}', '2024-08-24', '2023-08-25', 1, 0),
+(1460, 230, 1, 15.5, 16, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-24', '2023-08-25', 1, 0),
+(1461, 230, 2, 15.5, 16, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-24', '2023-08-25', 1, 0),
+(1462, 230, 3, 15.5, 16, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-24', '2023-08-25', 1, 0),
+(1463, 230, 4, 15.5, 16, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-24', '2023-08-25', 1, 0),
+(1464, 230, 5, 15.5, 16, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-24', '2023-08-25', 1, 0),
+(1465, 231, 1, 15.5, 16, '0.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-24', '2023-08-25', 1, 0),
+(1466, 231, 2, 15.5, 16, '0.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-24', '2023-08-25', 1, 0),
+(1467, 231, 3, 15.5, 16, '0.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-24', '2023-08-25', 1, 0),
+(1468, 231, 4, 15.5, 16, '0.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-24', '2023-08-25', 1, 0),
+(1469, 231, 5, 15.5, 16, '0.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-24', '2023-08-25', 1, 0),
+(1470, 232, 1, 15.5, 16, '0.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-24', '2023-08-25', 1, 0),
+(1471, 232, 2, 15.5, 16, '0.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-24', '2023-08-25', 1, 0),
+(1472, 232, 3, 15.5, 16, '0.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-24', '2023-08-25', 1, 0),
+(1473, 232, 4, 15.5, 16, '0.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-24', '2023-08-25', 1, 0),
+(1474, 232, 5, 15.5, 16, '0.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-24', '2023-08-25', 1, 0),
+(1475, 233, 1, 15.5, 16, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-24', '2023-08-25', 1, 0),
+(1476, 233, 2, 15.5, 16, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-24', '2023-08-25', 1, 0),
+(1477, 233, 3, 15.5, 16, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-24', '2023-08-25', 1, 0),
+(1478, 233, 4, 15.5, 16, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-24', '2023-08-25', 1, 0),
+(1479, 233, 5, 15.5, 16, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-24', '2023-08-25', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -6723,7 +6994,6 @@ INSERT INTO `purchase_info` (`info_id`, `invoice_id`, `inv_type`, `store_id`, `s
 (108, 'C4', 'purchase', 3, 7, '2.0000', 'stock', '0.0000', '', '', 1, 'paid', 1, 'received', 2, '2023-08-15 00:00:00', '2023-08-15 20:28:02', NULL),
 (109, 'Crefuerzo3', 'purchase', 2, 7, '1.0000', 'stock', '0.0000', 'ingreso', '', 1, 'paid', 1, 'received', 6, '2023-08-16 00:00:00', '2023-08-16 10:48:23', NULL),
 (110, 'Crefuerzo 3.', 'purchase', 2, 7, '1.0000', 'stock', '0.0000', '', '', 1, 'paid', 1, 'received', 6, '2023-08-16 00:00:00', '2023-08-16 14:20:33', NULL),
-(111, 'C6', 'purchase', 1, 3, '1.0000', 'stock', '0.0000', 'PRODUCTO POR LLEGAR', '', 1, 'paid', 1, 'received', 2, '2023-08-17 00:00:00', '2023-08-17 14:54:06', NULL),
 (112, 'C7', 'purchase', 3, 3, '1.0000', 'stock', '0.0000', 'PRODUCTO POR LLEGAR', '', 1, 'paid', 1, 'received', 2, '2023-08-17 00:00:00', '2023-08-17 14:58:03', NULL),
 (113, 'Crefuerzo 3..', 'purchase', 2, 7, '1.0000', 'stock', '0.0000', 'a', '', 1, 'paid', 1, 'received', 6, '2023-08-18 00:00:00', '2023-08-18 13:41:31', NULL),
 (114, 'Crefuerzo escolar 3.', 'purchase', 2, 7, '1.0000', 'stock', '0.0000', 'c', '', 1, 'paid', 1, 'received', 6, '2023-08-18 00:00:00', '2023-08-18 16:06:28', NULL),
@@ -6739,12 +7009,15 @@ INSERT INTO `purchase_info` (`info_id`, `invoice_id`, `inv_type`, `store_id`, `s
 (124, 'C24-03-2023', 'purchase', 1, 8, '28.0000', 'stock', '0.0000', '', '', 1, 'paid', 1, 'received', 7, '2023-08-24 00:00:00', '2023-08-24 12:21:53', NULL),
 (125, 'C11-05-2023', 'purchase', 1, 8, '10.0000', 'stock', '0.0000', '', '', 1, 'paid', 1, 'received', 7, '2023-08-24 00:00:00', '2023-08-24 12:28:43', NULL),
 (126, 'C19-05-2023', 'purchase', 1, 8, '20.0000', 'stock', '0.0000', '', '', 1, 'paid', 1, 'received', 7, '2023-08-24 00:00:00', '2023-08-24 12:44:17', NULL),
-(127, 'C03-04-2023', 'purchase', 3, 8, '5.0000', 'stock', '0.0000', '', '', 1, 'paid', 1, 'received', 2, '2023-08-24 00:00:00', '2023-08-24 15:21:37', NULL),
-(128, 'C05-05-2023', 'purchase', 3, 8, '11.0000', 'stock', '0.0000', '', '', 1, 'paid', 1, 'received', 2, '2023-08-24 00:00:00', '2023-08-24 15:32:20', NULL),
-(129, 'C04-06-2023', 'purchase', 3, 8, '21.0000', 'stock', '0.0000', '', '', 1, 'paid', 1, 'received', 2, '2023-08-24 00:00:00', '2023-08-24 15:37:29', NULL),
 (130, 'CELLEVATEN TEEN', 'purchase', 2, 4, '1.0000', 'stock', '0.0000', 'NO PAGADO', '', 1, 'paid', 1, 'received', 6, '2023-08-25 00:00:00', '2023-08-25 10:02:22', NULL),
 (131, 'C01-06-2023', 'purchase', 1, 8, '19.0000', 'stock', '0.0000', '', '', 1, 'paid', 1, 'received', 7, '2023-08-25 00:00:00', '2023-08-25 11:11:16', NULL),
-(132, 'C02-06-23', 'purchase', 1, 8, '3.0000', 'stock', '0.0000', '', '', 1, 'paid', 1, 'received', 7, '2023-08-25 00:00:00', '2023-08-25 12:13:19', NULL);
+(132, 'C02-06-23', 'purchase', 1, 8, '3.0000', 'stock', '0.0000', '', '', 1, 'paid', 1, 'received', 7, '2023-08-25 00:00:00', '2023-08-25 12:13:19', NULL),
+(133, 'C13-06-23', 'purchase', 1, 8, '12.0000', 'stock', '0.0000', '', '', 1, 'paid', 1, 'received', 7, '2023-08-25 00:00:00', '2023-08-25 12:25:35', NULL),
+(134, 'C26-05-23', 'purchase', 1, 8, '8.0000', 'stock', '0.0000', '', '', 1, 'paid', 1, 'received', 7, '2023-08-25 00:00:00', '2023-08-25 14:28:34', NULL),
+(135, 'C09-06-23', 'purchase', 1, 8, '11.0000', 'stock', '0.0000', '', '', 1, 'paid', 1, 'received', 7, '2023-08-25 00:00:00', '2023-08-25 14:38:26', NULL),
+(136, 'C10-06-23', 'purchase', 1, 8, '2.0000', 'stock', '0.0000', '', '', 1, 'paid', 1, 'received', 7, '2023-08-25 00:00:00', '2023-08-25 14:40:02', NULL),
+(137, 'C01-06-23', 'purchase', 1, 8, '1.0000', 'stock', '0.0000', '', '', 1, 'paid', 1, 'received', 7, '2023-08-25 00:00:00', '2023-08-25 14:44:28', NULL),
+(138, 'C09-06-23 A', 'purchase', 1, 8, '17.0000', 'stock', '0.0000', '', '', 1, 'paid', 1, 'received', 7, '2023-08-25 00:00:00', '2023-08-25 15:24:13', NULL);
 
 -- --------------------------------------------------------
 
@@ -6905,7 +7178,6 @@ INSERT INTO `purchase_item` (`id`, `invoice_id`, `store_id`, `item_id`, `categor
 (127, 'C4', 3, 155, 1, 0, 'MAGICA ORTOGRAFIA Y CALIGRAFIA 9', '3.9500', '12.0000', '11.0000', '3.0000', 'active', '43.4500', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (128, 'Crefuerzo3', 2, 86, 1, 0, 'REFUERZO ESCOLAR 3', '6.5000', '10.0000', '1.0000', '1.0000', 'sold', '6.5000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (129, 'Crefuerzo 3.', 2, 86, 1, 0, 'REFUERZO ESCOLAR 3', '6.5000', '10.0000', '1.0000', '1.0000', 'sold', '6.5000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(130, 'C6', 1, 147, 1, 0, 'MI LECTURA DIRIGIDA 7', '4.0000', '14.0000', '15.0000', '0.0000', 'active', '60.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (131, 'C7', 3, 147, 1, 0, 'MI LECTURA DIRIGIDA 7', '4.0000', '14.0000', '15.0000', '4.0000', 'active', '60.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (132, 'Crefuerzo 3..', 2, 86, 1, 0, 'REFUERZO ESCOLAR 3', '6.5000', '10.0000', '1.0000', '1.0000', 'sold', '6.5000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (133, 'Crefuerzo escolar 3.', 2, 86, 1, 0, 'REFUERZO ESCOLAR 3', '6.5000', '10.0000', '1.0000', '1.0000', 'sold', '6.5000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
@@ -6990,44 +7262,6 @@ INSERT INTO `purchase_item` (`id`, `invoice_id`, `store_id`, `item_id`, `categor
 (212, 'C19-05-2023', 1, 184, 1, 0, 'LENGUAJE 5 ACADEMIA', '26.0000', '27.0000', '20.0000', '0.0000', 'stock', '520.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (213, 'C19-05-2023', 1, 183, 1, 0, 'LENGUAJE 4 ACADEMIA', '26.0000', '27.0000', '10.0000', '0.0000', 'stock', '260.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (214, 'C19-05-2023', 1, 182, 1, 0, 'LENGUAJE 3 ACADEMIA', '26.0000', '27.0000', '15.0000', '0.0000', 'stock', '390.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(215, 'C03-04-2023', 3, 191, 1, 0, 'MATEMATICA 3 ACADEMIA', '26.0000', '27.0000', '13.0000', '0.0000', 'active', '338.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(216, 'C03-04-2023', 3, 186, 1, 0, 'LENGUAJE 7 ACADEMIA', '26.0000', '27.0000', '20.0000', '0.0000', 'active', '520.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(217, 'C03-04-2023', 3, 165, 1, 0, 'PRESONITAS INICIAL 2', '29.0000', '30.0000', '12.0000', '0.0000', 'active', '348.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(218, 'C03-04-2023', 3, 164, 1, 0, 'PRESONITAS 1', '29.0000', '30.0000', '20.0000', '0.0000', 'active', '580.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(219, 'C03-04-2023', 3, 166, 1, 0, 'PRESONITAS INICIAL 1', '29.0000', '30.0000', '20.0000', '0.0000', 'active', '580.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(220, 'C05-05-2023', 3, 174, 1, 0, 'CIUDADANIA 2BGU ACADEMIA', '23.0000', '24.0000', '50.0000', '0.0000', 'active', '1150.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(221, 'C05-05-2023', 3, 173, 1, 0, 'CIUDADANIA 1BGU ACADEMIA', '23.0000', '24.0000', '50.0000', '0.0000', 'active', '1150.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(222, 'C05-05-2023', 3, 169, 1, 0, 'EMPRENDIMIENTO 3BGU ACADEMIA', '24.0000', '25.0000', '50.0000', '0.0000', 'active', '1200.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(223, 'C05-05-2023', 3, 168, 1, 0, 'EMPRENDIMIENTO 2BGU ACADEMIA', '24.0000', '25.0000', '50.0000', '0.0000', 'active', '1200.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(224, 'C05-05-2023', 3, 167, 1, 0, 'EMPRENDIMIENTO 1BGU ACADEMIA', '24.0000', '25.0000', '50.0000', '0.0000', 'active', '1200.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(225, 'C05-05-2023', 3, 172, 1, 0, 'HISTORIA 3BGU ACADEMIA ', '26.0000', '27.0000', '50.0000', '0.0000', 'active', '1300.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(226, 'C05-05-2023', 3, 171, 1, 0, 'HISTORIA 2BGU ACADEMIA ', '26.0000', '27.0000', '50.0000', '0.0000', 'active', '1300.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(227, 'C05-05-2023', 3, 177, 1, 0, 'BIOLOGIA 3BGU ACADEMIA', '26.0000', '27.0000', '50.0000', '0.0000', 'active', '1300.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(228, 'C05-05-2023', 3, 176, 1, 0, 'BIOLOGIA 2BGU ACADEMIA', '26.0000', '27.0000', '50.0000', '0.0000', 'active', '1300.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(229, 'C05-05-2023', 3, 175, 1, 0, 'BIOLOGIA 1BGU ACADEMIA', '26.0000', '27.0000', '50.0000', '0.0000', 'active', '1300.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(230, 'C05-05-2023', 3, 227, 1, 0, 'OBRAS LITERARIAS LICEO', '8.6500', '8.9000', '813.0000', '0.0000', 'active', '7032.4500', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(231, 'C04-06-2023', 3, 165, 1, 0, 'PRESONITAS INICIAL 2', '29.0000', '30.0000', '10.0000', '0.0000', 'stock', '290.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(232, 'C04-06-2023', 3, 213, 1, 0, 'CCNN 7 ACADEMIA', '26.0000', '27.0000', '15.0000', '0.0000', 'active', '390.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(233, 'C04-06-2023', 3, 212, 1, 0, 'CCNN 6 ACADEMIA', '26.0000', '27.0000', '15.0000', '0.0000', 'active', '390.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(234, 'C04-06-2023', 3, 211, 1, 0, 'CCNN 5 ACADEMIA', '26.0000', '27.0000', '15.0000', '0.0000', 'active', '390.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(235, 'C04-06-2023', 3, 210, 1, 0, 'CCNN 4 ACADEMIA', '26.0000', '27.0000', '15.0000', '0.0000', 'active', '390.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000');
-INSERT INTO `purchase_item` (`id`, `invoice_id`, `store_id`, `item_id`, `category_id`, `brand_id`, `item_name`, `item_purchase_price`, `item_selling_price`, `item_quantity`, `total_sell`, `status`, `item_total`, `item_tax`, `tax_method`, `tax`, `gst`, `cgst`, `sgst`, `igst`, `return_quantity`) VALUES
-(236, 'C04-06-2023', 3, 209, 1, 0, 'CCNN 3 ACADEMIA', '26.0000', '27.0000', '15.0000', '0.0000', 'active', '390.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(237, 'C04-06-2023', 3, 208, 1, 0, 'CCNN 2 ACADEMIA', '26.0000', '27.0000', '15.0000', '0.0000', 'active', '390.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(238, 'C04-06-2023', 3, 204, 1, 0, 'SOCIALES 7 ACADEMIA', '26.0000', '27.0000', '15.0000', '0.0000', 'active', '390.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(239, 'C04-06-2023', 3, 203, 1, 0, 'SOCIALES 6 ACADEMIA', '26.0000', '27.0000', '15.0000', '0.0000', 'active', '390.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(240, 'C04-06-2023', 3, 202, 1, 0, 'SOCIALES 5 ACADEMIA', '26.0000', '27.0000', '15.0000', '0.0000', 'active', '390.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(241, 'C04-06-2023', 3, 201, 1, 0, 'SOCIALES 4 ACADEMIA', '26.0000', '27.0000', '15.0000', '0.0000', 'active', '390.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(242, 'C04-06-2023', 3, 200, 1, 0, 'SOCIALES 3 ACADEMIA', '26.0000', '27.0000', '15.0000', '0.0000', 'active', '390.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(243, 'C04-06-2023', 3, 199, 1, 0, 'SOCIALES 2 ACADEMIA', '26.0000', '27.0000', '15.0000', '0.0000', 'active', '390.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(244, 'C04-06-2023', 3, 194, 1, 0, 'MATEMATICA 6 ACADEMIA', '26.0000', '27.0000', '15.0000', '0.0000', 'active', '390.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(245, 'C04-06-2023', 3, 195, 1, 0, 'MATEMATICA 7 ACADEMIA', '26.0000', '27.0000', '15.0000', '0.0000', 'active', '390.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(246, 'C04-06-2023', 3, 193, 1, 0, 'MATEMATICA 5 ACADEMIA', '26.0000', '27.0000', '15.0000', '0.0000', 'active', '390.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(247, 'C04-06-2023', 3, 186, 1, 0, 'LENGUAJE 7 ACADEMIA', '26.0000', '27.0000', '15.0000', '0.0000', 'stock', '390.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(248, 'C04-06-2023', 3, 185, 1, 0, 'LENGUAJE 6 ACADEMIA', '26.0000', '27.0000', '15.0000', '0.0000', 'active', '390.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(249, 'C04-06-2023', 3, 184, 1, 0, 'LENGUAJE 5 ACADEMIA', '26.0000', '27.0000', '15.0000', '0.0000', 'active', '390.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(250, 'C04-06-2023', 3, 183, 1, 0, 'LENGUAJE 4 ACADEMIA', '26.0000', '27.0000', '15.0000', '0.0000', 'active', '390.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(251, 'C04-06-2023', 3, 182, 1, 0, 'LENGUAJE 3 ACADEMIA', '26.0000', '27.0000', '15.0000', '0.0000', 'active', '390.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (252, 'CELLEVATEN TEEN', 2, 97, 1, 0, 'ELLEVATE ENGLISH TEEN  SB FULL 2', '22.0000', '46.0000', '1.0000', '1.0000', 'sold', '22.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (253, 'C01-06-2023', 1, 227, 1, 0, 'OBRAS LITERARIAS LICEO', '8.6500', '8.9000', '426.0000', '0.0000', 'active', '3684.9000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (254, 'C01-06-2023', 1, 226, 1, 0, 'CALIGRAFIA DIDACTICA 10', '13.5000', '14.0000', '10.0000', '0.0000', 'stock', '135.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
@@ -7049,8 +7283,60 @@ INSERT INTO `purchase_item` (`id`, `invoice_id`, `store_id`, `item_id`, `categor
 (270, 'C01-06-2023', 1, 196, 1, 0, 'MATEMATICA 8 ACADEMIA', '26.0000', '27.0000', '20.0000', '0.0000', 'stock', '520.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (271, 'C01-06-2023', 1, 205, 1, 0, 'SOCIALES 8 ACADEMIA', '26.0000', '27.0000', '10.0000', '0.0000', 'stock', '260.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (272, 'C02-06-23', 1, 164, 1, 0, 'PRESONITAS 1', '29.0000', '30.0000', '10.0000', '0.0000', 'active', '290.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(273, 'C02-06-23', 1, 172, 1, 0, 'HISTORIA 3BGU ACADEMIA ', '26.0000', '27.0000', '30.0000', '0.0000', 'active', '780.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(274, 'C02-06-23', 1, 173, 1, 0, 'CIUDADANIA 1BGU ACADEMIA', '23.0000', '24.0000', '40.0000', '0.0000', 'active', '920.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000');
+(273, 'C02-06-23', 1, 172, 1, 0, 'HISTORIA 3BGU ACADEMIA ', '26.0000', '27.0000', '30.0000', '0.0000', 'active', '780.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000');
+INSERT INTO `purchase_item` (`id`, `invoice_id`, `store_id`, `item_id`, `category_id`, `brand_id`, `item_name`, `item_purchase_price`, `item_selling_price`, `item_quantity`, `total_sell`, `status`, `item_total`, `item_tax`, `tax_method`, `tax`, `gst`, `cgst`, `sgst`, `igst`, `return_quantity`) VALUES
+(274, 'C02-06-23', 1, 173, 1, 0, 'CIUDADANIA 1BGU ACADEMIA', '23.0000', '24.0000', '40.0000', '0.0000', 'active', '920.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(275, 'C13-06-23', 1, 224, 1, 0, 'CALIGRAFIA DIDACTICA 8', '13.5000', '14.0000', '5.0000', '0.0000', 'stock', '67.5000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(276, 'C13-06-23', 1, 168, 1, 0, 'EMPRENDIMIENTO 2BGU ACADEMIA', '24.0000', '25.0000', '30.0000', '0.0000', 'stock', '720.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(277, 'C13-06-23', 1, 227, 1, 0, 'OBRAS LITERARIAS LICEO', '8.6500', '8.9000', '16.0000', '0.0000', 'stock', '138.4000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(278, 'C13-06-23', 1, 222, 1, 0, 'CALIGRAFITO 6', '15.5000', '16.0000', '5.0000', '0.0000', 'stock', '77.5000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(279, 'C13-06-23', 1, 220, 1, 0, 'CALIGRAFITO 4', '15.5000', '16.0000', '1.0000', '0.0000', 'stock', '15.5000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(280, 'C13-06-23', 1, 219, 1, 0, 'CALIGRAFITO 3', '15.5000', '16.0000', '1.0000', '0.0000', 'stock', '15.5000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(281, 'C13-06-23', 1, 218, 1, 0, 'CALIGRAFITO 2', '15.5000', '16.0000', '1.0000', '0.0000', 'stock', '15.5000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(282, 'C13-06-23', 1, 180, 1, 0, 'LENGUAJE 3BGU ACADEMIA', '26.0000', '27.0000', '2.0000', '0.0000', 'stock', '52.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(283, 'C13-06-23', 1, 179, 1, 0, 'LENGUAJE 2BGU ACADEMIA', '26.0000', '27.0000', '10.0000', '0.0000', 'stock', '260.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(284, 'C13-06-23', 1, 198, 1, 0, 'MATEMATICA 10 ACADEMIA', '26.0000', '27.0000', '25.0000', '0.0000', 'stock', '650.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(285, 'C13-06-23', 1, 189, 1, 0, 'LENGUAJE 10 ACADEMIA', '26.0000', '27.0000', '30.0000', '0.0000', 'stock', '780.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(286, 'C13-06-23', 1, 205, 1, 0, 'SOCIALES 8 ACADEMIA', '26.0000', '27.0000', '30.0000', '0.0000', 'stock', '780.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(287, 'C26-05-23', 1, 175, 1, 0, 'BIOLOGIA 1BGU ACADEMIA', '26.0000', '27.0000', '10.0000', '0.0000', 'stock', '260.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(288, 'C26-05-23', 1, 177, 1, 0, 'BIOLOGIA 3BGU ACADEMIA', '26.0000', '27.0000', '20.0000', '0.0000', 'stock', '520.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(289, 'C26-05-23', 1, 176, 1, 0, 'BIOLOGIA 2BGU ACADEMIA', '26.0000', '27.0000', '20.0000', '0.0000', 'stock', '520.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(290, 'C26-05-23', 1, 168, 1, 0, 'EMPRENDIMIENTO 2BGU ACADEMIA', '24.0000', '25.0000', '20.0000', '0.0000', 'stock', '480.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(291, 'C26-05-23', 1, 171, 1, 0, 'HISTORIA 2BGU ACADEMIA ', '26.0000', '27.0000', '20.0000', '0.0000', 'stock', '520.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(292, 'C26-05-23', 1, 226, 1, 0, 'CALIGRAFIA DIDACTICA 10', '13.5000', '14.0000', '20.0000', '0.0000', 'stock', '270.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(293, 'C26-05-23', 1, 225, 1, 0, 'CALIGRAFIA DIDACTICA 9', '13.5000', '14.0000', '20.0000', '0.0000', 'stock', '270.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(294, 'C26-05-23', 1, 224, 1, 0, 'CALIGRAFIA DIDACTICA 8', '13.5000', '14.0000', '20.0000', '0.0000', 'stock', '270.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(295, 'C09-06-23', 1, 179, 1, 0, 'LENGUAJE 2BGU ACADEMIA', '26.0000', '27.0000', '20.0000', '0.0000', 'stock', '520.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(296, 'C09-06-23', 1, 180, 1, 0, 'LENGUAJE 3BGU ACADEMIA', '26.0000', '27.0000', '30.0000', '0.0000', 'stock', '780.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(297, 'C09-06-23', 1, 172, 1, 0, 'HISTORIA 3BGU ACADEMIA ', '26.0000', '27.0000', '30.0000', '0.0000', 'stock', '780.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(298, 'C09-06-23', 1, 171, 1, 0, 'HISTORIA 2BGU ACADEMIA ', '26.0000', '27.0000', '30.0000', '0.0000', 'stock', '780.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(299, 'C09-06-23', 1, 170, 1, 0, 'HISTORIA 1BGU ACADEMIA ', '26.0000', '27.0000', '25.0000', '0.0000', 'stock', '650.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(300, 'C09-06-23', 1, 177, 1, 0, 'BIOLOGIA 3BGU ACADEMIA', '26.0000', '27.0000', '5.0000', '0.0000', 'stock', '130.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(301, 'C09-06-23', 1, 176, 1, 0, 'BIOLOGIA 2BGU ACADEMIA', '26.0000', '27.0000', '9.0000', '0.0000', 'stock', '234.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(302, 'C09-06-23', 1, 168, 1, 0, 'EMPRENDIMIENTO 2BGU ACADEMIA', '24.0000', '25.0000', '30.0000', '0.0000', 'stock', '720.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(303, 'C09-06-23', 1, 167, 1, 0, 'EMPRENDIMIENTO 1BGU ACADEMIA', '24.0000', '25.0000', '30.0000', '0.0000', 'stock', '720.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(304, 'C09-06-23', 1, 174, 1, 0, 'CIUDADANIA 2BGU ACADEMIA', '23.0000', '24.0000', '20.0000', '0.0000', 'stock', '460.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(305, 'C09-06-23', 1, 173, 1, 0, 'CIUDADANIA 1BGU ACADEMIA', '23.0000', '24.0000', '18.0000', '0.0000', 'stock', '414.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(306, 'C10-06-23', 1, 222, 1, 0, 'CALIGRAFITO 6', '15.5000', '16.0000', '10.0000', '0.0000', 'stock', '155.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(307, 'C10-06-23', 1, 221, 1, 0, 'CALIGRAFITO 5', '15.5000', '16.0000', '35.0000', '0.0000', 'active', '542.5000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(308, 'C01-06-23', 1, 227, 1, 0, 'OBRAS LITERARIAS LICEO', '8.6500', '8.9000', '471.0000', '0.0000', 'stock', '4074.1500', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(309, 'C09-06-23 A', 1, 227, 1, 0, 'OBRAS LITERARIAS LICEO', '8.6500', '8.9000', '30.0000', '0.0000', 'stock', '259.5000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(310, 'C09-06-23 A', 1, 205, 1, 0, 'SOCIALES 8 ACADEMIA', '26.0000', '27.0000', '9.0000', '0.0000', 'stock', '234.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(311, 'C09-06-23 A', 1, 207, 1, 0, 'SOCIALES 10 ACADEMIA', '26.0000', '27.0000', '20.0000', '0.0000', 'stock', '520.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(312, 'C09-06-23 A', 1, 206, 1, 0, 'SOCIALES 9 ACADEMIA', '26.0000', '27.0000', '20.0000', '0.0000', 'stock', '520.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(313, 'C09-06-23 A', 1, 201, 1, 0, 'SOCIALES 4 ACADEMIA', '26.0000', '27.0000', '20.0000', '0.0000', 'stock', '520.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(314, 'C09-06-23 A', 1, 200, 1, 0, 'SOCIALES 3 ACADEMIA', '26.0000', '27.0000', '20.0000', '0.0000', 'stock', '520.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(315, 'C09-06-23 A', 1, 216, 1, 0, 'CCNN 10 ACADEMIA', '26.0000', '27.0000', '20.0000', '0.0000', 'stock', '520.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(316, 'C09-06-23 A', 1, 215, 1, 0, 'CCNN 9 ACADEMIA', '26.0000', '27.0000', '20.0000', '0.0000', 'stock', '520.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(317, 'C09-06-23 A', 1, 214, 1, 0, 'CCNN 8 ACADEMIA', '26.0000', '27.0000', '10.0000', '0.0000', 'stock', '260.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(318, 'C09-06-23 A', 1, 198, 1, 0, 'MATEMATICA 10 ACADEMIA', '26.0000', '27.0000', '20.0000', '0.0000', 'stock', '520.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(319, 'C09-06-23 A', 1, 197, 1, 0, 'MATEMATICA 9 ACADEMIA', '26.0000', '27.0000', '20.0000', '0.0000', 'stock', '520.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(320, 'C09-06-23 A', 1, 196, 1, 0, 'MATEMATICA 8 ACADEMIA', '26.0000', '27.0000', '10.0000', '0.0000', 'stock', '260.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(321, 'C09-06-23 A', 1, 192, 1, 0, 'MATEMATICA 4 ACADEMIA', '26.0000', '27.0000', '15.0000', '0.0000', 'stock', '390.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(322, 'C09-06-23 A', 1, 191, 1, 0, 'MATEMATICA 3 ACADEMIA', '26.0000', '27.0000', '10.0000', '0.0000', 'stock', '260.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(323, 'C09-06-23 A', 1, 189, 1, 0, 'LENGUAJE 10 ACADEMIA', '26.0000', '27.0000', '10.0000', '0.0000', 'stock', '260.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(324, 'C09-06-23 A', 1, 188, 1, 0, 'LENGUAJE 9 ACADEMIA', '26.0000', '27.0000', '20.0000', '0.0000', 'stock', '520.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(325, 'C09-06-23 A', 1, 187, 1, 0, 'LENGUAJE 8 ACADEMIA', '26.0000', '27.0000', '20.0000', '0.0000', 'stock', '520.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000');
 
 -- --------------------------------------------------------
 
@@ -7209,7 +7495,13 @@ INSERT INTO `purchase_logs` (`id`, `sup_id`, `reference_no`, `ref_invoice_id`, `
 (129, 8, 'CT23082433008', 'C04-06-2023', 'purchase', 1, 'Paid while purchasing', '8090.0000', 3, 2, '2023-08-24 15:37:29', NULL),
 (130, 4, 'CT23082522116', 'CELLEVATEN TEEN', 'purchase', 1, 'Paid while purchasing', '22.0000', 2, 6, '2023-08-25 10:02:22', NULL),
 (131, 8, 'CT23082511007', 'C01-06-2023', 'purchase', 1, 'Paid while purchasing', '12754.4000', 1, 7, '2023-08-25 11:11:16', NULL),
-(132, 8, 'CT23082511008', 'C02-06-23', 'purchase', 1, 'Paid while purchasing', '1990.0000', 1, 7, '2023-08-25 12:13:19', NULL);
+(132, 8, 'CT23082511008', 'C02-06-23', 'purchase', 1, 'Paid while purchasing', '1990.0000', 1, 7, '2023-08-25 12:13:19', NULL),
+(133, 8, 'CT23082511009', 'C13-06-23', 'purchase', 1, 'Paid while purchasing', '3571.9000', 1, 7, '2023-08-25 12:25:35', NULL),
+(134, 8, 'CT23082511010', 'C26-05-23', 'purchase', 1, 'Paid while purchasing', '3110.0000', 1, 7, '2023-08-25 14:28:34', NULL),
+(135, 8, 'CT23082511011', 'C09-06-23', 'purchase', 1, 'Paid while purchasing', '6188.0000', 1, 7, '2023-08-25 14:38:26', NULL),
+(136, 8, 'CT23082511012', 'C10-06-23', 'purchase', 1, 'Paid while purchasing', '697.5000', 1, 7, '2023-08-25 14:40:02', NULL),
+(137, 8, 'CT23082511013', 'C01-06-23', 'purchase', 1, 'Paid while purchasing', '4074.1500', 1, 7, '2023-08-25 14:44:28', NULL),
+(138, 8, 'CT23082511014', 'C09-06-23 A', 'purchase', 1, 'Paid while purchasing', '7123.5000', 1, 7, '2023-08-25 15:24:13', NULL);
 
 -- --------------------------------------------------------
 
@@ -7346,7 +7638,6 @@ INSERT INTO `purchase_payments` (`id`, `type`, `is_hide`, `store_id`, `invoice_i
 (108, 'purchase', 0, 3, 'C4', NULL, 1, NULL, NULL, NULL, '', '82.9500', '82.9500', '0.0000', 2, '2023-08-15 20:28:02'),
 (109, 'purchase', 0, 2, 'Crefuerzo3', NULL, 1, NULL, NULL, NULL, 'ingreso', '6.5000', '6.5000', '0.0000', 6, '2023-08-16 10:48:23'),
 (110, 'purchase', 0, 2, 'Crefuerzo 3.', NULL, 1, NULL, NULL, NULL, '', '6.5000', '6.5000', '0.0000', 6, '2023-08-16 14:20:33'),
-(111, 'purchase', 0, 1, 'C6', NULL, 1, NULL, NULL, NULL, 'PRODUCTO POR LLEGAR', '60.0000', '60.0000', '0.0000', 2, '2023-08-17 14:54:06'),
 (112, 'purchase', 0, 3, 'C7', NULL, 1, NULL, NULL, NULL, 'PRODUCTO POR LLEGAR', '60.0000', '60.0000', '0.0000', 2, '2023-08-17 14:58:03'),
 (113, 'purchase', 0, 2, 'Crefuerzo 3..', NULL, 1, NULL, NULL, NULL, 'a', '6.5000', '6.5000', '0.0000', 6, '2023-08-18 13:41:31'),
 (114, 'purchase', 0, 2, 'Crefuerzo escolar 3.', NULL, 1, NULL, NULL, NULL, 'c', '6.5000', '6.5000', '0.0000', 6, '2023-08-18 16:06:28'),
@@ -7362,12 +7653,15 @@ INSERT INTO `purchase_payments` (`id`, `type`, `is_hide`, `store_id`, `invoice_i
 (124, 'purchase', 0, 1, 'C24-03-2023', NULL, 1, NULL, NULL, NULL, '', '30602.0000', '30602.0000', '0.0000', 7, '2023-08-24 12:21:53'),
 (125, 'purchase', 0, 1, 'C11-05-2023', NULL, 1, NULL, NULL, NULL, '', '4382.5000', '4382.5000', '0.0000', 7, '2023-08-24 12:28:43'),
 (126, 'purchase', 0, 1, 'C19-05-2023', NULL, 1, NULL, NULL, NULL, '', '10010.0000', '10010.0000', '0.0000', 7, '2023-08-24 12:44:17'),
-(127, 'purchase', 0, 3, 'C03-04-2023', NULL, 1, NULL, NULL, NULL, '', '2366.0000', '2366.0000', '0.0000', 2, '2023-08-24 15:21:37'),
-(128, 'purchase', 0, 3, 'C05-05-2023', NULL, 1, NULL, NULL, NULL, '', '19432.4500', '19432.4500', '0.0000', 2, '2023-08-24 15:32:20'),
-(129, 'purchase', 0, 3, 'C04-06-2023', NULL, 1, NULL, NULL, NULL, '', '8090.0000', '8090.0000', '0.0000', 2, '2023-08-24 15:37:29'),
 (130, 'purchase', 0, 2, 'CELLEVATEN TEEN', NULL, 1, NULL, NULL, NULL, 'PENDIENTE EN STOK', '22.0000', '22.0000', '0.0000', 6, '2023-08-25 10:02:22'),
 (131, 'purchase', 0, 1, 'C01-06-2023', NULL, 1, NULL, NULL, NULL, '', '12754.4000', '12754.4000', '0.0000', 7, '2023-08-25 11:11:16'),
-(132, 'purchase', 0, 1, 'C02-06-23', NULL, 1, NULL, NULL, NULL, '', '1990.0000', '1990.0000', '0.0000', 7, '2023-08-25 12:13:19');
+(132, 'purchase', 0, 1, 'C02-06-23', NULL, 1, NULL, NULL, NULL, '', '1990.0000', '1990.0000', '0.0000', 7, '2023-08-25 12:13:19'),
+(133, 'purchase', 0, 1, 'C13-06-23', NULL, 1, NULL, NULL, NULL, '', '3571.9000', '3571.9000', '0.0000', 7, '2023-08-25 12:25:35'),
+(134, 'purchase', 0, 1, 'C26-05-23', NULL, 1, NULL, NULL, NULL, '', '3110.0000', '3110.0000', '0.0000', 7, '2023-08-25 14:28:34'),
+(135, 'purchase', 0, 1, 'C09-06-23', NULL, 1, NULL, NULL, NULL, '', '6188.0000', '6188.0000', '0.0000', 7, '2023-08-25 14:38:26'),
+(136, 'purchase', 0, 1, 'C10-06-23', NULL, 1, NULL, NULL, NULL, '', '697.5000', '697.5000', '0.0000', 7, '2023-08-25 14:40:02'),
+(137, 'purchase', 0, 1, 'C01-06-23', NULL, 1, NULL, NULL, NULL, '', '4074.1500', '4074.1500', '0.0000', 7, '2023-08-25 14:44:28'),
+(138, 'purchase', 0, 1, 'C09-06-23 A', NULL, 1, NULL, NULL, NULL, '', '7123.5000', '7123.5000', '0.0000', 7, '2023-08-25 15:24:13');
 
 -- --------------------------------------------------------
 
@@ -7508,7 +7802,6 @@ INSERT INTO `purchase_price` (`price_id`, `invoice_id`, `store_id`, `subtotal`, 
 (108, 'C4', 3, '82.9500', 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '82.9500', '82.9500', '0.0000', '0.0000', '0.0000', '0.0000'),
 (109, 'Crefuerzo3', 2, '6.5000', 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '6.5000', '6.5000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (110, 'Crefuerzo 3.', 2, '6.5000', 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '6.5000', '6.5000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(111, 'C6', 1, '60.0000', 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '60.0000', '60.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (112, 'C7', 3, '60.0000', 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '60.0000', '60.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (113, 'Crefuerzo 3..', 2, '6.5000', 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '6.5000', '6.5000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (114, 'Crefuerzo escolar 3.', 2, '6.5000', 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '6.5000', '6.5000', '0.0000', '0.0000', '0.0000', '0.0000'),
@@ -7524,12 +7817,15 @@ INSERT INTO `purchase_price` (`price_id`, `invoice_id`, `store_id`, `subtotal`, 
 (124, 'C24-03-2023', 1, '30602.0000', 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '30602.0000', '30602.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (125, 'C11-05-2023', 1, '4382.5000', 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '4382.5000', '4382.5000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (126, 'C19-05-2023', 1, '10010.0000', 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10010.0000', '10010.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(127, 'C03-04-2023', 3, '2366.0000', 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '2366.0000', '2366.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(128, 'C05-05-2023', 3, '19432.4500', 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '19432.4500', '19432.4500', '0.0000', '0.0000', '0.0000', '0.0000'),
-(129, 'C04-06-2023', 3, '8090.0000', 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '8090.0000', '8090.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (130, 'CELLEVATEN TEEN', 2, '22.0000', 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '22.0000', '22.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (131, 'C01-06-2023', 1, '12754.4000', 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '12754.4000', '12754.4000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(132, 'C02-06-23', 1, '1990.0000', 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1990.0000', '1990.0000', '0.0000', '0.0000', '0.0000', '0.0000');
+(132, 'C02-06-23', 1, '1990.0000', 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1990.0000', '1990.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(133, 'C13-06-23', 1, '3571.9000', 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '3571.9000', '3571.9000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(134, 'C26-05-23', 1, '3110.0000', 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '3110.0000', '3110.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(135, 'C09-06-23', 1, '6188.0000', 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '6188.0000', '6188.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(136, 'C10-06-23', 1, '697.5000', 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '697.5000', '697.5000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(137, 'C01-06-23', 1, '4074.1500', 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '4074.1500', '4074.1500', '0.0000', '0.0000', '0.0000', '0.0000'),
+(138, 'C09-06-23 A', 1, '7123.5000', 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '7123.5000', '7123.5000', '0.0000', '0.0000', '0.0000', '0.0000');
 
 -- --------------------------------------------------------
 
@@ -7847,21 +8143,21 @@ INSERT INTO `selling_info` (`info_id`, `invoice_id`, `edit_counter`, `inv_type`,
 (96, '22023/00000069', 0, 'sell', 2, 1, '', 2, NULL, 0, '', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-22 17:15:49', NULL, 1),
 (97, '22023/00000070', 0, 'sell', 2, 81, '0987734381', 2, NULL, 0, '', 12, 0, 1, 1, 'paid', 1, 6, '2023-08-22 18:18:02', NULL, 1),
 (98, '300000027', 0, 'sell', 3, 1, '', 5, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 10, '2023-08-23 10:29:26', NULL, 1),
-(99, '300000028', 0, 'sell', 3, 82, '0992558313', 5, NULL, 0, '', 3, 0, 1, 1, 'paid', 1, 10, '2023-08-23 10:44:16', NULL, 0),
-(100, '300000029', 0, 'sell', 3, 83, '0968233030', 5, NULL, 0, '', 3, 0, 1, 1, 'paid', 1, 10, '2023-08-23 10:50:33', NULL, 0),
-(101, '300000030', 0, 'sell', 3, 84, '0984657117', 5, NULL, 0, '', 4, 0, 1, 1, 'paid', 1, 10, '2023-08-23 10:59:43', NULL, 0),
-(102, '300000031', 0, 'sell', 3, 1, '', 5, NULL, 0, '', 3, 0, 1, 1, 'paid', 1, 10, '2023-08-23 11:04:07', NULL, 0),
-(103, '300000032', 0, 'sell', 3, 1, '', 5, NULL, 0, '', 4, 0, 1, 1, 'paid', 1, 10, '2023-08-23 11:20:08', NULL, 0),
+(99, '300000028', 0, 'sell', 3, 82, '0992558313', 5, NULL, 0, '', 3, 0, 1, 1, 'paid', 1, 10, '2023-08-23 10:44:16', NULL, 1),
+(100, '300000029', 0, 'sell', 3, 83, '0968233030', 5, NULL, 0, '', 3, 0, 1, 1, 'paid', 1, 10, '2023-08-23 10:50:33', NULL, 1),
+(101, '300000030', 0, 'sell', 3, 84, '0984657117', 5, NULL, 0, '', 4, 0, 1, 1, 'paid', 1, 10, '2023-08-23 10:59:43', NULL, 1),
+(102, '300000031', 0, 'sell', 3, 1, '', 5, NULL, 0, '', 3, 0, 1, 1, 'paid', 1, 10, '2023-08-23 11:04:07', NULL, 1),
+(103, '300000032', 0, 'sell', 3, 1, '', 5, NULL, 0, '', 4, 0, 1, 1, 'paid', 1, 10, '2023-08-23 11:20:08', NULL, 1),
 (104, '22023/00000071', 0, 'sell', 2, 85, '0997046368', 2, NULL, 0, '', 5, 0, 1, 1, 'paid', 1, 6, '2023-08-23 12:44:45', NULL, 1),
 (105, '22023/00000072', 0, 'sell', 2, 86, '0987431906', 2, NULL, 0, '', 11, 0, 1, 1, 'paid', 1, 6, '2023-08-23 15:46:18', NULL, 1),
-(106, '300000033', 0, 'sell', 3, 87, 'vrosillo33@gmail.com', 5, NULL, 0, 'Por entregar libro 7mp Maikel Quinga ', 6, 0, 1, 1, 'paid', 1, 10, '2023-08-24 11:10:13', NULL, 0),
-(107, '22023/00000073', 0, 'sell', 2, 1, '', 2, NULL, 0, '', 11, 0, 1, 1, 'paid', 1, 6, '2023-08-24 11:21:53', NULL, 0),
-(108, '22023/00000074', 0, 'sell', 2, 88, '0998397167', 2, NULL, 0, '', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-24 13:31:44', NULL, 0),
-(109, '22023/00000075', 0, 'sell', 2, 89, '0998081408', 2, NULL, 0, '', 5, 0, 1, 1, 'paid', 1, 6, '2023-08-25 09:49:37', NULL, 0),
-(110, '22023/00000076', 0, 'sell', 2, 89, '0998081408', 2, NULL, 0, '', 4, 0, 1, 1, 'paid', 1, 6, '2023-08-25 09:56:03', NULL, 0),
-(111, '22023/00000077', 0, 'sell', 2, 89, '0998081408', 2, NULL, 0, '', 5, 0, 1, 1, 'paid', 1, 6, '2023-08-25 10:03:05', NULL, 0),
-(112, '22023/00000078', 0, 'sell', 2, 1, '', 2, NULL, 0, '', 4, 0, 1, 1, 'paid', 1, 6, '2023-08-25 10:05:48', NULL, 0),
-(113, '22023/00000079', 0, 'sell', 2, 89, '0998081408', 2, NULL, 0, '', 4, 0, 1, 1, 'paid', 1, 6, '2023-08-25 10:08:00', NULL, 0);
+(106, '300000033', 0, 'sell', 3, 87, 'vrosillo33@gmail.com', 5, NULL, 0, 'Por entregar libro 7mp Maikel Quinga ', 6, 0, 1, 1, 'paid', 1, 10, '2023-08-24 11:10:13', NULL, 1),
+(107, '22023/00000073', 0, 'sell', 2, 1, '', 2, NULL, 0, '', 11, 0, 1, 1, 'paid', 1, 6, '2023-08-24 11:21:53', NULL, 1),
+(108, '22023/00000074', 0, 'sell', 2, 88, '0998397167', 2, NULL, 0, '', 6, 0, 1, 1, 'paid', 1, 6, '2023-08-24 13:31:44', NULL, 1),
+(109, '22023/00000075', 0, 'sell', 2, 89, '0998081408', 2, NULL, 0, '', 5, 0, 1, 1, 'paid', 1, 6, '2023-08-25 09:49:37', NULL, 1),
+(110, '22023/00000076', 0, 'sell', 2, 89, '0998081408', 2, NULL, 0, '', 4, 0, 1, 1, 'paid', 1, 6, '2023-08-25 09:56:03', NULL, 1),
+(111, '22023/00000077', 0, 'sell', 2, 89, '0998081408', 2, NULL, 0, '', 5, 0, 1, 1, 'paid', 1, 6, '2023-08-25 10:03:05', NULL, 1),
+(112, '22023/00000078', 0, 'sell', 2, 1, '', 2, NULL, 0, '', 4, 0, 1, 1, 'paid', 1, 6, '2023-08-25 10:05:48', NULL, 1),
+(113, '22023/00000079', 0, 'sell', 2, 89, '0998081408', 2, NULL, 0, '', 4, 0, 1, 1, 'paid', 1, 6, '2023-08-25 10:08:00', NULL, 1);
 
 -- --------------------------------------------------------
 
@@ -8985,10 +9281,11 @@ CREATE TABLE `stores` (
 --
 
 INSERT INTO `stores` (`store_id`, `name`, `code_name`, `mobile`, `email`, `country`, `zip_code`, `currency`, `vat_reg_no`, `cashier_id`, `address`, `receipt_printer`, `cash_drawer_codes`, `char_per_line`, `remote_printing`, `printer`, `order_printers`, `auto_print`, `local_printers`, `logo`, `favicon`, `preference`, `sound_effect`, `sort_order`, `feedback_status`, `feedback_at`, `deposit_account_id`, `thumbnail`, `status`, `created_at`) VALUES
-(1, 'AGENCIA CENTRAL', 'agencia_central', '231321', 'polorenan@hotmail.com', 'EC', '1200', 'USD', '', 3, 'LA LIBERTAD', '1', NULL, 42, 0, 1, '[\"1\"]', 1, 1, '1_logo.jpg', '1_favicon.png', 'a:32:{s:10:\"gst_reg_no\";s:0:\"\";s:8:\"timezone\";s:12:\"America/Lima\";s:21:\"invoice_edit_lifespan\";s:4:\"1440\";s:26:\"invoice_edit_lifespan_unit\";s:6:\"minute\";s:23:\"invoice_delete_lifespan\";s:4:\"1440\";s:28:\"invoice_delete_lifespan_unit\";s:6:\"minute\";s:3:\"tax\";s:1:\"0\";s:11:\"sms_gateway\";s:10:\"Clickatell\";s:9:\"sms_alert\";s:1:\"0\";s:24:\"expiring_soon_alert_days\";s:0:\"\";s:20:\"datatable_item_limit\";s:2:\"25\";s:16:\"reference_format\";s:8:\"sequence\";s:22:\"sales_reference_prefix\";s:1:\"V\";s:16:\"receipt_template\";s:1:\"1\";s:12:\"invoice_view\";s:8:\"standard\";s:14:\"business_state\";s:2:\"AN\";s:31:\"change_item_price_while_billing\";s:1:\"0\";s:25:\"pos_product_display_limit\";s:0:\"\";s:15:\"after_sell_page\";s:16:\"receipt_in_popup\";s:19:\"invoice_footer_text\";s:25:\"Gracias por Preferirnos!.\";s:10:\"email_from\";s:13:\"tusolutionweb\";s:13:\"email_address\";s:2:\"US\";s:12:\"email_driver\";s:11:\"smtp_server\";s:14:\"send_mail_path\";s:18:\"/usr/sbin/sendmail\";s:9:\"smtp_host\";s:15:\"smtp.google.com\";s:13:\"smtp_username\";s:0:\"\";s:13:\"smtp_password\";s:0:\"\";s:9:\"smtp_port\";s:3:\"465\";s:7:\"ssl_tls\";s:3:\"ssl\";s:12:\"ftp_hostname\";s:0:\"\";s:12:\"ftp_username\";s:0:\"\";s:12:\"ftp_password\";s:0:\"\";}', 1, 0, 'ready', '2019-03-01 14:29:18', 0, NULL, 1, '2018-09-24 18:00:00'),
-(2, 'SUCURSAL LATACUNGA ', 'sucursal_latacunga', '', 'importadorapoloapolo@hotmail.com', 'AD', '', 'USD', '', 3, 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1', NULL, 42, 0, NULL, NULL, 1, NULL, '2_logo.jpg', NULL, 'a:32:{s:10:\"gst_reg_no\";s:0:\"\";s:8:\"timezone\";s:12:\"America/Lima\";s:21:\"invoice_edit_lifespan\";s:4:\"1440\";s:26:\"invoice_edit_lifespan_unit\";s:6:\"minute\";s:23:\"invoice_delete_lifespan\";s:4:\"1440\";s:28:\"invoice_delete_lifespan_unit\";s:6:\"minute\";s:3:\"tax\";s:1:\"0\";s:11:\"sms_gateway\";s:10:\"Clickatell\";s:9:\"sms_alert\";s:1:\"0\";s:24:\"expiring_soon_alert_days\";s:0:\"\";s:20:\"datatable_item_limit\";s:2:\"25\";s:16:\"reference_format\";s:13:\"year_sequence\";s:22:\"sales_reference_prefix\";s:0:\"\";s:16:\"receipt_template\";s:1:\"1\";s:12:\"invoice_view\";s:8:\"standard\";s:14:\"business_state\";s:2:\"AN\";s:31:\"change_item_price_while_billing\";s:1:\"0\";s:25:\"pos_product_display_limit\";s:0:\"\";s:15:\"after_sell_page\";s:16:\"receipt_in_popup\";s:19:\"invoice_footer_text\";s:0:\"\";s:10:\"email_from\";s:13:\"tusolutionweb\";s:13:\"email_address\";s:2:\"US\";s:12:\"email_driver\";s:11:\"smtp_server\";s:14:\"send_mail_path\";s:18:\"/usr/sbin/sendmail\";s:9:\"smtp_host\";s:15:\"smtp.google.com\";s:13:\"smtp_username\";s:0:\"\";s:13:\"smtp_password\";s:0:\"\";s:9:\"smtp_port\";s:3:\"465\";s:7:\"ssl_tls\";s:3:\"ssl\";s:12:\"ftp_hostname\";s:0:\"\";s:12:\"ftp_username\";s:0:\"\";s:12:\"ftp_password\";s:0:\"\";}', 1, 0, 'ready', NULL, 1, NULL, 1, '2023-07-20 14:45:05'),
-(3, 'SUCURSAL AMBATO', 'sucursal_ambato', '', 'ambato@controldas.com', 'AD', '', 'USD', '', 3, 'AMBATO', '', NULL, 42, 0, NULL, NULL, 1, NULL, NULL, NULL, 'a:21:{s:8:\"timezone\";s:12:\"America/Lima\";s:21:\"invoice_edit_lifespan\";s:4:\"1440\";s:26:\"invoice_edit_lifespan_unit\";s:6:\"minute\";s:23:\"invoice_delete_lifespan\";s:4:\"1440\";s:28:\"invoice_delete_lifespan_unit\";s:6:\"minute\";s:15:\"after_sell_page\";s:3:\"pos\";s:3:\"tax\";s:1:\"0\";s:20:\"stock_alert_quantity\";s:0:\"\";s:20:\"datatable_item_limit\";s:2:\"25\";s:19:\"invoice_footer_text\";s:0:\"\";s:10:\"email_from\";s:13:\"tusolutionweb\";s:13:\"email_address\";s:2:\"US\";s:12:\"email_driver\";s:11:\"smtp_server\";s:9:\"smtp_host\";s:15:\"smtp.google.com\";s:13:\"smtp_username\";s:0:\"\";s:13:\"smtp_password\";s:0:\"\";s:9:\"smtp_port\";s:3:\"465\";s:7:\"ssl_tls\";s:3:\"ssl\";s:12:\"ftp_hostname\";s:0:\"\";s:12:\"ftp_username\";s:0:\"\";s:12:\"ftp_password\";s:0:\"\";}', 1, 0, 'ready', NULL, 1, NULL, 1, '2023-08-05 14:30:29'),
-(4, 'AGENCIA RIOBAMBA', 'agencia_riobamba', '', 'YG@KNDSF.COM', 'AD', '', 'USD', '', 3, 'RIOBAMBA', '1', NULL, 42, 0, NULL, NULL, 1, NULL, NULL, NULL, 'a:21:{s:8:\"timezone\";s:12:\"America/Lima\";s:21:\"invoice_edit_lifespan\";s:4:\"1440\";s:26:\"invoice_edit_lifespan_unit\";s:6:\"minute\";s:23:\"invoice_delete_lifespan\";s:4:\"1440\";s:28:\"invoice_delete_lifespan_unit\";s:6:\"minute\";s:15:\"after_sell_page\";s:3:\"pos\";s:3:\"tax\";s:1:\"0\";s:20:\"stock_alert_quantity\";s:0:\"\";s:20:\"datatable_item_limit\";s:2:\"25\";s:19:\"invoice_footer_text\";s:0:\"\";s:10:\"email_from\";s:13:\"tusolutionweb\";s:13:\"email_address\";s:2:\"US\";s:12:\"email_driver\";s:11:\"smtp_server\";s:9:\"smtp_host\";s:15:\"smtp.google.com\";s:13:\"smtp_username\";s:0:\"\";s:13:\"smtp_password\";s:0:\"\";s:9:\"smtp_port\";s:3:\"465\";s:7:\"ssl_tls\";s:3:\"ssl\";s:12:\"ftp_hostname\";s:0:\"\";s:12:\"ftp_username\";s:0:\"\";s:12:\"ftp_password\";s:0:\"\";}', 1, 0, 'ready', NULL, 1, NULL, 1, '2023-08-17 19:57:55');
+(1, 'AGENCIA CENTRAL', 'agencia_central', '231321', 'polorenan@hotmail.com', 'EC', '1200', 'USD', '', 3, 'LA LIBERTAD', '1', NULL, 42, 0, 1, '[\"1\"]', 1, 1, '1_logo.jpg', '1_favicon.png', 'a:32:{s:10:\"gst_reg_no\";s:0:\"\";s:8:\"timezone\";s:12:\"America/Lima\";s:21:\"invoice_edit_lifespan\";s:4:\"1440\";s:26:\"invoice_edit_lifespan_unit\";s:6:\"minute\";s:23:\"invoice_delete_lifespan\";s:22:\"1000000000000000000000\";s:28:\"invoice_delete_lifespan_unit\";s:6:\"minute\";s:3:\"tax\";s:1:\"0\";s:11:\"sms_gateway\";s:10:\"Clickatell\";s:9:\"sms_alert\";s:1:\"0\";s:24:\"expiring_soon_alert_days\";s:0:\"\";s:20:\"datatable_item_limit\";s:3:\"200\";s:16:\"reference_format\";s:8:\"sequence\";s:22:\"sales_reference_prefix\";s:1:\"V\";s:16:\"receipt_template\";s:1:\"1\";s:12:\"invoice_view\";s:8:\"standard\";s:14:\"business_state\";s:2:\"AN\";s:31:\"change_item_price_while_billing\";s:1:\"0\";s:25:\"pos_product_display_limit\";s:0:\"\";s:15:\"after_sell_page\";s:16:\"receipt_in_popup\";s:19:\"invoice_footer_text\";s:25:\"Gracias por Preferirnos!.\";s:10:\"email_from\";s:13:\"tusolutionweb\";s:13:\"email_address\";s:2:\"US\";s:12:\"email_driver\";s:11:\"smtp_server\";s:14:\"send_mail_path\";s:18:\"/usr/sbin/sendmail\";s:9:\"smtp_host\";s:15:\"smtp.google.com\";s:13:\"smtp_username\";s:0:\"\";s:13:\"smtp_password\";s:0:\"\";s:9:\"smtp_port\";s:3:\"465\";s:7:\"ssl_tls\";s:3:\"ssl\";s:12:\"ftp_hostname\";s:0:\"\";s:12:\"ftp_username\";s:0:\"\";s:12:\"ftp_password\";s:0:\"\";}', 1, 0, 'ready', '2019-03-01 14:29:18', 0, NULL, 1, '2018-09-24 18:00:00'),
+(2, 'SUCURSAL LATACUNGA ', 'sucursal_latacunga', '', 'importadorapoloapolo@hotmail.com', 'AD', '', 'USD', '', 3, 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1', NULL, 42, 0, NULL, NULL, 1, NULL, '2_logo.jpg', NULL, 'a:32:{s:10:\"gst_reg_no\";s:0:\"\";s:8:\"timezone\";s:12:\"America/Lima\";s:21:\"invoice_edit_lifespan\";s:4:\"1440\";s:26:\"invoice_edit_lifespan_unit\";s:6:\"minute\";s:23:\"invoice_delete_lifespan\";s:21:\"100000000000000000000\";s:28:\"invoice_delete_lifespan_unit\";s:6:\"minute\";s:3:\"tax\";s:1:\"0\";s:11:\"sms_gateway\";s:10:\"Clickatell\";s:9:\"sms_alert\";s:1:\"0\";s:24:\"expiring_soon_alert_days\";s:0:\"\";s:20:\"datatable_item_limit\";s:2:\"25\";s:16:\"reference_format\";s:13:\"year_sequence\";s:22:\"sales_reference_prefix\";s:0:\"\";s:16:\"receipt_template\";s:1:\"1\";s:12:\"invoice_view\";s:8:\"standard\";s:14:\"business_state\";s:2:\"AN\";s:31:\"change_item_price_while_billing\";s:1:\"0\";s:25:\"pos_product_display_limit\";s:0:\"\";s:15:\"after_sell_page\";s:16:\"receipt_in_popup\";s:19:\"invoice_footer_text\";s:0:\"\";s:10:\"email_from\";s:13:\"tusolutionweb\";s:13:\"email_address\";s:2:\"US\";s:12:\"email_driver\";s:11:\"smtp_server\";s:14:\"send_mail_path\";s:18:\"/usr/sbin/sendmail\";s:9:\"smtp_host\";s:15:\"smtp.google.com\";s:13:\"smtp_username\";s:0:\"\";s:13:\"smtp_password\";s:0:\"\";s:9:\"smtp_port\";s:3:\"465\";s:7:\"ssl_tls\";s:3:\"ssl\";s:12:\"ftp_hostname\";s:0:\"\";s:12:\"ftp_username\";s:0:\"\";s:12:\"ftp_password\";s:0:\"\";}', 1, 0, 'ready', NULL, 1, NULL, 1, '2023-07-20 14:45:05'),
+(3, 'SUCURSAL AMBATO', 'sucursal_ambato', '', 'ambato@controldas.com', 'AD', '', 'USD', '', 3, 'AMBATO', '', NULL, 42, 0, NULL, NULL, 1, NULL, NULL, NULL, 'a:32:{s:10:\"gst_reg_no\";s:0:\"\";s:8:\"timezone\";s:12:\"America/Lima\";s:21:\"invoice_edit_lifespan\";s:4:\"1440\";s:26:\"invoice_edit_lifespan_unit\";s:6:\"minute\";s:23:\"invoice_delete_lifespan\";s:35:\"10000000000000000000000000000000000\";s:28:\"invoice_delete_lifespan_unit\";s:6:\"minute\";s:3:\"tax\";s:1:\"0\";s:11:\"sms_gateway\";s:10:\"Clickatell\";s:9:\"sms_alert\";s:1:\"0\";s:24:\"expiring_soon_alert_days\";s:0:\"\";s:20:\"datatable_item_limit\";s:3:\"100\";s:16:\"reference_format\";s:13:\"year_sequence\";s:22:\"sales_reference_prefix\";s:0:\"\";s:16:\"receipt_template\";s:1:\"1\";s:12:\"invoice_view\";s:8:\"standard\";s:14:\"business_state\";s:2:\"AN\";s:31:\"change_item_price_while_billing\";s:1:\"0\";s:25:\"pos_product_display_limit\";s:0:\"\";s:15:\"after_sell_page\";s:3:\"pos\";s:19:\"invoice_footer_text\";s:0:\"\";s:10:\"email_from\";s:13:\"tusolutionweb\";s:13:\"email_address\";s:2:\"US\";s:12:\"email_driver\";s:11:\"smtp_server\";s:14:\"send_mail_path\";s:18:\"/usr/sbin/sendmail\";s:9:\"smtp_host\";s:15:\"smtp.google.com\";s:13:\"smtp_username\";s:0:\"\";s:13:\"smtp_password\";s:0:\"\";s:9:\"smtp_port\";s:3:\"465\";s:7:\"ssl_tls\";s:3:\"ssl\";s:12:\"ftp_hostname\";s:0:\"\";s:12:\"ftp_username\";s:0:\"\";s:12:\"ftp_password\";s:0:\"\";}', 1, 0, 'ready', NULL, 1, NULL, 1, '2023-08-05 14:30:29'),
+(4, 'AGENCIA RIOBAMBA', 'agencia_riobamba', '', 'YG@KNDSF.COM', 'AD', '', 'USD', '', 3, 'RIOBAMBA', '1', NULL, 42, 0, NULL, NULL, 1, NULL, NULL, NULL, 'a:32:{s:10:\"gst_reg_no\";s:0:\"\";s:8:\"timezone\";s:12:\"America/Lima\";s:21:\"invoice_edit_lifespan\";s:4:\"1440\";s:26:\"invoice_edit_lifespan_unit\";s:6:\"minute\";s:23:\"invoice_delete_lifespan\";s:29:\"10000000000000000000000000000\";s:28:\"invoice_delete_lifespan_unit\";s:6:\"minute\";s:3:\"tax\";s:1:\"0\";s:11:\"sms_gateway\";s:10:\"Clickatell\";s:9:\"sms_alert\";s:1:\"0\";s:24:\"expiring_soon_alert_days\";s:0:\"\";s:20:\"datatable_item_limit\";s:2:\"25\";s:16:\"reference_format\";s:13:\"year_sequence\";s:22:\"sales_reference_prefix\";s:0:\"\";s:16:\"receipt_template\";s:1:\"1\";s:12:\"invoice_view\";s:8:\"standard\";s:14:\"business_state\";s:2:\"AN\";s:31:\"change_item_price_while_billing\";s:1:\"0\";s:25:\"pos_product_display_limit\";s:0:\"\";s:15:\"after_sell_page\";s:3:\"pos\";s:19:\"invoice_footer_text\";s:0:\"\";s:10:\"email_from\";s:13:\"tusolutionweb\";s:13:\"email_address\";s:2:\"US\";s:12:\"email_driver\";s:11:\"smtp_server\";s:14:\"send_mail_path\";s:18:\"/usr/sbin/sendmail\";s:9:\"smtp_host\";s:15:\"smtp.google.com\";s:13:\"smtp_username\";s:0:\"\";s:13:\"smtp_password\";s:0:\"\";s:9:\"smtp_port\";s:3:\"465\";s:7:\"ssl_tls\";s:3:\"ssl\";s:12:\"ftp_hostname\";s:0:\"\";s:12:\"ftp_username\";s:0:\"\";s:12:\"ftp_password\";s:0:\"\";}', 1, 0, 'ready', NULL, 1, NULL, 1, '2023-08-17 19:57:55'),
+(5, 'PUJILI', 'pujili', '', 'PUJILI@JND.COM', 'AD', '', 'USD', '', 3, 'PUJILI', '1', NULL, 42, 1, NULL, NULL, 1, NULL, NULL, NULL, 'a:21:{s:8:\"timezone\";s:12:\"America/Lima\";s:21:\"invoice_edit_lifespan\";s:4:\"1440\";s:26:\"invoice_edit_lifespan_unit\";s:6:\"minute\";s:23:\"invoice_delete_lifespan\";s:22:\"1000000000000000000000\";s:28:\"invoice_delete_lifespan_unit\";s:6:\"minute\";s:15:\"after_sell_page\";s:3:\"pos\";s:3:\"tax\";s:1:\"0\";s:20:\"stock_alert_quantity\";s:0:\"\";s:20:\"datatable_item_limit\";s:3:\"200\";s:19:\"invoice_footer_text\";s:0:\"\";s:10:\"email_from\";s:13:\"tusolutionweb\";s:13:\"email_address\";s:2:\"US\";s:12:\"email_driver\";s:11:\"smtp_server\";s:9:\"smtp_host\";s:15:\"smtp.google.com\";s:13:\"smtp_username\";s:0:\"\";s:13:\"smtp_password\";s:0:\"\";s:9:\"smtp_port\";s:3:\"465\";s:7:\"ssl_tls\";s:3:\"ssl\";s:12:\"ftp_hostname\";s:0:\"\";s:12:\"ftp_username\";s:0:\"\";s:12:\"ftp_password\";s:0:\"\";}', 1, 0, 'ready', NULL, 1, NULL, 1, '2023-08-25 20:07:21');
 
 -- --------------------------------------------------------
 
@@ -9077,7 +9374,15 @@ INSERT INTO `supplier_to_store` (`s2s_id`, `sup_id`, `store_id`, `balance`, `sta
 (29, 8, 1, '0.0000', 1, 0),
 (30, 8, 2, '0.0000', 1, 0),
 (31, 8, 3, '0.0000', 1, 0),
-(32, 8, 4, '0.0000', 1, 0);
+(32, 8, 4, '0.0000', 1, 0),
+(33, 1, 5, '0.0000', 1, 0),
+(34, 2, 5, '0.0000', 1, 0),
+(35, 3, 5, '0.0000', 1, 0),
+(36, 4, 5, '0.0000', 1, 0),
+(37, 5, 5, '0.0000', 1, 0),
+(38, 6, 5, '0.0000', 1, 0),
+(39, 7, 5, '0.0000', 1, 0),
+(40, 8, 5, '0.0000', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -9193,17 +9498,19 @@ CREATE TABLE `users` (
 --
 
 INSERT INTO `users` (`id`, `group_id`, `username`, `email`, `mobile`, `dob`, `sex`, `password`, `raw_password`, `pass_reset_code`, `reset_code_time`, `login_try`, `last_login`, `ip`, `address`, `preference`, `user_image`, `fk_id`, `created_at`, `updated_at`) VALUES
-(1, 1, 'EDGAR YAGUAL', 'eye_layla@hotmail.com', '0969237302', '1990-09-08', 'M', 'c4221155b59e510664712215ed60e476', 'Administrator2023DAS', '', NULL, 0, '2023-08-24 14:41:51', '200.115.36.38', NULL, 'a:4:{s:10:\"base_color\";s:6:\"purple\";s:14:\"pos_side_panel\";s:4:\"left\";s:11:\"pos_pattern\";s:15:\"brick-color.jpg\";s:8:\"language\";s:2:\"es\";}', '/edgartm.jpg', NULL, '2019-12-14 22:27:47', '2019-07-03 22:29:20'),
-(2, 4, 'DAVID POLO', 'admin@controldas.com', 'DAVID POLO', '1990-01-01', 'M', 'a618780a5f901e3d81b8b0bfe0281385', 'ControlAdmin1', '', NULL, 0, '2023-08-25 11:57:13', '2800:430:1209:9c05:74d5:1cb3:3b12:10b4', NULL, 'a:4:{s:8:\"language\";s:2:\"es\";s:10:\"base_color\";s:6:\"purple\";s:14:\"pos_side_panel\";s:5:\"right\";s:11:\"pos_pattern\";s:9:\"space.jpg\";}', '', 0, '2019-12-14 22:27:47', '2019-07-02 16:28:15'),
+(1, 1, 'EDGAR YAGUAL', 'eye_layla@hotmail.com', '0969237302', '1990-09-08', 'M', 'c4221155b59e510664712215ed60e476', 'Administrator2023DAS', '', NULL, 0, '2023-08-25 15:17:53', '181.198.104.222', NULL, 'a:4:{s:10:\"base_color\";s:6:\"purple\";s:14:\"pos_side_panel\";s:4:\"left\";s:11:\"pos_pattern\";s:15:\"brick-color.jpg\";s:8:\"language\";s:2:\"es\";}', '/edgartm.jpg', NULL, '2019-12-14 22:27:47', '2019-07-03 22:29:20'),
+(2, 4, 'DAVID POLO', 'admin@controldas.com', 'DAVID POLO', '1990-01-01', 'M', 'a618780a5f901e3d81b8b0bfe0281385', 'ControlAdmin1', '', NULL, 0, '2023-08-25 19:46:52', '2800:bf0:2902:3007:3843:bfee:60c2:96ac', NULL, 'a:4:{s:8:\"language\";s:2:\"es\";s:10:\"base_color\";s:6:\"purple\";s:14:\"pos_side_panel\";s:5:\"right\";s:11:\"pos_pattern\";s:9:\"space.jpg\";}', '', 0, '2019-12-14 22:27:47', '2019-07-02 16:28:15'),
 (3, 2, 'Cashier', 'cashier@controldas.com', '0113743700', '1990-01-01', 'M', 'a618780a5f901e3d81b8b0bfe0281385', 'ControlAdmin1', '', NULL, 0, '2023-06-13 14:01:19', '::1', NULL, 'a:4:{s:10:\"base_color\";s:4:\"blue\";s:14:\"pos_side_panel\";s:4:\"left\";s:11:\"pos_pattern\";s:13:\"brickwall.jpg\";s:8:\"language\";s:2:\"es\";}', '', NULL, '2019-12-14 22:27:47', '2019-07-02 21:35:07'),
 (4, 3, 'Salesman', 'salesman@controldas.com', '1234567890', '0000-00-00', 'M', 'a618780a5f901e3d81b8b0bfe0281385', 'ControlAdmin1', NULL, NULL, 0, '2023-06-14 21:58:20', '127.0.0.1', NULL, 'a:1:{s:8:\"language\";s:2:\"es\";}', '', NULL, '2023-06-14 21:57:48', NULL),
 (5, 8, 'HERNAN EIVAR', 'hernaneivar@controldas.com', 'HERNAN', '0000-00-00', 'M', '314a4e69e0cf213e0d9cfd14a5ead1f2', '0983171925', NULL, NULL, 0, '2023-08-24 06:32:27', '2800:bf0:2902:108e:1cd3:2ef4:27c2:4001', NULL, 'a:1:{s:8:\"language\";s:2:\"es\";}', '', 0, '2023-07-20 14:52:36', NULL),
 (6, 5, 'MAURICIO CASTILLO', 'mauriciocastillo@controldas.com', 'MAURICIO ', '0000-00-00', 'M', '56740f5615802370aa445aadfb0be840', '0980948929', NULL, NULL, 0, '2023-08-25 10:13:39', '190.99.77.62', NULL, 'a:1:{s:8:\"language\";s:2:\"en\";}', '', 0, '2023-07-20 15:01:04', NULL),
-(7, 5, 'DALILA SEGURA', 'dalila_segura@controldas.com', 'DALI', '0000-00-00', 'M', '5a612297eef412bc00bd0ca726f53fdb', '0939684718', NULL, NULL, 0, '2023-08-25 12:06:44', '2800:bf0:a821:1122:8063:7874:79a4:3bd9', NULL, 'a:1:{s:8:\"language\";s:2:\"en\";}', '', 0, '2023-07-21 08:21:08', NULL),
+(7, 5, 'DALILA SEGURA', 'dalila_segura@controldas.com', 'DALI', '0000-00-00', 'M', '5a612297eef412bc00bd0ca726f53fdb', '0939684718', NULL, NULL, 0, '2023-08-25 15:02:36', '2800:bf0:a821:1122:8063:7874:79a4:3bd9', NULL, 'a:1:{s:8:\"language\";s:2:\"en\";}', '', 0, '2023-07-21 08:21:08', NULL),
 (8, 6, 'HOLGUIN EDICIONES', 'E@', 'HOLGUIN ', '0000-00-00', 'M', '827ccb0eea8a706c4c34a16891f84e7b', '12345', NULL, NULL, 0, '2023-08-16 13:35:44', '2800:430:1281:8b8b:685b:ae40:8978:ab98', NULL, 'a:1:{s:8:\"language\";s:2:\"en\";}', '', 1, '2023-08-03 18:42:30', NULL),
 (9, 7, 'UE COTOPAXI', 'DJD', 'UEI COTOPAXI', '0000-00-00', 'M', 'e10adc3949ba59abbe56e057f20f883e', '123456', NULL, NULL, 0, '2023-08-09 16:58:09', '181.199.42.39', NULL, 'a:1:{s:8:\"language\";s:2:\"en\";}', '', 2, '2023-08-08 09:55:05', NULL),
 (10, 5, 'DOMINIQUE VALLE', 'SDPK', 'DOMI', '0000-00-00', 'M', '7fa74007d4d000d82294c460bac3a3e2', '0963821009', NULL, NULL, 0, '2023-08-24 11:01:43', '157.100.63.41', NULL, 'a:1:{s:8:\"language\";s:2:\"en\";}', '', 0, '2023-08-14 11:03:09', NULL),
-(11, 6, 'PROVEEDOR HERNAN EIVAR', 'SDF', 'HERNANE', '0000-00-00', 'M', '314a4e69e0cf213e0d9cfd14a5ead1f2', '0983171925', NULL, NULL, 0, '2023-08-14 11:14:11', '190.63.254.36', NULL, 'a:1:{s:8:\"language\";s:2:\"en\";}', '', 7, '2023-08-14 11:13:44', NULL);
+(11, 6, 'PROVEEDOR HERNAN EIVAR', 'SDF', 'HERNANE', '0000-00-00', 'M', '314a4e69e0cf213e0d9cfd14a5ead1f2', '0983171925', NULL, NULL, 0, '2023-08-14 11:14:11', '190.63.254.36', NULL, 'a:1:{s:8:\"language\";s:2:\"en\";}', '', 7, '2023-08-14 11:13:44', NULL),
+(12, 5, 'ERIKA ', 'JIDN@N.COM', 'ERIKA', '0000-00-00', 'M', '7839227bbb883168ec1d33e4ebaf4031', '0979214979', NULL, NULL, 0, NULL, '', NULL, NULL, '', 0, '2023-08-25 20:02:23', NULL),
+(13, 5, 'DIMENICA ', 'DOJDN@JDJ.COM', 'DOMENICA', '0000-00-00', 'M', 'b99049bfa387f413a41fbe1fe6101deb', '0987312878', NULL, NULL, 0, NULL, '', NULL, NULL, '', 0, '2023-08-25 20:09:07', NULL);
 
 -- --------------------------------------------------------
 
@@ -9228,7 +9535,7 @@ INSERT INTO `user_group` (`group_id`, `name`, `slug`, `sort_order`, `status`, `p
 (1, 'Admin', 'admin', 1, 1, 'a:1:{s:6:\"access\";a:122:{s:16:\"read_sell_report\";s:4:\"true\";s:20:\"read_overview_report\";s:4:\"true\";s:22:\"read_collection_report\";s:4:\"true\";s:27:\"read_full_collection_report\";s:4:\"true\";s:35:\"read_customer_due_collection_report\";s:4:\"true\";s:29:\"read_supplier_due_paid_report\";s:4:\"true\";s:14:\"read_analytics\";s:4:\"true\";s:24:\"read_sell_payment_report\";s:4:\"true\";s:20:\"read_sell_tax_report\";s:4:\"true\";s:24:\"read_tax_overview_report\";s:4:\"true\";s:17:\"read_stock_report\";s:4:\"true\";s:21:\"send_report_via_email\";s:4:\"true\";s:8:\"withdraw\";s:4:\"true\";s:7:\"deposit\";s:4:\"true\";s:8:\"transfer\";s:4:\"true\";s:17:\"read_bank_account\";s:4:\"true\";s:23:\"read_bank_account_sheet\";s:4:\"true\";s:18:\"read_bank_transfer\";s:4:\"true\";s:22:\"read_bank_transactions\";s:4:\"true\";s:19:\"create_bank_account\";s:4:\"true\";s:19:\"update_bank_account\";s:4:\"true\";s:19:\"delete_bank_account\";s:4:\"true\";s:12:\"read_expense\";s:4:\"true\";s:14:\"create_expense\";s:4:\"true\";s:14:\"update_expense\";s:4:\"true\";s:14:\"delete_expense\";s:4:\"true\";s:21:\"read_sell_transaction\";s:4:\"true\";s:23:\"create_purchase_invoice\";s:4:\"true\";s:18:\"read_purchase_list\";s:4:\"true\";s:28:\"update_purchase_invoice_info\";s:4:\"true\";s:23:\"delete_purchase_invoice\";s:4:\"true\";s:16:\"purchase_payment\";s:4:\"true\";s:13:\"read_transfer\";s:4:\"true\";s:12:\"add_transfer\";s:4:\"true\";s:15:\"update_transfer\";s:4:\"true\";s:13:\"read_giftcard\";s:4:\"true\";s:12:\"add_giftcard\";s:4:\"true\";s:15:\"update_giftcard\";s:4:\"true\";s:15:\"delete_giftcard\";s:4:\"true\";s:14:\"giftcard_topup\";s:4:\"true\";s:19:\"read_giftcard_topup\";s:4:\"true\";s:21:\"delete_giftcard_topup\";s:4:\"true\";s:12:\"read_product\";s:4:\"true\";s:14:\"create_product\";s:4:\"true\";s:14:\"update_product\";s:4:\"true\";s:14:\"delete_product\";s:4:\"true\";s:14:\"import_product\";s:4:\"true\";s:19:\"product_bulk_action\";s:4:\"true\";s:18:\"delete_all_product\";s:4:\"true\";s:13:\"read_category\";s:4:\"true\";s:15:\"create_category\";s:4:\"true\";s:15:\"update_category\";s:4:\"true\";s:15:\"delete_category\";s:4:\"true\";s:16:\"read_stock_alert\";s:4:\"true\";s:20:\"read_expired_product\";s:4:\"true\";s:19:\"restore_all_product\";s:4:\"true\";s:13:\"read_supplier\";s:4:\"true\";s:15:\"create_supplier\";s:4:\"true\";s:15:\"update_supplier\";s:4:\"true\";s:15:\"delete_supplier\";s:4:\"true\";s:21:\"read_supplier_profile\";s:4:\"true\";s:8:\"read_box\";s:4:\"true\";s:10:\"create_box\";s:4:\"true\";s:10:\"update_box\";s:4:\"true\";s:10:\"delete_box\";s:4:\"true\";s:9:\"read_unit\";s:4:\"true\";s:11:\"create_unit\";s:4:\"true\";s:11:\"update_unit\";s:4:\"true\";s:11:\"delete_unit\";s:4:\"true\";s:12:\"read_taxrate\";s:4:\"true\";s:14:\"create_taxrate\";s:4:\"true\";s:14:\"update_taxrate\";s:4:\"true\";s:14:\"delete_taxrate\";s:4:\"true\";s:9:\"read_loan\";s:4:\"true\";s:17:\"read_loan_summary\";s:4:\"true\";s:9:\"take_loan\";s:4:\"true\";s:11:\"update_loan\";s:4:\"true\";s:11:\"delete_loan\";s:4:\"true\";s:8:\"loan_pay\";s:4:\"true\";s:13:\"read_customer\";s:4:\"true\";s:21:\"read_customer_profile\";s:4:\"true\";s:15:\"create_customer\";s:4:\"true\";s:15:\"update_customer\";s:4:\"true\";s:15:\"delete_customer\";s:4:\"true\";s:9:\"read_user\";s:4:\"true\";s:11:\"create_user\";s:4:\"true\";s:11:\"update_user\";s:4:\"true\";s:11:\"delete_user\";s:4:\"true\";s:15:\"change_password\";s:4:\"true\";s:14:\"read_usergroup\";s:4:\"true\";s:16:\"create_usergroup\";s:4:\"true\";s:16:\"update_usergroup\";s:4:\"true\";s:16:\"delete_usergroup\";s:4:\"true\";s:13:\"read_currency\";s:4:\"true\";s:15:\"create_currency\";s:4:\"true\";s:15:\"update_currency\";s:4:\"true\";s:15:\"change_currency\";s:4:\"true\";s:15:\"delete_currency\";s:4:\"true\";s:16:\"read_filemanager\";s:4:\"true\";s:12:\"read_pmethod\";s:4:\"true\";s:14:\"create_pmethod\";s:4:\"true\";s:14:\"update_pmethod\";s:4:\"true\";s:14:\"delete_pmethod\";s:4:\"true\";s:10:\"read_store\";s:4:\"true\";s:12:\"create_store\";s:4:\"true\";s:12:\"update_store\";s:4:\"true\";s:12:\"delete_store\";s:4:\"true\";s:14:\"activate_store\";s:4:\"true\";s:14:\"upload_favicon\";s:4:\"true\";s:11:\"upload_logo\";s:4:\"true\";s:12:\"read_printer\";s:4:\"true\";s:14:\"create_printer\";s:4:\"true\";s:14:\"update_printer\";s:4:\"true\";s:14:\"delete_printer\";s:4:\"true\";s:20:\"read_user_preference\";s:4:\"true\";s:22:\"update_user_preference\";s:4:\"true\";s:9:\"filtering\";s:4:\"true\";s:13:\"language_sync\";s:4:\"true\";s:6:\"backup\";s:4:\"true\";s:7:\"restore\";s:4:\"true\";s:11:\"show_profit\";s:4:\"true\";s:10:\"show_graph\";s:4:\"true\";}}'),
 (2, 'Cajero', 'cashier', 2, 1, 'a:0:{}'),
 (3, 'Vendedor', 'salesman', 3, 1, 'a:0:{}'),
-(4, 'Admin DAS', 'admin_das', 0, 1, 'a:1:{s:6:\"access\";a:96:{s:26:\"read_dashboard_invoce_view\";s:4:\"true\";s:28:\"read_dashboard_customer_view\";s:4:\"true\";s:28:\"read_dashboard_supplier_view\";s:4:\"true\";s:27:\"read_dashboard_product_view\";s:4:\"true\";s:22:\"read_recent_activities\";s:4:\"true\";s:16:\"read_sell_report\";s:4:\"true\";s:14:\"read_analytics\";s:4:\"true\";s:20:\"read_purchase_report\";s:4:\"true\";s:17:\"read_stock_report\";s:4:\"true\";s:17:\"read_sell_invoice\";s:4:\"true\";s:14:\"read_sell_list\";s:4:\"true\";s:19:\"create_sell_invoice\";s:4:\"true\";s:24:\"update_sell_invoice_info\";s:4:\"true\";s:19:\"delete_sell_invoice\";s:4:\"true\";s:12:\"sell_payment\";s:4:\"true\";s:15:\"create_sell_due\";s:4:\"true\";s:18:\"create_sell_return\";s:4:\"true\";s:16:\"read_sell_return\";s:4:\"true\";s:18:\"update_sell_return\";s:4:\"true\";s:18:\"delete_sell_return\";s:4:\"true\";s:16:\"sms_sell_invoice\";s:4:\"true\";s:18:\"email_sell_invoice\";s:4:\"true\";s:13:\"read_sell_log\";s:4:\"true\";s:23:\"create_purchase_invoice\";s:4:\"true\";s:18:\"read_purchase_list\";s:4:\"true\";s:28:\"update_purchase_invoice_info\";s:4:\"true\";s:23:\"delete_purchase_invoice\";s:4:\"true\";s:17:\"read_purchase_log\";s:4:\"true\";s:12:\"read_product\";s:4:\"true\";s:14:\"create_product\";s:4:\"true\";s:14:\"update_product\";s:4:\"true\";s:14:\"delete_product\";s:4:\"true\";s:13:\"read_category\";s:4:\"true\";s:15:\"create_category\";s:4:\"true\";s:15:\"update_category\";s:4:\"true\";s:15:\"delete_category\";s:4:\"true\";s:16:\"read_stock_alert\";s:4:\"true\";s:20:\"read_expired_product\";s:4:\"true\";s:13:\"read_supplier\";s:4:\"true\";s:15:\"create_supplier\";s:4:\"true\";s:15:\"update_supplier\";s:4:\"true\";s:15:\"delete_supplier\";s:4:\"true\";s:21:\"read_supplier_profile\";s:4:\"true\";s:10:\"read_brand\";s:4:\"true\";s:12:\"create_brand\";s:4:\"true\";s:12:\"update_brand\";s:4:\"true\";s:12:\"delete_brand\";s:4:\"true\";s:18:\"read_brand_profile\";s:4:\"true\";s:9:\"read_unit\";s:4:\"true\";s:12:\"read_taxrate\";s:4:\"true\";s:13:\"read_customer\";s:4:\"true\";s:21:\"read_customer_profile\";s:4:\"true\";s:15:\"create_customer\";s:4:\"true\";s:15:\"update_customer\";s:4:\"true\";s:15:\"delete_customer\";s:4:\"true\";s:20:\"add_customer_balance\";s:4:\"true\";s:26:\"substract_customer_balance\";s:4:\"true\";s:25:\"read_customer_transaction\";s:4:\"true\";s:9:\"read_user\";s:4:\"true\";s:11:\"create_user\";s:4:\"true\";s:17:\"read_user_profile\";s:4:\"true\";s:11:\"update_user\";s:4:\"true\";s:11:\"delete_user\";s:4:\"true\";s:15:\"change_password\";s:4:\"true\";s:13:\"read_user_log\";s:4:\"true\";s:14:\"read_usergroup\";s:4:\"true\";s:12:\"read_pmethod\";s:4:\"true\";s:10:\"read_store\";s:4:\"true\";s:12:\"create_store\";s:4:\"true\";s:12:\"update_store\";s:4:\"true\";s:12:\"delete_store\";s:4:\"true\";s:14:\"activate_store\";s:4:\"true\";s:14:\"upload_favicon\";s:4:\"true\";s:11:\"upload_logo\";s:4:\"true\";s:12:\"read_college\";s:4:\"true\";s:14:\"create_college\";s:4:\"true\";s:14:\"update_college\";s:4:\"true\";s:14:\"delete_college\";s:4:\"true\";s:16:\"activate_college\";s:4:\"true\";s:11:\"read_course\";s:4:\"true\";s:13:\"create_course\";s:4:\"true\";s:13:\"update_course\";s:4:\"true\";s:13:\"delete_course\";s:4:\"true\";s:15:\"activate_course\";s:4:\"true\";s:12:\"read_printer\";s:4:\"true\";s:14:\"create_printer\";s:4:\"true\";s:14:\"update_printer\";s:4:\"true\";s:16:\"receipt_template\";s:4:\"true\";s:20:\"read_user_preference\";s:4:\"true\";s:22:\"update_user_preference\";s:4:\"true\";s:9:\"filtering\";s:4:\"true\";s:19:\"show_purchase_price\";s:4:\"true\";s:18:\"show_selling_price\";s:4:\"true\";s:20:\"show_estimated_sales\";s:4:\"true\";s:11:\"show_profit\";s:4:\"true\";s:10:\"show_graph\";s:4:\"true\";}}'),
+(4, 'Admin DAS', 'admin_das', 0, 1, 'a:1:{s:6:\"access\";a:100:{s:26:\"read_dashboard_invoce_view\";s:4:\"true\";s:28:\"read_dashboard_customer_view\";s:4:\"true\";s:28:\"read_dashboard_supplier_view\";s:4:\"true\";s:27:\"read_dashboard_product_view\";s:4:\"true\";s:22:\"read_recent_activities\";s:4:\"true\";s:16:\"read_sell_report\";s:4:\"true\";s:14:\"read_analytics\";s:4:\"true\";s:20:\"read_purchase_report\";s:4:\"true\";s:17:\"read_stock_report\";s:4:\"true\";s:17:\"read_sell_invoice\";s:4:\"true\";s:14:\"read_sell_list\";s:4:\"true\";s:19:\"create_sell_invoice\";s:4:\"true\";s:24:\"update_sell_invoice_info\";s:4:\"true\";s:19:\"delete_sell_invoice\";s:4:\"true\";s:12:\"sell_payment\";s:4:\"true\";s:15:\"create_sell_due\";s:4:\"true\";s:18:\"create_sell_return\";s:4:\"true\";s:16:\"read_sell_return\";s:4:\"true\";s:18:\"update_sell_return\";s:4:\"true\";s:18:\"delete_sell_return\";s:4:\"true\";s:16:\"sms_sell_invoice\";s:4:\"true\";s:18:\"email_sell_invoice\";s:4:\"true\";s:13:\"read_sell_log\";s:4:\"true\";s:23:\"create_purchase_invoice\";s:4:\"true\";s:18:\"read_purchase_list\";s:4:\"true\";s:28:\"update_purchase_invoice_info\";s:4:\"true\";s:23:\"delete_purchase_invoice\";s:4:\"true\";s:17:\"read_purchase_log\";s:4:\"true\";s:13:\"read_transfer\";s:4:\"true\";s:12:\"add_transfer\";s:4:\"true\";s:15:\"update_transfer\";s:4:\"true\";s:15:\"delete_transfer\";s:4:\"true\";s:12:\"read_product\";s:4:\"true\";s:14:\"create_product\";s:4:\"true\";s:14:\"update_product\";s:4:\"true\";s:14:\"delete_product\";s:4:\"true\";s:13:\"read_category\";s:4:\"true\";s:15:\"create_category\";s:4:\"true\";s:15:\"update_category\";s:4:\"true\";s:15:\"delete_category\";s:4:\"true\";s:16:\"read_stock_alert\";s:4:\"true\";s:20:\"read_expired_product\";s:4:\"true\";s:13:\"read_supplier\";s:4:\"true\";s:15:\"create_supplier\";s:4:\"true\";s:15:\"update_supplier\";s:4:\"true\";s:15:\"delete_supplier\";s:4:\"true\";s:21:\"read_supplier_profile\";s:4:\"true\";s:10:\"read_brand\";s:4:\"true\";s:12:\"create_brand\";s:4:\"true\";s:12:\"update_brand\";s:4:\"true\";s:12:\"delete_brand\";s:4:\"true\";s:18:\"read_brand_profile\";s:4:\"true\";s:9:\"read_unit\";s:4:\"true\";s:12:\"read_taxrate\";s:4:\"true\";s:13:\"read_customer\";s:4:\"true\";s:21:\"read_customer_profile\";s:4:\"true\";s:15:\"create_customer\";s:4:\"true\";s:15:\"update_customer\";s:4:\"true\";s:15:\"delete_customer\";s:4:\"true\";s:20:\"add_customer_balance\";s:4:\"true\";s:26:\"substract_customer_balance\";s:4:\"true\";s:25:\"read_customer_transaction\";s:4:\"true\";s:9:\"read_user\";s:4:\"true\";s:11:\"create_user\";s:4:\"true\";s:17:\"read_user_profile\";s:4:\"true\";s:11:\"update_user\";s:4:\"true\";s:11:\"delete_user\";s:4:\"true\";s:15:\"change_password\";s:4:\"true\";s:13:\"read_user_log\";s:4:\"true\";s:14:\"read_usergroup\";s:4:\"true\";s:12:\"read_pmethod\";s:4:\"true\";s:10:\"read_store\";s:4:\"true\";s:12:\"create_store\";s:4:\"true\";s:12:\"update_store\";s:4:\"true\";s:12:\"delete_store\";s:4:\"true\";s:14:\"activate_store\";s:4:\"true\";s:14:\"upload_favicon\";s:4:\"true\";s:11:\"upload_logo\";s:4:\"true\";s:12:\"read_college\";s:4:\"true\";s:14:\"create_college\";s:4:\"true\";s:14:\"update_college\";s:4:\"true\";s:14:\"delete_college\";s:4:\"true\";s:16:\"activate_college\";s:4:\"true\";s:11:\"read_course\";s:4:\"true\";s:13:\"create_course\";s:4:\"true\";s:13:\"update_course\";s:4:\"true\";s:13:\"delete_course\";s:4:\"true\";s:15:\"activate_course\";s:4:\"true\";s:12:\"read_printer\";s:4:\"true\";s:14:\"create_printer\";s:4:\"true\";s:14:\"update_printer\";s:4:\"true\";s:16:\"receipt_template\";s:4:\"true\";s:20:\"read_user_preference\";s:4:\"true\";s:22:\"update_user_preference\";s:4:\"true\";s:9:\"filtering\";s:4:\"true\";s:19:\"show_purchase_price\";s:4:\"true\";s:18:\"show_selling_price\";s:4:\"true\";s:20:\"show_estimated_sales\";s:4:\"true\";s:11:\"show_profit\";s:4:\"true\";s:10:\"show_graph\";s:4:\"true\";}}'),
 (5, 'Administrador Sucursal', 'administrador_sucursal', 0, 1, 'a:1:{s:6:\"access\";a:26:{s:16:\"read_sell_report\";s:4:\"true\";s:17:\"read_stock_report\";s:4:\"true\";s:17:\"read_sell_invoice\";s:4:\"true\";s:14:\"read_sell_list\";s:4:\"true\";s:19:\"create_sell_invoice\";s:4:\"true\";s:12:\"sell_payment\";s:4:\"true\";s:13:\"read_sell_log\";s:4:\"true\";s:20:\"create_holding_order\";s:4:\"true\";s:18:\"read_holding_order\";s:4:\"true\";s:23:\"create_purchase_invoice\";s:4:\"true\";s:18:\"read_purchase_list\";s:4:\"true\";s:28:\"update_purchase_invoice_info\";s:4:\"true\";s:17:\"read_purchase_log\";s:4:\"true\";s:12:\"read_product\";s:4:\"true\";s:16:\"read_stock_alert\";s:4:\"true\";s:20:\"read_expired_product\";s:4:\"true\";s:13:\"read_customer\";s:4:\"true\";s:21:\"read_customer_profile\";s:4:\"true\";s:15:\"create_customer\";s:4:\"true\";s:15:\"update_customer\";s:4:\"true\";s:15:\"change_password\";s:4:\"true\";s:20:\"read_user_preference\";s:4:\"true\";s:22:\"update_user_preference\";s:4:\"true\";s:9:\"filtering\";s:4:\"true\";s:18:\"show_selling_price\";s:4:\"true\";s:20:\"show_estimated_sales\";s:4:\"true\";}}'),
 (6, 'Proveedor Visor', 'proveedor_visor', 0, 1, 'a:1:{s:6:\"access\";a:6:{s:16:\"read_sell_report\";s:4:\"true\";s:17:\"read_stock_report\";s:4:\"true\";s:16:\"read_stock_alert\";s:4:\"true\";s:15:\"change_password\";s:4:\"true\";s:9:\"filtering\";s:4:\"true\";s:19:\"show_purchase_price\";s:4:\"true\";}}'),
 (7, 'Colegio Visor', 'colegio_visor', 0, 1, 'a:1:{s:6:\"access\";a:4:{s:16:\"read_sell_report\";s:4:\"true\";s:15:\"change_password\";s:4:\"true\";s:9:\"filtering\";s:4:\"true\";s:20:\"show_estimated_sales\";s:4:\"true\";}}'),
@@ -9260,7 +9567,6 @@ INSERT INTO `user_to_store` (`u2s_id`, `user_id`, `store_id`, `status`, `sort_or
 (25, 1, 2, 1, 0),
 (29, 2, 1, 1, 0),
 (30, 2, 2, 1, 0),
-(31, 6, 2, 1, 0),
 (33, 7, 1, 1, 0),
 (34, 8, 1, 1, 0),
 (35, 8, 2, 1, 0),
@@ -9281,7 +9587,13 @@ INSERT INTO `user_to_store` (`u2s_id`, `user_id`, `store_id`, `status`, `sort_or
 (57, 5, 1, 1, 0),
 (58, 5, 2, 1, 0),
 (59, 5, 3, 1, 0),
-(60, 5, 4, 1, 0);
+(60, 5, 4, 1, 0),
+(63, 6, 2, 1, 0),
+(64, 12, 2, 1, 0),
+(65, 3, 5, 1, 0),
+(66, 1, 5, 1, 0),
+(67, 2, 5, 1, 0),
+(68, 13, 5, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -9936,19 +10248,19 @@ ALTER TABLE `bank_accounts`
 -- AUTO_INCREMENT for table `bank_account_to_store`
 --
 ALTER TABLE `bank_account_to_store`
-  MODIFY `ba2s` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `ba2s` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `bank_transaction_info`
 --
 ALTER TABLE `bank_transaction_info`
-  MODIFY `info_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=245;
+  MODIFY `info_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=248;
 
 --
 -- AUTO_INCREMENT for table `bank_transaction_price`
 --
 ALTER TABLE `bank_transaction_price`
-  MODIFY `price_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=245;
+  MODIFY `price_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=248;
 
 --
 -- AUTO_INCREMENT for table `boxes`
@@ -9996,7 +10308,7 @@ ALTER TABLE `customers`
 -- AUTO_INCREMENT for table `customer_to_store`
 --
 ALTER TABLE `customer_to_store`
-  MODIFY `c2s_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=93;
+  MODIFY `c2s_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=94;
 
 --
 -- AUTO_INCREMENT for table `customer_transactions`
@@ -10098,7 +10410,7 @@ ALTER TABLE `loan_payments`
 -- AUTO_INCREMENT for table `login_logs`
 --
 ALTER TABLE `login_logs`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=309;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=319;
 
 --
 -- AUTO_INCREMENT for table `mail_sms_tag`
@@ -10134,7 +10446,7 @@ ALTER TABLE `pos_templates`
 -- AUTO_INCREMENT for table `pos_template_to_store`
 --
 ALTER TABLE `pos_template_to_store`
-  MODIFY `pt2s` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `pt2s` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
 
 --
 -- AUTO_INCREMENT for table `printers`
@@ -10146,13 +10458,13 @@ ALTER TABLE `printers`
 -- AUTO_INCREMENT for table `printer_to_store`
 --
 ALTER TABLE `printer_to_store`
-  MODIFY `p2s_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `p2s_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `products`
 --
 ALTER TABLE `products`
-  MODIFY `p_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=229;
+  MODIFY `p_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=234;
 
 --
 -- AUTO_INCREMENT for table `product_images`
@@ -10170,37 +10482,37 @@ ALTER TABLE `product_to_college`
 -- AUTO_INCREMENT for table `product_to_store`
 --
 ALTER TABLE `product_to_store`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1200;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1480;
 
 --
 -- AUTO_INCREMENT for table `purchase_info`
 --
 ALTER TABLE `purchase_info`
-  MODIFY `info_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=133;
+  MODIFY `info_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=139;
 
 --
 -- AUTO_INCREMENT for table `purchase_item`
 --
 ALTER TABLE `purchase_item`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=275;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=326;
 
 --
 -- AUTO_INCREMENT for table `purchase_logs`
 --
 ALTER TABLE `purchase_logs`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=133;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=139;
 
 --
 -- AUTO_INCREMENT for table `purchase_payments`
 --
 ALTER TABLE `purchase_payments`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=133;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=139;
 
 --
 -- AUTO_INCREMENT for table `purchase_price`
 --
 ALTER TABLE `purchase_price`
-  MODIFY `price_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=133;
+  MODIFY `price_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=139;
 
 --
 -- AUTO_INCREMENT for table `purchase_returns`
@@ -10296,7 +10608,7 @@ ALTER TABLE `sms_setting`
 -- AUTO_INCREMENT for table `stores`
 --
 ALTER TABLE `stores`
-  MODIFY `store_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `store_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
 
 --
 -- AUTO_INCREMENT for table `suppliers`
@@ -10308,7 +10620,7 @@ ALTER TABLE `suppliers`
 -- AUTO_INCREMENT for table `supplier_to_store`
 --
 ALTER TABLE `supplier_to_store`
-  MODIFY `s2s_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=33;
+  MODIFY `s2s_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
 
 --
 -- AUTO_INCREMENT for table `taxrates`
@@ -10338,7 +10650,7 @@ ALTER TABLE `units`
 -- AUTO_INCREMENT for table `users`
 --
 ALTER TABLE `users`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=14;
 
 --
 -- AUTO_INCREMENT for table `user_group`
@@ -10350,7 +10662,7 @@ ALTER TABLE `user_group`
 -- AUTO_INCREMENT for table `user_to_store`
 --
 ALTER TABLE `user_to_store`
-  MODIFY `u2s_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=61;
+  MODIFY `u2s_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=69;
 
 --
 -- AUTO_INCREMENT for table `_box_to_store_`

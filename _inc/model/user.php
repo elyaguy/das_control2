@@ -65,10 +65,11 @@ class ModelUser extends Model
 			foreach ($data['user_store'] as $store_id) {
 				$statement = $this->db->prepare("INSERT INTO `user_to_store` SET `user_id` = ?, `store_id` = ?");
 				$statement->execute(array((int) $id, (int) $store_id));
+				$this->updateStatus($id, $data['status'],(int) $store_id);
 			}
 		}
 
-		$this->updateStatus($id, $data['status']);
+		// $this->updateStatus($id, $data['status']);
 		$this->updateSortOrder($id, $data['sort_order']);
 
 		return $id;
