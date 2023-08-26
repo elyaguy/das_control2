@@ -41,6 +41,14 @@ $table = "(SELECT purchase_info.*, suppliers.sup_name, purchase_item.item_quanti
       GROUP BY purchase_info.sup_id
       ORDER BY total_stock DESC) as purchase_info";
 
+$table = "(SELECT purchase_info.*, suppliers.sup_name, purchase_item.item_quantity, SUM(purchase_item.item_total) as purchase_price, SUM(purchase_item.item_quantity) as total_stock, sum(purchase_price.paid_amount) as paid_amount FROM purchase_info 
+      LEFT JOIN suppliers ON (purchase_info.sup_id = suppliers.sup_id)
+      LEFT JOIN(SELECT aa.invoice_id, aa.store_id, SUM(aa.item_quantity) AS item_quantity, SUM(aa.item_total) AS item_total FROM purchase_item aa GROUP BY aa.invoice_id, aa.store_id) as purchase_item ON (purchase_item.invoice_id = purchase_info.invoice_id)
+      LEFT JOIN purchase_price ON (purchase_info.invoice_id = purchase_price.invoice_id)
+      WHERE $where_query
+      GROUP BY purchase_info.sup_id
+      ORDER BY total_stock DESC) as purchase_info";
+
 // Table's primary key
 $primaryKey = 'info_id';
 $columns = array(
