@@ -1,7 +1,7 @@
 <?php
 define('INSTALLED', true);
 
-$supportOk = true;
+$supportOk = false;
 $dirOk = '';
 $dir2Ok = '';
 $sql_details2 = array(
