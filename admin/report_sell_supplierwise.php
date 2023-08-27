@@ -156,13 +156,13 @@ include("left_sidebar.php");
                       <?php echo trans('label_sup_name'); ?>
                     </th>
                     <th class="w-15">
-                      <?php echo trans('label_sales'); ?>
+                      <?php echo trans('label_sold_total'); ?>
                     </th>
                     <th class="w-20">
                       <?php echo trans('label_purchase_total'); ?>
                     </th>
                     <th class="w-20">
-                      <?php echo trans('label_sales_total'); ?>
+                      <?php echo trans('label_amount_paid'); ?>
                     </th>
                   </tr>
                 </thead>
@@ -178,13 +178,13 @@ include("left_sidebar.php");
                       <?php echo trans('label_sup_name'); ?>
                     </th>
                     <th class="w-15">
-                      <?php echo trans('label_sales'); ?>
+                      <?php echo trans('label_sold_total'); ?>
                     </th>
                     <th class="w-20">
                       <?php echo trans('label_purchase_total'); ?>
                     </th>
                     <th class="w-20">
-                      <?php echo trans('label_sales_total'); ?>
+                      <?php echo trans('label_amount_paid'); ?>
                     </th>
                   </tr>
                 </tfoot>
