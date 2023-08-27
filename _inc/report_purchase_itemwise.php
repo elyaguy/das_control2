@@ -39,6 +39,17 @@ $table = "(SELECT purchase_info.*, purchase_item.id, purchase_item.item_id, purc
       WHERE $where_query
       GROUP BY purchase_item.item_id
       ORDER BY total_stock DESC) as products";
+
+// DB table to use
+$table = "(SELECT purchase_info.*, purchase_item.id, purchase_item.item_id, purchase_item.item_name, purchase_item.item_quantity, SUM(purchase_item.item_total) as purchase_price, SUM(purchase_item.item_quantity) as total_stock, 
+SUM(item_selling_price * item_quantity) as paid_amount 
+FROM purchase_item 
+      LEFT JOIN purchase_info ON (purchase_item.invoice_id = purchase_info.invoice_id)
+      LEFT JOIN purchase_price ON (purchase_item.invoice_id = purchase_price.invoice_id)
+      WHERE $where_query
+      GROUP BY purchase_item.item_id
+      ORDER BY total_stock DESC) as products";
+
 // Table's primary key
 $primaryKey = 'id';
 $columns = array(
