@@ -145,10 +145,10 @@ include ("left_sidebar.php") ;
                       <?php echo trans('label_quantity'); ?>
                     </th>
                     <th class="w-20">
-                      <?php echo trans('label_purchase_price'); ?>
+                      <?php echo trans('label_amount_to_paid'); ?>
                     </th>
                     <th class="w-20">
-                      <?php echo trans('label_paid_amount'); ?>
+                      <?php echo trans('label_sale_value'); ?>
                     </th>
                   </tr>
                 </thead>
@@ -167,10 +167,10 @@ include ("left_sidebar.php") ;
                       <?php echo trans('label_quantity'); ?>
                     </th>
                     <th class="w-20">
-                      <?php echo trans('label_purchase_price'); ?>
+                      <?php echo trans('label_amount_to_paid'); ?>
                     </th>
                     <th class="w-20">
-                      <?php echo trans('label_paid_amount'); ?>
+                      <?php echo trans('label_sale_value'); ?>
                     </th>
                   </tr>
                 </tfoot>
