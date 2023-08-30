@@ -155,7 +155,7 @@ include ("left_sidebar.php") ;
                 if (! has_permission('access', 'purchase_payment')) {
                   $hide_colums .= "9,";
                 }
-                if (! has_permission('access', 'purchase_return')) {
+                if (! has_permission('access', 'create_purchase_return')) {
                   $hide_colums .= "10,";
                 }
                 if (! has_permission('access', 'read_purchase_list')) {

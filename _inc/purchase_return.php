@@ -25,7 +25,7 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && $request->get['action_type']
   try {
 
     // Check product return permission
-    if (user_group_id() != 1 && !has_permission('access', 'purchase_return')) {
+    if (user_group_id() != 1 && !has_permission('access', 'create_purchase_return')) {
       throw new Exception(trans('error_return_permission'));
     }
 
