@@ -145,19 +145,19 @@ include ("left_sidebar.php");
 				            $hide_colums = "";
 				            if (user_group_id() != 1) {
 				            	if (! has_permission('access', 'sell_payment')) {
-				                $hide_colums .= "5,";
-				              }
-				              if (! has_permission('access', 'create_sell_return')) {
-				                $hide_colums .= "6,";
-				              }
-				               if (! has_permission('access', 'read_sell_invoice')) {
 				                $hide_colums .= "7,";
 				              }
-				              if (! has_permission('access', 'update_sell_invoice_info')) {
+				              if (! has_permission('access', 'create_sell_return')) {
 				                $hide_colums .= "8,";
 				              }
-				              if (! has_permission('access', 'delete_sell_invoice')) {
+				               if (! has_permission('access', 'read_sell_invoice')) {
 				                $hide_colums .= "9,";
+				              }
+				              if (! has_permission('access', 'update_sell_invoice_info')) {
+				                $hide_colums .= "10,";
+				              }
+				              if (! has_permission('access', 'delete_sell_invoice')) {
+				                $hide_colums .= "11,";
 				              }
 				            }
 				          ?>  
@@ -173,6 +173,12 @@ include ("left_sidebar.php");
 							        </th>
 							        <th class="w-20">
 							        	<?php echo trans('label_customer_name'); ?>
+							        </th>
+									<th class="w-5">
+							        	<?php echo trans('label_quantity'); ?>
+							        </th>
+									<th class="w-5">
+							        	<?php echo trans('label_total'); ?>
 							        </th>
 							        <th class="w-7">
 							        	<?php echo trans('label_status'); ?>
@@ -207,6 +213,12 @@ include ("left_sidebar.php");
 							        </th>
 							        <th class="w-20">
 							        	<?php echo trans('label_customer_name'); ?>
+							        </th>
+									<th class="w-5">
+							        	<?php echo trans('label_quantity'); ?>
+							        </th>
+									<th class="w-5">
+							        	<?php echo trans('label_total'); ?>
 							        </th>
 							        <th class="w-7">
 							        	<?php echo trans('label_status'); ?>

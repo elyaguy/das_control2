@@ -126,11 +126,25 @@ window.angularApp.controller("InvoiceController", [
                         $(td).attr('data-title', $("#invoice-invoice-list thead tr th:eq(9)").html());
                     }
                 },
+                {
+                    "targets": [10],
+                    'createdCell': function (td, cellData, rowData, row, col) {
+                        $(td).attr('data-title', $("#invoice-invoice-list thead tr th:eq(10)").html());
+                    }
+                },
+                {
+                    "targets": [11],
+                    'createdCell': function (td, cellData, rowData, row, col) {
+                        $(td).attr('data-title', $("#invoice-invoice-list thead tr th:eq(11)").html());
+                    }
+                },
             ],
             "aoColumns": [
                 { data: "invoice_id" },
                 { data: "created_at" },
                 { data: "customer_name" },
+                { data: "quantity" },
+                { data: "total" },
                 { data: "status" },
                 { data: "btn_sri" },
                 { data: "btn_pay" },

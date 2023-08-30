@@ -489,8 +489,9 @@ if (isset($request->get['customer_id']) && ($request->get['customer_id'] != 'und
 }
 
 // DB table to use
-$table = "(SELECT selling_info.* FROM `selling_info` WHERE {$where_query}) as selling_info";
+$table = "(SELECT selling_info.*,`selling_price`.`paid_amount` FROM `selling_info` LEFT JOIN `selling_price` ON (`selling_info`.`invoice_id` = `selling_price`.`invoice_id`) WHERE {$where_query}) as selling_info";
 
+//selling_price
 // Table's primary key
 $primaryKey = 'info_id';
 
@@ -504,6 +505,15 @@ $columns = array(
     ),
     array( 'db' => 'edit_counter', 'dt' => 'edit_counter' ),
     array( 'db' => 'invoice_id', 'dt' => 'id' ),
+    array( 'db' => 'total_items', 'dt' => 'quantity' ),
+    array( 
+        'db' => 'paid_amount',  
+        'dt' => 'total',
+        'formatter' => function( $d, $row ) {
+          $total = $row['paid_amount'];
+          return currency_format($total);
+        }
+      ),
     array(
         'db' => 'invoice_id',
         'dt' => 'invoice_id',
