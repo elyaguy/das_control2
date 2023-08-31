@@ -274,6 +274,7 @@ $permissions = array(
     'read_analytics'  => trans('read_analytics'),
     // 'read_overview_report'  => trans('read_overview_report'),
     'read_purchase_report'  => trans('read_purchase_report'),
+    'read_purchase_all_report'  => trans('read_purchase_all_report'),
     'read_purchase_payment_report'  => trans('read_purchase_payment_report'),
     'read_purchase_tax_report'  => trans('read_purchase_tax_report'),
     'read_sell_payment_report'  => trans('read_sell_payment_report'),
