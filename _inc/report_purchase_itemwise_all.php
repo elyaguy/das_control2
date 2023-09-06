@@ -42,10 +42,14 @@ $table = "(SELECT purchase_info.*, purchase_item.id, purchase_item.item_id, purc
 
 // DB table to use
 $table = "(SELECT purchase_info.*, purchase_item.id, purchase_item.item_id, purchase_item.item_name, purchase_item.item_quantity, SUM(purchase_item.item_total) as purchase_price, SUM(purchase_item.item_quantity) as total_stock, 
-SUM(item_selling_price * item_quantity) as paid_amount 
+SUM(item_selling_price * item_quantity) as paid_amount, item_purchase_price, item_selling_price, quantity_in_stock, 
+selling_item.selling_quantity_item, (product_to_store.sell_price * product_to_store.quantity_in_stock) AS value_in_stock
 FROM purchase_item 
       LEFT JOIN purchase_info ON (purchase_item.invoice_id = purchase_info.invoice_id)
       LEFT JOIN purchase_price ON (purchase_item.invoice_id = purchase_price.invoice_id)
+      LEFT JOIN product_to_store ON (purchase_item.item_id = product_to_store.product_id AND purchase_item.store_id = product_to_store.store_id)
+      LEFT JOIN (SELECT item_id, store_id, SUM(item_quantity- return_quantity) selling_quantity_item FROM selling_item GROUP BY item_id, store_id) AS selling_item ON (purchase_item.item_id = selling_item.item_id AND purchase_item.store_id = selling_item.store_id)
+
       WHERE $where_query
       GROUP BY purchase_item.item_id
       ORDER BY total_stock DESC) as products";
@@ -74,6 +78,28 @@ $columns = array(
       'formatter' => function( $d, $row ) {
         return currency_format($row['total_stock']);
       }
+    ),    
+    array( 
+      'db' => 'quantity_in_stock',  
+      'dt' => 'quantity_in_stock',
+      'formatter' => function( $d, $row ) {
+        return currency_format($row['quantity_in_stock']);
+        // return number_format($row['quantity_in_stock'],0);
+      }
+    ),
+    array( 
+      'db' => 'selling_quantity_item',  
+      'dt' => 'selling_quantity_item',
+      'formatter' => function( $d, $row ) {
+        return currency_format($row['selling_quantity_item']);
+      }
+    ),
+    array( 
+      'db' => 'value_in_stock',  
+      'dt' => 'value_in_stock',
+      'formatter' => function( $d, $row ) {
+        return currency_format($row['value_in_stock']);
+      }
     ),
     array( 
       'db' => 'purchase_price',  
@@ -88,6 +114,14 @@ $columns = array(
       'dt' => 'paid_amount',
       'formatter' => function( $d, $row ) {
         $total = $row['paid_amount'];
+        return currency_format($total);
+      }
+    ),
+    array( 
+      'db' => 'item_purchase_price',  
+      'dt' => 'item_purchase_price',
+      'formatter' => function( $d, $row ) {
+        $total = $row['item_purchase_price'];
         return currency_format($total);
       }
     )

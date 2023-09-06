@@ -116,18 +116,18 @@ include ("left_sidebar.php") ;
           <div class="box-body">
             <div class="table-responsive">
               <?php
-                $print_columns = '0,1,2,3,4,5';
-                if (user_group_id() != 1) {
-                  if (! has_permission('access', 'show_purchase_price')) {
-                    $print_columns = str_replace('4,', '', $print_columns);
-                  }
-                }
+                $print_columns = '0,1,2,3,4,5,6,7,8,9';
+                // if (user_group_id() != 1) {
+                //   if (! has_permission('access', 'show_purchase_price')) {
+                //     $print_columns = str_replace('4,', '', $print_columns);
+                //   }
+                // }
                 $hide_colums = "";
-                if (user_group_id() != 1) {
-                  if (!has_permission('access', 'show_purchase_price')) {
-                    $hide_colums .= "4,";
-                  }
-                }
+                // if (user_group_id() != 1) {
+                //   if (!has_permission('access', 'show_purchase_price')) {
+                //     $hide_colums .= "4,";
+                //   }
+                // }
               ?>
               <table id="report-report-list" class="table table-bordered table-striped table-hover" data-hide-colums="<?php echo $hide_colums; ?>" data-print-columns="<?php echo $print_columns;?>">
                 <thead>
@@ -141,14 +141,26 @@ include ("left_sidebar.php") ;
                     <th class="w-25">
                       <?php echo trans('label_sup_name'); ?>
                     </th>
-                    <th class="w-10">
+                    <th class="w-5">
                       <?php echo trans('label_quantity'); ?>
                     </th>
-                    <th class="w-20">
-                      <?php echo trans('label_amount_to_paid'); ?>
+                    <th class="w-5">
+                      <?php echo trans('label_unit_cost'); ?>
                     </th>
-                    <th class="w-20">
+                    <th class="w-5">
+                      <?php echo trans('label_cost_value'); ?>
+                    </th>
+                    <th class="w-5">
                       <?php echo trans('label_sale_value'); ?>
+                    </th>
+                    <th class="w-5">
+                      <?php echo trans('label_sale_units'); ?>
+                    </th>
+                    <th class="w-5">
+                      <?php echo trans('label_quantity_stock'); ?>
+                    </th>
+                    <th class="w-5">
+                      <?php echo trans('label_stock_value'); ?>
                     </th>
                   </tr>
                 </thead>
@@ -163,14 +175,26 @@ include ("left_sidebar.php") ;
                     <th class="w-25">
                       <?php echo trans('label_sup_name'); ?>
                     </th>
-                    <th class="w-10">
+                    <th class="w-5">
                       <?php echo trans('label_quantity'); ?>
                     </th>
-                    <th class="w-20">
-                      <?php echo trans('label_amount_to_paid'); ?>
+                    <th class="w-5">
+                      <?php echo trans('label_unit_cost'); ?>
                     </th>
-                    <th class="w-20">
+                    <th class="w-5">
+                      <?php echo trans('label_cost_value'); ?>
+                    </th>
+                    <th class="w-5">
                       <?php echo trans('label_sale_value'); ?>
+                    </th>
+                    <th class="w-5">
+                      <?php echo trans('label_sale_units'); ?>
+                    </th>
+                    <th class="w-5">
+                      <?php echo trans('label_quantity_stock'); ?>
+                    </th>
+                    <th class="w-5">
+                      <?php echo trans('label_stock_value'); ?>
                     </th>
                   </tr>
                 </tfoot>

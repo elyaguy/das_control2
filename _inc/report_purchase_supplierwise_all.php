@@ -51,12 +51,16 @@ $table = "(SELECT purchase_info.*, suppliers.sup_name, purchase_item.item_quanti
 
 // DB table to use
 $table = "(SELECT purchase_info.*, suppliers.sup_name, purchase_item.item_quantity, SUM(purchase_item.item_total) as purchase_price, SUM(purchase_item.item_quantity) as total_stock, 
-SUM(item_selling_price * item_quantity) as paid_amount 
+SUM(item_selling_price * item_quantity) as paid_amount , 0 unit_cost, product_to_store.quantity_in_stock, value_in_stock, selling_item.selling_quantity_item
 FROM purchase_info 
       LEFT JOIN suppliers ON (purchase_info.sup_id = suppliers.sup_id)
       LEFT JOIN purchase_item ON (purchase_info.invoice_id = purchase_item.invoice_id)
       LEFT JOIN purchase_price ON (purchase_info.invoice_id = purchase_price.invoice_id)
-      WHERE $where_query
+      LEFT JOIN (SELECT sup_id, store_id, SUM(product_to_store.quantity_in_stock) quantity_in_stock, SUM(product_to_store.sell_price * product_to_store.quantity_in_stock) value_in_stock 
+        FROM product_to_store LEFT JOIN products ON product_id = p_id  GROUP BY sup_id, store_id) AS product_to_store ON (purchase_info.sup_id = product_to_store.sup_id AND purchase_info.store_id = product_to_store.store_id)
+      LEFT JOIN (SELECT sup_id, store_id, SUM(item_quantity- return_quantity) selling_quantity_item FROM selling_item GROUP BY sup_id, store_id) AS selling_item ON (purchase_info.sup_id = selling_item.sup_id AND purchase_info.store_id = selling_item.store_id)
+
+WHERE $where_query
       GROUP BY purchase_info.sup_id
       ORDER BY total_stock DESC) as purchase_info";
 
@@ -64,6 +68,8 @@ FROM purchase_info
 $primaryKey = 'info_id';
 $columns = array(
     array( 'db' => 'sup_id', 'dt' => 'sup_id' ),
+    array( 'db' => 'unit_cost', 'dt' => 'unit_cost' ),
+
     array( 
       'db' => 'created_at',  
       'dt' => 'created_at',
@@ -83,6 +89,27 @@ $columns = array(
       'dt' => 'total_item',
       'formatter' => function( $d, $row ) {
         return currency_format($row['total_stock']);
+      }
+    ),
+    array( 
+      'db' => 'quantity_in_stock',  
+      'dt' => 'quantity_in_stock',
+      'formatter' => function( $d, $row ) {
+        return currency_format($row['quantity_in_stock']);
+      }
+    ),
+    array( 
+      'db' => 'value_in_stock',  
+      'dt' => 'value_in_stock',
+      'formatter' => function( $d, $row ) {
+        return currency_format($row['value_in_stock']);
+      }
+    ),
+    array( 
+      'db' => 'selling_quantity_item',  
+      'dt' => 'selling_quantity_item',
+      'formatter' => function( $d, $row ) {
+        return currency_format($row['selling_quantity_item']);
       }
     ),
     array( 
