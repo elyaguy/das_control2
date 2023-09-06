@@ -229,6 +229,20 @@ class ModelReport extends Model
 		return isset($invoice['total']) ? $invoice['total'] : 0;
 	}
 
+	// public function getPaidAmountAllStore($from, $to) 
+	// {
+	// 	// $store_id = $store_id ? $store_id : store_id();
+	// 	// $where_query = "`selling_info`.`store_id` = '$store_id'";
+	// 	$where_query = "";
+	// 	$where_query .= date_range_filter($from, $to);
+	// 	$statement = $this->db->prepare("SELECT SUM(`selling_price`.`paid_amount`) as total FROM `selling_info` 
+	// 		LEFT JOIN `selling_price` ON (`selling_info`.`invoice_id` = `selling_price`.`invoice_id`) 
+	// 		WHERE $where_query");
+	// 	$statement->execute(array());
+	// 	$invoice = $statement->fetch(PDO::FETCH_ASSOC);
+	// 	return isset($invoice['total']) ? $invoice['total'] : 0;
+	// }
+
 	public function getDiscountAmount($from, $to, $store_id = null) 
 	{
 		$store_id = $store_id ? $store_id : store_id();

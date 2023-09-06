@@ -46,6 +46,7 @@
       <ul class="nav navbar-nav">
         <?php if (
           in_array(current_nav(), array(
+            'dashboard',
             'invoice',
             'product_details',
             'report_collection',

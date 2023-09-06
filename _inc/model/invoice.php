@@ -48,8 +48,7 @@ class ModelInvoice extends Model
         $tsgst = 0;
         $total_purchase_price = 0;
 
-        foreach ($product_items as $product) 
-        {
+        foreach ($product_items as $product) {
             $product_id = $product['item_id'];
             $product_info = get_the_product($product_id);
             $category_id = $product['category_id'];
@@ -88,7 +87,7 @@ class ModelInvoice extends Model
         $statement->execute(array($ref_no, $store_id, $subtotal, $discount_type, $discount_amount, $item_tax, $order_tax, $tcgst, $tsgst, $tigst, $shipping_type, $shipping_amount, $others_charge, $payable_amount));
         return $ref_no;
     }
-    
+
     public function createInvoice($request, $store_id = null)
     {
         $store_id = $store_id ? $store_id : store_id();
@@ -101,7 +100,7 @@ class ModelInvoice extends Model
         $college_id = $request->post['college-id'];
         $customer_mobile = $request->post['customer-mobile-number'];
         $pmethod_id = $request->post['pmethod-id'];
-        $pmethod_code = get_the_pmethod($pmethod_id,'code_name');
+        $pmethod_code = get_the_pmethod($pmethod_id, 'code_name');
         $subtotal = $request->post['sub-total'];
         $discount_type = $request->post['discount-type'];
         $discount_amount = $request->post['discount-amount'];
@@ -154,26 +153,24 @@ class ModelInvoice extends Model
 
         // Previous Due Paid
         $prev_due_paid = 0;
-        if ($paid_amount > 0 && $previous_due > 0) 
-        {
+        if ($paid_amount > 0 && $previous_due > 0) {
             $due_paid_amount = $paid_amount;
-            foreach ($this->getDueInvoices($customer_id) as $inv) 
-            {
-              if ($paid_amount <= 0) break;
-              if ($inv['due'] < $paid_amount) {
-                $due_paid_amount = $inv['due'];
-              }
-              $prev_due_paid += $due_paid_amount;
-              $data = array(
-                'invoice-id' => $inv['invoice_id'],
-                'customer-id' => $customer_id,
-                'pmethod-id' => 1,
-                'discount-amount' => 0,
-                'note' => '',
-                'paid-amount' => $due_paid_amount,
-              );
-              $this->duePaid($data, store_id());
-              $paid_amount -= $due_paid_amount;
+            foreach ($this->getDueInvoices($customer_id) as $inv) {
+                if ($paid_amount <= 0) break;
+                if ($inv['due'] < $paid_amount) {
+                    $due_paid_amount = $inv['due'];
+                }
+                $prev_due_paid += $due_paid_amount;
+                $data = array(
+                    'invoice-id' => $inv['invoice_id'],
+                    'customer-id' => $customer_id,
+                    'pmethod-id' => 1,
+                    'discount-amount' => 0,
+                    'note' => '',
+                    'paid-amount' => $due_paid_amount,
+                );
+                $this->duePaid($data, store_id());
+                $paid_amount -= $due_paid_amount;
             }
         }
 
@@ -184,7 +181,7 @@ class ModelInvoice extends Model
             $balance = $paid_amount - $payable_amount;
             $paid_amount = $payable_amount;
         }
-        
+
         $product_discount = $discount_amount / $total_items;
         $product_tax = $order_tax / $total_items;
         $payment_status = $due > 0 ? 'due' : 'paid';
@@ -201,8 +198,7 @@ class ModelInvoice extends Model
         $tcgst = 0;
         $tsgst = 0;
         $total_purchase_price = 0;
-        foreach ($product_items as $product) 
-        {
+        foreach ($product_items as $product) {
             $product_id = $product['item_id'];
             $product_info = get_the_product($product_id);
             $category_id = $product['category_id'];
@@ -213,7 +209,7 @@ class ModelInvoice extends Model
             $quantity_substract = $product_quantity;
             if ($product['p_type'] == 'service') {
                 $quantity_substract = 0;
-                $total_purchase_price += ($product_info['purchase_price']*$product_quantity);
+                $total_purchase_price += ($product_info['purchase_price'] * $product_quantity);
             }
             $product_price = $product['item_price'];
             $product_total = $product['item_total'];
@@ -232,7 +228,7 @@ class ModelInvoice extends Model
             $sell_quantity = $product_quantity;
             $inc = 1;
             while ($quantity_exist > 0) {
-                
+
                 if ($quantity_substract == 0) break;
 
                 $statement = $this->db->prepare("SELECT * FROM `purchase_item` WHERE `store_id` = ? AND `item_id` = ? AND `status` = ? AND `item_quantity` > `total_sell`");
@@ -248,7 +244,7 @@ class ModelInvoice extends Model
                 if (!$purchase_item) {
                     $statement = $this->db->prepare("UPDATE `product_to_store` SET `quantity_in_stock` = ? WHERE `store_id` = ? AND `product_id` = ?");
                     $statement->execute(array(0, $store_id, $product_id));
-                    throw new Exception('The product: '.$product_info['p_name'].' was out of stock, system has updated the product quantity as 0');
+                    throw new Exception('The product: ' . $product_info['p_name'] . ' was out of stock, system has updated the product quantity as 0');
                 }
                 $purchase_invoice_id = $purchase_item['invoice_id'];
                 $stock = $purchase_item['item_quantity'] - $purchase_item['total_sell'];
@@ -303,15 +299,15 @@ class ModelInvoice extends Model
             $tigst += $order_tax;
         }
 
-        $capital = ($total_purchase_price / ($subtotal -$discount_amount)) * ($paid_amount - $shipping_amount - $others_charge);
-        $profit = ($subtotal -$discount_amount) - $total_purchase_price;
-        
+        $capital = ($total_purchase_price / ($subtotal - $discount_amount)) * ($paid_amount - $shipping_amount - $others_charge);
+        $profit = ($subtotal - $discount_amount) - $total_purchase_price;
+
         $statement = $this->db->prepare("INSERT INTO `selling_info` (invoice_id, store_id, customer_id, college_id, customer_mobile, invoice_note, total_items, payment_status, is_installment, created_by, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
         $statement->execute(array($invoice_id, $store_id, $customer_id, $college_id, $customer_mobile, $invoice_note, $total_items, $payment_status, $is_installment_order, $user_id, $created_at));
-        
+
         $statement = $this->db->prepare("INSERT INTO `selling_price` (invoice_id, store_id, subtotal, discount_type, discount_amount, interest_amount, interest_percentage, item_tax, order_tax, cgst, sgst, igst, total_purchase_price, shipping_type, shipping_amount, others_charge, previous_due, payable_amount, paid_amount, due, prev_due_paid, profit, balance) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
         $statement->execute(array($invoice_id, $store_id, $subtotal, $discount_type, $discount_amount, $installment_interest_amount, $installment_interest_percentage, $item_tax, $order_tax, $tcgst, $tsgst, $tigst, $total_purchase_price, $shipping_type, $shipping_amount, $others_charge, $previous_due, $payable_amount, $paid_amount, $due, $prev_due_paid, $profit, $balance));
-        
+
         if ($paid_amount > 0) {
             $statement = $this->db->prepare("INSERT INTO `payments` (store_id, invoice_id, pmethod_id, capital, amount, details, note, total_paid, pos_balance, created_by, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             $statement->execute(array($store_id, $invoice_id, $pmethod_id, $capital, $paid_amount, $details, $invoice_note, $total_paid, $balance, $user_id, $created_at));
@@ -332,7 +328,7 @@ class ModelInvoice extends Model
         $reference_no = generate_sell_log_ref_no('sell');
         $statement = db()->prepare("INSERT INTO `sell_logs` (customer_id, college_id, reference_no, type, pmethod_id, description, amount, store_id, ref_invoice_id, created_by, created_at) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
         $statement->execute(array($customer_id, $college_id, $reference_no, 'sell', $pmethod_id,  'Paid while selling', $paid_amount, $store_id, $invoice_id, $user_id, $created_at));
-        
+
         if ($due > 0) {
             $statement = $this->db->prepare("UPDATE `customer_to_store` SET `due` = `due` + {$due}  WHERE `store_id` = ? AND `customer_id` = ?");
             $statement->execute(array($store_id, $customer_id));
@@ -342,7 +338,7 @@ class ModelInvoice extends Model
             $statement = $this->db->prepare("UPDATE `gift_cards` SET `balance` = `balance` - {$paid_amount}  WHERE `card_no` = ?");
             $statement->execute(array($card_no));
         }
-        
+
         if (($account_id = store('deposit_account_id')) && $paid_amount > 0) {
             $ref_no = unique_transaction_ref_no();
             $statement = $this->db->prepare("SELECT `source_id` FROM `income_sources` WHERE `for_sell` = ?");
@@ -354,14 +350,14 @@ class ModelInvoice extends Model
             $image = 'NULL';
             $deposit_amount = $paid_amount;
             $transaction_type = 'deposit';
-			
+
             $statement = $this->db->prepare("INSERT INTO `bank_transaction_info` (store_id, account_id, source_id, ref_no, invoice_id, transaction_type, title, details, image, created_by, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
             $statement->execute(array($store_id, $account_id, $source_id, $ref_no, $invoice_id, $transaction_type, $title, $details, $image, $user_id, $created_at));
             $info_id = $this->db->lastInsertId();
-						
-			$statement = $this->db->prepare("INSERT INTO `bank_transaction_price` (store_id, info_id, ref_no, amount) VALUES (?, ?, ?, ?)");
+
+            $statement = $this->db->prepare("INSERT INTO `bank_transaction_price` (store_id, info_id, ref_no, amount) VALUES (?, ?, ?, ?)");
             $statement->execute(array($store_id, $info_id, $ref_no, $deposit_amount));
-            
+
             $statement = $this->db->prepare("UPDATE `bank_account_to_store` SET `deposit` = `deposit` + {$deposit_amount} WHERE `store_id` = ? AND `account_id` = ?");
             $statement->execute(array($store_id, $account_id));
             $statement = $this->db->prepare("UPDATE `bank_accounts` SET `total_deposit` = `total_deposit` + {$deposit_amount} WHERE `id` = ?");
@@ -376,7 +372,7 @@ class ModelInvoice extends Model
         if (INSTALLMENT && $request->post['is_installment_order']) {
             $statement = $this->db->prepare("INSERT INTO `installment_orders` (store_id, invoice_id, duration, interval_count, installment_count, interest_percentage, interest_amount, initial_amount, last_installment_date, installment_end_date, created_at) VALUES (?,?,?,?,?,?,?,?,?,?,?)");
             $statement->execute(array($store_id, $invoice_id, $installment_duration, $installment_interval_count, $installment_count, $installment_interest_percentage, $installment_interest_amount, $installment_initial_amount, $created_at, $installmentEndDate, $created_at));
-            $initInterestAmount = ($installment_interest_percentage / 100) * ($paid_amount-$installment_interest_amount);
+            $initInterestAmount = ($installment_interest_percentage / 100) * ($paid_amount - $installment_interest_amount);
             $eachInstallmentAmount = $due / $installment_count;
             $eachInstallmentInterestAmount = ($installment_interest_amount - $initInterestAmount) / $installment_count;
             if ($paid_amount > 0) {
@@ -406,14 +402,14 @@ class ModelInvoice extends Model
         $customer_id = $data['customer-id'];
         $college_id = $data['college-id'];
         $pmethod_id = $data['pmethod-id'];
-        $pmethod_code = get_the_pmethod($pmethod_id,'code_name');
+        $pmethod_code = get_the_pmethod($pmethod_id, 'code_name');
         $invoice_price = $this->getSellingPrice($invoice_id, $store_id);
         // $discount_amount = $data['discount-amount'] ? $data['discount-amount'] : 0;
         $discount_amount = 0;
-        $payable_amount = $invoice_price['payable_amount'] - ($invoice_price['paid_amount'] + $invoice_price['return_amount'] );
+        $payable_amount = $invoice_price['payable_amount'] - ($invoice_price['paid_amount'] + $invoice_price['return_amount']);
         $paid_amount = $data['paid-amount'] ? $data['paid-amount'] : 0;
         if ($discount_amount > $payable_amount) {
-          throw new Exception(trans('error_discount_amount_exceed'));
+            throw new Exception(trans('error_discount_amount_exceed'));
         }
         $total_paid = $paid_amount;
         $note = $data['note'];
@@ -425,37 +421,37 @@ class ModelInvoice extends Model
         $is_card_payments = false;
         $card_no = '';
         if (isset($details_raw['card_no'])) {
-          $card_no = $details_raw['card_no'];
-          $statement = db()->prepare("SELECT * FROM `gift_cards` WHERE `customer_id` = ? AND `card_no` = ? AND `balance` >= ? AND `expiry` > NOW()");
-          $statement->execute(array($customer_id, $card_no, $payable_amount));
-          $row = $statement->fetch(PDO::FETCH_ASSOC);
-          if ($row) {
-            $is_card_payments = true;
-            $paid_amount = $row['balance'];
-          } else {
-            throw new Exception(trans('error_not_found_or_insufficient_balance'));
-          }
+            $card_no = $details_raw['card_no'];
+            $statement = db()->prepare("SELECT * FROM `gift_cards` WHERE `customer_id` = ? AND `card_no` = ? AND `balance` >= ? AND `expiry` > NOW()");
+            $statement->execute(array($customer_id, $card_no, $payable_amount));
+            $row = $statement->fetch(PDO::FETCH_ASSOC);
+            if ($row) {
+                $is_card_payments = true;
+                $paid_amount = $row['balance'];
+            } else {
+                throw new Exception(trans('error_not_found_or_insufficient_balance'));
+            }
         }
 
         // Credit Payment
         if ($pmethod_code == 'credit') {
-          if ($payable_amount > get_customer_balance($customer_id)) {
-              throw new Exception(trans('error_insufficient_balance'));
-          }
-          $paid_amount = $payable_amount;
+            if ($payable_amount > get_customer_balance($customer_id)) {
+                throw new Exception(trans('error_insufficient_balance'));
+            }
+            $paid_amount = $payable_amount;
         }
 
-        $due = $invoice_price['due'] - ($paid_amount+$discount_amount);
+        $due = $invoice_price['due'] - ($paid_amount + $discount_amount);
         $due = $due > 0 ? $due : 0;
         $balance = 0;
         if ($paid_amount > $payable_amount) {
-          $due = 0;
-          $balance = $paid_amount - $payable_amount;
-          $paid_amount = $payable_amount;
+            $due = 0;
+            $balance = $paid_amount - $payable_amount;
+            $paid_amount = $payable_amount;
         }
 
         if ($paid_amount <= 0 && $discount_amount <= 0) {
-          throw new Exception(trans('error_paid_amount'));
+            throw new Exception(trans('error_paid_amount'));
         }
 
         // Credit Payment
@@ -470,15 +466,15 @@ class ModelInvoice extends Model
         $capital = (($invoice_price['total_purchase_price'] / $invoice_price['payable_amount']) * $paid_amount) + $partial_order_tax + $partial_shipping_charge + $partial_others_charge;
 
         if ($paid_amount > 0 && $discount_amount <= 0) {
-          $statement = db()->prepare("INSERT INTO `payments` (type, store_id, invoice_id, pmethod_id, capital, amount, details, note, total_paid, pos_balance, created_by, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-          $statement->execute(array('due_paid', $store_id, $invoice_id, $pmethod_id, $capital, $paid_amount, $details, $note, $total_paid, $balance, $user_id, $created_at));
+            $statement = db()->prepare("INSERT INTO `payments` (type, store_id, invoice_id, pmethod_id, capital, amount, details, note, total_paid, pos_balance, created_by, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $statement->execute(array('due_paid', $store_id, $invoice_id, $pmethod_id, $capital, $paid_amount, $details, $note, $total_paid, $balance, $user_id, $created_at));
         }
         if ($discount_amount > 0) {
-          $statement = db()->prepare("INSERT INTO `payments` (type, store_id, invoice_id, amount, details, note, total_paid, created_by, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
-          $statement->execute(array('discount', $store_id, $invoice_id, $discount_amount, $details, 'discount_whilte_due_paid', $discount_amount, $user_id, $created_at));
-          
-          $statement = db()->prepare("UPDATE `selling_price` SET `discount_amount` = `discount_amount`+$discount_amount, `payable_amount` = `payable_amount`-$discount_amount WHERE `invoice_id` = ? AND `store_id` = ?");
-          $statement->execute(array($invoice_id, $store_id));
+            $statement = db()->prepare("INSERT INTO `payments` (type, store_id, invoice_id, amount, details, note, total_paid, created_by, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $statement->execute(array('discount', $store_id, $invoice_id, $discount_amount, $details, 'discount_whilte_due_paid', $discount_amount, $user_id, $created_at));
+
+            $statement = db()->prepare("UPDATE `selling_price` SET `discount_amount` = `discount_amount`+$discount_amount, `payable_amount` = `payable_amount`-$discount_amount WHERE `invoice_id` = ? AND `store_id` = ?");
+            $statement->execute(array($invoice_id, $store_id));
         }
 
         // Checkout status
@@ -491,8 +487,8 @@ class ModelInvoice extends Model
 
         // Update payment status
         if ($due <= 0) {
-          $statement = db()->prepare("UPDATE `selling_info` SET `payment_status` = ? WHERE `invoice_id` = ? AND `store_id` = ?");
-          $statement->execute(array('paid', $invoice_id, $store_id));
+            $statement = db()->prepare("UPDATE `selling_info` SET `payment_status` = ? WHERE `invoice_id` = ? AND `store_id` = ?");
+            $statement->execute(array('paid', $invoice_id, $store_id));
         }
 
         // Update customer due
@@ -507,48 +503,48 @@ class ModelInvoice extends Model
 
         // Add customer transaction
         if ($pmethod_code == 'credit' && $paid_amount > 0) {
-          $customer_balance = get_customer_balance($customer_id)-$paid_amount;
-          $reference_no = generate_customer_transacton_ref_no('due_paid');
-          $statement = db()->prepare("INSERT INTO `customer_transactions` (customer_id, reference_no, type, pmethod_id, notes, amount, balance, store_id, ref_invoice_id, created_by, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-          $statement->execute(array($customer_id, $reference_no, 'due_paid', $pmethod_id, 'Substract while due paid', $paid_amount, $customer_balance, $store_id, $invoice_id, $user_id, $created_at));
+            $customer_balance = get_customer_balance($customer_id) - $paid_amount;
+            $reference_no = generate_customer_transacton_ref_no('due_paid');
+            $statement = db()->prepare("INSERT INTO `customer_transactions` (customer_id, reference_no, type, pmethod_id, notes, amount, balance, store_id, ref_invoice_id, created_by, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $statement->execute(array($customer_id, $reference_no, 'due_paid', $pmethod_id, 'Substract while due paid', $paid_amount, $customer_balance, $store_id, $invoice_id, $user_id, $created_at));
         }
 
         // Deposit
         if (($account_id = store('deposit_account_id')) && $paid_amount > 0) {
-          $ref_no = unique_transaction_ref_no();
-          $statement = db()->prepare("SELECT `source_id` FROM `income_sources` WHERE `for_due_collection` = ?");
-          $statement->execute(array(1));
-          $source = $statement->fetch(PDO::FETCH_ASSOC);
-          $source_id = $source['source_id'];
-          $title = 'Deposit for due collection';
-          $details = 'Customer name: ' . get_the_customer($customer_id, 'customer_name');
-          $image = 'NULL';
-          $deposit_amount = $paid_amount;
-          $transaction_type = 'deposit';
+            $ref_no = unique_transaction_ref_no();
+            $statement = db()->prepare("SELECT `source_id` FROM `income_sources` WHERE `for_due_collection` = ?");
+            $statement->execute(array(1));
+            $source = $statement->fetch(PDO::FETCH_ASSOC);
+            $source_id = $source['source_id'];
+            $title = 'Deposit for due collection';
+            $details = 'Customer name: ' . get_the_customer($customer_id, 'customer_name');
+            $image = 'NULL';
+            $deposit_amount = $paid_amount;
+            $transaction_type = 'deposit';
 
-          $statement = db()->prepare("INSERT INTO `bank_transaction_info` (store_id, account_id, source_id, ref_no, invoice_id, transaction_type, title, details, image, created_by, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-          $statement->execute(array($store_id, $account_id, $source_id, $ref_no, $invoice_id, $transaction_type, $title, $details, $image, $user_id, $created_at));
+            $statement = db()->prepare("INSERT INTO `bank_transaction_info` (store_id, account_id, source_id, ref_no, invoice_id, transaction_type, title, details, image, created_by, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $statement->execute(array($store_id, $account_id, $source_id, $ref_no, $invoice_id, $transaction_type, $title, $details, $image, $user_id, $created_at));
             $info_id = db()->lastInsertId();
-            
-          $statement = db()->prepare("INSERT INTO `bank_transaction_price` (store_id, info_id, ref_no, amount) VALUES (?, ?, ?, ?)");
-          $statement->execute(array($store_id, $info_id, $ref_no, $deposit_amount));
 
-          $statement = db()->prepare("UPDATE `bank_account_to_store` SET `deposit` = `deposit` + $deposit_amount WHERE `store_id` = ? AND `account_id` = ?");
-          $statement->execute(array($store_id, $account_id));
+            $statement = db()->prepare("INSERT INTO `bank_transaction_price` (store_id, info_id, ref_no, amount) VALUES (?, ?, ?, ?)");
+            $statement->execute(array($store_id, $info_id, $ref_no, $deposit_amount));
 
-          $statement = db()->prepare("UPDATE `bank_accounts` SET `total_deposit` = `total_deposit` + $deposit_amount WHERE `id` = ?");
-          $statement->execute(array($account_id));
+            $statement = db()->prepare("UPDATE `bank_account_to_store` SET `deposit` = `deposit` + $deposit_amount WHERE `store_id` = ? AND `account_id` = ?");
+            $statement->execute(array($store_id, $account_id));
+
+            $statement = db()->prepare("UPDATE `bank_accounts` SET `total_deposit` = `total_deposit` + $deposit_amount WHERE `id` = ?");
+            $statement->execute(array($account_id));
         }
 
         if ($paid_amount > 0) {
-          $reference_no = generate_sell_log_ref_no('due_paid');
-          $statement = db()->prepare("INSERT INTO `sell_logs` (customer_id, college_id, reference_no, type, pmethod_id, description, amount, store_id, ref_invoice_id, created_by, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-          $statement->execute(array($customer_id, $college_id, $reference_no, 'due_paid', $pmethod_id, 'Due paid', $paid_amount, $store_id, $invoice_id, $user_id, $created_at));
+            $reference_no = generate_sell_log_ref_no('due_paid');
+            $statement = db()->prepare("INSERT INTO `sell_logs` (customer_id, college_id, reference_no, type, pmethod_id, description, amount, store_id, ref_invoice_id, created_by, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+            $statement->execute(array($customer_id, $college_id, $reference_no, 'due_paid', $pmethod_id, 'Due paid', $paid_amount, $store_id, $invoice_id, $user_id, $created_at));
         }
 
         if ($balance > 0) {
-          $statement = db()->prepare("UPDATE `selling_price` SET `balance` = ? WHERE `store_id` = ? AND `invoice_id` = ?");
-          $statement->execute(array($balance, $store_id, $invoice_id));
+            $statement = db()->prepare("UPDATE `selling_price` SET `balance` = ? WHERE `store_id` = ? AND `invoice_id` = ?");
+            $statement->execute(array($balance, $store_id, $invoice_id));
         }
 
         return $invoice_id;
@@ -561,7 +557,7 @@ class ModelInvoice extends Model
         $statement->execute(array($store_id, $customer_id, 'sell'));
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
-    
+
     public function getInvoices($type, $store_id = null, $limit = 100000)
     {
         $store_id = $store_id ? $store_id : store_id();
@@ -569,7 +565,7 @@ class ModelInvoice extends Model
         $statement->execute(array($store_id, $type));
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
-    
+
     public function getInvoiceInfo($invoice_id, $store_id = null)
     {
         $store_id = $store_id ? $store_id : store_id();
@@ -581,7 +577,7 @@ class ModelInvoice extends Model
         }
         return $invoice;
     }
-    
+
     public function getInvoiceItems($invoice_id, $store_id = null)
     {
         $store_id = $store_id ? $store_id : store_id();
@@ -597,7 +593,7 @@ class ModelInvoice extends Model
         }
         return $array;
     }
-    
+
     public function getInvoiceItemsHTML($invoice_id, $store_id = null)
     {
         $store_id = $store_id ? $store_id : store_id();
@@ -645,7 +641,7 @@ class ModelInvoice extends Model
         $statement->execute(array($store_id, $invoice_id, (int) $item_id));
         return $statement->fetch(PDO::FETCH_ASSOC);
     }
-    
+
     public function getInvoiceItemTaxes($invoice_id, $store_id = null)
     {
         $store_id = $store_id ? $store_id : store_id();
@@ -653,7 +649,7 @@ class ModelInvoice extends Model
         $statement->execute(array($store_id, $invoice_id));
         return $statement->fetchAll(PDO::FETCH_ASSOC);
     }
-    
+
     public function getSellingPrice($invoice_id, $store_id = null)
     {
         $store_id = $store_id ? $store_id : store_id();
@@ -661,7 +657,7 @@ class ModelInvoice extends Model
         $statement->execute(array($store_id, $invoice_id));
         return $statement->fetch(PDO::FETCH_ASSOC);
     }
-    
+
     public function hasInvoice($invoice_id, $store_id = null)
     {
         $store_id = $store_id ? $store_id : store_id();
@@ -670,7 +666,7 @@ class ModelInvoice extends Model
         $invoice = $statement->fetch(PDO::FETCH_ASSOC);
         return isset($invoice['invoice_id']);
     }
-    
+
     public function isLastInvoice($customer_id, $invoice_id, $store_id = null)
     {
         $store_id = $store_id ? $store_id : store_id();
@@ -679,7 +675,7 @@ class ModelInvoice extends Model
         $row = $statemtnt->fetch(PDO::FETCH_ASSOC);
         return $row['invoice_id'] == $invoice_id;
     }
-    
+
     public function getLastInvoice($type = 'sell', $store_id = null)
     {
         $store_id = $store_id ? $store_id : store_id();
@@ -687,7 +683,7 @@ class ModelInvoice extends Model
         $statemtnt->execute(array($store_id, $type));
         return $statemtnt->fetch(PDO::FETCH_ASSOC);
     }
-    
+
     public function getNextInvoice($customer_id, $invoice_id, $type = 'sell', $store_id = null)
     {
         $store_id = $store_id ? $store_id : store_id();
@@ -703,7 +699,7 @@ class ModelInvoice extends Model
         }
         return $invoice;
     }
-    
+
     public function totalToday($store_id = null)
     {
         $from = date('Y-m-d');
@@ -715,7 +711,7 @@ class ModelInvoice extends Model
         $statement->execute(array($store_id));
         return $statement->rowCount();
     }
-    
+
     public function total($from = null, $to = null, $store_id = null)
     {
         $store_id = $store_id ? $store_id : store_id();
@@ -726,6 +722,63 @@ class ModelInvoice extends Model
         $statement = $this->db->prepare("SELECT * FROM `selling_info` WHERE {$where_query}");
         $statement->execute(array($store_id));
         return $statement->rowCount();
+    }
+
+    public function totalTodayAllUSD($store_id = null)
+    {
+        $from = date('Y-m-d');
+        $to = date('Y-m-d');
+        // $store_id = $store_id ? $store_id : store_id();
+        $where_query = "";
+        if ($store_id) {
+            $where_query = "`selling_info`.`store_id` = ? AND `inv_type` = 'sell'";
+        } else {
+            $where_query = "`inv_type` = 'sell'";
+        }
+        $where_query .= date_range_filter($from, $to);
+        // $statement = $this->db->prepare("SELECT * FROM `selling_info` WHERE {$where_query}");
+        // $statement->execute(array($store_id));
+        // return $statement->rowCount();
+        $statement = $this->db->prepare("SELECT SUM(`selling_price`.`paid_amount`) as total FROM `selling_info` 
+			LEFT JOIN `selling_price` ON (`selling_info`.`invoice_id` = `selling_price`.`invoice_id`) 
+			WHERE $where_query");
+        if ($store_id) {
+            $statement->execute(array($store_id));
+        } else {
+            $statement->execute(array());
+        }
+        $invoice = $statement->fetch(PDO::FETCH_ASSOC);
+        return isset($invoice['total']) ? $invoice['total'] : 0;
+    }
+
+    public function totalAllUSD($from = null, $to = null, $store_id = null)
+    {
+        $where_query = "";
+        if ($store_id) {
+            $where_query = "`selling_info`.`store_id` = ? AND `inv_type` = 'sell'";
+        } else {
+            $where_query = "`inv_type` = 'sell'";
+        }
+        // $store_id = $store_id ? $store_id : store_id();
+
+        // $where_query = "`store_id` = ? AND `inv_type` = 'sell'";
+        // $where_query = "`inv_type` = 'sell'";
+        if ($from) {
+            $where_query .= date_range_filter($from, $to);
+        }
+        // $statement = $this->db->prepare("SELECT * FROM `selling_info` WHERE {$where_query}");
+        // $statement->execute(array($store_id));
+        // return $statement->rowCount();
+        $statement = $this->db->prepare("SELECT SUM(`selling_price`.`paid_amount`) as total FROM `selling_info` 
+			LEFT JOIN `selling_price` ON (`selling_info`.`invoice_id` = `selling_price`.`invoice_id`) 
+			WHERE $where_query");
+        if ($store_id) {
+            $statement->execute(array($store_id));
+        } else {
+            $statement->execute(array());
+        }
+        $invoice = $statement->fetch(PDO::FETCH_ASSOC);
+        return isset($invoice['total']) ? $invoice['total'] : 0;
     }
 
     public function totalHoldingOrderToday($store_id = null)
@@ -739,7 +792,7 @@ class ModelInvoice extends Model
         $statement->execute(array($store_id));
         return $statement->rowCount();
     }
-    
+
     public function totalHoldingOrder($from = null, $to = null, $store_id = null)
     {
         $store_id = $store_id ? $store_id : store_id();

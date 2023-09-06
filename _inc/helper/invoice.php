@@ -83,6 +83,18 @@ function total_invoice($from = null, $to = null, $store_id = null)
     return $invoice_model->total($from, $to, $store_id);
 }
 
+function total_invoice_today_all_usd($store_id = null)
+{    
+    $invoice_model = registry()->get('loader')->model('invoice');
+    return $invoice_model->totalTodayAllUSD($store_id);
+}
+
+function total_invoice_all_usd($from = null, $to = null, $store_id = null)
+{    
+    $invoice_model = registry()->get('loader')->model('invoice');
+    return $invoice_model->totalAllUSD($from, $to, $store_id);
+}
+
 function unique_invoice_id()
 { 
     $statement = db()->prepare("SELECT `auto_increment` FROM INFORMATION_SCHEMA.TABLES WHERE `table_name` = 'selling_info'");
