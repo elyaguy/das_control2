@@ -358,6 +358,14 @@
                   </span>
                 </a>
               </li>
+              <li class="<?php echo current_nav() == 'purchase_return_all' && isset($request->get['box_state']) ? ' active' : null; ?>">
+                <a href="purchase_return_all.php?box_state=open">
+                  <svg class="svg-icon">
+                    <use href="#icon-plus">
+                  </svg>
+                  <?php echo trans('menu_add_return_list_all'); ?>
+                </a>
+              </li>
               <li class="<?php echo (current_nav() == 'purchase_return_all') ? 'active' : null; ?>">
                 <a href="purchase_return_all.php">
                   <svg class="svg-icon">

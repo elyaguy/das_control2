@@ -19,8 +19,8 @@ $type = isset($request->get['type']) ? $request->get['type'] : 'purchase_return'
 $document->setTitle(trans('title_'.$type));
 
 // Add Script
-$document->addScript('../assets/das/angular/modals/PurchaseReturnAllDetailsViewModal.js');
-$document->addScript('../assets/das/angular/modals/PurchaseReturnAllEditModal.js');
+$document->addScript('../assets/das/angular/modals/PurchaseReturnAllViewModal.js');
+// $document->addScript('../assets/das/angular/modals/PurchaseReturnAllEditModal.js');
 $document->addScript('../assets/das/angular/controllers/PurchaseReturnAllController.js');
 
 include("header.php"); 
@@ -73,71 +73,75 @@ include ("left_sidebar.php");
     <?php endif;?>
 
     <div class="row">
-      <!-- transfer list section start-->
       <div class="col-xs-12">
         <div class="box box-success">
           <div class="box-header">
             <h3 class="box-title">
-              <?php echo trans('text_list__'.$type.'__title'); ?>
+              <?php echo trans('text_purchase_return_list_title'); ?>
             </h3>
           </div>
           <div class='box-body'>     
-            <?php
-              $hide_colums = "";
-              if (user_group_id() != 1) {
-                if (! has_permission('access', 'update_transfer')) {
-                  $hide_colums .= "7,";
-                }
-              }
-            ?> 
-            <div class="table-responsive">                     
-              <table id="transfer-transfer-list" class="table table-bordered table-striped table-hovered" data-hide-colums="<?php echo $hide_colums; ?>">
+            
+            <div class="table-responsive"> 
+              <?php
+              $hide_colums = "5,6";
+              ?>  
+              <table id="invoice-invoice-list"  class="table table-bordered table-striped table-hover" data-hide-colums="<?php echo $hide_colums; ?>">
                 <thead>
                   <tr class="bg-gray">
-                    <th class="w-20">
-                      <?php echo trans('label_date'); ?>
-                    </th>
-                    <th class="w-15">
-                      <?php echo sprintf(trans('label_ref_no'),null); ?>
-                    </th>
-                    <th class="w-15">
-                      <?php echo trans('label_from_store'); ?>
-                    </th>
-                    <th class="w-15">
-                      <?php echo trans('label_to_store'); ?>
+                    <th class="w-10">
+                      <?php echo trans('label_datetime'); ?>
                     </th>
                     <th class="w-10">
-                      <?php echo trans('label_total_item'); ?>
+                      <?php echo trans('label_reference_no'); ?>
                     </th>
                     <th class="w-10">
-                      <?php echo trans('label_total_quantity'); ?>
+                      <?php echo trans('label_supplier'); ?>
                     </th>
                     <th class="w-10">
+                      <?php echo trans('label_amount'); ?> 
+                    </th>
+                    <th class="w-5">
                       <?php echo trans('label_view'); ?>
                     </th>
-                    <th class="w-10">
+                    <th class="w-5">
                       <?php echo trans('label_edit'); ?>
+                    </th>
+                    <th class="w-5">
+                      <?php echo trans('label_delete'); ?>
                     </th>
                   </tr>
                 </thead>
                 <tfoot>
                   <tr class="bg-gray">
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
-                    <th></th>
+                    <th class="w-10">
+                      <?php echo trans('label_datetime'); ?>
+                    </th>
+                    <th class="w-10">
+                      <?php echo trans('label_reference_no'); ?>
+                    </th>
+                    <th class="w-10">
+                      <?php echo trans('label_supplier'); ?>
+                    </th>
+                    <th class="w-10">
+                      <?php echo trans('label_amount'); ?> 
+                    </th>
+                    <th class="w-5">
+                      <?php echo trans('label_view'); ?>
+                    </th>
+                    <th class="w-5">
+                      <?php echo trans('label_edit'); ?>
+                    </th>
+                    <th class="w-5">
+                      <?php echo trans('label_delete'); ?>
+                    </th>
                   </tr>
                 </tfoot>
-              </table>    
+              </table>
             </div>
           </div>
         </div>
       </div>
-       <!-- transfer list section end-->
     </div>
   </section>
   <!-- content end -->

@@ -13,16 +13,7 @@
           <input type="hidden" name="image" id="image" value="">
         </div>
       </div>
-    </div>
-    <div class="form-group">
-      <?php $ref_no = isset($transter['ref_no']) ? $transter['ref_no'] : null; ?>
-      <label for="ref_no" class="col-sm-3 control-label">
-        <?php echo trans('label_ref_no'); ?>
-      </label>
-      <div class="col-sm-3">
-        <input type="text" class="form-control" id="ref_no" value="<?php echo $ref_no; ?>" name="ref_no" <?php echo $ref_no ? 'readonly' : null; ?> autocomplete="off">
-      </div>
-    </div>
+    </div> 
     <div class="form-group">
       <label for="note" class="col-sm-3 control-label">
         <?php echo trans('label_note'); ?>

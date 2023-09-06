@@ -163,7 +163,62 @@ window.angularApp.controller("InvoiceController", [
                         typeof i === "number" ?
                             i : 0;
                 };
+
+                // Total over all pages at column 8
+                pageTotal = api
+                    .column(3, { page: "current" })
+                    .data()
+                    .reduce(function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0);
+                // Update footer
+                $(api.column(3).footer()).html(
+                    window.formatDecimal(pageTotal, 2)
+                );
+                // Update Header
+                $(api.column(3).header()).html('Cantidad (' +
+                    window.formatDecimal(pageTotal, 2) + ')'
+                );
+                // Total over all pages at column 8
+                pageTotal = api
+                    .column(4, { page: "current" })
+                    .data()
+                    .reduce(function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0);
+                // Update footer
+                $(api.column(4).footer()).html(
+                    window.formatDecimal(pageTotal, 2)
+                );
+                // Update Header
+                $(api.column(4).header()).html('Total (' +
+                    window.formatDecimal(pageTotal, 2) + ')'
+                );
             },
+            // "headerCallback": function (thead, data, start, end, display) {
+            //     // $(thead).find('th').eq(0).html('Displaying ' + (end - start) + ' records');
+            //     var pageTotal;
+            //     var api = this.api();
+            //     // Remove the formatting to get integer data for summation
+            //     var intVal = function (i) {
+            //         return typeof i === "string" ?
+            //             i.replace(/[\$,]/g, "") * 1 :
+            //             typeof i === "number" ?
+            //                 i : 0;
+            //     };
+
+            //     // Total over all pages at column 8
+            //     pageTotal = api
+            //         .column(3, { page: "current" })
+            //         .data()
+            //         .reduce(function (a, b) {
+            //             return intVal(a) + intVal(b);
+            //         }, 0);
+            //     // Update footer
+            //     $(api.column(3).header()).html(
+            //         window.formatDecimal(pageTotal, 2)
+            //     );
+            // },
             // "pageLength": window.settings.datatable_item_limit,
             "pageLength": -1,
             "buttons": [
@@ -392,7 +447,7 @@ window.angularApp.controller("InvoiceController", [
                     }, 300);
                 });
 
-       
+
         });
 
         // Return From

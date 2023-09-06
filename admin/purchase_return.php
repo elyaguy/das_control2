@@ -76,7 +76,7 @@ include ("left_sidebar.php") ;
             
             <div class="table-responsive"> 
               <?php
-              $hide_colums = "";
+              $hide_colums = "5,6";
               ?>  
               <table id="invoice-invoice-list"  class="table table-bordered table-striped table-hover" data-hide-colums="<?php echo $hide_colums; ?>">
                 <thead>

@@ -205,8 +205,8 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && $request->get['action_type']
     $statement = db()->prepare("UPDATE `purchase_price` SET `due` = ? WHERE `store_id` = ? AND `invoice_id` = ?");
     $statement->execute(array($due, $store_id, $invoice_id));  
 
-    $statement = db()->prepare("INSERT INTO `purchase_returns` SET `store_id` = ?, `reference_no` = ?, `invoice_id` = ?, `sup_id` = ?, `note` = ?, `total_item` = ?, `total_quantity` = ?, `subtotal` = ?, `total_amount` = ?, `item_tax` = ?, `cgst` = ?, `sgst` = ?, `igst` = ?, `created_by` = ?");
-    $statement->execute(array($store_id, $reference_no, $invoice_id, $sup_id, $note, $total_item, $total_quantity, $tsubtotal, $tpayable, $titem_tax, $tcgst, $tsgst, $tigst, $user_id));
+    $statement = db()->prepare("INSERT INTO `purchase_returns` SET `store_id` = ?, `reference_no` = ?, `invoice_id` = ?, `sup_id` = ?, `note` = ?, `total_item` = ?, `total_quantity` = ?, `subtotal` = ?, `total_amount` = ?, `item_tax` = ?, `cgst` = ?, `sgst` = ?, `igst` = ?, `created_by` = ?, `created_at` = ?");
+    $statement->execute(array($store_id, $reference_no, $invoice_id, $sup_id, $note, $total_item, $total_quantity, $tsubtotal, $tpayable, $titem_tax, $tcgst, $tsgst, $tigst, $user_id, date_time()));
 
 
     if ($return_amount > 0) {
@@ -214,16 +214,16 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && $request->get['action_type']
       if ($paid_amount > 0) {
         $is_hide = 0;
       }
-      $statement = db()->prepare("INSERT INTO `purchase_payments` SET `type` = ?, `is_hide` = ?, `store_id` = ?, `invoice_id` = ?, `reference_no` = ?, `amount` = ?, `created_by` = ?");
-      $statement->execute(array('return', $is_hide, $store_id, $invoice_id, $reference_no, -$return_amount, $user_id));
+      $statement = db()->prepare("INSERT INTO `purchase_payments` SET `type` = ?, `is_hide` = ?, `store_id` = ?, `invoice_id` = ?, `reference_no` = ?, `amount` = ?, `created_by` = ?, `created_at` = ?");
+      $statement->execute(array('return', $is_hide, $store_id, $invoice_id, $reference_no, -$return_amount, $user_id, date_time()));
 
       $statement = db()->prepare("UPDATE `purchase_price` SET `return_amount` = `return_amount`+$return_amount WHERE `store_id` = ? AND `invoice_id` = ?");
       $statement->execute(array($store_id, $invoice_id));
     }
 
     if ($balance > 0) {
-      $statement = db()->prepare("INSERT INTO `purchase_payments` SET `type` = ?, `store_id` = ?, `invoice_id` = ?, `note` = ?, `balance` = ?, `created_by` = ?");
-      $statement->execute(array('change', $store_id, $invoice_id, 'return_change', $balance, $user_id));
+      $statement = db()->prepare("INSERT INTO `purchase_payments` SET `type` = ?, `store_id` = ?, `invoice_id` = ?, `note` = ?, `balance` = ?, `created_by` = ?, `created_at` = ?");
+      $statement->execute(array('change', $store_id, $invoice_id, 'return_change', $balance, $user_id, date_time()));
 
       $statement = db()->prepare("UPDATE `purchase_price` SET `balance` = ? WHERE `store_id` = ? AND `invoice_id` = ?");
       $statement->execute(array($balance, $store_id, $invoice_id));
