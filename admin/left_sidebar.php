@@ -358,6 +358,16 @@
                   </span>
                 </a>
               </li>
+              <li class="<?php echo (current_nav() == 'purchase_return_all') ? 'active' : null; ?>">
+                <a href="purchase_return_all.php">
+                  <svg class="svg-icon">
+                    <use href="#icon-back-arrow">
+                  </svg>
+                  <span>
+                    <?php echo trans('menu_return_list_all'); ?>
+                  </span>
+                </a>
+              </li>
             <?php endif; ?>
             <?php if (user_group_id() == 1 || has_permission('access', 'read_purchase_log')) : ?>
               <li class="<?php echo current_nav() == 'purchase_log' ? ' active' : null; ?>">

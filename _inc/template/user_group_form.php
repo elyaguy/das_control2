@@ -357,6 +357,7 @@ $permissions = array(
     'purchase_payment'  => trans('purchase_payment'),
     'create_purchase_due'  => trans('create_purchase_due'),
     'create_purchase_return'  => trans('create_purchase_return'),
+    'add_purchase_return'  => trans('add_purchase_return'),    
     'read_purchase_return'  => trans('read_purchase_return'),
     'update_purchase_return'  => trans('update_purchase_return'),
     'delete_purchase_return'  => trans('delete_purchase_return'),

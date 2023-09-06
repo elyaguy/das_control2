@@ -240,7 +240,7 @@ if ($request->server['REQUEST_METHOD'] == 'POST' and $request->get['type'] == 'S
 if ($request->server['REQUEST_METHOD'] == 'GET' and $request->get['type'] == 'STOCKITEMS') {
 	try {
 		$store_id = $request->get['store_id'] ? $request->get['store_id'] : store_id();
-		$statement = db()->prepare("SELECT `purchase_item`.*, `purchase_info`.`inv_type` FROM `purchase_item` LEFT JOIN `purchase_info` ON (`purchase_item`.`invoice_id` = `purchase_info`.`invoice_id`) WHERE `purchase_item`.`store_id` = ? AND `purchase_item`.`item_quantity` > `purchase_item`.`total_sell` AND `purchase_item`.`status` IN ('stock','active') AND `purchase_info`.`inv_type` = ?");
+		$statement = db()->prepare("SELECT `purchase_item`.*, `purchase_info`.`inv_type` FROM `purchase_item` LEFT JOIN `purchase_info` ON (`purchase_item`.`invoice_id` = `purchase_info`.`invoice_id`) WHERE `purchase_item`.`store_id` = ? AND `purchase_item`.`item_quantity` > `purchase_item`.`total_sell` AND `purchase_item`.`status` IN ('stock','active') AND `purchase_info`.`inv_type` = ? ORDER BY `purchase_item`.`item_name`");
 		$statement->execute(array($store_id, 'purchase'));
 		$products = $statement->fetchAll(PDO::FETCH_ASSOC);
 
