@@ -260,6 +260,7 @@ $permissions = array(
     'read_dashboard_customer_view'  => trans('read_dashboard_customer_view'),
     'read_dashboard_supplier_view'  => trans('read_dashboard_supplier_view'),
     'read_dashboard_product_view'  => trans('read_dashboard_product_view'),
+    'read_dashboard_selling_all'  => trans('read_dashboard_selling_all'),
     
   ),
   trans('report') => array(
