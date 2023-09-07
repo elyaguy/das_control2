@@ -79,316 +79,360 @@ include("left_sidebar.php");
 
     <hr>
 
-    <!-- Small Boxes Start -->
-    <div class="row">
-      <?php if (user_group_id() == 1 || has_permission('access', 'read_dashboard_invoce_view')) : ?>
-        <div class="col-md-3 col-xs-6">
-          <div id="invoice-count" class="small-box bg-green">
-            <div class="inner">
-              <h4>
-                <i>
-                  <?php echo trans('text_total_invoice'); ?>
-                </i> <span class="total-invoice">
-                  <?php echo number_format(total_invoice(from(), to())); ?>
-                </span>
-              </h4>
-              <h4>
-                <i>
-                  <?php echo trans('text_total_invoice_today'); ?>
-                </i> <span class="total-invoice">
-                  <?php echo number_format(total_invoice_today()); ?>
-                </span>
-              </h4>
-            </div>
-            <div class="icon">
-              <i class="fa fa-pencil"></i>
-            </div>
-            <?php if (user_group_id() == 1 || has_permission('access', 'read_customer')) : ?>
-              <a href="invoice.php" class="small-box-footer">
-                <?php echo trans('text_details'); ?>
-                <i class="fa fa-arrow-circle-right"></i>
-              </a>
-            <?php else : ?>
-              <a href="#" class="small-box-footer">
-                &nbsp;
-              </a>
-            <?php endif; ?>
-          </div>
-        </div>
-      <?php endif; ?>
-
-      <?php if (user_group_id() == 1 || has_permission('access', 'read_dashboard_customer_view')) : ?>
-        <div class="col-md-3 col-xs-6">
-
-          <div id="customer-count" class="small-box bg-red">
-            <div class="inner">
-              <h4>
-                <i>
-                  <?php echo trans('text_total_customer'); ?>
-                </i> <span class="total-customer">
-                  <?php echo number_format(total_customer(from(), to())); ?>
-                </span>
-              </h4>
-              <h4>
-                <i>
-                  <?php echo trans('text_total_customer_today'); ?>
-                </i> <span class="total-customer">
-                  <?php echo number_format(total_customer_today()); ?>
-                </span>
-              </h4>
-            </div>
-            <div class="icon">
-              <i class="fa fa-users"></i>
-            </div>
-            <?php if (user_group_id() == 1 || has_permission('access', 'read_customer')) : ?>
-              <a href="customer.php" class="small-box-footer">
-                <?php echo trans('text_details'); ?>
-                <i class="fa fa-arrow-circle-right"></i>
-              </a>
-            <?php else : ?>
-              <a href="#" class="small-box-footer">
-                &nbsp;
-              </a>
-            <?php endif; ?>
-          </div>
-        </div>
-      <?php endif; ?>
-
-      <?php if (user_group_id() == 1 || has_permission('access', 'read_dashboard_supplier_view')) : ?>
-        <div class="col-md-3 col-xs-6">
-          <div id="supplier-count" class="small-box bg-purple">
-            <div class="inner">
-              <h4>
-                <i>
-                  <?php echo trans('text_total_supplier'); ?>
-                </i> <span class="total-suppier">
-                  <?php echo total_supplier(from(), to()); ?>
-                </span>
-              </h4>
-              <h4>
-                <i>
-                  <?php echo trans('text_total_supplier_today'); ?>
-                </i> <span class="total-suppier">
-                  <?php echo total_supplier_today(); ?>
-                </span>
-              </h4>
-            </div>
-            <div class="icon">
-              <i class="fa fa-fw fa-shopping-cart"></i>
-            </div>
-            <?php if (user_group_id() == 1 || has_permission('access', 'read_supplier')) : ?>
-              <a href="supplier.php" class="small-box-footer">
-                <?php echo trans('text_details'); ?>
-                <i class="fa fa-arrow-circle-right"></i>
-              </a>
-            <?php else : ?>
-              <a href="#" class="small-box-footer">
-                &nbsp;
-              </a>
-            <?php endif; ?>
-          </div>
-        </div>
-      <?php endif; ?>
-
-      <?php if (user_group_id() == 1 || has_permission('access', 'read_dashboard_product_view')) : ?>
-        <div class="col-md-3 col-xs-6">
-          <div id="product-count" class="small-box bg-yellow">
-            <div class="inner">
-              <h4>
-                <i>
-                  <?php echo trans('text_total_product'); ?>
-                </i> <span class="total-product">
-                  <?php echo number_format(total_product(from(), to())); ?>
-                </span>
-              </h4>
-              <h4>
-                <i>
-                  <?php echo trans('text_total_product_today'); ?>
-                </i> <span class="total-product">
-                  <?php echo number_format(total_product_today()); ?>
-                </span>
-              </h4>
-            </div>
-            <div class="icon">
-              <i class="fa fa-star"></i>
-            </div>
-            <?php if (user_group_id() == 1 || has_permission('access', 'read_product')) : ?>
-              <a href="product.php" class="small-box-footer">
-                <?php echo trans('text_details'); ?>
-                <i class="fa fa-arrow-circle-right"></i>
-              </a>
-            <?php else : ?>
-              <a href="#" class="small-box-footer">
-                &nbsp;
-              </a>
-            <?php endif; ?>
-          </div>
-        </div>
-      <?php endif; ?>
-
-    </div>
-    <!--Small Box End -->
 
 
     <!-- Small Boxes Start Ventas Diarias para Proveedores-->
-    <div class="row">
-      <?php if (user_group_id() == 6) : ?>
-        <div class="col-md-6 col-xs-6">
-          <div class="small-box bg-green">
-            <div style="text-align: center;">
-              <h2>
-                <?php echo trans('text_all_store'); ?>
-              </h2>
+    <?php if (user_group_id() == 1 || has_permission('access', 'read_dashboard_selling_all')) : ?>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">
+                <?php echo trans('text_selling_store'); ?>
+              </h3>
             </div>
-          </div>
+            <div class="box-body">
 
-          <div id="invoice-count" class="small-box bg-green">
-            <div class="inner">
-              <h4>
-                <i>
-                  <?php echo trans('text_total_selling'); ?>
-                </i> <span class="total-selling">
+              <div class="row">
+                <?php if (user_group_id() == 1 || has_permission('access', 'read_dashboard_selling_all')) : ?>
+                  <div class="col-md-6 col-xs-6">
+                    <div class="small-box bg-green">
+                      <div style="text-align: center;">
+                        <h2>
+                          <?php echo trans('text_all_store'); ?>
+                        </h2>
+                      </div>
+                    </div>
+                    <div id="invoice-count" class="small-box bg-green">
+                      <div class="inner">
+                        <h4>
+                          <i>
+                            <?php echo trans('text_total_selling'); ?>
+                          </i> <span class="total-selling">
+                            <?php
+                            $total_amount = total_invoice_all_usd(from(), to());
+                            echo '$ ' . currency_format($total_amount); ?>
+                          </span>
+                        </h4>
+                        <h4>
+                          <i>
+                            <?php echo trans('text_total_selling_today'); ?>
+                          </i> <span class="total-selling">
+                            <?php
+                            $total_amount = total_invoice_today_all_usd();
+                            echo '$ ' . currency_format($total_amount); ?>
+                          </span>
+                        </h4>
+                      </div>
+                      <div class="icon">
+                        <i class="fa fa-money"></i>
+                      </div>
+                      <?php if (user_group_id() == 6 || has_permission('access', 'read_customer')) : ?>
+                        <a href="invoice.php" class="small-box-footer">
+                          <?php echo trans('text_details'); ?>
+                          <i class="fa fa-arrow-circle-right"></i>
+                        </a>
+                      <?php else : ?>
+                        <a href="#" class="small-box-footer">
+                          &nbsp;
+                        </a>
+                      <?php endif; ?>
+                    </div>
+                  </div>
+                <?php endif; ?>
+
+                <?php if (user_group_id() == 1 || has_permission('access', 'read_dashboard_selling_all')) : ?>
+                  <div class="col-md-6 col-xs-6">
+                    <div class="small-box bg-red">
+                      <div style="text-align: center;">
+                        <h2>
+                          <?php echo store_field('name'); ?>
+                        </h2>
+                      </div>
+                    </div>
+                    <div id="customer-count" class="small-box bg-red">
+                      <div class="inner">
+                        <h4>
+                          <i>
+                            <?php echo trans('text_total_selling'); ?>
+                          </i> <span class="total-selling">
+                            <?php
+                            $total_amount = total_invoice_all_usd(from(), to(), store_id());
+                            echo '$ ' . currency_format($total_amount); ?>
+                          </span>
+                        </h4>
+                        <h4>
+                          <i>
+                            <?php echo trans('text_total_selling_today'); ?>
+                          </i> <span class="total-selling">
+                            <?php
+                            $total_amount = total_invoice_today_all_usd(store_id());
+                            echo '$ ' . currency_format($total_amount); ?>
+                          </span>
+                        </h4>
+                      </div>
+                      <div class="icon">
+                        <i class="fa fa-money"></i>
+                      </div>
+                      <?php if (user_group_id() == 6 || has_permission('access', 'read_customer')) : ?>
+                        <a href="invoice.php" class="small-box-footer">
+                          <?php echo trans('text_details'); ?>
+                          <i class="fa fa-arrow-circle-right"></i>
+                        </a>
+                      <?php else : ?>
+                        <a href="#" class="small-box-footer">
+                          &nbsp;
+                        </a>
+                      <?php endif; ?>
+                    </div>
+                  </div>
+                <?php endif; ?>
+
+                <?php if (user_group_id() == 1 || has_permission('access', 'read_dashboard_selling_all')) : ?>
                   <?php
-                  $total_amount = total_invoice_all_usd(from(), to());
-                  echo '$ ' . currency_format($total_amount); ?>
-                </span>
-              </h4>
-              <h4>
-                <i>
-                  <?php echo trans('text_total_selling_today'); ?>
-                </i> <span class="total-selling">
-                  <?php
-                  $total_amount = total_invoice_today_all_usd();
-                  echo '$ ' . currency_format($total_amount); ?>
-                </span>
-              </h4>
+                  $ban = false;
+                  foreach (get_stores() as $storeFor) :
+                    if ($storeFor['store_id'] == store_id())
+                      continue; ?>
+                    <?php $ban = !$ban; ?>
+                    <div class="col-md-3 col-xs-6">
+                      <div class="small-box bg-<?php echo $ban ? 'yellow' : 'purple' ?>">
+                        <div style="text-align: center;">
+                          <h4>
+                            <?php echo $storeFor['name']; ?>
+                            </h2>
+                        </div>
+                      </div>
+                      <div id="customer-count" class="small-box bg-<?php echo $ban ? 'yellow' : 'purple' ?>">
+                        <div class="inner">
+                          <h4>
+                            <i>
+                              <?php echo trans('text_total_selling'); ?>
+                            </i> <span class="total-selling">
+                              <?php
+                              $total_amount = total_invoice_all_usd(from(), to(), $storeFor['store_id']);
+                              echo '$ ' . currency_format($total_amount); ?>
+                            </span>
+                          </h4>
+                          <h4>
+                            <i>
+                              <?php echo trans('text_total_selling_today'); ?>
+                            </i> <span class="total-selling">
+                              <?php
+                              $total_amount = total_invoice_today_all_usd($storeFor['store_id']);
+                              echo '$ ' . currency_format($total_amount); ?>
+                            </span>
+                          </h4>
+                        </div>
+                        <div class="icon">
+                          <i class="fa fa-money"></i>
+                        </div>
+                        <?php if (user_group_id() == 6 || has_permission('access', 'read_customer')) : ?>
+                          <a href="invoice.php" class="small-box-footer">
+                            <?php echo trans('text_details'); ?>
+                            <i class="fa fa-arrow-circle-right"></i>
+                          </a>
+                        <?php else : ?>
+                          <a href="#" class="small-box-footer">
+                            &nbsp;
+                          </a>
+                        <?php endif; ?>
+                      </div>
+                    </div>
+                  <?php endforeach; ?>
+                <?php endif; ?>
+
+              </div>
+
+
             </div>
-            <div class="icon">
-              <i class="fa fa-money"></i>
-            </div>
-            <?php if (user_group_id() == 6 || has_permission('access', 'read_customer')) : ?>
-              <a href="invoice.php" class="small-box-footer">
-                <?php echo trans('text_details'); ?>
-                <i class="fa fa-arrow-circle-right"></i>
-              </a>
-            <?php else : ?>
-              <a href="#" class="small-box-footer">
-                &nbsp;
-              </a>
-            <?php endif; ?>
           </div>
-        </div>
-      <?php endif; ?>
-
-
-      <?php if (user_group_id() == 6) : ?>
-        <div class="col-md-6 col-xs-6">
-          <div class="small-box bg-red">
-            <div style="text-align: center;">
-              <h2>
-                <?php echo store_field('name'); ?>
-              </h2>
-            </div>
-          </div>
-          <div id="customer-count" class="small-box bg-red">
-            <div class="inner">
-              <h4>
-                <i>
-                  <?php echo trans('text_total_selling'); ?>
-                </i> <span class="total-selling">
-                  <?php
-                  $total_amount = total_invoice_all_usd(from(), to(), store_id());
-                  echo '$ ' . currency_format($total_amount); ?>
-                </span>
-              </h4>
-              <h4>
-                <i>
-                  <?php echo trans('text_total_selling_today'); ?>
-                </i> <span class="total-selling">
-                  <?php
-                  $total_amount = total_invoice_today_all_usd(store_id());
-                  echo '$ ' . currency_format($total_amount); ?>
-                </span>
-              </h4>
-            </div>
-            <div class="icon">
-              <i class="fa fa-money"></i>
-            </div>
-            <?php if (user_group_id() == 6 || has_permission('access', 'read_customer')) : ?>
-              <a href="invoice.php" class="small-box-footer">
-                <?php echo trans('text_details'); ?>
-                <i class="fa fa-arrow-circle-right"></i>
-              </a>
-            <?php else : ?>
-              <a href="#" class="small-box-footer">
-                &nbsp;
-              </a>
-            <?php endif; ?>
-          </div>
-        </div>
-      <?php endif; ?>
-
-
-
-
-
-
-
-
-    </div>
-    <!--Small Box End -->
-
-    <?php
-    $ban = false;
-    foreach (get_stores() as $storeFor) :
-      if ($storeFor['store_id'] == store_id())
-        continue; ?>
-      <?php $ban = !$ban; ?>
-      <div class="col-md-3 col-xs-6">
-        <div class="small-box bg-<?php echo $ban ? 'yellow' : 'purple' ?>">
-          <div style="text-align: center;">
-            <h4>
-              <?php echo $storeFor['name']; ?>
-              </h2>
-          </div>
-        </div>
-        <div id="customer-count" class="small-box bg-<?php echo $ban ? 'yellow' : 'purple' ?>">
-          <div class="inner">
-            <h4>
-              <i>
-                <?php echo trans('text_total_selling'); ?>
-              </i> <span class="total-selling">
-                <?php
-                $total_amount = total_invoice_all_usd(from(), to(), $storeFor['store_id']);
-                echo '$ ' . currency_format($total_amount); ?>
-              </span>
-            </h4>
-            <h4>
-              <i>
-                <?php echo trans('text_total_selling_today'); ?>
-              </i> <span class="total-selling">
-                <?php
-                $total_amount = total_invoice_today_all_usd($storeFor['store_id']);
-                echo '$ ' . currency_format($total_amount); ?>
-              </span>
-            </h4>
-          </div>
-          <div class="icon">
-            <i class="fa fa-money"></i>
-          </div>
-          <?php if (user_group_id() == 6 || has_permission('access', 'read_customer')) : ?>
-            <a href="invoice.php" class="small-box-footer">
-              <?php echo trans('text_details'); ?>
-              <i class="fa fa-arrow-circle-right"></i>
-            </a>
-          <?php else : ?>
-            <a href="#" class="small-box-footer">
-              &nbsp;
-            </a>
-          <?php endif; ?>
         </div>
       </div>
-    <?php endforeach; ?>
+    <?php endif; ?>
+
+    <!--Small Box End -->
+
+
+
+    <!-- Small Boxes Start -->
+    <?php if (
+      user_group_id() == 1 || has_permission('access', 'read_dashboard_invoce_view')
+      || has_permission('access', 'read_dashboard_customer_view') ||
+      has_permission('access', 'read_dashboard_supplier_view') ||
+      has_permission('access', 'read_dashboard_product_view')
+    ) : ?>
+      <div class="row">
+        <div class="col-md-12">
+          <div class="box box-info">
+            <div class="box-header with-border">
+              <h3 class="box-title">
+                <?php echo trans('text_general_information'); ?>
+              </h3>
+            </div>
+            <div class="box-body">
+
+              <div class="row">
+                <?php if (user_group_id() == 1 || has_permission('access', 'read_dashboard_invoce_view')) : ?>
+                  <div class="col-md-3 col-xs-6">
+                    <div id="invoice-count" class="small-box bg-green">
+                      <div class="inner">
+                        <h4>
+                          <i>
+                            <?php echo trans('text_total_invoice'); ?>
+                          </i> <span class="total-invoice">
+                            <?php echo number_format(total_invoice(from(), to())); ?>
+                          </span>
+                        </h4>
+                        <h4>
+                          <i>
+                            <?php echo trans('text_total_invoice_today'); ?>
+                          </i> <span class="total-invoice">
+                            <?php echo number_format(total_invoice_today()); ?>
+                          </span>
+                        </h4>
+                      </div>
+                      <div class="icon">
+                        <i class="fa fa-pencil"></i>
+                      </div>
+                      <?php if (user_group_id() == 1 || has_permission('access', 'read_customer')) : ?>
+                        <a href="invoice.php" class="small-box-footer">
+                          <?php echo trans('text_details'); ?>
+                          <i class="fa fa-arrow-circle-right"></i>
+                        </a>
+                      <?php else : ?>
+                        <a href="#" class="small-box-footer">
+                          &nbsp;
+                        </a>
+                      <?php endif; ?>
+                    </div>
+                  </div>
+                <?php endif; ?>
+
+                <?php if (user_group_id() == 1 || has_permission('access', 'read_dashboard_customer_view')) : ?>
+                  <div class="col-md-3 col-xs-6">
+
+                    <div id="customer-count" class="small-box bg-red">
+                      <div class="inner">
+                        <h4>
+                          <i>
+                            <?php echo trans('text_total_customer'); ?>
+                          </i> <span class="total-customer">
+                            <?php echo number_format(total_customer(from(), to())); ?>
+                          </span>
+                        </h4>
+                        <h4>
+                          <i>
+                            <?php echo trans('text_total_customer_today'); ?>
+                          </i> <span class="total-customer">
+                            <?php echo number_format(total_customer_today()); ?>
+                          </span>
+                        </h4>
+                      </div>
+                      <div class="icon">
+                        <i class="fa fa-users"></i>
+                      </div>
+                      <?php if (user_group_id() == 1 || has_permission('access', 'read_customer')) : ?>
+                        <a href="customer.php" class="small-box-footer">
+                          <?php echo trans('text_details'); ?>
+                          <i class="fa fa-arrow-circle-right"></i>
+                        </a>
+                      <?php else : ?>
+                        <a href="#" class="small-box-footer">
+                          &nbsp;
+                        </a>
+                      <?php endif; ?>
+                    </div>
+                  </div>
+                <?php endif; ?>
+
+                <?php if (user_group_id() == 1 || has_permission('access', 'read_dashboard_supplier_view')) : ?>
+                  <div class="col-md-3 col-xs-6">
+                    <div id="supplier-count" class="small-box bg-purple">
+                      <div class="inner">
+                        <h4>
+                          <i>
+                            <?php echo trans('text_total_supplier'); ?>
+                          </i> <span class="total-suppier">
+                            <?php echo total_supplier(from(), to()); ?>
+                          </span>
+                        </h4>
+                        <h4>
+                          <i>
+                            <?php echo trans('text_total_supplier_today'); ?>
+                          </i> <span class="total-suppier">
+                            <?php echo total_supplier_today(); ?>
+                          </span>
+                        </h4>
+                      </div>
+                      <div class="icon">
+                        <i class="fa fa-fw fa-shopping-cart"></i>
+                      </div>
+                      <?php if (user_group_id() == 1 || has_permission('access', 'read_supplier')) : ?>
+                        <a href="supplier.php" class="small-box-footer">
+                          <?php echo trans('text_details'); ?>
+                          <i class="fa fa-arrow-circle-right"></i>
+                        </a>
+                      <?php else : ?>
+                        <a href="#" class="small-box-footer">
+                          &nbsp;
+                        </a>
+                      <?php endif; ?>
+                    </div>
+                  </div>
+                <?php endif; ?>
+
+                <?php if (user_group_id() == 1 || has_permission('access', 'read_dashboard_product_view')) : ?>
+                  <div class="col-md-3 col-xs-6">
+                    <div id="product-count" class="small-box bg-yellow">
+                      <div class="inner">
+                        <h4>
+                          <i>
+                            <?php echo trans('text_total_product'); ?>
+                          </i> <span class="total-product">
+                            <?php echo number_format(total_product(from(), to())); ?>
+                          </span>
+                        </h4>
+                        <h4>
+                          <i>
+                            <?php echo trans('text_total_product_today'); ?>
+                          </i> <span class="total-product">
+                            <?php echo number_format(total_product_today()); ?>
+                          </span>
+                        </h4>
+                      </div>
+                      <div class="icon">
+                        <i class="fa fa-star"></i>
+                      </div>
+                      <?php if (user_group_id() == 1 || has_permission('access', 'read_product')) : ?>
+                        <a href="product.php" class="small-box-footer">
+                          <?php echo trans('text_details'); ?>
+                          <i class="fa fa-arrow-circle-right"></i>
+                        </a>
+                      <?php else : ?>
+                        <a href="#" class="small-box-footer">
+                          &nbsp;
+                        </a>
+                      <?php endif; ?>
+                    </div>
+                  </div>
+                <?php endif; ?>
+
+              </div>
+
+
+            </div>
+          </div>
+        </div>
+      </div>
+    <?php endif; ?>
+
+
+
+    <!--Small Box End -->
+
+
+
 
 
 
