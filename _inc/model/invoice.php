@@ -781,6 +781,28 @@ class ModelInvoice extends Model
         return isset($invoice['total']) ? $invoice['total'] : 0;
     }
 
+    // public function totalAllStoresUSD($from = null, $to = null, $store_id = null)
+    // {
+    //     $where_query = "";
+    //     $store_id = $store_id ? $store_id : store_id();
+    //     $where_query = "`selling_info`.`store_id` <> ? ";
+    //     if ($from) {
+    //         $where_query .= date_range_filter($from, $to);
+    //     }
+    //     // $statement = $this->db->prepare("SELECT `stores`.`name`,IFNULL(SUM(`selling_price`.`paid_amount`),0) as total FROM `selling_info`  
+	// 	// 	LEFT JOIN `selling_price` ON (`selling_info`.`invoice_id` = `selling_price`.`invoice_id` AND `inv_type` = 'sell') 
+    //     //     LEFT JOIN `stores` ON (`selling_info`.`store_id` = `stores`.`store_id`)
+	// 	// 	WHERE $where_query
+    //     //     GROUP BY `stores`.`name`");
+    //     $statement = $this->db->prepare("SELECT `stores`.`name` , IFNULL(SUM(`selling_price`.`paid_amount`),0) AS total FROM `stores` 
+    //         LEFT OUTER JOIN `selling_info` ON (`selling_info`.`store_id` = `stores`.`store_id` AND `selling_info`.`inv_type` = 'sell')
+	// 	    LEFT OUTER JOIN `selling_price` ON (`selling_info`.`invoice_id` = `selling_price`.`invoice_id`)
+    //         WHERE $where_query
+    //         GROUP BY `stores`.`name`");
+    //     $statement->execute(array($store_id));
+	// 	return $statement->fetchAll(PDO::FETCH_ASSOC);
+    // }
+
     public function totalHoldingOrderToday($store_id = null)
     {
         $from = date('Y-m-d');
