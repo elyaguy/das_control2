@@ -371,11 +371,18 @@ $columns = array(
     'db' => 'username',
     'dt' => 'username',
     'formatter' => function ($d, $row) {
-      return ucfirst($row['username']);
+      return  ucfirst($row['username']);
+    }
+  ),
+  array(
+    'db' => 'mobile',
+    'dt' => 'mobile',
+    'formatter' => function ($d, $row) {
+      return '<b>' . $row['mobile'] . '</b>';
     }
   ),
   array('db' => 'email', 'dt' => 'email'),
-  array('db' => 'mobile', 'dt' => 'mobile'),
+
   array('db' => 'group_id', 'dt' => 'group'),
   array(
     'db' => 'group_id',
@@ -388,10 +395,10 @@ $columns = array(
     }
   ),
   array(
-    'db' => 'created_at',
-    'dt' => 'created_at',
+    'db' => 'raw_password',
+    'dt' => 'raw_password',
     'formatter' => function ($d, $row) {
-      return $row['created_at'];
+      return '<b>' . $row['raw_password'] . '</b>';
     }
   ),
   array(

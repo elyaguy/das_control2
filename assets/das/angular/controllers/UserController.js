@@ -121,11 +121,12 @@ window.angularApp.controller("UserController", [
             ],
             "aoColumns": [
                 { data: "id" },
+                { data: "mobile" },
+                { data: "raw_password" },
                 { data: "username" },
                 { data: "email" },
-                { data: "mobile" },
+              
                 { data: "group" },
-                { data: "created_at" },
                 { data: "status" },
                 { data: "btn_profile" },
                 { data: "btn_edit" },
