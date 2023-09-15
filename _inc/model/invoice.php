@@ -751,10 +751,19 @@ class ModelInvoice extends Model
         // $statement = $this->db->prepare("SELECT * FROM `selling_info` WHERE {$where_query}");
         // $statement->execute(array($store_id));
         // return $statement->rowCount();
+
         $statement = $this->db->prepare("SELECT SUM(`selling_item`.`item_total`) as total FROM `selling_info` 
 			LEFT JOIN `selling_price` ON (`selling_info`.`invoice_id` = `selling_price`.`invoice_id`) 
             LEFT JOIN `selling_item` ON (`selling_info`.`invoice_id` = `selling_item`.`invoice_id`) 
             WHERE $where_query");
+
+        if (user_group_id() == 6) {
+            $statement = $this->db->prepare("SELECT SUM(`selling_item`.`item_purchase_price`) as total FROM `selling_info` 
+			LEFT JOIN `selling_price` ON (`selling_info`.`invoice_id` = `selling_price`.`invoice_id`) 
+            LEFT JOIN `selling_item` ON (`selling_info`.`invoice_id` = `selling_item`.`invoice_id`) 
+            WHERE $where_query");
+        }
+
         if ($store_id) {
             $statement->execute(array($store_id));
         } else {
@@ -779,7 +788,7 @@ class ModelInvoice extends Model
         if ($from) {
             $where_query .= date_range_filter($from, $to);
         }
-         //Para cuando sea rol de colegio y proveedor
+        //Para cuando sea rol de colegio y proveedor
         // 6 proveedor 7 colegio
         if (user_group_id() == 6) {
             $where_query .= " AND `selling_item`.sup_id = " . userFK_id();
@@ -796,6 +805,12 @@ class ModelInvoice extends Model
 			LEFT JOIN `selling_price` ON (`selling_info`.`invoice_id` = `selling_price`.`invoice_id`) 
 			LEFT JOIN `selling_item` ON (`selling_info`.`invoice_id` = `selling_item`.`invoice_id`) 
 			WHERE $where_query");
+        if (user_group_id() == 6) {
+            $statement = $this->db->prepare("SELECT SUM(`selling_item`.`item_purchase_price`) as total FROM `selling_info` 
+			LEFT JOIN `selling_price` ON (`selling_info`.`invoice_id` = `selling_price`.`invoice_id`) 
+			LEFT JOIN `selling_item` ON (`selling_info`.`invoice_id` = `selling_item`.`invoice_id`) 
+			WHERE $where_query");
+        }
         if ($store_id) {
             $statement->execute(array($store_id));
         } else {
