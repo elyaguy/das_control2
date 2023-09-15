@@ -736,12 +736,25 @@ class ModelInvoice extends Model
             $where_query = "`inv_type` = 'sell'";
         }
         $where_query .= date_range_filter($from, $to);
+
+        //Para cuando sea rol de colegio y proveedor
+        // 6 proveedor 7 colegio
+        if (user_group_id() == 6) {
+            $where_query .= " AND `selling_item`.sup_id = " . userFK_id();
+        }
+
+        // if (user_group_id() == 7) {
+        //     $where_query .= " AND selling_item.college_id = " . userFK_id();
+        // }
+
+
         // $statement = $this->db->prepare("SELECT * FROM `selling_info` WHERE {$where_query}");
         // $statement->execute(array($store_id));
         // return $statement->rowCount();
-        $statement = $this->db->prepare("SELECT SUM(`selling_price`.`paid_amount`) as total FROM `selling_info` 
+        $statement = $this->db->prepare("SELECT SUM(`selling_item`.`item_total`) as total FROM `selling_info` 
 			LEFT JOIN `selling_price` ON (`selling_info`.`invoice_id` = `selling_price`.`invoice_id`) 
-			WHERE $where_query");
+            LEFT JOIN `selling_item` ON (`selling_info`.`invoice_id` = `selling_item`.`invoice_id`) 
+            WHERE $where_query");
         if ($store_id) {
             $statement->execute(array($store_id));
         } else {
@@ -766,11 +779,22 @@ class ModelInvoice extends Model
         if ($from) {
             $where_query .= date_range_filter($from, $to);
         }
+         //Para cuando sea rol de colegio y proveedor
+        // 6 proveedor 7 colegio
+        if (user_group_id() == 6) {
+            $where_query .= " AND `selling_item`.sup_id = " . userFK_id();
+        }
+
+        // if (user_group_id() == 7) {
+        //     $where_query .= " AND selling_item.college_id = " . userFK_id();
+        // }
+
         // $statement = $this->db->prepare("SELECT * FROM `selling_info` WHERE {$where_query}");
         // $statement->execute(array($store_id));
         // return $statement->rowCount();
-        $statement = $this->db->prepare("SELECT SUM(`selling_price`.`paid_amount`) as total FROM `selling_info` 
+        $statement = $this->db->prepare("SELECT SUM(`selling_item`.`item_total`) as total FROM `selling_info` 
 			LEFT JOIN `selling_price` ON (`selling_info`.`invoice_id` = `selling_price`.`invoice_id`) 
+			LEFT JOIN `selling_item` ON (`selling_info`.`invoice_id` = `selling_item`.`invoice_id`) 
 			WHERE $where_query");
         if ($store_id) {
             $statement->execute(array($store_id));
@@ -790,17 +814,17 @@ class ModelInvoice extends Model
     //         $where_query .= date_range_filter($from, $to);
     //     }
     //     // $statement = $this->db->prepare("SELECT `stores`.`name`,IFNULL(SUM(`selling_price`.`paid_amount`),0) as total FROM `selling_info`  
-	// 	// 	LEFT JOIN `selling_price` ON (`selling_info`.`invoice_id` = `selling_price`.`invoice_id` AND `inv_type` = 'sell') 
+    // 	// 	LEFT JOIN `selling_price` ON (`selling_info`.`invoice_id` = `selling_price`.`invoice_id` AND `inv_type` = 'sell') 
     //     //     LEFT JOIN `stores` ON (`selling_info`.`store_id` = `stores`.`store_id`)
-	// 	// 	WHERE $where_query
+    // 	// 	WHERE $where_query
     //     //     GROUP BY `stores`.`name`");
     //     $statement = $this->db->prepare("SELECT `stores`.`name` , IFNULL(SUM(`selling_price`.`paid_amount`),0) AS total FROM `stores` 
     //         LEFT OUTER JOIN `selling_info` ON (`selling_info`.`store_id` = `stores`.`store_id` AND `selling_info`.`inv_type` = 'sell')
-	// 	    LEFT OUTER JOIN `selling_price` ON (`selling_info`.`invoice_id` = `selling_price`.`invoice_id`)
+    // 	    LEFT OUTER JOIN `selling_price` ON (`selling_info`.`invoice_id` = `selling_price`.`invoice_id`)
     //         WHERE $where_query
     //         GROUP BY `stores`.`name`");
     //     $statement->execute(array($store_id));
-	// 	return $statement->fetchAll(PDO::FETCH_ASSOC);
+    // 	return $statement->fetchAll(PDO::FETCH_ASSOC);
     // }
 
     public function totalHoldingOrderToday($store_id = null)
