@@ -134,21 +134,21 @@ include ("left_sidebar.php") ;
                     <th class="w-5">
                       <?php echo sprintf(trans('label_id'), null); ?>
                     </th>
+                    <th class="w-15">
+                      <?php echo trans('label_mobile'); ?>
+                    </th>
+                    <th class="w-15">
+                      <?php echo trans('label_password'); ?>
+                    </th>
                     <th class="w-20">
                       <?php echo sprintf(trans('label_name'), null); ?>
                     </th>
                     <th class="w-15">
                       <?php echo sprintf(trans('label_email'), null); ?>
-                    </th>
-                    <th class="w-15">
-                      <?php echo trans('label_mobile'); ?>
-                    </th>
-                    <th class="w-10">
-                      <?php echo trans('label_group'); ?>
-                    </th>
+                    </th>                    
                     <th class="w-20">
-                      <?php echo trans('label_created_at'); ?>
-                    </th>
+                      <?php echo trans('label_group'); ?>
+                    </th>                   
                     <th class="w-5">
                       <?php echo trans('label_status'); ?>
                     </th>
@@ -168,20 +168,21 @@ include ("left_sidebar.php") ;
                     <th class="w-5">
                       <?php echo sprintf(trans('label_id'), null); ?>
                     </th>
+                    <th class="w-15">
+                      <?php echo trans('label_mobile'); ?>
+                    </th>
+                    <th class="w-15">
+                      <?php echo trans('label_password'); ?>
+                    </th>
                     <th class="w-20">
                       <?php echo sprintf(trans('label_name'), null); ?>
                     </th>
                     <th class="w-15">
                       <?php echo sprintf(trans('label_email'), null); ?>
                     </th>
-                    <th class="w-15">
-                      <?php echo trans('label_mobile'); ?>
-                    </th>
-                    <th class="w-10">
-                      <?php echo trans('label_group'); ?>
-                    </th>
+                    
                     <th class="w-20">
-                      <?php echo trans('label_created_at'); ?>
+                      <?php echo trans('label_group'); ?>
                     </th>
                     <th class="w-5">
                       <?php echo trans('label_status'); ?>
