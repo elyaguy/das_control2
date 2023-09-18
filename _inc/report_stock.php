@@ -29,6 +29,10 @@ $where_query = "p2s.store_id = $store_id AND quantity_in_stock > 0";
 if ($sup_id) {
   $where_query .= " AND p2s.sup_id = $sup_id";
 }
+if (user_group_id() == 6) {
+  $where_query .= " AND p2s.sup_id = " . userFK_id();
+}
+
 
 //===========================
 // Datatable start
