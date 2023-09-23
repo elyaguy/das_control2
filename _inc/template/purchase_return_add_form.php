@@ -33,11 +33,11 @@
           <input ng-model="search_list" class="form-control" type="text" placeholder="<?php echo trans('search'); ?>">
         </div>
         <div class="well well-sm product-well">
-          <div filter-list="search_list">
-            <div class="stock-item" ng-repeat="product in productsArray" ng-click="addItemToTransferList(product.id, 1);" id="stock-item-{{ product.id }}" style="cursor:pointer;padding:5px 0;border-bottom: 1px dotted #ccc;">
+          <!-- <div filter-list="search_list"> -->
+            <div class="stock-item" ng-repeat="product in productsArray| filter:search_list" ng-click="addItemToTransferList(product.id, 1);" id="stock-item-{{ product.id }}" style="cursor:pointer;padding:5px 0;border-bottom: 1px dotted #ccc;">
               -- {{ product.item_name }}, <?php echo trans('text_invoice_id'); ?>: {{ product.invoice_id}}, <?php echo trans('text_stock'); ?>: <span class="badge badge-info">{{ product.quantity }}</span>
             </div>
-          </div>
+          <!-- </div> -->
         </div>
       </div>
       <div class="col-sm-6">
