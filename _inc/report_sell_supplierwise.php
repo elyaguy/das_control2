@@ -43,9 +43,14 @@ $table = "(SELECT selling_info.invoice_id, CAST(selling_info.created_at AS date)
   GROUP BY selling_item.sup_id ,CAST(selling_info.created_at AS date)
   ORDER BY CAST(selling_info.created_at AS date) DESC) as selling_item";
 
-$table = "(SELECT selling_info.invoice_id, CAST(selling_info.created_at AS date) as created_at, selling_item.id, selling_item.sup_id, selling_item.item_name, SUM(selling_item.item_quantity) as total_item, SUM(selling_item.item_discount) as discount, SUM(selling_item.item_tax) as tax, SUM(selling_item.item_purchase_price) as purchase_price, SUM(selling_item.item_total) as sell_price FROM selling_item 
+$table = "(SELECT selling_info.invoice_id, CAST(selling_info.created_at AS date) as created_at, selling_item.id, selling_item.sup_id, selling_item.item_name, 
+SUM(selling_item.item_quantity - return_quantity) as total_item, SUM(selling_item.item_discount) as discount, SUM(selling_item.item_tax) as tax, 
+SUM(selling_item.item_purchase_price - (selling_item.return_quantity * purchase_price)) as purchase_price, 
+SUM(selling_item.item_total - (selling_item.return_quantity * sell_price)) as sell_price 
+FROM selling_item 
   LEFT JOIN selling_info ON (selling_item.invoice_id = selling_info.invoice_id)
   LEFT JOIN selling_price ON (selling_item.invoice_id = selling_price.invoice_id)
+  LEFT JOIN product_to_store ON (selling_item.item_id = product_to_store.product_id AND selling_item.store_id = product_to_store.store_id)
   WHERE $where_query
   GROUP BY selling_item.sup_id 
   ORDER BY CAST(selling_info.created_at AS date) DESC) as selling_item";
