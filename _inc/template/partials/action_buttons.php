@@ -113,6 +113,25 @@
       </div>
     <?php endif; ?>
 
+    <?php if (user_group_id() == 1 || has_permission('access', 'read_comparative_report')) : ?>
+      <div class="col-xs-6 col-sm-4 col-md-4 col-lg-2" id="button_comparative_report">
+          <div class="panel panel-app">
+            <div class="panel-body">
+              <a class="panel-app-link" href="report_purchase_itemwise_comparative.php">
+                <h2>
+                  <span class="icon">
+                    <svg class="svg-icon"><use href="#icon-btn-sell-report"></svg>
+                  </span>
+                </h2>
+                <div class="small small2">
+                  <?php echo trans('button_comparative_report'); ?>
+                </div>
+              </a>
+            </div>
+          </div>
+      </div>
+    <?php endif; ?>
+
     <?php if (user_group_id() == 1 || has_permission('access', 'read_stock_alert')) : ?>
       <div class="col-xs-6 col-sm-4 col-md-4 col-lg-2" id="button_stock_alert">
         <div class="panel panel-app">
