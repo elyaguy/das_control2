@@ -54,7 +54,7 @@ window.angularApp.controller("ReportPurchaseCategoryWiseComparativeController", 
             ],
             "columnDefs": [
                 { "visible": false, "targets": hideColumsArray },
-                { "className": "text-right", "targets": [3, 4, 5, 6, 7, 8, 9] },
+                { "className": "text-right", "targets": [3, 4, 5, 6, 7, 8, 9, 10] },
                 { "className": "text-center", "targets": [0, 1] },
                 {
                     "targets": [0],
@@ -116,18 +116,25 @@ window.angularApp.controller("ReportPurchaseCategoryWiseComparativeController", 
                         $(td).attr('data-title', $("#report-report-list thead tr th:eq(9)").html());
                     }
                 },
+                 {
+                    "targets": [10],
+                    'createdCell': function (td, cellData, rowData, row, col) {
+                        $(td).attr('data-title', $("#report-report-list thead tr th:eq(10)").html());
+                    }
+                },
             ],
             "aoColumns": [
                 { data: "category_id" },
                 { data: "created_at" },
                 { data: "category_name" },
-                { data: "total_item" },
-                { data: "unit_cost" },
-                { data: "purchase_price" },
-                { data: "paid_amount" },
-                { data: "selling_quantity_item" },
+                { data: "item_quantity_purchase" },
+                { data: "total_purchase_price" },
+                { data: "item_quantity_return" },
+                { data: "total_purchase_price_return" },
+                { data: "item_quantity_selling" },
+                { data: "total_paid_amount" },
                 { data: "quantity_in_stock" },
-                { data: "value_in_stock" }
+                { data: "total_stock_price" },
             ],
             "footerCallback": function (row, data, start, end, display) {
                 var pageTotal;
@@ -148,7 +155,7 @@ window.angularApp.controller("ReportPurchaseCategoryWiseComparativeController", 
                         return intVal(a) + intVal(b);
                     }, 0);
                 // Update footer
-                $(api.column(3).footer()).html(
+                $(api.column(3).footer()).html( 
                     window.formatDecimal(pageTotal, 2)
                 );
 
@@ -160,7 +167,7 @@ window.angularApp.controller("ReportPurchaseCategoryWiseComparativeController", 
                         return intVal(a) + intVal(b);
                     }, 0);
                 // Update footer
-                $(api.column(4).footer()).html(
+                $(api.column(4).footer()).html('$ ' +   
                     window.formatDecimal(pageTotal, 2)
                 );
 
@@ -184,7 +191,7 @@ window.angularApp.controller("ReportPurchaseCategoryWiseComparativeController", 
                         return intVal(a) + intVal(b);
                     }, 0);
                 // Update footer
-                $(api.column(6).footer()).html(
+                $(api.column(6).footer()).html('$ ' +   
                     window.formatDecimal(pageTotal, 2)
                 );
 
@@ -208,7 +215,7 @@ window.angularApp.controller("ReportPurchaseCategoryWiseComparativeController", 
                         return intVal(a) + intVal(b);
                     }, 0);
                 // Update footer
-                $(api.column(8).footer()).html(
+                $(api.column(8).footer()).html('$ ' +   
                     window.formatDecimal(pageTotal, 2)
                 );
 
@@ -223,6 +230,16 @@ window.angularApp.controller("ReportPurchaseCategoryWiseComparativeController", 
                 $(api.column(9).footer()).html(
                     window.formatDecimal(pageTotal, 2)
                 );
+                pageTotal = api
+                .column(10, { page: "current" })
+                .data()
+                .reduce(function (a, b) {
+                    return intVal(a) + intVal(b);
+                }, 0);
+            // Update footer
+            $(api.column(10).footer()).html('$ ' +   
+                window.formatDecimal(pageTotal, 2)
+            );
 
             },
             "pageLength": window.settings.datatable_item_limit,

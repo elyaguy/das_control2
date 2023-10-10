@@ -80,11 +80,11 @@ include("left_sidebar.php");
               <div class="btn-group">
                 <button type="button" class="btn btn-info">
                   <span class="fa fa-filter"></span>
-                  <?php if (current_nav() == 'report_purchase_itemwise_all'): ?>
+                  <?php if (current_nav() == 'report_purchase_itemwise_comparative'): ?>
                     <?php echo trans('button_itemwise'); ?>
-                  <?php elseif (current_nav() == 'report_purchase_categorywise_all'): ?>
+                  <?php elseif (current_nav() == 'report_purchase_categorywise_comparative'): ?>
                     <?php echo trans('button_categorywise'); ?>
-                  <?php elseif (current_nav() == 'report_purchase_supplierwise_all'): ?>
+                  <?php elseif (current_nav() == 'report_purchase_supplierwise_comparative'): ?>
                     <?php echo trans('button_supplierwise'); ?>
                   <?php else: ?>
                     <?php echo trans('button_filter'); ?>
@@ -96,17 +96,17 @@ include("left_sidebar.php");
                 </button>
                 <ul class="dropdown-menu" role="menu">
                   <li>
-                    <a href="report_purchase_itemwise_all.php">
+                    <a href="report_purchase_itemwise_comparative.php">
                       <?php echo trans('button_itemwise'); ?>
                     </a>
                   </li>
                   <li>
-                    <a href="report_purchase_categorywise_all.php">
+                    <a href="report_purchase_categorywise_comparative.php">
                       <?php echo trans('button_categorywise'); ?>
                     </a>
                   </li>
                   <li>
-                    <a href="report_purchase_supplierwise_all.php">
+                    <a href="report_purchase_supplierwise_comparative.php">
                       <?php echo trans('button_supplierwise'); ?>
                     </a>
                   </li>
@@ -145,19 +145,22 @@ include("left_sidebar.php");
                       <?php echo trans('label_category_name'); ?>
                     </th>
                     <th class="w-5">
-                      <?php echo trans('label_quantity'); ?>
+                      <?php echo trans('label_quantity_purchase'); ?>
                     </th>
                     <th class="w-5">
-                      <?php echo trans('label_unit_cost'); ?>
+                      <?php echo trans('label_total_purchase'); ?>
                     </th>
                     <th class="w-5">
-                      <?php echo trans('label_cost_value'); ?>
+                      <?php echo trans('label_quantity_return'); ?>
                     </th>
                     <th class="w-5">
-                      <?php echo trans('label_sale_value'); ?>
+                      <?php echo trans('label_total_return'); ?>
                     </th>
                     <th class="w-5">
-                      <?php echo trans('label_sale_units'); ?>
+                      <?php echo trans('label_quantity_selling'); ?>
+                    </th>
+                    <th class="w-5">
+                      <?php echo trans('label_total_selling'); ?>
                     </th>
                     <th class="w-5">
                       <?php echo trans('label_quantity_stock'); ?>
@@ -169,6 +172,7 @@ include("left_sidebar.php");
                 </thead>
                 <tfoot>
                   <tr class="bg-gray">
+                    <th></th>
                     <th></th>
                     <th></th>
                     <th></th>

@@ -33,35 +33,30 @@ $to = to();
 $where_query .= date_range_filter2($from, $to);
 
 // DB table to use
-$table = "(SELECT purchase_info.*, categorys.category_name, purchase_item.id, purchase_item.category_id, purchase_item.item_quantity, SUM(purchase_item.item_total) as purchase_price, SUM(purchase_item.item_quantity) as total_stock, SUM(purchase_price.paid_amount) as paid_amount FROM purchase_item 
-      LEFT JOIN categorys ON (purchase_item.category_id = categorys.category_id)
-      LEFT JOIN purchase_info ON (purchase_item.invoice_id = purchase_info.invoice_id)
-      LEFT JOIN purchase_price ON (purchase_item.invoice_id = purchase_price.invoice_id)
-      WHERE $where_query
-      GROUP BY purchase_item.category_id
-      ORDER BY total_stock DESC) as purchase_item";
+$table = "(SELECT purchase_info.*, 
+categorys.category_name, purchase_item.id, purchase_item.category_id, 
+0 item_purchase_price, SUM(item_quantity) item_quantity_purchase, SUM(purchase_item.item_total) AS total_purchase_price, 
+SUM(return_quantity) item_quantity_return, SUM(return_quantity * item_purchase_price) AS total_purchase_price_return,
+selling_item.selling_quantity_item AS item_quantity_selling, total_paid_amount AS total_paid_amount,
+(quantity_in_stock) quantity_in_stock, value_in_stock total_stock_price
 
-// DB table to use
-$table = "(SELECT purchase_info.*, categorys.category_name, purchase_item.id, purchase_item.category_id, purchase_item.item_quantity, SUM(purchase_item.item_total) as purchase_price, SUM(purchase_item.item_quantity) as total_stock, 
-SUM(item_selling_price * item_quantity) as paid_amount, 0 unit_cost, product_to_store.quantity_in_stock,
-product_to_store.value_in_stock,selling_item.selling_quantity_item
 FROM purchase_item 
 LEFT JOIN categorys ON (purchase_item.category_id = categorys.category_id)
 LEFT JOIN purchase_info ON (purchase_item.invoice_id = purchase_info.invoice_id)
 LEFT JOIN purchase_price ON (purchase_item.invoice_id = purchase_price.invoice_id)
-LEFT JOIN (SELECT category_id, store_id, SUM(product_to_store.quantity_in_stock) quantity_in_stock, SUM(product_to_store.sell_price * product_to_store.quantity_in_stock) value_in_stock 
+LEFT JOIN (SELECT category_id, store_id, SUM(product_to_store.quantity_in_stock) quantity_in_stock, 
+SUM(product_to_store.purchase_price * product_to_store.quantity_in_stock) value_in_stock 
 FROM product_to_store LEFT JOIN products ON product_id = p_id  GROUP BY category_id, store_id) AS product_to_store ON (purchase_item.category_id = product_to_store.category_id AND purchase_item.store_id = product_to_store.store_id)
-LEFT JOIN (SELECT category_id, store_id, SUM(item_quantity- return_quantity) selling_quantity_item FROM selling_item GROUP BY category_id, store_id) AS selling_item ON (purchase_item.category_id = selling_item.category_id AND purchase_item.store_id = selling_item.store_id)
+LEFT JOIN (SELECT category_id, store_id, SUM(item_purchase_price- (return_quantity * (item_purchase_price/item_quantity))) total_paid_amount,SUM(item_quantity- return_quantity) selling_quantity_item FROM selling_item GROUP BY category_id, store_id) AS selling_item ON (purchase_item.category_id = selling_item.category_id AND purchase_item.store_id = selling_item.store_id)
 
 WHERE $where_query
 GROUP BY purchase_item.category_id
-ORDER BY total_stock DESC) as purchase_item";
+ORDER BY categorys.category_name DESC) as purchase_item";
 
 // Table's primary key
 $primaryKey = 'id';
 $columns = array(
   array( 'db' => 'category_id', 'dt' => 'category_id' ),
-  array( 'db' => 'unit_cost', 'dt' => 'unit_cost' ),
   array( 
       'db' => 'created_at',  
       'dt' => 'created_at',
@@ -77,49 +72,78 @@ $columns = array(
       }
     ),
     array( 
-      'db' => 'total_stock',  
-      'dt' => 'total_item',
+      'db' => 'item_purchase_price',  
+      'dt' => 'item_purchase_price',
       'formatter' => function( $d, $row ) {
-        return currency_format($row['total_stock']);
+        $total = $row['item_purchase_price'];
+        return currency_format($total);
       }
     ),
+    array( 
+      'db' => 'item_quantity_purchase',  
+      'dt' => 'item_quantity_purchase',
+      'formatter' => function( $d, $row ) {
+        $total = $row['item_quantity_purchase'];
+        return currency_format($total);
+      }
+    ),
+    array( 
+      'db' => 'total_purchase_price',  
+      'dt' => 'total_purchase_price',
+      'formatter' => function( $d, $row ) {
+        return currency_format($row['total_purchase_price']);
+      }
+    ),  
+
+
+    array( 
+      'db' => 'item_quantity_return',  
+      'dt' => 'item_quantity_return',
+      'formatter' => function( $d, $row ) {
+        return currency_format($row['item_quantity_return']);
+      }
+    ),    
+    array( 
+      'db' => 'total_purchase_price_return',  
+      'dt' => 'total_purchase_price_return',
+      'formatter' => function( $d, $row ) {
+        return currency_format($row['total_purchase_price_return']);
+      }
+    ),
+
+
+    array( 
+      'db' => 'item_quantity_selling',  
+      'dt' => 'item_quantity_selling',
+      'formatter' => function( $d, $row ) {
+        return currency_format($row['item_quantity_selling']);
+      }
+    ),
+    array( 
+      'db' => 'total_paid_amount',  
+      'dt' => 'total_paid_amount',
+      'formatter' => function( $d, $row ) {
+        return currency_format($row['total_paid_amount']);
+      }
+    ),
+
+   
     array( 
       'db' => 'quantity_in_stock',  
       'dt' => 'quantity_in_stock',
       'formatter' => function( $d, $row ) {
-        return currency_format($row['quantity_in_stock']);
-      }
-    ),
-    array( 
-      'db' => 'value_in_stock',  
-      'dt' => 'value_in_stock',
-      'formatter' => function( $d, $row ) {
-        return currency_format($row['value_in_stock']);
-      }
-    ),
-    array( 
-      'db' => 'selling_quantity_item',  
-      'dt' => 'selling_quantity_item',
-      'formatter' => function( $d, $row ) {
-        return currency_format($row['selling_quantity_item']);
-      }
-    ),
-    array( 
-      'db' => 'purchase_price',  
-      'dt' => 'purchase_price',
-      'formatter' => function( $d, $row ) {
-        $total = $row['purchase_price'];
+        $total = $row['quantity_in_stock'];
         return currency_format($total);
       }
     ),
     array( 
-      'db' => 'paid_amount',  
-      'dt' => 'paid_amount',
+      'db' => 'total_stock_price',  
+      'dt' => 'total_stock_price',
       'formatter' => function( $d, $row ) {
-        $total = $row['paid_amount'];
+        $total = $row['total_stock_price'];
         return currency_format($total);
       }
-    )
+    ),
 );
  
 echo json_encode(
