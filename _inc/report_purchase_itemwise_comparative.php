@@ -82,7 +82,8 @@ $columns = array(
       'dt' => 'item_quantity_purchase',
       'formatter' => function( $d, $row ) {
         $total = $row['item_quantity_purchase'];
-        return currency_format($total);
+        return $total > 0 ? '<a href="#" id="view-purchase-btn"  >' . currency_format($total) . '</a>' : currency_format($total) ;
+        // return currency_format($total);
       }
     ),
     array( 
@@ -98,7 +99,8 @@ $columns = array(
       'db' => 'item_quantity_return',  
       'dt' => 'item_quantity_return',
       'formatter' => function( $d, $row ) {
-        return currency_format($row['item_quantity_return']);
+        $total = $row['item_quantity_return'];        
+        return $total > 0 ? '<a href="#" id="view-return-btn"  >' . currency_format($total) . '</a>' : currency_format($total) ;
       }
     ),    
     array( 

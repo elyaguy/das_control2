@@ -7,6 +7,8 @@ window.angularApp.controller("ReportPurchaseItemWiseComparativeController", [
     "$uibModal",
     "$http",
     "$sce",
+    "PurchaseInvoiceReturnViewModal",
+    "PurchaseInvoiceItemDetailViewModal",
     "EmailModal",
     function (
         $scope,
@@ -17,6 +19,8 @@ window.angularApp.controller("ReportPurchaseItemWiseComparativeController", [
         $uibModal,
         $http,
         $sce,
+        PurchaseInvoiceReturnViewModal,
+        PurchaseInvoiceItemDetailViewModal,
         EmailModal
     ) {
         "use strict";
@@ -186,7 +190,7 @@ window.angularApp.controller("ReportPurchaseItemWiseComparativeController", [
                         return intVal(a) + intVal(b);
                     }, 0);
                 // Update footer
-                $(api.column(5).footer()).html('$ ' + 
+                $(api.column(5).footer()).html('$ ' +
                     window.formatDecimal(pageTotal, 2)
                 );
 
@@ -210,7 +214,7 @@ window.angularApp.controller("ReportPurchaseItemWiseComparativeController", [
                         return intVal(a) + intVal(b);
                     }, 0);
                 // Update footer
-                $(api.column(7).footer()).html('$ ' + 
+                $(api.column(7).footer()).html('$ ' +
                     window.formatDecimal(pageTotal, 2)
                 );
 
@@ -234,7 +238,7 @@ window.angularApp.controller("ReportPurchaseItemWiseComparativeController", [
                         return intVal(a) + intVal(b);
                     }, 0);
                 // Update footer
-                $(api.column(9).footer()).html('$ ' + 
+                $(api.column(9).footer()).html('$ ' +
                     window.formatDecimal(pageTotal, 2)
                 );
 
@@ -259,8 +263,8 @@ window.angularApp.controller("ReportPurchaseItemWiseComparativeController", [
                         return intVal(a) + intVal(b);
                     }, 0);
                 // Update footer
-                $(api.column(11).footer()).html('$ ' +                  
-                    window.formatDecimal( pageTotal, 2)
+                $(api.column(11).footer()).html('$ ' +
+                    window.formatDecimal(pageTotal, 2)
                 );
 
 
@@ -399,5 +403,33 @@ window.angularApp.controller("ReportPurchaseItemWiseComparativeController", [
             var thehtml = dt.html();
             EmailModal({ template: "report", subject: "Purchase Reeport (Item wise)", title: "Purchase Reeport (Item wise)", html: thehtml });
         });
+
+        // View Details Return
+        $(document).delegate("#view-return-btn", "click", function (e) {
+            e.stopPropagation();
+            e.preventDefault();
+            var d = dt.DataTable().row($(this).closest("tr")).data();
+            var $tag = $(this);
+            var $btn = $tag.button("loading");
+            PurchaseInvoiceReturnViewModal(d);
+            setTimeout(function () {
+                $tag.button("reset");
+            }, 300);
+        });
+
+
+        // View Details Purchase
+        $(document).delegate("#view-purchase-btn", "click", function (e) {
+            e.stopPropagation();
+            e.preventDefault();
+            var d = dt.DataTable().row($(this).closest("tr")).data();
+            var $tag = $(this);
+            var $btn = $tag.button("loading");
+            PurchaseInvoiceItemDetailViewModal(d);
+            setTimeout(function () {
+                $tag.button("reset");
+            }, 300);
+        });
+
 
     }]);

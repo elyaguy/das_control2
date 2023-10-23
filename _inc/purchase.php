@@ -652,6 +652,100 @@ if (isset($request->get['invoice_id']) && isset($request->get['action_type']) &&
   exit();
 }
 
+// View Invoice
+if (isset($request->get['item_id']) && isset($request->get['action_type']) && $request->get['action_type'] == 'VIEW_RETURN') {
+  // $user_id = isset($request->get['user_id']) ? $request->get['user_id'] : null;
+  // $where_query = "`purchase_info`.`inv_type`IN ('purchase','transfer') AND `created_by` = ? AND `is_visible` = ? AND `purchase_price`.`due` > 0";
+  $item_id = $request->get['item_id'];
+  
+  $where_query = "`purchase_item`.`return_quantity` > 0 and `purchase_return_items`.`item_id` = ? and `purchase_item`.`store_id` = ?";
+  // $from = from();
+  // $to = to();
+  $from = from() ? from() : date('Y-m-d');
+  $to = to() ? to() : date('Y-m-d');
+  $where_query .= date_range_filter2($from, $to);
+
+
+  // $statement = db()->prepare("SELECT 
+  //           `purchase_returns`.`invoice_id`, `purchase_returns`.`created_at`, 
+  //           `purchase_returns`.`created_by`, `users`.`username`, `purchase_return_items`.`item_name`, 
+  //           `purchase_return_items`.`item_quantity`, `purchase_return_items`.`item_total`
+  //           FROM `purchase_return_items`
+  //           JOIN `purchase_returns` ON `purchase_return_items`.`invoice_id` = `purchase_returns`.`invoice_id` 
+  //                                           AND `purchase_return_items`.`store_id` = `purchase_returns`.`store_id`
+  //           JOIN `purchase_item` ON `purchase_returns`.`invoice_id` = `purchase_item`.`invoice_id` 
+  //                                           AND `purchase_returns`.`store_id` = `purchase_item`.`store_id` 
+  //                                           AND `purchase_return_items`.`item_id` = `purchase_item`.`item_id`
+  //           JOIN `purchase_info` ON `purchase_item`.invoice_id = `purchase_info`.`invoice_id` 
+  //                                           AND `purchase_item`.`store_id` = `purchase_info`.`store_id`
+  //           LEFT JOIN `users` ON `users`.`id` = `purchase_returns`.`created_by`           
+
+  //         WHERE $where_query");
+
+  $the_product = get_the_product($item_id, null, $store_id);
+  $item_name = 'Producto de Devolución: ' . $the_product['p_name'];
+
+  $query = "SELECT 
+  `purchase_return_items`.`created_at`, `purchase_return_items`.`item_name`, 
+  `purchase_return_items`.`item_quantity`, `purchase_return_items`.`item_total`
+  FROM `purchase_return_items`
+  JOIN `purchase_item` ON `purchase_return_items`.`invoice_id` = `purchase_item`.`invoice_id` 
+                                  AND `purchase_return_items`.`store_id` = `purchase_item`.`store_id` 
+                                  AND `purchase_return_items`.`item_id` = `purchase_item`.`item_id`
+  JOIN `purchase_info` ON `purchase_item`.invoice_id = `purchase_info`.`invoice_id` 
+                                  AND `purchase_item`.`store_id` = `purchase_info`.`store_id`
+  WHERE $where_query";
+  
+  $statement = db()->prepare($query);
+
+
+  $statement->execute(array($item_id, $store_id));
+  $invoice_items = $statement->fetchAll(PDO::FETCH_ASSOC);
+  // if (!$statement->rowCount() > 0) {
+  //   throw new Exception(trans('error_not_found'));
+  // }
+
+  include ROOT . '/_inc/template/purchase_return_item_view.php';
+  exit();
+}
+
+
+
+// View Invoice
+if (isset($request->get['item_id']) && isset($request->get['action_type']) && $request->get['action_type'] == 'VIEW_ITEM_PURCHASE') {
+  $item_id = $request->get['item_id'];
+  
+  $where_query = "`purchase_item`.`item_id` = ? and `purchase_item`.`store_id` = ?";
+  $from = from() ? from() : date('Y-m-d');
+  $to = to() ? to() : date('Y-m-d');
+  $where_query .= date_range_filter2($from, $to);
+
+  $the_product = get_the_product($item_id, null, $store_id);
+  $item_name = 'Producto de Compra: ' . $the_product['p_name'];
+
+  $query = "SELECT 
+  `purchase_info`.`created_at`, 
+  `purchase_item`.`item_name`, 
+  `purchase_item`.`item_quantity`, `purchase_item`.`item_total`
+  FROM `purchase_item` 
+  JOIN `purchase_info` ON `purchase_item`.invoice_id = `purchase_info`.`invoice_id` 
+                                  AND `purchase_item`.`store_id` = `purchase_info`.`store_id`
+  WHERE $where_query";
+  
+  $statement = db()->prepare($query);
+
+
+  $statement->execute(array($item_id, $store_id));
+  $invoice_items = $statement->fetchAll(PDO::FETCH_ASSOC);
+  // if (!$statement->rowCount() > 0) {
+  //   throw new Exception(trans('error_not_found'));
+  // }
+
+  include ROOT . '/_inc/template/purchase_return_item_view.php';
+  exit();
+}
+
+
 /**
  *===================
  * START DATATABLE
