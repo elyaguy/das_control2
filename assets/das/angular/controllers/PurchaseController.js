@@ -505,8 +505,12 @@ window.angularApp.controller("PurchaseController", [
                     dt.DataTable().ajax.reload(function (json) {
                         if ($("#row_" + id).length) {
                             $("#row_" + id).flash("yellow", 5000);
+                            // SE AGREGA IMPRESION AUTOMATICA BY Edgar Yagual
+                            var d = dt.DataTable().row( $("#row_" + id)).data();
+                            PurchaseInvoiceViewModal(d);
                         }
                     }, false);
+
                 }, function (response) {
                     $btn.button("reset");
                     $(":input[type=\"button\"]").prop("disabled", false);

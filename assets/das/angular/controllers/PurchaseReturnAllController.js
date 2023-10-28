@@ -457,6 +457,11 @@ window.angularApp.controller("PurchaseReturnAllController", [
                         dt.DataTable().ajax.reload(function (json) {
                             if ($("#row_" + response.data.id).length) {
                                 $("#row_" + response.data.id).flash("yellow", 5000);
+
+                                // SE AGREGA IMPRESION AUTOMATICA BY Edgar Yagual
+                                var d = dt.DataTable().row($("#row_" + response.data.id)).data();
+                                PurchaseReturnAllViewModal(d);
+
                             }
                         }, false);
                         $("#reset").trigger("click");
@@ -481,6 +486,7 @@ window.angularApp.controller("PurchaseReturnAllController", [
             e.stopPropagation();
             e.preventDefault();
             var d = dt.DataTable().row($(this).closest("tr")).data();
+            // console.log(d);
             var $tag = $(this);
             var $btn = $tag.button("loading");
             PurchaseReturnAllViewModal(d);
