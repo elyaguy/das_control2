@@ -392,7 +392,7 @@ window.angularApp.controller("PurchaseReturnAllController", [
                 }
                 window._.map($scope.productsArray, function (sitem) {
                     if (sitem.id == item.id) {
-                        var stockQuantity = sitem.item_quantity - sitem.total_sell;
+                        var stockQuantity = sitem.item_quantity - sitem.total_sell - sitem.return_quantity;
                         if (stockQuantity < quantity) {
                             window.toastr.warning('Out of Stock', "ADVERTENCIA!");
                             stopProcess = true;

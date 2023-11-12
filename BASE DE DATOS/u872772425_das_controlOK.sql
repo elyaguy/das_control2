@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 11-11-2023 a las 21:40:04
+-- Tiempo de generación: 12-11-2023 a las 02:17:24
 -- Versión del servidor: 10.5.19-MariaDB-cll-lve
 -- Versión de PHP: 7.2.34
 
@@ -9417,7 +9417,6 @@ CREATE TABLE `login_logs` (
 --
 
 INSERT INTO `login_logs` (`id`, `user_id`, `username`, `ip`, `status`, `created_at`) VALUES
-(758, 2, 'admin@controldas.com', '2800:430:1208:8700:df53:ca3a:5823:8417', 'success', '2023-10-12 18:42:26'),
 (759, 5, 'HERNAN', '2800:bf0:2902:108e:96b1:41f:5c31:f0db', 'success', '2023-10-12 20:03:46'),
 (760, 12, 'ERIKA', '190.99.77.62', 'success', '2023-10-13 14:29:16'),
 (761, 2, 'admin@controldas.com', '2800:430:b207:b79c:1ff:2df6:f97:7aea', 'success', '2023-10-13 19:54:01'),
@@ -9533,7 +9532,9 @@ INSERT INTO `login_logs` (`id`, `user_id`, `username`, `ip`, `status`, `created_
 (871, 2, 'admin@controldas.com', '2800:bf0:a821:1122:68f1:5560:293:910', 'success', '2023-11-10 19:32:39'),
 (872, 2, 'admin@controldas.com', '2800:430:1289:7bf4:5d05:d0d9:60db:3c78', 'success', '2023-11-10 19:51:10'),
 (873, 2, 'admin@controldas.com', '2800:430:1289:7bf4:5d05:d0d9:60db:3c78', 'success', '2023-11-10 21:09:11'),
-(874, 15, 'NICOLASP', '190.99.77.62', 'success', '2023-11-11 20:10:54');
+(874, 15, 'NICOLASP', '190.99.77.62', 'success', '2023-11-11 20:10:54'),
+(875, 2, 'admin@controldas.com', '157.100.54.186', 'success', '2023-11-11 21:43:01'),
+(876, 15, 'NICOLASP', '2a09:bac3:3039:db9::15e:33', 'success', '2023-11-12 00:21:32');
 
 -- --------------------------------------------------------
 
@@ -26778,7 +26779,7 @@ CREATE TABLE `users` (
 
 INSERT INTO `users` (`id`, `group_id`, `username`, `email`, `mobile`, `dob`, `sex`, `password`, `raw_password`, `pass_reset_code`, `reset_code_time`, `login_try`, `last_login`, `ip`, `address`, `preference`, `user_image`, `fk_id`, `created_at`, `updated_at`) VALUES
 (1, 1, 'EDGAR YAGUAL', 'eye_layla@hotmail.com', '0969237302', '1990-09-08', 'M', 'c4221155b59e510664712215ed60e476', 'Administrator2023DAS', '', NULL, 0, '2023-10-05 12:24:40', '2800:bf0:82d2:1038:dd8e:2945:fd2e:bef7', NULL, 'a:4:{s:10:\"base_color\";s:6:\"purple\";s:14:\"pos_side_panel\";s:4:\"left\";s:11:\"pos_pattern\";s:15:\"brick-color.jpg\";s:8:\"language\";s:2:\"es\";}', '/edgartm.jpg', NULL, '2019-12-14 22:27:47', '2019-07-03 22:29:20'),
-(2, 4, 'DAVID POLO', 'admin@controldas.com', 'DAVID POLO', '1990-01-01', 'M', 'a618780a5f901e3d81b8b0bfe0281385', 'ControlAdmin1', '', NULL, 0, '2023-11-10 16:09:11', '190.99.77.62', NULL, 'a:4:{s:8:\"language\";s:2:\"es\";s:10:\"base_color\";s:6:\"purple\";s:14:\"pos_side_panel\";s:5:\"right\";s:11:\"pos_pattern\";s:9:\"space.jpg\";}', '', 0, '2019-12-14 22:27:47', '2019-07-02 16:28:15'),
+(2, 4, 'DAVID POLO', 'admin@controldas.com', 'DAVID POLO', '1990-01-01', 'M', 'a618780a5f901e3d81b8b0bfe0281385', 'ControlAdmin1', '', NULL, 0, '2023-11-11 16:43:01', '2800:430:1285:6784:e420:f164:99a7:5bfe', NULL, 'a:4:{s:8:\"language\";s:2:\"es\";s:10:\"base_color\";s:6:\"purple\";s:14:\"pos_side_panel\";s:5:\"right\";s:11:\"pos_pattern\";s:9:\"space.jpg\";}', '', 0, '2019-12-14 22:27:47', '2019-07-02 16:28:15'),
 (3, 2, 'Cashier', 'cashier@controldas.com', '0113743700', '1990-01-01', 'M', 'a618780a5f901e3d81b8b0bfe0281385', 'ControlAdmin1', '', NULL, 0, '2023-06-13 14:01:19', '::1', NULL, 'a:4:{s:10:\"base_color\";s:4:\"blue\";s:14:\"pos_side_panel\";s:4:\"left\";s:11:\"pos_pattern\";s:13:\"brickwall.jpg\";s:8:\"language\";s:2:\"es\";}', '', NULL, '2019-12-14 22:27:47', '2019-07-02 21:35:07'),
 (4, 3, 'Salesman', 'salesman@controldas.com', '1234567890', '0000-00-00', 'M', 'a618780a5f901e3d81b8b0bfe0281385', 'ControlAdmin1', NULL, NULL, 0, '2023-06-14 21:58:20', '127.0.0.1', NULL, 'a:1:{s:8:\"language\";s:2:\"es\";}', '', NULL, '2023-06-14 21:57:48', NULL),
 (5, 8, 'HERNAN EIVAR', 'hernaneivar@controldas.com', 'HERNAN', '0000-00-00', 'M', '314a4e69e0cf213e0d9cfd14a5ead1f2', '0983171925', NULL, NULL, 0, '2023-11-09 12:55:28', '190.99.77.62', NULL, 'a:1:{s:8:\"language\";s:2:\"es\";}', '', 0, '2023-07-20 14:52:36', NULL),
@@ -26791,7 +26792,7 @@ INSERT INTO `users` (`id`, `group_id`, `username`, `email`, `mobile`, `dob`, `se
 (12, 5, 'ERIKA ', 'JIDN@N.COM', 'ERIKA', '0000-00-00', 'M', '7839227bbb883168ec1d33e4ebaf4031', '0979214979', NULL, NULL, 0, '2023-10-25 18:01:30', '190.99.77.62', NULL, 'a:1:{s:8:\"language\";s:2:\"en\";}', '', 0, '2023-08-25 20:02:23', NULL),
 (13, 5, 'DIMENICA ', 'DOJDN@JDJ.COM', 'DOMENICA', '0000-00-00', 'M', 'b99049bfa387f413a41fbe1fe6101deb', '0987312878', NULL, NULL, 0, '2023-09-25 11:56:14', '2800:370:db:e5a0:60d6:213b:8a41:8105', NULL, 'a:1:{s:8:\"language\";s:2:\"en\";}', '', 0, '2023-08-25 20:09:07', NULL),
 (14, 6, 'LEA MAS', 'LEA MAS @KSL.COM', 'LEA MAS', '0000-00-00', 'M', '9ae7f903342d4c83c4c44c3d503d65e1', '0992886320', NULL, NULL, 0, '2023-11-09 15:05:39', '190.99.77.62', NULL, 'a:1:{s:8:\"language\";s:2:\"en\";}', '', 2, '2023-08-31 07:37:04', NULL),
-(15, 4, 'NICOLAS POLO', 'ASJSJ@NCN.COM', 'NICOLASP', '0000-00-00', 'M', 'e8b71f51b9117bc631cc6b408196864d', 'NICOLASP', NULL, NULL, 0, '2023-11-11 15:10:54', '190.99.77.62', NULL, 'a:1:{s:8:\"language\";s:2:\"en\";}', '', 0, '2023-09-14 10:24:33', NULL);
+(15, 4, 'NICOLAS POLO', 'ASJSJ@NCN.COM', 'NICOLASP', '0000-00-00', 'M', 'e8b71f51b9117bc631cc6b408196864d', 'NICOLASP', NULL, NULL, 0, '2023-11-11 19:21:32', '2a09:bac2:3039:1791::259:1a', NULL, 'a:1:{s:8:\"language\";s:2:\"en\";}', '', 0, '2023-09-14 10:24:33', NULL);
 
 -- --------------------------------------------------------
 
@@ -27701,7 +27702,7 @@ ALTER TABLE `loan_payments`
 -- AUTO_INCREMENT de la tabla `login_logs`
 --
 ALTER TABLE `login_logs`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=875;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=877;
 
 --
 -- AUTO_INCREMENT de la tabla `mail_sms_tag`

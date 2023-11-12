@@ -238,7 +238,7 @@ function (
         }).
         then(function(response) {
             window._.map(response.data.products, function (item) {
-                item.quantity = item.item_quantity-item.total_sell;
+                item.quantity = item.item_quantity-item.total_sell-item.return_quantity;
                 $scope.productsArray.push(item);
             });
             $scope.totalStockItem = window._.size($scope.productsArray);
@@ -369,7 +369,7 @@ function (
             }
             window._.map($scope.productsArray, function (sitem) {
                 if (sitem.id == item.id) {
-                    var stockQuantity = sitem.item_quantity - sitem.total_sell;
+                    var stockQuantity = sitem.item_quantity - sitem.total_sell - sitem.return_quantity;
                     if (stockQuantity < quantity) {
                         window.toastr.warning('Out of Stock', "ADVERTENCIA!");
                         stopProcess = true;

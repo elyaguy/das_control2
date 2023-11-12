@@ -172,7 +172,7 @@ if ($request->server['REQUEST_METHOD'] == 'POST' && isset($request->post['action
       $statement = db()->prepare("SELECT * FROM `purchase_item` WHERE `id` = ?");
       $statement->execute(array($id));
       $item_info = $statement->fetch(PDO::FETCH_ASSOC);
-      $quantity_exist = $item_info['item_quantity'] - $item_info['total_sell'];
+      $quantity_exist = $item_info['item_quantity'] - $item_info['total_sell'] - $item_info['return_quantity'];
       if ($item_quantity > $quantity_exist) {
         $item_quantity = $quantity_exist;
       }
