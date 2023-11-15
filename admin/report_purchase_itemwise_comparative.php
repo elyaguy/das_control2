@@ -138,10 +138,10 @@ include ("left_sidebar.php") ;
                       <?php echo trans('label_created_at'); ?>
                     </th>
                     <th class="w-25">
-                      <?php trans('label_supplier'); ?>
+                      <?php echo trans('label_supplier'); ?>
                     </th>
                     <th class="w-25">
-                      <?php trans('label_product'); ?>
+                      <?php echo trans('label_product'); ?>
                     </th>
                     <th class="w-5">
                       <?php echo trans('label_cost_value'); ?>
