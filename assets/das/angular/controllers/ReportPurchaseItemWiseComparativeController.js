@@ -132,10 +132,17 @@ window.angularApp.controller("ReportPurchaseItemWiseComparativeController", [
                         $(td).attr('data-title', $("#report-report-list thead tr th:eq(11)").html());
                     }
                 },
+                {
+                    "targets": [12],
+                    'createdCell': function (td, cellData, rowData, row, col) {
+                        $(td).attr('data-title', $("#report-report-list thead tr th:eq(12)").html());
+                    }
+                },
             ],
             "aoColumns": [
                 { data: "item_id" },
                 { data: "created_at" },
+                { data: "sup_name" },
                 { data: "item_name" },
                 { data: "item_purchase_price" },
                 { data: "item_quantity_purchase" },
@@ -172,29 +179,17 @@ window.angularApp.controller("ReportPurchaseItemWiseComparativeController", [
 
                 // Total over all pages at column 4
                 pageTotal = api
-                    .column(4, { page: "current" })
-                    .data()
-                    .reduce(function (a, b) {
-                        return intVal(a) + intVal(b);
-                    }, 0);
-                // Update footer
-                $(api.column(4).footer()).html(
-                    window.formatDecimal(pageTotal, 2)
-                );
-
-                // Total over all pages at column 5
-                pageTotal = api
                     .column(5, { page: "current" })
                     .data()
                     .reduce(function (a, b) {
                         return intVal(a) + intVal(b);
                     }, 0);
                 // Update footer
-                $(api.column(5).footer()).html('$ ' +
+                $(api.column(5).footer()).html(
                     window.formatDecimal(pageTotal, 2)
                 );
 
-                // Total over all pages at column 6
+                // Total over all pages at column 5
                 pageTotal = api
                     .column(6, { page: "current" })
                     .data()
@@ -202,11 +197,11 @@ window.angularApp.controller("ReportPurchaseItemWiseComparativeController", [
                         return intVal(a) + intVal(b);
                     }, 0);
                 // Update footer
-                $(api.column(6).footer()).html(
+                $(api.column(6).footer()).html('$ ' +
                     window.formatDecimal(pageTotal, 2)
                 );
 
-                // Total over all pages at column 7
+                // Total over all pages at column 6
                 pageTotal = api
                     .column(7, { page: "current" })
                     .data()
@@ -214,11 +209,11 @@ window.angularApp.controller("ReportPurchaseItemWiseComparativeController", [
                         return intVal(a) + intVal(b);
                     }, 0);
                 // Update footer
-                $(api.column(7).footer()).html('$ ' +
+                $(api.column(7).footer()).html(
                     window.formatDecimal(pageTotal, 2)
                 );
 
-                // Total over all pages at column 8
+                // Total over all pages at column 7
                 pageTotal = api
                     .column(8, { page: "current" })
                     .data()
@@ -226,7 +221,7 @@ window.angularApp.controller("ReportPurchaseItemWiseComparativeController", [
                         return intVal(a) + intVal(b);
                     }, 0);
                 // Update footer
-                $(api.column(8).footer()).html(
+                $(api.column(8).footer()).html('$ ' +
                     window.formatDecimal(pageTotal, 2)
                 );
 
@@ -238,11 +233,11 @@ window.angularApp.controller("ReportPurchaseItemWiseComparativeController", [
                         return intVal(a) + intVal(b);
                     }, 0);
                 // Update footer
-                $(api.column(9).footer()).html('$ ' +
+                $(api.column(9).footer()).html(
                     window.formatDecimal(pageTotal, 2)
                 );
 
-                // Total over all pages at column 5
+                // Total over all pages at column 8
                 pageTotal = api
                     .column(10, { page: "current" })
                     .data()
@@ -250,10 +245,9 @@ window.angularApp.controller("ReportPurchaseItemWiseComparativeController", [
                         return intVal(a) + intVal(b);
                     }, 0);
                 // Update footer
-                $(api.column(10).footer()).html(
+                $(api.column(10).footer()).html('$ ' +
                     window.formatDecimal(pageTotal, 2)
                 );
-
 
                 // Total over all pages at column 5
                 pageTotal = api
@@ -263,7 +257,20 @@ window.angularApp.controller("ReportPurchaseItemWiseComparativeController", [
                         return intVal(a) + intVal(b);
                     }, 0);
                 // Update footer
-                $(api.column(11).footer()).html('$ ' +
+                $(api.column(11).footer()).html(
+                    window.formatDecimal(pageTotal, 2)
+                );
+
+
+                // Total over all pages at column 5
+                pageTotal = api
+                    .column(12, { page: "current" })
+                    .data()
+                    .reduce(function (a, b) {
+                        return intVal(a) + intVal(b);
+                    }, 0);
+                // Update footer
+                $(api.column(12).footer()).html('$ ' +
                     window.formatDecimal(pageTotal, 2)
                 );
 

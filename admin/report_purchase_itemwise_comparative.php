@@ -115,7 +115,7 @@ include ("left_sidebar.php") ;
           <div class="box-body">
             <div class="table-responsive">  
               <?php
-                $print_columns = '0,1,2,3,4,5,6,7,8,9,10,11';
+                $print_columns = '0,1,2,3,4,5,6,7,8,9,10,11,12';
                 // if (user_group_id() != 1) {
                 //   if (! has_permission('access', 'show_purchase_price')) {
                 //     $print_columns = str_replace('4,', '', $print_columns);
@@ -138,8 +138,10 @@ include ("left_sidebar.php") ;
                       <?php echo trans('label_created_at'); ?>
                     </th>
                     <th class="w-25">
-                      <?php echo sprintf(trans('label_name'), 
-                      trans('label_product')); ?>
+                      <?php trans('label_supplier'); ?>
+                    </th>
+                    <th class="w-25">
+                      <?php trans('label_product'); ?>
                     </th>
                     <th class="w-5">
                       <?php echo trans('label_cost_value'); ?>
@@ -172,6 +174,7 @@ include ("left_sidebar.php") ;
                 </thead>
                 <tfoot>
                   <tr class="bg-gray">
+                    <th></th>
                     <th></th>
                     <th></th>
                     <th></th>

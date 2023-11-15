@@ -34,7 +34,7 @@ $where_query .= date_range_filter2($from, $to);
 
 
 // DB table to use
-$table = "(SELECT purchase_info.*, 
+$table = "(SELECT purchase_info.*, sup_name,
 purchase_item.item_id, item_name, item_purchase_price, SUM(item_quantity) item_quantity_purchase, SUM(purchase_item.item_total) AS total_purchase_price, 
 SUM(return_quantity) item_quantity_return, SUM(return_quantity * item_purchase_price) AS total_purchase_price_return,
 selling_item.selling_quantity_item AS item_quantity_selling, item_purchase_price * selling_item.selling_quantity_item AS total_paid_amount,
@@ -45,6 +45,7 @@ FROM purchase_item
       LEFT JOIN purchase_price ON (purchase_item.invoice_id = purchase_price.invoice_id)
       LEFT JOIN product_to_store ON (purchase_item.item_id = product_to_store.product_id AND purchase_item.store_id = product_to_store.store_id)
       LEFT JOIN (SELECT item_id, store_id, SUM(item_quantity- return_quantity) selling_quantity_item FROM selling_item GROUP BY item_id, store_id) AS selling_item ON (purchase_item.item_id = selling_item.item_id AND purchase_item.store_id = selling_item.store_id)
+      LEFT JOIN suppliers ON (purchase_info.sup_id = suppliers.sup_id)
 
       WHERE $where_query
       GROUP BY purchase_item.item_id
@@ -59,6 +60,14 @@ $columns = array(
       'dt' => 'created_at',
       'formatter' => function( $d, $row ) {
         return date('Y-m-d', strtotime($row['created_at']));
+      }
+    ),
+    array( 
+      'db' => 'sup_name',  
+      'dt' => 'sup_name',
+      'formatter' => function( $d, $row ) {
+        return '<a>' . $row['sup_name'] . '</a>';
+        // return '<a href="supplier.php?sup_id=' . $row['sup_name'] . '&sup_name=' . $row['sup_name'] . '">' . $row['sup_name'] . '</a>';
       }
     ),
     array( 
