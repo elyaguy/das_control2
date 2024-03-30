@@ -648,6 +648,18 @@ if (isset($request->get['invoice_id']) && isset($request->get['action_type']) &&
 
   $payment_model = registry()->get('loader')->model('payment');
   $payments = $payment_model->getPurchasePayments($invoice_id, store_id());
+
+
+    // // Imprimir en la consola del navegador
+    // echo "<script>";
+    // echo "console.log('Invoice ID:', " . json_encode($invoice_id) . ");";
+    // echo "console.log('Invoice:', " . json_encode($invoice) . ");";
+    // echo "console.log('Invoice Items:', " . json_encode($invoice_items) . ");";
+    // echo "console.log('Returns:', " . json_encode($returns) . ");";
+    // echo "console.log('Payments:', " . json_encode($payments) . ");";
+    // echo "</script>";
+
+
   include ROOT . '/_inc/template/purchase_invoice.php';
   exit();
 }

@@ -717,7 +717,7 @@ window.angularApp.controller("PurchaseController", [
             payableAmount = (parseFloat(total) + parseFloat($scope.taxInput) + parseFloat($scope.shippingAmount) + parseFloat($scope.othersCharge)) - parseFloat($scope.discountAmount);
             $scope.$applyAsync(function () {
                 $scope.payableAmount = payableAmount;
-                $scope.paidAmount = payableAmount;
+                //$scope.paidAmount = payableAmount;
             });
             $scope.addPaidAmount();
         };

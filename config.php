@@ -17,7 +17,7 @@ if ($supportOk) {
 	$dirOk2 = 'das/';
 	$sql_details2 = array(
 		'host' => 'localhost',
-		'db' => 'das_control',
+		'db' => 'u872772425_das_control',
 		'user' => 'root',
 		'pass' => '',
 		'port' => '3306'

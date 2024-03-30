@@ -3,8 +3,8 @@
 -- https://www.phpmyadmin.net/
 --
 -- Servidor: 127.0.0.1:3306
--- Tiempo de generación: 15-11-2023 a las 03:39:39
--- Versión del servidor: 10.5.19-MariaDB-cll-lve
+-- Tiempo de generación: 28-03-2024 a las 21:03:49
+-- Versión del servidor: 10.11.7-MariaDB-cll-lve
 -- Versión de PHP: 7.2.34
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
@@ -43,14 +43,14 @@ CREATE TABLE `bank_accounts` (
   `total_transfer_to_other` decimal(25,4) NOT NULL DEFAULT 0.0000,
   `created_at` datetime DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `bank_accounts`
 --
 
 INSERT INTO `bank_accounts` (`id`, `account_name`, `account_details`, `initial_balance`, `account_no`, `contact_person`, `phone_number`, `opening_date`, `url`, `total_deposit`, `total_withdraw`, `total_transfer_from_other`, `total_transfer_to_other`, `created_at`, `updated_at`) VALUES
-(1, 'Default Account', 'This is a default account for any store', '0.0000', '1234567890', 'iAngryboy', '+880133333333', '2019-05-15 08:27:03', 'https://controldas.com', '312877.5000', '0.0000', '0.0000', '0.0000', '2019-01-16 13:23:03', '2019-07-02 11:56:57');
+(1, 'Default Account', 'This is a default account for any store', '0.0000', '1234567890', 'iAngryboy', '+880133333333', '2019-05-15 08:27:03', 'https://controldas.com', '341003.1500', '0.0000', '0.0000', '0.0000', '2019-01-16 13:23:03', '2019-07-02 11:56:57');
 
 -- --------------------------------------------------------
 
@@ -68,7 +68,7 @@ CREATE TABLE `bank_account_to_store` (
   `transfer_to_other` decimal(25,4) NOT NULL DEFAULT 0.0000,
   `status` tinyint(3) UNSIGNED NOT NULL DEFAULT 1,
   `sort_order` int(11) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `bank_account_to_store`
@@ -76,10 +76,12 @@ CREATE TABLE `bank_account_to_store` (
 
 INSERT INTO `bank_account_to_store` (`ba2s`, `store_id`, `account_id`, `deposit`, `withdraw`, `transfer_from_other`, `transfer_to_other`, `status`, `sort_order`) VALUES
 (1, 1, 1, '0.0000', '0.0000', '0.0000', '0.0000', 1, 0),
-(2, 2, 1, '81800.3500', '139504.1000', '0.0000', '0.0000', 1, 0),
+(2, 2, 1, '85104.4000', '140119.9000', '0.0000', '0.0000', 1, 0),
 (4, 3, 1, '37459.4500', '35653.8000', '0.0000', '0.0000', 1, 0),
 (5, 4, 1, '0.0000', '0.0000', '0.0000', '0.0000', 1, 0),
-(6, 5, 1, '7782.0000', '10677.8000', '0.0000', '0.0000', 1, 0);
+(6, 5, 1, '7782.0000', '10677.8000', '0.0000', '0.0000', 1, 0),
+(7, 6, 1, '317.8800', '23887.9200', '0.0000', '0.0000', 1, 0),
+(8, 7, 1, '0.0000', '0.0000', '0.0000', '0.0000', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -106,7 +108,7 @@ CREATE TABLE `bank_transaction_info` (
   `created_by` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `created_at` datetime DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `bank_transaction_info`
@@ -2405,7 +2407,164 @@ INSERT INTO `bank_transaction_info` (`info_id`, `store_id`, `transaction_type`, 
 (2283, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2283', '22023/00001534', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 15, '2023-11-14 14:27:33', NULL),
 (2284, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2284', '22023/00001535', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 15, '2023-11-14 16:15:53', NULL),
 (2285, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2285', '22023/00001536', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 15, '2023-11-14 16:41:54', NULL),
-(2286, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2286', '22023/00001537', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 15, '2023-11-14 16:56:56', NULL);
+(2286, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2286', '22023/00001537', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 15, '2023-11-14 16:56:56', NULL),
+(2287, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2287', '22023/00001538', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 15, '2023-11-15 11:19:37', NULL),
+(2288, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2288', '22023/00001539', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 15, '2023-11-15 11:40:22', NULL),
+(2289, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2289', '22023/00001540', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 15, '2023-11-15 12:25:12', NULL),
+(2290, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2290', '22023/00001541', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 15, '2023-11-15 12:35:33', NULL),
+(2291, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2291', '22023/00001542', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 15, '2023-11-15 12:39:26', NULL),
+(2292, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2292', '22023/00001543', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 15, '2023-11-15 13:18:07', NULL),
+(2293, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2293', '22023/00001544', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 15, '2023-11-15 13:29:47', NULL),
+(2294, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2294', '22023/00001545', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 15, '2023-11-15 13:32:46', NULL),
+(2295, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2295', '22023/00001546', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 15, '2023-11-15 14:39:47', NULL),
+(2296, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2296', '22023/00001547', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 15, '2023-11-15 14:48:22', NULL),
+(2297, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2297', '22023/00001548', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 15, '2023-11-15 15:38:14', NULL),
+(2298, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2298', '22023/00001549', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 15, '2023-11-15 16:07:02', NULL),
+(2299, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2299', '22023/00001550', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 15, '2023-11-15 16:10:26', NULL),
+(2300, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2300', '22023/00001551', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 15, '2023-11-15 16:14:56', NULL),
+(2301, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2301', '22023/00001552', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 15, '2023-11-15 17:07:27', NULL),
+(2302, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2302', '22023/00001553', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 15, '2023-11-15 17:09:12', NULL),
+(2303, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2303', '22023/00001554', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 15, '2023-11-16 13:17:34', NULL),
+(2304, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2304', '22023/00001555', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 15, '2023-11-16 13:29:13', NULL),
+(2305, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2305', '22023/00001556', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 15, '2023-11-16 14:12:57', NULL),
+(2306, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2306', '22023/00001557', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 15, '2023-11-16 14:59:33', NULL),
+(2307, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2307', '22023/00001558', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 15, '2023-11-16 15:39:46', NULL),
+(2308, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2308', '22023/00001559', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 15, '2023-11-16 16:39:40', NULL),
+(2309, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2309', '22023/00001560', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 15, '2023-11-16 17:18:21', NULL),
+(2310, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2310', '22023/00001561', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 15, '2023-11-17 11:17:44', NULL),
+(2311, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2311', '22023/00001562', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 15, '2023-11-17 13:02:47', NULL),
+(2312, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2312', '22023/00001563', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 15, '2023-11-17 13:13:17', NULL),
+(2313, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2313', '22023/00001564', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 15, '2023-11-18 11:45:33', NULL),
+(2314, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2314', '22023/00001565', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 12, '2023-11-18 12:01:03', NULL),
+(2315, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2315', '22023/00001566', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 12, '2023-11-18 12:09:03', NULL),
+(2316, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2316', '22023/00001567', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 15, '2023-11-18 12:55:51', NULL),
+(2317, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2317', '22023/00001568', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 15, '2023-11-18 13:46:03', NULL),
+(2318, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2318', '22023/00001569', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 15, '2023-11-20 11:50:20', NULL),
+(2319, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2319', '22023/00001570', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 15, '2023-11-20 15:58:47', NULL),
+(2320, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2320', '22023/00001571', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 15, '2023-11-20 16:53:54', NULL),
+(2321, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2321', '22023/00001572', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 15, '2023-11-20 17:12:47', NULL),
+(2322, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2322', '22023/00001573', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 15, '2023-11-21 09:52:47', NULL),
+(2323, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2323', '22023/00001574', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 15, '2023-11-21 11:09:43', NULL),
+(2324, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2324', '22023/00001575', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 15, '2023-11-21 11:32:33', NULL),
+(2325, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2325', '22023/00001576', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 15, '2023-11-21 12:49:55', NULL),
+(2326, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2326', '22023/00001577', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 15, '2023-11-21 12:53:04', NULL);
+INSERT INTO `bank_transaction_info` (`info_id`, `store_id`, `transaction_type`, `is_substract`, `is_hide`, `account_id`, `source_id`, `exp_category_id`, `ref_no`, `invoice_id`, `title`, `details`, `from_account_id`, `status`, `image`, `created_by`, `created_at`, `updated_at`) VALUES
+(2327, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2327', '22023/00001578', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 15, '2023-11-21 13:16:55', NULL),
+(2328, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2328', '22023/00001579', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 15, '2023-11-21 15:59:12', NULL),
+(2329, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2329', '22023/00001580', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 15, '2023-11-21 16:47:51', NULL),
+(2330, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2330', '22023/00001581', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 15, '2023-11-21 17:05:52', NULL),
+(2331, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2331', '22023/00001582', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 15, '2023-11-21 17:35:04', NULL),
+(2332, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2332', '22023/00001583', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 15, '2023-11-22 09:39:46', NULL),
+(2333, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2333', '22023/00001584', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 15, '2023-11-22 09:54:40', NULL),
+(2334, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2334', '22023/00001585', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 15, '2023-11-22 16:08:04', NULL),
+(2335, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2335', '22023/00001586', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 15, '2023-11-22 16:32:30', NULL),
+(2336, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2336', '22023/00001587', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 15, '2023-11-22 17:34:06', NULL),
+(2337, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2337', '22023/00001588', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 15, '2023-11-23 10:53:06', NULL),
+(2338, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2338', '22023/00001589', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 15, '2023-11-23 11:50:58', NULL),
+(2339, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2339', '22023/00001590', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 15, '2023-11-23 13:27:00', NULL),
+(2340, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2340', '22023/00001591', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 15, '2023-11-24 09:40:17', NULL),
+(2341, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2341', '22023/00001592', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 15, '2023-11-24 11:58:18', NULL),
+(2342, 2, 'withdraw', 0, 0, 1, NULL, 9, 'W2342', 'CEasy.', 'Debit for Product Purchase', 'Supplier name: EDIPCENTRO', NULL, 1, 'NULL', 15, '2023-11-24 13:41:21', NULL),
+(2343, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2343', '22023/00001593', 'Deposit for selling', 'Customer name: FLORY TORRES', NULL, 1, 'NULL', 15, '2023-11-24 13:43:25', NULL),
+(2344, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2344', '22023/00001594', 'Deposit for selling', 'Customer name: JULIO CAIZA ', NULL, 1, 'NULL', 12, '2023-11-24 16:30:28', NULL),
+(2345, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2345', '22023/00001595', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 12, '2023-11-24 16:58:59', NULL),
+(2346, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2346', '22023/00001596', 'Deposit for selling', 'Customer name: PAMELA DEL ROSARIO CHIMBA MAIGUASHIA', NULL, 1, 'NULL', 12, '2023-11-28 13:43:12', NULL),
+(2347, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2347', '22023/00001597', 'Deposit for selling', 'Customer name: ELIZABETH LOPEZ ', NULL, 1, 'NULL', 12, '2023-11-28 16:13:18', NULL),
+(2348, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2348', '22023/00001598', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 12, '2023-11-28 16:32:39', NULL),
+(2349, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2349', '22023/00001599', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 12, '2023-11-29 10:24:23', NULL),
+(2350, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2350', '22023/00001600', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 12, '2023-11-29 12:48:24', NULL),
+(2351, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2351', '22023/00001601', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 12, '2023-11-30 13:31:06', NULL),
+(2352, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2352', '22023/00001602', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 12, '2023-11-30 17:13:38', NULL),
+(2353, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2353', '22023/00001603', 'Deposit for selling', 'Customer name: MARIA AVILA', NULL, 1, 'NULL', 12, '2023-11-30 17:43:00', NULL),
+(2354, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2354', '22023/00001604', 'Deposit for selling', 'Customer name: MARIA AVILA', NULL, 1, 'NULL', 12, '2023-11-30 17:43:43', NULL),
+(2355, 2, 'withdraw', 1, 0, 1, 1, 10, 'W2355', '22023/00001604', 'Debit while deleting sell invoice', 'Customer name: MARIA AVILA', NULL, 1, 'NULL', 2, '2023-11-30 18:02:18', NULL),
+(2356, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2356', '22023/00001604', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 12, '2023-12-01 09:36:39', NULL),
+(2357, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2357', '22023/00001605', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 12, '2023-12-01 09:47:33', NULL),
+(2358, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2358', '22023/00001606', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 12, '2023-12-01 10:26:29', NULL),
+(2359, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2359', '22023/00001607', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 12, '2023-12-01 12:45:10', NULL),
+(2360, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2360', '22023/00001608', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 12, '2023-12-02 10:54:28', NULL),
+(2361, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2361', '22023/00001609', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 12, '2023-12-02 11:00:34', NULL),
+(2362, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2362', '22023/00001610', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 12, '2023-12-02 12:09:50', NULL),
+(2363, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2363', '22023/00001611', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 12, '2023-12-02 12:36:31', NULL),
+(2364, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2364', '22023/00001612', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 12, '2023-12-02 14:41:43', NULL),
+(2365, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2365', '22023/00001613', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 12, '2023-12-04 10:07:59', NULL),
+(2366, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2366', '22023/00001614', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 12, '2023-12-04 10:18:48', NULL),
+(2367, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2367', '22023/00001615', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 12, '2023-12-04 11:35:52', NULL),
+(2368, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2368', '22023/00001616', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 12, '2023-12-04 11:36:52', NULL),
+(2369, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2369', '22023/00001617', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 12, '2023-12-04 11:39:03', NULL),
+(2370, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2370', '22023/00001618', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 12, '2023-12-04 16:59:45', NULL),
+(2371, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2371', '22023/00001619', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 12, '2023-12-04 17:04:30', NULL),
+(2372, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2372', '22023/00001620', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 12, '2023-12-04 17:09:13', NULL),
+(2373, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2373', '22023/00001621', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 12, '2023-12-04 17:38:17', NULL),
+(2374, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2374', '22023/00001622', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 12, '2023-12-04 17:40:12', NULL),
+(2375, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2375', '22023/00001623', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 12, '2023-12-05 13:08:50', NULL),
+(2376, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2376', '22023/00001624', 'Deposit for selling', 'Customer name: MARCO ANALUCA', NULL, 1, 'NULL', 12, '2023-12-05 17:44:33', NULL),
+(2377, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2377', '22023/00001625', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 12, '2023-12-05 17:54:35', NULL),
+(2378, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2378', '22023/00001626', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 12, '2023-12-06 10:14:59', NULL),
+(2379, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2379', '22023/00001627', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 12, '2023-12-06 11:00:09', NULL),
+(2380, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2380', '22023/00001628', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 12, '2023-12-06 11:37:19', NULL),
+(2381, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2381', '22023/00001629', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 12, '2023-12-06 11:54:15', NULL),
+(2382, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2382', '22023/00001630', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 12, '2023-12-06 12:47:23', NULL),
+(2383, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2383', '22023/00001631', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 12, '2023-12-07 15:51:05', NULL),
+(2384, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2384', '22023/00001632', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 12, '2023-12-08 12:33:50', NULL),
+(2385, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2385', '22023/00001633', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 12, '2023-12-08 14:03:23', NULL),
+(2386, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2386', '22023/00001634', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 12, '2023-12-08 17:12:53', NULL),
+(2387, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2387', '22023/00001635', 'Deposit for selling', 'Customer name: MARIA DE LOS ANGELES SIMBA', NULL, 1, 'NULL', 12, '2023-12-09 11:42:41', NULL),
+(2388, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2388', '22023/00001636', 'Deposit for selling', 'Customer name: MARIA DE LOS ANGELES SIMBA', NULL, 1, 'NULL', 12, '2023-12-09 11:43:12', NULL),
+(2389, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2389', '22023/00001637', 'Deposit for selling', 'Customer name: MARIA DE LOS ANGELES SIMBA', NULL, 1, 'NULL', 12, '2023-12-09 11:43:51', NULL),
+(2390, 2, 'withdraw', 1, 0, 1, 1, 10, 'W2390', '22023/00001637', 'Debit while deleting sell invoice', 'Customer name: MARIA DE LOS ANGELES SIMBA', NULL, 1, 'NULL', 2, '2023-12-09 20:56:11', NULL),
+(2391, 2, 'withdraw', 1, 0, 1, 1, 10, 'W2391', '22023/00001635', 'Debit while deleting sell invoice', 'Customer name: MARIA DE LOS ANGELES SIMBA', NULL, 1, 'NULL', 2, '2023-12-09 20:56:30', NULL),
+(2392, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2392', '22023/00001637', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 12, '2023-12-11 11:50:51', NULL),
+(2393, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2393', '22023/00001638', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 12, '2023-12-11 12:37:50', NULL),
+(2394, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2394', '22023/00001639', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 12, '2023-12-12 11:36:24', NULL),
+(2395, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2395', '22023/00001640', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 12, '2023-12-12 13:31:48', NULL),
+(2396, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2396', '22023/00001641', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 12, '2023-12-12 14:15:27', NULL),
+(2397, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2397', '22023/00001642', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 12, '2023-12-13 09:23:07', NULL),
+(2398, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2398', '22023/00001643', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 12, '2023-12-13 12:16:32', NULL),
+(2399, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2399', '22023/00001644', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 12, '2023-12-13 12:25:26', NULL),
+(2400, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2400', '22023/00001645', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 12, '2023-12-14 11:38:43', NULL),
+(2401, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2401', '22023/00001646', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 12, '2023-12-20 11:04:11', NULL),
+(2402, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2402', '22023/00001647', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 12, '2023-12-21 10:57:20', NULL),
+(2403, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2403', '22024/00001648', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 12, '2024-01-02 10:28:35', NULL),
+(2404, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2404', '22024/00001649', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 12, '2024-01-03 10:42:34', NULL),
+(2405, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2405', '22024/00001650', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 12, '2024-01-03 17:02:58', NULL),
+(2406, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2406', '22024/00001651', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 12, '2024-01-06 09:20:33', NULL),
+(2407, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2407', '22024/00001652', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 2, '2024-03-23 11:48:25', NULL),
+(2408, 2, 'withdraw', 1, 0, 1, 1, 10, 'W2408', '22024/00001652', 'Debit while deleting sell invoice', 'Customer name: Cliente Final', NULL, 1, 'NULL', 2, '2024-03-23 11:48:59', NULL),
+(2409, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2409', '22024/00001652', 'Deposit for selling', 'Customer name: david polo', NULL, 1, 'NULL', 2, '2024-03-23 11:52:29', NULL),
+(2410, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2410', '22024/00001653', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 2, '2024-03-23 11:55:14', NULL),
+(2411, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2411', '22024/00001654', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 2, '2024-03-23 11:58:04', NULL),
+(2412, 2, 'withdraw', 1, 0, 1, 1, 10, 'W2412', '22024/00001652', 'Debit while deleting sell invoice', 'Customer name: david polo', NULL, 1, 'NULL', 2, '2024-03-23 11:58:29', NULL),
+(2413, 2, 'withdraw', 1, 0, 1, 1, 10, 'W2413', '22024/00001654', 'Debit while deleting sell invoice', 'Customer name: Cliente Final', NULL, 1, 'NULL', 2, '2024-03-23 11:58:34', NULL),
+(2414, 2, 'withdraw', 1, 0, 1, 1, 10, 'W2414', '22024/00001653', 'Debit while deleting sell invoice', 'Customer name: Cliente Final', NULL, 1, 'NULL', 2, '2024-03-23 11:58:39', NULL),
+(2415, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2415', '22024/00001652', 'Deposit for selling', 'Customer name: danyi ', NULL, 1, 'NULL', 2, '2024-03-23 12:00:07', NULL),
+(2416, 2, 'deposit', 0, 0, 1, 1, NULL, 'D2416', '22024/00001653', 'Deposit for selling', 'Customer name: Cliente Final', NULL, 1, 'NULL', 2, '2024-03-23 12:15:26', NULL),
+(2417, 6, 'withdraw', 0, 0, 1, NULL, 9, 'W2417', 'CLATACUNGA 1ra llegada', 'Debit for Product Purchase', 'Supplier name: EDIPCENTRO', NULL, 1, 'NULL', 2, '2024-03-23 13:47:06', NULL),
+(2418, 6, 'withdraw', 0, 0, 1, NULL, 9, 'W2418', 'CLATACUNGA 1RA LLEGADA-2', 'Debit for Product Purchase', 'Supplier name: MARCO BOSMEDIANO', NULL, 1, 'NULL', 2, '2024-03-23 13:49:05', NULL),
+(2419, 6, 'withdraw', 0, 0, 1, NULL, 9, 'W2419', 'CLATACUNGA 2DA LLEGADA', 'Debit for Product Purchase', 'Supplier name: EDIPCENTRO', NULL, 1, 'NULL', 2, '2024-03-25 13:33:06', NULL),
+(2420, 6, 'deposit', 0, 0, 1, 8, NULL, 'D2420', '684884-DAVID POLO 25/03/2024', 'Deposit while stock transferring', '', NULL, 1, 'NULL', 2, '2024-03-25 16:04:09', NULL),
+(2421, 6, 'deposit', 0, 0, 1, 8, NULL, 'D2421', '409860-DAVID POLO 25/03/2024', 'Deposit while stock transferring', '', NULL, 1, 'NULL', 2, '2024-03-25 16:04:16', NULL),
+(2422, 6, 'deposit', 0, 0, 1, 8, NULL, 'D2422', '348836-DAVID POLO 25/03/2024', 'Deposit while stock transferring', '', NULL, 1, 'NULL', 2, '2024-03-25 16:04:21', NULL),
+(2423, 6, 'deposit', 0, 0, 1, 8, NULL, 'D2423', '109144-DAVID POLO 25/03/2024', 'Deposit while stock transferring', '', NULL, 1, 'NULL', 2, '2024-03-25 16:04:26', NULL),
+(2424, 6, 'deposit', 0, 0, 1, 8, NULL, 'D2424', '541878-DAVID POLO 25/03/2024', 'Deposit while stock transferring', '', NULL, 1, 'NULL', 2, '2024-03-25 16:04:31', NULL),
+(2425, 6, 'deposit', 0, 0, 1, 8, NULL, 'D2425', '956400-DAVID POLO 25/03/2024', 'Deposit while stock transferring', '', NULL, 1, 'NULL', 2, '2024-03-25 16:04:36', NULL),
+(2426, 6, 'deposit', 0, 0, 1, 8, NULL, 'D2426', '179266-DAVID POLO 25/03/2024', 'Deposit while stock transferring', '', NULL, 1, 'NULL', 2, '2024-03-25 16:04:42', NULL),
+(2427, 6, 'deposit', 0, 0, 1, 8, NULL, 'D2427', '498869-DAVID POLO 25/03/2024', 'Deposit while stock transferring', '', NULL, 1, 'NULL', 2, '2024-03-25 16:04:46', NULL),
+(2428, 6, 'deposit', 0, 0, 1, 8, NULL, 'D2428', '840717-DAVID POLO 25/03/2024', 'Deposit while stock transferring', '', NULL, 1, 'NULL', 2, '2024-03-25 16:04:52', NULL),
+(2429, 6, 'deposit', 0, 0, 1, 8, NULL, 'D2429', '401255-DAVID POLO 25/03/2024', 'Deposit while stock transferring', '', NULL, 1, 'NULL', 2, '2024-03-25 16:04:57', NULL),
+(2430, 6, 'deposit', 0, 0, 1, 8, NULL, 'D2430', '314983-MUESTRAS ', 'Deposit while stock transferring', '', NULL, 1, 'NULL', 2, '2024-03-27 10:06:38', NULL),
+(2431, 6, 'deposit', 0, 0, 1, 8, NULL, 'D2431', '152582-MUESTRAS ', 'Deposit while stock transferring', '', NULL, 1, 'NULL', 2, '2024-03-27 10:06:44', NULL),
+(2432, 6, 'deposit', 0, 0, 1, 8, NULL, 'D2432', '495043-MUESTRAS ', 'Deposit while stock transferring', '', NULL, 1, 'NULL', 2, '2024-03-27 10:06:59', NULL),
+(2433, 6, 'deposit', 0, 0, 1, 8, NULL, 'D2433', '795550-MUESTRAS ', 'Deposit while stock transferring', '', NULL, 1, 'NULL', 2, '2024-03-27 10:07:03', NULL),
+(2434, 6, 'deposit', 0, 0, 1, 8, NULL, 'D2434', '541088-MUESTRAS ', 'Deposit while stock transferring', '', NULL, 1, 'NULL', 2, '2024-03-27 10:07:49', NULL),
+(2435, 6, 'deposit', 0, 0, 1, 8, NULL, 'D2435', '619660-MUESTRAS ', 'Deposit while stock transferring', '', NULL, 1, 'NULL', 2, '2024-03-27 10:07:53', NULL),
+(2436, 6, 'deposit', 0, 0, 1, 8, NULL, 'D2436', '109169-MUESTRAS ', 'Deposit while stock transferring', '', NULL, 1, 'NULL', 2, '2024-03-27 10:07:58', NULL),
+(2437, 6, 'deposit', 0, 0, 1, 8, NULL, 'D2437', '612796-MUESTRAS ', 'Deposit while stock transferring', '', NULL, 1, 'NULL', 2, '2024-03-27 10:08:04', NULL),
+(2438, 6, 'deposit', 0, 0, 1, 8, NULL, 'D2438', '049823-MUESTRAS ', 'Deposit while stock transferring', '', NULL, 1, 'NULL', 2, '2024-03-27 10:08:09', NULL),
+(2439, 6, 'deposit', 0, 0, 1, 8, NULL, 'D2439', '097474-MUESTRAS ', 'Deposit while stock transferring', '', NULL, 1, 'NULL', 2, '2024-03-27 10:08:14', NULL),
+(2440, 6, 'deposit', 0, 0, 1, 8, NULL, 'D2440', '246269-MUESTRAS ', 'Deposit while stock transferring', '', NULL, 1, 'NULL', 2, '2024-03-27 10:08:24', NULL),
+(2441, 6, 'deposit', 0, 0, 1, 8, NULL, 'D2441', '668295-MUESTRAS ', 'Deposit while stock transferring', '', NULL, 1, 'NULL', 2, '2024-03-27 10:08:29', NULL),
+(2442, 6, 'deposit', 0, 0, 1, 8, NULL, 'D2442', '816001-MUESTRAS ', 'Deposit while stock transferring', '', NULL, 1, 'NULL', 2, '2024-03-27 10:08:34', NULL);
 
 -- --------------------------------------------------------
 
@@ -2419,7 +2578,7 @@ CREATE TABLE `bank_transaction_price` (
   `info_id` int(11) DEFAULT NULL,
   `ref_no` varchar(100) NOT NULL COMMENT 'e.g. Transaction ID, Check No.',
   `amount` decimal(25,4) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `bank_transaction_price`
@@ -4712,7 +4871,163 @@ INSERT INTO `bank_transaction_price` (`price_id`, `store_id`, `info_id`, `ref_no
 (2283, 2, 2283, 'D2283', '54.0000'),
 (2284, 2, 2284, 'D2284', '27.0000'),
 (2285, 2, 2285, 'D2285', '13.0000'),
-(2286, 2, 2286, 'D2286', '27.0000');
+(2286, 2, 2286, 'D2286', '27.0000'),
+(2287, 2, 2287, 'D2287', '27.0000'),
+(2288, 2, 2288, 'D2288', '14.0000'),
+(2289, 2, 2289, 'D2289', '27.0000'),
+(2290, 2, 2290, 'D2290', '27.0000'),
+(2291, 2, 2291, 'D2291', '13.0000'),
+(2292, 2, 2292, 'D2292', '13.0000'),
+(2293, 2, 2293, 'D2293', '27.0000'),
+(2294, 2, 2294, 'D2294', '14.0000'),
+(2295, 2, 2295, 'D2295', '27.0000'),
+(2296, 2, 2296, 'D2296', '27.0000'),
+(2297, 2, 2297, 'D2297', '27.0000'),
+(2298, 2, 2298, 'D2298', '27.0000'),
+(2299, 2, 2299, 'D2299', '37.5000'),
+(2300, 2, 2300, 'D2300', '27.0000'),
+(2301, 2, 2301, 'D2301', '13.0000'),
+(2302, 2, 2302, 'D2302', '27.0000'),
+(2303, 2, 2303, 'D2303', '27.0000'),
+(2304, 2, 2304, 'D2304', '27.0000'),
+(2305, 2, 2305, 'D2305', '27.0000'),
+(2306, 2, 2306, 'D2306', '26.0000'),
+(2307, 2, 2307, 'D2307', '13.0000'),
+(2308, 2, 2308, 'D2308', '13.0000'),
+(2309, 2, 2309, 'D2309', '27.0000'),
+(2310, 2, 2310, 'D2310', '27.0000'),
+(2311, 2, 2311, 'D2311', '27.0000'),
+(2312, 2, 2312, 'D2312', '27.0000'),
+(2313, 2, 2313, 'D2313', '27.0000'),
+(2314, 2, 2314, 'D2314', '13.0000'),
+(2315, 2, 2315, 'D2315', '27.0000'),
+(2316, 2, 2316, 'D2316', '13.0000'),
+(2317, 2, 2317, 'D2317', '32.0000'),
+(2318, 2, 2318, 'D2318', '27.0000'),
+(2319, 2, 2319, 'D2319', '27.0000'),
+(2320, 2, 2320, 'D2320', '27.0000'),
+(2321, 2, 2321, 'D2321', '27.0000'),
+(2322, 2, 2322, 'D2322', '54.0000'),
+(2323, 2, 2323, 'D2323', '27.0000'),
+(2324, 2, 2324, 'D2324', '27.0000'),
+(2325, 2, 2325, 'D2325', '27.0000'),
+(2326, 2, 2326, 'D2326', '27.0000'),
+(2327, 2, 2327, 'D2327', '13.0000'),
+(2328, 2, 2328, 'D2328', '27.0000'),
+(2329, 2, 2329, 'D2329', '13.0000'),
+(2330, 2, 2330, 'D2330', '14.0000'),
+(2331, 2, 2331, 'D2331', '13.0000'),
+(2332, 2, 2332, 'D2332', '13.0000'),
+(2333, 2, 2333, 'D2333', '13.0000'),
+(2334, 2, 2334, 'D2334', '13.0000'),
+(2335, 2, 2335, 'D2335', '27.0000'),
+(2336, 2, 2336, 'D2336', '27.0000'),
+(2337, 2, 2337, 'D2337', '13.0000'),
+(2338, 2, 2338, 'D2338', '13.0000'),
+(2339, 2, 2339, 'D2339', '54.0000'),
+(2340, 2, 2340, 'D2340', '16.0000'),
+(2341, 2, 2341, 'D2341', '13.0000'),
+(2342, 2, 2342, 'W2342', '49.8000'),
+(2343, 2, 2343, 'D2343', '57.8000'),
+(2344, 2, 2344, 'D2344', '27.0000'),
+(2345, 2, 2345, 'D2345', '27.0000'),
+(2346, 2, 2346, 'D2346', '27.0000'),
+(2347, 2, 2347, 'D2347', '13.0000'),
+(2348, 2, 2348, 'D2348', '14.0000'),
+(2349, 2, 2349, 'D2349', '27.0000'),
+(2350, 2, 2350, 'D2350', '27.0000'),
+(2351, 2, 2351, 'D2351', '27.0000'),
+(2352, 2, 2352, 'D2352', '27.0000'),
+(2353, 2, 2353, 'D2353', '13.0000'),
+(2354, 2, 2354, 'D2354', '13.0000'),
+(2355, 2, 2355, 'W2355', '13.0000'),
+(2356, 2, 2356, 'D2356', '16.0000'),
+(2357, 2, 2357, 'D2357', '13.0000'),
+(2358, 2, 2358, 'D2358', '27.0000'),
+(2359, 2, 2359, 'D2359', '14.0000'),
+(2360, 2, 2360, 'D2360', '29.0000'),
+(2361, 2, 2361, 'D2361', '14.0000'),
+(2362, 2, 2362, 'D2362', '27.0000'),
+(2363, 2, 2363, 'D2363', '13.0000'),
+(2364, 2, 2364, 'D2364', '16.0000'),
+(2365, 2, 2365, 'D2365', '27.0000'),
+(2366, 2, 2366, 'D2366', '27.0000'),
+(2367, 2, 2367, 'D2367', '27.0000'),
+(2368, 2, 2368, 'D2368', '27.0000'),
+(2369, 2, 2369, 'D2369', '27.0000'),
+(2370, 2, 2370, 'D2370', '54.0000'),
+(2371, 2, 2371, 'D2371', '27.0000'),
+(2372, 2, 2372, 'D2372', '27.0000'),
+(2373, 2, 2373, 'D2373', '13.0000'),
+(2374, 2, 2374, 'D2374', '27.0000'),
+(2375, 2, 2375, 'D2375', '13.0000'),
+(2376, 2, 2376, 'D2376', '13.0000'),
+(2377, 2, 2377, 'D2377', '13.0000'),
+(2378, 2, 2378, 'D2378', '27.0000'),
+(2379, 2, 2379, 'D2379', '27.0000'),
+(2380, 2, 2380, 'D2380', '16.0000'),
+(2381, 2, 2381, 'D2381', '13.0000'),
+(2382, 2, 2382, 'D2382', '27.0000'),
+(2383, 2, 2383, 'D2383', '27.0000'),
+(2384, 2, 2384, 'D2384', '14.0000'),
+(2385, 2, 2385, 'D2385', '27.0000'),
+(2386, 2, 2386, 'D2386', '27.0000'),
+(2387, 2, 2387, 'D2387', '27.0000'),
+(2388, 2, 2388, 'D2388', '27.0000'),
+(2389, 2, 2389, 'D2389', '27.0000'),
+(2390, 2, 2390, 'W2390', '27.0000'),
+(2391, 2, 2391, 'W2391', '27.0000'),
+(2392, 2, 2392, 'D2392', '16.0000'),
+(2393, 2, 2393, 'D2393', '27.0000'),
+(2394, 2, 2394, 'D2394', '34.0000'),
+(2395, 2, 2395, 'D2395', '29.0000'),
+(2396, 2, 2396, 'D2396', '13.0000'),
+(2397, 2, 2397, 'D2397', '27.0000'),
+(2398, 2, 2398, 'D2398', '34.0000'),
+(2399, 2, 2399, 'D2399', '14.0000'),
+(2400, 2, 2400, 'D2400', '13.0000'),
+(2401, 2, 2401, 'D2401', '16.0000'),
+(2402, 2, 2402, 'D2402', '18.0000'),
+(2403, 2, 2403, 'D2403', '27.0000'),
+(2404, 2, 2404, 'D2404', '14.0000'),
+(2405, 2, 2405, 'D2405', '14.0000'),
+(2406, 2, 2406, 'D2406', '13.0000'),
+(2407, 2, 2407, 'D2407', '154.0000'),
+(2408, 2, 2408, 'W2408', '154.0000'),
+(2409, 2, 2409, 'D2409', '135.0000'),
+(2410, 2, 2410, 'D2410', '164.0000'),
+(2411, 2, 2411, 'D2411', '46.0000'),
+(2412, 2, 2412, 'W2412', '135.0000'),
+(2413, 2, 2413, 'W2413', '46.0000'),
+(2414, 2, 2414, 'W2414', '164.0000'),
+(2415, 2, 2415, 'D2415', '127.0000'),
+(2416, 2, 2416, 'D2416', '12.7500'),
+(2417, 6, 2417, 'W2417', '1773.0000'),
+(2418, 6, 2418, 'W2418', '279.0000'),
+(2419, 6, 2419, 'W2419', '21835.9200'),
+(2420, 6, 2420, 'D2420', '5.8000'),
+(2421, 6, 2421, 'D2421', '4.5000'),
+(2422, 6, 2422, 'D2422', '29.0000'),
+(2423, 6, 2423, 'D2423', '32.2000'),
+(2424, 6, 2424, 'D2424', '4.6000'),
+(2425, 6, 2425, 'D2425', '23.0000'),
+(2426, 6, 2426, 'D2426', '32.2000'),
+(2427, 6, 2427, 'D2427', '9.2000'),
+(2428, 6, 2428, 'D2428', '34.8000'),
+(2429, 6, 2429, 'D2429', '13.5000'),
+(2430, 6, 2430, 'D2430', '9.2000'),
+(2431, 6, 2431, 'D2431', '11.6000'),
+(2432, 6, 2432, 'D2432', '11.6000'),
+(2433, 6, 2433, 'D2433', '9.9600'),
+(2434, 6, 2434, 'D2434', '9.9600'),
+(2435, 6, 2435, 'D2435', '9.9600'),
+(2436, 6, 2436, 'D2436', '9.2000'),
+(2437, 6, 2437, 'D2437', '9.2000'),
+(2438, 6, 2438, 'D2438', '9.2000'),
+(2439, 6, 2439, 'D2439', '9.2000'),
+(2440, 6, 2440, 'D2440', '9.2000'),
+(2441, 6, 2441, 'D2441', '9.2000'),
+(2442, 6, 2442, 'D2442', '11.6000');
 
 -- --------------------------------------------------------
 
@@ -4726,7 +5041,7 @@ CREATE TABLE `boxes` (
   `code_name` varchar(55) DEFAULT NULL,
   `box_details` text DEFAULT NULL,
   `status` tinyint(3) UNSIGNED NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `boxes`
@@ -4750,7 +5065,7 @@ CREATE TABLE `brands` (
   `status` tinyint(3) UNSIGNED NOT NULL DEFAULT 1,
   `created_at` datetime DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB AVG_ROW_LENGTH=16384 DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB AVG_ROW_LENGTH=16384 DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `brands`
@@ -4775,7 +5090,7 @@ CREATE TABLE `categorys` (
   `status` tinyint(3) UNSIGNED NOT NULL DEFAULT 1,
   `created_at` datetime DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `categorys`
@@ -4800,7 +5115,7 @@ CREATE TABLE `colleges` (
   `status` tinyint(3) UNSIGNED NOT NULL DEFAULT 1,
   `created_at` datetime DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `colleges`
@@ -4844,7 +5159,7 @@ CREATE TABLE `courses` (
   `status` tinyint(4) NOT NULL DEFAULT 1,
   `created_at` datetime DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `courses`
@@ -4884,7 +5199,7 @@ CREATE TABLE `currency` (
   `value` decimal(25,4) NOT NULL DEFAULT 1.0000,
   `status` tinyint(3) UNSIGNED NOT NULL DEFAULT 1,
   `created_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `currency`
@@ -4919,7 +5234,7 @@ CREATE TABLE `customers` (
   `raw_password` varchar(100) DEFAULT NULL,
   `created_at` datetime NOT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `customers`
@@ -5332,7 +5647,13 @@ INSERT INTO `customers` (`customer_id`, `customer_document`, `customer_name`, `c
 (403, '0501475552', 'WILMER OCTAVIO', 'wilmeroctavio1980@gmail.com', '0998969134', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-10-26 09:53:07', NULL),
 (404, '0501871214', 'RAUL SALAS PAEZ', 'raulsalapaez@yahoo.es', '0992536338', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-10-26 13:59:20', NULL),
 (405, '0502815442001', 'MARIA BELEN VELAZCO', 'mabelen1986@hotmail.com', '0984277055', '', '1969-12-31', 1, 0, '', '', '', 'AD', 0, NULL, NULL, '2023-10-26 15:37:57', NULL),
-(406, '0550533617', 'LUIS CHARON', 'eripoo_9608@hotmail.com', '0992517968', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-11-09 16:08:11', NULL);
+(406, '0550533617', 'LUIS CHARON', 'eripoo_9608@hotmail.com', '0992517968', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-11-09 16:08:11', NULL),
+(407, '1721265807', 'JULIO CAIZA ', 'cesarcaizaj1986@gmail.com', '0967665431', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-11-24 16:29:43', NULL),
+(408, '0502237068', 'ELIZABETH LOPEZ ', 'adeli20702@gmail.com', '0983921433', '', '1969-12-31', 1, 0, '', 'latacunga', '', 'AD', 0, NULL, NULL, '2023-11-28 16:12:49', NULL),
+(409, '0503075723', 'MARCO ANALUCA', 'marco86alfredo@gmail.com', '0998547031', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-12-05 17:44:24', NULL),
+(410, '0503805798', 'MARIA DE LOS ANGELES SIMBA', 'simbamaria160@gmail.com', '0983605391', '', '1969-12-31', 1, 0, '', 'LATACUNGA', '', 'AD', 0, NULL, NULL, '2023-12-09 11:42:11', NULL),
+(411, '0401380688001', 'david polo', 'renanpolo@hotmail.com', '0989600961', '', '1969-12-31', 1, 0, '', '', '', 'AD', 0, NULL, NULL, '2024-03-23 11:50:33', NULL),
+(412, '1206009647', 'danyi ', 'danyiromeroluna@gmail.com', '096587493', '', '1969-12-31', 1, 0, '', '', '', 'AD', 0, NULL, NULL, '2024-03-23 11:59:20', NULL);
 
 -- --------------------------------------------------------
 
@@ -5348,7 +5669,7 @@ CREATE TABLE `customer_to_store` (
   `due` decimal(25,4) UNSIGNED NOT NULL DEFAULT 0.0000,
   `status` tinyint(3) UNSIGNED NOT NULL DEFAULT 1,
   `sort_order` int(11) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `customer_to_store`
@@ -5768,7 +6089,15 @@ INSERT INTO `customer_to_store` (`c2s_id`, `customer_id`, `store_id`, `balance`,
 (411, 403, 2, '0.0000', '0.0000', 1, 0),
 (412, 404, 2, '0.0000', '0.0000', 1, 0),
 (413, 405, 2, '0.0000', '0.0000', 1, 0),
-(414, 406, 2, '0.0000', '0.0000', 1, 0);
+(414, 406, 2, '0.0000', '0.0000', 1, 0),
+(415, 407, 2, '0.0000', '0.0000', 1, 0),
+(416, 408, 2, '0.0000', '0.0000', 1, 0),
+(417, 409, 2, '0.0000', '0.0000', 1, 0),
+(418, 410, 2, '0.0000', '0.0000', 1, 0),
+(419, 1, 6, '0.0000', '0.0000', 1, 0),
+(420, 411, 2, '0.0000', '0.0000', 1, 0),
+(421, 412, 2, '0.0000', '0.0000', 1, 0),
+(422, 1, 7, '0.0000', '0.0000', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -5790,7 +6119,7 @@ CREATE TABLE `customer_transactions` (
   `created_by` int(10) UNSIGNED NOT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -5812,7 +6141,7 @@ CREATE TABLE `expenses` (
   `created_by` int(11) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -5840,7 +6169,7 @@ CREATE TABLE `expense_categorys` (
   `sort_order` int(11) NOT NULL DEFAULT 0,
   `created_at` datetime DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `expense_categorys`
@@ -5879,7 +6208,7 @@ CREATE TABLE `gift_cards` (
   `balance` decimal(25,4) NOT NULL,
   `expiry` date DEFAULT NULL,
   `created_by` varchar(55) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -5893,7 +6222,7 @@ CREATE TABLE `gift_card_topups` (
   `card_id` varchar(20) NOT NULL,
   `amount` decimal(15,4) NOT NULL,
   `created_by` int(11) NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -5911,7 +6240,7 @@ CREATE TABLE `groups` (
   `status` tinyint(3) UNSIGNED NOT NULL DEFAULT 1,
   `created_at` datetime DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -5931,7 +6260,7 @@ CREATE TABLE `holding_info` (
   `created_by` int(11) NOT NULL DEFAULT 0,
   `created_at` datetime DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -5961,7 +6290,7 @@ CREATE TABLE `holding_item` (
   `item_quantity` int(10) UNSIGNED NOT NULL,
   `item_total` decimal(25,4) NOT NULL DEFAULT 0.0000,
   `created_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -5985,7 +6314,7 @@ CREATE TABLE `holding_price` (
   `shipping_amount` decimal(25,4) NOT NULL DEFAULT 0.0000,
   `others_charge` decimal(25,4) NOT NULL DEFAULT 0.0000,
   `payable_amount` decimal(25,4) DEFAULT 0.0000
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -6016,7 +6345,7 @@ CREATE TABLE `income_sources` (
   `sort_order` int(11) NOT NULL DEFAULT 0,
   `created_at` datetime DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `income_sources`
@@ -6054,7 +6383,7 @@ CREATE TABLE `installment_orders` (
   `last_installment_date` datetime DEFAULT NULL,
   `installment_end_date` datetime DEFAULT NULL,
   `created_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -6076,7 +6405,7 @@ CREATE TABLE `installment_payments` (
   `paid` decimal(25,4) NOT NULL DEFAULT 0.0000,
   `due` decimal(25,4) NOT NULL DEFAULT 0.0000,
   `payment_status` enum('paid','due','pending','cancel') NOT NULL DEFAULT 'due'
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -6090,7 +6419,7 @@ CREATE TABLE `languages` (
   `slug` varchar(50) NOT NULL,
   `code` varchar(10) DEFAULT NULL,
   `status` tinyint(1) NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `languages`
@@ -6116,7 +6445,7 @@ CREATE TABLE `language_translations` (
   `lang_key` varchar(100) NOT NULL,
   `key_type` enum('specific','default') NOT NULL DEFAULT 'specific',
   `lang_value` text DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `language_translations`
@@ -9430,7 +9759,7 @@ CREATE TABLE `loans` (
   `created_by` int(10) UNSIGNED NOT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -9447,7 +9776,7 @@ CREATE TABLE `loan_payments` (
   `created_by` int(10) UNSIGNED NOT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -9462,134 +9791,20 @@ CREATE TABLE `login_logs` (
   `ip` varchar(50) DEFAULT NULL,
   `status` enum('success','error') NOT NULL DEFAULT 'success',
   `created_at` datetime DEFAULT current_timestamp()
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `login_logs`
 --
 
 INSERT INTO `login_logs` (`id`, `user_id`, `username`, `ip`, `status`, `created_at`) VALUES
-(767, 12, 'ERIKA', '190.99.77.62', 'success', '2023-10-16 14:10:42'),
-(768, 2, 'admin@controldas.com', '2800:bf0:a821:1122:389c:1790:d1fb:af60', 'success', '2023-10-16 17:45:02'),
-(769, 7, 'DALI', '2800:bf0:a821:1122:389c:1790:d1fb:af60', 'success', '2023-10-16 17:45:23'),
-(770, 2, 'admin@controldas.com', '2800:430:b200:d40e:7c54:bb16:3144:636d', 'success', '2023-10-17 02:01:36'),
-(771, 12, 'ERIKA', '190.99.77.62', 'success', '2023-10-17 14:11:12'),
-(772, 7, 'DALI', '2800:bf0:a821:1122:4030:69bd:59a0:621e', 'success', '2023-10-17 15:56:43'),
-(773, 2, 'DAVID POLO', '2800:430:b200:d40e:b58d:1425:cd3:4ad', 'success', '2023-10-17 18:16:40'),
-(774, 2, 'admin@controldas.com', '2800:430:b200:d40e:7c54:bb16:3144:636d', 'success', '2023-10-17 18:30:12'),
-(775, 12, 'ERIKA', '190.99.77.62', 'success', '2023-10-17 19:49:04'),
-(776, 7, 'DALI', '2800:bf0:a821:1122:4030:69bd:59a0:621e', 'success', '2023-10-17 20:51:10'),
-(777, 5, 'HERNAN', '2800:bf0:2902:108e:96b1:41f:5c31:f0db', 'success', '2023-10-17 21:38:47'),
-(778, 12, 'ERIKA', '200.7.246.180', 'success', '2023-10-17 23:08:17'),
-(779, 12, 'ERIKA', '190.99.77.62', 'success', '2023-10-18 13:53:26'),
-(780, 2, 'admin@controldas.com', '2800:430:b289:9387:a52c:3981:d9dd:77f1', 'success', '2023-10-18 16:32:34'),
-(781, 7, 'DALI', '2800:bf0:a821:1122:f9b4:d623:157f:5d4e', 'success', '2023-10-18 16:32:40'),
-(782, 2, 'admin@controldas.com', '2800:bf0:a821:1122:f9b4:d623:157f:5d4e', 'success', '2023-10-18 19:20:01'),
-(783, 2, 'admin@controldas.com', '2800:430:b206:a4f5:e71a:f923:eac6:4800', 'success', '2023-10-19 00:16:25'),
-(784, 12, 'ERIKA', '190.99.77.62', 'success', '2023-10-19 13:55:11'),
-(785, 15, 'NICOLASP', '190.99.77.62', 'success', '2023-10-19 15:33:44'),
-(786, 2, 'DAVID POLO', '2800:430:b206:a4f5:c5:78b4:3467:8b69', 'success', '2023-10-19 17:15:53'),
-(787, 12, 'ERIKA', '190.99.77.62', 'success', '2023-10-19 22:44:40'),
-(788, 15, 'NICOLASP', '2a04:4e41:3c:11::d407:4011', 'success', '2023-10-20 01:41:36'),
-(789, 2, 'admin@controldas.com', '2800:430:b206:a4f5:81e0:9dbd:5feb:e191', 'success', '2023-10-20 01:41:38'),
-(790, 12, 'ERIKA', '190.99.77.62', 'success', '2023-10-20 14:55:16'),
-(791, 2, 'admin@controldas.com', '2800:bf0:a821:1122:b4f7:2dca:a799:54e2', 'success', '2023-10-20 15:31:53'),
-(792, 2, 'admin@controldas.com', '2800:430:b284:de42:a5a3:bf06:978c:3ba4', 'success', '2023-10-20 20:03:19'),
-(793, 12, 'ERIKA', '190.99.77.62', 'success', '2023-10-21 13:27:31'),
-(794, 2, 'admin@controldas.com', '2800:bf0:a821:1122:4dcb:a2cd:2156:dbeb', 'success', '2023-10-21 16:31:16'),
-(795, 2, 'admin@controldas.com', '190.99.77.62', 'success', '2023-10-21 17:12:17'),
-(796, 15, 'NICOLASP', '190.99.77.62', 'success', '2023-10-21 17:26:28'),
-(797, 2, 'admin@controldas.com', '2800:bf0:a821:1122:4dcb:a2cd:2156:dbeb', 'success', '2023-10-21 17:52:38'),
-(798, 15, 'NICOLASP', '2a09:bac3:3041:aa::11:19b', 'success', '2023-10-21 19:46:34'),
-(799, 2, 'admin@controldas.com', '45.224.98.156', 'success', '2023-10-23 04:04:19'),
-(800, 2, 'admin@controldas.com', '2800:430:b28a:86ff:a5ba:5ec3:d644:5eb', 'success', '2023-10-23 12:02:10'),
-(801, 12, 'ERIKA', '190.99.77.62', 'success', '2023-10-23 13:55:19'),
-(802, 2, 'DAVID POLO', '2800:430:1208:2cf1:58d7:470a:b1fd:3970', 'success', '2023-10-23 14:07:24'),
-(803, 15, 'NICOLASP', '190.99.77.62', 'success', '2023-10-23 14:50:59'),
-(804, 2, 'admin@controldas.com', '2800:bf0:a821:1122:71ae:89e6:c34c:5b2c', 'success', '2023-10-23 15:36:02'),
-(805, 2, 'admin@controldas.com', '2800:bf0:a821:1122:71ae:89e6:c34c:5b2c', 'success', '2023-10-23 20:07:56'),
-(806, 2, 'admin@controldas.com', '2800:bf0:a821:1122:71ae:89e6:c34c:5b2c', 'success', '2023-10-23 20:09:18'),
-(807, 2, 'admin@controldas.com', '2800:bf0:a821:1122:71ae:89e6:c34c:5b2c', 'success', '2023-10-23 20:09:39'),
-(808, 2, 'admin@controldas.com', '2800:bf0:a821:1122:71ae:89e6:c34c:5b2c', 'success', '2023-10-23 20:10:23'),
-(809, 2, 'admin@controldas.com', '2800:bf0:a821:1122:71ae:89e6:c34c:5b2c', 'success', '2023-10-23 20:10:52'),
-(810, 2, 'admin@controldas.com', '2800:bf0:a821:1122:71ae:89e6:c34c:5b2c', 'success', '2023-10-23 20:13:54'),
-(811, 5, 'HERNAN', '2800:bf0:2902:108e:799b:bfc6:93fc:d519', 'success', '2023-10-23 23:03:43'),
-(812, 12, 'ERIKA', '190.99.77.62', 'success', '2023-10-24 13:18:54'),
-(813, 2, 'admin@controldas.com', '2800:430:b203:becb:a27d:451b:9b22:8bf9', 'success', '2023-10-24 19:51:12'),
-(814, 15, 'NICOLASP', '2a09:bac2:303e:aa::11:19c', 'success', '2023-10-24 21:01:15'),
-(815, 2, 'admin@controldas.com', '2800:bf0:a821:1122:f8b8:6963:d4e6:ccfd', 'success', '2023-10-24 21:11:45'),
-(816, 2, 'admin@controldas.com', '2800:bf0:a821:1122:f8b8:6963:d4e6:ccfd', 'success', '2023-10-24 21:30:07'),
-(817, 2, 'admin@controldas.com', '2800:bf0:a821:1122:f8b8:6963:d4e6:ccfd', 'success', '2023-10-24 21:32:09'),
-(818, 2, 'admin@controldas.com', '2800:bf0:a821:1122:f8b8:6963:d4e6:ccfd', 'success', '2023-10-24 21:38:23'),
-(819, 2, 'admin@controldas.com', '2800:430:b202:b2ce:9ebd:ef7e:f97:3e3', 'success', '2023-10-25 01:15:52'),
-(820, 12, 'ERIKA', '190.99.77.62', 'success', '2023-10-25 14:27:08'),
-(821, 15, 'NICOLASP', '190.99.77.62', 'success', '2023-10-25 15:00:40'),
-(822, 2, 'admin@controldas.com', '2800:bf0:a821:1122:5ff:2af1:ded7:354', 'success', '2023-10-25 15:15:42'),
-(823, 2, 'admin@controldas.com', '2800:bf0:a821:1122:5ff:2af1:ded7:354', 'success', '2023-10-25 15:21:08'),
-(824, 2, 'admin@controldas.com', '2800:bf0:a821:1122:5ff:2af1:ded7:354', 'success', '2023-10-25 15:21:40'),
-(825, 2, 'admin@controldas.com', '2800:bf0:a821:1122:5ff:2af1:ded7:354', 'success', '2023-10-25 15:22:03'),
-(826, 2, 'admin@controldas.com', '2800:bf0:a821:1122:5ff:2af1:ded7:354', 'success', '2023-10-25 17:15:12'),
-(827, 2, 'admin@controldas.com', '2800:430:120a:60ea:78e1:2d2:4402:f67d', 'success', '2023-10-25 19:45:36'),
-(828, 2, 'admin@controldas.com', '2800:430:1288:f73d:2572:5ff9:59a8:9442', 'success', '2023-10-25 23:00:49'),
-(829, 12, 'ERIKA', '190.99.77.62', 'success', '2023-10-25 23:01:30'),
-(830, 15, 'NICOLASP', '190.99.77.62', 'success', '2023-10-26 14:03:27'),
-(831, 2, 'admin@controldas.com', '2800:bf0:a821:1122:e989:3861:968a:dbba', 'success', '2023-10-26 20:17:03'),
-(832, 15, 'NICOLASP', '190.99.77.62', 'success', '2023-10-26 20:34:11'),
-(833, 2, 'admin@controldas.com', '2800:bf0:a821:1122:e989:3861:968a:dbba', 'success', '2023-10-26 20:46:13'),
-(834, 2, 'admin@controldas.com', '2800:430:1203:964c:1f6e:2db0:3069:3231', 'success', '2023-10-26 21:21:35'),
-(835, 15, 'NICOLASP', '190.99.77.62', 'success', '2023-10-26 21:24:59'),
-(836, 10, 'domi', '2800:370:d9:7fb0:7ca4:5495:aa9e:dfac', 'success', '2023-10-27 00:59:32'),
-(837, 15, 'NICOLASP', '190.99.77.62', 'success', '2023-10-27 15:37:45'),
-(838, 2, 'admin@controldas.com', '2800:bf0:a821:1122:135:e207:d060:98c9', 'success', '2023-10-27 16:08:14'),
-(839, 2, 'admin@controldas.com', '2800:bf0:a821:1122:135:e207:d060:98c9', 'success', '2023-10-27 16:09:37'),
-(840, 2, 'admin@controldas.com', '2800:bf0:a821:1122:211c:9421:3be7:3322', 'success', '2023-10-28 19:59:34'),
-(841, 2, 'admin@controldas.com', '2800:bf0:a821:1122:6dd9:f557:83fc:51b5', 'success', '2023-10-28 21:43:28'),
-(842, 15, 'NICOLASP', '190.99.77.62', 'success', '2023-10-30 14:42:52'),
-(843, 2, 'admin@controldas.com', '2800:bf0:a821:1122:5dba:1467:d3ae:4dd5', 'success', '2023-10-30 17:44:09'),
-(844, 2, 'admin@controldas.com', '2800:bf0:a821:1122:5dba:1467:d3ae:4dd5', 'success', '2023-10-30 18:54:38'),
-(845, 2, 'DAVID POLO', '157.100.105.60', 'success', '2023-10-30 19:30:29'),
-(846, 5, 'HERNAN', '2800:bf0:2902:108e:bcba:2fe5:7a1f:ec06', 'success', '2023-10-30 20:18:32'),
-(847, 15, 'NICOLASP', '190.63.236.104', 'success', '2023-10-31 16:16:53'),
-(848, 15, 'NICOLASP', '190.99.77.62', 'success', '2023-10-31 18:33:44'),
-(849, 2, 'admin@controldas.com', '2800:bf0:a821:1122:211c:9421:3be7:3322', 'success', '2023-10-31 22:35:14'),
-(850, 2, 'admin@controldas.com', '2800:bf0:82d2:fb0:cd64:1904:f58:e3c1', 'success', '2023-11-01 03:50:06'),
-(851, 15, 'NICOLASP', '190.99.77.62', 'success', '2023-11-01 18:19:49'),
-(852, 15, 'NICOLASP', '190.99.77.62', 'success', '2023-11-01 22:21:11'),
-(853, 2, 'admin@controldas.com', '2800:430:b204:2570:544a:53ef:d6ea:db95', 'success', '2023-11-06 17:44:14'),
-(854, 2, 'DAVID POLO', '2800:430:b204:2570:3cff:7f66:6a85:d1a', 'success', '2023-11-07 13:50:03'),
-(855, 15, 'NICOLASP', '190.63.98.122', 'success', '2023-11-07 19:54:39'),
-(856, 2, 'admin@controldas.com', '2800:430:b209:26e7:efea:793b:5f75:a66b', 'success', '2023-11-07 20:51:50'),
-(857, 2, 'admin@controldas.com', '2800:430:b209:26e7:efea:793b:5f75:a66b', 'success', '2023-11-08 14:55:28'),
-(858, 2, 'admin@controldas.com', '2800:bf0:a821:1122:fcdc:fb70:eae1:8e3b', 'success', '2023-11-08 15:49:51'),
-(859, 2, 'admin@controldas.com', '2800:bf0:a821:1122:fcdc:fb70:eae1:8e3b', 'success', '2023-11-08 15:52:33'),
-(860, 15, 'NICOLASP', '190.99.77.62', 'success', '2023-11-08 17:36:25'),
-(861, 15, 'NICOLASP', '190.99.77.62', 'success', '2023-11-08 17:46:06'),
-(862, 2, 'admin@controldas.com', '2800:430:1202:482a:b94e:8d94:ff36:dfe0', 'success', '2023-11-08 17:46:18'),
-(863, 15, 'NICOLASP', '190.99.77.62', 'success', '2023-11-08 19:08:36'),
-(864, 2, 'admin@controldas.com', '2800:430:1202:482a:4a8f:41d4:9f3f:de26', 'success', '2023-11-08 22:20:38'),
-(865, 2, 'DAVID POLO', '190.63.238.145', 'success', '2023-11-09 12:42:38'),
-(866, 5, 'HERNAN', '190.99.77.62', 'success', '2023-11-09 17:54:48'),
-(867, 5, 'HERNAN', '190.99.77.62', 'success', '2023-11-09 17:55:28'),
-(868, 14, 'LEA MAS', '190.99.77.62', 'success', '2023-11-09 20:05:39'),
-(869, 2, 'DAVID POLO', '190.99.77.62', 'success', '2023-11-09 20:09:52'),
-(870, 2, 'admin@controldas.com', '2800:bf0:a821:1122:68f1:5560:293:910', 'success', '2023-11-10 14:31:11'),
-(871, 2, 'admin@controldas.com', '2800:bf0:a821:1122:68f1:5560:293:910', 'success', '2023-11-10 19:32:39'),
-(872, 2, 'admin@controldas.com', '2800:430:1289:7bf4:5d05:d0d9:60db:3c78', 'success', '2023-11-10 19:51:10'),
-(873, 2, 'admin@controldas.com', '2800:430:1289:7bf4:5d05:d0d9:60db:3c78', 'success', '2023-11-10 21:09:11'),
-(874, 15, 'NICOLASP', '190.99.77.62', 'success', '2023-11-11 20:10:54'),
-(875, 2, 'admin@controldas.com', '157.100.54.186', 'success', '2023-11-11 21:43:01'),
-(876, 15, 'NICOLASP', '2a09:bac3:3039:db9::15e:33', 'success', '2023-11-12 00:21:32'),
-(877, 5, 'HERNAN', '2800:bf0:2902:108e:8dda:933a:9068:46e2', 'success', '2023-11-12 18:09:59'),
-(878, 15, 'NICOLASP', '190.99.77.62', 'success', '2023-11-13 14:54:01'),
-(879, 2, 'admin@controldas.com', '2800:bf0:a821:1122:e07c:e632:3cc7:4e92', 'success', '2023-11-13 15:25:46'),
-(880, 2, 'admin@controldas.com', '2800:bf0:a821:1122:e07c:e632:3cc7:4e92', 'success', '2023-11-13 15:27:36'),
-(881, 15, 'NICOLASP', '190.99.77.62', 'success', '2023-11-13 16:21:01'),
-(882, 2, 'admin@controldas.com', '2800:430:b208:dd0b:e958:4c0a:45e8:45f6', 'success', '2023-11-13 19:13:06'),
-(883, 2, 'admin@controldas.com', '2800:bf0:2902:108e:48a4:4ddf:e228:219b', 'success', '2023-11-13 21:53:14'),
-(884, 15, 'NICOLASP', '190.99.77.62', 'success', '2023-11-13 22:46:25'),
-(885, 15, 'NICOLASP', '190.99.77.62', 'success', '2023-11-14 14:28:28'),
-(886, 2, 'admin@controldas.com', '2800:430:b208:dd0b:4f0b:ceaa:14ae:a73c', 'success', '2023-11-14 18:18:48'),
-(887, 10, 'domi', '157.100.63.41', 'success', '2023-11-15 03:28:50');
+(1045, 2, 'DAVID POLO', '157.100.112.255', 'success', '2024-03-07 02:49:01'),
+(1046, 2, 'admin@controldas.com', '2800:bf0:a822:100f:55d1:6266:3443:2db4', 'success', '2024-03-20 20:23:46'),
+(1047, 2, 'admin@controldas.com', '2800:bf0:a822:100f:55d1:6266:3443:2db4', 'success', '2024-03-20 20:26:55'),
+(1053, 2, 'admin@controldas.com', '2800:bf0:a822:100f:16d:c592:cbec:18da', 'success', '2024-03-23 16:30:43'),
+(1054, 2, 'admin@controldas.com', '2800:bf0:a822:100f:31c5:29d:cb13:c4c7', 'success', '2024-03-23 16:57:03'),
+(1055, NULL, NULL, '2800:bf0:a822:100f:e4aa:7971:f6b5:14a9', 'error', '2024-03-25 17:48:29'),
+(1056, 1, '0969237302', '181.198.104.222', 'success', '2024-03-25 20:50:36');
 
 -- --------------------------------------------------------
 
@@ -9602,7 +9817,7 @@ CREATE TABLE `mail_sms_tag` (
   `type` varchar(50) DEFAULT NULL,
   `tagname` varchar(128) NOT NULL,
   `created_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `mail_sms_tag`
@@ -9649,7 +9864,7 @@ CREATE TABLE `payments` (
   `pos_balance` decimal(25,4) DEFAULT 0.0000,
   `created_by` int(11) NOT NULL,
   `created_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `payments`
@@ -11672,7 +11887,123 @@ INSERT INTO `payments` (`id`, `type`, `is_profit`, `is_hide`, `store_id`, `invoi
 (2035, 'sell', 1, 0, 2, '22023/00001534', NULL, 1, NULL, '20.2000', '54.0000', 'a:0:{}', NULL, '', '60.0000', '6.0000', 15, '2023-11-14 14:27:33'),
 (2036, 'sell', 1, 0, 2, '22023/00001535', NULL, 1, NULL, '10.1000', '27.0000', 'a:0:{}', NULL, '', '40.0000', '13.0000', 15, '2023-11-14 16:15:53'),
 (2037, 'sell', 1, 0, 2, '22023/00001536', NULL, 1, NULL, '5.5000', '13.0000', 'a:0:{}', NULL, '', '20.0000', '7.0000', 15, '2023-11-14 16:41:54'),
-(2038, 'sell', 1, 0, 2, '22023/00001537', NULL, 1, NULL, '10.0000', '27.0000', 'a:0:{}', NULL, '', '30.0000', '3.0000', 15, '2023-11-14 16:56:56');
+(2038, 'sell', 1, 0, 2, '22023/00001537', NULL, 1, NULL, '10.0000', '27.0000', 'a:0:{}', NULL, '', '30.0000', '3.0000', 15, '2023-11-14 16:56:56'),
+(2039, 'sell', 1, 0, 2, '22023/00001538', NULL, 1, NULL, '10.1000', '27.0000', 'a:0:{}', NULL, '', '40.0000', '13.0000', 15, '2023-11-15 11:19:37'),
+(2040, 'sell', 1, 0, 2, '22023/00001539', NULL, 1, NULL, '4.0000', '14.0000', 'a:0:{}', NULL, '', '20.0000', '6.0000', 15, '2023-11-15 11:40:22'),
+(2041, 'sell', 1, 0, 2, '22023/00001540', NULL, 1, NULL, '10.1000', '27.0000', 'a:0:{}', NULL, '', '30.0000', '3.0000', 15, '2023-11-15 12:25:12'),
+(2042, 'sell', 1, 0, 2, '22023/00001541', NULL, 1, NULL, '10.1000', '27.0000', 'a:0:{}', NULL, '', '30.0000', '3.0000', 15, '2023-11-15 12:35:33'),
+(2043, 'sell', 1, 0, 2, '22023/00001542', NULL, 1, NULL, '5.5000', '13.0000', 'a:0:{}', NULL, '', '20.0000', '7.0000', 15, '2023-11-15 12:39:26'),
+(2044, 'sell', 1, 0, 2, '22023/00001543', NULL, 1, NULL, '5.5000', '13.0000', 'a:0:{}', NULL, '', '20.0000', '7.0000', 15, '2023-11-15 13:18:07'),
+(2045, 'sell', 1, 0, 2, '22023/00001544', NULL, 1, NULL, '10.1000', '27.0000', 'a:0:{}', NULL, '', '30.0000', '3.0000', 15, '2023-11-15 13:29:47'),
+(2046, 'sell', 1, 0, 2, '22023/00001545', NULL, 1, NULL, '6.0000', '14.0000', 'a:0:{}', NULL, '', '14.0000', '0.0000', 15, '2023-11-15 13:32:46'),
+(2047, 'sell', 1, 0, 2, '22023/00001546', NULL, 1, NULL, '10.1000', '27.0000', 'a:0:{}', NULL, '', '30.0000', '3.0000', 15, '2023-11-15 14:39:47'),
+(2048, 'sell', 1, 0, 2, '22023/00001547', NULL, 1, NULL, '10.1000', '27.0000', 'a:0:{}', NULL, '', '40.0000', '13.0000', 15, '2023-11-15 14:48:22'),
+(2049, 'sell', 1, 0, 2, '22023/00001548', NULL, 1, NULL, '10.1000', '27.0000', 'a:0:{}', NULL, '', '30.0000', '3.0000', 15, '2023-11-15 15:38:14'),
+(2050, 'sell', 1, 0, 2, '22023/00001549', NULL, 1, NULL, '10.1000', '27.0000', 'a:0:{}', NULL, '', '30.0000', '3.0000', 15, '2023-11-15 16:07:02'),
+(2051, 'sell', 1, 0, 2, '22023/00001550', NULL, 1, NULL, '15.0000', '37.5000', 'a:0:{}', NULL, '', '40.0000', '2.5000', 15, '2023-11-15 16:10:26'),
+(2052, 'sell', 1, 0, 2, '22023/00001551', NULL, 1, NULL, '10.1000', '27.0000', 'a:0:{}', NULL, '', '30.0000', '3.0000', 15, '2023-11-15 16:14:56'),
+(2053, 'sell', 1, 0, 2, '22023/00001552', NULL, 1, NULL, '5.5000', '13.0000', 'a:0:{}', NULL, '', '20.0000', '7.0000', 15, '2023-11-15 17:07:27'),
+(2054, 'sell', 1, 0, 2, '22023/00001553', NULL, 1, NULL, '10.1000', '27.0000', 'a:0:{}', NULL, '', '27.0000', '0.0000', 15, '2023-11-15 17:09:12'),
+(2055, 'sell', 1, 0, 2, '22023/00001554', NULL, 1, NULL, '10.1000', '27.0000', 'a:0:{}', NULL, '', '30.0000', '3.0000', 15, '2023-11-16 13:17:34'),
+(2056, 'sell', 1, 0, 2, '22023/00001555', NULL, 1, NULL, '10.1000', '27.0000', 'a:0:{}', NULL, '', '40.0000', '13.0000', 15, '2023-11-16 13:29:13'),
+(2057, 'sell', 1, 0, 2, '22023/00001556', NULL, 1, NULL, '10.1000', '27.0000', 'a:0:{}', NULL, '', '30.0000', '3.0000', 15, '2023-11-16 14:12:57'),
+(2058, 'sell', 1, 0, 2, '22023/00001557', NULL, 1, NULL, '11.0000', '26.0000', 'a:0:{}', NULL, '', '26.0000', '0.0000', 15, '2023-11-16 14:59:33'),
+(2059, 'sell', 1, 0, 2, '22023/00001558', NULL, 1, NULL, '5.5000', '13.0000', 'a:0:{}', NULL, '', '15.0000', '2.0000', 15, '2023-11-16 15:39:46'),
+(2060, 'sell', 1, 0, 2, '22023/00001559', NULL, 1, NULL, '5.5000', '13.0000', 'a:0:{}', NULL, '', '20.0000', '7.0000', 15, '2023-11-16 16:39:40'),
+(2061, 'sell', 1, 0, 2, '22023/00001560', NULL, 1, NULL, '10.1000', '27.0000', 'a:0:{}', NULL, '', '30.0000', '3.0000', 15, '2023-11-16 17:18:21'),
+(2062, 'sell', 1, 0, 2, '22023/00001561', NULL, 1, NULL, '10.1000', '27.0000', 'a:0:{}', NULL, '', '30.0000', '3.0000', 15, '2023-11-17 11:17:44'),
+(2063, 'sell', 1, 0, 2, '22023/00001562', NULL, 1, NULL, '10.1000', '27.0000', 'a:0:{}', NULL, '', '27.0000', '0.0000', 15, '2023-11-17 13:02:47'),
+(2064, 'sell', 1, 0, 2, '22023/00001563', NULL, 1, NULL, '10.1000', '27.0000', 'a:0:{}', NULL, '', '40.0000', '13.0000', 15, '2023-11-17 13:13:17'),
+(2065, 'sell', 1, 0, 2, '22023/00001564', NULL, 1, NULL, '10.1000', '27.0000', 'a:0:{}', NULL, '', '40.0000', '13.0000', 15, '2023-11-18 11:45:33'),
+(2066, 'sell', 1, 0, 2, '22023/00001565', NULL, 1, NULL, '5.5000', '13.0000', 'a:0:{}', NULL, '', '15.0000', '2.0000', 12, '2023-11-18 12:01:03'),
+(2067, 'sell', 1, 0, 2, '22023/00001566', NULL, 1, NULL, '10.1000', '27.0000', 'a:0:{}', NULL, '', '30.0000', '3.0000', 12, '2023-11-18 12:09:03'),
+(2068, 'sell', 1, 0, 2, '22023/00001567', NULL, 1, NULL, '5.5000', '13.0000', 'a:0:{}', NULL, '', '15.0000', '2.0000', 15, '2023-11-18 12:55:51'),
+(2069, 'sell', 1, 0, 2, '22023/00001568', NULL, 1, NULL, '11.0000', '32.0000', 'a:0:{}', NULL, '', '40.0000', '8.0000', 15, '2023-11-18 13:46:03'),
+(2070, 'sell', 1, 0, 2, '22023/00001569', NULL, 1, NULL, '10.1000', '27.0000', 'a:0:{}', NULL, '', '40.0000', '13.0000', 15, '2023-11-20 11:50:20'),
+(2071, 'sell', 1, 0, 2, '22023/00001570', NULL, 1, NULL, '10.1000', '27.0000', 'a:0:{}', NULL, '', '30.0000', '3.0000', 15, '2023-11-20 15:58:47'),
+(2072, 'sell', 1, 0, 2, '22023/00001571', NULL, 1, NULL, '10.1000', '27.0000', 'a:0:{}', NULL, '', '30.0000', '3.0000', 15, '2023-11-20 16:53:54'),
+(2073, 'sell', 1, 0, 2, '22023/00001572', NULL, 1, NULL, '10.0000', '27.0000', 'a:0:{}', NULL, '', '30.0000', '3.0000', 15, '2023-11-20 17:12:47'),
+(2074, 'sell', 1, 0, 2, '22023/00001573', NULL, 1, NULL, '20.2000', '54.0000', 'a:0:{}', NULL, '', '60.0000', '6.0000', 15, '2023-11-21 09:52:47'),
+(2075, 'sell', 1, 0, 2, '22023/00001574', NULL, 1, NULL, '10.1000', '27.0000', 'a:0:{}', NULL, '', '40.0000', '13.0000', 15, '2023-11-21 11:09:43');
+INSERT INTO `payments` (`id`, `type`, `is_profit`, `is_hide`, `store_id`, `invoice_id`, `reference_no`, `pmethod_id`, `transaction_id`, `capital`, `amount`, `details`, `attachment`, `note`, `total_paid`, `pos_balance`, `created_by`, `created_at`) VALUES
+(2076, 'sell', 1, 0, 2, '22023/00001575', NULL, 1, NULL, '11.5000', '27.0000', 'a:0:{}', NULL, '', '27.0000', '0.0000', 15, '2023-11-21 11:32:33'),
+(2077, 'sell', 1, 0, 2, '22023/00001576', NULL, 1, NULL, '10.1000', '27.0000', 'a:0:{}', NULL, '', '27.0000', '0.0000', 15, '2023-11-21 12:49:55'),
+(2078, 'sell', 1, 0, 2, '22023/00001577', NULL, 1, NULL, '10.1000', '27.0000', 'a:0:{}', NULL, '', '30.0000', '3.0000', 15, '2023-11-21 12:53:04'),
+(2079, 'sell', 1, 0, 2, '22023/00001578', NULL, 1, NULL, '5.5000', '13.0000', 'a:0:{}', NULL, '', '15.0000', '2.0000', 15, '2023-11-21 13:16:55'),
+(2080, 'sell', 1, 0, 2, '22023/00001579', NULL, 1, NULL, '10.0000', '27.0000', 'a:0:{}', NULL, '', '40.0000', '13.0000', 15, '2023-11-21 15:59:12'),
+(2081, 'sell', 1, 0, 2, '22023/00001580', NULL, 1, NULL, '5.5000', '13.0000', 'a:0:{}', NULL, '', '20.0000', '7.0000', 15, '2023-11-21 16:47:51'),
+(2082, 'sell', 1, 0, 2, '22023/00001581', NULL, 1, NULL, '5.5000', '14.0000', 'a:0:{}', NULL, '', '20.0000', '6.0000', 15, '2023-11-21 17:05:52'),
+(2083, 'sell', 1, 0, 2, '22023/00001582', NULL, 1, NULL, '5.5000', '13.0000', 'a:0:{}', NULL, '', '15.0000', '2.0000', 15, '2023-11-21 17:35:04'),
+(2084, 'sell', 1, 0, 2, '22023/00001583', NULL, 1, NULL, '4.5000', '13.0000', 'a:0:{}', NULL, '', '13.0000', '0.0000', 15, '2023-11-22 09:39:46'),
+(2085, 'sell', 1, 0, 2, '22023/00001584', NULL, 1, NULL, '5.5000', '13.0000', 'a:0:{}', NULL, '', '13.0000', '0.0000', 15, '2023-11-22 09:54:40'),
+(2086, 'sell', 1, 0, 2, '22023/00001585', NULL, 1, NULL, '5.5000', '13.0000', 'a:0:{}', NULL, '', '15.0000', '2.0000', 15, '2023-11-22 16:08:04'),
+(2087, 'sell', 1, 0, 2, '22023/00001586', NULL, 1, NULL, '10.1000', '27.0000', 'a:0:{}', NULL, '', '27.0000', '0.0000', 15, '2023-11-22 16:32:30'),
+(2088, 'sell', 1, 0, 2, '22023/00001587', NULL, 1, NULL, '10.1000', '27.0000', 'a:0:{}', NULL, '', '30.0000', '3.0000', 15, '2023-11-22 17:34:06'),
+(2089, 'sell', 1, 0, 2, '22023/00001588', NULL, 1, NULL, '5.5000', '13.0000', 'a:0:{}', NULL, '', '13.0000', '0.0000', 15, '2023-11-23 10:53:06'),
+(2090, 'sell', 1, 0, 2, '22023/00001589', NULL, 1, NULL, '5.5000', '13.0000', 'a:0:{}', NULL, '', '13.0000', '0.0000', 15, '2023-11-23 11:50:58'),
+(2091, 'sell', 1, 0, 2, '22023/00001590', NULL, 1, NULL, '20.2000', '54.0000', 'a:0:{}', NULL, '', '60.0000', '6.0000', 15, '2023-11-23 13:27:00'),
+(2092, 'sell', 1, 0, 2, '22023/00001591', NULL, 1, NULL, '5.5000', '16.0000', 'a:0:{}', NULL, '', '20.0000', '4.0000', 15, '2023-11-24 09:40:17'),
+(2093, 'sell', 1, 0, 2, '22023/00001592', NULL, 1, NULL, '5.5000', '13.0000', 'a:0:{}', NULL, '', '15.0000', '2.0000', 15, '2023-11-24 11:58:18'),
+(2094, 'sell', 1, 0, 2, '22023/00001593', NULL, 1, NULL, '49.8000', '57.8000', 'a:0:{}', NULL, '', '57.8000', '0.0000', 15, '2023-11-24 13:43:25'),
+(2095, 'sell', 1, 0, 2, '22023/00001594', NULL, 1, NULL, '10.0000', '27.0000', 'a:0:{}', NULL, '', '30.0000', '3.0000', 12, '2023-11-24 16:30:28'),
+(2096, 'sell', 1, 0, 2, '22023/00001595', NULL, 1, NULL, '11.5000', '27.0000', 'a:0:{}', NULL, '', '30.0000', '3.0000', 12, '2023-11-24 16:58:59'),
+(2097, 'sell', 1, 0, 2, '22023/00001596', NULL, 1, NULL, '10.1000', '27.0000', 'a:0:{}', NULL, '', '40.0000', '13.0000', 12, '2023-11-28 13:43:12'),
+(2098, 'sell', 1, 0, 2, '22023/00001597', NULL, 1, NULL, '5.0000', '13.0000', 'a:0:{}', NULL, '', '20.0000', '7.0000', 12, '2023-11-28 16:13:18'),
+(2099, 'sell', 1, 0, 2, '22023/00001598', NULL, 1, NULL, '4.6000', '14.0000', 'a:0:{}', NULL, '', '15.0000', '1.0000', 12, '2023-11-28 16:32:39'),
+(2100, 'sell', 1, 0, 2, '22023/00001599', NULL, 1, NULL, '10.1000', '27.0000', 'a:0:{}', NULL, 'TRANSFERENCIA', '27.0000', '0.0000', 12, '2023-11-29 10:24:23'),
+(2101, 'sell', 1, 0, 2, '22023/00001600', NULL, 1, NULL, '10.1000', '27.0000', 'a:0:{}', NULL, '', '30.0000', '3.0000', 12, '2023-11-29 12:48:24'),
+(2102, 'sell', 1, 0, 2, '22023/00001601', NULL, 1, NULL, '10.1000', '27.0000', 'a:0:{}', NULL, '', '27.0000', '0.0000', 12, '2023-11-30 13:31:06'),
+(2103, 'sell', 1, 0, 2, '22023/00001602', NULL, 1, NULL, '10.1000', '27.0000', 'a:0:{}', NULL, '', '27.0000', '0.0000', 12, '2023-11-30 17:13:38'),
+(2104, 'sell', 1, 0, 2, '22023/00001603', NULL, 1, NULL, '4.5000', '13.0000', 'a:0:{}', NULL, '', '20.0000', '7.0000', 12, '2023-11-30 17:43:00'),
+(2106, 'sell', 1, 0, 2, '22023/00001604', NULL, 1, NULL, '5.5000', '16.0000', 'a:0:{}', NULL, '', '20.0000', '4.0000', 12, '2023-12-01 09:36:39'),
+(2107, 'sell', 1, 0, 2, '22023/00001605', NULL, 1, NULL, '4.5000', '13.0000', 'a:0:{}', NULL, '', '20.0000', '7.0000', 12, '2023-12-01 09:47:33'),
+(2108, 'sell', 1, 0, 2, '22023/00001606', NULL, 1, NULL, '10.1000', '27.0000', 'a:0:{}', NULL, '', '27.0000', '0.0000', 12, '2023-12-01 10:26:29'),
+(2109, 'sell', 1, 0, 2, '22023/00001607', NULL, 1, NULL, '5.6000', '14.0000', 'a:0:{}', NULL, '', '14.0000', '0.0000', 12, '2023-12-01 12:45:10'),
+(2110, 'sell', 1, 0, 2, '22023/00001608', NULL, 1, NULL, '10.0000', '29.0000', 'a:0:{}', NULL, '', '30.0000', '1.0000', 12, '2023-12-02 10:54:28'),
+(2111, 'sell', 1, 0, 2, '22023/00001609', NULL, 1, NULL, '4.6000', '14.0000', 'a:0:{}', NULL, '', '20.0000', '6.0000', 12, '2023-12-02 11:00:34'),
+(2112, 'sell', 1, 0, 2, '22023/00001610', NULL, 1, NULL, '10.1000', '27.0000', 'a:0:{}', NULL, '', '30.0000', '3.0000', 12, '2023-12-02 12:09:50'),
+(2113, 'sell', 1, 0, 2, '22023/00001611', NULL, 1, NULL, '4.5000', '13.0000', 'a:0:{}', NULL, '', '20.0000', '7.0000', 12, '2023-12-02 12:36:31'),
+(2114, 'sell', 1, 0, 2, '22023/00001612', NULL, 1, NULL, '5.5000', '16.0000', 'a:0:{}', NULL, '', '20.0000', '4.0000', 12, '2023-12-02 14:41:43'),
+(2115, 'sell', 1, 0, 2, '22023/00001613', NULL, 1, NULL, '10.1000', '27.0000', 'a:0:{}', NULL, '', '32.0000', '5.0000', 12, '2023-12-04 10:07:59'),
+(2116, 'sell', 1, 0, 2, '22023/00001614', NULL, 1, NULL, '10.0000', '27.0000', 'a:0:{}', NULL, '', '30.0000', '3.0000', 12, '2023-12-04 10:18:48'),
+(2117, 'sell', 1, 0, 2, '22023/00001615', NULL, 1, NULL, '10.1000', '27.0000', 'a:0:{}', NULL, '', '27.0000', '0.0000', 12, '2023-12-04 11:35:52'),
+(2118, 'sell', 1, 0, 2, '22023/00001616', NULL, 1, NULL, '10.1000', '27.0000', 'a:0:{}', NULL, '', '40.0000', '13.0000', 12, '2023-12-04 11:36:52'),
+(2119, 'sell', 1, 0, 2, '22023/00001617', NULL, 1, NULL, '10.1000', '27.0000', 'a:0:{}', NULL, '', '30.0000', '3.0000', 12, '2023-12-04 11:39:03'),
+(2120, 'sell', 1, 0, 2, '22023/00001618', NULL, 1, NULL, '20.0000', '54.0000', 'a:0:{}', NULL, '', '60.0000', '6.0000', 12, '2023-12-04 16:59:45'),
+(2121, 'sell', 1, 0, 2, '22023/00001619', NULL, 1, NULL, '11.5000', '27.0000', 'a:0:{}', NULL, '', '40.0000', '13.0000', 12, '2023-12-04 17:04:30'),
+(2122, 'sell', 1, 0, 2, '22023/00001620', NULL, 1, NULL, '10.0000', '27.0000', 'a:0:{}', NULL, '', '40.0000', '13.0000', 12, '2023-12-04 17:09:13'),
+(2123, 'sell', 1, 0, 2, '22023/00001621', NULL, 1, NULL, '4.5000', '13.0000', 'a:0:{}', NULL, '', '20.0000', '7.0000', 12, '2023-12-04 17:38:17'),
+(2124, 'sell', 1, 0, 2, '22023/00001622', NULL, 1, NULL, '10.1000', '27.0000', 'a:0:{}', NULL, '', '30.0000', '3.0000', 12, '2023-12-04 17:40:12'),
+(2125, 'sell', 1, 0, 2, '22023/00001623', NULL, 1, NULL, '5.5000', '13.0000', 'a:0:{}', NULL, '', '13.0000', '0.0000', 12, '2023-12-05 13:08:50'),
+(2126, 'sell', 1, 0, 2, '22023/00001624', NULL, 1, NULL, '5.0000', '13.0000', 'a:0:{}', NULL, '', '20.0000', '7.0000', 12, '2023-12-05 17:44:33'),
+(2127, 'sell', 1, 0, 2, '22023/00001625', NULL, 1, NULL, '5.0000', '13.0000', 'a:0:{}', NULL, '', '20.0000', '7.0000', 12, '2023-12-05 17:54:35'),
+(2128, 'sell', 1, 0, 2, '22023/00001626', NULL, 1, NULL, '10.1000', '27.0000', 'a:0:{}', NULL, '', '30.0000', '3.0000', 12, '2023-12-06 10:14:59'),
+(2129, 'sell', 1, 0, 2, '22023/00001627', NULL, 1, NULL, '10.1000', '27.0000', 'a:0:{}', NULL, '', '27.0000', '0.0000', 12, '2023-12-06 11:00:09'),
+(2130, 'sell', 1, 0, 2, '22023/00001628', NULL, 1, NULL, '5.5000', '16.0000', 'a:0:{}', NULL, '', '21.0000', '5.0000', 12, '2023-12-06 11:37:19'),
+(2131, 'sell', 1, 0, 2, '22023/00001629', NULL, 1, NULL, '4.5000', '13.0000', 'a:0:{}', NULL, '', '20.0000', '7.0000', 12, '2023-12-06 11:54:15'),
+(2132, 'sell', 1, 0, 2, '22023/00001630', NULL, 1, NULL, '10.1000', '27.0000', 'a:0:{}', NULL, '', '40.0000', '13.0000', 12, '2023-12-06 12:47:23'),
+(2133, 'sell', 1, 0, 2, '22023/00001631', NULL, 1, NULL, '10.0000', '27.0000', 'a:0:{}', NULL, '', '30.0000', '3.0000', 12, '2023-12-07 15:51:05'),
+(2134, 'sell', 1, 0, 2, '22023/00001632', NULL, 1, NULL, '4.6000', '14.0000', 'a:0:{}', NULL, '', '20.0000', '6.0000', 12, '2023-12-08 12:33:50'),
+(2135, 'sell', 1, 0, 2, '22023/00001633', NULL, 1, NULL, '10.1000', '27.0000', 'a:0:{}', NULL, '', '30.0000', '3.0000', 12, '2023-12-08 14:03:23'),
+(2136, 'sell', 1, 0, 2, '22023/00001634', NULL, 1, NULL, '10.0000', '27.0000', 'a:0:{}', NULL, '', '27.0000', '0.0000', 12, '2023-12-08 17:12:53'),
+(2138, 'sell', 1, 0, 2, '22023/00001636', NULL, 1, NULL, '10.1000', '27.0000', 'a:0:{}', NULL, '', '30.0000', '3.0000', 12, '2023-12-09 11:43:12'),
+(2140, 'sell', 1, 0, 2, '22023/00001637', NULL, 1, NULL, '5.5000', '16.0000', 'a:0:{}', NULL, '', '16.0000', '0.0000', 12, '2023-12-11 11:50:51'),
+(2141, 'sell', 1, 0, 2, '22023/00001638', NULL, 1, NULL, '10.1000', '27.0000', 'a:0:{}', NULL, '', '30.0000', '3.0000', 12, '2023-12-11 12:37:50'),
+(2142, 'sell', 1, 0, 2, '22023/00001639', NULL, 1, NULL, '12.5000', '34.0000', 'a:0:{}', NULL, '', '40.0000', '6.0000', 12, '2023-12-12 11:36:24'),
+(2143, 'sell', 1, 0, 2, '22023/00001640', NULL, 1, NULL, '10.0000', '29.0000', 'a:0:{}', NULL, '', '40.0000', '11.0000', 12, '2023-12-12 13:31:48'),
+(2144, 'sell', 1, 0, 2, '22023/00001641', NULL, 1, NULL, '5.5000', '13.0000', 'a:0:{}', NULL, '', '20.0000', '7.0000', 12, '2023-12-12 14:15:27'),
+(2145, 'sell', 1, 0, 2, '22023/00001642', NULL, 1, NULL, '10.1000', '27.0000', 'a:0:{}', NULL, '', '40.0000', '13.0000', 12, '2023-12-13 09:23:07'),
+(2146, 'sell', 1, 0, 2, '22023/00001643', NULL, 1, NULL, '12.5000', '34.0000', 'a:0:{}', NULL, '', '35.0000', '1.0000', 12, '2023-12-13 12:16:32'),
+(2147, 'sell', 1, 0, 2, '22023/00001644', NULL, 1, NULL, '4.6000', '14.0000', 'a:0:{}', NULL, '', '15.0000', '1.0000', 12, '2023-12-13 12:25:26'),
+(2148, 'sell', 1, 0, 2, '22023/00001645', NULL, 1, NULL, '5.5000', '13.0000', 'a:0:{}', NULL, '', '15.0000', '2.0000', 12, '2023-12-14 11:38:43'),
+(2149, 'sell', 1, 0, 2, '22023/00001646', NULL, 1, NULL, '5.5000', '16.0000', 'a:0:{}', NULL, '', '20.0000', '4.0000', 12, '2023-12-20 11:04:11'),
+(2150, 'sell', 1, 0, 2, '22023/00001647', NULL, 1, NULL, '7.0000', '18.0000', 'a:0:{}', NULL, '', '20.0000', '2.0000', 12, '2023-12-21 10:57:20'),
+(2151, 'sell', 1, 0, 2, '22024/00001648', NULL, 1, NULL, '10.1000', '27.0000', 'a:0:{}', NULL, '', '27.0000', '0.0000', 12, '2024-01-02 10:28:35'),
+(2152, 'sell', 1, 0, 2, '22024/00001649', NULL, 1, NULL, '5.6000', '14.0000', 'a:0:{}', NULL, '', '20.0000', '6.0000', 12, '2024-01-03 10:42:34'),
+(2153, 'sell', 1, 0, 2, '22024/00001650', NULL, 1, NULL, '4.6000', '14.0000', 'a:0:{}', NULL, '', '14.0000', '0.0000', 12, '2024-01-03 17:02:58'),
+(2154, 'sell', 1, 0, 2, '22024/00001651', NULL, 1, NULL, '4.5000', '13.0000', 'a:0:{}', NULL, '', '20.0000', '7.0000', 12, '2024-01-06 09:20:33'),
+(2159, 'sell', 1, 0, 2, '22024/00001652', NULL, 1, NULL, '54.4000', '127.0000', 'a:0:{}', NULL, '', '127.0000', '0.0000', 2, '2024-03-23 12:00:07'),
+(2160, 'sell', 1, 0, 2, '22024/00001653', NULL, 1, NULL, '5.8500', '12.7500', 'a:0:{}', NULL, '', '12.7500', '0.0000', 2, '2024-03-23 12:15:26');
 
 -- --------------------------------------------------------
 
@@ -11688,7 +12019,7 @@ CREATE TABLE `pmethods` (
   `status` tinyint(3) UNSIGNED NOT NULL DEFAULT 1,
   `created_at` datetime DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `pmethods`
@@ -11715,7 +12046,7 @@ CREATE TABLE `pos_register` (
   `status` tinyint(1) NOT NULL DEFAULT 1,
   `created_at` datetime DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `pos_register`
@@ -11738,7 +12069,7 @@ CREATE TABLE `pos_templates` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `created_by` int(10) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `pos_templates`
@@ -11761,7 +12092,7 @@ CREATE TABLE `pos_template_to_store` (
   `is_active` tinyint(1) NOT NULL DEFAULT 0,
   `status` tinyint(1) NOT NULL DEFAULT 1,
   `sort_order` int(11) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `pos_template_to_store`
@@ -11773,7 +12104,9 @@ INSERT INTO `pos_template_to_store` (`pt2s`, `store_id`, `ttemplate_id`, `is_act
 (3, 2, 1, 1, 1, 0),
 (4, 3, 1, 1, 1, 0),
 (5, 4, 1, 1, 1, 0),
-(6, 5, 1, 1, 1, 0);
+(6, 5, 1, 1, 1, 0),
+(7, 6, 1, 1, 1, 0),
+(8, 7, 1, 1, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -11788,7 +12121,7 @@ CREATE TABLE `printers` (
   `profile` varchar(25) DEFAULT NULL,
   `char_per_line` tinyint(3) UNSIGNED DEFAULT NULL,
   `created_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `printers`
@@ -11812,7 +12145,7 @@ CREATE TABLE `printer_to_store` (
   `port` varchar(10) DEFAULT NULL,
   `status` tinyint(3) UNSIGNED NOT NULL DEFAULT 1,
   `sort_order` int(11) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `printer_to_store`
@@ -11823,7 +12156,9 @@ INSERT INTO `printer_to_store` (`p2s_id`, `pprinter_id`, `store_id`, `path`, `ip
 (2, 1, 3, NULL, NULL, NULL, 1, 0),
 (3, 1, 1, NULL, NULL, NULL, 1, 0),
 (4, 1, 4, NULL, NULL, NULL, 1, 0),
-(5, 1, 5, NULL, NULL, NULL, 1, 0);
+(5, 1, 5, NULL, NULL, NULL, 1, 0),
+(6, 1, 6, NULL, NULL, NULL, 1, 0),
+(7, 1, 7, NULL, NULL, NULL, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -11842,7 +12177,7 @@ CREATE TABLE `products` (
   `unit_id` int(10) UNSIGNED NOT NULL,
   `p_image` varchar(250) DEFAULT NULL,
   `description` longtext DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `products`
@@ -12100,7 +12435,7 @@ INSERT INTO `products` (`p_id`, `p_type`, `p_code`, `hsn_code`, `barcode_symbolo
 (249, 'standard', '60166349', NULL, 'code128', 'EASY TALK G', 1, 1, '', ''),
 (250, 'standard', '45422018', NULL, 'code128', 'EASY TALK H', 1, 1, '', ''),
 (251, 'standard', '70931828', NULL, 'code128', 'EASY TALK I', 1, 1, '', ''),
-(252, 'standard', '93387524', NULL, 'code128', 'EASY TALK J', 1, 1, '', ''),
+(252, 'standard', '93387524', NULL, 'code128', 'EASY TALK J ', 1, 1, '', ''),
 (253, 'standard', '80449716', NULL, 'code128', 'EASY TALK A1', 1, 1, '', ''),
 (254, 'standard', '71690773', NULL, 'code128', 'EASY TALK B2', 1, 1, '', ''),
 (255, 'standard', '01374857', NULL, 'code128', 'EASY TALK C3', 1, 1, '', ''),
@@ -12131,7 +12466,7 @@ INSERT INTO `products` (`p_id`, `p_type`, `p_code`, `hsn_code`, `barcode_symbolo
 (280, 'standard', '00348228', NULL, 'code128', 'ECA PICASO 5', 1, 1, '', ''),
 (281, 'standard', '45516150', NULL, 'code128', 'ECA PICASO 6', 1, 1, '', ''),
 (282, 'standard', '24519646', NULL, 'code128', 'ECA PICASO 7', 1, 1, '', ''),
-(284, 'standard', '69500229', NULL, 'code128', 'LECTURA CRITICA DECADA DE LOS 30 9', 1, 1, '', ''),
+(284, 'standard', '69500229', NULL, 'code128', 'LECTURA CRITICA DECADA DE LOS 30 ', 1, 1, '', ''),
 (286, 'standard', '98807535', NULL, 'code128', 'ECA DAS 8 EGB', 1, 1, '', ''),
 (287, 'standard', '91895043', NULL, 'code128', 'ECA DAS 9 EGB', 1, 1, '', ''),
 (288, 'standard', '87684994', NULL, 'code128', 'ECA DAS 10 EGB', 1, 1, '', ''),
@@ -12177,37 +12512,37 @@ INSERT INTO `products` (`p_id`, `p_type`, `p_code`, `hsn_code`, `barcode_symbolo
 (329, 'standard', '03967022', NULL, 'code128', 'CREARTE 8', 1, 1, '', ''),
 (330, 'standard', '70095848', NULL, 'code128', 'CREARTE 9', 1, 1, '', ''),
 (331, 'standard', '69083372', NULL, 'code128', 'CREARTE 10', 1, 1, '', ''),
-(332, 'standard', '77034246', NULL, 'code128', ' I KNOW 1BGU EUGENIO ESPEJO', 1, 1, '', ''),
-(333, 'standard', '45402393', NULL, 'code128', ' I KNOW 2 BGU EUGENIO ESPEJO', 1, 1, '', ''),
-(334, 'standard', '95759364', NULL, 'code128', ' I KNOW 3 BGU EUGENIO ESPEJO', 1, 1, '', ''),
+(332, 'standard', '77034246', NULL, 'code128', ' I KNOW 1BGU', 1, 1, '', ''),
+(333, 'standard', '45402393', NULL, 'code128', ' I KNOW 2 BGU', 1, 1, '', ''),
+(334, 'standard', '95759364', NULL, 'code128', ' I KNOW 3 BGU ', 1, 1, '', ''),
 (335, 'standard', '77074837', NULL, 'code128', 'MAGICA ORTOGRAFIA Y CALIGRAFIA 8', 1, 1, '', ''),
-(336, 'standard', '37815417', NULL, 'code128', 'EASY TALK A.', 1, 1, '', ''),
-(337, 'standard', '21418952', NULL, 'code128', 'EASY TALK B.', 1, 1, '', ''),
-(338, 'standard', '27504231', NULL, 'code128', 'EASY TALK C.', 1, 1, '', ''),
-(339, 'standard', '47582518', NULL, 'code128', 'EASY TALK D.', 1, 1, '', ''),
-(340, 'standard', '85113885', NULL, 'code128', 'EASY TALK E.', 1, 1, '', ''),
-(341, 'standard', '26239454', NULL, 'code128', 'EASY TALK F.', 1, 1, '', ''),
-(342, 'standard', '59599410', NULL, 'code128', 'EASY TALK G.', 1, 1, '', ''),
-(343, 'standard', '00944149', NULL, 'code128', 'EASY TALK H..', 1, 1, '', ''),
-(344, 'standard', '90841957', NULL, 'code128', 'EASY TALK I.', 1, 1, '', ''),
-(345, 'standard', '13110151', NULL, 'code128', 'EASY TALK J.', 1, 1, '', ''),
-(346, 'standard', '46206771', NULL, 'code128', 'EASY TALK A1.', 1, 1, '', ''),
-(347, 'standard', '30031054', NULL, 'code128', 'EASY TALK B2.', 1, 1, '', ''),
-(348, 'standard', '44244650', NULL, 'code128', 'EASY TALK C3.', 1, 1, '', ''),
+(336, 'standard', '37815417', NULL, 'code128', 'EASY TALK A. X MAYOR', 1, 1, '', ''),
+(337, 'standard', '21418952', NULL, 'code128', 'EASY TALK B. X MAYOR', 1, 1, '', ''),
+(338, 'standard', '27504231', NULL, 'code128', 'EASY TALK C. X MAYOR', 1, 1, '', ''),
+(339, 'standard', '47582518', NULL, 'code128', 'EASY TALK D. X MAYOR', 1, 1, '', ''),
+(340, 'standard', '85113885', NULL, 'code128', 'EASY TALK E. X MAYOR', 1, 1, '', ''),
+(341, 'standard', '26239454', NULL, 'code128', 'EASY TALK F. X MAYOR', 1, 1, '', ''),
+(342, 'standard', '59599410', NULL, 'code128', 'EASY TALK G. X MAYOR', 1, 1, '', ''),
+(343, 'standard', '00944149', NULL, 'code128', 'EASY TALK H. X MAYOR', 1, 1, '', ''),
+(344, 'standard', '90841957', NULL, 'code128', 'EASY TALK I  X MAYOR', 1, 1, '', ''),
+(345, 'standard', '13110151', NULL, 'code128', 'EASY TALK J. X MAYOR', 1, 1, '', ''),
+(346, 'standard', '46206771', NULL, 'code128', 'EASY TALK A1. X MAYOR', 1, 1, '', ''),
+(347, 'standard', '30031054', NULL, 'code128', 'EASY TALK B2. X MAYOR', 1, 1, '', ''),
+(348, 'standard', '44244650', NULL, 'code128', 'EASY TALK C3. X MAYOR', 1, 1, '', ''),
 (349, 'standard', '86807758', NULL, 'code128', 'ABC PARA EL ALMA 9', 1, 1, '', ''),
-(350, 'standard', '45012734', NULL, 'code128', 'I KNOW 1 BASICA EUGENIO ESPEJO', 1, 1, '', ''),
-(351, 'standard', '13674595', NULL, 'code128', 'I KNOW 2 EGB EUGENIO ESPEJO', 1, 1, '', ''),
-(352, 'standard', '24876371', NULL, 'code128', 'I KNOW 3 EGB EUGENIO ESPEJO', 1, 1, '', ''),
-(353, 'standard', '07250647', NULL, 'code128', 'I KNOW 4 EGB EUGENIO ESPEJO', 1, 1, '', ''),
-(354, 'standard', '99344187', NULL, 'code128', 'I KNOW 5 EGU EUGENIO ESPEJO', 1, 1, '', ''),
-(355, 'standard', '80853132', NULL, 'code128', 'I KNOW 6 BGU EUGENIO ESPEJO', 1, 1, '', ''),
-(356, 'standard', '24897734', NULL, 'code128', 'I KNOW 7 EGB EUGENIO ESPEJO', 1, 1, '', ''),
-(357, 'standard', '35276296', NULL, 'code128', 'I KNOW 8 EBG EUGENIO ESPEJO', 1, 1, '', ''),
-(358, 'standard', '05180244', NULL, 'code128', 'I KNOW 9  EBG EUGENIO ESPEJO', 1, 1, '', ''),
-(359, 'standard', '10426321', NULL, 'code128', 'I KNOW  10 EBG EUGENIO ESPEJO', 1, 1, '', ''),
+(350, 'standard', '45012734', NULL, 'code128', 'I KNOW 1', 1, 1, '', ''),
+(351, 'standard', '13674595', NULL, 'code128', 'I KNOW 2', 1, 1, '', ''),
+(352, 'standard', '24876371', NULL, 'code128', 'I KNOW 3 ', 1, 1, '', ''),
+(353, 'standard', '07250647', NULL, 'code128', 'I KNOW 4', 1, 1, '', ''),
+(354, 'standard', '99344187', NULL, 'code128', 'I KNOW 5', 1, 1, '', ''),
+(355, 'standard', '80853132', NULL, 'code128', 'I KNOW 6 BGU', 1, 1, '', ''),
+(356, 'standard', '24897734', NULL, 'code128', 'I KNOW 7 EGB', 1, 1, '', ''),
+(357, 'standard', '35276296', NULL, 'code128', 'I KNOW 8', 1, 1, '', ''),
+(358, 'standard', '05180244', NULL, 'code128', 'I KNOW 9', 1, 1, '', ''),
+(359, 'standard', '10426321', NULL, 'code128', 'I KNOW  10', 1, 1, '', ''),
 (360, 'standard', '25999743', NULL, 'code128', 'EASY TALK A1 LE', 1, 1, '', ''),
 (361, 'standard', '25340345', NULL, 'code128', 'EASY TALK  B2 LE', 1, 1, '', ''),
-(362, 'standard', '92390656', NULL, 'code128', 'EASY TALK  C3 LE', 1, 1, '', ''),
+(362, 'standard', '92390656', NULL, 'code128', 'EASY TALK  C3 BGU', 1, 1, '', ''),
 (363, 'standard', '05498373', NULL, 'code128', 'EJERCICIO JUEGO Y DIVERSIÓN 2 BGU', 1, 1, '', '');
 
 -- --------------------------------------------------------
@@ -12221,7 +12556,7 @@ CREATE TABLE `product_images` (
   `product_id` int(11) NOT NULL,
   `url` varchar(255) NOT NULL,
   `sort_order` int(11) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -12236,7 +12571,7 @@ CREATE TABLE `product_to_college` (
   `estimatedsales` int(10) UNSIGNED NOT NULL,
   `status` tinyint(3) UNSIGNED NOT NULL DEFAULT 1,
   `sort_order` int(11) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `product_to_college`
@@ -12690,7 +13025,7 @@ INSERT INTO `product_to_store` (`id`, `product_id`, `store_id`, `purchase_price`
 (227, 14, 2, 10.8, 27, '14.0000', '10.0000', 1, 1, 6, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
 (228, 15, 2, 10.8, 27, '10.0000', '10.0000', 1, 1, 7, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
 (229, 16, 2, 10.8, 27, '7.0000', '10.0000', 1, 1, 8, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
-(230, 17, 2, 10.8, 27, '9.0000', '10.0000', 1, 1, 9, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(230, 17, 2, 10.8, 27, '8.0000', '10.0000', 1, 1, 9, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
 (231, 18, 2, 10.8, 27, '6.0000', '10.0000', 1, 1, 10, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
 (232, 19, 2, 10.8, 27, '23.0000', '10.0000', 1, 1, 8, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
 (233, 20, 2, 10.8, 27, '18.0000', '10.0000', 1, 1, 9, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
@@ -12702,7 +13037,7 @@ INSERT INTO `product_to_store` (`id`, `product_id`, `store_id`, `purchase_price`
 (239, 26, 2, 10.8, 27, '2.0000', '10.0000', 1, 1, 6, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
 (240, 27, 2, 10.8, 27, '4.0000', '10.0000', 1, 1, 7, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
 (241, 28, 2, 10.8, 27, '16.0000', '10.0000', 1, 1, 8, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
-(242, 29, 2, 10.8, 27, '12.0000', '10.0000', 1, 1, 9, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(242, 29, 2, 10.8, 27, '11.0000', '10.0000', 1, 1, 9, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
 (243, 30, 2, 10.8, 27, '30.0000', '10.0000', 1, 1, 10, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
 (244, 31, 2, 10.8, 27, '15.0000', '10.0000', 1, 1, 2, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
 (245, 32, 2, 10.8, 27, '5.0000', '10.0000', 1, 1, 3, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
@@ -12711,17 +13046,17 @@ INSERT INTO `product_to_store` (`id`, `product_id`, `store_id`, `purchase_price`
 (248, 35, 2, 10.8, 27, '19.0000', '10.0000', 1, 1, 6, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
 (249, 36, 2, 10.8, 27, '14.0000', '10.0000', 1, 1, 7, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
 (250, 37, 2, 10.8, 27, '15.0000', '10.0000', 1, 1, 8, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
-(251, 38, 2, 10.8, 27, '11.0000', '10.0000', 1, 1, 9, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(251, 38, 2, 10.8, 27, '10.0000', '10.0000', 1, 1, 9, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
 (252, 39, 2, 10.8, 27, '29.0000', '10.0000', 1, 1, 10, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
 (253, 40, 2, 10, 25, '32.0000', '10.0000', 1, 1, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
 (254, 41, 2, 10, 25, '8.0000', '10.0000', 1, 1, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
 (255, 42, 2, 10, 25, '33.0000', '10.0000', 1, 1, 10, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
-(256, 43, 2, 5.6, 14, '321.0000', '10.0000', 1, 1, 2, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
-(257, 44, 2, 5.6, 14, '299.0000', '10.0000', 1, 1, 3, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
-(258, 45, 2, 5.6, 14, '202.0000', '10.0000', 1, 1, 4, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
-(259, 46, 2, 5.6, 14, '211.0000', '10.0000', 1, 1, 5, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
-(260, 47, 2, 5.6, 14, '108.0000', '10.0000', 1, 1, 6, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
-(261, 48, 2, 5.6, 14, '284.0000', '10.0000', 1, 1, 7, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(256, 43, 2, 5.6, 14, '301.0000', '10.0000', 1, 1, 2, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(257, 44, 2, 5.6, 14, '298.0000', '10.0000', 1, 1, 3, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(258, 45, 2, 5.6, 14, '188.0000', '10.0000', 1, 1, 4, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(259, 46, 2, 5.6, 14, '206.0000', '10.0000', 1, 1, 5, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(260, 47, 2, 5.6, 14, '99.0000', '10.0000', 1, 1, 6, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(261, 48, 2, 5.6, 14, '281.0000', '10.0000', 1, 1, 7, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
 (262, 49, 2, 5.6, 14, '22.0000', '10.0000', 1, 1, 8, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
 (263, 50, 2, 5.6, 14, '23.0000', '10.0000', 1, 1, 9, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
 (264, 51, 2, 5.6, 14, '22.0000', '10.0000', 1, 1, 10, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
@@ -12785,7 +13120,7 @@ INSERT INTO `product_to_store` (`id`, `product_id`, `store_id`, `purchase_price`
 (367, 96, 1, 22, 46, '0.0000', '10.0000', 4, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (368, 96, 2, 22, 46, '9.0000', '10.0000', 4, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (369, 97, 1, 22, 46, '0.0000', '10.0000', 4, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
-(370, 97, 2, 22, 46, '9.0000', '10.0000', 4, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(370, 97, 2, 22, 46, '8.0000', '10.0000', 4, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (371, 98, 1, 22, 46, '0.0000', '10.0000', 4, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (372, 98, 2, 22, 46, '0.0000', '10.0000', 4, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
 (373, 99, 1, 22, 46, '0.0000', '10.0000', 4, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
@@ -12934,27 +13269,27 @@ INSERT INTO `product_to_store` (`id`, `product_id`, `store_id`, `purchase_price`
 (516, 112, 3, 10.5, 20.25, '0.0000', '10.0000', 1, 0, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-07-27', '2023-07-28', 1, 0),
 (517, 113, 3, 10.8, 20.25, '0.0000', '10.0000', 1, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-07-27', '2023-07-28', 1, 0),
 (518, 114, 3, 10.8, 20.25, '0.0000', '10.0000', 1, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-07-27', '2023-07-28', 1, 0),
-(532, 115, 1, 4, 14, '0.0000', '10.0000', 3, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
-(533, 115, 2, 4, 14, '92.0000', '10.0000', 3, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
-(534, 115, 3, 4, 14, '10.0000', '10.0000', 3, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
-(535, 116, 1, 4, 14, '0.0000', '10.0000', 3, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
-(536, 116, 2, 4, 14, '59.0000', '10.0000', 3, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
-(537, 116, 3, 4, 14, '14.0000', '10.0000', 3, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
-(538, 117, 1, 4, 14, '0.0000', '10.0000', 3, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
-(539, 117, 2, 4, 14, '20.0000', '10.0000', 3, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
-(540, 117, 3, 4, 14, '16.0000', '10.0000', 3, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
-(541, 118, 1, 4, 14, '0.0000', '10.0000', 3, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
-(542, 118, 2, 4, 14, '11.0000', '10.0000', 3, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
-(543, 118, 3, 4, 14, '11.0000', '10.0000', 3, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
-(544, 119, 1, 4, 14, '0.0000', '10.0000', 3, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
-(545, 119, 2, 4, 14, '15.0000', '10.0000', 3, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
-(546, 119, 3, 4, 14, '7.0000', '10.0000', 3, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
-(547, 120, 1, 4, 14, '0.0000', '10.0000', 3, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
-(548, 120, 2, 4, 14, '15.0000', '10.0000', 3, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
-(549, 120, 3, 4, 14, '9.0000', '10.0000', 3, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
-(550, 121, 1, 4, 14, '0.0000', '10.0000', 3, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
-(551, 121, 2, 4, 14, '127.0000', '10.0000', 3, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
-(552, 121, 3, 4, 14, '12.0000', '10.0000', 3, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(532, 115, 1, 4.5, 14, '0.0000', '10.0000', 3, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(533, 115, 2, 4.5, 14, '91.0000', '10.0000', 3, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(534, 115, 3, 4.5, 14, '10.0000', '10.0000', 3, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(535, 116, 1, 4.5, 14, '0.0000', '10.0000', 3, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(536, 116, 2, 4.5, 14, '59.0000', '10.0000', 3, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(537, 116, 3, 4.5, 14, '14.0000', '10.0000', 3, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(538, 117, 1, 4.5, 14, '0.0000', '10.0000', 3, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(539, 117, 2, 4.5, 14, '20.0000', '10.0000', 3, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(540, 117, 3, 4.5, 14, '16.0000', '10.0000', 3, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(541, 118, 1, 4.5, 14, '0.0000', '10.0000', 3, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(542, 118, 2, 4.5, 14, '11.0000', '10.0000', 3, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(543, 118, 3, 4.5, 14, '11.0000', '10.0000', 3, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(544, 119, 1, 4.5, 14, '0.0000', '10.0000', 3, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(545, 119, 2, 4.5, 14, '15.0000', '10.0000', 3, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(546, 119, 3, 4.5, 14, '7.0000', '10.0000', 3, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(547, 120, 1, 4.5, 14, '0.0000', '10.0000', 3, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(548, 120, 2, 4.5, 14, '15.0000', '10.0000', 3, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(549, 120, 3, 4.5, 14, '9.0000', '10.0000', 3, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(550, 121, 1, 4.5, 14, '0.0000', '10.0000', 3, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(551, 121, 2, 4.5, 14, '127.0000', '10.0000', 3, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(552, 121, 3, 4.5, 14, '12.0000', '10.0000', 3, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
 (553, 122, 1, 3, 14, '0.0000', '10.0000', 3, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
 (554, 122, 2, 3, 14, '0.0000', '10.0000', 3, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
 (555, 122, 3, 3, 14, '0.0000', '10.0000', 3, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
@@ -13178,13 +13513,13 @@ INSERT INTO `product_to_store` (`id`, `product_id`, `store_id`, `purchase_price`
 (772, 112, 4, 10.5, 20.25, '0.0000', '10.0000', 1, 0, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-07-27', '2023-07-28', 1, 0),
 (773, 113, 4, 10.8, 20.25, '0.0000', '10.0000', 1, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-07-27', '2023-07-28', 1, 0),
 (774, 114, 4, 10.8, 20.25, '0.0000', '10.0000', 1, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-07-27', '2023-07-28', 1, 0),
-(775, 115, 4, 4, 14, '0.0000', '10.0000', 3, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
-(776, 116, 4, 4, 14, '0.0000', '10.0000', 3, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
-(777, 117, 4, 4, 14, '0.0000', '10.0000', 3, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
-(778, 118, 4, 4, 14, '0.0000', '10.0000', 3, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
-(779, 119, 4, 4, 14, '0.0000', '10.0000', 3, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
-(780, 120, 4, 4, 14, '0.0000', '10.0000', 3, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
-(781, 121, 4, 4, 14, '0.0000', '10.0000', 3, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(775, 115, 4, 4.5, 14, '0.0000', '10.0000', 3, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(776, 116, 4, 4.5, 14, '0.0000', '10.0000', 3, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(777, 117, 4, 4.5, 14, '0.0000', '10.0000', 3, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(778, 118, 4, 4.5, 14, '0.0000', '10.0000', 3, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(779, 119, 4, 4.5, 14, '0.0000', '10.0000', 3, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(780, 120, 4, 4.5, 14, '0.0000', '10.0000', 3, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(781, 121, 4, 4.5, 14, '0.0000', '10.0000', 3, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
 (782, 122, 4, 3, 14, '0.0000', '10.0000', 3, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
 (783, 123, 4, 3, 14, '0.0000', '10.0000', 3, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
 (784, 124, 4, 3, 14, '0.0000', '10.0000', 3, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
@@ -13620,13 +13955,13 @@ INSERT INTO `product_to_store` (`id`, `product_id`, `store_id`, `purchase_price`
 (1311, 112, 5, 10.5, 20.25, '0.0000', '10.0000', 1, 0, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-07-27', '2023-07-28', 1, 0),
 (1312, 113, 5, 10.8, 20.25, '0.0000', '10.0000', 1, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-07-27', '2023-07-28', 1, 0),
 (1313, 114, 5, 10.8, 20.25, '0.0000', '10.0000', 1, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-07-27', '2023-07-28', 1, 0),
-(1314, 115, 5, 4, 14, '0.0000', '10.0000', 3, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
-(1315, 116, 5, 4, 14, '0.0000', '10.0000', 3, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
-(1316, 117, 5, 4, 14, '0.0000', '10.0000', 3, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
-(1317, 118, 5, 4, 14, '0.0000', '10.0000', 3, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
-(1318, 119, 5, 4, 14, '0.0000', '10.0000', 3, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
-(1319, 120, 5, 4, 14, '0.0000', '10.0000', 3, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
-(1320, 121, 5, 4, 14, '0.0000', '10.0000', 3, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(1314, 115, 5, 4.5, 14, '0.0000', '10.0000', 3, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(1315, 116, 5, 4.5, 14, '0.0000', '10.0000', 3, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(1316, 117, 5, 4.5, 14, '0.0000', '10.0000', 3, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(1317, 118, 5, 4.5, 14, '0.0000', '10.0000', 3, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(1318, 119, 5, 4.5, 14, '0.0000', '10.0000', 3, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(1319, 120, 5, 4.5, 14, '0.0000', '10.0000', 3, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(1320, 121, 5, 4.5, 14, '0.0000', '10.0000', 3, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
 (1321, 122, 5, 3, 14, '0.0000', '10.0000', 3, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
 (1322, 123, 5, 3, 14, '0.0000', '10.0000', 3, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
 (1323, 124, 5, 3, 14, '0.0000', '10.0000', 3, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
@@ -13790,7 +14125,7 @@ INSERT INTO `product_to_store` (`id`, `product_id`, `store_id`, `purchase_price`
 (1508, 239, 4, 4.5, 14, '0.0000', '10.0000', 3, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-08-25', '2023-08-26', 1, 0),
 (1509, 239, 5, 4.5, 14, '0.0000', '10.0000', 3, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-08-25', '2023-08-26', 1, 0),
 (1510, 240, 1, 15, 37.5, '0.0000', '10.0000', 4, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-08-27', '2023-08-28', 1, 0),
-(1511, 240, 2, 15, 37.5, '7.0000', '10.0000', 4, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-08-27', '2023-08-28', 1, 0),
+(1511, 240, 2, 15, 37.5, '6.0000', '10.0000', 4, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-08-27', '2023-08-28', 1, 0),
 (1512, 240, 3, 15, 37.5, '0.0000', '10.0000', 4, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-08-27', '2023-08-28', 1, 0),
 (1513, 240, 4, 15, 37.5, '0.0000', '10.0000', 4, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-08-27', '2023-08-28', 1, 0),
 (1514, 240, 5, 15, 37.5, '0.0000', '10.0000', 4, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-08-27', '2023-08-28', 1, 0),
@@ -13814,61 +14149,61 @@ INSERT INTO `product_to_store` (`id`, `product_id`, `store_id`, `purchase_price`
 (1532, 244, 3, 4.6, 14, '0.0000', '10.0000', 6, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
 (1533, 244, 4, 4.6, 14, '0.0000', '10.0000', 6, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
 (1534, 244, 5, 4.6, 14, '0.0000', '10.0000', 6, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
-(1535, 245, 1, 4.6, 12.75, '0.0000', '10.0000', 6, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
-(1536, 245, 2, 4.6, 12.75, '750.0000', '10.0000', 6, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
-(1537, 245, 3, 4.6, 12.75, '0.0000', '10.0000', 6, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
-(1538, 245, 4, 4.6, 12.75, '0.0000', '10.0000', 6, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
-(1539, 245, 5, 4.6, 12.75, '0.0000', '10.0000', 6, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
-(1540, 246, 1, 4.6, 12.75, '0.0000', '10.0000', 6, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
-(1541, 246, 2, 4.6, 12.75, '780.0000', '10.0000', 6, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
-(1542, 246, 3, 4.6, 12.75, '0.0000', '10.0000', 6, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
-(1543, 246, 4, 4.6, 12.75, '0.0000', '10.0000', 6, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
-(1544, 246, 5, 4.6, 12.75, '0.0000', '10.0000', 6, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
-(1545, 247, 1, 4.6, 12.75, '0.0000', '10.0000', 6, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
-(1546, 247, 2, 4.6, 12.75, '761.0000', '10.0000', 6, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
-(1547, 247, 3, 4.6, 12.75, '0.0000', '10.0000', 6, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
-(1548, 247, 4, 4.6, 12.75, '0.0000', '10.0000', 6, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
-(1549, 247, 5, 4.6, 12.75, '0.0000', '10.0000', 6, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
-(1550, 248, 1, 4.6, 12.75, '0.0000', '10.0000', 6, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
-(1551, 248, 2, 4.6, 12.75, '713.0000', '10.0000', 6, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
-(1552, 248, 3, 4.6, 12.75, '0.0000', '10.0000', 6, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
-(1553, 248, 4, 4.6, 12.75, '0.0000', '10.0000', 6, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
-(1554, 248, 5, 4.6, 12.75, '0.0000', '10.0000', 6, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
-(1555, 249, 1, 4.6, 12.75, '0.0000', '10.0000', 6, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
-(1556, 249, 2, 4.6, 12.75, '682.0000', '10.0000', 6, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
-(1557, 249, 3, 4.6, 12.75, '0.0000', '10.0000', 6, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
-(1558, 249, 4, 4.6, 12.75, '0.0000', '10.0000', 6, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
-(1559, 249, 5, 4.6, 12.75, '0.0000', '10.0000', 6, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
-(1560, 250, 1, 4.98, 13.5, '0.0000', '10.0000', 6, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
-(1561, 250, 2, 4.98, 13.5, '197.0000', '10.0000', 6, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
-(1562, 250, 3, 4.98, 13.5, '0.0000', '10.0000', 6, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
-(1563, 250, 4, 4.98, 13.5, '0.0000', '10.0000', 6, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
-(1564, 250, 5, 4.98, 13.5, '0.0000', '10.0000', 6, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
-(1565, 251, 1, 4.98, 13.5, '0.0000', '10.0000', 6, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
-(1566, 251, 2, 4.98, 13.5, '795.0000', '10.0000', 6, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
-(1567, 251, 3, 4.98, 13.5, '0.0000', '10.0000', 6, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
-(1568, 251, 4, 4.98, 13.5, '0.0000', '10.0000', 6, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
-(1569, 251, 5, 4.98, 13.5, '0.0000', '10.0000', 6, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
-(1570, 252, 1, 4.98, 13.5, '0.0000', '10.0000', 6, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
-(1571, 252, 2, 4.98, 13.5, '795.0000', '10.0000', 6, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
-(1572, 252, 3, 4.98, 13.5, '0.0000', '10.0000', 6, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
-(1573, 252, 4, 4.98, 13.5, '0.0000', '10.0000', 6, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
-(1574, 252, 5, 4.98, 13.5, '0.0000', '10.0000', 6, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
-(1575, 253, 1, 5.8, 16.5, '0.0000', '10.0000', 6, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
-(1576, 253, 2, 5.8, 16.5, '736.0000', '10.0000', 6, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
-(1577, 253, 3, 5.8, 16.5, '0.0000', '10.0000', 6, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
-(1578, 253, 4, 5.8, 16.5, '0.0000', '10.0000', 6, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
-(1579, 253, 5, 5.8, 16.5, '0.0000', '10.0000', 6, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
-(1580, 254, 1, 5.8, 16.5, '0.0000', '10.0000', 6, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
-(1581, 254, 2, 5.8, 16.5, '720.0000', '10.0000', 6, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
-(1582, 254, 3, 5.8, 16.5, '0.0000', '10.0000', 6, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
-(1583, 254, 4, 5.8, 16.5, '0.0000', '10.0000', 6, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
-(1584, 254, 5, 5.8, 16.5, '0.0000', '10.0000', 6, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
-(1585, 255, 1, 5.8, 16.5, '0.0000', '10.0000', 6, 0, 0, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
-(1586, 255, 2, 5.8, 16.5, '716.0000', '10.0000', 6, 0, 0, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
-(1587, 255, 3, 5.8, 16.5, '0.0000', '10.0000', 6, 0, 0, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
-(1588, 255, 4, 5.8, 16.5, '0.0000', '10.0000', 6, 0, 0, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
-(1589, 255, 5, 5.8, 16.5, '0.0000', '10.0000', 6, 0, 0, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(1535, 245, 1, 4.6, 14, '0.0000', '10.0000', 6, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(1536, 245, 2, 4.6, 14, '749.0000', '10.0000', 6, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(1537, 245, 3, 4.6, 14, '0.0000', '10.0000', 6, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(1538, 245, 4, 4.6, 14, '0.0000', '10.0000', 6, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(1539, 245, 5, 4.6, 14, '0.0000', '10.0000', 6, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(1540, 246, 1, 4.6, 14, '0.0000', '10.0000', 6, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(1541, 246, 2, 4.6, 14, '780.0000', '10.0000', 6, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(1542, 246, 3, 4.6, 14, '0.0000', '10.0000', 6, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(1543, 246, 4, 4.6, 14, '0.0000', '10.0000', 6, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(1544, 246, 5, 4.6, 14, '0.0000', '10.0000', 6, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(1545, 247, 1, 4.6, 14, '0.0000', '10.0000', 6, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(1546, 247, 2, 4.6, 14, '761.0000', '10.0000', 6, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(1547, 247, 3, 4.6, 14, '0.0000', '10.0000', 6, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(1548, 247, 4, 4.6, 14, '0.0000', '10.0000', 6, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(1549, 247, 5, 4.6, 14, '0.0000', '10.0000', 6, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(1550, 248, 1, 4.6, 14, '0.0000', '10.0000', 6, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(1551, 248, 2, 4.6, 14, '713.0000', '10.0000', 6, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(1552, 248, 3, 4.6, 14, '0.0000', '10.0000', 6, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(1553, 248, 4, 4.6, 14, '0.0000', '10.0000', 6, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(1554, 248, 5, 4.6, 14, '0.0000', '10.0000', 6, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(1555, 249, 1, 4.6, 14, '0.0000', '10.0000', 6, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(1556, 249, 2, 4.6, 14, '682.0000', '10.0000', 6, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(1557, 249, 3, 4.6, 14, '0.0000', '10.0000', 6, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(1558, 249, 4, 4.6, 14, '0.0000', '10.0000', 6, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(1559, 249, 5, 4.6, 14, '0.0000', '10.0000', 6, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(1560, 250, 1, 4.98, 14, '0.0000', '10.0000', 6, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(1561, 250, 2, 4.98, 14, '197.0000', '10.0000', 6, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(1562, 250, 3, 4.98, 14, '0.0000', '10.0000', 6, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(1563, 250, 4, 4.98, 14, '0.0000', '10.0000', 6, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(1564, 250, 5, 4.98, 14, '0.0000', '10.0000', 6, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(1565, 251, 1, 4.98, 15, '0.0000', '10.0000', 6, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(1566, 251, 2, 4.98, 15, '795.0000', '10.0000', 6, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(1567, 251, 3, 4.98, 15, '0.0000', '10.0000', 6, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(1568, 251, 4, 4.98, 15, '0.0000', '10.0000', 6, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(1569, 251, 5, 4.98, 15, '0.0000', '10.0000', 6, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(1570, 252, 1, 4.98, 15, '0.0000', '10.0000', 6, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(1571, 252, 2, 4.98, 15, '795.0000', '10.0000', 6, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(1572, 252, 3, 4.98, 15, '0.0000', '10.0000', 6, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(1573, 252, 4, 4.98, 15, '0.0000', '10.0000', 6, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(1574, 252, 5, 4.98, 15, '0.0000', '10.0000', 6, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(1575, 253, 1, 5.8, 15, '0.0000', '10.0000', 6, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(1576, 253, 2, 5.8, 15, '736.0000', '10.0000', 6, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(1577, 253, 3, 5.8, 15, '0.0000', '10.0000', 6, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(1578, 253, 4, 5.8, 15, '0.0000', '10.0000', 6, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(1579, 253, 5, 5.8, 15, '0.0000', '10.0000', 6, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(1580, 254, 1, 5.8, 15, '0.0000', '10.0000', 6, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(1581, 254, 2, 5.8, 15, '720.0000', '10.0000', 6, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(1582, 254, 3, 5.8, 15, '0.0000', '10.0000', 6, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(1583, 254, 4, 5.8, 15, '0.0000', '10.0000', 6, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(1584, 254, 5, 5.8, 15, '0.0000', '10.0000', 6, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(1585, 255, 1, 5.8, 15, '0.0000', '10.0000', 6, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(1586, 255, 2, 5.8, 15, '716.0000', '10.0000', 6, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(1587, 255, 3, 5.8, 15, '0.0000', '10.0000', 6, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(1588, 255, 4, 5.8, 15, '0.0000', '10.0000', 6, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(1589, 255, 5, 5.8, 15, '0.0000', '10.0000', 6, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
 (1590, 256, 1, 3.95, 13, '0.0000', '10.0000', 2, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
 (1591, 256, 2, 3.95, 13, '12.0000', '10.0000', 2, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
 (1592, 256, 3, 3.95, 13, '0.0000', '10.0000', 2, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
@@ -13889,17 +14224,17 @@ INSERT INTO `product_to_store` (`id`, `product_id`, `store_id`, `purchase_price`
 (1607, 259, 3, 4.5, 13, '0.0000', '10.0000', 2, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
 (1608, 259, 4, 4.5, 13, '0.0000', '10.0000', 2, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
 (1609, 259, 5, 4.5, 13, '0.0000', '10.0000', 2, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
-(1610, 260, 1, 5.5, 16, '0.0000', '10.0000', 2, 0, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-09-03', '2023-09-04', 1, 0),
-(1611, 260, 2, 5.5, 16, '387.0000', '10.0000', 2, 0, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-09-03', '2023-09-04', 1, 0),
-(1612, 260, 3, 5.5, 16, '0.0000', '10.0000', 2, 0, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-09-03', '2023-09-04', 1, 0),
-(1613, 260, 4, 5.5, 16, '0.0000', '10.0000', 2, 0, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-09-03', '2023-09-04', 1, 0);
+(1610, 260, 1, 5.5, 15, '0.0000', '10.0000', 2, 0, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-09-03', '2023-09-04', 1, 0),
+(1611, 260, 2, 5.5, 15, '378.0000', '10.0000', 2, 0, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-09-03', '2023-09-04', 1, 0),
+(1612, 260, 3, 5.5, 15, '0.0000', '10.0000', 2, 0, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-09-03', '2023-09-04', 1, 0),
+(1613, 260, 4, 5.5, 15, '0.0000', '10.0000', 2, 0, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-09-03', '2023-09-04', 1, 0),
+(1614, 260, 5, 5.5, 15, '0.0000', '10.0000', 2, 0, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-09-03', '2023-09-04', 1, 0);
 INSERT INTO `product_to_store` (`id`, `product_id`, `store_id`, `purchase_price`, `sell_price`, `quantity_in_stock`, `alert_quantity`, `sup_id`, `brand_id`, `course_id`, `box_id`, `taxrate_id`, `tax_method`, `preference`, `e_date`, `p_date`, `status`, `sort_order`) VALUES
-(1614, 260, 5, 5.5, 16, '0.0000', '10.0000', 2, 0, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-09-03', '2023-09-04', 1, 0),
-(1615, 261, 1, 5.5, 16, '0.0000', '10.0000', 2, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-09-03', '2023-09-04', 1, 0),
-(1616, 261, 2, 5.5, 16, '446.0000', '10.0000', 2, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-09-03', '2023-09-04', 1, 0),
-(1617, 261, 3, 5.5, 16, '0.0000', '10.0000', 2, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-09-03', '2023-09-04', 1, 0),
-(1618, 261, 4, 5.5, 16, '0.0000', '10.0000', 2, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-09-03', '2023-09-04', 1, 0),
-(1619, 261, 5, 5.5, 16, '0.0000', '10.0000', 2, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-09-03', '2023-09-04', 1, 0),
+(1615, 261, 1, 5.5, 15, '0.0000', '10.0000', 2, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-09-03', '2023-09-04', 1, 0),
+(1616, 261, 2, 5.5, 15, '443.0000', '10.0000', 2, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-09-03', '2023-09-04', 1, 0),
+(1617, 261, 3, 5.5, 15, '0.0000', '10.0000', 2, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-09-03', '2023-09-04', 1, 0),
+(1618, 261, 4, 5.5, 15, '0.0000', '10.0000', 2, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-09-03', '2023-09-04', 1, 0),
+(1619, 261, 5, 5.5, 15, '0.0000', '10.0000', 2, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-09-03', '2023-09-04', 1, 0),
 (1620, 262, 1, 11.5, 12, '0.0000', '10.0000', 2, 0, 6, 1, 2, 'inclusive', 'a:0:{}', '2024-09-03', '2023-09-04', 1, 0),
 (1621, 262, 2, 11.5, 12, '6.0000', '10.0000', 2, 0, 6, 1, 2, 'inclusive', 'a:0:{}', '2024-09-03', '2023-09-04', 1, 0),
 (1622, 262, 3, 11.5, 12, '0.0000', '10.0000', 2, 0, 6, 1, 2, 'inclusive', 'a:0:{}', '2024-09-03', '2023-09-04', 1, 0),
@@ -13916,7 +14251,7 @@ INSERT INTO `product_to_store` (`id`, `product_id`, `store_id`, `purchase_price`
 (1633, 264, 4, 3.95, 13, '0.0000', '10.0000', 2, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-09-03', '2023-09-04', 1, 0),
 (1634, 264, 5, 3.95, 13, '0.0000', '10.0000', 2, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-09-03', '2023-09-04', 1, 0),
 (1635, 265, 1, 7, 18, '0.0000', '10.0000', 1, 0, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-09-04', '2023-09-05', 1, 0),
-(1636, 265, 2, 7, 18, '81.0000', '10.0000', 1, 0, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-09-04', '2023-09-05', 1, 0),
+(1636, 265, 2, 7, 18, '78.0000', '10.0000', 1, 0, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-09-04', '2023-09-05', 1, 0),
 (1637, 265, 3, 7, 18, '0.0000', '10.0000', 1, 0, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-09-04', '2023-09-05', 1, 0),
 (1638, 265, 4, 7, 18, '0.0000', '10.0000', 1, 0, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-09-04', '2023-09-05', 1, 0),
 (1639, 265, 5, 7, 18, '0.0000', '10.0000', 1, 0, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-09-04', '2023-09-05', 1, 0),
@@ -13975,88 +14310,88 @@ INSERT INTO `product_to_store` (`id`, `product_id`, `store_id`, `purchase_price`
 (1692, 276, 3, 5, 13.5, '0.0000', '10.0000', 2, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-09-08', '2023-09-09', 1, 0),
 (1693, 276, 4, 5, 13.5, '0.0000', '10.0000', 2, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-09-08', '2023-09-09', 1, 0),
 (1694, 276, 5, 5, 13.5, '0.0000', '10.0000', 2, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-09-08', '2023-09-09', 1, 0),
-(1695, 277, 1, 4.5, 13, '0.0000', '10.0000', 2, 0, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
-(1696, 277, 2, 4.5, 13, '47.0000', '10.0000', 2, 0, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
-(1697, 277, 3, 4.5, 13, '0.0000', '10.0000', 2, 0, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
-(1698, 277, 4, 4.5, 13, '0.0000', '10.0000', 2, 0, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
-(1699, 277, 5, 4.5, 13, '0.0000', '10.0000', 2, 0, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
-(1700, 278, 1, 4.5, 13, '0.0000', '10.0000', 2, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
-(1701, 278, 2, 4.5, 13, '35.0000', '10.0000', 2, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
-(1702, 278, 3, 4.5, 13, '0.0000', '10.0000', 2, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
-(1703, 278, 4, 4.5, 13, '0.0000', '10.0000', 2, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
-(1704, 278, 5, 4.5, 13, '0.0000', '10.0000', 2, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
-(1705, 279, 1, 4.5, 13, '0.0000', '10.0000', 2, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
-(1706, 279, 2, 4.5, 13, '19.0000', '10.0000', 2, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
-(1707, 279, 3, 4.5, 13, '0.0000', '10.0000', 2, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
-(1708, 279, 4, 4.5, 13, '0.0000', '10.0000', 2, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
-(1709, 279, 5, 4.5, 13, '0.0000', '10.0000', 2, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
-(1710, 280, 1, 4.5, 13, '0.0000', '10.0000', 2, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
-(1711, 280, 2, 4.5, 13, '68.0000', '10.0000', 2, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
-(1712, 280, 3, 4.5, 13, '0.0000', '10.0000', 2, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
-(1713, 280, 4, 4.5, 13, '0.0000', '10.0000', 2, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
-(1714, 280, 5, 4.5, 13, '0.0000', '10.0000', 2, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
-(1715, 281, 1, 4.5, 13, '0.0000', '10.0000', 2, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
-(1716, 281, 2, 4.5, 13, '71.0000', '10.0000', 2, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
-(1717, 281, 3, 4.5, 13, '0.0000', '10.0000', 2, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
-(1718, 281, 4, 4.5, 13, '0.0000', '10.0000', 2, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
-(1719, 281, 5, 4.5, 13, '0.0000', '10.0000', 2, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
-(1720, 282, 1, 4.5, 13, '0.0000', '10.0000', 2, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
-(1721, 282, 2, 4.5, 13, '21.0000', '10.0000', 2, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
-(1722, 282, 3, 4.5, 13, '0.0000', '10.0000', 2, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
-(1723, 282, 4, 4.5, 13, '0.0000', '10.0000', 2, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
-(1724, 282, 5, 4.5, 13, '0.0000', '10.0000', 2, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(1695, 277, 1, 3.95, 14, '0.0000', '10.0000', 2, 0, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(1696, 277, 2, 3.95, 14, '26.0000', '10.0000', 2, 0, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(1697, 277, 3, 3.95, 14, '0.0000', '10.0000', 2, 0, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(1698, 277, 4, 3.95, 14, '0.0000', '10.0000', 2, 0, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(1699, 277, 5, 3.95, 14, '0.0000', '10.0000', 2, 0, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(1700, 278, 1, 3.95, 14, '0.0000', '10.0000', 2, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(1701, 278, 2, 3.95, 14, '34.0000', '10.0000', 2, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(1702, 278, 3, 3.95, 14, '0.0000', '10.0000', 2, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(1703, 278, 4, 3.95, 14, '0.0000', '10.0000', 2, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(1704, 278, 5, 3.95, 14, '0.0000', '10.0000', 2, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(1705, 279, 1, 3.95, 14, '0.0000', '10.0000', 2, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(1706, 279, 2, 3.95, 14, '6.0000', '10.0000', 2, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(1707, 279, 3, 3.95, 14, '0.0000', '10.0000', 2, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(1708, 279, 4, 3.95, 14, '0.0000', '10.0000', 2, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(1709, 279, 5, 3.95, 14, '0.0000', '10.0000', 2, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(1710, 280, 1, 3.95, 14, '0.0000', '10.0000', 2, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(1711, 280, 2, 3.95, 14, '64.0000', '10.0000', 2, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(1712, 280, 3, 3.95, 14, '0.0000', '10.0000', 2, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(1713, 280, 4, 3.95, 14, '0.0000', '10.0000', 2, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(1714, 280, 5, 3.95, 14, '0.0000', '10.0000', 2, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(1715, 281, 1, 3.95, 14, '0.0000', '10.0000', 2, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(1716, 281, 2, 3.95, 14, '62.0000', '10.0000', 2, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(1717, 281, 3, 3.95, 14, '0.0000', '10.0000', 2, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(1718, 281, 4, 3.95, 14, '0.0000', '10.0000', 2, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(1719, 281, 5, 3.95, 14, '0.0000', '10.0000', 2, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(1720, 282, 1, 3.95, 14, '0.0000', '10.0000', 2, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(1721, 282, 2, 3.95, 14, '18.0000', '10.0000', 2, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(1722, 282, 3, 3.95, 14, '0.0000', '10.0000', 2, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(1723, 282, 4, 3.95, 14, '0.0000', '10.0000', 2, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(1724, 282, 5, 3.95, 14, '0.0000', '10.0000', 2, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
 (1730, 284, 1, 6, 14, '0.0000', '10.0000', 6, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
-(1731, 284, 2, 6, 14, '98.0000', '10.0000', 6, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(1731, 284, 2, 6, 14, '94.0000', '10.0000', 6, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
 (1732, 284, 3, 6, 14, '0.0000', '10.0000', 6, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
 (1733, 284, 4, 6, 14, '0.0000', '10.0000', 6, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
 (1734, 284, 5, 6, 14, '0.0000', '10.0000', 6, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
-(1740, 286, 1, 5.5, 14, '0.0000', '10.0000', 2, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
-(1741, 286, 2, 5.5, 14, '251.0000', '10.0000', 2, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
-(1742, 286, 3, 5.5, 14, '0.0000', '10.0000', 2, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
-(1743, 286, 4, 5.5, 14, '0.0000', '10.0000', 2, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
-(1744, 286, 5, 5.5, 14, '0.0000', '10.0000', 2, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
-(1745, 287, 1, 5.5, 14, '0.0000', '10.0000', 2, 0, 0, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
-(1746, 287, 2, 5.5, 14, '14.0000', '10.0000', 2, 0, 0, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
-(1747, 287, 3, 5.5, 14, '0.0000', '10.0000', 2, 0, 0, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
-(1748, 287, 4, 5.5, 14, '0.0000', '10.0000', 2, 0, 0, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
-(1749, 287, 5, 5.5, 14, '0.0000', '10.0000', 2, 0, 0, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
-(1750, 288, 1, 5.5, 14, '0.0000', '10.0000', 2, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
-(1751, 288, 2, 5.5, 14, '318.0000', '10.0000', 2, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
-(1752, 288, 3, 5.5, 14, '0.0000', '10.0000', 2, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
-(1753, 288, 4, 5.5, 14, '0.0000', '10.0000', 2, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
-(1754, 288, 5, 5.5, 14, '0.0000', '10.0000', 2, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(1740, 286, 1, 5.5, 15, '0.0000', '10.0000', 2, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(1741, 286, 2, 5.5, 15, '245.0000', '10.0000', 2, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(1742, 286, 3, 5.5, 15, '0.0000', '10.0000', 2, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(1743, 286, 4, 5.5, 15, '0.0000', '10.0000', 2, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(1744, 286, 5, 5.5, 15, '0.0000', '10.0000', 2, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(1745, 287, 1, 5.5, 15, '0.0000', '10.0000', 2, 0, 0, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(1746, 287, 2, 5.5, 15, '14.0000', '10.0000', 2, 0, 0, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(1747, 287, 3, 5.5, 15, '0.0000', '10.0000', 2, 0, 0, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(1748, 287, 4, 5.5, 15, '0.0000', '10.0000', 2, 0, 0, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(1749, 287, 5, 5.5, 15, '0.0000', '10.0000', 2, 0, 0, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(1750, 288, 1, 5.5, 15, '0.0000', '10.0000', 2, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(1751, 288, 2, 5.5, 15, '314.0000', '10.0000', 2, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(1752, 288, 3, 5.5, 15, '0.0000', '10.0000', 2, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(1753, 288, 4, 5.5, 15, '0.0000', '10.0000', 2, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(1754, 288, 5, 5.5, 15, '0.0000', '10.0000', 2, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
 (1755, 289, 1, 4.5, 13, '0.0000', '10.0000', 2, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-09-11', '2023-09-12', 1, 0),
-(1756, 289, 2, 4.5, 13, '24.0000', '10.0000', 2, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-09-11', '2023-09-12', 1, 0),
+(1756, 289, 2, 4.5, 13, '18.0000', '10.0000', 2, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-09-11', '2023-09-12', 1, 0),
 (1757, 289, 3, 4.5, 13, '0.0000', '10.0000', 2, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-09-11', '2023-09-12', 1, 0),
 (1758, 289, 4, 4.5, 13, '0.0000', '10.0000', 2, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-09-11', '2023-09-12', 1, 0),
 (1759, 289, 5, 4.5, 13, '0.0000', '10.0000', 2, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-09-11', '2023-09-12', 1, 0),
 (1760, 290, 1, 4.5, 13, '0.0000', '10.0000', 2, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-09-11', '2023-09-12', 1, 0),
-(1761, 290, 2, 4.5, 13, '29.0000', '10.0000', 2, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-09-11', '2023-09-12', 1, 0),
+(1761, 290, 2, 4.5, 13, '27.0000', '10.0000', 2, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-09-11', '2023-09-12', 1, 0),
 (1762, 290, 3, 4.5, 13, '0.0000', '10.0000', 2, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-09-11', '2023-09-12', 1, 0),
 (1763, 290, 4, 4.5, 13, '0.0000', '10.0000', 2, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-09-11', '2023-09-12', 1, 0),
 (1764, 290, 5, 4.5, 13, '0.0000', '10.0000', 2, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-09-11', '2023-09-12', 1, 0),
 (1765, 291, 1, 4.5, 13, '0.0000', '10.0000', 2, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-09-11', '2023-09-12', 1, 0),
-(1766, 291, 2, 4.5, 13, '30.0000', '10.0000', 2, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-09-11', '2023-09-12', 1, 0),
+(1766, 291, 2, 4.5, 13, '29.0000', '10.0000', 2, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-09-11', '2023-09-12', 1, 0),
 (1767, 291, 3, 4.5, 13, '0.0000', '10.0000', 2, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-09-11', '2023-09-12', 1, 0),
 (1768, 291, 4, 4.5, 13, '0.0000', '10.0000', 2, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-09-11', '2023-09-12', 1, 0),
 (1769, 291, 5, 4.5, 13, '0.0000', '10.0000', 2, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-09-11', '2023-09-12', 1, 0),
 (1770, 292, 1, 4.6, 14, '0.0000', '10.0000', 6, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-09-11', '2023-09-12', 1, 0),
-(1771, 292, 2, 4.6, 14, '123.0000', '10.0000', 6, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-09-11', '2023-09-12', 1, 0),
+(1771, 292, 2, 4.6, 14, '119.0000', '10.0000', 6, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-09-11', '2023-09-12', 1, 0),
 (1772, 292, 3, 4.6, 14, '0.0000', '10.0000', 6, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-09-11', '2023-09-12', 1, 0),
 (1773, 292, 4, 4.6, 14, '0.0000', '10.0000', 6, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-09-11', '2023-09-12', 1, 0),
 (1774, 292, 5, 4.6, 14, '0.0000', '10.0000', 6, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-09-11', '2023-09-12', 1, 0),
 (1775, 293, 1, 4.6, 14, '0.0000', '10.0000', 6, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-09-11', '2023-09-12', 1, 0),
-(1776, 293, 2, 4.6, 14, '118.0000', '10.0000', 6, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-09-11', '2023-09-12', 1, 0),
+(1776, 293, 2, 4.6, 14, '116.0000', '10.0000', 6, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-09-11', '2023-09-12', 1, 0),
 (1777, 293, 3, 4.6, 14, '0.0000', '10.0000', 6, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-09-11', '2023-09-12', 1, 0),
 (1778, 293, 4, 4.6, 14, '0.0000', '10.0000', 6, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-09-11', '2023-09-12', 1, 0),
 (1779, 293, 5, 4.6, 14, '0.0000', '10.0000', 6, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-09-11', '2023-09-12', 1, 0),
 (1785, 295, 1, 4.5, 13, '0.0000', '10.0000', 2, 0, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-09-12', '2023-09-13', 1, 0),
-(1786, 295, 2, 4.5, 13, '15.0000', '10.0000', 2, 0, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-09-12', '2023-09-13', 1, 0),
+(1786, 295, 2, 4.5, 13, '13.0000', '10.0000', 2, 0, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-09-12', '2023-09-13', 1, 0),
 (1787, 295, 3, 4.5, 13, '0.0000', '10.0000', 2, 0, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-09-12', '2023-09-13', 1, 0),
 (1788, 295, 4, 4.5, 13, '0.0000', '10.0000', 2, 0, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-09-12', '2023-09-13', 1, 0),
 (1789, 295, 5, 4.5, 13, '0.0000', '10.0000', 2, 0, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-09-12', '2023-09-13', 1, 0),
 (1790, 296, 1, 4.5, 13, '0.0000', '10.0000', 2, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-09-12', '2023-09-13', 1, 0),
-(1791, 296, 2, 4.5, 13, '28.0000', '10.0000', 2, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-09-12', '2023-09-13', 1, 0),
+(1791, 296, 2, 4.5, 13, '22.0000', '10.0000', 2, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-09-12', '2023-09-13', 1, 0),
 (1792, 296, 3, 4.5, 13, '0.0000', '10.0000', 2, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-09-12', '2023-09-13', 1, 0),
 (1793, 296, 4, 4.5, 13, '0.0000', '10.0000', 2, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-09-12', '2023-09-13', 1, 0),
 (1794, 296, 5, 4.5, 13, '0.0000', '10.0000', 2, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-09-12', '2023-09-13', 1, 0),
@@ -14096,17 +14431,17 @@ INSERT INTO `product_to_store` (`id`, `product_id`, `store_id`, `purchase_price`
 (1828, 303, 4, 4.5, 13, '0.0000', '10.0000', 2, 0, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-09-26', '2023-09-27', 1, 0),
 (1829, 303, 5, 4.5, 13, '0.0000', '10.0000', 2, 0, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-09-26', '2023-09-27', 1, 0),
 (1830, 304, 1, 5.5, 13, '0.0000', '10.0000', 2, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-09-29', '2023-09-30', 1, 0),
-(1831, 304, 2, 5.5, 13, '200.0000', '10.0000', 2, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-09-29', '2023-09-30', 1, 0),
+(1831, 304, 2, 5.5, 13, '191.0000', '10.0000', 2, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-09-29', '2023-09-30', 1, 0),
 (1832, 304, 3, 5.5, 13, '0.0000', '10.0000', 2, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-09-29', '2023-09-30', 1, 0),
 (1833, 304, 4, 5.5, 13, '0.0000', '10.0000', 2, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-09-29', '2023-09-30', 1, 0),
 (1834, 304, 5, 5.5, 13, '0.0000', '10.0000', 2, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-09-29', '2023-09-30', 1, 0),
 (1835, 305, 1, 5.5, 13, '0.0000', '10.0000', 2, 0, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-09-29', '2023-09-30', 1, 0),
-(1836, 305, 2, 5.5, 13, '13.0000', '10.0000', 2, 0, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-09-29', '2023-09-30', 1, 0),
+(1836, 305, 2, 5.5, 13, '2.0000', '10.0000', 2, 0, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-09-29', '2023-09-30', 1, 0),
 (1837, 305, 3, 5.5, 13, '0.0000', '10.0000', 2, 0, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-09-29', '2023-09-30', 1, 0),
 (1838, 305, 4, 5.5, 13, '0.0000', '10.0000', 2, 0, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-09-29', '2023-09-30', 1, 0),
 (1839, 305, 5, 5.5, 13, '0.0000', '10.0000', 2, 0, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-09-29', '2023-09-30', 1, 0),
 (1840, 306, 1, 5.5, 13, '0.0000', '10.0000', 2, 0, 10, 1, 2, 'inclusive', 'a:0:{}', '2024-09-29', '2023-09-30', 1, 0),
-(1841, 306, 2, 5.5, 13, '93.0000', '10.0000', 2, 0, 10, 1, 2, 'inclusive', 'a:0:{}', '2024-09-29', '2023-09-30', 1, 0),
+(1841, 306, 2, 5.5, 13, '89.0000', '10.0000', 2, 0, 10, 1, 2, 'inclusive', 'a:0:{}', '2024-09-29', '2023-09-30', 1, 0),
 (1842, 306, 3, 5.5, 13, '0.0000', '10.0000', 2, 0, 10, 1, 2, 'inclusive', 'a:0:{}', '2024-09-29', '2023-09-30', 1, 0),
 (1843, 306, 4, 5.5, 13, '0.0000', '10.0000', 2, 0, 10, 1, 2, 'inclusive', 'a:0:{}', '2024-09-29', '2023-09-30', 1, 0),
 (1844, 306, 5, 5.5, 13, '0.0000', '10.0000', 2, 0, 10, 1, 2, 'inclusive', 'a:0:{}', '2024-09-29', '2023-09-30', 1, 0),
@@ -14135,121 +14470,121 @@ INSERT INTO `product_to_store` (`id`, `product_id`, `store_id`, `purchase_price`
 (1867, 311, 3, 5.5, 15, '0.0000', '10.0000', 2, 0, 0, 0, 2, 'inclusive', 'a:0:{}', '2024-10-04', '2023-10-05', 1, 0),
 (1868, 311, 4, 5.5, 15, '0.0000', '10.0000', 2, 0, 0, 0, 2, 'inclusive', 'a:0:{}', '2024-10-04', '2023-10-05', 1, 0),
 (1869, 311, 5, 5.5, 15, '0.0000', '10.0000', 2, 0, 0, 0, 2, 'inclusive', 'a:0:{}', '2024-10-04', '2023-10-05', 1, 0),
-(1870, 312, 1, 7, 15, '3.0000', '10.0000', 8, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1871, 312, 2, 7, 15, '0.0000', '10.0000', 8, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1872, 312, 3, 7, 15, '0.0000', '10.0000', 8, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1873, 312, 4, 7, 15, '0.0000', '10.0000', 8, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1874, 312, 5, 7, 15, '0.0000', '10.0000', 8, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1875, 313, 1, 7, 15, '69.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1876, 313, 2, 7, 15, '0.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1877, 313, 3, 7, 15, '0.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1878, 313, 4, 7, 15, '0.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1879, 313, 5, 7, 15, '0.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1880, 314, 1, 7, 15, '69.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1881, 314, 2, 7, 15, '0.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1882, 314, 3, 7, 15, '0.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1883, 314, 4, 7, 15, '0.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1884, 314, 5, 7, 15, '0.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1885, 315, 1, 7, 15, '103.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1886, 315, 2, 7, 15, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1887, 315, 3, 7, 15, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1888, 315, 4, 7, 15, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1889, 315, 5, 7, 15, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1890, 316, 1, 7, 15, '101.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1891, 316, 2, 7, 15, '0.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1892, 316, 3, 7, 15, '0.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1893, 316, 4, 7, 15, '0.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1894, 316, 5, 7, 15, '0.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1895, 317, 1, 7, 15, '109.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1896, 317, 2, 7, 15, '0.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1897, 317, 3, 7, 15, '0.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1898, 317, 4, 7, 15, '0.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1899, 317, 5, 7, 15, '0.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1900, 318, 1, 7, 15, '120.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1901, 318, 2, 7, 15, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1902, 318, 3, 7, 15, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1903, 318, 4, 7, 15, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1904, 318, 5, 7, 15, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1905, 319, 1, 7, 15, '122.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1906, 319, 2, 7, 15, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1907, 319, 3, 7, 15, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1908, 319, 4, 7, 15, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1909, 319, 5, 7, 15, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1910, 320, 1, 7, 15, '104.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1911, 320, 2, 7, 15, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1912, 320, 3, 7, 15, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1913, 320, 4, 7, 15, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1914, 320, 5, 7, 15, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1915, 321, 1, 7, 15, '189.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1916, 321, 2, 7, 15, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1917, 321, 3, 7, 15, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1918, 321, 4, 7, 15, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1919, 321, 5, 7, 15, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1920, 322, 1, 5.85, 15, '45.0000', '10.0000', 8, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1921, 322, 2, 5.85, 15, '0.0000', '10.0000', 8, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1922, 322, 3, 5.85, 15, '0.0000', '10.0000', 8, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1923, 322, 4, 5.85, 15, '0.0000', '10.0000', 8, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1924, 322, 5, 5.85, 15, '0.0000', '10.0000', 8, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1925, 323, 1, 5.85, 15, '67.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1926, 323, 2, 5.85, 15, '0.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1927, 323, 3, 5.85, 15, '0.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1928, 323, 4, 5.85, 15, '0.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1929, 323, 5, 5.85, 15, '0.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1930, 324, 1, 5.85, 15, '77.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1931, 324, 2, 5.85, 15, '0.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1932, 324, 3, 5.85, 15, '0.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1933, 324, 4, 5.85, 15, '0.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1934, 324, 5, 5.85, 15, '0.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1935, 325, 1, 5.85, 15, '94.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1936, 325, 2, 5.85, 15, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1937, 325, 3, 5.85, 15, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1938, 325, 4, 5.85, 15, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1939, 325, 5, 5.85, 15, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1940, 326, 1, 5.85, 15, '96.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1941, 326, 2, 5.85, 15, '0.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1942, 326, 3, 5.85, 15, '0.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1943, 326, 4, 5.85, 15, '0.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1944, 326, 5, 5.85, 15, '0.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1945, 327, 1, 5.85, 15, '103.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1946, 327, 2, 5.85, 15, '0.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1947, 327, 3, 5.85, 15, '0.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1948, 327, 4, 5.85, 15, '0.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1949, 327, 5, 5.85, 15, '0.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1950, 328, 1, 5.85, 15, '117.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1951, 328, 2, 5.85, 15, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1952, 328, 3, 5.85, 15, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1953, 328, 4, 5.85, 15, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1954, 328, 5, 5.85, 15, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1955, 329, 1, 5.85, 15, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1956, 329, 2, 5.85, 15, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1957, 329, 3, 5.85, 15, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1958, 329, 4, 5.85, 15, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1959, 329, 5, 5.85, 15, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1960, 330, 1, 5.85, 15, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1961, 330, 2, 5.85, 15, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1962, 330, 3, 5.85, 15, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1963, 330, 4, 5.85, 15, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1964, 330, 5, 5.85, 15, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1965, 331, 1, 5.85, 15, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1966, 331, 2, 5.85, 15, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1967, 331, 3, 5.85, 15, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1968, 331, 4, 5.85, 15, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1969, 331, 5, 5.85, 15, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1970, 332, 1, 6.5, 15, '427.0000', '10.0000', 8, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1971, 332, 2, 6.5, 15, '0.0000', '10.0000', 8, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1972, 332, 3, 6.5, 15, '0.0000', '10.0000', 8, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1973, 332, 4, 6.5, 15, '0.0000', '10.0000', 8, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1974, 332, 5, 6.5, 15, '0.0000', '10.0000', 8, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1975, 333, 1, 6.5, 15, '145.0000', '10.0000', 8, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1976, 333, 2, 6.5, 15, '0.0000', '10.0000', 8, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1977, 333, 3, 6.5, 15, '0.0000', '10.0000', 8, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1978, 333, 4, 6.5, 15, '0.0000', '10.0000', 8, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1979, 333, 5, 6.5, 15, '0.0000', '10.0000', 8, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1980, 334, 1, 6.5, 15, '69.0000', '10.0000', 8, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1981, 334, 2, 6.5, 15, '0.0000', '10.0000', 8, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1982, 334, 3, 6.5, 15, '0.0000', '10.0000', 8, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1983, 334, 4, 6.5, 15, '0.0000', '10.0000', 8, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
-(1984, 334, 5, 6.5, 15, '0.0000', '10.0000', 8, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1870, 312, 1, 6, 15, '3.0000', '10.0000', 8, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1871, 312, 2, 6, 15, '0.0000', '10.0000', 8, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1872, 312, 3, 6, 15, '0.0000', '10.0000', 8, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1873, 312, 4, 6, 15, '0.0000', '10.0000', 8, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1874, 312, 5, 6, 15, '0.0000', '10.0000', 8, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1875, 313, 1, 6, 15, '69.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1876, 313, 2, 6, 15, '0.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1877, 313, 3, 6, 15, '0.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1878, 313, 4, 6, 15, '0.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1879, 313, 5, 6, 15, '0.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1880, 314, 1, 6, 15, '69.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1881, 314, 2, 6, 15, '0.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1882, 314, 3, 6, 15, '0.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1883, 314, 4, 6, 15, '0.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1884, 314, 5, 6, 15, '0.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1885, 315, 1, 6, 15, '103.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1886, 315, 2, 6, 15, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1887, 315, 3, 6, 15, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1888, 315, 4, 6, 15, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1889, 315, 5, 6, 15, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1890, 316, 1, 6, 15, '101.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1891, 316, 2, 6, 15, '0.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1892, 316, 3, 6, 15, '0.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1893, 316, 4, 6, 15, '0.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1894, 316, 5, 6, 15, '0.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1895, 317, 1, 6, 15, '109.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1896, 317, 2, 6, 15, '0.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1897, 317, 3, 6, 15, '0.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1898, 317, 4, 6, 15, '0.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1899, 317, 5, 6, 15, '0.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1900, 318, 1, 6, 15, '120.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1901, 318, 2, 6, 15, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1902, 318, 3, 6, 15, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1903, 318, 4, 6, 15, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1904, 318, 5, 6, 15, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1905, 319, 1, 6, 15, '122.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1906, 319, 2, 6, 15, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1907, 319, 3, 6, 15, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1908, 319, 4, 6, 15, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1909, 319, 5, 6, 15, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1910, 320, 1, 6, 15, '104.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1911, 320, 2, 6, 15, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1912, 320, 3, 6, 15, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1913, 320, 4, 6, 15, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1914, 320, 5, 6, 15, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1915, 321, 1, 6, 15, '189.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1916, 321, 2, 6, 15, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1917, 321, 3, 6, 15, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1918, 321, 4, 6, 15, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1919, 321, 5, 6, 15, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1920, 322, 1, 5.5, 14, '45.0000', '10.0000', 8, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1921, 322, 2, 5.5, 14, '0.0000', '10.0000', 8, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1922, 322, 3, 5.5, 14, '0.0000', '10.0000', 8, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1923, 322, 4, 5.5, 14, '0.0000', '10.0000', 8, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1924, 322, 5, 5.5, 14, '0.0000', '10.0000', 8, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1925, 323, 1, 5.5, 14, '67.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1926, 323, 2, 5.5, 14, '0.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1927, 323, 3, 5.5, 14, '0.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1928, 323, 4, 5.5, 14, '0.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1929, 323, 5, 5.5, 14, '0.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1930, 324, 1, 5.5, 14, '77.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1931, 324, 2, 5.5, 14, '0.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1932, 324, 3, 5.5, 14, '0.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1933, 324, 4, 5.5, 14, '0.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1934, 324, 5, 5.5, 14, '0.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1935, 325, 1, 5.5, 14, '94.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1936, 325, 2, 5.5, 14, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1937, 325, 3, 5.5, 14, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1938, 325, 4, 5.5, 14, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1939, 325, 5, 5.5, 14, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1940, 326, 1, 5.5, 14, '96.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1941, 326, 2, 5.5, 14, '0.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1942, 326, 3, 5.5, 14, '0.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1943, 326, 4, 5.5, 14, '0.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1944, 326, 5, 5.5, 14, '0.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1945, 327, 1, 5.5, 14, '103.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1946, 327, 2, 5.5, 14, '0.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1947, 327, 3, 5.5, 14, '0.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1948, 327, 4, 5.5, 14, '0.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1949, 327, 5, 5.5, 14, '0.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1950, 328, 1, 5.5, 14, '117.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1951, 328, 2, 5.5, 14, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1952, 328, 3, 5.5, 14, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1953, 328, 4, 5.5, 14, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1954, 328, 5, 5.5, 14, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1955, 329, 1, 5.5, 15, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1956, 329, 2, 5.5, 15, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1957, 329, 3, 5.5, 15, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1958, 329, 4, 5.5, 15, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1959, 329, 5, 5.5, 15, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1960, 330, 1, 5.5, 15, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1961, 330, 2, 5.5, 15, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1962, 330, 3, 5.5, 15, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1963, 330, 4, 5.5, 15, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1964, 330, 5, 5.5, 15, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1965, 331, 1, 5.5, 15, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1966, 331, 2, 5.5, 15, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1967, 331, 3, 5.5, 15, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1968, 331, 4, 5.5, 15, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1969, 331, 5, 5.5, 15, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1970, 332, 1, 5.5, 15, '427.0000', '10.0000', 8, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1971, 332, 2, 5.5, 15, '0.0000', '10.0000', 8, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1972, 332, 3, 5.5, 15, '0.0000', '10.0000', 8, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1973, 332, 4, 5.5, 15, '0.0000', '10.0000', 8, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1974, 332, 5, 5.5, 15, '0.0000', '10.0000', 8, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1975, 333, 1, 5.5, 15, '145.0000', '10.0000', 8, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1976, 333, 2, 5.5, 15, '0.0000', '10.0000', 8, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1977, 333, 3, 5.5, 15, '0.0000', '10.0000', 8, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1978, 333, 4, 5.5, 15, '0.0000', '10.0000', 8, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1979, 333, 5, 5.5, 15, '0.0000', '10.0000', 8, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1980, 334, 1, 5.5, 15, '69.0000', '10.0000', 8, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1981, 334, 2, 5.5, 15, '0.0000', '10.0000', 8, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1982, 334, 3, 5.5, 15, '0.0000', '10.0000', 8, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1983, 334, 4, 5.5, 15, '0.0000', '10.0000', 8, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(1984, 334, 5, 5.5, 15, '0.0000', '10.0000', 8, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
 (1985, 335, 1, 3.95, 12, '0.0000', '10.0000', 7, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
 (1986, 335, 2, 3.95, 12, '0.0000', '10.0000', 7, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
 (1987, 335, 3, 3.95, 12, '0.0000', '10.0000', 7, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
@@ -14290,92 +14625,92 @@ INSERT INTO `product_to_store` (`id`, `product_id`, `store_id`, `purchase_price`
 (2022, 342, 3, 4.6, 5.4, '0.0000', '10.0000', 6, 0, 7, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
 (2023, 342, 4, 4.6, 5.4, '0.0000', '10.0000', 6, 0, 7, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
 (2024, 342, 5, 4.6, 5.4, '0.0000', '10.0000', 6, 0, 7, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
-(2025, 343, 1, 4.98, 5.78, '0.0000', '10.0000', 6, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
-(2026, 343, 2, 4.98, 5.78, '0.0000', '10.0000', 6, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
-(2027, 343, 3, 4.98, 5.78, '0.0000', '10.0000', 6, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
-(2028, 343, 4, 4.98, 5.78, '0.0000', '10.0000', 6, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
-(2029, 343, 5, 4.98, 5.78, '0.0000', '10.0000', 6, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
-(2030, 344, 1, 4.98, 5.78, '0.0000', '10.0000', 6, 0, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
-(2031, 344, 2, 4.98, 5.78, '0.0000', '10.0000', 6, 0, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
-(2032, 344, 3, 4.98, 5.78, '0.0000', '10.0000', 6, 0, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
-(2033, 344, 4, 4.98, 5.78, '0.0000', '10.0000', 6, 0, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
-(2034, 344, 5, 4.98, 5.78, '0.0000', '10.0000', 6, 0, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
-(2035, 345, 1, 4.98, 5.78, '0.0000', '10.0000', 6, 0, 10, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
-(2036, 345, 2, 4.98, 5.78, '0.0000', '10.0000', 6, 0, 10, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
-(2037, 345, 3, 4.98, 5.78, '0.0000', '10.0000', 6, 0, 10, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
-(2038, 345, 4, 4.98, 5.78, '0.0000', '10.0000', 6, 0, 10, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
-(2039, 345, 5, 4.98, 5.78, '0.0000', '10.0000', 6, 0, 10, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
-(2040, 346, 1, 5.8, 6.6, '0.0000', '10.0000', 6, 0, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
-(2041, 346, 2, 5.8, 6.6, '0.0000', '10.0000', 6, 0, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
-(2042, 346, 3, 5.8, 6.6, '0.0000', '10.0000', 6, 0, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
-(2043, 346, 4, 5.8, 6.6, '0.0000', '10.0000', 6, 0, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
-(2044, 346, 5, 5.8, 6.6, '0.0000', '10.0000', 6, 0, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
-(2045, 347, 1, 5.8, 6.6, '0.0000', '10.0000', 6, 0, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
-(2046, 347, 2, 5.8, 6.6, '0.0000', '10.0000', 6, 0, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
-(2047, 347, 3, 5.8, 6.6, '0.0000', '10.0000', 6, 0, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
-(2048, 347, 4, 5.8, 6.6, '0.0000', '10.0000', 6, 0, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
-(2049, 347, 5, 5.8, 6.6, '0.0000', '10.0000', 6, 0, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
-(2050, 348, 1, 5.8, 6.6, '0.0000', '10.0000', 6, 0, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
-(2051, 348, 2, 5.8, 6.6, '0.0000', '10.0000', 6, 0, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
-(2052, 348, 3, 5.8, 6.6, '0.0000', '10.0000', 6, 0, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
-(2053, 348, 4, 5.8, 6.6, '0.0000', '10.0000', 6, 0, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0);
+(2025, 343, 1, 4.98, 5.28, '0.0000', '10.0000', 6, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
+(2026, 343, 2, 4.98, 5.28, '0.0000', '10.0000', 6, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
+(2027, 343, 3, 4.98, 5.28, '0.0000', '10.0000', 6, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
+(2028, 343, 4, 4.98, 5.28, '0.0000', '10.0000', 6, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
+(2029, 343, 5, 4.98, 5.28, '0.0000', '10.0000', 6, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
+(2030, 344, 1, 4.98, 5.28, '0.0000', '10.0000', 6, 0, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
+(2031, 344, 2, 4.98, 5.28, '0.0000', '10.0000', 6, 0, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
+(2032, 344, 3, 4.98, 5.28, '0.0000', '10.0000', 6, 0, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
+(2033, 344, 4, 4.98, 5.28, '0.0000', '10.0000', 6, 0, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
+(2034, 344, 5, 4.98, 5.28, '0.0000', '10.0000', 6, 0, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
+(2035, 345, 1, 4.98, 5.28, '0.0000', '10.0000', 6, 0, 10, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
+(2036, 345, 2, 4.98, 5.28, '0.0000', '10.0000', 6, 0, 10, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
+(2037, 345, 3, 4.98, 5.28, '0.0000', '10.0000', 6, 0, 10, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
+(2038, 345, 4, 4.98, 5.28, '0.0000', '10.0000', 6, 0, 10, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
+(2039, 345, 5, 4.98, 5.28, '0.0000', '10.0000', 6, 0, 10, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
+(2040, 346, 1, 5.8, 6.1, '0.0000', '10.0000', 6, 0, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
+(2041, 346, 2, 5.8, 6.1, '0.0000', '10.0000', 6, 0, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
+(2042, 346, 3, 5.8, 6.1, '0.0000', '10.0000', 6, 0, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
+(2043, 346, 4, 5.8, 6.1, '0.0000', '10.0000', 6, 0, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
+(2044, 346, 5, 5.8, 6.1, '0.0000', '10.0000', 6, 0, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
+(2045, 347, 1, 5.8, 6.1, '0.0000', '10.0000', 6, 0, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
+(2046, 347, 2, 5.8, 6.1, '0.0000', '10.0000', 6, 0, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
+(2047, 347, 3, 5.8, 6.1, '0.0000', '10.0000', 6, 0, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
+(2048, 347, 4, 5.8, 6.1, '0.0000', '10.0000', 6, 0, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
+(2049, 347, 5, 5.8, 6.1, '0.0000', '10.0000', 6, 0, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
+(2050, 348, 1, 5.8, 6.1, '0.0000', '10.0000', 6, 0, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
+(2051, 348, 2, 5.8, 6.1, '0.0000', '10.0000', 6, 0, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
+(2052, 348, 3, 5.8, 6.1, '0.0000', '10.0000', 6, 0, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
+(2053, 348, 4, 5.8, 6.1, '0.0000', '10.0000', 6, 0, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
+(2054, 348, 5, 5.8, 6.1, '0.0000', '10.0000', 6, 0, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0);
 INSERT INTO `product_to_store` (`id`, `product_id`, `store_id`, `purchase_price`, `sell_price`, `quantity_in_stock`, `alert_quantity`, `sup_id`, `brand_id`, `course_id`, `box_id`, `taxrate_id`, `tax_method`, `preference`, `e_date`, `p_date`, `status`, `sort_order`) VALUES
-(2054, 348, 5, 5.8, 6.6, '0.0000', '10.0000', 6, 0, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
 (2055, 349, 1, 8.5, 8.5, '0.0000', '10.0000', 2, 0, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-10-12', '2023-10-13', 1, 0),
 (2056, 349, 2, 8.5, 8.5, '30.0000', '10.0000', 2, 0, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-10-12', '2023-10-13', 1, 0),
 (2057, 349, 3, 8.5, 8.5, '0.0000', '10.0000', 2, 0, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-10-12', '2023-10-13', 1, 0),
 (2058, 349, 4, 8.5, 8.5, '0.0000', '10.0000', 2, 0, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-10-12', '2023-10-13', 1, 0),
 (2059, 349, 5, 8.5, 8.5, '0.0000', '10.0000', 2, 0, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-10-12', '2023-10-13', 1, 0),
-(2060, 350, 1, 6.5, 15, '116.0000', '10.0000', 8, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
-(2061, 350, 2, 6.5, 15, '0.0000', '10.0000', 8, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
-(2062, 350, 3, 6.5, 15, '0.0000', '10.0000', 8, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
-(2063, 350, 4, 6.5, 15, '0.0000', '10.0000', 8, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
-(2064, 350, 5, 6.5, 15, '0.0000', '10.0000', 8, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
-(2065, 351, 1, 6.5, 15, '89.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
-(2066, 351, 2, 6.5, 15, '0.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
-(2067, 351, 3, 6.5, 15, '0.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
-(2068, 351, 4, 6.5, 15, '0.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
-(2069, 351, 5, 6.5, 15, '0.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
-(2070, 352, 1, 6.5, 15, '81.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
-(2071, 352, 2, 6.5, 15, '0.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
-(2072, 352, 3, 6.5, 15, '0.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
-(2073, 352, 4, 6.5, 15, '0.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
-(2074, 352, 5, 6.5, 15, '0.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
-(2075, 353, 1, 6.5, 15, '3.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
-(2076, 353, 2, 6.5, 15, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
-(2077, 353, 3, 6.5, 15, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
-(2078, 353, 4, 6.5, 15, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
-(2079, 353, 5, 6.5, 15, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
-(2080, 354, 1, 6.5, 15, '3.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
-(2081, 354, 2, 6.5, 15, '0.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
-(2082, 354, 3, 6.5, 15, '0.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
-(2083, 354, 4, 6.5, 15, '0.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
-(2084, 354, 5, 6.5, 15, '0.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
-(2085, 355, 1, 6.5, 15, '3.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
-(2086, 355, 2, 6.5, 15, '0.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
-(2087, 355, 3, 6.5, 15, '0.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
-(2088, 355, 4, 6.5, 15, '0.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
-(2089, 355, 5, 6.5, 15, '0.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
-(2090, 356, 1, 6.5, 15, '57.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
-(2091, 356, 2, 6.5, 15, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
-(2092, 356, 3, 6.5, 15, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
-(2093, 356, 4, 6.5, 15, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
-(2094, 356, 5, 6.5, 15, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
-(2095, 357, 1, 6.5, 15, '101.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
-(2096, 357, 2, 6.5, 15, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
-(2097, 357, 3, 6.5, 15, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
-(2098, 357, 4, 6.5, 15, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
-(2099, 357, 5, 6.5, 15, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
-(2100, 358, 1, 6.5, 15, '38.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
-(2101, 358, 2, 6.5, 15, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
-(2102, 358, 3, 6.5, 15, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
-(2103, 358, 4, 6.5, 15, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
-(2104, 358, 5, 6.5, 15, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
-(2105, 359, 1, 6.5, 15, '33.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
-(2106, 359, 2, 6.5, 15, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
-(2107, 359, 3, 6.5, 15, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
-(2108, 359, 4, 6.5, 15, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
-(2109, 359, 5, 6.5, 15, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2060, 350, 1, 5.5, 14, '116.0000', '10.0000', 8, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2061, 350, 2, 5.5, 14, '0.0000', '10.0000', 8, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2062, 350, 3, 5.5, 14, '0.0000', '10.0000', 8, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2063, 350, 4, 5.5, 14, '0.0000', '10.0000', 8, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2064, 350, 5, 5.5, 14, '0.0000', '10.0000', 8, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2065, 351, 1, 5.5, 14, '89.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2066, 351, 2, 5.5, 14, '0.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2067, 351, 3, 5.5, 14, '0.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2068, 351, 4, 5.5, 14, '0.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2069, 351, 5, 5.5, 14, '0.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2070, 352, 1, 5.5, 14, '81.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2071, 352, 2, 5.5, 14, '0.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2072, 352, 3, 5.5, 14, '0.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2073, 352, 4, 5.5, 14, '0.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2074, 352, 5, 5.5, 14, '0.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2075, 353, 1, 5.5, 14, '3.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2076, 353, 2, 5.5, 14, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2077, 353, 3, 5.5, 14, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2078, 353, 4, 5.5, 14, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2079, 353, 5, 5.5, 14, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2080, 354, 1, 5.5, 14, '3.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2081, 354, 2, 5.5, 14, '0.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2082, 354, 3, 5.5, 14, '0.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2083, 354, 4, 5.5, 14, '0.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2084, 354, 5, 5.5, 14, '0.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2085, 355, 1, 5.5, 14, '3.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2086, 355, 2, 5.5, 14, '0.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2087, 355, 3, 5.5, 14, '0.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2088, 355, 4, 5.5, 14, '0.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2089, 355, 5, 5.5, 14, '0.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2090, 356, 1, 5.5, 14, '57.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2091, 356, 2, 5.5, 14, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2092, 356, 3, 5.5, 14, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2093, 356, 4, 5.5, 14, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2094, 356, 5, 5.5, 14, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2095, 357, 1, 5.5, 15, '101.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2096, 357, 2, 5.5, 15, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2097, 357, 3, 5.5, 15, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2098, 357, 4, 5.5, 15, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2099, 357, 5, 5.5, 15, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2100, 358, 1, 5.5, 15, '38.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2101, 358, 2, 5.5, 15, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2102, 358, 3, 5.5, 15, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2103, 358, 4, 5.5, 15, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2104, 358, 5, 5.5, 15, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2105, 359, 1, 5.5, 15, '33.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2106, 359, 2, 5.5, 15, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2107, 359, 3, 5.5, 15, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2108, 359, 4, 5.5, 15, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2109, 359, 5, 5.5, 15, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
 (2110, 360, 1, 4.6, 15.5, '0.0000', '10.0000', 6, 0, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-10-18', '2023-10-19', 1, 0),
 (2111, 360, 2, 4.6, 15.5, '0.0000', '10.0000', 6, 0, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-10-18', '2023-10-19', 1, 0),
 (2112, 360, 3, 4.6, 15.5, '0.0000', '10.0000', 6, 0, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-10-18', '2023-10-19', 1, 0),
@@ -14386,16 +14721,737 @@ INSERT INTO `product_to_store` (`id`, `product_id`, `store_id`, `purchase_price`
 (2117, 361, 3, 4.6, 15.5, '0.0000', '10.0000', 6, 0, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-10-18', '2023-10-19', 1, 0),
 (2118, 361, 4, 4.6, 15.5, '0.0000', '10.0000', 6, 0, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-10-18', '2023-10-19', 1, 0),
 (2119, 361, 5, 4.6, 15.5, '0.0000', '10.0000', 6, 0, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-10-18', '2023-10-19', 1, 0),
-(2120, 362, 1, 4.6, 15.5, '0.0000', '10.0000', 6, 0, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-10-18', '2023-10-19', 1, 0),
-(2121, 362, 2, 4.6, 15.5, '0.0000', '10.0000', 6, 0, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-10-18', '2023-10-19', 1, 0),
-(2122, 362, 3, 4.6, 15.5, '0.0000', '10.0000', 6, 0, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-10-18', '2023-10-19', 1, 0),
-(2123, 362, 4, 4.6, 15.5, '0.0000', '10.0000', 6, 0, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-10-18', '2023-10-19', 1, 0),
-(2124, 362, 5, 4.6, 15.5, '0.0000', '10.0000', 6, 0, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-10-18', '2023-10-19', 1, 0),
+(2120, 362, 1, 5.8, 15, '0.0000', '10.0000', 6, 0, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-10-18', '2023-10-19', 1, 0),
+(2121, 362, 2, 5.8, 15, '0.0000', '10.0000', 6, 0, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-10-18', '2023-10-19', 1, 0),
+(2122, 362, 3, 5.8, 15, '0.0000', '10.0000', 6, 0, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-10-18', '2023-10-19', 1, 0),
+(2123, 362, 4, 5.8, 15, '0.0000', '10.0000', 6, 0, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-10-18', '2023-10-19', 1, 0),
+(2124, 362, 5, 5.8, 15, '0.0000', '10.0000', 6, 0, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-10-18', '2023-10-19', 1, 0),
 (2125, 363, 1, 5, 13, '0.0000', '10.0000', 2, 0, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-10-24', '2023-10-25', 1, 0),
-(2126, 363, 2, 5, 13, '6.0000', '10.0000', 2, 0, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-10-24', '2023-10-25', 1, 0),
+(2126, 363, 2, 5, 13, '3.0000', '10.0000', 2, 0, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-10-24', '2023-10-25', 1, 0),
 (2127, 363, 3, 5, 13, '0.0000', '10.0000', 2, 0, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-10-24', '2023-10-25', 1, 0),
 (2128, 363, 4, 5, 13, '0.0000', '10.0000', 2, 0, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-10-24', '2023-10-25', 1, 0),
-(2129, 363, 5, 5, 13, '0.0000', '10.0000', 2, 0, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-10-24', '2023-10-25', 1, 0);
+(2129, 363, 5, 5, 13, '0.0000', '10.0000', 2, 0, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-10-24', '2023-10-25', 1, 0),
+(2130, 1, 6, 20, 40, '0.0000', '10.0000', 1, 1, 11, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2131, 2, 6, 20, 40, '0.0000', '10.0000', 1, 1, 12, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2132, 3, 6, 20, 40, '0.0000', '10.0000', 1, 1, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2133, 4, 6, 10.8, 27, '0.0000', '10.0000', 1, 1, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2134, 5, 6, 10.8, 27, '0.0000', '10.0000', 1, 1, 3, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2135, 6, 6, 10.8, 27, '0.0000', '10.0000', 1, 1, 4, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2136, 7, 6, 10.8, 27, '0.0000', '10.0000', 1, 1, 5, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2137, 8, 6, 10.8, 27, '0.0000', '10.0000', 1, 1, 6, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2138, 9, 6, 10.8, 27, '0.0000', '10.0000', 1, 1, 7, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2139, 10, 6, 10.8, 27, '0.0000', '10.0000', 1, 1, 2, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2140, 11, 6, 10.8, 27, '0.0000', '10.0000', 1, 1, 3, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2141, 12, 6, 10.8, 27, '0.0000', '10.0000', 1, 1, 4, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2142, 13, 6, 10.8, 27, '0.0000', '10.0000', 1, 1, 5, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2143, 14, 6, 10.8, 27, '0.0000', '10.0000', 1, 1, 6, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2144, 15, 6, 10.8, 27, '0.0000', '10.0000', 1, 1, 7, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2145, 16, 6, 10.8, 27, '0.0000', '10.0000', 1, 1, 8, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2146, 17, 6, 10.8, 27, '0.0000', '10.0000', 1, 1, 9, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2147, 18, 6, 10.8, 27, '0.0000', '10.0000', 1, 1, 10, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2148, 19, 6, 10.8, 27, '0.0000', '10.0000', 1, 1, 8, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2149, 20, 6, 10.8, 27, '0.0000', '10.0000', 1, 1, 9, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2150, 21, 6, 10.8, 27, '0.0000', '10.0000', 1, 1, 10, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2151, 22, 6, 10.8, 27, '0.0000', '10.0000', 1, 1, 2, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2152, 23, 6, 10.8, 27, '0.0000', '10.0000', 1, 1, 3, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2153, 24, 6, 10.8, 27, '0.0000', '10.0000', 1, 1, 4, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2154, 25, 6, 10.8, 27, '0.0000', '10.0000', 1, 1, 5, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2155, 26, 6, 10.8, 27, '0.0000', '10.0000', 1, 1, 6, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2156, 27, 6, 10.8, 27, '0.0000', '10.0000', 1, 1, 7, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2157, 28, 6, 10.8, 27, '0.0000', '10.0000', 1, 1, 8, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2158, 29, 6, 10.8, 27, '0.0000', '10.0000', 1, 1, 9, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2159, 30, 6, 10.8, 27, '0.0000', '10.0000', 1, 1, 10, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2160, 31, 6, 10.8, 27, '0.0000', '10.0000', 1, 1, 2, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2161, 32, 6, 10.8, 27, '0.0000', '10.0000', 1, 1, 3, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2162, 33, 6, 10.8, 27, '0.0000', '10.0000', 1, 1, 4, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2163, 34, 6, 10.8, 27, '0.0000', '10.0000', 1, 1, 5, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2164, 35, 6, 10.8, 27, '0.0000', '10.0000', 1, 1, 6, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2165, 36, 6, 10.8, 27, '0.0000', '10.0000', 1, 1, 7, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2166, 37, 6, 10.8, 27, '0.0000', '10.0000', 1, 1, 8, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2167, 38, 6, 10.8, 27, '0.0000', '10.0000', 1, 1, 9, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2168, 39, 6, 10.8, 27, '0.0000', '10.0000', 1, 1, 10, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2169, 40, 6, 10, 25, '0.0000', '10.0000', 1, 1, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2170, 41, 6, 10, 25, '0.0000', '10.0000', 1, 1, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2171, 42, 6, 10, 25, '0.0000', '10.0000', 1, 1, 10, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2172, 43, 6, 5.6, 14, '0.0000', '10.0000', 1, 1, 2, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2173, 44, 6, 5.6, 14, '0.0000', '10.0000', 1, 1, 3, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2174, 45, 6, 5.6, 14, '0.0000', '10.0000', 1, 1, 4, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2175, 46, 6, 5.6, 14, '0.0000', '10.0000', 1, 1, 5, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2176, 47, 6, 5.6, 14, '0.0000', '10.0000', 1, 1, 6, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2177, 48, 6, 5.6, 14, '0.0000', '10.0000', 1, 1, 7, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2178, 49, 6, 5.6, 14, '0.0000', '10.0000', 1, 1, 8, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2179, 50, 6, 5.6, 14, '0.0000', '10.0000', 1, 1, 9, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2180, 51, 6, 5.6, 14, '0.0000', '10.0000', 1, 1, 10, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2181, 52, 6, 10.8, 27, '0.0000', '10.0000', 1, 1, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2182, 53, 6, 10.8, 27, '0.0000', '10.0000', 1, 1, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2183, 54, 6, 10.8, 27, '0.0000', '10.0000', 1, 1, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2184, 55, 6, 10.8, 27, '0.0000', '10.0000', 1, 1, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2185, 56, 6, 10.8, 27, '0.0000', '10.0000', 1, 1, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2186, 57, 6, 10.8, 27, '0.0000', '10.0000', 1, 1, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2187, 58, 6, 10.8, 27, '0.0000', '10.0000', 1, 1, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2188, 59, 6, 10.8, 27, '0.0000', '10.0000', 1, 1, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2189, 60, 6, 10.8, 27, '0.0000', '10.0000', 1, 1, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2190, 61, 6, 10.8, 27, '0.0000', '10.0000', 1, 1, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2191, 62, 6, 10.8, 27, '0.0000', '10.0000', 1, 1, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2192, 63, 6, 10.8, 27, '0.0000', '10.0000', 1, 1, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2193, 64, 6, 10.8, 27, '0.0000', '10.0000', 1, 1, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2194, 65, 6, 10.8, 27, '0.0000', '10.0000', 1, 1, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2195, 66, 6, 10.8, 27, '0.0000', '10.0000', 1, 1, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2196, 67, 6, 10.8, 27, '0.0000', '10.0000', 1, 1, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2197, 68, 6, 10.8, 27, '0.0000', '10.0000', 1, 1, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2198, 69, 6, 10.8, 27, '0.0000', '10.0000', 1, 1, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2199, 70, 6, 25, 25, '0.0000', '10.0000', 1, 1, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2200, 71, 6, 25, 25, '0.0000', '10.0000', 1, 1, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2201, 72, 6, 10, 25, '0.0000', '10.0000', 1, 1, 0, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2202, 73, 6, 7, 11.25, '0.0000', '10.0000', 1, 1, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2203, 74, 6, 10, 25, '0.0000', '10.0000', 1, 1, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2204, 75, 6, 10, 25, '0.0000', '10.0000', 1, 1, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2205, 76, 6, 10, 25, '0.0000', '10.0000', 1, 1, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2206, 77, 6, 6, 15, '0.0000', '10.0000', 1, 1, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2207, 78, 6, 6, 15, '0.0000', '10.0000', 1, 1, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2208, 79, 6, 6, 15, '0.0000', '10.0000', 1, 1, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2209, 80, 6, 14, 14, '0.0000', '10.0000', 1, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-06-16', '2023-06-17', 1, 0),
+(2210, 81, 6, 14, 14, '0.0000', '10.0000', 1, 0, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-06-16', '2023-06-17', 1, 0),
+(2211, 82, 6, 14, 14, '0.0000', '10.0000', 1, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-06-16', '2023-06-17', 1, 0),
+(2212, 83, 6, 21, 45, '0.0000', '10.0000', 4, 0, 12, 1, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(2213, 84, 6, 21, 45, '0.0000', '10.0000', 4, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(2214, 85, 6, 6.5, 10, '0.0000', '10.0000', 7, 0, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(2215, 86, 6, 6.5, 10, '0.0000', '10.0000', 7, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(2216, 87, 6, 6.5, 10, '0.0000', '10.0000', 7, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(2217, 88, 6, 6.5, 10, '0.0000', '10.0000', 7, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(2218, 89, 6, 6.5, 10, '0.0000', '10.0000', 7, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(2219, 90, 6, 6.5, 10, '0.0000', '10.0000', 7, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(2220, 91, 6, 27, 46, '0.0000', '10.0000', 4, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(2221, 92, 6, 27, 46, '0.0000', '10.0000', 4, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(2222, 93, 6, 27, 46, '0.0000', '10.0000', 4, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(2223, 94, 6, 27, 46, '0.0000', '10.0000', 4, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(2224, 95, 6, 27, 46, '0.0000', '10.0000', 4, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(2225, 96, 6, 22, 46, '0.0000', '10.0000', 4, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(2226, 97, 6, 22, 46, '0.0000', '10.0000', 4, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(2227, 98, 6, 22, 46, '0.0000', '10.0000', 4, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(2228, 99, 6, 22, 46, '0.0000', '10.0000', 4, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(2229, 100, 6, 22, 54, '0.0000', '10.0000', 4, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(2230, 101, 6, 22, 54, '0.0000', '10.0000', 4, 0, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(2231, 102, 6, 22, 46, '0.0000', '10.0000', 4, 0, 7, 1, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(2232, 103, 6, 6, 15, '0.0000', '10.0000', 1, 0, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(2233, 104, 6, 6, 15, '0.0000', '10.0000', 1, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(2234, 105, 6, 6, 15, '0.0000', '10.0000', 1, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(2235, 106, 6, 6, 15, '0.0000', '10.0000', 1, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(2236, 107, 6, 6, 15, '0.0000', '10.0000', 1, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(2237, 108, 6, 6, 15, '0.0000', '10.0000', 1, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(2238, 109, 6, 6, 15, '0.0000', '10.0000', 1, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(2239, 110, 6, 6, 15, '0.0000', '10.0000', 1, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(2240, 111, 6, 6, 15, '0.0000', '10.0000', 1, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(2241, 112, 6, 10.5, 20.25, '0.0000', '10.0000', 1, 0, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-07-27', '2023-07-28', 1, 0),
+(2242, 113, 6, 10.8, 20.25, '0.0000', '10.0000', 1, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-07-27', '2023-07-28', 1, 0),
+(2243, 114, 6, 10.8, 20.25, '0.0000', '10.0000', 1, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-07-27', '2023-07-28', 1, 0),
+(2244, 115, 6, 4.5, 14, '55.0000', '10.0000', 3, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2245, 116, 6, 4.5, 14, '0.0000', '10.0000', 3, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2246, 117, 6, 4.5, 14, '0.0000', '10.0000', 3, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2247, 118, 6, 4.5, 14, '3.0000', '10.0000', 3, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2248, 119, 6, 4.5, 14, '0.0000', '10.0000', 3, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2249, 120, 6, 4.5, 14, '0.0000', '10.0000', 3, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2250, 121, 6, 4.5, 14, '0.0000', '10.0000', 3, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2251, 122, 6, 3, 14, '0.0000', '10.0000', 3, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2252, 123, 6, 3, 14, '0.0000', '10.0000', 3, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2253, 124, 6, 3, 14, '0.0000', '10.0000', 3, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2254, 125, 6, 4, 12, '0.0000', '10.0000', 3, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2255, 126, 6, 4, 12, '0.0000', '10.0000', 3, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2256, 127, 6, 4, 12, '0.0000', '10.0000', 3, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2257, 128, 6, 4, 12, '0.0000', '10.0000', 3, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2258, 129, 6, 4, 12, '0.0000', '10.0000', 3, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2259, 130, 6, 4, 12, '0.0000', '10.0000', 3, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2260, 131, 6, 4, 12, '0.0000', '10.0000', 3, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2261, 132, 6, 4, 12, '0.0000', '10.0000', 3, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2262, 133, 6, 4, 12, '0.0000', '10.0000', 3, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2263, 134, 6, 4, 12, '0.0000', '10.0000', 3, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2264, 135, 6, 4, 12, '0.0000', '10.0000', 3, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2265, 136, 6, 4, 13, '0.0000', '10.0000', 3, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2266, 137, 6, 4, 13, '0.0000', '10.0000', 3, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2267, 138, 6, 4, 13, '0.0000', '10.0000', 3, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2268, 139, 6, 4, 13, '0.0000', '10.0000', 3, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2269, 140, 6, 4, 13, '0.0000', '10.0000', 3, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2270, 141, 6, 4, 13, '0.0000', '10.0000', 3, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2271, 142, 6, 4, 14, '0.0000', '10.0000', 3, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2272, 143, 6, 4, 14, '0.0000', '10.0000', 3, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2273, 144, 6, 4, 14, '0.0000', '10.0000', 3, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2274, 145, 6, 21, 37.7, '0.0000', '10.0000', 4, 0, 12, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2275, 146, 6, 21, 37.7, '0.0000', '10.0000', 4, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2276, 147, 6, 4, 14, '0.0000', '10.0000', 3, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2277, 148, 6, 3.95, 12, '0.0000', '10.0000', 2, 0, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(2278, 149, 6, 3.95, 12, '0.0000', '10.0000', 2, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(2279, 150, 6, 3.95, 12, '0.0000', '10.0000', 2, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(2280, 151, 6, 3.95, 12, '0.0000', '10.0000', 2, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(2281, 152, 6, 3.95, 12, '0.0000', '10.0000', 2, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(2282, 153, 6, 3.95, 12, '0.0000', '10.0000', 2, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(2283, 154, 6, 3.95, 12, '0.0000', '10.0000', 2, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(2284, 155, 6, 3.95, 12, '0.0000', '10.0000', 7, 0, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(2285, 156, 6, 3.95, 12, '0.0000', '10.0000', 7, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(2286, 157, 6, 0, 10, '0.0000', '10.0000', 7, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-08-15', '2023-08-16', 1, 0),
+(2287, 158, 6, 21, 48.75, '0.0000', '10.0000', 4, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-08-16', '2023-08-17', 1, 0),
+(2288, 159, 6, 21, 48.75, '0.0000', '10.0000', 4, 0, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-08-16', '2023-08-17', 1, 0),
+(2289, 160, 6, 21, 48.75, '0.0000', '10.0000', 4, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-16', '2023-08-17', 1, 0),
+(2290, 161, 6, 20, 48.75, '0.0000', '10.0000', 1, 0, 11, 0, 2, 'inclusive', 'a:0:{}', '2024-08-16', '2023-08-17', 1, 0),
+(2291, 162, 6, 20, 48.75, '0.0000', '10.0000', 1, 0, 12, 0, 2, 'inclusive', 'a:0:{}', '2024-08-16', '2023-08-17', 1, 0),
+(2292, 163, 6, 20, 48.75, '0.0000', '10.0000', 1, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-08-16', '2023-08-17', 1, 0),
+(2293, 164, 6, 29, 30, '0.0000', '10.0000', 8, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2294, 165, 6, 29, 30, '0.0000', '10.0000', 8, 0, 12, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2295, 166, 6, 29, 30, '0.0000', '10.0000', 8, 0, 11, 1, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2296, 167, 6, 24, 25, '0.0000', '10.0000', 8, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2297, 168, 6, 24, 25, '0.0000', '10.0000', 8, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2298, 169, 6, 24, 25, '0.0000', '10.0000', 8, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2299, 170, 6, 26, 27, '0.0000', '10.0000', 8, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2300, 171, 6, 26, 27, '0.0000', '10.0000', 8, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2301, 172, 6, 26, 27, '0.0000', '10.0000', 8, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2302, 173, 6, 23, 24, '0.0000', '10.0000', 8, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2303, 174, 6, 23, 24, '0.0000', '10.0000', 8, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2304, 175, 6, 26, 27, '0.0000', '10.0000', 8, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2305, 176, 6, 26, 27, '0.0000', '10.0000', 8, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2306, 177, 6, 26, 27, '0.0000', '10.0000', 8, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2307, 178, 6, 26, 27, '0.0000', '10.0000', 8, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2308, 179, 6, 26, 27, '0.0000', '10.0000', 8, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2309, 180, 6, 26, 27, '0.0000', '10.0000', 8, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2310, 181, 6, 26, 27, '0.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2311, 182, 6, 26, 27, '0.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2312, 183, 6, 26, 27, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2313, 184, 6, 26, 27, '0.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2314, 185, 6, 26, 27, '0.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2315, 186, 6, 26, 27, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2316, 187, 6, 26, 27, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2317, 188, 6, 26, 27, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2318, 189, 6, 26, 27, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2319, 190, 6, 26, 27, '0.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2320, 191, 6, 26, 27, '0.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2321, 192, 6, 26, 27, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2322, 193, 6, 26, 27, '0.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2323, 194, 6, 26, 27, '0.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2324, 195, 6, 26, 27, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2325, 196, 6, 26, 27, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2326, 197, 6, 26, 27, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2327, 198, 6, 26, 27, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2328, 199, 6, 26, 27, '0.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2329, 200, 6, 26, 27, '0.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2330, 201, 6, 26, 27, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2331, 202, 6, 26, 27, '0.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2332, 203, 6, 26, 27, '0.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2333, 204, 6, 26, 27, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2334, 205, 6, 26, 27, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2335, 206, 6, 26, 27, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2336, 207, 6, 26, 27, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2337, 208, 6, 26, 27, '0.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2338, 209, 6, 26, 27, '0.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2339, 210, 6, 26, 27, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2340, 211, 6, 26, 27, '0.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2341, 212, 6, 26, 27, '0.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2342, 213, 6, 26, 27, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2343, 214, 6, 26, 27, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2344, 215, 6, 26, 27, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2345, 216, 6, 26, 27, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2346, 217, 6, 12.5, 13, '0.0000', '10.0000', 8, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2347, 218, 6, 12.5, 13, '0.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2348, 219, 6, 12.5, 13, '0.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2349, 220, 6, 12.5, 13, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2350, 221, 6, 12.5, 13, '0.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2351, 222, 6, 12.5, 13, '0.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2352, 223, 6, 12.5, 13, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2353, 224, 6, 13.5, 14, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2354, 225, 6, 13.5, 14, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2355, 226, 6, 13.5, 14, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2356, 227, 6, 8.4, 8.9, '0.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2357, 228, 6, 15.5, 16, '0.0000', '10.0000', 8, 0, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-08-23', '2023-08-24', 1, 0),
+(2358, 229, 6, 15.5, 16, '0.0000', '10.0000', 8, 0, 3, 1, 2, 'inclusive', 'a:0:{}', '2024-08-24', '2023-08-25', 1, 0),
+(2359, 230, 6, 15.5, 16, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-24', '2023-08-25', 1, 0),
+(2360, 231, 6, 15.5, 16, '0.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-24', '2023-08-25', 1, 0),
+(2361, 232, 6, 15.5, 16, '0.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-24', '2023-08-25', 1, 0),
+(2362, 233, 6, 15.5, 16, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-24', '2023-08-25', 1, 0),
+(2363, 234, 6, 4.5, 14, '0.0000', '10.0000', 3, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-08-25', '2023-08-26', 1, 0),
+(2364, 235, 6, 4.5, 14, '0.0000', '10.0000', 3, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-25', '2023-08-26', 1, 0),
+(2365, 236, 6, 4.5, 14, '0.0000', '10.0000', 3, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-25', '2023-08-26', 1, 0),
+(2366, 237, 6, 4.5, 14, '0.0000', '10.0000', 3, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-25', '2023-08-26', 1, 0),
+(2367, 238, 6, 4.5, 14, '0.0000', '10.0000', 3, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-25', '2023-08-26', 1, 0),
+(2368, 239, 6, 4.5, 14, '0.0000', '10.0000', 3, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-08-25', '2023-08-26', 1, 0),
+(2369, 240, 6, 15, 37.5, '0.0000', '10.0000', 4, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-08-27', '2023-08-28', 1, 0),
+(2370, 241, 6, 15, 37.5, '0.0000', '10.0000', 4, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-27', '2023-08-28', 1, 0),
+(2371, 242, 6, 15, 37.5, '0.0000', '10.0000', 4, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-27', '2023-08-28', 1, 0),
+(2372, 243, 6, 4.6, 14, '461.0000', '10.0000', 6, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(2373, 244, 6, 4.6, 14, '77.0000', '10.0000', 6, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(2374, 245, 6, 4.6, 14, '431.0000', '10.0000', 6, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(2375, 246, 6, 4.6, 14, '466.0000', '10.0000', 6, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(2376, 247, 6, 4.6, 14, '427.0000', '10.0000', 6, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(2377, 248, 6, 4.6, 14, '303.0000', '10.0000', 6, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(2378, 249, 6, 4.6, 14, '452.0000', '10.0000', 6, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(2379, 250, 6, 4.98, 14, '237.0000', '10.0000', 6, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(2380, 251, 6, 4.98, 15, '402.0000', '10.0000', 6, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(2381, 252, 6, 4.98, 15, '399.0000', '10.0000', 6, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(2382, 253, 6, 5.8, 15, '354.0000', '10.0000', 6, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(2383, 254, 6, 5.8, 15, '323.0000', '10.0000', 6, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(2384, 255, 6, 5.8, 15, '375.0000', '10.0000', 6, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(2385, 256, 6, 3.95, 13, '0.0000', '10.0000', 2, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(2386, 257, 6, 4.5, 13, '0.0000', '10.0000', 2, 0, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(2387, 258, 6, 4.5, 13, '0.0000', '10.0000', 2, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(2388, 259, 6, 4.5, 13, '0.0000', '10.0000', 2, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(2389, 260, 6, 5.5, 15, '0.0000', '10.0000', 2, 0, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-09-03', '2023-09-04', 1, 0),
+(2390, 261, 6, 5.5, 15, '0.0000', '10.0000', 2, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-09-03', '2023-09-04', 1, 0),
+(2391, 262, 6, 11.5, 12, '0.0000', '10.0000', 2, 0, 6, 1, 2, 'inclusive', 'a:0:{}', '2024-09-03', '2023-09-04', 1, 0),
+(2392, 263, 6, 11.5, 12, '0.0000', '10.0000', 2, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-09-03', '2023-09-04', 1, 0),
+(2393, 264, 6, 3.95, 13, '0.0000', '10.0000', 2, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-09-03', '2023-09-04', 1, 0),
+(2394, 265, 6, 7, 18, '0.0000', '10.0000', 1, 0, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-09-04', '2023-09-05', 1, 0),
+(2395, 266, 6, 3.95, 13, '0.0000', '10.0000', 2, 0, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-09-04', '2023-09-05', 1, 0),
+(2396, 267, 6, 11.5, 12, '0.0000', '10.0000', 2, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-09-04', '2023-09-05', 1, 0),
+(2397, 268, 6, 11.5, 12, '0.0000', '10.0000', 2, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-09-04', '2023-09-05', 1, 0),
+(2398, 269, 6, 11.5, 12, '0.0000', '10.0000', 2, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-09-04', '2023-09-05', 1, 0),
+(2399, 270, 6, 11.5, 12, '0.0000', '10.0000', 2, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-09-04', '2023-09-05', 1, 0),
+(2400, 271, 6, 5.6, 13.5, '0.0000', '10.0000', 1, 0, 3, 1, 2, 'inclusive', 'a:0:{}', '2024-09-08', '2023-09-09', 1, 0),
+(2401, 272, 6, 5.6, 13.5, '0.0000', '10.0000', 1, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-09-08', '2023-09-09', 1, 0),
+(2402, 273, 6, 5.6, 13.5, '0.0000', '10.0000', 1, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-09-08', '2023-09-09', 1, 0),
+(2403, 274, 6, 5.6, 13.5, '0.0000', '10.0000', 1, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-09-08', '2023-09-09', 1, 0),
+(2404, 275, 6, 5.6, 13.5, '0.0000', '10.0000', 1, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-09-08', '2023-09-09', 1, 0),
+(2405, 276, 6, 5, 13.5, '0.0000', '10.0000', 2, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-09-08', '2023-09-09', 1, 0),
+(2406, 277, 6, 3.95, 14, '0.0000', '10.0000', 2, 0, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(2407, 278, 6, 3.95, 14, '0.0000', '10.0000', 2, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(2408, 279, 6, 3.95, 14, '0.0000', '10.0000', 2, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(2409, 280, 6, 3.95, 14, '0.0000', '10.0000', 2, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(2410, 281, 6, 3.95, 14, '0.0000', '10.0000', 2, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(2411, 282, 6, 3.95, 14, '0.0000', '10.0000', 2, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(2412, 284, 6, 6, 14, '0.0000', '10.0000', 6, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(2413, 286, 6, 5.5, 15, '0.0000', '10.0000', 2, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(2414, 287, 6, 5.5, 15, '0.0000', '10.0000', 2, 0, 0, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(2415, 288, 6, 5.5, 15, '0.0000', '10.0000', 2, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(2416, 289, 6, 4.5, 13, '0.0000', '10.0000', 2, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-09-11', '2023-09-12', 1, 0),
+(2417, 290, 6, 4.5, 13, '0.0000', '10.0000', 2, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-09-11', '2023-09-12', 1, 0),
+(2418, 291, 6, 4.5, 13, '0.0000', '10.0000', 2, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-09-11', '2023-09-12', 1, 0),
+(2419, 292, 6, 4.6, 14, '0.0000', '10.0000', 6, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-09-11', '2023-09-12', 1, 0),
+(2420, 293, 6, 4.6, 14, '0.0000', '10.0000', 6, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-09-11', '2023-09-12', 1, 0),
+(2421, 295, 6, 4.5, 13, '0.0000', '10.0000', 2, 0, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-09-12', '2023-09-13', 1, 0),
+(2422, 296, 6, 4.5, 13, '0.0000', '10.0000', 2, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-09-12', '2023-09-13', 1, 0),
+(2423, 297, 6, 3.95, 13.5, '0.0000', '10.0000', 2, 0, 3, 1, 2, 'inclusive', 'a:0:{}', '2024-09-18', '2023-09-19', 1, 0),
+(2424, 298, 6, 4, 11, '0.0000', '10.0000', 6, 0, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-09-19', '2023-09-20', 1, 0),
+(2425, 299, 6, 4, 11, '0.0000', '10.0000', 6, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-09-19', '2023-09-20', 1, 0),
+(2426, 300, 6, 7.15, 7.5, '0.0000', '10.0000', 2, 0, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-09-20', '2023-09-21', 1, 0),
+(2427, 301, 6, 7.15, 7.5, '0.0000', '10.0000', 2, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-09-20', '2023-09-21', 1, 0),
+(2428, 302, 6, 7.15, 7.5, '0.0000', '10.0000', 2, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-09-20', '2023-09-21', 1, 0),
+(2429, 303, 6, 4.5, 13, '0.0000', '10.0000', 2, 0, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-09-26', '2023-09-27', 1, 0),
+(2430, 304, 6, 5.5, 13, '0.0000', '10.0000', 2, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-09-29', '2023-09-30', 1, 0),
+(2431, 305, 6, 5.5, 13, '0.0000', '10.0000', 2, 0, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-09-29', '2023-09-30', 1, 0),
+(2432, 306, 6, 5.5, 13, '0.0000', '10.0000', 2, 0, 10, 1, 2, 'inclusive', 'a:0:{}', '2024-09-29', '2023-09-30', 1, 0),
+(2433, 307, 6, 5.5, 13.5, '0.0000', '10.0000', 2, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-10-04', '2023-10-05', 1, 0),
+(2434, 308, 6, 5.5, 13.5, '0.0000', '10.0000', 2, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-10-04', '2023-10-05', 1, 0),
+(2435, 309, 6, 5.5, 13.5, '0.0000', '10.0000', 2, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-10-04', '2023-10-05', 1, 0),
+(2436, 310, 6, 5.5, 15, '0.0000', '10.0000', 2, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-10-04', '2023-10-05', 1, 0),
+(2437, 311, 6, 5.5, 15, '0.0000', '10.0000', 2, 0, 0, 0, 2, 'inclusive', 'a:0:{}', '2024-10-04', '2023-10-05', 1, 0),
+(2438, 312, 6, 6, 15, '0.0000', '10.0000', 8, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(2439, 313, 6, 6, 15, '0.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(2440, 314, 6, 6, 15, '0.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(2441, 315, 6, 6, 15, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(2442, 316, 6, 6, 15, '0.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(2443, 317, 6, 6, 15, '0.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(2444, 318, 6, 6, 15, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(2445, 319, 6, 6, 15, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(2446, 320, 6, 6, 15, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(2447, 321, 6, 6, 15, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(2448, 322, 6, 5.5, 14, '0.0000', '10.0000', 8, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(2449, 323, 6, 5.5, 14, '0.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(2450, 324, 6, 5.5, 14, '0.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(2451, 325, 6, 5.5, 14, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(2452, 326, 6, 5.5, 14, '0.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(2453, 327, 6, 5.5, 14, '0.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(2454, 328, 6, 5.5, 14, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(2455, 329, 6, 5.5, 15, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(2456, 330, 6, 5.5, 15, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(2457, 331, 6, 5.5, 15, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(2458, 332, 6, 5.5, 15, '0.0000', '10.0000', 8, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(2459, 333, 6, 5.5, 15, '0.0000', '10.0000', 8, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(2460, 334, 6, 5.5, 15, '0.0000', '10.0000', 8, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(2461, 335, 6, 3.95, 12, '0.0000', '10.0000', 7, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
+(2462, 336, 6, 4.6, 5.4, '0.0000', '10.0000', 6, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
+(2463, 337, 6, 4.6, 5.4, '0.0000', '10.0000', 6, 0, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
+(2464, 338, 6, 4.6, 5.4, '0.0000', '10.0000', 6, 0, 3, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
+(2465, 339, 6, 4.6, 5.4, '0.0000', '10.0000', 6, 0, 4, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
+(2466, 340, 6, 4.6, 5.4, '0.0000', '10.0000', 6, 0, 5, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
+(2467, 341, 6, 4.6, 5.4, '0.0000', '10.0000', 6, 0, 6, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
+(2468, 342, 6, 4.6, 5.4, '0.0000', '10.0000', 6, 0, 7, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
+(2469, 343, 6, 4.98, 5.28, '0.0000', '10.0000', 6, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
+(2470, 344, 6, 4.98, 5.28, '0.0000', '10.0000', 6, 0, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
+(2471, 345, 6, 4.98, 5.28, '0.0000', '10.0000', 6, 0, 10, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
+(2472, 346, 6, 5.8, 6.1, '0.0000', '10.0000', 6, 0, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
+(2473, 347, 6, 5.8, 6.1, '0.0000', '10.0000', 6, 0, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
+(2474, 348, 6, 5.8, 6.1, '0.0000', '10.0000', 6, 0, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
+(2475, 349, 6, 8.5, 8.5, '0.0000', '10.0000', 2, 0, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-10-12', '2023-10-13', 1, 0),
+(2476, 350, 6, 5.5, 14, '0.0000', '10.0000', 8, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2477, 351, 6, 5.5, 14, '0.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2478, 352, 6, 5.5, 14, '0.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2479, 353, 6, 5.5, 14, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2480, 354, 6, 5.5, 14, '0.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2481, 355, 6, 5.5, 14, '0.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2482, 356, 6, 5.5, 14, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2483, 357, 6, 5.5, 15, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0);
+INSERT INTO `product_to_store` (`id`, `product_id`, `store_id`, `purchase_price`, `sell_price`, `quantity_in_stock`, `alert_quantity`, `sup_id`, `brand_id`, `course_id`, `box_id`, `taxrate_id`, `tax_method`, `preference`, `e_date`, `p_date`, `status`, `sort_order`) VALUES
+(2484, 358, 6, 5.5, 15, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2485, 359, 6, 5.5, 15, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2486, 360, 6, 4.6, 15.5, '0.0000', '10.0000', 6, 0, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-10-18', '2023-10-19', 1, 0),
+(2487, 361, 6, 4.6, 15.5, '0.0000', '10.0000', 6, 0, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-10-18', '2023-10-19', 1, 0),
+(2488, 362, 6, 5.8, 15, '0.0000', '10.0000', 6, 0, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-10-18', '2023-10-19', 1, 0),
+(2489, 363, 6, 5, 13, '0.0000', '10.0000', 2, 0, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-10-24', '2023-10-25', 1, 0),
+(2641, 1, 7, 20, 40, '0.0000', '10.0000', 1, 1, 11, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2642, 2, 7, 20, 40, '0.0000', '10.0000', 1, 1, 12, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2643, 3, 7, 20, 40, '0.0000', '10.0000', 1, 1, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2644, 4, 7, 10.8, 27, '0.0000', '10.0000', 1, 1, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2645, 5, 7, 10.8, 27, '0.0000', '10.0000', 1, 1, 3, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2646, 6, 7, 10.8, 27, '0.0000', '10.0000', 1, 1, 4, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2647, 7, 7, 10.8, 27, '0.0000', '10.0000', 1, 1, 5, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2648, 8, 7, 10.8, 27, '0.0000', '10.0000', 1, 1, 6, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2649, 9, 7, 10.8, 27, '0.0000', '10.0000', 1, 1, 7, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2650, 10, 7, 10.8, 27, '0.0000', '10.0000', 1, 1, 2, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2651, 11, 7, 10.8, 27, '0.0000', '10.0000', 1, 1, 3, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2652, 12, 7, 10.8, 27, '0.0000', '10.0000', 1, 1, 4, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2653, 13, 7, 10.8, 27, '0.0000', '10.0000', 1, 1, 5, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2654, 14, 7, 10.8, 27, '0.0000', '10.0000', 1, 1, 6, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2655, 15, 7, 10.8, 27, '0.0000', '10.0000', 1, 1, 7, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2656, 16, 7, 10.8, 27, '0.0000', '10.0000', 1, 1, 8, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2657, 17, 7, 10.8, 27, '0.0000', '10.0000', 1, 1, 9, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2658, 18, 7, 10.8, 27, '0.0000', '10.0000', 1, 1, 10, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2659, 19, 7, 10.8, 27, '0.0000', '10.0000', 1, 1, 8, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2660, 20, 7, 10.8, 27, '0.0000', '10.0000', 1, 1, 9, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2661, 21, 7, 10.8, 27, '0.0000', '10.0000', 1, 1, 10, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2662, 22, 7, 10.8, 27, '0.0000', '10.0000', 1, 1, 2, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2663, 23, 7, 10.8, 27, '0.0000', '10.0000', 1, 1, 3, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2664, 24, 7, 10.8, 27, '0.0000', '10.0000', 1, 1, 4, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2665, 25, 7, 10.8, 27, '0.0000', '10.0000', 1, 1, 5, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2666, 26, 7, 10.8, 27, '0.0000', '10.0000', 1, 1, 6, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2667, 27, 7, 10.8, 27, '0.0000', '10.0000', 1, 1, 7, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2668, 28, 7, 10.8, 27, '0.0000', '10.0000', 1, 1, 8, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2669, 29, 7, 10.8, 27, '0.0000', '10.0000', 1, 1, 9, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2670, 30, 7, 10.8, 27, '0.0000', '10.0000', 1, 1, 10, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2671, 31, 7, 10.8, 27, '0.0000', '10.0000', 1, 1, 2, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2672, 32, 7, 10.8, 27, '0.0000', '10.0000', 1, 1, 3, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2673, 33, 7, 10.8, 27, '0.0000', '10.0000', 1, 1, 4, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2674, 34, 7, 10.8, 27, '0.0000', '10.0000', 1, 1, 5, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2675, 35, 7, 10.8, 27, '0.0000', '10.0000', 1, 1, 6, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2676, 36, 7, 10.8, 27, '0.0000', '10.0000', 1, 1, 7, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2677, 37, 7, 10.8, 27, '0.0000', '10.0000', 1, 1, 8, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2678, 38, 7, 10.8, 27, '0.0000', '10.0000', 1, 1, 9, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2679, 39, 7, 10.8, 27, '0.0000', '10.0000', 1, 1, 10, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2680, 40, 7, 10, 25, '0.0000', '10.0000', 1, 1, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2681, 41, 7, 10, 25, '0.0000', '10.0000', 1, 1, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2682, 42, 7, 10, 25, '0.0000', '10.0000', 1, 1, 10, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2683, 43, 7, 5.6, 14, '0.0000', '10.0000', 1, 1, 2, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2684, 44, 7, 5.6, 14, '0.0000', '10.0000', 1, 1, 3, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2685, 45, 7, 5.6, 14, '0.0000', '10.0000', 1, 1, 4, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2686, 46, 7, 5.6, 14, '0.0000', '10.0000', 1, 1, 5, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2687, 47, 7, 5.6, 14, '0.0000', '10.0000', 1, 1, 6, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2688, 48, 7, 5.6, 14, '0.0000', '10.0000', 1, 1, 7, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2689, 49, 7, 5.6, 14, '0.0000', '10.0000', 1, 1, 8, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2690, 50, 7, 5.6, 14, '0.0000', '10.0000', 1, 1, 9, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2691, 51, 7, 5.6, 14, '0.0000', '10.0000', 1, 1, 10, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2692, 52, 7, 10.8, 27, '0.0000', '10.0000', 1, 1, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2693, 53, 7, 10.8, 27, '0.0000', '10.0000', 1, 1, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2694, 54, 7, 10.8, 27, '0.0000', '10.0000', 1, 1, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2695, 55, 7, 10.8, 27, '0.0000', '10.0000', 1, 1, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2696, 56, 7, 10.8, 27, '0.0000', '10.0000', 1, 1, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2697, 57, 7, 10.8, 27, '0.0000', '10.0000', 1, 1, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2698, 58, 7, 10.8, 27, '0.0000', '10.0000', 1, 1, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2699, 59, 7, 10.8, 27, '0.0000', '10.0000', 1, 1, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2700, 60, 7, 10.8, 27, '0.0000', '10.0000', 1, 1, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2701, 61, 7, 10.8, 27, '0.0000', '10.0000', 1, 1, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2702, 62, 7, 10.8, 27, '0.0000', '10.0000', 1, 1, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2703, 63, 7, 10.8, 27, '0.0000', '10.0000', 1, 1, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2704, 64, 7, 10.8, 27, '0.0000', '10.0000', 1, 1, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2705, 65, 7, 10.8, 27, '0.0000', '10.0000', 1, 1, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2706, 66, 7, 10.8, 27, '0.0000', '10.0000', 1, 1, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2707, 67, 7, 10.8, 27, '0.0000', '10.0000', 1, 1, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2708, 68, 7, 10.8, 27, '0.0000', '10.0000', 1, 1, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2709, 69, 7, 10.8, 27, '0.0000', '10.0000', 1, 1, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2710, 70, 7, 25, 25, '0.0000', '10.0000', 1, 1, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2711, 71, 7, 25, 25, '0.0000', '10.0000', 1, 1, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2712, 72, 7, 10, 25, '0.0000', '10.0000', 1, 1, 0, 1, 2, 'inclusive', NULL, '2024-06-14', '2023-06-14', 1, 0),
+(2713, 73, 7, 7, 11.25, '0.0000', '10.0000', 1, 1, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2714, 74, 7, 10, 25, '0.0000', '10.0000', 1, 1, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2715, 75, 7, 10, 25, '0.0000', '10.0000', 1, 1, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2716, 76, 7, 10, 25, '0.0000', '10.0000', 1, 1, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2717, 77, 7, 6, 15, '0.0000', '10.0000', 1, 1, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2718, 78, 7, 6, 15, '0.0000', '10.0000', 1, 1, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2719, 79, 7, 6, 15, '0.0000', '10.0000', 1, 1, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-06-14', '2023-06-14', 1, 0),
+(2720, 80, 7, 14, 14, '0.0000', '10.0000', 1, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-06-16', '2023-06-17', 1, 0),
+(2721, 81, 7, 14, 14, '0.0000', '10.0000', 1, 0, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-06-16', '2023-06-17', 1, 0),
+(2722, 82, 7, 14, 14, '0.0000', '10.0000', 1, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-06-16', '2023-06-17', 1, 0),
+(2723, 83, 7, 21, 45, '0.0000', '10.0000', 4, 0, 12, 1, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(2724, 84, 7, 21, 45, '0.0000', '10.0000', 4, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(2725, 85, 7, 6.5, 10, '0.0000', '10.0000', 7, 0, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(2726, 86, 7, 6.5, 10, '0.0000', '10.0000', 7, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(2727, 87, 7, 6.5, 10, '0.0000', '10.0000', 7, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(2728, 88, 7, 6.5, 10, '0.0000', '10.0000', 7, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(2729, 89, 7, 6.5, 10, '0.0000', '10.0000', 7, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(2730, 90, 7, 6.5, 10, '0.0000', '10.0000', 7, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(2731, 91, 7, 27, 46, '0.0000', '10.0000', 4, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(2732, 92, 7, 27, 46, '0.0000', '10.0000', 4, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(2733, 93, 7, 27, 46, '0.0000', '10.0000', 4, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(2734, 94, 7, 27, 46, '0.0000', '10.0000', 4, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(2735, 95, 7, 27, 46, '0.0000', '10.0000', 4, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(2736, 96, 7, 22, 46, '0.0000', '10.0000', 4, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(2737, 97, 7, 22, 46, '0.0000', '10.0000', 4, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(2738, 98, 7, 22, 46, '0.0000', '10.0000', 4, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(2739, 99, 7, 22, 46, '0.0000', '10.0000', 4, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(2740, 100, 7, 22, 54, '0.0000', '10.0000', 4, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(2741, 101, 7, 22, 54, '0.0000', '10.0000', 4, 0, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(2742, 102, 7, 22, 46, '0.0000', '10.0000', 4, 0, 7, 1, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(2743, 103, 7, 6, 15, '0.0000', '10.0000', 1, 0, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(2744, 104, 7, 6, 15, '0.0000', '10.0000', 1, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(2745, 105, 7, 6, 15, '0.0000', '10.0000', 1, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(2746, 106, 7, 6, 15, '0.0000', '10.0000', 1, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(2747, 107, 7, 6, 15, '0.0000', '10.0000', 1, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(2748, 108, 7, 6, 15, '0.0000', '10.0000', 1, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(2749, 109, 7, 6, 15, '0.0000', '10.0000', 1, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(2750, 110, 7, 6, 15, '0.0000', '10.0000', 1, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(2751, 111, 7, 6, 15, '0.0000', '10.0000', 1, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-07-20', '2023-07-21', 1, 0),
+(2752, 112, 7, 10.5, 20.25, '0.0000', '10.0000', 1, 0, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-07-27', '2023-07-28', 1, 0),
+(2753, 113, 7, 10.8, 20.25, '0.0000', '10.0000', 1, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-07-27', '2023-07-28', 1, 0),
+(2754, 114, 7, 10.8, 20.25, '0.0000', '10.0000', 1, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-07-27', '2023-07-28', 1, 0),
+(2755, 115, 7, 4.5, 14, '3.0000', '10.0000', 3, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2756, 116, 7, 4.5, 14, '0.0000', '10.0000', 3, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2757, 117, 7, 4.5, 14, '0.0000', '10.0000', 3, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2758, 118, 7, 4.5, 14, '1.0000', '10.0000', 3, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2759, 119, 7, 4.5, 14, '0.0000', '10.0000', 3, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2760, 120, 7, 4.5, 14, '0.0000', '10.0000', 3, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2761, 121, 7, 4.5, 14, '0.0000', '10.0000', 3, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2762, 122, 7, 3, 14, '0.0000', '10.0000', 3, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2763, 123, 7, 3, 14, '0.0000', '10.0000', 3, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2764, 124, 7, 3, 14, '0.0000', '10.0000', 3, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2765, 125, 7, 4, 12, '0.0000', '10.0000', 3, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2766, 126, 7, 4, 12, '0.0000', '10.0000', 3, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2767, 127, 7, 4, 12, '0.0000', '10.0000', 3, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2768, 128, 7, 4, 12, '0.0000', '10.0000', 3, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2769, 129, 7, 4, 12, '0.0000', '10.0000', 3, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2770, 130, 7, 4, 12, '0.0000', '10.0000', 3, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2771, 131, 7, 4, 12, '0.0000', '10.0000', 3, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2772, 132, 7, 4, 12, '0.0000', '10.0000', 3, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2773, 133, 7, 4, 12, '0.0000', '10.0000', 3, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2774, 134, 7, 4, 12, '0.0000', '10.0000', 3, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2775, 135, 7, 4, 12, '0.0000', '10.0000', 3, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2776, 136, 7, 4, 13, '0.0000', '10.0000', 3, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2777, 137, 7, 4, 13, '0.0000', '10.0000', 3, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2778, 138, 7, 4, 13, '0.0000', '10.0000', 3, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2779, 139, 7, 4, 13, '0.0000', '10.0000', 3, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2780, 140, 7, 4, 13, '0.0000', '10.0000', 3, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2781, 141, 7, 4, 13, '0.0000', '10.0000', 3, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2782, 142, 7, 4, 14, '0.0000', '10.0000', 3, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2783, 143, 7, 4, 14, '0.0000', '10.0000', 3, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2784, 144, 7, 4, 14, '0.0000', '10.0000', 3, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2785, 145, 7, 21, 37.7, '0.0000', '10.0000', 4, 0, 12, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2786, 146, 7, 21, 37.7, '0.0000', '10.0000', 4, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2787, 147, 7, 4, 14, '0.0000', '10.0000', 3, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-06', '2023-08-07', 1, 0),
+(2788, 148, 7, 3.95, 12, '0.0000', '10.0000', 2, 0, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(2789, 149, 7, 3.95, 12, '0.0000', '10.0000', 2, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(2790, 150, 7, 3.95, 12, '0.0000', '10.0000', 2, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(2791, 151, 7, 3.95, 12, '0.0000', '10.0000', 2, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(2792, 152, 7, 3.95, 12, '0.0000', '10.0000', 2, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(2793, 153, 7, 3.95, 12, '0.0000', '10.0000', 2, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(2794, 154, 7, 3.95, 12, '0.0000', '10.0000', 2, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(2795, 155, 7, 3.95, 12, '0.0000', '10.0000', 7, 0, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(2796, 156, 7, 3.95, 12, '0.0000', '10.0000', 7, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-14', '2023-08-15', 1, 0),
+(2797, 157, 7, 0, 10, '0.0000', '10.0000', 7, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-08-15', '2023-08-16', 1, 0),
+(2798, 158, 7, 21, 48.75, '0.0000', '10.0000', 4, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-08-16', '2023-08-17', 1, 0),
+(2799, 159, 7, 21, 48.75, '0.0000', '10.0000', 4, 0, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-08-16', '2023-08-17', 1, 0),
+(2800, 160, 7, 21, 48.75, '0.0000', '10.0000', 4, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-16', '2023-08-17', 1, 0),
+(2801, 161, 7, 20, 48.75, '0.0000', '10.0000', 1, 0, 11, 0, 2, 'inclusive', 'a:0:{}', '2024-08-16', '2023-08-17', 1, 0),
+(2802, 162, 7, 20, 48.75, '0.0000', '10.0000', 1, 0, 12, 0, 2, 'inclusive', 'a:0:{}', '2024-08-16', '2023-08-17', 1, 0),
+(2803, 163, 7, 20, 48.75, '0.0000', '10.0000', 1, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-08-16', '2023-08-17', 1, 0),
+(2804, 164, 7, 29, 30, '0.0000', '10.0000', 8, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2805, 165, 7, 29, 30, '0.0000', '10.0000', 8, 0, 12, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2806, 166, 7, 29, 30, '0.0000', '10.0000', 8, 0, 11, 1, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2807, 167, 7, 24, 25, '0.0000', '10.0000', 8, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2808, 168, 7, 24, 25, '0.0000', '10.0000', 8, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2809, 169, 7, 24, 25, '0.0000', '10.0000', 8, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2810, 170, 7, 26, 27, '0.0000', '10.0000', 8, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2811, 171, 7, 26, 27, '0.0000', '10.0000', 8, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2812, 172, 7, 26, 27, '0.0000', '10.0000', 8, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2813, 173, 7, 23, 24, '0.0000', '10.0000', 8, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2814, 174, 7, 23, 24, '0.0000', '10.0000', 8, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2815, 175, 7, 26, 27, '0.0000', '10.0000', 8, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2816, 176, 7, 26, 27, '0.0000', '10.0000', 8, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2817, 177, 7, 26, 27, '0.0000', '10.0000', 8, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2818, 178, 7, 26, 27, '0.0000', '10.0000', 8, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2819, 179, 7, 26, 27, '0.0000', '10.0000', 8, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2820, 180, 7, 26, 27, '0.0000', '10.0000', 8, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2821, 181, 7, 26, 27, '0.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2822, 182, 7, 26, 27, '0.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2823, 183, 7, 26, 27, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2824, 184, 7, 26, 27, '0.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2825, 185, 7, 26, 27, '0.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2826, 186, 7, 26, 27, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2827, 187, 7, 26, 27, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2828, 188, 7, 26, 27, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2829, 189, 7, 26, 27, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2830, 190, 7, 26, 27, '0.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2831, 191, 7, 26, 27, '0.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2832, 192, 7, 26, 27, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2833, 193, 7, 26, 27, '0.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2834, 194, 7, 26, 27, '0.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2835, 195, 7, 26, 27, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2836, 196, 7, 26, 27, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2837, 197, 7, 26, 27, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2838, 198, 7, 26, 27, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2839, 199, 7, 26, 27, '0.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2840, 200, 7, 26, 27, '0.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2841, 201, 7, 26, 27, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2842, 202, 7, 26, 27, '0.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2843, 203, 7, 26, 27, '0.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2844, 204, 7, 26, 27, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2845, 205, 7, 26, 27, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2846, 206, 7, 26, 27, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2847, 207, 7, 26, 27, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2848, 208, 7, 26, 27, '0.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2849, 209, 7, 26, 27, '0.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2850, 210, 7, 26, 27, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2851, 211, 7, 26, 27, '0.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2852, 212, 7, 26, 27, '0.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2853, 213, 7, 26, 27, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2854, 214, 7, 26, 27, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2855, 215, 7, 26, 27, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2856, 216, 7, 26, 27, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2857, 217, 7, 12.5, 13, '0.0000', '10.0000', 8, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2858, 218, 7, 12.5, 13, '0.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2859, 219, 7, 12.5, 13, '0.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2860, 220, 7, 12.5, 13, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2861, 221, 7, 12.5, 13, '0.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2862, 222, 7, 12.5, 13, '0.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2863, 223, 7, 12.5, 13, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2864, 224, 7, 13.5, 14, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2865, 225, 7, 13.5, 14, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2866, 226, 7, 13.5, 14, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2867, 227, 7, 8.4, 8.9, '0.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-22', '2023-08-23', 1, 0),
+(2868, 228, 7, 15.5, 16, '0.0000', '10.0000', 8, 0, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-08-23', '2023-08-24', 1, 0),
+(2869, 229, 7, 15.5, 16, '0.0000', '10.0000', 8, 0, 3, 1, 2, 'inclusive', 'a:0:{}', '2024-08-24', '2023-08-25', 1, 0),
+(2870, 230, 7, 15.5, 16, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-24', '2023-08-25', 1, 0),
+(2871, 231, 7, 15.5, 16, '0.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-24', '2023-08-25', 1, 0),
+(2872, 232, 7, 15.5, 16, '0.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-24', '2023-08-25', 1, 0),
+(2873, 233, 7, 15.5, 16, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-24', '2023-08-25', 1, 0),
+(2874, 234, 7, 4.5, 14, '0.0000', '10.0000', 3, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-08-25', '2023-08-26', 1, 0),
+(2875, 235, 7, 4.5, 14, '0.0000', '10.0000', 3, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-25', '2023-08-26', 1, 0),
+(2876, 236, 7, 4.5, 14, '0.0000', '10.0000', 3, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-25', '2023-08-26', 1, 0),
+(2877, 237, 7, 4.5, 14, '0.0000', '10.0000', 3, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-25', '2023-08-26', 1, 0),
+(2878, 238, 7, 4.5, 14, '0.0000', '10.0000', 3, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-25', '2023-08-26', 1, 0),
+(2879, 239, 7, 4.5, 14, '0.0000', '10.0000', 3, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-08-25', '2023-08-26', 1, 0),
+(2880, 240, 7, 15, 37.5, '0.0000', '10.0000', 4, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-08-27', '2023-08-28', 1, 0),
+(2881, 241, 7, 15, 37.5, '0.0000', '10.0000', 4, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-27', '2023-08-28', 1, 0),
+(2882, 242, 7, 15, 37.5, '0.0000', '10.0000', 4, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-27', '2023-08-28', 1, 0),
+(2883, 243, 7, 4.6, 14, '2.0000', '10.0000', 6, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(2884, 244, 7, 4.6, 14, '2.0000', '10.0000', 6, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(2885, 245, 7, 4.6, 14, '4.0000', '10.0000', 6, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(2886, 246, 7, 4.6, 14, '3.0000', '10.0000', 6, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(2887, 247, 7, 4.6, 14, '9.0000', '10.0000', 6, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(2888, 248, 7, 4.6, 14, '7.0000', '10.0000', 6, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(2889, 249, 7, 4.6, 14, '9.0000', '10.0000', 6, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(2890, 250, 7, 4.98, 14, '2.0000', '10.0000', 6, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(2891, 251, 7, 4.98, 15, '2.0000', '10.0000', 6, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(2892, 252, 7, 4.98, 15, '2.0000', '10.0000', 6, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(2893, 253, 7, 5.8, 15, '7.0000', '10.0000', 6, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(2894, 254, 7, 5.8, 15, '3.0000', '10.0000', 6, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(2895, 255, 7, 5.8, 15, '8.0000', '10.0000', 6, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(2896, 256, 7, 3.95, 13, '0.0000', '10.0000', 2, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(2897, 257, 7, 4.5, 13, '0.0000', '10.0000', 2, 0, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(2898, 258, 7, 4.5, 13, '0.0000', '10.0000', 2, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(2899, 259, 7, 4.5, 13, '0.0000', '10.0000', 2, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-08-29', '2023-08-30', 1, 0),
+(2900, 260, 7, 5.5, 15, '0.0000', '10.0000', 2, 0, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-09-03', '2023-09-04', 1, 0),
+(2901, 261, 7, 5.5, 15, '0.0000', '10.0000', 2, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-09-03', '2023-09-04', 1, 0),
+(2902, 262, 7, 11.5, 12, '0.0000', '10.0000', 2, 0, 6, 1, 2, 'inclusive', 'a:0:{}', '2024-09-03', '2023-09-04', 1, 0),
+(2903, 263, 7, 11.5, 12, '0.0000', '10.0000', 2, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-09-03', '2023-09-04', 1, 0),
+(2904, 264, 7, 3.95, 13, '0.0000', '10.0000', 2, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-09-03', '2023-09-04', 1, 0),
+(2905, 265, 7, 7, 18, '0.0000', '10.0000', 1, 0, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-09-04', '2023-09-05', 1, 0),
+(2906, 266, 7, 3.95, 13, '0.0000', '10.0000', 2, 0, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-09-04', '2023-09-05', 1, 0),
+(2907, 267, 7, 11.5, 12, '0.0000', '10.0000', 2, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-09-04', '2023-09-05', 1, 0),
+(2908, 268, 7, 11.5, 12, '0.0000', '10.0000', 2, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-09-04', '2023-09-05', 1, 0),
+(2909, 269, 7, 11.5, 12, '0.0000', '10.0000', 2, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-09-04', '2023-09-05', 1, 0),
+(2910, 270, 7, 11.5, 12, '0.0000', '10.0000', 2, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-09-04', '2023-09-05', 1, 0),
+(2911, 271, 7, 5.6, 13.5, '0.0000', '10.0000', 1, 0, 3, 1, 2, 'inclusive', 'a:0:{}', '2024-09-08', '2023-09-09', 1, 0),
+(2912, 272, 7, 5.6, 13.5, '0.0000', '10.0000', 1, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-09-08', '2023-09-09', 1, 0),
+(2913, 273, 7, 5.6, 13.5, '0.0000', '10.0000', 1, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-09-08', '2023-09-09', 1, 0),
+(2914, 274, 7, 5.6, 13.5, '0.0000', '10.0000', 1, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-09-08', '2023-09-09', 1, 0),
+(2915, 275, 7, 5.6, 13.5, '0.0000', '10.0000', 1, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-09-08', '2023-09-09', 1, 0),
+(2916, 276, 7, 5, 13.5, '0.0000', '10.0000', 2, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-09-08', '2023-09-09', 1, 0),
+(2917, 277, 7, 3.95, 14, '0.0000', '10.0000', 2, 0, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(2918, 278, 7, 3.95, 14, '0.0000', '10.0000', 2, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(2919, 279, 7, 3.95, 14, '0.0000', '10.0000', 2, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(2920, 280, 7, 3.95, 14, '0.0000', '10.0000', 2, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(2921, 281, 7, 3.95, 14, '0.0000', '10.0000', 2, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(2922, 282, 7, 3.95, 14, '0.0000', '10.0000', 2, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(2923, 284, 7, 6, 14, '0.0000', '10.0000', 6, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(2924, 286, 7, 5.5, 15, '0.0000', '10.0000', 2, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(2925, 287, 7, 5.5, 15, '0.0000', '10.0000', 2, 0, 0, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(2926, 288, 7, 5.5, 15, '0.0000', '10.0000', 2, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-09-10', '2023-09-11', 1, 0),
+(2927, 289, 7, 4.5, 13, '0.0000', '10.0000', 2, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-09-11', '2023-09-12', 1, 0),
+(2928, 290, 7, 4.5, 13, '0.0000', '10.0000', 2, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-09-11', '2023-09-12', 1, 0),
+(2929, 291, 7, 4.5, 13, '0.0000', '10.0000', 2, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-09-11', '2023-09-12', 1, 0),
+(2930, 292, 7, 4.6, 14, '0.0000', '10.0000', 6, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-09-11', '2023-09-12', 1, 0),
+(2931, 293, 7, 4.6, 14, '0.0000', '10.0000', 6, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-09-11', '2023-09-12', 1, 0),
+(2932, 295, 7, 4.5, 13, '0.0000', '10.0000', 2, 0, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-09-12', '2023-09-13', 1, 0),
+(2933, 296, 7, 4.5, 13, '0.0000', '10.0000', 2, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-09-12', '2023-09-13', 1, 0),
+(2934, 297, 7, 3.95, 13.5, '0.0000', '10.0000', 2, 0, 3, 1, 2, 'inclusive', 'a:0:{}', '2024-09-18', '2023-09-19', 1, 0),
+(2935, 298, 7, 4, 11, '0.0000', '10.0000', 6, 0, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-09-19', '2023-09-20', 1, 0),
+(2936, 299, 7, 4, 11, '0.0000', '10.0000', 6, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-09-19', '2023-09-20', 1, 0),
+(2937, 300, 7, 7.15, 7.5, '0.0000', '10.0000', 2, 0, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-09-20', '2023-09-21', 1, 0),
+(2938, 301, 7, 7.15, 7.5, '0.0000', '10.0000', 2, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-09-20', '2023-09-21', 1, 0),
+(2939, 302, 7, 7.15, 7.5, '0.0000', '10.0000', 2, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-09-20', '2023-09-21', 1, 0),
+(2940, 303, 7, 4.5, 13, '0.0000', '10.0000', 2, 0, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-09-26', '2023-09-27', 1, 0),
+(2941, 304, 7, 5.5, 13, '0.0000', '10.0000', 2, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-09-29', '2023-09-30', 1, 0),
+(2942, 305, 7, 5.5, 13, '0.0000', '10.0000', 2, 0, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-09-29', '2023-09-30', 1, 0),
+(2943, 306, 7, 5.5, 13, '0.0000', '10.0000', 2, 0, 10, 1, 2, 'inclusive', 'a:0:{}', '2024-09-29', '2023-09-30', 1, 0),
+(2944, 307, 7, 5.5, 13.5, '0.0000', '10.0000', 2, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-10-04', '2023-10-05', 1, 0),
+(2945, 308, 7, 5.5, 13.5, '0.0000', '10.0000', 2, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-10-04', '2023-10-05', 1, 0),
+(2946, 309, 7, 5.5, 13.5, '0.0000', '10.0000', 2, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-10-04', '2023-10-05', 1, 0),
+(2947, 310, 7, 5.5, 15, '0.0000', '10.0000', 2, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-10-04', '2023-10-05', 1, 0),
+(2948, 311, 7, 5.5, 15, '0.0000', '10.0000', 2, 0, 0, 0, 2, 'inclusive', 'a:0:{}', '2024-10-04', '2023-10-05', 1, 0),
+(2949, 312, 7, 6, 15, '0.0000', '10.0000', 8, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(2950, 313, 7, 6, 15, '0.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(2951, 314, 7, 6, 15, '0.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(2952, 315, 7, 6, 15, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(2953, 316, 7, 6, 15, '0.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(2954, 317, 7, 6, 15, '0.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(2955, 318, 7, 6, 15, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(2956, 319, 7, 6, 15, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(2957, 320, 7, 6, 15, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(2958, 321, 7, 6, 15, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(2959, 322, 7, 5.5, 14, '0.0000', '10.0000', 8, 0, 1, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(2960, 323, 7, 5.5, 14, '0.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(2961, 324, 7, 5.5, 14, '0.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(2962, 325, 7, 5.5, 14, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(2963, 326, 7, 5.5, 14, '0.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(2964, 327, 7, 5.5, 14, '0.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(2965, 328, 7, 5.5, 14, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(2966, 329, 7, 5.5, 15, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(2967, 330, 7, 5.5, 15, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(2968, 331, 7, 5.5, 15, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(2969, 332, 7, 5.5, 15, '0.0000', '10.0000', 8, 0, 13, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(2970, 333, 7, 5.5, 15, '0.0000', '10.0000', 8, 0, 14, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(2971, 334, 7, 5.5, 15, '0.0000', '10.0000', 8, 0, 15, 0, 2, 'inclusive', 'a:0:{}', '2024-10-06', '2023-10-07', 1, 0),
+(2972, 335, 7, 3.95, 12, '0.0000', '10.0000', 7, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
+(2973, 336, 7, 4.6, 5.4, '0.0000', '10.0000', 6, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
+(2974, 337, 7, 4.6, 5.4, '0.0000', '10.0000', 6, 0, 2, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
+(2975, 338, 7, 4.6, 5.4, '0.0000', '10.0000', 6, 0, 3, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
+(2976, 339, 7, 4.6, 5.4, '0.0000', '10.0000', 6, 0, 4, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
+(2977, 340, 7, 4.6, 5.4, '0.0000', '10.0000', 6, 0, 5, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
+(2978, 341, 7, 4.6, 5.4, '0.0000', '10.0000', 6, 0, 6, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
+(2979, 342, 7, 4.6, 5.4, '0.0000', '10.0000', 6, 0, 7, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
+(2980, 343, 7, 4.98, 5.28, '0.0000', '10.0000', 6, 0, 8, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
+(2981, 344, 7, 4.98, 5.28, '0.0000', '10.0000', 6, 0, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
+(2982, 345, 7, 4.98, 5.28, '0.0000', '10.0000', 6, 0, 10, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
+(2983, 346, 7, 5.8, 6.1, '0.0000', '10.0000', 6, 0, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
+(2984, 347, 7, 5.8, 6.1, '0.0000', '10.0000', 6, 0, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
+(2985, 348, 7, 5.8, 6.1, '0.0000', '10.0000', 6, 0, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-10-10', '2023-10-11', 1, 0),
+(2986, 349, 7, 8.5, 8.5, '0.0000', '10.0000', 2, 0, 9, 1, 2, 'inclusive', 'a:0:{}', '2024-10-12', '2023-10-13', 1, 0),
+(2987, 350, 7, 5.5, 14, '0.0000', '10.0000', 8, 0, 1, 1, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2988, 351, 7, 5.5, 14, '0.0000', '10.0000', 8, 0, 2, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2989, 352, 7, 5.5, 14, '0.0000', '10.0000', 8, 0, 3, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2990, 353, 7, 5.5, 14, '0.0000', '10.0000', 8, 0, 4, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2991, 354, 7, 5.5, 14, '0.0000', '10.0000', 8, 0, 5, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2992, 355, 7, 5.5, 14, '0.0000', '10.0000', 8, 0, 6, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2993, 356, 7, 5.5, 14, '0.0000', '10.0000', 8, 0, 7, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2994, 357, 7, 5.5, 15, '0.0000', '10.0000', 8, 0, 8, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2995, 358, 7, 5.5, 15, '0.0000', '10.0000', 8, 0, 9, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2996, 359, 7, 5.5, 15, '0.0000', '10.0000', 8, 0, 10, 0, 2, 'inclusive', 'a:0:{}', '2024-10-16', '2023-10-17', 1, 0),
+(2997, 360, 7, 4.6, 15.5, '0.0000', '10.0000', 6, 0, 13, 1, 2, 'inclusive', 'a:0:{}', '2024-10-18', '2023-10-19', 1, 0),
+(2998, 361, 7, 4.6, 15.5, '0.0000', '10.0000', 6, 0, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-10-18', '2023-10-19', 1, 0),
+(2999, 362, 7, 5.8, 15, '0.0000', '10.0000', 6, 0, 15, 1, 2, 'inclusive', 'a:0:{}', '2024-10-18', '2023-10-19', 1, 0),
+(3000, 363, 7, 5, 13, '0.0000', '10.0000', 2, 0, 14, 1, 2, 'inclusive', 'a:0:{}', '2024-10-24', '2023-10-25', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -14422,7 +15478,7 @@ CREATE TABLE `purchase_info` (
   `purchase_date` datetime DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `purchase_info`
@@ -14701,7 +15757,34 @@ INSERT INTO `purchase_info` (`info_id`, `invoice_id`, `inv_type`, `store_id`, `s
 (288, 'C1234567890', 'purchase', 2, 2, '1.0000', 'stock', '0.0000', '', '', 1, 'paid', 1, 'received', 12, '2023-10-25 00:00:00', '2023-10-25 09:50:23', NULL),
 (289, 'C119ECA', 'purchase', 2, 2, '1.0000', 'stock', '0.0000', '', '', 1, 'paid', 1, 'received', 12, '2023-10-25 00:00:00', '2023-10-25 09:52:35', NULL),
 (290, 'CEJD2BGU', 'purchase', 2, 2, '1.0000', 'stock', '0.0000', '', '', 1, 'paid', 1, 'received', 12, '2023-10-25 00:00:00', '2023-10-25 10:02:30', NULL),
-(291, 'CDAS927', 'purchase', 2, 2, '1.0000', 'stock', '0.0000', '', '', 1, 'paid', 1, 'received', 15, '2023-10-27 00:00:00', '2023-10-27 14:31:39', NULL);
+(291, 'CDAS927', 'purchase', 2, 2, '1.0000', 'stock', '0.0000', '', '', 1, 'paid', 1, 'received', 15, '2023-10-27 00:00:00', '2023-10-27 14:31:39', NULL),
+(292, 'CEasy.', 'purchase', 2, 6, '1.0000', 'stock', '0.0000', '', '', 1, 'paid', 1, 'received', 15, '2023-11-24 00:00:00', '2023-11-24 13:41:21', NULL),
+(293, 'CLATACUNGA 1ra llegada', 'purchase', 6, 6, '7.0000', 'stock', '0.0000', 'PRODUCTO RECIBIDO DESDE LATACUNGA ', '', 1, 'paid', 1, 'received', 2, '2024-03-23 00:00:00', '2024-03-23 13:47:06', NULL),
+(294, 'CLATACUNGA 1RA LLEGADA-2', 'purchase', 6, 3, '2.0000', 'stock', '0.0000', 'PRODUCTO RECIBIDO DESDE LATACUNGA', '', 1, 'paid', 1, 'received', 2, '2024-03-23 00:00:00', '2024-03-23 13:49:05', NULL),
+(295, 'CLATACUNGA 2DA LLEGADA', 'purchase', 6, 6, '13.0000', 'stock', '0.0000', 'PRODUCTO RECIBIDO DESDE LATACUNGA', '', 1, 'paid', 1, 'received', 2, '2024-03-25 00:00:00', '2024-03-25 13:33:06', NULL),
+(296, '684884-DAVID POLO 25/03/2024', 'transfer', 7, 6, '1.0000', 'stock', '0.0000', NULL, NULL, 0, 'due', 0, 'received', 2, '2024-03-25 00:00:00', '2024-03-25 15:16:07', NULL),
+(297, '840717-DAVID POLO 25/03/2024', 'transfer', 7, 6, '1.0000', 'stock', '0.0000', NULL, NULL, 0, 'due', 0, 'received', 2, '2024-03-25 00:00:00', '2024-03-25 15:16:07', NULL),
+(298, '498869-DAVID POLO 25/03/2024', 'transfer', 7, 6, '1.0000', 'stock', '0.0000', NULL, NULL, 0, 'due', 0, 'received', 2, '2024-03-23 00:00:00', '2024-03-25 15:16:07', NULL),
+(299, '179266-DAVID POLO 25/03/2024', 'transfer', 7, 6, '1.0000', 'stock', '0.0000', NULL, NULL, 0, 'due', 0, 'received', 2, '2024-03-25 00:00:00', '2024-03-25 15:16:07', NULL),
+(300, '956400-DAVID POLO 25/03/2024', 'transfer', 7, 6, '1.0000', 'stock', '0.0000', NULL, NULL, 0, 'due', 0, 'received', 2, '2024-03-23 00:00:00', '2024-03-25 15:16:07', NULL),
+(301, '541878-DAVID POLO 25/03/2024', 'transfer', 7, 6, '1.0000', 'stock', '0.0000', NULL, NULL, 0, 'due', 0, 'received', 2, '2024-03-25 00:00:00', '2024-03-25 15:16:07', NULL),
+(302, '109144-DAVID POLO 25/03/2024', 'transfer', 7, 6, '1.0000', 'stock', '0.0000', NULL, NULL, 0, 'due', 0, 'received', 2, '2024-03-23 00:00:00', '2024-03-25 15:16:07', NULL),
+(303, '348836-DAVID POLO 25/03/2024', 'transfer', 7, 6, '1.0000', 'stock', '0.0000', NULL, NULL, 0, 'due', 0, 'received', 2, '2024-03-25 00:00:00', '2024-03-25 15:16:07', NULL),
+(304, '409860-DAVID POLO 25/03/2024', 'transfer', 7, 3, '1.0000', 'stock', '0.0000', NULL, NULL, 0, 'due', 0, 'received', 2, '2024-03-23 00:00:00', '2024-03-25 15:16:07', NULL),
+(305, '401255-DAVID POLO 25/03/2024', 'transfer', 7, 3, '1.0000', 'stock', '0.0000', NULL, NULL, 0, 'due', 0, 'received', 2, '2024-03-23 00:00:00', '2024-03-25 15:16:07', NULL),
+(306, '314983-MUESTRAS ', 'transfer', 7, 6, '1.0000', 'stock', '0.0000', NULL, NULL, 0, 'due', 0, 'received', 2, '2024-03-23 00:00:00', '2024-03-27 10:06:24', NULL),
+(307, '668295-MUESTRAS ', 'transfer', 7, 6, '1.0000', 'stock', '0.0000', NULL, NULL, 0, 'due', 0, 'received', 2, '2024-03-25 00:00:00', '2024-03-27 10:06:24', NULL),
+(308, '246269-MUESTRAS ', 'transfer', 7, 6, '1.0000', 'stock', '0.0000', NULL, NULL, 0, 'due', 0, 'received', 2, '2024-03-25 00:00:00', '2024-03-27 10:06:24', NULL),
+(309, '097474-MUESTRAS ', 'transfer', 7, 6, '1.0000', 'stock', '0.0000', NULL, NULL, 0, 'due', 0, 'received', 2, '2024-03-25 00:00:00', '2024-03-27 10:06:24', NULL),
+(310, '049823-MUESTRAS ', 'transfer', 7, 6, '1.0000', 'stock', '0.0000', NULL, NULL, 0, 'due', 0, 'received', 2, '2024-03-25 00:00:00', '2024-03-27 10:06:24', NULL),
+(311, '612796-MUESTRAS ', 'transfer', 7, 6, '1.0000', 'stock', '0.0000', NULL, NULL, 0, 'due', 0, 'received', 2, '2024-03-25 00:00:00', '2024-03-27 10:06:24', NULL),
+(312, '109169-MUESTRAS ', 'transfer', 7, 6, '1.0000', 'stock', '0.0000', NULL, NULL, 0, 'due', 0, 'received', 2, '2024-03-25 00:00:00', '2024-03-27 10:06:24', NULL),
+(313, '619660-MUESTRAS ', 'transfer', 7, 6, '1.0000', 'stock', '0.0000', NULL, NULL, 0, 'due', 0, 'received', 2, '2024-03-25 00:00:00', '2024-03-27 10:06:24', NULL),
+(314, '541088-MUESTRAS ', 'transfer', 7, 6, '1.0000', 'stock', '0.0000', NULL, NULL, 0, 'due', 0, 'received', 2, '2024-03-25 00:00:00', '2024-03-27 10:06:24', NULL),
+(315, '795550-MUESTRAS ', 'transfer', 7, 6, '1.0000', 'stock', '0.0000', NULL, NULL, 0, 'due', 0, 'received', 2, '2024-03-25 00:00:00', '2024-03-27 10:06:24', NULL),
+(316, '495043-MUESTRAS ', 'transfer', 7, 6, '1.0000', 'stock', '0.0000', NULL, NULL, 0, 'due', 0, 'received', 2, '2024-03-25 00:00:00', '2024-03-27 10:06:24', NULL),
+(317, '152582-MUESTRAS ', 'transfer', 7, 6, '1.0000', 'stock', '0.0000', NULL, NULL, 0, 'due', 0, 'received', 2, '2024-03-23 00:00:00', '2024-03-27 10:06:24', NULL),
+(318, '816001-MUESTRAS ', 'transfer', 7, 6, '1.0000', 'stock', '0.0000', NULL, NULL, 0, 'due', 0, 'received', 2, '2024-03-23 00:00:00', '2024-03-27 10:06:24', NULL);
 
 -- --------------------------------------------------------
 
@@ -14731,7 +15814,7 @@ CREATE TABLE `purchase_item` (
   `sgst` decimal(25,4) DEFAULT NULL,
   `igst` decimal(25,4) DEFAULT NULL,
   `return_quantity` decimal(25,4) NOT NULL DEFAULT 0.0000
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `purchase_item`
@@ -14750,12 +15833,12 @@ INSERT INTO `purchase_item` (`id`, `invoice_id`, `store_id`, `item_id`, `categor
 (10, 'CDAS LOGROS LENGUAJE ', 2, 18, 1, 1, 'LOGROS LENGUA Y LITERATURA 10 + PLATAFORMA', '10.8000', '27.0000', '6.0000', '0.0000', 'active', '64.8000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (12, 'CLOGROS SOCIALES SEGUNDO', 2, 31, 1, 1, 'LOGROS ESTUDIOS SOCIALES 2 + PLATAFORMA', '10.8000', '27.0000', '25.0000', '10.0000', 'active', '270.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (13, 'CLOGROS MATEMATICAS 4', 2, 12, 1, 1, 'LOGROS MATEMÁTICAS 4 + PLATAFORMA', '10.8000', '27.0000', '25.0000', '10.0000', 'active', '270.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(14, 'CDAS INGLES ELLEVATE 2', 2, 97, 1, 0, 'ELLEVATE ENGLISH TEEN  SB FULL 2', '22.0000', '46.0000', '8.0000', '0.0000', 'active', '176.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(14, 'CDAS INGLES ELLEVATE 2', 2, 97, 1, 0, 'ELLEVATE ENGLISH TEEN  SB FULL 2', '22.0000', '46.0000', '8.0000', '1.0000', 'active', '176.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (15, 'CLOGROS CIENCIAS NATURALES 5', 2, 25, 1, 1, 'LOGROS CIENCIAS NATURALES 5 + PLATAFORMA', '10.8000', '27.0000', '24.0000', '6.0000', 'active', '259.2000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '5.0000'),
 (16, 'CGUCHITO 3-4 AÑOS', 2, 1, 1, 1, 'KIT EXPLORA Y APRENDE CON GUCHITO 3 - 4 AÑOS + PLATAFORMA', '20.0000', '40.0000', '19.0000', '0.0000', 'active', '380.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (17, 'CLOGROS CIENCIAS 6', 2, 26, 1, 1, 'LOGROS CIENCIAS NATURALES 6 + PLATAFORMA', '10.8000', '27.0000', '1.0000', '1.0000', 'sold', '10.8000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (18, 'CLOGROS LENGUAJE 5', 2, 7, 1, 1, 'LOGROS LENGUA Y LITERATURA 5 + PLATAFORMA', '10.8000', '27.0000', '28.0000', '6.0000', 'active', '302.4000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '5.0000'),
-(19, 'CLOGROS CIENCIAS 9', 2, 29, 1, 1, 'LOGROS CIENCIAS NATURALES 9 + PLATAFORMA', '10.8000', '27.0000', '30.0000', '14.0000', 'active', '324.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '4.0000'),
+(19, 'CLOGROS CIENCIAS 9', 2, 29, 1, 1, 'LOGROS CIENCIAS NATURALES 9 + PLATAFORMA', '10.8000', '27.0000', '30.0000', '15.0000', 'active', '324.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '4.0000'),
 (20, 'CMARAVILLAS DE LEER 2', 2, 43, 1, 1, 'LOGROS LA MARAVILLA DE LEER 2 + PLATAFORMA', '5.6000', '14.0000', '21.0000', '21.0000', 'sold', '117.6000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (21, 'CLOGROS FILOSOFIA 1', 2, 68, 1, 1, 'LOGROS FILOSOFÍA 1 + PLATAFORMA', '10.8000', '27.0000', '4.0000', '0.0000', 'active', '43.2000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (22, 'CEVERYDAY 1', 2, 83, 1, 0, 'EVERYDAY ENGLISH 1', '21.0000', '45.0000', '15.0000', '0.0000', 'active', '315.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
@@ -14791,12 +15874,12 @@ INSERT INTO `purchase_item` (`id`, `invoice_id`, `store_id`, `item_id`, `categor
 (56, 'CLOGROS LENGUAJE 4', 2, 6, 1, 1, 'LOGROS LENGUA Y LITERATURA 4 + PLATAFORMA', '10.8000', '27.0000', '22.0000', '10.0000', 'active', '237.6000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (57, 'CPORTAFOLIO EXPERIMENTAL 10', 2, 51, 1, 1, 'PORTAFOLIO EXPERIMENTAL DE CIENCIAS NATURALES 10 + PLATAFORMA', '5.6000', '14.0000', '22.0000', '0.0000', 'active', '123.2000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (58, 'CPROBLEMAS DEL MUNDO CONTEPORANEO', 2, 72, 1, 1, 'LOGROS PROBLEMAS DEL MUNDO CONTEMPORÁNEO + PLATAFORMA', '10.0000', '25.0000', '25.0000', '0.0000', 'active', '250.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(59, 'CLOGROS LENGUAJE 9', 2, 17, 1, 1, 'LOGROS LENGUA Y LITERATURA 9 + PLATAFORMA', '10.8000', '27.0000', '27.0000', '14.0000', 'active', '291.6000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '4.0000'),
+(59, 'CLOGROS LENGUAJE 9', 2, 17, 1, 1, 'LOGROS LENGUA Y LITERATURA 9 + PLATAFORMA', '10.8000', '27.0000', '27.0000', '15.0000', 'active', '291.6000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '4.0000'),
 (60, 'CPORTAFOLIO EXPERIMENTAL 8', 2, 49, 1, 1, 'PORTAFOLIO EXPERIMENTAL DE CIENCIAS NATURALES 8 + PLATAFORMA', '5.6000', '14.0000', '22.0000', '0.0000', 'active', '123.2000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (61, 'CLOGROS SOCIALES 8', 2, 37, 1, 1, 'LOGROS ESTUDIOS SOCIALES 8 + PLATAFORMA', '10.8000', '27.0000', '30.0000', '11.0000', 'active', '324.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '4.0000'),
 (62, 'CGUCHITO 4-5AÑOS', 2, 2, 1, 1, 'KIT DESCUBRE Y APRENDE CON GUCHITO 4 - 5 AÑOS + PLATAFORMA', '20.0000', '40.0000', '32.0000', '10.0000', 'active', '640.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '20.0000'),
 (63, 'CLOGROS LENGUAJE 6', 2, 8, 1, 1, 'LOGROS LENGUA Y LITERATURA 6 + PLATAFORMA', '10.8000', '27.0000', '28.0000', '8.0000', 'active', '302.4000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '5.0000'),
-(64, 'CLOGROS SOCIALES 9', 2, 38, 1, 1, 'LOGROS ESTUDIOS SOCIALES 9 + PLATAFORMA', '10.8000', '27.0000', '29.0000', '14.0000', 'active', '313.2000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '4.0000'),
+(64, 'CLOGROS SOCIALES 9', 2, 38, 1, 1, 'LOGROS ESTUDIOS SOCIALES 9 + PLATAFORMA', '10.8000', '27.0000', '29.0000', '15.0000', 'active', '313.2000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '4.0000'),
 (65, 'CLOGROS SOCIALLES 10', 2, 39, 1, 1, 'LOGROS ESTUDIOS SOCIALES 10 + PLATAFORMA', '10.8000', '27.0000', '29.0000', '0.0000', 'active', '313.2000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (66, 'CEVERYDAY 2', 2, 84, 1, 0, 'EVERYDAY INGLISH 2', '21.0000', '45.0000', '5.0000', '0.0000', 'active', '105.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (67, 'CECA 2BGU', 2, 71, 1, 1, 'LOGROS EDUCACIÓN CULTURAL Y ARTÍSTICA  2 BGU + PLATAFORMA', '25.0000', '25.0000', '28.0000', '0.0000', 'active', '700.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
@@ -14946,7 +16029,7 @@ INSERT INTO `purchase_item` (`id`, `invoice_id`, `store_id`, `item_id`, `categor
 (212, 'C19-05-2023', 1, 184, 1, 0, 'LENGUAJE 5 ACADEMIA', '26.0000', '27.0000', '20.0000', '0.0000', 'stock', '520.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (213, 'C19-05-2023', 1, 183, 1, 0, 'LENGUAJE 4 ACADEMIA', '26.0000', '27.0000', '10.0000', '0.0000', 'stock', '260.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (214, 'C19-05-2023', 1, 182, 1, 0, 'LENGUAJE 3 ACADEMIA', '26.0000', '27.0000', '15.0000', '0.0000', 'stock', '390.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(252, 'CELLEVATEN TEEN', 2, 97, 1, 0, 'ELLEVATE ENGLISH TEEN  SB FULL 2', '22.0000', '46.0000', '1.0000', '0.0000', 'active', '22.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(252, 'CELLEVATEN TEEN', 2, 97, 1, 0, 'ELLEVATE ENGLISH TEEN  SB FULL 2', '22.0000', '46.0000', '1.0000', '1.0000', 'active', '22.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (253, 'C01-06-2023', 1, 227, 1, 0, 'OBRAS LITERARIAS LICEO', '8.4000', '8.9000', '426.0000', '0.0000', 'active', '3578.4000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (254, 'C01-06-2023', 1, 226, 1, 0, 'CALIGRAFIA DIDACTICA 10', '13.5000', '14.0000', '10.0000', '0.0000', 'stock', '135.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (255, 'C01-06-2023', 1, 225, 1, 0, 'CALIGRAFIA DIDACTICA 9', '13.5000', '14.0000', '14.0000', '0.0000', 'stock', '189.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
@@ -15138,7 +16221,7 @@ INSERT INTO `purchase_item` (`id`, `invoice_id`, `store_id`, `item_id`, `categor
 (459, 'CDIGITAN QUIMICA', 2, 110, 2, 0, 'MI TUTORIAL DIGITAL QUIMICA 1BGU', '6.0000', '15.0000', '83.0000', '0.0000', 'active', '498.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '83.0000'),
 (460, 'CINGRESADOS', 2, 242, 1, 0, 'ELLEVATE 2A COL VERNADONE', '15.0000', '38.7500', '5.0000', '5.0000', 'sold', '75.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (461, 'CINGRESADOS', 2, 241, 1, 0, 'ELLEVATE 1B COL VERNADONE', '15.0000', '38.7500', '5.0000', '4.0000', 'active', '75.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(462, 'CINGRESADOS', 2, 240, 1, 0, 'ELLEVATE 1A COL VERNADONE', '15.0000', '38.7500', '5.0000', '3.0000', 'active', '75.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(462, 'CINGRESADOS', 2, 240, 1, 0, 'ELLEVATE 1A COL VERNADONE', '15.0000', '38.7500', '5.0000', '4.0000', 'active', '75.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (463, 'CVERNADONE', 2, 242, 1, 0, 'ELLEVATE 2A COL VERNADONE', '15.0000', '37.7500', '5.0000', '0.0000', 'active', '75.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (464, 'CVERNADONE', 2, 241, 1, 0, 'ELLEVATE 1B COL VERNADONE', '15.0000', '37.7500', '5.0000', '0.0000', 'stock', '75.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (465, 'CVERNADONE', 2, 240, 1, 0, 'ELLEVATE 1A COL VERNADONE', '15.0000', '37.7500', '5.0000', '0.0000', 'stock', '75.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
@@ -15187,12 +16270,12 @@ INSERT INTO `purchase_item` (`id`, `invoice_id`, `store_id`, `item_id`, `categor
 (531, 'C17-06-23', 1, 179, 1, 0, 'LENGUAJE 2BGU ACADEMIA', '26.0000', '27.0000', '15.0000', '0.0000', 'stock', '390.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (532, 'C17-06-23', 1, 178, 1, 0, 'LENGUAJE 1BGU ACADEMIA', '26.0000', '27.0000', '15.0000', '0.0000', 'stock', '390.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (533, 'C17-06-23', 1, 167, 1, 0, 'EMPRENDIMIENTO 1BGU ACADEMIA', '24.0000', '25.0000', '12.0000', '0.0000', 'stock', '288.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(534, 'CMARAVILLASS', 2, 48, 1, 1, 'LOGROS LA MARAVILLA DE LEER 7 + PLATAFORMA', '5.6000', '14.0000', '395.0000', '112.0000', 'active', '2212.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '77.0000'),
-(535, 'CMARAVILLASS', 2, 47, 1, 1, 'LOGROS LA MARAVILLA DE LEER 6 + PLATAFORMA', '5.6000', '14.0000', '195.0000', '82.0000', 'active', '1092.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '86.0000'),
-(536, 'CMARAVILLASS', 2, 46, 1, 1, 'LOGROS LA MARAVILLA DE LEER 5 + PLATAFORMA', '5.6000', '14.0000', '394.0000', '91.0000', 'active', '2206.4000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '87.0000'),
-(537, 'CMARAVILLASS', 2, 45, 1, 1, 'LOGROS LA MARAVILLA DE LEER 4 + PLATAFORMA', '5.6000', '14.0000', '395.0000', '98.0000', 'active', '2212.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '94.0000'),
-(538, 'CMARAVILLASS', 2, 44, 1, 1, 'LOGROS LA MARAVILLA DE LEER 3 + PLATAFORMA', '5.6000', '14.0000', '395.0000', '84.0000', 'active', '2212.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '79.0000'),
-(539, 'CMARAVILLASS', 2, 43, 1, 1, 'LOGROS LA MARAVILLA DE LEER 2 + PLATAFORMA', '5.6000', '14.0000', '395.0000', '79.0000', 'active', '2212.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '95.0000'),
+(534, 'CMARAVILLASS', 2, 48, 1, 1, 'LOGROS LA MARAVILLA DE LEER 7 + PLATAFORMA', '5.6000', '14.0000', '395.0000', '115.0000', 'active', '2212.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '77.0000'),
+(535, 'CMARAVILLASS', 2, 47, 1, 1, 'LOGROS LA MARAVILLA DE LEER 6 + PLATAFORMA', '5.6000', '14.0000', '195.0000', '91.0000', 'active', '1092.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '86.0000'),
+(536, 'CMARAVILLASS', 2, 46, 1, 1, 'LOGROS LA MARAVILLA DE LEER 5 + PLATAFORMA', '5.6000', '14.0000', '394.0000', '96.0000', 'active', '2206.4000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '87.0000'),
+(537, 'CMARAVILLASS', 2, 45, 1, 1, 'LOGROS LA MARAVILLA DE LEER 4 + PLATAFORMA', '5.6000', '14.0000', '395.0000', '112.0000', 'active', '2212.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '94.0000'),
+(538, 'CMARAVILLASS', 2, 44, 1, 1, 'LOGROS LA MARAVILLA DE LEER 3 + PLATAFORMA', '5.6000', '14.0000', '395.0000', '85.0000', 'active', '2212.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '79.0000'),
+(539, 'CMARAVILLASS', 2, 43, 1, 1, 'LOGROS LA MARAVILLA DE LEER 2 + PLATAFORMA', '5.6000', '14.0000', '395.0000', '99.0000', 'active', '2212.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '95.0000'),
 (540, 'C6', 5, 47, 1, 1, 'LOGROS LA MARAVILLA DE LEER 6 + PLATAFORMA', '5.6000', '14.0000', '0.0000', '0.0000', 'stock', '0.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (541, 'CEASYTALK', 2, 254, 1, 0, 'EASY TALK B2', '5.8500', '15.0000', '70.0000', '0.0000', 'active', '409.5000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (542, 'CEASYTALK', 2, 253, 1, 0, 'EASY TALK A1', '5.8500', '15.0000', '70.0000', '0.0000', 'active', '409.5000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
@@ -15208,7 +16291,7 @@ INSERT INTO `purchase_item` (`id`, `invoice_id`, `store_id`, `item_id`, `categor
 (552, 'Cmaravillas de leer 5 y 6', 5, 46, 1, 1, 'LOGROS LA MARAVILLA DE LEER 5 + PLATAFORMA', '5.6000', '14.0000', '4.0000', '0.0000', 'stock', '22.4000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (553, 'CEASYTALKK', 2, 255, 1, 0, 'EASY TALK C3', '5.8500', '15.0000', '50.0000', '0.0000', 'active', '292.5000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (554, 'CEASYTALKK', 2, 247, 1, 0, 'EASY TALK E', '5.8500', '14.0000', '264.0000', '0.0000', 'stock', '1544.4000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(555, 'CEASYTALKK', 2, 245, 1, 0, 'EASY TALK C', '5.8500', '14.0000', '200.0000', '0.0000', 'active', '1170.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000');
+(555, 'CEASYTALKK', 2, 245, 1, 0, 'EASY TALK C', '5.8500', '14.0000', '200.0000', '1.0000', 'active', '1170.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000');
 INSERT INTO `purchase_item` (`id`, `invoice_id`, `store_id`, `item_id`, `category_id`, `brand_id`, `item_name`, `item_purchase_price`, `item_selling_price`, `item_quantity`, `total_sell`, `status`, `item_total`, `item_tax`, `tax_method`, `tax`, `gst`, `cgst`, `sgst`, `igst`, `return_quantity`) VALUES
 (556, 'CEASYTALKK', 2, 250, 1, 0, 'EASY TALK H', '5.8500', '14.0000', '197.0000', '0.0000', 'active', '1152.4500', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (557, 'CRefuerzo escolar3', 2, 86, 1, 0, 'REFUERZO ESCOLAR 3', '6.5000', '10.0000', '3.0000', '0.0000', 'active', '19.5000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
@@ -15224,7 +16307,7 @@ INSERT INTO `purchase_item` (`id`, `invoice_id`, `store_id`, `item_id`, `categor
 (567, 'CCOMPRA 1', 2, 73, 1, 1, 'LOGROS FORMACIÓN Y ORIENTACIÓN LABORAL (BACHILLERATO TÉCNICO) + PLATAFORMA', '7.0000', '25.0000', '30.0000', '30.0000', 'sold', '210.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (568, 'Ceducacion cultural y artistica 4 y 3 solo', 5, 256, 1, 0, 'ECA CUADERNO DE TRABAJO 3', '3.9500', '12.0000', '2.0000', '1.0000', 'active', '7.9000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (569, 'Ceducacion cultural y artistica 4 y 3 solo', 5, 264, 1, 0, 'ECA CUADERNO DE TRABAJO 4', '3.9500', '12.0000', '5.0000', '5.0000', 'active', '19.7500', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(570, 'CECALEAMAS', 2, 260, 1, 0, 'ECA DAS 1 BGU', '5.5000', '16.0000', '286.0000', '69.0000', 'active', '1573.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(570, 'CECALEAMAS', 2, 260, 1, 0, 'ECA DAS 1 BGU', '5.5000', '16.0000', '286.0000', '78.0000', 'active', '1573.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (571, 'CKIT CON CUENTO 6 Y 7 ', 5, 263, 1, 0, 'KIT ECA 7 + CUENTO UE PROVINCIA DE COTOPAXI', '11.5000', '12.0000', '45.0000', '45.0000', 'sold', '517.5000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (572, 'CKIT CON CUENTO 6 Y 7 ', 5, 262, 1, 0, 'KIT ECA 6 + CUENTO UE PROVINCIA DE COTOPAXI ', '11.5000', '12.0000', '79.0000', '62.0000', 'active', '908.5000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '17.0000'),
 (573, 'CKIT ECA CON CUENTO ', 5, 268, 1, 0, 'KIT ECA 5 + CUENTO UE PROVINCIA DE COTOPAXI', '11.5000', '12.0000', '34.0000', '34.0000', 'sold', '391.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
@@ -15241,7 +16324,7 @@ INSERT INTO `purchase_item` (`id`, `invoice_id`, `store_id`, `item_id`, `categor
 (584, 'CARTETICSS', 2, 118, 1, 0, 'ARTETICS 4', '4.0000', '14.0000', '200.0000', '0.0000', 'stock', '800.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '200.0000'),
 (585, 'CARTETICSS', 2, 117, 1, 0, 'ARTETICS 3', '4.0000', '14.0000', '200.0000', '0.0000', 'stock', '800.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '195.0000'),
 (586, 'CARTETICSS', 2, 116, 1, 0, 'ARTETICS 2', '4.0000', '14.0000', '200.0000', '0.0000', 'stock', '800.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '171.0000'),
-(587, 'CARTETICSS', 2, 115, 1, 0, 'ARTETICS 1', '4.0000', '14.0000', '200.0000', '108.0000', 'active', '800.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(587, 'CARTETICSS', 2, 115, 1, 0, 'ARTETICS 1', '4.0000', '14.0000', '200.0000', '109.0000', 'active', '800.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (588, 'CEASYTALL', 2, 245, 1, 0, 'EASY TALK C', '5.8500', '14.0000', '100.0000', '0.0000', 'stock', '585.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (589, 'CEASYTALL', 2, 243, 1, 0, 'EASY TALK A', '5.8500', '14.0000', '420.0000', '0.0000', 'stock', '2457.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (590, 'Cnuevo stock ', 5, 270, 1, 0, 'KIT ECA 2 + CUENTO UE PROVINCIA DE COTOPAXI', '11.5000', '12.0000', '63.0000', '40.0000', 'active', '724.5000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '23.0000'),
@@ -15262,22 +16345,22 @@ INSERT INTO `purchase_item` (`id`, `invoice_id`, `store_id`, `item_id`, `categor
 (605, 'CECAPIKASOO11N', 2, 278, 1, 0, 'ECA PICASO 3', '4.5000', '13.0000', '7.0000', '7.0000', 'sold', '31.5000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (606, 'CECAPIKASOO11N', 2, 277, 1, 0, 'ECA PICASO 2 ', '4.5000', '13.0000', '8.0000', '8.0000', 'sold', '36.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (607, 'CECAA', 2, 149, 1, 0, 'ME DIVIERTO Y APRENDO CALIGRAFIA Y ORTOGRAFIA 3', '3.9500', '12.0000', '17.0000', '0.0000', 'active', '67.1500', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '9.0000'),
-(608, 'CECAA', 2, 288, 1, 0, 'ECA DAS 10 EGB', '5.5000', '13.0000', '60.0000', '22.0000', 'active', '330.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(609, 'CECAA', 2, 279, 1, 0, 'ECA PICASO 4', '4.5000', '13.0000', '140.0000', '121.0000', 'active', '630.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(610, 'CECAA', 2, 277, 1, 0, 'ECA PICASO 2 ', '4.5000', '13.0000', '139.0000', '92.0000', 'active', '625.5000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(611, 'CDASS', 2, 261, 1, 0, 'ECA DAS 2 BGU', '5.5000', '16.0000', '48.0000', '44.0000', 'active', '264.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(608, 'CECAA', 2, 288, 1, 0, 'ECA DAS 10 EGB', '5.5000', '13.0000', '60.0000', '26.0000', 'active', '330.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(609, 'CECAA', 2, 279, 1, 0, 'ECA PICASO 4', '4.5000', '13.0000', '140.0000', '134.0000', 'active', '630.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(610, 'CECAA', 2, 277, 1, 0, 'ECA PICASO 2 ', '4.5000', '13.0000', '139.0000', '113.0000', 'active', '625.5000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(611, 'CDASS', 2, 261, 1, 0, 'ECA DAS 2 BGU', '5.5000', '16.0000', '48.0000', '47.0000', 'active', '264.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (612, 'CDAAS', 2, 288, 1, 0, 'ECA DAS 10 EGB', '5.5000', '14.0000', '40.0000', '0.0000', 'stock', '220.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (613, 'Cnuevo stock kit 3 y 5', 5, 268, 1, 0, 'KIT ECA 5 + CUENTO UE PROVINCIA DE COTOPAXI', '11.5000', '12.0000', '29.0000', '14.0000', 'active', '333.5000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '15.0000'),
 (614, 'Cnuevo stock kit 3 y 5', 5, 269, 1, 0, 'KIT ECA 3 + CUENTO UE PROVINCIA DE COTOPAXI', '11.5000', '12.0000', '58.0000', '24.0000', 'active', '667.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '34.0000'),
-(615, 'C11NOVIEMBRE', 2, 293, 1, 0, 'A LA COSTA ', '4.6000', '14.0000', '150.0000', '32.0000', 'active', '690.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(616, 'C11NOVIEMBRE', 2, 284, 1, 0, 'LECTURA CRITICA DECADA DE LOS 30 9', '6.0000', '14.0000', '144.0000', '46.0000', 'active', '864.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(617, 'C11NOVIEMBREE', 2, 292, 1, 0, 'DIARIO DE ANA FRANK', '4.6000', '14.0000', '145.0000', '22.0000', 'active', '667.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(615, 'C11NOVIEMBRE', 2, 293, 1, 0, 'A LA COSTA ', '4.6000', '14.0000', '150.0000', '34.0000', 'active', '690.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(616, 'C11NOVIEMBRE', 2, 284, 1, 0, 'LECTURA CRITICA DECADA DE LOS 30 9', '6.0000', '14.0000', '144.0000', '50.0000', 'active', '864.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(617, 'C11NOVIEMBREE', 2, 292, 1, 0, 'DIARIO DE ANA FRANK', '4.6000', '14.0000', '145.0000', '26.0000', 'active', '667.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (618, 'C11no', 2, 282, 1, 0, 'ECA PICASO 7', '4.5000', '13.0000', '70.0000', '70.0000', 'sold', '315.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (619, 'C11nov', 2, 280, 1, 0, 'ECA PICASO 5', '4.5000', '13.0000', '70.0000', '70.0000', 'sold', '315.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (620, 'C11nov', 2, 281, 1, 0, 'ECA PICASO 6', '4.5000', '13.0000', '70.0000', '70.0000', 'sold', '315.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (621, 'Cchir', 2, 276, 1, 0, 'PRE ESC/MATE  CHIRINGUE BAJO', '5.0000', '13.5000', '8.0000', '8.0000', 'sold', '40.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(622, 'C11NOVI', 2, 278, 1, 0, 'ECA PICASO 3', '4.5000', '13.0000', '140.0000', '105.0000', 'active', '630.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(623, 'CFOOLL', 2, 265, 1, 0, 'LOGROS FORMACIÓN Y ORIENTACIÓN LABORAL (BACHILLERATO TÉCNICO) + PLATAFORMA', '7.0000', '18.0000', '100.0000', '20.0000', 'active', '700.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(622, 'C11NOVI', 2, 278, 1, 0, 'ECA PICASO 3', '4.5000', '13.0000', '140.0000', '106.0000', 'active', '630.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(623, 'CFOOLL', 2, 265, 1, 0, 'LOGROS FORMACIÓN Y ORIENTACIÓN LABORAL (BACHILLERATO TÉCNICO) + PLATAFORMA', '7.0000', '18.0000', '100.0000', '23.0000', 'active', '700.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (624, 'CDAASS', 2, 260, 1, 0, 'ECA DAS 1 BGU', '5.5000', '16.0000', '170.0000', '0.0000', 'stock', '935.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (625, 'CDAASS', 2, 261, 1, 0, 'ECA DAS 2 BGU', '5.5000', '16.0000', '442.0000', '0.0000', 'stock', '2431.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (626, 'CDAASS', 2, 288, 1, 0, 'ECA DAS 10 EGB', '5.5000', '14.0000', '400.0000', '0.0000', 'stock', '2200.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '160.0000'),
@@ -15309,15 +16392,15 @@ INSERT INTO `purchase_item` (`id`, `invoice_id`, `store_id`, `item_id`, `categor
 (653, 'CLOGTRAJALB', 2, 265, 1, 0, 'LOGROS FORMACIÓN Y ORIENTACIÓN LABORAL (BACHILLERATO TÉCNICO) + PLATAFORMA', '7.0000', '18.0000', '1.0000', '0.0000', 'stock', '7.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (654, 'CDASSS', 2, 287, 1, 0, 'ECA DAS 9 EGB', '5.5000', '14.0000', '10.0000', '10.0000', 'sold', '55.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (655, 'CSIMON', 2, 303, 1, 0, 'VIDA DESARROLLO HUMANO INTEGRAL 9EGB', '13.0000', '13.0000', '25.0000', '3.0000', 'active', '325.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(656, 'CDAAASSS', 2, 286, 1, 0, 'ECA DAS 8 EGB', '5.5000', '14.0000', '10.0000', '3.0000', 'active', '55.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(657, 'CJUREGOO', 2, 291, 1, 0, 'EJERCICIO JUEGO Y DIVERSION 3 BGU', '4.5000', '13.0000', '30.0000', '0.0000', 'active', '135.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(658, 'CJUREGOO', 2, 290, 1, 0, 'EJERCICIO JUEGO Y DIVERSION 1BGU', '4.5000', '13.0000', '30.0000', '1.0000', 'active', '135.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(659, 'CJUREGOO', 2, 296, 1, 0, 'EJERCICIO JUEGO Y DIVERSION 10', '4.5000', '13.0000', '30.0000', '2.0000', 'active', '135.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(660, 'CJUREGOO', 2, 295, 1, 0, 'EJERCICIO JUEGO Y DIVERSION 9', '4.5000', '13.0000', '30.0000', '15.0000', 'active', '135.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(661, 'CJUREGOO', 2, 289, 1, 0, 'EJERCICIO JUEGO Y DIVERSION 8', '4.5000', '13.0000', '30.0000', '6.0000', 'active', '135.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(656, 'CDAAASSS', 2, 286, 1, 0, 'ECA DAS 8 EGB', '5.5000', '14.0000', '10.0000', '9.0000', 'active', '55.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(657, 'CJUREGOO', 2, 291, 1, 0, 'EJERCICIO JUEGO Y DIVERSION 3 BGU', '4.5000', '13.0000', '30.0000', '1.0000', 'active', '135.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(658, 'CJUREGOO', 2, 290, 1, 0, 'EJERCICIO JUEGO Y DIVERSION 1BGU', '4.5000', '13.0000', '30.0000', '3.0000', 'active', '135.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(659, 'CJUREGOO', 2, 296, 1, 0, 'EJERCICIO JUEGO Y DIVERSION 10', '4.5000', '13.0000', '30.0000', '8.0000', 'active', '135.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(660, 'CJUREGOO', 2, 295, 1, 0, 'EJERCICIO JUEGO Y DIVERSION 9', '4.5000', '13.0000', '30.0000', '17.0000', 'active', '135.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(661, 'CJUREGOO', 2, 289, 1, 0, 'EJERCICIO JUEGO Y DIVERSION 8', '4.5000', '13.0000', '30.0000', '12.0000', 'active', '135.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (662, 'CNOVI', 2, 287, 1, 0, 'ECA DAS 9 EGB', '5.5000', '14.0000', '10.0000', '10.0000', 'sold', '55.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(663, 'CECAAPI', 2, 282, 1, 0, 'ECA PICASO 7', '4.5000', '13.0000', '70.0000', '49.0000', 'active', '315.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(665, 'CECAONCE1', 2, 306, 1, 0, 'ECA DAS 10 EGB ONCE NOVIEMBRE', '5.5000', '13.0000', '160.0000', '67.0000', 'active', '880.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(663, 'CECAAPI', 2, 282, 1, 0, 'ECA PICASO 7', '4.5000', '13.0000', '70.0000', '52.0000', 'active', '315.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(665, 'CECAONCE1', 2, 306, 1, 0, 'ECA DAS 10 EGB ONCE NOVIEMBRE', '5.5000', '13.0000', '160.0000', '71.0000', 'active', '880.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (666, 'CECAADAS', 2, 304, 1, 0, 'ECA DAS 8 EGB ONCE NOVIEMBRE', '5.5000', '13.0000', '7.0000', '7.0000', 'sold', '38.5000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (667, 'CDASECA', 2, 305, 1, 0, 'ECA DAS 9 EGB ONCE NOVIEMBRE', '5.5000', '13.0000', '2.0000', '2.0000', 'sold', '11.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (668, 'CECAAA', 2, 305, 1, 0, 'ECA DAS 9 EGB ONCE NOVIEMBRE', '5.5000', '13.0000', '10.0000', '10.0000', 'sold', '55.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
@@ -15331,10 +16414,10 @@ INSERT INTO `purchase_item` (`id`, `invoice_id`, `store_id`, `item_id`, `categor
 (678, 'CEASYTALKJ', 2, 252, 1, 0, 'EASY TALK J', '5.8500', '13.5000', '10.0000', '0.0000', 'stock', '58.5000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (679, 'CEASYTALKA1', 2, 253, 1, 0, 'EASY TALK A1', '5.8500', '16.5000', '7.0000', '0.0000', 'stock', '40.9500', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (680, 'CEASYTALKB2', 2, 254, 1, 0, 'EASY TALK B2', '5.8500', '16.5000', '10.0000', '0.0000', 'stock', '58.5000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(681, 'CECA51010IN', 2, 280, 1, 0, 'ECA PICASO 5', '4.5000', '13.0000', '75.0000', '7.0000', 'active', '337.5000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(682, 'CECA61010', 2, 281, 1, 0, 'ECA PICASO 6', '4.5000', '13.0000', '91.0000', '20.0000', 'active', '409.5000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(681, 'CECA51010IN', 2, 280, 1, 0, 'ECA PICASO 5', '4.5000', '13.0000', '75.0000', '11.0000', 'active', '337.5000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(682, 'CECA61010', 2, 281, 1, 0, 'ECA PICASO 6', '4.5000', '13.0000', '91.0000', '29.0000', 'active', '409.5000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (683, 'CECA8NOR', 2, 286, 1, 0, 'ECA DAS 8 EGB', '5.5000', '14.0000', '244.0000', '0.0000', 'stock', '1342.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(684, 'CECA811', 2, 304, 1, 0, 'ECA DAS 8 EGB ONCE NOVIEMBRE', '5.5000', '13.0000', '244.0000', '44.0000', 'active', '1342.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(684, 'CECA811', 2, 304, 1, 0, 'ECA DAS 8 EGB ONCE NOVIEMBRE', '5.5000', '13.0000', '244.0000', '53.0000', 'active', '1342.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (685, 'CTRAJANO', 2, 300, 1, 0, 'ECUADOR Y SUS LEYENDAS - LEA MAS', '7.1500', '7.5000', '50.0000', '35.0000', 'active', '357.5000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '14.0000'),
 (686, 'CEASYTALK.', 2, 348, 1, 0, 'EASY TALK C3.', '5.8000', '6.6000', '49.0000', '49.0000', 'sold', '284.2000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (687, 'CEASYTALK.', 2, 347, 1, 0, 'EASY TALK B2.', '5.8000', '6.6000', '70.0000', '70.0000', 'sold', '406.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
@@ -15462,8 +16545,54 @@ INSERT INTO `purchase_item` (`id`, `invoice_id`, `store_id`, `item_id`, `categor
 (808, 'CEASYTALKLE', 2, 360, 1, 0, 'EASY TALK A1 LE', '4.6000', '15.5000', '20.0000', '20.0000', 'sold', '92.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (809, 'C1234567890', 2, 305, 1, 0, 'ECA DAS 9 EGB ONCE NOVIEMBRE', '5.5000', '13.0000', '1.0000', '1.0000', 'sold', '5.5000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (810, 'C119ECA', 2, 305, 1, 0, 'ECA DAS 9 EGB ONCE NOVIEMBRE', '5.5000', '13.0000', '6.0000', '6.0000', 'sold', '33.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(811, 'CEJD2BGU', 2, 363, 1, 0, 'EJERCICIO JUEGO Y DIVERSIÓN 2 BGU', '5.0000', '13.0000', '12.0000', '6.0000', 'active', '60.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(812, 'CDAS927', 2, 305, 1, 0, 'ECA DAS 9 EGB ONCE NOVIEMBRE', '5.5000', '13.0000', '20.0000', '7.0000', 'active', '110.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000');
+(811, 'CEJD2BGU', 2, 363, 1, 0, 'EJERCICIO JUEGO Y DIVERSIÓN 2 BGU', '5.0000', '13.0000', '12.0000', '9.0000', 'active', '60.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(812, 'CDAS927', 2, 305, 1, 0, 'ECA DAS 9 EGB ONCE NOVIEMBRE', '5.5000', '13.0000', '20.0000', '18.0000', 'active', '110.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(813, 'CEasy.', 2, 343, 1, 0, 'EASY TALK H..', '4.9800', '5.7800', '10.0000', '10.0000', 'sold', '49.8000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(814, 'CLATACUNGA 1ra llegada', 6, 255, 1, 0, 'EASY TALK C3', '5.8000', '15.0000', '10.0000', '0.0000', 'active', '58.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(815, 'CLATACUNGA 1ra llegada', 6, 254, 1, 0, 'EASY TALK B2', '5.8000', '15.0000', '85.0000', '0.0000', 'active', '493.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(816, 'CLATACUNGA 1ra llegada', 6, 253, 1, 0, 'EASY TALK A1', '5.8000', '15.0000', '33.0000', '0.0000', 'active', '191.4000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(817, 'CLATACUNGA 1ra llegada', 6, 248, 1, 0, 'EASY TALK F', '4.6000', '14.0000', '20.0000', '0.0000', 'active', '92.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(818, 'CLATACUNGA 1ra llegada', 6, 247, 1, 0, 'EASY TALK E', '4.6000', '14.0000', '0.0000', '0.0000', 'active', '0.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(819, 'CLATACUNGA 1ra llegada', 6, 245, 1, 0, 'EASY TALK C', '4.6000', '14.0000', '76.0000', '0.0000', 'active', '349.6000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(820, 'CLATACUNGA 1ra llegada', 6, 243, 1, 0, 'EASY TALK A', '4.6000', '14.0000', '107.0000', '0.0000', 'active', '492.2000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(821, 'CLATACUNGA 1RA LLEGADA-2', 6, 118, 1, 0, 'ARTETICS 4', '4.5000', '14.0000', '3.0000', '0.0000', 'active', '13.5000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(822, 'CLATACUNGA 1RA LLEGADA-2', 6, 115, 1, 0, 'ARTETICS 1', '4.5000', '14.0000', '55.0000', '0.0000', 'active', '247.5000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(823, 'CLATACUNGA 2DA LLEGADA', 6, 255, 1, 0, 'EASY TALK C3', '5.8000', '15.0000', '365.0000', '0.0000', 'stock', '2117.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(824, 'CLATACUNGA 2DA LLEGADA', 6, 254, 1, 0, 'EASY TALK B2', '5.8000', '15.0000', '238.0000', '0.0000', 'stock', '1380.4000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(825, 'CLATACUNGA 2DA LLEGADA', 6, 253, 1, 0, 'EASY TALK A1', '5.8000', '15.0000', '321.0000', '0.0000', 'stock', '1861.8000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(826, 'CLATACUNGA 2DA LLEGADA', 6, 252, 1, 0, 'EASY TALK J ', '4.9800', '15.0000', '399.0000', '0.0000', 'active', '1987.0200', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(827, 'CLATACUNGA 2DA LLEGADA', 6, 251, 1, 0, 'EASY TALK I', '4.9800', '15.0000', '402.0000', '0.0000', 'active', '2001.9600', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(828, 'CLATACUNGA 2DA LLEGADA', 6, 250, 1, 0, 'EASY TALK H', '4.9800', '14.0000', '237.0000', '0.0000', 'active', '1180.2600', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(829, 'CLATACUNGA 2DA LLEGADA', 6, 249, 1, 0, 'EASY TALK G', '4.6000', '14.0000', '452.0000', '0.0000', 'active', '2079.2000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(830, 'CLATACUNGA 2DA LLEGADA', 6, 248, 1, 0, 'EASY TALK F', '4.6000', '14.0000', '283.0000', '0.0000', 'stock', '1301.8000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(831, 'CLATACUNGA 2DA LLEGADA', 6, 247, 1, 0, 'EASY TALK E', '4.6000', '14.0000', '427.0000', '0.0000', 'stock', '1964.2000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(832, 'CLATACUNGA 2DA LLEGADA', 6, 246, 1, 0, 'EASY TALK D', '4.6000', '14.0000', '466.0000', '0.0000', 'active', '2143.6000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(833, 'CLATACUNGA 2DA LLEGADA', 6, 245, 1, 0, 'EASY TALK C', '4.6000', '14.0000', '355.0000', '0.0000', 'stock', '1633.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(834, 'CLATACUNGA 2DA LLEGADA', 6, 244, 1, 0, 'EASY TALK B', '4.6000', '14.0000', '77.0000', '0.0000', 'active', '354.2000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(835, 'CLATACUNGA 2DA LLEGADA', 6, 243, 1, 0, 'EASY TALK A', '4.6000', '14.0000', '354.0000', '0.0000', 'stock', '1628.4000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(836, '684884-DAVID POLO 25/03/2024', 7, 254, 1, NULL, 'EASY TALK B2', '5.8000', '15.0000', '1.0000', '0.0000', 'stock', '5.8000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(837, '840717-DAVID POLO 25/03/2024', 7, 255, 1, NULL, 'EASY TALK C3', '5.8000', '15.0000', '6.0000', '0.0000', 'stock', '34.8000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(838, '498869-DAVID POLO 25/03/2024', 7, 245, 1, NULL, 'EASY TALK C', '4.6000', '14.0000', '2.0000', '0.0000', 'stock', '9.2000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(839, '179266-DAVID POLO 25/03/2024', 7, 249, 1, NULL, 'EASY TALK G', '4.6000', '14.0000', '7.0000', '0.0000', 'stock', '32.2000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(840, '956400-DAVID POLO 25/03/2024', 7, 248, 1, NULL, 'EASY TALK F', '4.6000', '14.0000', '5.0000', '0.0000', 'stock', '23.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(841, '541878-DAVID POLO 25/03/2024', 7, 246, 1, NULL, 'EASY TALK D', '4.6000', '14.0000', '1.0000', '0.0000', 'stock', '4.6000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(842, '109144-DAVID POLO 25/03/2024', 7, 247, 1, NULL, 'EASY TALK E', '4.6000', '14.0000', '7.0000', '0.0000', 'stock', '32.2000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(843, '348836-DAVID POLO 25/03/2024', 7, 253, 1, NULL, 'EASY TALK A1', '5.8000', '15.0000', '5.0000', '0.0000', 'stock', '29.0000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(844, '409860-DAVID POLO 25/03/2024', 7, 118, 1, NULL, 'ARTETICS 4', '4.5000', '14.0000', '1.0000', '0.0000', 'stock', '4.5000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(845, '401255-DAVID POLO 25/03/2024', 7, 115, 1, NULL, 'ARTETICS 1', '4.5000', '14.0000', '3.0000', '0.0000', 'stock', '13.5000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(846, '314983-MUESTRAS ', 7, 243, 1, NULL, 'EASY TALK A', '4.6000', '14.0000', '2.0000', '0.0000', 'stock', '9.2000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(847, '668295-MUESTRAS ', 7, 244, 1, NULL, 'EASY TALK B', '4.6000', '14.0000', '2.0000', '0.0000', 'stock', '9.2000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(848, '246269-MUESTRAS ', 7, 245, 1, NULL, 'EASY TALK C', '4.6000', '14.0000', '2.0000', '0.0000', 'stock', '9.2000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(849, '097474-MUESTRAS ', 7, 246, 1, NULL, 'EASY TALK D', '4.6000', '14.0000', '2.0000', '0.0000', 'stock', '9.2000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(850, '049823-MUESTRAS ', 7, 247, 1, NULL, 'EASY TALK E', '4.6000', '14.0000', '2.0000', '0.0000', 'stock', '9.2000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(851, '612796-MUESTRAS ', 7, 248, 1, NULL, 'EASY TALK F', '4.6000', '14.0000', '2.0000', '0.0000', 'stock', '9.2000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(852, '109169-MUESTRAS ', 7, 249, 1, NULL, 'EASY TALK G', '4.6000', '14.0000', '2.0000', '0.0000', 'stock', '9.2000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(853, '619660-MUESTRAS ', 7, 250, 1, NULL, 'EASY TALK H', '4.9800', '14.0000', '2.0000', '0.0000', 'stock', '9.9600', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(854, '541088-MUESTRAS ', 7, 251, 1, NULL, 'EASY TALK I', '4.9800', '15.0000', '2.0000', '0.0000', 'stock', '9.9600', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(855, '795550-MUESTRAS ', 7, 252, 1, NULL, 'EASY TALK J ', '4.9800', '15.0000', '2.0000', '0.0000', 'stock', '9.9600', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(856, '495043-MUESTRAS ', 7, 253, 1, NULL, 'EASY TALK A1', '5.8000', '15.0000', '2.0000', '0.0000', 'stock', '11.6000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(857, '152582-MUESTRAS ', 7, 254, 1, NULL, 'EASY TALK B2', '5.8000', '15.0000', '2.0000', '0.0000', 'stock', '11.6000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(858, '816001-MUESTRAS ', 7, 255, 1, NULL, 'EASY TALK C3', '5.8000', '15.0000', '2.0000', '0.0000', 'stock', '11.6000', '0.0000', 'inclusive', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000');
 
 -- --------------------------------------------------------
 
@@ -15484,7 +16613,7 @@ CREATE TABLE `purchase_logs` (
   `created_by` int(10) UNSIGNED NOT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `purchase_logs`
@@ -15767,7 +16896,11 @@ INSERT INTO `purchase_logs` (`id`, `sup_id`, `reference_no`, `ref_invoice_id`, `
 (274, 2, 'CT23102522186', 'C1234567890', 'purchase', 1, 'Paid while purchasing', '5.5000', 2, 12, '2023-10-25 09:50:23', NULL),
 (275, 2, 'CT23102522187', 'C119ECA', 'purchase', 1, 'Paid while purchasing', '33.0000', 2, 12, '2023-10-25 09:52:35', NULL),
 (276, 2, 'CT23102522188', 'CEJD2BGU', 'purchase', 1, 'Paid while purchasing', '60.0000', 2, 12, '2023-10-25 10:02:30', NULL),
-(277, 2, 'CT23102722189', 'CDAS927', 'purchase', 1, 'Paid while purchasing', '110.0000', 2, 15, '2023-10-27 14:31:39', NULL);
+(277, 2, 'CT23102722189', 'CDAS927', 'purchase', 1, 'Paid while purchasing', '110.0000', 2, 15, '2023-10-27 14:31:39', NULL),
+(278, 6, 'CT23112422190', 'CEasy.', 'purchase', 1, 'Paid while purchasing', '49.8000', 2, 15, '2023-11-24 13:41:21', NULL),
+(279, 6, 'CT240323600001', 'CLATACUNGA 1ra llegada', 'purchase', 1, 'Paid while purchasing', '1773.0000', 6, 2, '2024-03-23 13:47:06', NULL),
+(280, 3, 'CT2403236002', 'CLATACUNGA 1RA LLEGADA-2', 'purchase', 1, 'Paid while purchasing', '279.0000', 6, 2, '2024-03-23 13:49:05', NULL),
+(281, 6, 'CT24032566003', 'CLATACUNGA 2DA LLEGADA', 'purchase', 1, 'Paid while purchasing', '21835.9200', 6, 2, '2024-03-25 13:33:06', NULL);
 
 -- --------------------------------------------------------
 
@@ -15792,7 +16925,7 @@ CREATE TABLE `purchase_payments` (
   `balance` decimal(25,4) DEFAULT 0.0000,
   `created_by` int(11) NOT NULL,
   `created_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `purchase_payments`
@@ -16260,7 +17393,11 @@ INSERT INTO `purchase_payments` (`id`, `type`, `is_hide`, `store_id`, `invoice_i
 (476, 'return', 0, 2, 'CMI TUTORIAL DIGITAL 3BGU', 'R23111020016', NULL, NULL, NULL, NULL, NULL, '-102.0000', '0.0000', '0.0000', 15, '2023-11-10 14:57:30'),
 (477, 'change', 0, 2, 'CMI TUTORIAL DIGITAL 3BGU', NULL, NULL, NULL, NULL, NULL, 'return_change', '0.0000', '0.0000', '102.0000', 15, '2023-11-10 14:57:30'),
 (478, 'return', 0, 2, 'CMARAVILLASS', 'R23111020017', NULL, NULL, NULL, NULL, NULL, '-2805.6000', '0.0000', '0.0000', 15, '2023-11-10 15:07:35'),
-(479, 'change', 0, 2, 'CMARAVILLASS', NULL, NULL, NULL, NULL, NULL, 'return_change', '0.0000', '0.0000', '2900.8000', 15, '2023-11-10 15:07:35');
+(479, 'change', 0, 2, 'CMARAVILLASS', NULL, NULL, NULL, NULL, NULL, 'return_change', '0.0000', '0.0000', '2900.8000', 15, '2023-11-10 15:07:35'),
+(480, 'purchase', 0, 2, 'CEasy.', NULL, 1, NULL, NULL, NULL, '', '49.8000', '49.8000', '0.0000', 15, '2023-11-24 13:41:21'),
+(481, 'purchase', 0, 6, 'CLATACUNGA 1ra llegada', NULL, 1, NULL, NULL, NULL, 'PRODUCTO RECIBIDO DESDE LATACUNGA ', '1773.0000', '1773.0000', '0.0000', 2, '2024-03-23 13:47:06'),
+(482, 'purchase', 0, 6, 'CLATACUNGA 1RA LLEGADA-2', NULL, 1, NULL, NULL, NULL, 'PRODUCTO RECIBIDO DESDE LATACUNGA', '279.0000', '279.0000', '0.0000', 2, '2024-03-23 13:49:05'),
+(483, 'purchase', 0, 6, 'CLATACUNGA 2DA LLEGADA', NULL, 1, NULL, NULL, NULL, 'PRODUCTO RECIBIDO DESDE LATACUNGA', '21835.9200', '21835.9200', '0.0000', 2, '2024-03-25 13:33:06');
 
 -- --------------------------------------------------------
 
@@ -16289,7 +17426,7 @@ CREATE TABLE `purchase_price` (
   `due` decimal(25,4) NOT NULL DEFAULT 0.0000,
   `return_amount` decimal(25,4) UNSIGNED NOT NULL DEFAULT 0.0000,
   `balance` decimal(25,4) NOT NULL DEFAULT 0.0000
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `purchase_price`
@@ -16569,7 +17706,34 @@ INSERT INTO `purchase_price` (`price_id`, `invoice_id`, `store_id`, `subtotal`, 
 (288, 'C1234567890', 2, '5.5000', 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '5.5000', '5.5000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (289, 'C119ECA', 2, '33.0000', 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '33.0000', '33.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
 (290, 'CEJD2BGU', 2, '60.0000', 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '60.0000', '60.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
-(291, 'CDAS927', 2, '110.0000', 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '110.0000', '110.0000', '0.0000', '0.0000', '0.0000', '0.0000');
+(291, 'CDAS927', 2, '110.0000', 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '110.0000', '110.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(292, 'CEasy.', 2, '49.8000', 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '49.8000', '49.8000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(293, 'CLATACUNGA 1ra llegada', 6, '1773.0000', 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1676.2000', '1676.2000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(294, 'CLATACUNGA 1RA LLEGADA-2', 6, '279.0000', 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '261.0000', '261.0000', '0.0000', '0.0000', '0.0000', '0.0000'),
+(295, 'CLATACUNGA 2DA LLEGADA', 6, '21835.9200', 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '21632.8400', '21632.8400', '0.0000', '0.0000', '0.0000', '0.0000'),
+(296, '684884-DAVID POLO 25/03/2024', 7, NULL, 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '5.8000', '0.0000', '0.0000', '5.8000', '0.0000', '0.0000'),
+(297, '840717-DAVID POLO 25/03/2024', 7, NULL, 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '34.8000', '0.0000', '0.0000', '34.8000', '0.0000', '0.0000'),
+(298, '498869-DAVID POLO 25/03/2024', 7, NULL, 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '9.2000', '0.0000', '0.0000', '9.2000', '0.0000', '0.0000'),
+(299, '179266-DAVID POLO 25/03/2024', 7, NULL, 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '32.2000', '0.0000', '0.0000', '32.2000', '0.0000', '0.0000'),
+(300, '956400-DAVID POLO 25/03/2024', 7, NULL, 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '23.0000', '0.0000', '0.0000', '23.0000', '0.0000', '0.0000'),
+(301, '541878-DAVID POLO 25/03/2024', 7, NULL, 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '4.6000', '0.0000', '0.0000', '4.6000', '0.0000', '0.0000'),
+(302, '109144-DAVID POLO 25/03/2024', 7, NULL, 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '32.2000', '0.0000', '0.0000', '32.2000', '0.0000', '0.0000'),
+(303, '348836-DAVID POLO 25/03/2024', 7, NULL, 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '29.0000', '0.0000', '0.0000', '29.0000', '0.0000', '0.0000'),
+(304, '409860-DAVID POLO 25/03/2024', 7, NULL, 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '4.5000', '0.0000', '0.0000', '4.5000', '0.0000', '0.0000'),
+(305, '401255-DAVID POLO 25/03/2024', 7, NULL, 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '13.5000', '0.0000', '0.0000', '13.5000', '0.0000', '0.0000'),
+(306, '314983-MUESTRAS ', 7, NULL, 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '9.2000', '0.0000', '0.0000', '9.2000', '0.0000', '0.0000'),
+(307, '668295-MUESTRAS ', 7, NULL, 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '9.2000', '0.0000', '0.0000', '9.2000', '0.0000', '0.0000'),
+(308, '246269-MUESTRAS ', 7, NULL, 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '9.2000', '0.0000', '0.0000', '9.2000', '0.0000', '0.0000'),
+(309, '097474-MUESTRAS ', 7, NULL, 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '9.2000', '0.0000', '0.0000', '9.2000', '0.0000', '0.0000'),
+(310, '049823-MUESTRAS ', 7, NULL, 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '9.2000', '0.0000', '0.0000', '9.2000', '0.0000', '0.0000'),
+(311, '612796-MUESTRAS ', 7, NULL, 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '9.2000', '0.0000', '0.0000', '9.2000', '0.0000', '0.0000'),
+(312, '109169-MUESTRAS ', 7, NULL, 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '9.2000', '0.0000', '0.0000', '9.2000', '0.0000', '0.0000'),
+(313, '619660-MUESTRAS ', 7, NULL, 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '9.9600', '0.0000', '0.0000', '9.9600', '0.0000', '0.0000'),
+(314, '541088-MUESTRAS ', 7, NULL, 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '9.9600', '0.0000', '0.0000', '9.9600', '0.0000', '0.0000'),
+(315, '795550-MUESTRAS ', 7, NULL, 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '9.9600', '0.0000', '0.0000', '9.9600', '0.0000', '0.0000'),
+(316, '495043-MUESTRAS ', 7, NULL, 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '11.6000', '0.0000', '0.0000', '11.6000', '0.0000', '0.0000'),
+(317, '152582-MUESTRAS ', 7, NULL, 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '11.6000', '0.0000', '0.0000', '11.6000', '0.0000', '0.0000'),
+(318, '816001-MUESTRAS ', 7, NULL, 'plain', '0.0000', 'plain', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '11.6000', '0.0000', '0.0000', '11.6000', '0.0000', '0.0000');
 
 -- --------------------------------------------------------
 
@@ -16596,7 +17760,7 @@ CREATE TABLE `purchase_returns` (
   `created_by` varchar(255) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `purchase_returns`
@@ -16725,7 +17889,7 @@ CREATE TABLE `purchase_return_items` (
   `igst` decimal(25,4) DEFAULT NULL,
   `item_total` decimal(25,4) NOT NULL,
   `created_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `purchase_return_items`
@@ -16957,7 +18121,7 @@ CREATE TABLE `quotation_info` (
   `created_by` int(10) UNSIGNED NOT NULL DEFAULT 0,
   `created_at` datetime DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -16988,7 +18152,7 @@ CREATE TABLE `quotation_item` (
   `item_purchase_price` decimal(25,4) UNSIGNED DEFAULT NULL,
   `item_total` decimal(25,4) UNSIGNED NOT NULL,
   `purchase_invoice_id` varchar(100) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -17015,7 +18179,7 @@ CREATE TABLE `quotation_price` (
   `shipping_amount` decimal(25,4) DEFAULT 0.0000,
   `others_charge` decimal(25,4) NOT NULL DEFAULT 0.0000,
   `payable_amount` decimal(25,4) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -17044,7 +18208,7 @@ CREATE TABLE `returns` (
   `created_by` varchar(255) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `returns`
@@ -17153,7 +18317,7 @@ CREATE TABLE `return_items` (
   `igst` decimal(25,4) DEFAULT NULL,
   `item_total` decimal(25,4) NOT NULL,
   `created_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `return_items`
@@ -17286,7 +18450,7 @@ CREATE TABLE `selling_info` (
   `created_at` datetime DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL,
   `checkout_sri` tinyint(1) DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `selling_info`
@@ -19124,31 +20288,146 @@ INSERT INTO `selling_info` (`info_id`, `invoice_id`, `edit_counter`, `inv_type`,
 (1842, '22023/00001510', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-11 14:21:00', NULL, 1),
 (1843, '22023/00001511', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-11 15:46:51', NULL, 1),
 (1844, '22023/00001512', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-13 09:55:24', NULL, 1),
-(1845, '22023/00001513', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-13 11:25:40', NULL, 0),
-(1846, '22023/00001514', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 15, '2023-11-13 12:23:27', NULL, 0),
-(1847, '22023/00001515', 0, 'sell', 2, 1, '', 2, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-13 14:38:30', NULL, 0),
-(1848, '22023/00001516', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 15, '2023-11-13 14:56:24', NULL, 0),
-(1849, '22023/00001517', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-13 15:13:40', NULL, 0),
-(1850, '22023/00001518', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-13 15:48:19', NULL, 0),
-(1851, '22023/00001519', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-13 16:06:56', NULL, 0),
-(1852, '22023/00001520', 0, 'sell', 2, 1, '', 10, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 15, '2023-11-13 16:10:21', NULL, 0),
-(1853, '22023/00001521', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-13 16:40:07', NULL, 0),
-(1854, '22023/00001522', 0, 'sell', 2, 1, '', 10, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 15, '2023-11-13 16:41:26', NULL, 0),
-(1855, '22023/00001523', 0, 'sell', 2, 1, '', 2, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 15, '2023-11-13 16:48:24', NULL, 0),
-(1856, '22023/00001524', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-13 16:57:17', NULL, 0),
-(1857, '22023/00001525', 0, 'sell', 2, 1, '', 16, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 15, '2023-11-14 09:30:12', NULL, 0),
-(1858, '22023/00001526', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 15, '2023-11-14 09:35:40', NULL, 0),
-(1859, '22023/00001527', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-14 10:44:20', NULL, 0),
-(1860, '22023/00001528', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-14 10:49:50', NULL, 0),
-(1861, '22023/00001529', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 15, '2023-11-14 11:27:55', NULL, 0),
-(1862, '22023/00001530', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-14 11:33:31', NULL, 0),
-(1863, '22023/00001531', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-14 12:18:17', NULL, 0),
-(1864, '22023/00001532', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-14 12:29:06', NULL, 0),
-(1865, '22023/00001533', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-14 12:53:10', NULL, 0),
-(1866, '22023/00001534', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-14 14:27:33', NULL, 0),
-(1867, '22023/00001535', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-14 16:15:53', NULL, 0),
-(1868, '22023/00001536', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 15, '2023-11-14 16:41:54', NULL, 0),
-(1869, '22023/00001537', 0, 'sell', 2, 1, '', 16, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-14 16:56:56', NULL, 0);
+(1845, '22023/00001513', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-13 11:25:40', NULL, 1),
+(1846, '22023/00001514', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 15, '2023-11-13 12:23:27', NULL, 1),
+(1847, '22023/00001515', 0, 'sell', 2, 1, '', 2, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-13 14:38:30', NULL, 1),
+(1848, '22023/00001516', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 15, '2023-11-13 14:56:24', NULL, 1),
+(1849, '22023/00001517', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-13 15:13:40', NULL, 1),
+(1850, '22023/00001518', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-13 15:48:19', NULL, 1),
+(1851, '22023/00001519', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-13 16:06:56', NULL, 1),
+(1852, '22023/00001520', 0, 'sell', 2, 1, '', 10, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 15, '2023-11-13 16:10:21', NULL, 1),
+(1853, '22023/00001521', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-13 16:40:07', NULL, 1),
+(1854, '22023/00001522', 0, 'sell', 2, 1, '', 10, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 15, '2023-11-13 16:41:26', NULL, 1),
+(1855, '22023/00001523', 0, 'sell', 2, 1, '', 2, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 15, '2023-11-13 16:48:24', NULL, 1),
+(1856, '22023/00001524', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-13 16:57:17', NULL, 1),
+(1857, '22023/00001525', 0, 'sell', 2, 1, '', 16, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 15, '2023-11-14 09:30:12', NULL, 1),
+(1858, '22023/00001526', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 15, '2023-11-14 09:35:40', NULL, 1),
+(1859, '22023/00001527', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-14 10:44:20', NULL, 1),
+(1860, '22023/00001528', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-14 10:49:50', NULL, 1),
+(1861, '22023/00001529', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 15, '2023-11-14 11:27:55', NULL, 1),
+(1862, '22023/00001530', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-14 11:33:31', NULL, 1),
+(1863, '22023/00001531', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-14 12:18:17', NULL, 1),
+(1864, '22023/00001532', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-14 12:29:06', NULL, 1),
+(1865, '22023/00001533', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-14 12:53:10', NULL, 1),
+(1866, '22023/00001534', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-14 14:27:33', NULL, 1),
+(1867, '22023/00001535', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-14 16:15:53', NULL, 1),
+(1868, '22023/00001536', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 15, '2023-11-14 16:41:54', NULL, 1),
+(1869, '22023/00001537', 0, 'sell', 2, 1, '', 16, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-14 16:56:56', NULL, 1),
+(1870, '22023/00001538', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-15 11:19:37', NULL, 1),
+(1871, '22023/00001539', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 15, '2023-11-15 11:40:22', NULL, 1),
+(1872, '22023/00001540', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-15 12:25:12', NULL, 1),
+(1873, '22023/00001541', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-15 12:35:33', NULL, 1),
+(1874, '22023/00001542', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 15, '2023-11-15 12:39:26', NULL, 1),
+(1875, '22023/00001543', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 15, '2023-11-15 13:18:07', NULL, 1),
+(1876, '22023/00001544', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-15 13:29:47', NULL, 1),
+(1877, '22023/00001545', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 15, '2023-11-15 13:32:46', NULL, 1),
+(1878, '22023/00001546', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-15 14:39:47', NULL, 1),
+(1879, '22023/00001547', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-15 14:48:22', NULL, 1),
+(1880, '22023/00001548', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-15 15:38:14', NULL, 1),
+(1881, '22023/00001549', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-15 16:07:02', NULL, 1),
+(1882, '22023/00001550', 0, 'sell', 2, 1, '', 7, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 15, '2023-11-15 16:10:26', NULL, 1),
+(1883, '22023/00001551', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-15 16:14:56', NULL, 1),
+(1884, '22023/00001552', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 15, '2023-11-15 17:07:27', NULL, 1),
+(1885, '22023/00001553', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-15 17:09:12', NULL, 1),
+(1886, '22023/00001554', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-16 13:17:34', NULL, 1),
+(1887, '22023/00001555', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-16 13:29:13', NULL, 1),
+(1888, '22023/00001556', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-16 14:12:57', NULL, 1),
+(1889, '22023/00001557', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 15, '2023-11-16 14:59:33', NULL, 1),
+(1890, '22023/00001558', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 15, '2023-11-16 15:39:46', NULL, 1),
+(1891, '22023/00001559', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 15, '2023-11-16 16:39:40', NULL, 1),
+(1892, '22023/00001560', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-16 17:18:21', NULL, 1),
+(1893, '22023/00001561', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-17 11:17:44', NULL, 1),
+(1894, '22023/00001562', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-17 13:02:47', NULL, 1),
+(1895, '22023/00001563', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-17 13:13:17', NULL, 1),
+(1896, '22023/00001564', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-18 11:45:33', NULL, 1),
+(1897, '22023/00001565', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 12, '2023-11-18 12:01:03', NULL, 1),
+(1898, '22023/00001566', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 12, '2023-11-18 12:09:03', NULL, 1),
+(1899, '22023/00001567', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 15, '2023-11-18 12:55:51', NULL, 1),
+(1900, '22023/00001568', 0, 'sell', 2, 1, '', 10, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 15, '2023-11-18 13:46:03', NULL, 1),
+(1901, '22023/00001569', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-20 11:50:20', NULL, 1),
+(1902, '22023/00001570', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-20 15:58:47', NULL, 1),
+(1903, '22023/00001571', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-20 16:53:54', NULL, 1),
+(1904, '22023/00001572', 0, 'sell', 2, 1, '', 16, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-20 17:12:47', NULL, 1),
+(1905, '22023/00001573', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 4, 0, 1, 1, 'paid', 1, 15, '2023-11-21 09:52:47', NULL, 1),
+(1906, '22023/00001574', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-21 11:09:43', NULL, 1),
+(1907, '22023/00001575', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-21 11:32:33', NULL, 1),
+(1908, '22023/00001576', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-21 12:49:55', NULL, 1),
+(1909, '22023/00001577', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-21 12:53:04', NULL, 1),
+(1910, '22023/00001578', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 15, '2023-11-21 13:16:55', NULL, 1),
+(1911, '22023/00001579', 0, 'sell', 2, 1, '', 16, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-21 15:59:12', NULL, 1),
+(1912, '22023/00001580', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 15, '2023-11-21 16:47:51', NULL, 1),
+(1913, '22023/00001581', 0, 'sell', 2, 1, '', 16, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 15, '2023-11-21 17:05:52', NULL, 1),
+(1914, '22023/00001582', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 15, '2023-11-21 17:35:04', NULL, 1),
+(1915, '22023/00001583', 0, 'sell', 2, 1, '', 16, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 15, '2023-11-22 09:39:46', NULL, 1),
+(1916, '22023/00001584', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 15, '2023-11-22 09:54:40', NULL, 1),
+(1917, '22023/00001585', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 15, '2023-11-22 16:08:04', NULL, 1),
+(1918, '22023/00001586', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-22 16:32:30', NULL, 1),
+(1919, '22023/00001587', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 15, '2023-11-22 17:34:06', NULL, 1),
+(1920, '22023/00001588', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 15, '2023-11-23 10:53:06', NULL, 1),
+(1921, '22023/00001589', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 15, '2023-11-23 11:50:58', NULL, 1),
+(1922, '22023/00001590', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 4, 0, 1, 1, 'paid', 1, 15, '2023-11-23 13:27:00', NULL, 1),
+(1923, '22023/00001591', 0, 'sell', 2, 1, '', 10, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 15, '2023-11-24 09:40:17', NULL, 1),
+(1924, '22023/00001592', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 15, '2023-11-24 11:58:18', NULL, 1),
+(1925, '22023/00001593', 0, 'sell', 2, 349, '0961883188', 20, NULL, 0, '', 1, 0, 1, 1, 'due', 1, 15, '2023-11-24 13:43:25', NULL, 1),
+(1926, '22023/00001594', 0, 'sell', 2, 407, '0967665431', 16, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 12, '2023-11-24 16:30:28', NULL, 1),
+(1927, '22023/00001595', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 12, '2023-11-24 16:58:59', NULL, 1),
+(1928, '22023/00001596', 0, 'sell', 2, 7, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 12, '2023-11-28 13:43:12', NULL, 1),
+(1929, '22023/00001597', 0, 'sell', 2, 408, '0983921433', 16, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 12, '2023-11-28 16:13:18', NULL, 1),
+(1930, '22023/00001598', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 12, '2023-11-28 16:32:39', NULL, 1),
+(1931, '22023/00001599', 0, 'sell', 2, 1, '', 13, NULL, 0, 'TRANSFERENCIA', 2, 0, 1, 1, 'paid', 1, 12, '2023-11-29 10:24:23', NULL, 1),
+(1932, '22023/00001600', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 12, '2023-11-29 12:48:24', NULL, 1),
+(1933, '22023/00001601', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 12, '2023-11-30 13:31:06', NULL, 1),
+(1934, '22023/00001602', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 12, '2023-11-30 17:13:38', NULL, 1),
+(1935, '22023/00001603', 0, 'sell', 2, 350, '0996081933', 16, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 12, '2023-11-30 17:43:00', NULL, 1),
+(1937, '22023/00001604', 0, 'sell', 2, 1, '', 10, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 12, '2023-12-01 09:36:39', NULL, 1),
+(1938, '22023/00001605', 0, 'sell', 2, 1, '', 16, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 12, '2023-12-01 09:47:33', NULL, 1),
+(1939, '22023/00001606', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 12, '2023-12-01 10:26:29', NULL, 1),
+(1940, '22023/00001607', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 12, '2023-12-01 12:45:10', NULL, 1),
+(1941, '22023/00001608', 0, 'sell', 2, 1, '', 16, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 12, '2023-12-02 10:54:28', NULL, 1),
+(1942, '22023/00001609', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 12, '2023-12-02 11:00:34', NULL, 1),
+(1943, '22023/00001610', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 12, '2023-12-02 12:09:50', NULL, 1),
+(1944, '22023/00001611', 0, 'sell', 2, 1, '', 16, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 12, '2023-12-02 12:36:31', NULL, 1),
+(1945, '22023/00001612', 0, 'sell', 2, 1, '', 16, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 12, '2023-12-02 14:41:43', NULL, 1),
+(1946, '22023/00001613', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 12, '2023-12-04 10:07:59', NULL, 1),
+(1947, '22023/00001614', 0, 'sell', 2, 1, '', 16, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 12, '2023-12-04 10:18:48', NULL, 1),
+(1948, '22023/00001615', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 12, '2023-12-04 11:35:52', NULL, 1),
+(1949, '22023/00001616', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 12, '2023-12-04 11:36:52', NULL, 1),
+(1950, '22023/00001617', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 12, '2023-12-04 11:39:03', NULL, 1),
+(1951, '22023/00001618', 0, 'sell', 2, 1, '', 16, NULL, 0, '', 4, 0, 1, 1, 'paid', 1, 12, '2023-12-04 16:59:45', NULL, 1),
+(1952, '22023/00001619', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 12, '2023-12-04 17:04:30', NULL, 1),
+(1953, '22023/00001620', 0, 'sell', 2, 1, '', 16, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 12, '2023-12-04 17:09:13', NULL, 1),
+(1954, '22023/00001621', 0, 'sell', 2, 1, '', 16, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 12, '2023-12-04 17:38:17', NULL, 1),
+(1955, '22023/00001622', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 12, '2023-12-04 17:40:12', NULL, 1),
+(1956, '22023/00001623', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 12, '2023-12-05 13:08:50', NULL, 1),
+(1957, '22023/00001624', 0, 'sell', 2, 409, '0998547031', 16, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 12, '2023-12-05 17:44:33', NULL, 1),
+(1958, '22023/00001625', 0, 'sell', 2, 1, '', 16, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 12, '2023-12-05 17:54:35', NULL, 1),
+(1959, '22023/00001626', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 12, '2023-12-06 10:14:59', NULL, 1),
+(1960, '22023/00001627', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 12, '2023-12-06 11:00:09', NULL, 1),
+(1961, '22023/00001628', 0, 'sell', 2, 1, '', 10, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 12, '2023-12-06 11:37:19', NULL, 1),
+(1962, '22023/00001629', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 12, '2023-12-06 11:54:15', NULL, 1),
+(1963, '22023/00001630', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 12, '2023-12-06 12:47:23', NULL, 1),
+(1964, '22023/00001631', 0, 'sell', 2, 1, '', 16, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 12, '2023-12-07 15:51:05', NULL, 1),
+(1965, '22023/00001632', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 12, '2023-12-08 12:33:50', NULL, 1),
+(1966, '22023/00001633', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 12, '2023-12-08 14:03:23', NULL, 1),
+(1967, '22023/00001634', 0, 'sell', 2, 1, '', 16, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 12, '2023-12-08 17:12:53', NULL, 1),
+(1969, '22023/00001636', 0, 'sell', 2, 410, '0983605391', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 12, '2023-12-09 11:43:12', NULL, 1),
+(1971, '22023/00001637', 0, 'sell', 2, 1, '', 10, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 12, '2023-12-11 11:50:51', NULL, 1),
+(1972, '22023/00001638', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 12, '2023-12-11 12:37:50', NULL, 1),
+(1973, '22023/00001639', 0, 'sell', 2, 1, '', 10, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 12, '2023-12-12 11:36:24', NULL, 1),
+(1974, '22023/00001640', 0, 'sell', 2, 1, '', 16, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 12, '2023-12-12 13:31:48', NULL, 1),
+(1975, '22023/00001641', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 12, '2023-12-12 14:15:27', NULL, 1),
+(1976, '22023/00001642', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 12, '2023-12-13 09:23:07', NULL, 1),
+(1977, '22023/00001643', 0, 'sell', 2, 1, '', 10, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 12, '2023-12-13 12:16:32', NULL, 1),
+(1978, '22023/00001644', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 12, '2023-12-13 12:25:26', NULL, 1),
+(1979, '22023/00001645', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 12, '2023-12-14 11:38:43', NULL, 1),
+(1980, '22023/00001646', 0, 'sell', 2, 1, '', 10, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 12, '2023-12-20 11:04:11', NULL, 1),
+(1981, '22023/00001647', 0, 'sell', 2, 1, '', 10, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 12, '2023-12-21 10:57:20', NULL, 1),
+(1982, '22024/00001648', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 2, 0, 1, 1, 'paid', 1, 12, '2024-01-02 10:28:35', NULL, 0),
+(1983, '22024/00001649', 0, 'sell', 2, 1, '', 6, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 12, '2024-01-03 10:42:34', NULL, 0),
+(1984, '22024/00001650', 0, 'sell', 2, 1, '', 13, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 12, '2024-01-03 17:02:58', NULL, 0),
+(1985, '22024/00001651', 0, 'sell', 2, 1, '', 16, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 12, '2024-01-06 09:20:33', NULL, 0),
+(1990, '22024/00001652', 0, 'sell', 2, 412, '096587493', 2, NULL, 0, '', 4, 0, 1, 1, 'paid', 1, 2, '2024-03-23 12:00:07', NULL, 0),
+(1991, '22024/00001653', 0, 'sell', 2, 1, '', 19, NULL, 0, '', 1, 0, 1, 1, 'paid', 1, 2, '2024-03-23 12:15:26', NULL, 0);
 
 -- --------------------------------------------------------
 
@@ -19185,7 +20464,7 @@ CREATE TABLE `selling_item` (
   `printed_by` int(11) DEFAULT NULL,
   `return_quantity` decimal(25,4) DEFAULT 0.0000,
   `created_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `selling_item`
@@ -22744,7 +24023,196 @@ INSERT INTO `selling_item` (`id`, `invoice_id`, `category_id`, `brand_id`, `sup_
 (3565, '22023/00001535', 1, 0, 2, 2, 13, 281, 'ECA PICASO 6', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CECA61010', 0, NULL, NULL, '0.0000', NULL),
 (3566, '22023/00001536', 1, 0, 2, 2, 13, 304, 'ECA DAS 8 EGB ONCE NOVIEMBRE', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.5000', '13.0000', 'CECA811', 0, NULL, NULL, '0.0000', NULL),
 (3567, '22023/00001537', 1, 0, 2, 2, 16, 286, 'ECA DAS 8 EGB', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.5000', '14.0000', 'CDAAASSS', 0, NULL, NULL, '0.0000', NULL),
-(3568, '22023/00001537', 1, 0, 2, 2, 16, 289, 'EJERCICIO JUEGO Y DIVERSION 8', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CJUREGOO', 0, NULL, NULL, '0.0000', NULL);
+(3568, '22023/00001537', 1, 0, 2, 2, 16, 289, 'EJERCICIO JUEGO Y DIVERSION 8', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CJUREGOO', 0, NULL, NULL, '0.0000', NULL),
+(3569, '22023/00001538', 1, 1, 1, 2, 13, 48, 'LOGROS LA MARAVILLA DE LEER 7 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'CMARAVILLASS', 0, NULL, NULL, '0.0000', NULL),
+(3570, '22023/00001538', 1, 0, 2, 2, 13, 282, 'ECA PICASO 7', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CECAAPI', 0, NULL, NULL, '0.0000', NULL),
+(3571, '22023/00001539', 1, 0, 3, 2, 13, 115, 'ARTETICS 1', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.0000', '14.0000', 'CARTETICSS', 0, NULL, NULL, '0.0000', NULL),
+(3572, '22023/00001540', 1, 1, 1, 2, 13, 43, 'LOGROS LA MARAVILLA DE LEER 2 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'CMARAVILLASS', 0, NULL, NULL, '0.0000', NULL),
+(3573, '22023/00001540', 1, 0, 2, 2, 13, 277, 'ECA PICASO 2 ', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CECAA', 0, NULL, NULL, '0.0000', NULL),
+(3574, '22023/00001541', 1, 1, 1, 2, 13, 47, 'LOGROS LA MARAVILLA DE LEER 6 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'CMARAVILLASS', 0, NULL, NULL, '0.0000', NULL),
+(3575, '22023/00001541', 1, 0, 2, 2, 13, 281, 'ECA PICASO 6', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CECA61010', 0, NULL, NULL, '0.0000', NULL),
+(3576, '22023/00001542', 1, 0, 2, 2, 13, 305, 'ECA DAS 9 EGB ONCE NOVIEMBRE', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.5000', '13.0000', 'CDAS927', 0, NULL, NULL, '0.0000', NULL),
+(3577, '22023/00001543', 1, 0, 2, 2, 13, 304, 'ECA DAS 8 EGB ONCE NOVIEMBRE', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.5000', '13.0000', 'CECA811', 0, NULL, NULL, '0.0000', NULL);
+INSERT INTO `selling_item` (`id`, `invoice_id`, `category_id`, `brand_id`, `sup_id`, `store_id`, `college_id`, `item_id`, `item_name`, `item_price`, `item_discount`, `item_tax`, `tax_method`, `taxrate_id`, `tax`, `gst`, `cgst`, `sgst`, `igst`, `item_quantity`, `item_purchase_price`, `item_total`, `purchase_invoice_id`, `print_counter`, `print_counter_time`, `printed_by`, `return_quantity`, `created_at`) VALUES
+(3578, '22023/00001544', 1, 1, 1, 2, 13, 47, 'LOGROS LA MARAVILLA DE LEER 6 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'CMARAVILLASS', 0, NULL, NULL, '0.0000', NULL),
+(3579, '22023/00001544', 1, 0, 2, 2, 13, 281, 'ECA PICASO 6', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CECA61010', 0, NULL, NULL, '0.0000', NULL),
+(3580, '22023/00001545', 1, 0, 6, 2, 13, 284, 'LECTURA CRITICA DECADA DE LOS 30 9', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '6.0000', '14.0000', 'C11NOVIEMBRE', 0, NULL, NULL, '0.0000', NULL),
+(3581, '22023/00001546', 1, 1, 1, 2, 13, 47, 'LOGROS LA MARAVILLA DE LEER 6 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'CMARAVILLASS', 0, NULL, NULL, '0.0000', NULL),
+(3582, '22023/00001546', 1, 0, 2, 2, 13, 281, 'ECA PICASO 6', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CECA61010', 0, NULL, NULL, '0.0000', NULL),
+(3583, '22023/00001547', 1, 1, 1, 2, 13, 47, 'LOGROS LA MARAVILLA DE LEER 6 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'CMARAVILLASS', 0, NULL, NULL, '0.0000', NULL),
+(3584, '22023/00001547', 1, 0, 2, 2, 13, 281, 'ECA PICASO 6', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CECA61010', 0, NULL, NULL, '0.0000', NULL),
+(3585, '22023/00001548', 1, 1, 1, 2, 13, 47, 'LOGROS LA MARAVILLA DE LEER 6 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'CMARAVILLASS', 0, NULL, NULL, '0.0000', NULL),
+(3586, '22023/00001548', 1, 0, 2, 2, 13, 281, 'ECA PICASO 6', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CECA61010', 0, NULL, NULL, '0.0000', NULL),
+(3587, '22023/00001549', 1, 1, 1, 2, 13, 45, 'LOGROS LA MARAVILLA DE LEER 4 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'CMARAVILLASS', 0, NULL, NULL, '0.0000', NULL),
+(3588, '22023/00001549', 1, 0, 2, 2, 13, 279, 'ECA PICASO 4', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CECAA', 0, NULL, NULL, '0.0000', NULL),
+(3589, '22023/00001550', 1, 0, 4, 2, 7, 240, 'ELLEVATE 1A COL VERNADONE', '37.5000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '15.0000', '37.5000', 'CINGRESADOS', 0, NULL, NULL, '0.0000', NULL),
+(3590, '22023/00001551', 1, 1, 1, 2, 13, 45, 'LOGROS LA MARAVILLA DE LEER 4 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'CMARAVILLASS', 0, NULL, NULL, '0.0000', NULL),
+(3591, '22023/00001551', 1, 0, 2, 2, 13, 279, 'ECA PICASO 4', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CECAA', 0, NULL, NULL, '0.0000', NULL),
+(3592, '22023/00001552', 1, 0, 2, 2, 13, 304, 'ECA DAS 8 EGB ONCE NOVIEMBRE', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.5000', '13.0000', 'CECA811', 0, NULL, NULL, '0.0000', NULL),
+(3593, '22023/00001553', 1, 1, 1, 2, 13, 45, 'LOGROS LA MARAVILLA DE LEER 4 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'CMARAVILLASS', 0, NULL, NULL, '0.0000', NULL),
+(3594, '22023/00001553', 1, 0, 2, 2, 13, 279, 'ECA PICASO 4', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CECAA', 0, NULL, NULL, '0.0000', NULL),
+(3595, '22023/00001554', 1, 1, 1, 2, 13, 46, 'LOGROS LA MARAVILLA DE LEER 5 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'CMARAVILLASS', 0, NULL, NULL, '0.0000', NULL),
+(3596, '22023/00001554', 1, 0, 2, 2, 13, 280, 'ECA PICASO 5', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CECA51010IN', 0, NULL, NULL, '0.0000', NULL),
+(3597, '22023/00001555', 1, 1, 1, 2, 13, 46, 'LOGROS LA MARAVILLA DE LEER 5 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'CMARAVILLASS', 0, NULL, NULL, '0.0000', NULL),
+(3598, '22023/00001555', 1, 0, 2, 2, 13, 280, 'ECA PICASO 5', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CECA51010IN', 0, NULL, NULL, '0.0000', NULL),
+(3599, '22023/00001556', 1, 1, 1, 2, 13, 47, 'LOGROS LA MARAVILLA DE LEER 6 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'CMARAVILLASS', 0, NULL, NULL, '0.0000', NULL),
+(3600, '22023/00001556', 1, 0, 2, 2, 13, 281, 'ECA PICASO 6', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CECA61010', 0, NULL, NULL, '0.0000', NULL),
+(3601, '22023/00001557', 1, 0, 2, 2, 13, 305, 'ECA DAS 9 EGB ONCE NOVIEMBRE', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '2.0000', '11.0000', '26.0000', 'CDAS927', 0, NULL, NULL, '0.0000', NULL),
+(3602, '22023/00001558', 1, 0, 2, 2, 13, 304, 'ECA DAS 8 EGB ONCE NOVIEMBRE', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.5000', '13.0000', 'CECA811', 0, NULL, NULL, '0.0000', NULL),
+(3603, '22023/00001559', 1, 0, 2, 2, 13, 304, 'ECA DAS 8 EGB ONCE NOVIEMBRE', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.5000', '13.0000', 'CECA811', 0, NULL, NULL, '0.0000', NULL),
+(3604, '22023/00001560', 1, 1, 1, 2, 13, 45, 'LOGROS LA MARAVILLA DE LEER 4 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'CMARAVILLASS', 0, NULL, NULL, '0.0000', NULL),
+(3605, '22023/00001560', 1, 0, 2, 2, 13, 279, 'ECA PICASO 4', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CECAA', 0, NULL, NULL, '0.0000', NULL),
+(3606, '22023/00001561', 1, 1, 1, 2, 13, 45, 'LOGROS LA MARAVILLA DE LEER 4 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'CMARAVILLASS', 0, NULL, NULL, '0.0000', NULL),
+(3607, '22023/00001561', 1, 0, 2, 2, 13, 279, 'ECA PICASO 4', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CECAA', 0, NULL, NULL, '0.0000', NULL),
+(3608, '22023/00001562', 1, 1, 1, 2, 13, 43, 'LOGROS LA MARAVILLA DE LEER 2 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'CMARAVILLASS', 0, NULL, NULL, '0.0000', NULL),
+(3609, '22023/00001562', 1, 0, 2, 2, 13, 277, 'ECA PICASO 2 ', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CECAA', 0, NULL, NULL, '0.0000', NULL),
+(3610, '22023/00001563', 1, 1, 1, 2, 13, 43, 'LOGROS LA MARAVILLA DE LEER 2 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'CMARAVILLASS', 0, NULL, NULL, '0.0000', NULL),
+(3611, '22023/00001563', 1, 0, 2, 2, 13, 277, 'ECA PICASO 2 ', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CECAA', 0, NULL, NULL, '0.0000', NULL),
+(3612, '22023/00001564', 1, 1, 1, 2, 13, 45, 'LOGROS LA MARAVILLA DE LEER 4 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'CMARAVILLASS', 0, NULL, NULL, '0.0000', NULL),
+(3613, '22023/00001564', 1, 0, 2, 2, 13, 279, 'ECA PICASO 4', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CECAA', 0, NULL, NULL, '0.0000', NULL),
+(3614, '22023/00001565', 1, 0, 2, 2, 13, 305, 'ECA DAS 9 EGB ONCE NOVIEMBRE', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.5000', '13.0000', 'CDAS927', 0, NULL, NULL, '0.0000', NULL),
+(3615, '22023/00001566', 1, 0, 2, 2, 13, 282, 'ECA PICASO 7', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CECAAPI', 0, NULL, NULL, '0.0000', NULL),
+(3616, '22023/00001566', 1, 1, 1, 2, 13, 48, 'LOGROS LA MARAVILLA DE LEER 7 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'CMARAVILLASS', 0, NULL, NULL, '0.0000', NULL),
+(3617, '22023/00001567', 1, 0, 2, 2, 13, 305, 'ECA DAS 9 EGB ONCE NOVIEMBRE', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.5000', '13.0000', 'CDAS927', 0, NULL, NULL, '0.0000', NULL),
+(3618, '22023/00001568', 1, 0, 2, 2, 10, 260, 'ECA DAS 1 BGU', '16.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '2.0000', '11.0000', '32.0000', 'CECALEAMAS', 0, NULL, NULL, '0.0000', NULL),
+(3619, '22023/00001569', 1, 1, 1, 2, 13, 47, 'LOGROS LA MARAVILLA DE LEER 6 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'CMARAVILLASS', 0, NULL, NULL, '0.0000', NULL),
+(3620, '22023/00001569', 1, 0, 2, 2, 13, 281, 'ECA PICASO 6', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CECA61010', 0, NULL, NULL, '0.0000', NULL),
+(3621, '22023/00001570', 1, 1, 1, 2, 13, 45, 'LOGROS LA MARAVILLA DE LEER 4 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'CMARAVILLASS', 0, NULL, NULL, '0.0000', NULL),
+(3622, '22023/00001570', 1, 0, 2, 2, 13, 279, 'ECA PICASO 4', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CECAA', 0, NULL, NULL, '0.0000', NULL),
+(3623, '22023/00001571', 1, 1, 1, 2, 13, 43, 'LOGROS LA MARAVILLA DE LEER 2 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'CMARAVILLASS', 0, NULL, NULL, '0.0000', NULL),
+(3624, '22023/00001571', 1, 0, 2, 2, 13, 277, 'ECA PICASO 2 ', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CECAA', 0, NULL, NULL, '0.0000', NULL),
+(3625, '22023/00001572', 1, 0, 2, 2, 16, 288, 'ECA DAS 10 EGB', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.5000', '14.0000', 'CECAA', 0, NULL, NULL, '0.0000', NULL),
+(3626, '22023/00001572', 1, 0, 2, 2, 16, 296, 'EJERCICIO JUEGO Y DIVERSION 10', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CJUREGOO', 0, NULL, NULL, '0.0000', NULL),
+(3627, '22023/00001573', 1, 1, 1, 2, 13, 43, 'LOGROS LA MARAVILLA DE LEER 2 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'CMARAVILLASS', 0, NULL, NULL, '0.0000', NULL),
+(3628, '22023/00001573', 1, 0, 2, 2, 13, 277, 'ECA PICASO 2 ', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CECAA', 0, NULL, NULL, '0.0000', NULL),
+(3629, '22023/00001573', 1, 1, 1, 2, 13, 46, 'LOGROS LA MARAVILLA DE LEER 5 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'CMARAVILLASS', 0, NULL, NULL, '0.0000', NULL),
+(3630, '22023/00001573', 1, 0, 2, 2, 13, 280, 'ECA PICASO 5', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CECA51010IN', 0, NULL, NULL, '0.0000', NULL),
+(3631, '22023/00001574', 1, 1, 1, 2, 13, 46, 'LOGROS LA MARAVILLA DE LEER 5 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'CMARAVILLASS', 0, NULL, NULL, '0.0000', NULL),
+(3632, '22023/00001574', 1, 0, 2, 2, 13, 280, 'ECA PICASO 5', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CECA51010IN', 0, NULL, NULL, '0.0000', NULL),
+(3633, '22023/00001575', 1, 0, 2, 2, 13, 305, 'ECA DAS 9 EGB ONCE NOVIEMBRE', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.5000', '13.0000', 'CDAS927', 0, NULL, NULL, '0.0000', NULL),
+(3634, '22023/00001575', 1, 0, 6, 2, 13, 284, 'LECTURA CRITICA DECADA DE LOS 30 9', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '6.0000', '14.0000', 'C11NOVIEMBRE', 0, NULL, NULL, '0.0000', NULL),
+(3635, '22023/00001576', 1, 1, 1, 2, 13, 43, 'LOGROS LA MARAVILLA DE LEER 2 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'CMARAVILLASS', 0, NULL, NULL, '0.0000', NULL),
+(3636, '22023/00001576', 1, 0, 2, 2, 13, 277, 'ECA PICASO 2 ', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CECAA', 0, NULL, NULL, '0.0000', NULL),
+(3637, '22023/00001577', 1, 1, 1, 2, 13, 43, 'LOGROS LA MARAVILLA DE LEER 2 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'CMARAVILLASS', 0, NULL, NULL, '0.0000', NULL),
+(3638, '22023/00001577', 1, 0, 2, 2, 13, 277, 'ECA PICASO 2 ', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CECAA', 0, NULL, NULL, '0.0000', NULL),
+(3639, '22023/00001578', 1, 0, 2, 2, 13, 306, 'ECA DAS 10 EGB ONCE NOVIEMBRE', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.5000', '13.0000', 'CECAONCE1', 0, NULL, NULL, '0.0000', NULL),
+(3640, '22023/00001579', 1, 0, 2, 2, 16, 288, 'ECA DAS 10 EGB', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.5000', '14.0000', 'CECAA', 0, NULL, NULL, '0.0000', NULL),
+(3641, '22023/00001579', 1, 0, 2, 2, 16, 296, 'EJERCICIO JUEGO Y DIVERSION 10', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CJUREGOO', 0, NULL, NULL, '0.0000', NULL),
+(3642, '22023/00001580', 1, 0, 2, 2, 13, 306, 'ECA DAS 10 EGB ONCE NOVIEMBRE', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.5000', '13.0000', 'CECAONCE1', 0, NULL, NULL, '0.0000', NULL),
+(3643, '22023/00001581', 1, 0, 2, 2, 16, 286, 'ECA DAS 8 EGB', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.5000', '14.0000', 'CDAAASSS', 0, NULL, NULL, '0.0000', NULL),
+(3644, '22023/00001582', 1, 0, 2, 2, 13, 306, 'ECA DAS 10 EGB ONCE NOVIEMBRE', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.5000', '13.0000', 'CECAONCE1', 0, NULL, NULL, '0.0000', NULL),
+(3645, '22023/00001583', 1, 0, 2, 2, 16, 295, 'EJERCICIO JUEGO Y DIVERSION 9', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CJUREGOO', 0, NULL, NULL, '0.0000', NULL),
+(3646, '22023/00001584', 1, 0, 2, 2, 13, 305, 'ECA DAS 9 EGB ONCE NOVIEMBRE', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.5000', '13.0000', 'CDAS927', 0, NULL, NULL, '0.0000', NULL),
+(3647, '22023/00001585', 1, 0, 2, 2, 13, 305, 'ECA DAS 9 EGB ONCE NOVIEMBRE', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.5000', '13.0000', 'CDAS927', 0, NULL, NULL, '0.0000', NULL),
+(3648, '22023/00001586', 1, 1, 1, 2, 13, 45, 'LOGROS LA MARAVILLA DE LEER 4 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'CMARAVILLASS', 0, NULL, NULL, '0.0000', NULL),
+(3649, '22023/00001586', 1, 0, 2, 2, 13, 279, 'ECA PICASO 4', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CECAA', 0, NULL, NULL, '0.0000', NULL),
+(3650, '22023/00001587', 1, 1, 1, 2, 13, 45, 'LOGROS LA MARAVILLA DE LEER 4 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'CMARAVILLASS', 0, NULL, NULL, '0.0000', NULL),
+(3651, '22023/00001587', 1, 0, 2, 2, 13, 279, 'ECA PICASO 4', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CECAA', 0, NULL, NULL, '0.0000', NULL),
+(3652, '22023/00001588', 1, 0, 2, 2, 13, 304, 'ECA DAS 8 EGB ONCE NOVIEMBRE', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.5000', '13.0000', 'CECA811', 0, NULL, NULL, '0.0000', NULL),
+(3653, '22023/00001589', 1, 0, 2, 2, 13, 304, 'ECA DAS 8 EGB ONCE NOVIEMBRE', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.5000', '13.0000', 'CECA811', 0, NULL, NULL, '0.0000', NULL),
+(3654, '22023/00001590', 1, 1, 1, 2, 13, 47, 'LOGROS LA MARAVILLA DE LEER 6 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'CMARAVILLASS', 0, NULL, NULL, '0.0000', NULL),
+(3655, '22023/00001590', 1, 0, 2, 2, 13, 281, 'ECA PICASO 6', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CECA61010', 0, NULL, NULL, '0.0000', NULL),
+(3656, '22023/00001590', 1, 0, 2, 2, 13, 304, 'ECA DAS 8 EGB ONCE NOVIEMBRE', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.5000', '13.0000', 'CECA811', 0, NULL, NULL, '0.0000', NULL),
+(3657, '22023/00001590', 1, 0, 6, 2, 13, 293, 'A LA COSTA ', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.6000', '14.0000', 'C11NOVIEMBRE', 0, NULL, NULL, '0.0000', NULL),
+(3658, '22023/00001591', 1, 0, 2, 2, 10, 260, 'ECA DAS 1 BGU', '16.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.5000', '16.0000', 'CECALEAMAS', 0, NULL, NULL, '0.0000', NULL),
+(3659, '22023/00001592', 1, 0, 2, 2, 13, 305, 'ECA DAS 9 EGB ONCE NOVIEMBRE', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.5000', '13.0000', 'CDAS927', 0, NULL, NULL, '0.0000', NULL),
+(3660, '22023/00001593', 1, 0, 6, 2, 20, 343, 'EASY TALK H..', '5.7800', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.0000', '49.8000', '57.8000', 'CEasy.', 0, NULL, NULL, '0.0000', NULL),
+(3661, '22023/00001594', 1, 0, 2, 2, 16, 286, 'ECA DAS 8 EGB', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.5000', '14.0000', 'CDAAASSS', 0, NULL, NULL, '0.0000', NULL),
+(3662, '22023/00001594', 1, 0, 2, 2, 16, 289, 'EJERCICIO JUEGO Y DIVERSION 8', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CJUREGOO', 0, NULL, NULL, '0.0000', NULL),
+(3663, '22023/00001595', 1, 0, 6, 2, 13, 284, 'LECTURA CRITICA DECADA DE LOS 30 9', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '6.0000', '14.0000', 'C11NOVIEMBRE', 0, NULL, NULL, '0.0000', NULL),
+(3664, '22023/00001595', 1, 0, 2, 2, 13, 305, 'ECA DAS 9 EGB ONCE NOVIEMBRE', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.5000', '13.0000', 'CDAS927', 0, NULL, NULL, '0.0000', NULL),
+(3665, '22023/00001596', 1, 1, 1, 2, 13, 44, 'LOGROS LA MARAVILLA DE LEER 3 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'CMARAVILLASS', 0, NULL, NULL, '0.0000', NULL),
+(3666, '22023/00001596', 1, 0, 2, 2, 13, 278, 'ECA PICASO 3', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'C11NOVI', 0, NULL, NULL, '0.0000', NULL),
+(3667, '22023/00001597', 1, 0, 2, 2, 16, 363, 'EJERCICIO JUEGO Y DIVERSIÓN 2 BGU', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.0000', '13.0000', 'CEJD2BGU', 0, NULL, NULL, '0.0000', NULL),
+(3668, '22023/00001598', 1, 0, 6, 2, 13, 292, 'DIARIO DE ANA FRANK', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.6000', '14.0000', 'C11NOVIEMBREE', 0, NULL, NULL, '0.0000', NULL),
+(3669, '22023/00001599', 1, 1, 1, 2, 13, 45, 'LOGROS LA MARAVILLA DE LEER 4 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'CMARAVILLASS', 0, NULL, NULL, '0.0000', NULL),
+(3670, '22023/00001599', 1, 0, 2, 2, 13, 279, 'ECA PICASO 4', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CECAA', 0, NULL, NULL, '0.0000', NULL),
+(3671, '22023/00001600', 1, 1, 1, 2, 13, 45, 'LOGROS LA MARAVILLA DE LEER 4 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'CMARAVILLASS', 0, NULL, NULL, '0.0000', NULL),
+(3672, '22023/00001600', 1, 0, 2, 2, 13, 279, 'ECA PICASO 4', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CECAA', 0, NULL, NULL, '0.0000', NULL),
+(3673, '22023/00001601', 1, 1, 1, 2, 13, 43, 'LOGROS LA MARAVILLA DE LEER 2 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'CMARAVILLASS', 0, NULL, NULL, '0.0000', NULL),
+(3674, '22023/00001601', 1, 0, 2, 2, 13, 277, 'ECA PICASO 2 ', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CECAA', 0, NULL, NULL, '0.0000', NULL),
+(3675, '22023/00001602', 1, 1, 1, 2, 13, 43, 'LOGROS LA MARAVILLA DE LEER 2 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'CMARAVILLASS', 0, NULL, NULL, '0.0000', NULL),
+(3676, '22023/00001602', 1, 0, 2, 2, 13, 277, 'ECA PICASO 2 ', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CECAA', 0, NULL, NULL, '0.0000', NULL),
+(3677, '22023/00001603', 1, 0, 2, 2, 16, 295, 'EJERCICIO JUEGO Y DIVERSION 9', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CJUREGOO', 0, NULL, NULL, '0.0000', NULL),
+(3679, '22023/00001604', 1, 0, 2, 2, 10, 260, 'ECA DAS 1 BGU', '16.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.5000', '16.0000', 'CECALEAMAS', 0, NULL, NULL, '0.0000', NULL),
+(3680, '22023/00001605', 1, 0, 2, 2, 16, 296, 'EJERCICIO JUEGO Y DIVERSION 10', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CJUREGOO', 0, NULL, NULL, '0.0000', NULL),
+(3681, '22023/00001606', 1, 1, 1, 2, 13, 43, 'LOGROS LA MARAVILLA DE LEER 2 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'CMARAVILLASS', 0, NULL, NULL, '0.0000', NULL),
+(3682, '22023/00001606', 1, 0, 2, 2, 13, 277, 'ECA PICASO 2 ', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CECAA', 0, NULL, NULL, '0.0000', NULL),
+(3683, '22023/00001607', 1, 1, 1, 2, 13, 46, 'LOGROS LA MARAVILLA DE LEER 5 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'CMARAVILLASS', 0, NULL, NULL, '0.0000', NULL),
+(3684, '22023/00001608', 1, 0, 2, 2, 16, 260, 'ECA DAS 1 BGU', '16.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.5000', '16.0000', 'CECALEAMAS', 0, NULL, NULL, '0.0000', NULL),
+(3685, '22023/00001608', 1, 0, 2, 2, 16, 290, 'EJERCICIO JUEGO Y DIVERSION 1BGU', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CJUREGOO', 0, NULL, NULL, '0.0000', NULL),
+(3686, '22023/00001609', 1, 0, 6, 2, 13, 292, 'DIARIO DE ANA FRANK', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.6000', '14.0000', 'C11NOVIEMBREE', 0, NULL, NULL, '0.0000', NULL),
+(3687, '22023/00001610', 1, 1, 1, 2, 13, 43, 'LOGROS LA MARAVILLA DE LEER 2 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'CMARAVILLASS', 0, NULL, NULL, '0.0000', NULL),
+(3688, '22023/00001610', 1, 0, 2, 2, 13, 277, 'ECA PICASO 2 ', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CECAA', 0, NULL, NULL, '0.0000', NULL),
+(3689, '22023/00001611', 1, 0, 2, 2, 16, 296, 'EJERCICIO JUEGO Y DIVERSION 10', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CJUREGOO', 0, NULL, NULL, '0.0000', NULL),
+(3690, '22023/00001612', 1, 0, 2, 2, 16, 260, 'ECA DAS 1 BGU', '16.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.5000', '16.0000', 'CECALEAMAS', 0, NULL, NULL, '0.0000', NULL),
+(3691, '22023/00001613', 1, 1, 1, 2, 13, 45, 'LOGROS LA MARAVILLA DE LEER 4 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'CMARAVILLASS', 0, NULL, NULL, '0.0000', NULL),
+(3692, '22023/00001613', 1, 0, 2, 2, 13, 279, 'ECA PICASO 4', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CECAA', 0, NULL, NULL, '0.0000', NULL),
+(3693, '22023/00001614', 1, 0, 2, 2, 16, 286, 'ECA DAS 8 EGB', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.5000', '14.0000', 'CDAAASSS', 0, NULL, NULL, '0.0000', NULL),
+(3694, '22023/00001614', 1, 0, 2, 2, 16, 289, 'EJERCICIO JUEGO Y DIVERSION 8', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CJUREGOO', 0, NULL, NULL, '0.0000', NULL),
+(3695, '22023/00001615', 1, 1, 1, 2, 13, 48, 'LOGROS LA MARAVILLA DE LEER 7 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'CMARAVILLASS', 0, NULL, NULL, '0.0000', NULL),
+(3696, '22023/00001615', 1, 0, 2, 2, 13, 282, 'ECA PICASO 7', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CECAAPI', 0, NULL, NULL, '0.0000', NULL),
+(3697, '22023/00001616', 1, 1, 1, 2, 13, 43, 'LOGROS LA MARAVILLA DE LEER 2 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'CMARAVILLASS', 0, NULL, NULL, '0.0000', NULL),
+(3698, '22023/00001616', 1, 0, 2, 2, 13, 277, 'ECA PICASO 2 ', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CECAA', 0, NULL, NULL, '0.0000', NULL),
+(3699, '22023/00001617', 1, 1, 1, 2, 13, 43, 'LOGROS LA MARAVILLA DE LEER 2 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'CMARAVILLASS', 0, NULL, NULL, '0.0000', NULL),
+(3700, '22023/00001617', 1, 0, 2, 2, 13, 277, 'ECA PICASO 2 ', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CECAA', 0, NULL, NULL, '0.0000', NULL),
+(3701, '22023/00001618', 1, 0, 2, 2, 16, 286, 'ECA DAS 8 EGB', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.5000', '14.0000', 'CDAAASSS', 0, NULL, NULL, '0.0000', NULL),
+(3702, '22023/00001618', 1, 0, 2, 2, 16, 289, 'EJERCICIO JUEGO Y DIVERSION 8', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CJUREGOO', 0, NULL, NULL, '0.0000', NULL),
+(3703, '22023/00001618', 1, 0, 2, 2, 16, 288, 'ECA DAS 10 EGB', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.5000', '14.0000', 'CECAA', 0, NULL, NULL, '0.0000', NULL),
+(3704, '22023/00001618', 1, 0, 2, 2, 16, 296, 'EJERCICIO JUEGO Y DIVERSION 10', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CJUREGOO', 0, NULL, NULL, '0.0000', NULL),
+(3705, '22023/00001619', 1, 0, 6, 2, 13, 284, 'LECTURA CRITICA DECADA DE LOS 30 9', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '6.0000', '14.0000', 'C11NOVIEMBRE', 0, NULL, NULL, '0.0000', NULL),
+(3706, '22023/00001619', 1, 0, 2, 2, 13, 305, 'ECA DAS 9 EGB ONCE NOVIEMBRE', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.5000', '13.0000', 'CDAS927', 0, NULL, NULL, '0.0000', NULL),
+(3707, '22023/00001620', 1, 0, 2, 2, 16, 286, 'ECA DAS 8 EGB', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.5000', '14.0000', 'CDAAASSS', 0, NULL, NULL, '0.0000', NULL),
+(3708, '22023/00001620', 1, 0, 2, 2, 16, 289, 'EJERCICIO JUEGO Y DIVERSION 8', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CJUREGOO', 0, NULL, NULL, '0.0000', NULL),
+(3709, '22023/00001621', 1, 0, 2, 2, 16, 289, 'EJERCICIO JUEGO Y DIVERSION 8', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CJUREGOO', 0, NULL, NULL, '0.0000', NULL),
+(3710, '22023/00001622', 1, 1, 1, 2, 13, 43, 'LOGROS LA MARAVILLA DE LEER 2 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'CMARAVILLASS', 0, NULL, NULL, '0.0000', NULL),
+(3711, '22023/00001622', 1, 0, 2, 2, 13, 277, 'ECA PICASO 2 ', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CECAA', 0, NULL, NULL, '0.0000', NULL),
+(3712, '22023/00001623', 1, 0, 2, 2, 13, 304, 'ECA DAS 8 EGB ONCE NOVIEMBRE', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.5000', '13.0000', 'CECA811', 0, NULL, NULL, '0.0000', NULL),
+(3713, '22023/00001624', 1, 0, 2, 2, 16, 363, 'EJERCICIO JUEGO Y DIVERSIÓN 2 BGU', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.0000', '13.0000', 'CEJD2BGU', 0, NULL, NULL, '0.0000', NULL),
+(3714, '22023/00001625', 1, 0, 2, 2, 16, 363, 'EJERCICIO JUEGO Y DIVERSIÓN 2 BGU', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.0000', '13.0000', 'CEJD2BGU', 0, NULL, NULL, '0.0000', NULL),
+(3715, '22023/00001626', 1, 1, 1, 2, 13, 43, 'LOGROS LA MARAVILLA DE LEER 2 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'CMARAVILLASS', 0, NULL, NULL, '0.0000', NULL),
+(3716, '22023/00001626', 1, 0, 2, 2, 13, 277, 'ECA PICASO 2 ', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CECAA', 0, NULL, NULL, '0.0000', NULL),
+(3717, '22023/00001627', 1, 1, 1, 2, 13, 43, 'LOGROS LA MARAVILLA DE LEER 2 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'CMARAVILLASS', 0, NULL, NULL, '0.0000', NULL),
+(3718, '22023/00001627', 1, 0, 2, 2, 13, 277, 'ECA PICASO 2 ', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CECAA', 0, NULL, NULL, '0.0000', NULL),
+(3719, '22023/00001628', 1, 0, 2, 2, 10, 260, 'ECA DAS 1 BGU', '16.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.5000', '16.0000', 'CECALEAMAS', 0, NULL, NULL, '0.0000', NULL),
+(3720, '22023/00001629', 1, 0, 2, 2, 13, 277, 'ECA PICASO 2 ', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CECAA', 0, NULL, NULL, '0.0000', NULL),
+(3721, '22023/00001630', 1, 1, 1, 2, 13, 45, 'LOGROS LA MARAVILLA DE LEER 4 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'CMARAVILLASS', 0, NULL, NULL, '0.0000', NULL),
+(3722, '22023/00001630', 1, 0, 2, 2, 13, 279, 'ECA PICASO 4', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CECAA', 0, NULL, NULL, '0.0000', NULL),
+(3723, '22023/00001631', 1, 0, 2, 2, 16, 286, 'ECA DAS 8 EGB', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.5000', '14.0000', 'CDAAASSS', 0, NULL, NULL, '0.0000', NULL),
+(3724, '22023/00001631', 1, 0, 2, 2, 16, 289, 'EJERCICIO JUEGO Y DIVERSION 8', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CJUREGOO', 0, NULL, NULL, '0.0000', NULL),
+(3725, '22023/00001632', 1, 0, 6, 2, 13, 293, 'A LA COSTA ', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.6000', '14.0000', 'C11NOVIEMBRE', 0, NULL, NULL, '0.0000', NULL),
+(3726, '22023/00001633', 1, 1, 1, 2, 13, 43, 'LOGROS LA MARAVILLA DE LEER 2 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'CMARAVILLASS', 0, NULL, NULL, '0.0000', NULL),
+(3727, '22023/00001633', 1, 0, 2, 2, 13, 277, 'ECA PICASO 2 ', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CECAA', 0, NULL, NULL, '0.0000', NULL),
+(3728, '22023/00001634', 1, 0, 2, 2, 16, 288, 'ECA DAS 10 EGB', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.5000', '14.0000', 'CECAA', 0, NULL, NULL, '0.0000', NULL),
+(3729, '22023/00001634', 1, 0, 2, 2, 16, 296, 'EJERCICIO JUEGO Y DIVERSION 10', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CJUREGOO', 0, NULL, NULL, '0.0000', NULL),
+(3732, '22023/00001636', 1, 1, 1, 2, 13, 43, 'LOGROS LA MARAVILLA DE LEER 2 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'CMARAVILLASS', 0, NULL, NULL, '0.0000', NULL),
+(3733, '22023/00001636', 1, 0, 2, 2, 13, 277, 'ECA PICASO 2 ', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CECAA', 0, NULL, NULL, '0.0000', NULL),
+(3736, '22023/00001637', 1, 0, 2, 2, 10, 261, 'ECA DAS 2 BGU', '16.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.5000', '16.0000', 'CDASS', 0, NULL, NULL, '0.0000', NULL),
+(3737, '22023/00001638', 1, 1, 1, 2, 13, 43, 'LOGROS LA MARAVILLA DE LEER 2 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'CMARAVILLASS', 0, NULL, NULL, '0.0000', NULL),
+(3738, '22023/00001638', 1, 0, 2, 2, 13, 277, 'ECA PICASO 2 ', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CECAA', 0, NULL, NULL, '0.0000', NULL),
+(3739, '22023/00001639', 1, 0, 2, 2, 10, 260, 'ECA DAS 1 BGU', '16.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.5000', '16.0000', 'CECALEAMAS', 0, NULL, NULL, '0.0000', NULL),
+(3740, '22023/00001639', 1, 0, 1, 2, 10, 265, 'LOGROS FORMACIÓN Y ORIENTACIÓN LABORAL (BACHILLERATO TÉCNICO) + PLATAFORMA', '18.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '7.0000', '18.0000', 'CFOOLL', 0, NULL, NULL, '0.0000', NULL),
+(3741, '22023/00001640', 1, 0, 2, 2, 16, 260, 'ECA DAS 1 BGU', '16.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.5000', '16.0000', 'CECALEAMAS', 0, NULL, NULL, '0.0000', NULL),
+(3742, '22023/00001640', 1, 0, 2, 2, 16, 290, 'EJERCICIO JUEGO Y DIVERSION 1BGU', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CJUREGOO', 0, NULL, NULL, '0.0000', NULL),
+(3743, '22023/00001641', 1, 0, 2, 2, 13, 304, 'ECA DAS 8 EGB ONCE NOVIEMBRE', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.5000', '13.0000', 'CECA811', 0, NULL, NULL, '0.0000', NULL),
+(3744, '22023/00001642', 1, 1, 1, 2, 13, 47, 'LOGROS LA MARAVILLA DE LEER 6 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'CMARAVILLASS', 0, NULL, NULL, '0.0000', NULL),
+(3745, '22023/00001642', 1, 0, 2, 2, 13, 281, 'ECA PICASO 6', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CECA61010', 0, NULL, NULL, '0.0000', NULL),
+(3746, '22023/00001643', 1, 0, 2, 2, 10, 261, 'ECA DAS 2 BGU', '16.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.5000', '16.0000', 'CDASS', 0, NULL, NULL, '0.0000', NULL),
+(3747, '22023/00001643', 1, 0, 1, 2, 10, 265, 'LOGROS FORMACIÓN Y ORIENTACIÓN LABORAL (BACHILLERATO TÉCNICO) + PLATAFORMA', '18.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '7.0000', '18.0000', 'CFOOLL', 0, NULL, NULL, '0.0000', NULL),
+(3748, '22023/00001644', 1, 0, 6, 2, 13, 292, 'DIARIO DE ANA FRANK', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.6000', '14.0000', 'C11NOVIEMBREE', 0, NULL, NULL, '0.0000', NULL),
+(3749, '22023/00001645', 1, 0, 2, 2, 13, 306, 'ECA DAS 10 EGB ONCE NOVIEMBRE', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.5000', '13.0000', 'CECAONCE1', 0, NULL, NULL, '0.0000', NULL),
+(3750, '22023/00001646', 1, 0, 2, 2, 10, 261, 'ECA DAS 2 BGU', '16.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.5000', '16.0000', 'CDASS', 0, NULL, NULL, '0.0000', NULL),
+(3751, '22023/00001647', 1, 0, 1, 2, 10, 265, 'LOGROS FORMACIÓN Y ORIENTACIÓN LABORAL (BACHILLERATO TÉCNICO) + PLATAFORMA', '18.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '7.0000', '18.0000', 'CFOOLL', 0, NULL, NULL, '0.0000', NULL),
+(3752, '22024/00001648', 1, 1, 1, 2, 13, 43, 'LOGROS LA MARAVILLA DE LEER 2 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'CMARAVILLASS', 0, NULL, NULL, '0.0000', NULL),
+(3753, '22024/00001648', 1, 0, 2, 2, 13, 277, 'ECA PICASO 2 ', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CECAA', 0, NULL, NULL, '0.0000', NULL),
+(3754, '22024/00001649', 1, 1, 1, 2, 6, 45, 'LOGROS LA MARAVILLA DE LEER 4 + PLATAFORMA', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.6000', '14.0000', 'CMARAVILLASS', 0, NULL, NULL, '0.0000', NULL),
+(3755, '22024/00001650', 1, 0, 6, 2, 13, 292, 'DIARIO DE ANA FRANK', '14.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.6000', '14.0000', 'C11NOVIEMBREE', 0, NULL, NULL, '0.0000', NULL),
+(3756, '22024/00001651', 1, 0, 2, 2, 16, 291, 'EJERCICIO JUEGO Y DIVERSION 3 BGU', '13.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '4.5000', '13.0000', 'CJUREGOO', 0, NULL, NULL, '0.0000', NULL),
+(3773, '22024/00001652', 1, 1, 1, 2, 2, 38, 'LOGROS ESTUDIOS SOCIALES 9 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS SOCIALES 9', 0, NULL, NULL, '0.0000', NULL),
+(3774, '22024/00001652', 1, 1, 1, 2, 2, 29, 'LOGROS CIENCIAS NATURALES 9 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS CIENCIAS 9', 0, NULL, NULL, '0.0000', NULL),
+(3775, '22024/00001652', 1, 1, 1, 2, 2, 17, 'LOGROS LENGUA Y LITERATURA 9 + PLATAFORMA', '27.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '10.8000', '27.0000', 'CLOGROS LENGUAJE 9', 0, NULL, NULL, '0.0000', NULL),
+(3776, '22024/00001652', 1, 0, 4, 2, 2, 97, 'ELLEVATE ENGLISH TEEN  SB FULL 2', '46.0000', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '22.0000', '46.0000', 'CDAS INGLES ELLEVATE 2', 0, NULL, NULL, '0.0000', NULL),
+(3777, '22024/00001653', 1, 0, 6, 2, 19, 245, 'EASY TALK C', '12.7500', '0.0000', '0.0000', 'inclusive', 2, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '1.0000', '5.8500', '12.7500', 'CEASYTALKK', 0, NULL, NULL, '0.0000', NULL);
 
 -- --------------------------------------------------------
 
@@ -22779,7 +24247,7 @@ CREATE TABLE `selling_price` (
   `profit` decimal(25,4) NOT NULL DEFAULT 0.0000,
   `previous_due` decimal(25,4) NOT NULL DEFAULT 0.0000,
   `prev_due_paid` decimal(25,4) NOT NULL DEFAULT 0.0000
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `selling_price`
@@ -24646,7 +26114,123 @@ INSERT INTO `selling_price` (`price_id`, `invoice_id`, `store_id`, `subtotal`, `
 (1866, '22023/00001534', 2, '54.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '20.2000', 'plain', '0.0000', '0.0000', '54.0000', '54.0000', '0.0000', '0.0000', '0.0000', '6.0000', '33.8000', '0.0000', '0.0000'),
 (1867, '22023/00001535', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.1000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '13.0000', '16.9000', '0.0000', '0.0000'),
 (1868, '22023/00001536', 2, '13.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '5.5000', 'plain', '0.0000', '0.0000', '13.0000', '13.0000', '0.0000', '0.0000', '0.0000', '7.0000', '7.5000', '0.0000', '0.0000'),
-(1869, '22023/00001537', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.0000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '3.0000', '17.0000', '0.0000', '0.0000');
+(1869, '22023/00001537', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.0000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '3.0000', '17.0000', '0.0000', '0.0000'),
+(1870, '22023/00001538', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.1000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '13.0000', '16.9000', '0.0000', '0.0000'),
+(1871, '22023/00001539', 2, '14.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '4.0000', 'plain', '0.0000', '0.0000', '14.0000', '14.0000', '0.0000', '0.0000', '0.0000', '6.0000', '10.0000', '0.0000', '0.0000'),
+(1872, '22023/00001540', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.1000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '3.0000', '16.9000', '0.0000', '0.0000'),
+(1873, '22023/00001541', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.1000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '3.0000', '16.9000', '0.0000', '0.0000'),
+(1874, '22023/00001542', 2, '13.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '5.5000', 'plain', '0.0000', '0.0000', '13.0000', '13.0000', '0.0000', '0.0000', '0.0000', '7.0000', '7.5000', '0.0000', '0.0000'),
+(1875, '22023/00001543', 2, '13.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '5.5000', 'plain', '0.0000', '0.0000', '13.0000', '13.0000', '0.0000', '0.0000', '0.0000', '7.0000', '7.5000', '0.0000', '0.0000'),
+(1876, '22023/00001544', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.1000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '3.0000', '16.9000', '0.0000', '0.0000'),
+(1877, '22023/00001545', 2, '14.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '6.0000', 'plain', '0.0000', '0.0000', '14.0000', '14.0000', '0.0000', '0.0000', '0.0000', '0.0000', '8.0000', '0.0000', '0.0000'),
+(1878, '22023/00001546', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.1000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '3.0000', '16.9000', '0.0000', '0.0000'),
+(1879, '22023/00001547', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.1000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '13.0000', '16.9000', '0.0000', '0.0000'),
+(1880, '22023/00001548', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.1000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '3.0000', '16.9000', '0.0000', '0.0000'),
+(1881, '22023/00001549', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.1000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '3.0000', '16.9000', '0.0000', '0.0000'),
+(1882, '22023/00001550', 2, '37.5000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '15.0000', 'plain', '0.0000', '0.0000', '37.5000', '37.5000', '0.0000', '0.0000', '0.0000', '2.5000', '22.5000', '0.0000', '0.0000'),
+(1883, '22023/00001551', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.1000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '3.0000', '16.9000', '0.0000', '0.0000'),
+(1884, '22023/00001552', 2, '13.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '5.5000', 'plain', '0.0000', '0.0000', '13.0000', '13.0000', '0.0000', '0.0000', '0.0000', '7.0000', '7.5000', '0.0000', '0.0000'),
+(1885, '22023/00001553', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.1000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '0.0000', '16.9000', '0.0000', '0.0000'),
+(1886, '22023/00001554', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.1000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '3.0000', '16.9000', '0.0000', '0.0000'),
+(1887, '22023/00001555', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.1000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '13.0000', '16.9000', '0.0000', '0.0000'),
+(1888, '22023/00001556', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.1000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '3.0000', '16.9000', '0.0000', '0.0000'),
+(1889, '22023/00001557', 2, '26.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '11.0000', 'plain', '0.0000', '0.0000', '26.0000', '26.0000', '0.0000', '0.0000', '0.0000', '0.0000', '15.0000', '0.0000', '0.0000'),
+(1890, '22023/00001558', 2, '13.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '5.5000', 'plain', '0.0000', '0.0000', '13.0000', '13.0000', '0.0000', '0.0000', '0.0000', '2.0000', '7.5000', '0.0000', '0.0000'),
+(1891, '22023/00001559', 2, '13.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '5.5000', 'plain', '0.0000', '0.0000', '13.0000', '13.0000', '0.0000', '0.0000', '0.0000', '7.0000', '7.5000', '0.0000', '0.0000'),
+(1892, '22023/00001560', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.1000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '3.0000', '16.9000', '0.0000', '0.0000'),
+(1893, '22023/00001561', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.1000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '3.0000', '16.9000', '0.0000', '0.0000'),
+(1894, '22023/00001562', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.1000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '0.0000', '16.9000', '0.0000', '0.0000'),
+(1895, '22023/00001563', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.1000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '13.0000', '16.9000', '0.0000', '0.0000'),
+(1896, '22023/00001564', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.1000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '13.0000', '16.9000', '0.0000', '0.0000'),
+(1897, '22023/00001565', 2, '13.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '5.5000', 'plain', '0.0000', '0.0000', '13.0000', '13.0000', '0.0000', '0.0000', '0.0000', '2.0000', '7.5000', '0.0000', '0.0000'),
+(1898, '22023/00001566', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.1000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '3.0000', '16.9000', '0.0000', '0.0000'),
+(1899, '22023/00001567', 2, '13.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '5.5000', 'plain', '0.0000', '0.0000', '13.0000', '13.0000', '0.0000', '0.0000', '0.0000', '2.0000', '7.5000', '0.0000', '0.0000'),
+(1900, '22023/00001568', 2, '32.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '11.0000', 'plain', '0.0000', '0.0000', '32.0000', '32.0000', '0.0000', '0.0000', '0.0000', '8.0000', '21.0000', '0.0000', '0.0000'),
+(1901, '22023/00001569', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.1000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '13.0000', '16.9000', '0.0000', '0.0000'),
+(1902, '22023/00001570', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.1000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '3.0000', '16.9000', '0.0000', '0.0000'),
+(1903, '22023/00001571', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.1000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '3.0000', '16.9000', '0.0000', '0.0000'),
+(1904, '22023/00001572', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.0000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '3.0000', '17.0000', '0.0000', '0.0000'),
+(1905, '22023/00001573', 2, '54.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '20.2000', 'plain', '0.0000', '0.0000', '54.0000', '54.0000', '0.0000', '0.0000', '0.0000', '6.0000', '33.8000', '0.0000', '0.0000'),
+(1906, '22023/00001574', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.1000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '13.0000', '16.9000', '0.0000', '0.0000'),
+(1907, '22023/00001575', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '11.5000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '0.0000', '15.5000', '0.0000', '0.0000'),
+(1908, '22023/00001576', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.1000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '0.0000', '16.9000', '0.0000', '0.0000'),
+(1909, '22023/00001577', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.1000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '3.0000', '16.9000', '0.0000', '0.0000'),
+(1910, '22023/00001578', 2, '13.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '5.5000', 'plain', '0.0000', '0.0000', '13.0000', '13.0000', '0.0000', '0.0000', '0.0000', '2.0000', '7.5000', '0.0000', '0.0000'),
+(1911, '22023/00001579', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.0000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '13.0000', '17.0000', '0.0000', '0.0000'),
+(1912, '22023/00001580', 2, '13.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '5.5000', 'plain', '0.0000', '0.0000', '13.0000', '13.0000', '0.0000', '0.0000', '0.0000', '7.0000', '7.5000', '0.0000', '0.0000'),
+(1913, '22023/00001581', 2, '14.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '5.5000', 'plain', '0.0000', '0.0000', '14.0000', '14.0000', '0.0000', '0.0000', '0.0000', '6.0000', '8.5000', '0.0000', '0.0000'),
+(1914, '22023/00001582', 2, '13.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '5.5000', 'plain', '0.0000', '0.0000', '13.0000', '13.0000', '0.0000', '0.0000', '0.0000', '2.0000', '7.5000', '0.0000', '0.0000'),
+(1915, '22023/00001583', 2, '13.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '4.5000', 'plain', '0.0000', '0.0000', '13.0000', '13.0000', '0.0000', '0.0000', '0.0000', '0.0000', '8.5000', '0.0000', '0.0000'),
+(1916, '22023/00001584', 2, '13.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '5.5000', 'plain', '0.0000', '0.0000', '13.0000', '13.0000', '0.0000', '0.0000', '0.0000', '0.0000', '7.5000', '0.0000', '0.0000'),
+(1917, '22023/00001585', 2, '13.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '5.5000', 'plain', '0.0000', '0.0000', '13.0000', '13.0000', '0.0000', '0.0000', '0.0000', '2.0000', '7.5000', '0.0000', '0.0000'),
+(1918, '22023/00001586', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.1000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '0.0000', '16.9000', '0.0000', '0.0000'),
+(1919, '22023/00001587', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.1000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '3.0000', '16.9000', '0.0000', '0.0000'),
+(1920, '22023/00001588', 2, '13.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '5.5000', 'plain', '0.0000', '0.0000', '13.0000', '13.0000', '0.0000', '0.0000', '0.0000', '0.0000', '7.5000', '0.0000', '0.0000'),
+(1921, '22023/00001589', 2, '13.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '5.5000', 'plain', '0.0000', '0.0000', '13.0000', '13.0000', '0.0000', '0.0000', '0.0000', '0.0000', '7.5000', '0.0000', '0.0000'),
+(1922, '22023/00001590', 2, '54.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '20.2000', 'plain', '0.0000', '0.0000', '54.0000', '54.0000', '0.0000', '0.0000', '0.0000', '6.0000', '33.8000', '0.0000', '0.0000'),
+(1923, '22023/00001591', 2, '16.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '5.5000', 'plain', '0.0000', '0.0000', '16.0000', '16.0000', '0.0000', '0.0000', '0.0000', '4.0000', '10.5000', '0.0000', '0.0000'),
+(1924, '22023/00001592', 2, '13.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '5.5000', 'plain', '0.0000', '0.0000', '13.0000', '13.0000', '0.0000', '0.0000', '0.0000', '2.0000', '7.5000', '0.0000', '0.0000'),
+(1925, '22023/00001593', 2, '57.8000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '49.8000', 'plain', '0.0000', '0.0000', '57.8000', '57.8000', '0.0000', '0.0000', '0.0000', '0.0000', '8.0000', '0.0000', '0.0000'),
+(1926, '22023/00001594', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.0000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '3.0000', '17.0000', '0.0000', '0.0000'),
+(1927, '22023/00001595', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '11.5000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '3.0000', '15.5000', '0.0000', '0.0000'),
+(1928, '22023/00001596', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.1000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '13.0000', '16.9000', '0.0000', '0.0000'),
+(1929, '22023/00001597', 2, '13.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '5.0000', 'plain', '0.0000', '0.0000', '13.0000', '13.0000', '0.0000', '0.0000', '0.0000', '7.0000', '8.0000', '0.0000', '0.0000'),
+(1930, '22023/00001598', 2, '14.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '4.6000', 'plain', '0.0000', '0.0000', '14.0000', '14.0000', '0.0000', '0.0000', '0.0000', '1.0000', '9.4000', '0.0000', '0.0000'),
+(1931, '22023/00001599', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.1000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '0.0000', '16.9000', '0.0000', '0.0000'),
+(1932, '22023/00001600', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.1000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '3.0000', '16.9000', '0.0000', '0.0000'),
+(1933, '22023/00001601', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.1000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '0.0000', '16.9000', '0.0000', '0.0000'),
+(1934, '22023/00001602', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.1000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '0.0000', '16.9000', '0.0000', '0.0000'),
+(1935, '22023/00001603', 2, '13.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '4.5000', 'plain', '0.0000', '0.0000', '13.0000', '13.0000', '0.0000', '0.0000', '0.0000', '7.0000', '8.5000', '0.0000', '0.0000'),
+(1937, '22023/00001604', 2, '16.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '5.5000', 'plain', '0.0000', '0.0000', '16.0000', '16.0000', '0.0000', '0.0000', '0.0000', '4.0000', '10.5000', '0.0000', '0.0000'),
+(1938, '22023/00001605', 2, '13.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '4.5000', 'plain', '0.0000', '0.0000', '13.0000', '13.0000', '0.0000', '0.0000', '0.0000', '7.0000', '8.5000', '0.0000', '0.0000'),
+(1939, '22023/00001606', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.1000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '0.0000', '16.9000', '0.0000', '0.0000'),
+(1940, '22023/00001607', 2, '14.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '5.6000', 'plain', '0.0000', '0.0000', '14.0000', '14.0000', '0.0000', '0.0000', '0.0000', '0.0000', '8.4000', '0.0000', '0.0000'),
+(1941, '22023/00001608', 2, '29.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.0000', 'plain', '0.0000', '0.0000', '29.0000', '29.0000', '0.0000', '0.0000', '0.0000', '1.0000', '19.0000', '0.0000', '0.0000'),
+(1942, '22023/00001609', 2, '14.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '4.6000', 'plain', '0.0000', '0.0000', '14.0000', '14.0000', '0.0000', '0.0000', '0.0000', '6.0000', '9.4000', '0.0000', '0.0000'),
+(1943, '22023/00001610', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.1000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '3.0000', '16.9000', '0.0000', '0.0000'),
+(1944, '22023/00001611', 2, '13.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '4.5000', 'plain', '0.0000', '0.0000', '13.0000', '13.0000', '0.0000', '0.0000', '0.0000', '7.0000', '8.5000', '0.0000', '0.0000'),
+(1945, '22023/00001612', 2, '16.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '5.5000', 'plain', '0.0000', '0.0000', '16.0000', '16.0000', '0.0000', '0.0000', '0.0000', '4.0000', '10.5000', '0.0000', '0.0000'),
+(1946, '22023/00001613', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.1000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '5.0000', '16.9000', '0.0000', '0.0000'),
+(1947, '22023/00001614', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.0000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '3.0000', '17.0000', '0.0000', '0.0000'),
+(1948, '22023/00001615', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.1000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '0.0000', '16.9000', '0.0000', '0.0000'),
+(1949, '22023/00001616', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.1000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '13.0000', '16.9000', '0.0000', '0.0000'),
+(1950, '22023/00001617', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.1000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '3.0000', '16.9000', '0.0000', '0.0000'),
+(1951, '22023/00001618', 2, '54.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '20.0000', 'plain', '0.0000', '0.0000', '54.0000', '54.0000', '0.0000', '0.0000', '0.0000', '6.0000', '34.0000', '0.0000', '0.0000'),
+(1952, '22023/00001619', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '11.5000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '13.0000', '15.5000', '0.0000', '0.0000'),
+(1953, '22023/00001620', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.0000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '13.0000', '17.0000', '0.0000', '0.0000'),
+(1954, '22023/00001621', 2, '13.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '4.5000', 'plain', '0.0000', '0.0000', '13.0000', '13.0000', '0.0000', '0.0000', '0.0000', '7.0000', '8.5000', '0.0000', '0.0000'),
+(1955, '22023/00001622', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.1000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '3.0000', '16.9000', '0.0000', '0.0000'),
+(1956, '22023/00001623', 2, '13.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '5.5000', 'plain', '0.0000', '0.0000', '13.0000', '13.0000', '0.0000', '0.0000', '0.0000', '0.0000', '7.5000', '0.0000', '0.0000'),
+(1957, '22023/00001624', 2, '13.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '5.0000', 'plain', '0.0000', '0.0000', '13.0000', '13.0000', '0.0000', '0.0000', '0.0000', '7.0000', '8.0000', '0.0000', '0.0000'),
+(1958, '22023/00001625', 2, '13.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '5.0000', 'plain', '0.0000', '0.0000', '13.0000', '13.0000', '0.0000', '0.0000', '0.0000', '7.0000', '8.0000', '0.0000', '0.0000'),
+(1959, '22023/00001626', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.1000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '3.0000', '16.9000', '0.0000', '0.0000'),
+(1960, '22023/00001627', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.1000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '0.0000', '16.9000', '0.0000', '0.0000'),
+(1961, '22023/00001628', 2, '16.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '5.5000', 'plain', '0.0000', '0.0000', '16.0000', '16.0000', '0.0000', '0.0000', '0.0000', '5.0000', '10.5000', '0.0000', '0.0000'),
+(1962, '22023/00001629', 2, '13.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '4.5000', 'plain', '0.0000', '0.0000', '13.0000', '13.0000', '0.0000', '0.0000', '0.0000', '7.0000', '8.5000', '0.0000', '0.0000'),
+(1963, '22023/00001630', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.1000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '13.0000', '16.9000', '0.0000', '0.0000'),
+(1964, '22023/00001631', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.0000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '3.0000', '17.0000', '0.0000', '0.0000'),
+(1965, '22023/00001632', 2, '14.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '4.6000', 'plain', '0.0000', '0.0000', '14.0000', '14.0000', '0.0000', '0.0000', '0.0000', '6.0000', '9.4000', '0.0000', '0.0000'),
+(1966, '22023/00001633', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.1000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '3.0000', '16.9000', '0.0000', '0.0000'),
+(1967, '22023/00001634', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.0000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '0.0000', '17.0000', '0.0000', '0.0000'),
+(1969, '22023/00001636', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.1000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '3.0000', '16.9000', '0.0000', '0.0000'),
+(1971, '22023/00001637', 2, '16.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '5.5000', 'plain', '0.0000', '0.0000', '16.0000', '16.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.5000', '0.0000', '0.0000'),
+(1972, '22023/00001638', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.1000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '3.0000', '16.9000', '0.0000', '0.0000'),
+(1973, '22023/00001639', 2, '34.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '12.5000', 'plain', '0.0000', '0.0000', '34.0000', '34.0000', '0.0000', '0.0000', '0.0000', '6.0000', '21.5000', '0.0000', '0.0000'),
+(1974, '22023/00001640', 2, '29.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.0000', 'plain', '0.0000', '0.0000', '29.0000', '29.0000', '0.0000', '0.0000', '0.0000', '11.0000', '19.0000', '0.0000', '0.0000'),
+(1975, '22023/00001641', 2, '13.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '5.5000', 'plain', '0.0000', '0.0000', '13.0000', '13.0000', '0.0000', '0.0000', '0.0000', '7.0000', '7.5000', '0.0000', '0.0000'),
+(1976, '22023/00001642', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.1000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '13.0000', '16.9000', '0.0000', '0.0000'),
+(1977, '22023/00001643', 2, '34.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '12.5000', 'plain', '0.0000', '0.0000', '34.0000', '34.0000', '0.0000', '0.0000', '0.0000', '1.0000', '21.5000', '0.0000', '0.0000'),
+(1978, '22023/00001644', 2, '14.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '4.6000', 'plain', '0.0000', '0.0000', '14.0000', '14.0000', '0.0000', '0.0000', '0.0000', '1.0000', '9.4000', '0.0000', '0.0000'),
+(1979, '22023/00001645', 2, '13.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '5.5000', 'plain', '0.0000', '0.0000', '13.0000', '13.0000', '0.0000', '0.0000', '0.0000', '2.0000', '7.5000', '0.0000', '0.0000'),
+(1980, '22023/00001646', 2, '16.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '5.5000', 'plain', '0.0000', '0.0000', '16.0000', '16.0000', '0.0000', '0.0000', '0.0000', '4.0000', '10.5000', '0.0000', '0.0000'),
+(1981, '22023/00001647', 2, '18.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '7.0000', 'plain', '0.0000', '0.0000', '18.0000', '18.0000', '0.0000', '0.0000', '0.0000', '2.0000', '11.0000', '0.0000', '0.0000'),
+(1982, '22024/00001648', 2, '27.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '10.1000', 'plain', '0.0000', '0.0000', '27.0000', '27.0000', '0.0000', '0.0000', '0.0000', '0.0000', '16.9000', '0.0000', '0.0000'),
+(1983, '22024/00001649', 2, '14.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '5.6000', 'plain', '0.0000', '0.0000', '14.0000', '14.0000', '0.0000', '0.0000', '0.0000', '6.0000', '8.4000', '0.0000', '0.0000'),
+(1984, '22024/00001650', 2, '14.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '4.6000', 'plain', '0.0000', '0.0000', '14.0000', '14.0000', '0.0000', '0.0000', '0.0000', '0.0000', '9.4000', '0.0000', '0.0000'),
+(1985, '22024/00001651', 2, '13.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '4.5000', 'plain', '0.0000', '0.0000', '13.0000', '13.0000', '0.0000', '0.0000', '0.0000', '7.0000', '8.5000', '0.0000', '0.0000'),
+(1990, '22024/00001652', 2, '127.0000', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '54.4000', 'plain', '0.0000', '0.0000', '127.0000', '127.0000', '0.0000', '0.0000', '0.0000', '0.0000', '72.6000', '0.0000', '0.0000');
+INSERT INTO `selling_price` (`price_id`, `invoice_id`, `store_id`, `subtotal`, `discount_type`, `discount_amount`, `interest_amount`, `interest_percentage`, `item_tax`, `order_tax`, `cgst`, `sgst`, `igst`, `total_purchase_price`, `shipping_type`, `shipping_amount`, `others_charge`, `payable_amount`, `paid_amount`, `due`, `due_paid`, `return_amount`, `balance`, `profit`, `previous_due`, `prev_due_paid`) VALUES
+(1991, '22024/00001653', 2, '12.7500', 'plain', '0.0000', '0.0000', 0, '0.0000', '0.0000', '0.0000', '0.0000', '0.0000', '5.8500', 'plain', '0.0000', '0.0000', '12.7500', '12.7500', '0.0000', '0.0000', '0.0000', '0.0000', '6.9000', '0.0000', '0.0000');
 
 -- --------------------------------------------------------
 
@@ -24668,7 +26252,7 @@ CREATE TABLE `sell_logs` (
   `created_by` int(10) UNSIGNED NOT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `sell_logs`
@@ -26547,7 +28131,130 @@ INSERT INTO `sell_logs` (`id`, `customer_id`, `college_id`, `reference_no`, `ref
 (1866, 1, 13, 'CT23111423537', '22023/00001534', 'sell', 1, 'Paid while selling', '54.0000', 2, 15, '2023-11-14 14:27:33', NULL),
 (1867, 1, 13, 'CT23111423538', '22023/00001535', 'sell', 1, 'Paid while selling', '27.0000', 2, 15, '2023-11-14 16:15:53', NULL),
 (1868, 1, 13, 'CT23111423539', '22023/00001536', 'sell', 1, 'Paid while selling', '13.0000', 2, 15, '2023-11-14 16:41:54', NULL),
-(1869, 1, 16, 'CT23111423540', '22023/00001537', 'sell', 1, 'Paid while selling', '27.0000', 2, 15, '2023-11-14 16:56:56', NULL);
+(1869, 1, 16, 'CT23111423540', '22023/00001537', 'sell', 1, 'Paid while selling', '27.0000', 2, 15, '2023-11-14 16:56:56', NULL),
+(1870, 1, 13, 'CT23111523541', '22023/00001538', 'sell', 1, 'Paid while selling', '27.0000', 2, 15, '2023-11-15 11:19:37', NULL),
+(1871, 1, 13, 'CT23111523542', '22023/00001539', 'sell', 1, 'Paid while selling', '14.0000', 2, 15, '2023-11-15 11:40:22', NULL),
+(1872, 1, 13, 'CT23111523543', '22023/00001540', 'sell', 1, 'Paid while selling', '27.0000', 2, 15, '2023-11-15 12:25:12', NULL),
+(1873, 1, 13, 'CT23111523544', '22023/00001541', 'sell', 1, 'Paid while selling', '27.0000', 2, 15, '2023-11-15 12:35:33', NULL),
+(1874, 1, 13, 'CT23111523545', '22023/00001542', 'sell', 1, 'Paid while selling', '13.0000', 2, 15, '2023-11-15 12:39:26', NULL),
+(1875, 1, 13, 'CT23111523546', '22023/00001543', 'sell', 1, 'Paid while selling', '13.0000', 2, 15, '2023-11-15 13:18:07', NULL),
+(1876, 1, 13, 'CT23111523547', '22023/00001544', 'sell', 1, 'Paid while selling', '27.0000', 2, 15, '2023-11-15 13:29:47', NULL),
+(1877, 1, 13, 'CT23111523548', '22023/00001545', 'sell', 1, 'Paid while selling', '14.0000', 2, 15, '2023-11-15 13:32:46', NULL),
+(1878, 1, 13, 'CT23111523549', '22023/00001546', 'sell', 1, 'Paid while selling', '27.0000', 2, 15, '2023-11-15 14:39:47', NULL),
+(1879, 1, 13, 'CT23111523550', '22023/00001547', 'sell', 1, 'Paid while selling', '27.0000', 2, 15, '2023-11-15 14:48:22', NULL),
+(1880, 1, 13, 'CT23111523551', '22023/00001548', 'sell', 1, 'Paid while selling', '27.0000', 2, 15, '2023-11-15 15:38:14', NULL),
+(1881, 1, 13, 'CT23111523552', '22023/00001549', 'sell', 1, 'Paid while selling', '27.0000', 2, 15, '2023-11-15 16:07:02', NULL),
+(1882, 1, 7, 'CT23111523553', '22023/00001550', 'sell', 1, 'Paid while selling', '37.5000', 2, 15, '2023-11-15 16:10:26', NULL),
+(1883, 1, 13, 'CT23111523554', '22023/00001551', 'sell', 1, 'Paid while selling', '27.0000', 2, 15, '2023-11-15 16:14:56', NULL),
+(1884, 1, 13, 'CT23111523555', '22023/00001552', 'sell', 1, 'Paid while selling', '13.0000', 2, 15, '2023-11-15 17:07:27', NULL),
+(1885, 1, 13, 'CT23111523556', '22023/00001553', 'sell', 1, 'Paid while selling', '27.0000', 2, 15, '2023-11-15 17:09:12', NULL),
+(1886, 1, 13, 'CT23111623557', '22023/00001554', 'sell', 1, 'Paid while selling', '27.0000', 2, 15, '2023-11-16 13:17:34', NULL),
+(1887, 1, 13, 'CT23111623558', '22023/00001555', 'sell', 1, 'Paid while selling', '27.0000', 2, 15, '2023-11-16 13:29:13', NULL),
+(1888, 1, 13, 'CT23111623559', '22023/00001556', 'sell', 1, 'Paid while selling', '27.0000', 2, 15, '2023-11-16 14:12:57', NULL),
+(1889, 1, 13, 'CT23111623560', '22023/00001557', 'sell', 1, 'Paid while selling', '26.0000', 2, 15, '2023-11-16 14:59:33', NULL),
+(1890, 1, 13, 'CT23111623561', '22023/00001558', 'sell', 1, 'Paid while selling', '13.0000', 2, 15, '2023-11-16 15:39:46', NULL),
+(1891, 1, 13, 'CT23111623562', '22023/00001559', 'sell', 1, 'Paid while selling', '13.0000', 2, 15, '2023-11-16 16:39:40', NULL),
+(1892, 1, 13, 'CT23111623563', '22023/00001560', 'sell', 1, 'Paid while selling', '27.0000', 2, 15, '2023-11-16 17:18:21', NULL),
+(1893, 1, 13, 'CT23111723564', '22023/00001561', 'sell', 1, 'Paid while selling', '27.0000', 2, 15, '2023-11-17 11:17:44', NULL),
+(1894, 1, 13, 'CT23111723565', '22023/00001562', 'sell', 1, 'Paid while selling', '27.0000', 2, 15, '2023-11-17 13:02:47', NULL),
+(1895, 1, 13, 'CT23111723566', '22023/00001563', 'sell', 1, 'Paid while selling', '27.0000', 2, 15, '2023-11-17 13:13:17', NULL),
+(1896, 1, 13, 'CT23111823567', '22023/00001564', 'sell', 1, 'Paid while selling', '27.0000', 2, 15, '2023-11-18 11:45:33', NULL),
+(1897, 1, 13, 'CT23111823568', '22023/00001565', 'sell', 1, 'Paid while selling', '13.0000', 2, 12, '2023-11-18 12:01:03', NULL),
+(1898, 1, 13, 'CT23111823569', '22023/00001566', 'sell', 1, 'Paid while selling', '27.0000', 2, 12, '2023-11-18 12:09:03', NULL),
+(1899, 1, 13, 'CT23111823570', '22023/00001567', 'sell', 1, 'Paid while selling', '13.0000', 2, 15, '2023-11-18 12:55:51', NULL),
+(1900, 1, 10, 'CT23111823571', '22023/00001568', 'sell', 1, 'Paid while selling', '32.0000', 2, 15, '2023-11-18 13:46:03', NULL),
+(1901, 1, 13, 'CT23112023572', '22023/00001569', 'sell', 1, 'Paid while selling', '27.0000', 2, 15, '2023-11-20 11:50:20', NULL),
+(1902, 1, 13, 'CT23112023573', '22023/00001570', 'sell', 1, 'Paid while selling', '27.0000', 2, 15, '2023-11-20 15:58:47', NULL),
+(1903, 1, 13, 'CT23112023574', '22023/00001571', 'sell', 1, 'Paid while selling', '27.0000', 2, 15, '2023-11-20 16:53:54', NULL),
+(1904, 1, 16, 'CT23112023575', '22023/00001572', 'sell', 1, 'Paid while selling', '27.0000', 2, 15, '2023-11-20 17:12:47', NULL),
+(1905, 1, 13, 'CT23112123576', '22023/00001573', 'sell', 1, 'Paid while selling', '54.0000', 2, 15, '2023-11-21 09:52:47', NULL),
+(1906, 1, 13, 'CT23112123577', '22023/00001574', 'sell', 1, 'Paid while selling', '27.0000', 2, 15, '2023-11-21 11:09:43', NULL),
+(1907, 1, 13, 'CT23112123578', '22023/00001575', 'sell', 1, 'Paid while selling', '27.0000', 2, 15, '2023-11-21 11:32:33', NULL),
+(1908, 1, 13, 'CT23112123579', '22023/00001576', 'sell', 1, 'Paid while selling', '27.0000', 2, 15, '2023-11-21 12:49:55', NULL),
+(1909, 1, 13, 'CT23112123580', '22023/00001577', 'sell', 1, 'Paid while selling', '27.0000', 2, 15, '2023-11-21 12:53:04', NULL),
+(1910, 1, 13, 'CT23112123581', '22023/00001578', 'sell', 1, 'Paid while selling', '13.0000', 2, 15, '2023-11-21 13:16:55', NULL),
+(1911, 1, 16, 'CT23112123582', '22023/00001579', 'sell', 1, 'Paid while selling', '27.0000', 2, 15, '2023-11-21 15:59:12', NULL),
+(1912, 1, 13, 'CT23112123583', '22023/00001580', 'sell', 1, 'Paid while selling', '13.0000', 2, 15, '2023-11-21 16:47:51', NULL),
+(1913, 1, 16, 'CT23112123584', '22023/00001581', 'sell', 1, 'Paid while selling', '14.0000', 2, 15, '2023-11-21 17:05:52', NULL),
+(1914, 1, 13, 'CT23112123585', '22023/00001582', 'sell', 1, 'Paid while selling', '13.0000', 2, 15, '2023-11-21 17:35:04', NULL),
+(1915, 1, 16, 'CT23112223586', '22023/00001583', 'sell', 1, 'Paid while selling', '13.0000', 2, 15, '2023-11-22 09:39:46', NULL),
+(1916, 1, 13, 'CT23112223587', '22023/00001584', 'sell', 1, 'Paid while selling', '13.0000', 2, 15, '2023-11-22 09:54:40', NULL),
+(1917, 1, 13, 'CT23112223588', '22023/00001585', 'sell', 1, 'Paid while selling', '13.0000', 2, 15, '2023-11-22 16:08:04', NULL),
+(1918, 1, 13, 'CT23112223589', '22023/00001586', 'sell', 1, 'Paid while selling', '27.0000', 2, 15, '2023-11-22 16:32:30', NULL),
+(1919, 1, 13, 'CT23112223590', '22023/00001587', 'sell', 1, 'Paid while selling', '27.0000', 2, 15, '2023-11-22 17:34:06', NULL),
+(1920, 1, 13, 'CT23112323591', '22023/00001588', 'sell', 1, 'Paid while selling', '13.0000', 2, 15, '2023-11-23 10:53:06', NULL),
+(1921, 1, 13, 'CT23112323592', '22023/00001589', 'sell', 1, 'Paid while selling', '13.0000', 2, 15, '2023-11-23 11:50:58', NULL),
+(1922, 1, 13, 'CT23112323593', '22023/00001590', 'sell', 1, 'Paid while selling', '54.0000', 2, 15, '2023-11-23 13:27:00', NULL),
+(1923, 1, 10, 'CT23112423594', '22023/00001591', 'sell', 1, 'Paid while selling', '16.0000', 2, 15, '2023-11-24 09:40:17', NULL),
+(1924, 1, 13, 'CT23112423595', '22023/00001592', 'sell', 1, 'Paid while selling', '13.0000', 2, 15, '2023-11-24 11:58:18', NULL),
+(1925, 349, 20, 'CT23112423596', '22023/00001593', 'sell', 1, 'Paid while selling', '57.8000', 2, 15, '2023-11-24 13:43:25', NULL),
+(1926, 407, 16, 'CT23112423597', '22023/00001594', 'sell', 1, 'Paid while selling', '27.0000', 2, 12, '2023-11-24 16:30:28', NULL),
+(1927, 1, 13, 'CT23112423598', '22023/00001595', 'sell', 1, 'Paid while selling', '27.0000', 2, 12, '2023-11-24 16:58:59', NULL),
+(1928, 7, 13, 'CT23112823599', '22023/00001596', 'sell', 1, 'Paid while selling', '27.0000', 2, 12, '2023-11-28 13:43:12', NULL),
+(1929, 408, 16, 'CT23112823600', '22023/00001597', 'sell', 1, 'Paid while selling', '13.0000', 2, 12, '2023-11-28 16:13:18', NULL),
+(1930, 1, 13, 'CT23112823601', '22023/00001598', 'sell', 1, 'Paid while selling', '14.0000', 2, 12, '2023-11-28 16:32:39', NULL),
+(1931, 1, 13, 'CT23112923602', '22023/00001599', 'sell', 1, 'Paid while selling', '27.0000', 2, 12, '2023-11-29 10:24:23', NULL),
+(1932, 1, 13, 'CT23112923603', '22023/00001600', 'sell', 1, 'Paid while selling', '27.0000', 2, 12, '2023-11-29 12:48:24', NULL),
+(1933, 1, 13, 'CT23113023604', '22023/00001601', 'sell', 1, 'Paid while selling', '27.0000', 2, 12, '2023-11-30 13:31:06', NULL),
+(1934, 1, 13, 'CT23113023605', '22023/00001602', 'sell', 1, 'Paid while selling', '27.0000', 2, 12, '2023-11-30 17:13:38', NULL),
+(1935, 350, 16, 'CT23113023606', '22023/00001603', 'sell', 1, 'Paid while selling', '13.0000', 2, 12, '2023-11-30 17:43:00', NULL),
+(1936, 350, 16, 'CT23113023607', '22023/00001604', 'sell', 1, 'Paid while selling', '13.0000', 2, 12, '2023-11-30 17:43:43', NULL),
+(1937, 1, 10, 'CT23120123608', '22023/00001604', 'sell', 1, 'Paid while selling', '16.0000', 2, 12, '2023-12-01 09:36:39', NULL),
+(1938, 1, 16, 'CT23120123609', '22023/00001605', 'sell', 1, 'Paid while selling', '13.0000', 2, 12, '2023-12-01 09:47:33', NULL),
+(1939, 1, 13, 'CT23120123610', '22023/00001606', 'sell', 1, 'Paid while selling', '27.0000', 2, 12, '2023-12-01 10:26:29', NULL),
+(1940, 1, 13, 'CT23120123611', '22023/00001607', 'sell', 1, 'Paid while selling', '14.0000', 2, 12, '2023-12-01 12:45:10', NULL),
+(1941, 1, 16, 'CT23120223612', '22023/00001608', 'sell', 1, 'Paid while selling', '29.0000', 2, 12, '2023-12-02 10:54:28', NULL),
+(1942, 1, 13, 'CT23120223613', '22023/00001609', 'sell', 1, 'Paid while selling', '14.0000', 2, 12, '2023-12-02 11:00:34', NULL),
+(1943, 1, 13, 'CT23120223614', '22023/00001610', 'sell', 1, 'Paid while selling', '27.0000', 2, 12, '2023-12-02 12:09:50', NULL),
+(1944, 1, 16, 'CT23120223615', '22023/00001611', 'sell', 1, 'Paid while selling', '13.0000', 2, 12, '2023-12-02 12:36:31', NULL),
+(1945, 1, 16, 'CT23120223616', '22023/00001612', 'sell', 1, 'Paid while selling', '16.0000', 2, 12, '2023-12-02 14:41:43', NULL),
+(1946, 1, 13, 'CT23120423617', '22023/00001613', 'sell', 1, 'Paid while selling', '27.0000', 2, 12, '2023-12-04 10:07:59', NULL),
+(1947, 1, 16, 'CT23120423618', '22023/00001614', 'sell', 1, 'Paid while selling', '27.0000', 2, 12, '2023-12-04 10:18:48', NULL),
+(1948, 1, 13, 'CT23120423619', '22023/00001615', 'sell', 1, 'Paid while selling', '27.0000', 2, 12, '2023-12-04 11:35:52', NULL),
+(1949, 1, 13, 'CT23120423620', '22023/00001616', 'sell', 1, 'Paid while selling', '27.0000', 2, 12, '2023-12-04 11:36:52', NULL),
+(1950, 1, 13, 'CT23120423621', '22023/00001617', 'sell', 1, 'Paid while selling', '27.0000', 2, 12, '2023-12-04 11:39:03', NULL),
+(1951, 1, 16, 'CT23120423622', '22023/00001618', 'sell', 1, 'Paid while selling', '54.0000', 2, 12, '2023-12-04 16:59:45', NULL);
+INSERT INTO `sell_logs` (`id`, `customer_id`, `college_id`, `reference_no`, `ref_invoice_id`, `type`, `pmethod_id`, `description`, `amount`, `store_id`, `created_by`, `created_at`, `updated_at`) VALUES
+(1952, 1, 13, 'CT23120423623', '22023/00001619', 'sell', 1, 'Paid while selling', '27.0000', 2, 12, '2023-12-04 17:04:30', NULL),
+(1953, 1, 16, 'CT23120423624', '22023/00001620', 'sell', 1, 'Paid while selling', '27.0000', 2, 12, '2023-12-04 17:09:13', NULL),
+(1954, 1, 16, 'CT23120423625', '22023/00001621', 'sell', 1, 'Paid while selling', '13.0000', 2, 12, '2023-12-04 17:38:17', NULL),
+(1955, 1, 13, 'CT23120423626', '22023/00001622', 'sell', 1, 'Paid while selling', '27.0000', 2, 12, '2023-12-04 17:40:12', NULL),
+(1956, 1, 13, 'CT23120523627', '22023/00001623', 'sell', 1, 'Paid while selling', '13.0000', 2, 12, '2023-12-05 13:08:50', NULL),
+(1957, 409, 16, 'CT23120523628', '22023/00001624', 'sell', 1, 'Paid while selling', '13.0000', 2, 12, '2023-12-05 17:44:33', NULL),
+(1958, 1, 16, 'CT23120523629', '22023/00001625', 'sell', 1, 'Paid while selling', '13.0000', 2, 12, '2023-12-05 17:54:35', NULL),
+(1959, 1, 13, 'CT23120623630', '22023/00001626', 'sell', 1, 'Paid while selling', '27.0000', 2, 12, '2023-12-06 10:14:59', NULL),
+(1960, 1, 13, 'CT23120623631', '22023/00001627', 'sell', 1, 'Paid while selling', '27.0000', 2, 12, '2023-12-06 11:00:09', NULL),
+(1961, 1, 10, 'CT23120623632', '22023/00001628', 'sell', 1, 'Paid while selling', '16.0000', 2, 12, '2023-12-06 11:37:19', NULL),
+(1962, 1, 13, 'CT23120623633', '22023/00001629', 'sell', 1, 'Paid while selling', '13.0000', 2, 12, '2023-12-06 11:54:15', NULL),
+(1963, 1, 13, 'CT23120623634', '22023/00001630', 'sell', 1, 'Paid while selling', '27.0000', 2, 12, '2023-12-06 12:47:23', NULL),
+(1964, 1, 16, 'CT23120723635', '22023/00001631', 'sell', 1, 'Paid while selling', '27.0000', 2, 12, '2023-12-07 15:51:05', NULL),
+(1965, 1, 13, 'CT23120823636', '22023/00001632', 'sell', 1, 'Paid while selling', '14.0000', 2, 12, '2023-12-08 12:33:50', NULL),
+(1966, 1, 13, 'CT23120823637', '22023/00001633', 'sell', 1, 'Paid while selling', '27.0000', 2, 12, '2023-12-08 14:03:23', NULL),
+(1967, 1, 16, 'CT23120823638', '22023/00001634', 'sell', 1, 'Paid while selling', '27.0000', 2, 12, '2023-12-08 17:12:53', NULL),
+(1968, 410, 13, 'CT23120923639', '22023/00001635', 'sell', 1, 'Paid while selling', '27.0000', 2, 12, '2023-12-09 11:42:41', NULL),
+(1969, 410, 13, 'CT23120923640', '22023/00001636', 'sell', 1, 'Paid while selling', '27.0000', 2, 12, '2023-12-09 11:43:12', NULL),
+(1970, 410, 13, 'CT23120923641', '22023/00001637', 'sell', 1, 'Paid while selling', '27.0000', 2, 12, '2023-12-09 11:43:51', NULL),
+(1971, 1, 10, 'CT23121123642', '22023/00001637', 'sell', 1, 'Paid while selling', '16.0000', 2, 12, '2023-12-11 11:50:51', NULL),
+(1972, 1, 13, 'CT23121123643', '22023/00001638', 'sell', 1, 'Paid while selling', '27.0000', 2, 12, '2023-12-11 12:37:50', NULL),
+(1973, 1, 10, 'CT23121223644', '22023/00001639', 'sell', 1, 'Paid while selling', '34.0000', 2, 12, '2023-12-12 11:36:24', NULL),
+(1974, 1, 16, 'CT23121223645', '22023/00001640', 'sell', 1, 'Paid while selling', '29.0000', 2, 12, '2023-12-12 13:31:48', NULL),
+(1975, 1, 13, 'CT23121223646', '22023/00001641', 'sell', 1, 'Paid while selling', '13.0000', 2, 12, '2023-12-12 14:15:27', NULL),
+(1976, 1, 13, 'CT23121323647', '22023/00001642', 'sell', 1, 'Paid while selling', '27.0000', 2, 12, '2023-12-13 09:23:07', NULL),
+(1977, 1, 10, 'CT23121323648', '22023/00001643', 'sell', 1, 'Paid while selling', '34.0000', 2, 12, '2023-12-13 12:16:32', NULL),
+(1978, 1, 13, 'CT23121323649', '22023/00001644', 'sell', 1, 'Paid while selling', '14.0000', 2, 12, '2023-12-13 12:25:26', NULL),
+(1979, 1, 13, 'CT23121423650', '22023/00001645', 'sell', 1, 'Paid while selling', '13.0000', 2, 12, '2023-12-14 11:38:43', NULL),
+(1980, 1, 10, 'CT23122023651', '22023/00001646', 'sell', 1, 'Paid while selling', '16.0000', 2, 12, '2023-12-20 11:04:11', NULL),
+(1981, 1, 10, 'CT23122123652', '22023/00001647', 'sell', 1, 'Paid while selling', '18.0000', 2, 12, '2023-12-21 10:57:20', NULL),
+(1982, 1, 13, 'CT24010223653', '22024/00001648', 'sell', 1, 'Paid while selling', '27.0000', 2, 12, '2024-01-02 10:28:35', NULL),
+(1983, 1, 6, 'CT24010323654', '22024/00001649', 'sell', 1, 'Paid while selling', '14.0000', 2, 12, '2024-01-03 10:42:34', NULL),
+(1984, 1, 13, 'CT24010323655', '22024/00001650', 'sell', 1, 'Paid while selling', '14.0000', 2, 12, '2024-01-03 17:02:58', NULL),
+(1985, 1, 16, 'CT24010623656', '22024/00001651', 'sell', 1, 'Paid while selling', '13.0000', 2, 12, '2024-01-06 09:20:33', NULL),
+(1986, 1, 2, 'CT24032323657', '22024/00001652', 'sell', 1, 'Paid while selling', '154.0000', 2, 2, '2024-03-23 11:48:25', NULL),
+(1987, 411, 2, 'CT24032323658', '22024/00001652', 'sell', 1, 'Paid while selling', '135.0000', 2, 2, '2024-03-23 11:52:29', NULL),
+(1988, 1, 2, 'CT24032323659', '22024/00001653', 'sell', 1, 'Paid while selling', '164.0000', 2, 2, '2024-03-23 11:55:14', NULL),
+(1989, 1, 2, 'CT24032323660', '22024/00001654', 'sell', 1, 'Paid while selling', '46.0000', 2, 2, '2024-03-23 11:58:04', NULL),
+(1990, 412, 2, 'CT24032323661', '22024/00001652', 'sell', 1, 'Paid while selling', '127.0000', 2, 2, '2024-03-23 12:00:07', NULL),
+(1991, 1, 19, 'CT24032323662', '22024/00001653', 'sell', 1, 'Paid while selling', '12.7500', 2, 2, '2024-03-23 12:15:26', NULL);
 
 -- --------------------------------------------------------
 
@@ -26563,7 +28270,7 @@ CREATE TABLE `settings` (
   `update_link` text DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `settings`
@@ -26591,7 +28298,7 @@ CREATE TABLE `shortcut_links` (
   `sort_order` int(11) NOT NULL DEFAULT 0,
   `created_at` datetime DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `shortcut_links`
@@ -26640,7 +28347,7 @@ CREATE TABLE `sms_schedule` (
   `response_text` varchar(250) DEFAULT NULL,
   `delivery_status` varchar(50) NOT NULL DEFAULT 'pending',
   `created_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -26666,7 +28373,7 @@ CREATE TABLE `sms_setting` (
   `sort_order` int(11) NOT NULL DEFAULT 0,
   `created_at` datetime DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `sms_setting`
@@ -26716,7 +28423,7 @@ CREATE TABLE `stores` (
   `thumbnail` varchar(255) DEFAULT NULL,
   `status` tinyint(3) UNSIGNED NOT NULL DEFAULT 1,
   `created_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `stores`
@@ -26727,7 +28434,9 @@ INSERT INTO `stores` (`store_id`, `name`, `code_name`, `mobile`, `email`, `count
 (2, 'SUCURSAL LATACUNGA ', 'sucursal_latacunga', '', 'importadorapoloapolo@hotmail.com', 'AD', '', 'USD', '', 3, 'CENTRO DE LATACUNGA FRENTE A LA ESPE 33', '1', NULL, 42, 0, NULL, NULL, 1, NULL, '2_logo.jpg', NULL, 'a:32:{s:10:\"gst_reg_no\";s:0:\"\";s:8:\"timezone\";s:12:\"America/Lima\";s:21:\"invoice_edit_lifespan\";s:4:\"1440\";s:26:\"invoice_edit_lifespan_unit\";s:6:\"minute\";s:23:\"invoice_delete_lifespan\";s:21:\"100000000000000000000\";s:28:\"invoice_delete_lifespan_unit\";s:6:\"minute\";s:3:\"tax\";s:1:\"0\";s:11:\"sms_gateway\";s:10:\"Clickatell\";s:9:\"sms_alert\";s:1:\"0\";s:24:\"expiring_soon_alert_days\";s:0:\"\";s:20:\"datatable_item_limit\";s:2:\"25\";s:16:\"reference_format\";s:13:\"year_sequence\";s:22:\"sales_reference_prefix\";s:0:\"\";s:16:\"receipt_template\";s:1:\"1\";s:12:\"invoice_view\";s:8:\"standard\";s:14:\"business_state\";s:2:\"AN\";s:31:\"change_item_price_while_billing\";s:1:\"0\";s:25:\"pos_product_display_limit\";s:0:\"\";s:15:\"after_sell_page\";s:16:\"receipt_in_popup\";s:19:\"invoice_footer_text\";s:0:\"\";s:10:\"email_from\";s:13:\"tusolutionweb\";s:13:\"email_address\";s:2:\"US\";s:12:\"email_driver\";s:11:\"smtp_server\";s:14:\"send_mail_path\";s:18:\"/usr/sbin/sendmail\";s:9:\"smtp_host\";s:15:\"smtp.google.com\";s:13:\"smtp_username\";s:0:\"\";s:13:\"smtp_password\";s:0:\"\";s:9:\"smtp_port\";s:3:\"465\";s:7:\"ssl_tls\";s:3:\"ssl\";s:12:\"ftp_hostname\";s:0:\"\";s:12:\"ftp_username\";s:0:\"\";s:12:\"ftp_password\";s:0:\"\";}', 1, 0, 'ready', NULL, 1, NULL, 1, '2023-07-20 14:45:05'),
 (3, 'SUCURSAL AMBATO', 'sucursal_ambato', '', 'ambato@controldas.com', 'AD', '', 'USD', '', 3, 'AMBATO', '', NULL, 42, 0, NULL, NULL, 1, NULL, NULL, NULL, 'a:32:{s:10:\"gst_reg_no\";s:0:\"\";s:8:\"timezone\";s:12:\"America/Lima\";s:21:\"invoice_edit_lifespan\";s:4:\"1440\";s:26:\"invoice_edit_lifespan_unit\";s:6:\"minute\";s:23:\"invoice_delete_lifespan\";s:35:\"10000000000000000000000000000000000\";s:28:\"invoice_delete_lifespan_unit\";s:6:\"minute\";s:3:\"tax\";s:1:\"0\";s:11:\"sms_gateway\";s:10:\"Clickatell\";s:9:\"sms_alert\";s:1:\"0\";s:24:\"expiring_soon_alert_days\";s:0:\"\";s:20:\"datatable_item_limit\";s:3:\"100\";s:16:\"reference_format\";s:13:\"year_sequence\";s:22:\"sales_reference_prefix\";s:0:\"\";s:16:\"receipt_template\";s:1:\"1\";s:12:\"invoice_view\";s:8:\"standard\";s:14:\"business_state\";s:2:\"AN\";s:31:\"change_item_price_while_billing\";s:1:\"0\";s:25:\"pos_product_display_limit\";s:0:\"\";s:15:\"after_sell_page\";s:3:\"pos\";s:19:\"invoice_footer_text\";s:0:\"\";s:10:\"email_from\";s:13:\"tusolutionweb\";s:13:\"email_address\";s:2:\"US\";s:12:\"email_driver\";s:11:\"smtp_server\";s:14:\"send_mail_path\";s:18:\"/usr/sbin/sendmail\";s:9:\"smtp_host\";s:15:\"smtp.google.com\";s:13:\"smtp_username\";s:0:\"\";s:13:\"smtp_password\";s:0:\"\";s:9:\"smtp_port\";s:3:\"465\";s:7:\"ssl_tls\";s:3:\"ssl\";s:12:\"ftp_hostname\";s:0:\"\";s:12:\"ftp_username\";s:0:\"\";s:12:\"ftp_password\";s:0:\"\";}', 1, 0, 'ready', NULL, 1, NULL, 1, '2023-08-05 14:30:29'),
 (4, 'AGENCIA RIOBAMBA', 'agencia_riobamba', '', 'YG@KNDSF.COM', 'AD', '', 'USD', '', 3, 'RIOBAMBA', '1', NULL, 42, 0, NULL, NULL, 1, NULL, NULL, NULL, 'a:32:{s:10:\"gst_reg_no\";s:0:\"\";s:8:\"timezone\";s:12:\"America/Lima\";s:21:\"invoice_edit_lifespan\";s:4:\"1440\";s:26:\"invoice_edit_lifespan_unit\";s:6:\"minute\";s:23:\"invoice_delete_lifespan\";s:29:\"10000000000000000000000000000\";s:28:\"invoice_delete_lifespan_unit\";s:6:\"minute\";s:3:\"tax\";s:1:\"0\";s:11:\"sms_gateway\";s:10:\"Clickatell\";s:9:\"sms_alert\";s:1:\"0\";s:24:\"expiring_soon_alert_days\";s:0:\"\";s:20:\"datatable_item_limit\";s:2:\"25\";s:16:\"reference_format\";s:13:\"year_sequence\";s:22:\"sales_reference_prefix\";s:0:\"\";s:16:\"receipt_template\";s:1:\"1\";s:12:\"invoice_view\";s:8:\"standard\";s:14:\"business_state\";s:2:\"AN\";s:31:\"change_item_price_while_billing\";s:1:\"0\";s:25:\"pos_product_display_limit\";s:0:\"\";s:15:\"after_sell_page\";s:3:\"pos\";s:19:\"invoice_footer_text\";s:0:\"\";s:10:\"email_from\";s:13:\"tusolutionweb\";s:13:\"email_address\";s:2:\"US\";s:12:\"email_driver\";s:11:\"smtp_server\";s:14:\"send_mail_path\";s:18:\"/usr/sbin/sendmail\";s:9:\"smtp_host\";s:15:\"smtp.google.com\";s:13:\"smtp_username\";s:0:\"\";s:13:\"smtp_password\";s:0:\"\";s:9:\"smtp_port\";s:3:\"465\";s:7:\"ssl_tls\";s:3:\"ssl\";s:12:\"ftp_hostname\";s:0:\"\";s:12:\"ftp_username\";s:0:\"\";s:12:\"ftp_password\";s:0:\"\";}', 1, 0, 'ready', NULL, 1, NULL, 1, '2023-08-17 19:57:55'),
-(5, 'SUCURSAL PUJILI', 'sucursal_pujili', '', 'PUJILI@JND.COM', 'AD', '', 'USD', '', 3, 'PUJILI', '1', NULL, 42, 1, NULL, NULL, 1, NULL, NULL, NULL, 'a:32:{s:10:\"gst_reg_no\";s:0:\"\";s:8:\"timezone\";s:12:\"America/Lima\";s:21:\"invoice_edit_lifespan\";s:4:\"1440\";s:26:\"invoice_edit_lifespan_unit\";s:6:\"minute\";s:23:\"invoice_delete_lifespan\";s:22:\"1000000000000000000000\";s:28:\"invoice_delete_lifespan_unit\";s:6:\"minute\";s:3:\"tax\";s:1:\"0\";s:11:\"sms_gateway\";s:10:\"Clickatell\";s:9:\"sms_alert\";s:1:\"0\";s:24:\"expiring_soon_alert_days\";s:0:\"\";s:20:\"datatable_item_limit\";s:3:\"200\";s:16:\"reference_format\";s:13:\"year_sequence\";s:22:\"sales_reference_prefix\";s:0:\"\";s:16:\"receipt_template\";s:1:\"1\";s:12:\"invoice_view\";s:8:\"standard\";s:14:\"business_state\";s:2:\"AN\";s:31:\"change_item_price_while_billing\";s:1:\"0\";s:25:\"pos_product_display_limit\";s:0:\"\";s:15:\"after_sell_page\";s:3:\"pos\";s:19:\"invoice_footer_text\";s:0:\"\";s:10:\"email_from\";s:13:\"tusolutionweb\";s:13:\"email_address\";s:2:\"US\";s:12:\"email_driver\";s:11:\"smtp_server\";s:14:\"send_mail_path\";s:18:\"/usr/sbin/sendmail\";s:9:\"smtp_host\";s:15:\"smtp.google.com\";s:13:\"smtp_username\";s:0:\"\";s:13:\"smtp_password\";s:0:\"\";s:9:\"smtp_port\";s:3:\"465\";s:7:\"ssl_tls\";s:3:\"ssl\";s:12:\"ftp_hostname\";s:0:\"\";s:12:\"ftp_username\";s:0:\"\";s:12:\"ftp_password\";s:0:\"\";}', 1, 0, 'ready', NULL, 1, NULL, 1, '2023-08-25 20:07:21');
+(5, 'SUCURSAL PUJILI', 'sucursal_pujili', '', 'PUJILI@JND.COM', 'AD', '', 'USD', '', 3, 'PUJILI', '1', NULL, 42, 1, NULL, NULL, 1, NULL, NULL, NULL, 'a:32:{s:10:\"gst_reg_no\";s:0:\"\";s:8:\"timezone\";s:12:\"America/Lima\";s:21:\"invoice_edit_lifespan\";s:4:\"1440\";s:26:\"invoice_edit_lifespan_unit\";s:6:\"minute\";s:23:\"invoice_delete_lifespan\";s:22:\"1000000000000000000000\";s:28:\"invoice_delete_lifespan_unit\";s:6:\"minute\";s:3:\"tax\";s:1:\"0\";s:11:\"sms_gateway\";s:10:\"Clickatell\";s:9:\"sms_alert\";s:1:\"0\";s:24:\"expiring_soon_alert_days\";s:0:\"\";s:20:\"datatable_item_limit\";s:3:\"200\";s:16:\"reference_format\";s:13:\"year_sequence\";s:22:\"sales_reference_prefix\";s:0:\"\";s:16:\"receipt_template\";s:1:\"1\";s:12:\"invoice_view\";s:8:\"standard\";s:14:\"business_state\";s:2:\"AN\";s:31:\"change_item_price_while_billing\";s:1:\"0\";s:25:\"pos_product_display_limit\";s:0:\"\";s:15:\"after_sell_page\";s:3:\"pos\";s:19:\"invoice_footer_text\";s:0:\"\";s:10:\"email_from\";s:13:\"tusolutionweb\";s:13:\"email_address\";s:2:\"US\";s:12:\"email_driver\";s:11:\"smtp_server\";s:14:\"send_mail_path\";s:18:\"/usr/sbin/sendmail\";s:9:\"smtp_host\";s:15:\"smtp.google.com\";s:13:\"smtp_username\";s:0:\"\";s:13:\"smtp_password\";s:0:\"\";s:9:\"smtp_port\";s:3:\"465\";s:7:\"ssl_tls\";s:3:\"ssl\";s:12:\"ftp_hostname\";s:0:\"\";s:12:\"ftp_username\";s:0:\"\";s:12:\"ftp_password\";s:0:\"\";}', 1, 0, 'ready', NULL, 1, NULL, 1, '2023-08-25 20:07:21'),
+(6, 'LIBERTAD TEMPORADA 2024', 'libertad_temporada_2024', '', 'FDSGDS@SDFG.COM', 'AD', '', 'USD', '', 3, 'LA LIBERTAD', '1', NULL, 42, 0, NULL, NULL, 1, NULL, NULL, NULL, 'a:21:{s:8:\"timezone\";s:12:\"America/Lima\";s:21:\"invoice_edit_lifespan\";s:4:\"1440\";s:26:\"invoice_edit_lifespan_unit\";s:6:\"minute\";s:23:\"invoice_delete_lifespan\";s:22:\"1000000000000000000000\";s:28:\"invoice_delete_lifespan_unit\";s:6:\"minute\";s:15:\"after_sell_page\";s:3:\"pos\";s:3:\"tax\";s:1:\"0\";s:20:\"stock_alert_quantity\";s:0:\"\";s:20:\"datatable_item_limit\";s:3:\"200\";s:19:\"invoice_footer_text\";s:0:\"\";s:10:\"email_from\";s:13:\"tusolutionweb\";s:13:\"email_address\";s:2:\"US\";s:12:\"email_driver\";s:11:\"smtp_server\";s:9:\"smtp_host\";s:15:\"smtp.google.com\";s:13:\"smtp_username\";s:0:\"\";s:13:\"smtp_password\";s:0:\"\";s:9:\"smtp_port\";s:3:\"465\";s:7:\"ssl_tls\";s:3:\"ssl\";s:12:\"ftp_hostname\";s:0:\"\";s:12:\"ftp_username\";s:0:\"\";s:12:\"ftp_password\";s:0:\"\";}', 1, 0, 'ready', NULL, 1, NULL, 1, '2024-03-20 15:25:44'),
+(7, 'MUESTRAS LIBERTAD 2024', 'muestras_libertad_2024', '', 'DAFRHGWADF@ADFGA.COM', 'AD', '', 'USD', '', 3, 'LA LIBERTAD', '1', NULL, 42, 0, NULL, NULL, 1, NULL, NULL, NULL, 'a:21:{s:8:\"timezone\";s:12:\"America/Lima\";s:21:\"invoice_edit_lifespan\";s:4:\"1440\";s:26:\"invoice_edit_lifespan_unit\";s:6:\"minute\";s:23:\"invoice_delete_lifespan\";s:22:\"1000000000000000000000\";s:28:\"invoice_delete_lifespan_unit\";s:6:\"minute\";s:15:\"after_sell_page\";s:3:\"pos\";s:3:\"tax\";s:1:\"0\";s:20:\"stock_alert_quantity\";s:0:\"\";s:20:\"datatable_item_limit\";s:3:\"200\";s:19:\"invoice_footer_text\";s:0:\"\";s:10:\"email_from\";s:13:\"tusolutionweb\";s:13:\"email_address\";s:2:\"US\";s:12:\"email_driver\";s:11:\"smtp_server\";s:9:\"smtp_host\";s:15:\"smtp.google.com\";s:13:\"smtp_username\";s:0:\"\";s:13:\"smtp_password\";s:0:\"\";s:9:\"smtp_port\";s:3:\"465\";s:7:\"ssl_tls\";s:3:\"ssl\";s:12:\"ftp_hostname\";s:0:\"\";s:12:\"ftp_username\";s:0:\"\";s:12:\"ftp_password\";s:0:\"\";}', 1, 0, 'ready', NULL, 1, NULL, 1, '2024-03-25 15:05:19');
 
 -- --------------------------------------------------------
 
@@ -26749,7 +28458,7 @@ CREATE TABLE `suppliers` (
   `sup_country` varchar(100) DEFAULT NULL,
   `sup_details` longtext DEFAULT NULL,
   `created_at` datetime NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `suppliers`
@@ -26778,7 +28487,7 @@ CREATE TABLE `supplier_to_store` (
   `balance` decimal(25,4) NOT NULL DEFAULT 0.0000,
   `status` tinyint(3) UNSIGNED NOT NULL DEFAULT 1,
   `sort_order` int(11) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `supplier_to_store`
@@ -26824,7 +28533,23 @@ INSERT INTO `supplier_to_store` (`s2s_id`, `sup_id`, `store_id`, `balance`, `sta
 (37, 5, 5, '0.0000', 1, 0),
 (38, 6, 5, '0.0000', 1, 0),
 (39, 7, 5, '0.0000', 1, 0),
-(40, 8, 5, '0.0000', 1, 0);
+(40, 8, 5, '0.0000', 1, 0),
+(41, 1, 6, '0.0000', 1, 0),
+(42, 2, 6, '0.0000', 1, 0),
+(43, 3, 6, '0.0000', 1, 0),
+(44, 4, 6, '0.0000', 1, 0),
+(45, 5, 6, '0.0000', 1, 0),
+(46, 6, 6, '0.0000', 1, 0),
+(47, 7, 6, '0.0000', 1, 0),
+(48, 8, 6, '0.0000', 1, 0),
+(56, 1, 7, '0.0000', 1, 0),
+(57, 2, 7, '0.0000', 1, 0),
+(58, 3, 7, '18.0000', 1, 0),
+(59, 4, 7, '0.0000', 1, 0),
+(60, 5, 7, '0.0000', 1, 0),
+(61, 6, 7, '299.8800', 1, 0),
+(62, 7, 7, '0.0000', 1, 0),
+(63, 8, 7, '0.0000', 1, 0);
 
 -- --------------------------------------------------------
 
@@ -26839,7 +28564,7 @@ CREATE TABLE `taxrates` (
   `taxrate` decimal(25,4) NOT NULL,
   `status` tinyint(3) UNSIGNED NOT NULL DEFAULT 1,
   `sort_order` int(11) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `taxrates`
@@ -26868,7 +28593,7 @@ CREATE TABLE `transfers` (
   `status` varchar(55) NOT NULL DEFAULT 'pending',
   `attachment` varchar(55) DEFAULT NULL,
   `created_at` datetime DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `transfers`
@@ -26888,7 +28613,30 @@ INSERT INTO `transfers` (`id`, `ref_no`, `invoice_id`, `from_store_id`, `to_stor
 (11, 'TRANSECA', '821727-TRANSECA', 5, 2, 'Transferencia Suc Pujilí a Suc Latacunga', '1.0000', '79.0000', '15', 'complete', '', '2023-10-13 18:38:57'),
 (12, 'TRANSECA', '274552-TRANSECA', 5, 2, 'Transferencia Suc Pujilí a Suc Latacunga', '1.0000', '3.0000', '15', 'complete', '', '2023-10-13 18:38:57'),
 (13, 'TRANSECA', '614368-TRANSECA', 5, 2, 'Transferencia Suc Pujilí a Suc Latacunga', '1.0000', '3.0000', '15', 'complete', '', '2023-10-13 18:38:57'),
-(14, 'TRANSECA', '303715-TRANSECA', 5, 2, 'Transferencia Suc Pujilí a Suc Latacunga', '1.0000', '78.0000', '15', 'complete', '', '2023-10-13 18:38:57');
+(14, 'TRANSECA', '303715-TRANSECA', 5, 2, 'Transferencia Suc Pujilí a Suc Latacunga', '1.0000', '78.0000', '15', 'complete', '', '2023-10-13 18:38:57'),
+(15, 'DAVID POLO 25/03/2024', '684884-DAVID POLO 25/03/2024', 6, 7, 'MUESTRAS ', '1.0000', '1.0000', '2', 'complete', '', '2024-03-25 15:16:07'),
+(16, 'DAVID POLO 25/03/2024', '840717-DAVID POLO 25/03/2024', 6, 7, 'MUESTRAS ', '1.0000', '6.0000', '2', 'complete', '', '2024-03-25 15:16:07'),
+(17, 'DAVID POLO 25/03/2024', '498869-DAVID POLO 25/03/2024', 6, 7, 'MUESTRAS ', '1.0000', '2.0000', '2', 'complete', '', '2024-03-25 15:16:07'),
+(18, 'DAVID POLO 25/03/2024', '179266-DAVID POLO 25/03/2024', 6, 7, 'MUESTRAS ', '1.0000', '7.0000', '2', 'complete', '', '2024-03-25 15:16:07'),
+(19, 'DAVID POLO 25/03/2024', '956400-DAVID POLO 25/03/2024', 6, 7, 'MUESTRAS ', '1.0000', '5.0000', '2', 'complete', '', '2024-03-25 15:16:07'),
+(20, 'DAVID POLO 25/03/2024', '541878-DAVID POLO 25/03/2024', 6, 7, 'MUESTRAS ', '1.0000', '1.0000', '2', 'complete', '', '2024-03-25 15:16:07'),
+(21, 'DAVID POLO 25/03/2024', '109144-DAVID POLO 25/03/2024', 6, 7, 'MUESTRAS ', '1.0000', '7.0000', '2', 'complete', '', '2024-03-25 15:16:07'),
+(22, 'DAVID POLO 25/03/2024', '348836-DAVID POLO 25/03/2024', 6, 7, 'MUESTRAS ', '1.0000', '5.0000', '2', 'complete', '', '2024-03-25 15:16:07'),
+(23, 'DAVID POLO 25/03/2024', '409860-DAVID POLO 25/03/2024', 6, 7, 'MUESTRAS ', '1.0000', '1.0000', '2', 'complete', '', '2024-03-25 15:16:07'),
+(24, 'DAVID POLO 25/03/2024', '401255-DAVID POLO 25/03/2024', 6, 7, 'MUESTRAS ', '1.0000', '3.0000', '2', 'complete', '', '2024-03-25 15:16:07'),
+(25, 'MUESTRAS ', '314983-MUESTRAS ', 6, 7, 'SE ENTREGA A DAVID POLO', '1.0000', '2.0000', '2', 'complete', '', '2024-03-27 10:06:24'),
+(26, 'MUESTRAS ', '668295-MUESTRAS ', 6, 7, 'SE ENTREGA A DAVID POLO', '1.0000', '2.0000', '2', 'complete', '', '2024-03-27 10:06:24'),
+(27, 'MUESTRAS ', '246269-MUESTRAS ', 6, 7, 'SE ENTREGA A DAVID POLO', '1.0000', '2.0000', '2', 'complete', '', '2024-03-27 10:06:24'),
+(28, 'MUESTRAS ', '097474-MUESTRAS ', 6, 7, 'SE ENTREGA A DAVID POLO', '1.0000', '2.0000', '2', 'complete', '', '2024-03-27 10:06:24'),
+(29, 'MUESTRAS ', '049823-MUESTRAS ', 6, 7, 'SE ENTREGA A DAVID POLO', '1.0000', '2.0000', '2', 'complete', '', '2024-03-27 10:06:24'),
+(30, 'MUESTRAS ', '612796-MUESTRAS ', 6, 7, 'SE ENTREGA A DAVID POLO', '1.0000', '2.0000', '2', 'complete', '', '2024-03-27 10:06:24'),
+(31, 'MUESTRAS ', '109169-MUESTRAS ', 6, 7, 'SE ENTREGA A DAVID POLO', '1.0000', '2.0000', '2', 'complete', '', '2024-03-27 10:06:24'),
+(32, 'MUESTRAS ', '619660-MUESTRAS ', 6, 7, 'SE ENTREGA A DAVID POLO', '1.0000', '2.0000', '2', 'complete', '', '2024-03-27 10:06:24'),
+(33, 'MUESTRAS ', '541088-MUESTRAS ', 6, 7, 'SE ENTREGA A DAVID POLO', '1.0000', '2.0000', '2', 'complete', '', '2024-03-27 10:06:24'),
+(34, 'MUESTRAS ', '795550-MUESTRAS ', 6, 7, 'SE ENTREGA A DAVID POLO', '1.0000', '2.0000', '2', 'complete', '', '2024-03-27 10:06:24'),
+(35, 'MUESTRAS ', '495043-MUESTRAS ', 6, 7, 'SE ENTREGA A DAVID POLO', '1.0000', '2.0000', '2', 'complete', '', '2024-03-27 10:06:24'),
+(36, 'MUESTRAS ', '152582-MUESTRAS ', 6, 7, 'SE ENTREGA A DAVID POLO', '1.0000', '2.0000', '2', 'complete', '', '2024-03-27 10:06:24'),
+(37, 'MUESTRAS ', '816001-MUESTRAS ', 6, 7, 'SE ENTREGA A DAVID POLO', '1.0000', '2.0000', '2', 'complete', '', '2024-03-27 10:06:24');
 
 -- --------------------------------------------------------
 
@@ -26903,7 +28651,7 @@ CREATE TABLE `transfer_items` (
   `product_id` int(10) UNSIGNED NOT NULL,
   `product_name` varchar(255) NOT NULL,
   `quantity` decimal(25,4) UNSIGNED NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `transfer_items`
@@ -26923,7 +28671,30 @@ INSERT INTO `transfer_items` (`id`, `store_id`, `transfer_id`, `product_id`, `pr
 (11, 2, 11, 47, 'LOGROS LA MARAVILLA DE LEER 6 + PLATAFORMA', '79.0000'),
 (12, 2, 12, 47, 'LOGROS LA MARAVILLA DE LEER 6 + PLATAFORMA', '3.0000'),
 (13, 2, 13, 47, 'LOGROS LA MARAVILLA DE LEER 6 + PLATAFORMA', '3.0000'),
-(14, 2, 14, 48, 'LOGROS LA MARAVILLA DE LEER 7 + PLATAFORMA', '78.0000');
+(14, 2, 14, 48, 'LOGROS LA MARAVILLA DE LEER 7 + PLATAFORMA', '78.0000'),
+(15, 7, 15, 254, 'EASY TALK B2', '1.0000'),
+(16, 7, 16, 255, 'EASY TALK C3', '6.0000'),
+(17, 7, 17, 245, 'EASY TALK C', '2.0000'),
+(18, 7, 18, 249, 'EASY TALK G', '7.0000'),
+(19, 7, 19, 248, 'EASY TALK F', '5.0000'),
+(20, 7, 20, 246, 'EASY TALK D', '1.0000'),
+(21, 7, 21, 247, 'EASY TALK E', '7.0000'),
+(22, 7, 22, 253, 'EASY TALK A1', '5.0000'),
+(23, 7, 23, 118, 'ARTETICS 4', '1.0000'),
+(24, 7, 24, 115, 'ARTETICS 1', '3.0000'),
+(25, 7, 25, 243, 'EASY TALK A', '2.0000'),
+(26, 7, 26, 244, 'EASY TALK B', '2.0000'),
+(27, 7, 27, 245, 'EASY TALK C', '2.0000'),
+(28, 7, 28, 246, 'EASY TALK D', '2.0000'),
+(29, 7, 29, 247, 'EASY TALK E', '2.0000'),
+(30, 7, 30, 248, 'EASY TALK F', '2.0000'),
+(31, 7, 31, 249, 'EASY TALK G', '2.0000'),
+(32, 7, 32, 250, 'EASY TALK H', '2.0000'),
+(33, 7, 33, 251, 'EASY TALK I', '2.0000'),
+(34, 7, 34, 252, 'EASY TALK J ', '2.0000'),
+(35, 7, 35, 253, 'EASY TALK A1', '2.0000'),
+(36, 7, 36, 254, 'EASY TALK B2', '2.0000'),
+(37, 7, 37, 255, 'EASY TALK C3', '2.0000');
 
 -- --------------------------------------------------------
 
@@ -26937,7 +28708,7 @@ CREATE TABLE `units` (
   `code_name` varchar(50) DEFAULT NULL,
   `unit_details` text DEFAULT NULL,
   `status` tinyint(3) UNSIGNED NOT NULL DEFAULT 1
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `units`
@@ -26973,28 +28744,28 @@ CREATE TABLE `users` (
   `fk_id` int(10) UNSIGNED DEFAULT NULL,
   `created_at` datetime DEFAULT NULL,
   `updated_at` timestamp NULL DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `users`
 --
 
 INSERT INTO `users` (`id`, `group_id`, `username`, `email`, `mobile`, `dob`, `sex`, `password`, `raw_password`, `pass_reset_code`, `reset_code_time`, `login_try`, `last_login`, `ip`, `address`, `preference`, `user_image`, `fk_id`, `created_at`, `updated_at`) VALUES
-(1, 1, 'EDGAR YAGUAL', 'eye_layla@hotmail.com', '0969237302', '1990-09-08', 'M', 'c4221155b59e510664712215ed60e476', 'Administrator2023DAS', '', NULL, 0, '2023-10-05 12:24:40', '2800:bf0:82d2:1038:dd8e:2945:fd2e:bef7', NULL, 'a:4:{s:10:\"base_color\";s:6:\"purple\";s:14:\"pos_side_panel\";s:4:\"left\";s:11:\"pos_pattern\";s:15:\"brick-color.jpg\";s:8:\"language\";s:2:\"es\";}', '/edgartm.jpg', NULL, '2019-12-14 22:27:47', '2019-07-03 22:29:20'),
-(2, 4, 'DAVID POLO', 'admin@controldas.com', 'DAVID POLO', '1990-01-01', 'M', 'a618780a5f901e3d81b8b0bfe0281385', 'ControlAdmin1', '', NULL, 0, '2023-11-14 13:18:48', '2800:430:b208:dd0b:4f0b:ceaa:14ae:a73c', NULL, 'a:4:{s:8:\"language\";s:2:\"es\";s:10:\"base_color\";s:6:\"purple\";s:14:\"pos_side_panel\";s:5:\"right\";s:11:\"pos_pattern\";s:9:\"space.jpg\";}', '', 0, '2019-12-14 22:27:47', '2019-07-02 16:28:15'),
+(1, 1, 'EDGAR YAGUAL', 'eye_layla@hotmail.com', '0969237302', '1990-09-08', 'M', 'c4221155b59e510664712215ed60e476', 'Administrator2023DAS', '', NULL, 0, '2024-03-25 15:50:36', '181.198.104.222', NULL, 'a:4:{s:10:\"base_color\";s:6:\"purple\";s:14:\"pos_side_panel\";s:4:\"left\";s:11:\"pos_pattern\";s:15:\"brick-color.jpg\";s:8:\"language\";s:2:\"es\";}', '/edgartm.jpg', NULL, '2019-12-14 22:27:47', '2019-07-03 22:29:20'),
+(2, 4, 'DAVID POLO', 'admin@controldas.com', 'DAVID POLO', '1990-01-01', 'M', 'a618780a5f901e3d81b8b0bfe0281385', 'ControlAdmin1', '', NULL, 0, '2024-03-23 11:57:03', '2800:bf0:a822:100f:249d:86bd:11bd:f188', NULL, 'a:4:{s:8:\"language\";s:2:\"es\";s:10:\"base_color\";s:6:\"purple\";s:14:\"pos_side_panel\";s:5:\"right\";s:11:\"pos_pattern\";s:9:\"space.jpg\";}', '', 0, '2019-12-14 22:27:47', '2019-07-02 16:28:15'),
 (3, 2, 'Cashier', 'cashier@controldas.com', '0113743700', '1990-01-01', 'M', 'a618780a5f901e3d81b8b0bfe0281385', 'ControlAdmin1', '', NULL, 0, '2023-06-13 14:01:19', '::1', NULL, 'a:4:{s:10:\"base_color\";s:4:\"blue\";s:14:\"pos_side_panel\";s:4:\"left\";s:11:\"pos_pattern\";s:13:\"brickwall.jpg\";s:8:\"language\";s:2:\"es\";}', '', NULL, '2019-12-14 22:27:47', '2019-07-02 21:35:07'),
 (4, 3, 'Salesman', 'salesman@controldas.com', '1234567890', '0000-00-00', 'M', 'a618780a5f901e3d81b8b0bfe0281385', 'ControlAdmin1', NULL, NULL, 0, '2023-06-14 21:58:20', '127.0.0.1', NULL, 'a:1:{s:8:\"language\";s:2:\"es\";}', '', NULL, '2023-06-14 21:57:48', NULL),
-(5, 8, 'HERNAN EIVAR', 'hernaneivar@controldas.com', 'HERNAN', '0000-00-00', 'M', '314a4e69e0cf213e0d9cfd14a5ead1f2', '0983171925', NULL, NULL, 0, '2023-11-12 13:09:59', '2800:bf0:2902:108e:8dda:933a:9068:46e2', NULL, 'a:1:{s:8:\"language\";s:2:\"es\";}', '', 0, '2023-07-20 14:52:36', NULL),
+(5, 8, 'HERNAN EIVAR', 'hernaneivar@controldas.com', 'HERNAN', '0000-00-00', 'M', '314a4e69e0cf213e0d9cfd14a5ead1f2', '0983171925', NULL, NULL, 0, '2024-01-31 19:17:39', '2800:bf0:2902:108e:8518:2018:4bd6:c184', NULL, 'a:1:{s:8:\"language\";s:2:\"es\";}', '', 0, '2023-07-20 14:52:36', NULL),
 (6, 5, 'MAURICIO CASTILLO', 'mauriciocastillo@controldas.com', 'MAURICIO ', '0000-00-00', 'M', '56740f5615802370aa445aadfb0be840', '0980948929', NULL, NULL, 0, '2023-08-28 16:41:55', '2800:bf0:82d2:1038:1964:8c6a:e3c6:c543', NULL, 'a:1:{s:8:\"language\";s:2:\"en\";}', '', 0, '2023-07-20 15:01:04', NULL),
 (7, 5, 'DALILA SEGURA', 'dalila_segura@controldas.com', 'DALI', '0000-00-00', 'M', '5a612297eef412bc00bd0ca726f53fdb', '0939684718', NULL, NULL, 0, '2023-10-18 11:32:40', '2800:bf0:a821:1122:f9b4:d623:157f:5d4e', NULL, 'a:1:{s:8:\"language\";s:2:\"en\";}', '', 0, '2023-07-21 08:21:08', NULL),
 (8, 6, 'HOLGUIN EDICIONES', 'E@', 'HOLGUIN ', '0000-00-00', 'M', '827ccb0eea8a706c4c34a16891f84e7b', '12345', NULL, NULL, 0, '2023-09-15 17:01:22', '2800:bf0:2902:3007:3c8d:281d:7d0c:fa2a', NULL, 'a:1:{s:8:\"language\";s:2:\"en\";}', '', 1, '2023-08-03 18:42:30', NULL),
 (9, 7, 'UE COTOPAXI', 'DJD', 'UEI COTOPAXI', '0000-00-00', 'M', 'e10adc3949ba59abbe56e057f20f883e', '123456', NULL, NULL, 0, '2023-08-09 16:58:09', '181.199.42.39', NULL, 'a:1:{s:8:\"language\";s:2:\"en\";}', '', 2, '2023-08-08 09:55:05', NULL),
 (10, 5, 'DOMINIQUE VALLE', 'SDPK', 'DOMI', '0000-00-00', 'M', '7fa74007d4d000d82294c460bac3a3e2', '0963821009', NULL, NULL, 0, '2023-11-14 22:28:50', '157.100.63.41', NULL, 'a:1:{s:8:\"language\";s:2:\"en\";}', '', 0, '2023-08-14 11:03:09', NULL),
 (11, 6, 'PROVEEDOR HERNAN EIVAR', 'SDF', 'HERNANE', '0000-00-00', 'M', '314a4e69e0cf213e0d9cfd14a5ead1f2', '0983171925', NULL, NULL, 0, '2023-08-14 11:14:11', '190.63.254.36', NULL, 'a:1:{s:8:\"language\";s:2:\"en\";}', '', 7, '2023-08-14 11:13:44', NULL),
-(12, 5, 'ERIKA ', 'JIDN@N.COM', 'ERIKA', '0000-00-00', 'M', '7839227bbb883168ec1d33e4ebaf4031', '0979214979', NULL, NULL, 0, '2023-10-25 18:01:30', '190.99.77.62', NULL, 'a:1:{s:8:\"language\";s:2:\"en\";}', '', 0, '2023-08-25 20:02:23', NULL),
+(12, 5, 'ERIKA ', 'JIDN@N.COM', 'ERIKA', '0000-00-00', 'M', '7839227bbb883168ec1d33e4ebaf4031', '0979214979', NULL, NULL, 0, '2024-01-31 20:10:17', '2800:bf0:2902:108e:a4c1:2262:c8aa:125e', NULL, 'a:1:{s:8:\"language\";s:2:\"en\";}', '', 0, '2023-08-25 20:02:23', NULL),
 (13, 5, 'DIMENICA ', 'DOJDN@JDJ.COM', 'DOMENICA', '0000-00-00', 'M', 'b99049bfa387f413a41fbe1fe6101deb', '0987312878', NULL, NULL, 0, '2023-09-25 11:56:14', '2800:370:db:e5a0:60d6:213b:8a41:8105', NULL, 'a:1:{s:8:\"language\";s:2:\"en\";}', '', 0, '2023-08-25 20:09:07', NULL),
 (14, 6, 'LEA MAS', 'LEA MAS @KSL.COM', 'LEA MAS', '0000-00-00', 'M', '9ae7f903342d4c83c4c44c3d503d65e1', '0992886320', NULL, NULL, 0, '2023-11-09 15:05:39', '190.99.77.62', NULL, 'a:1:{s:8:\"language\";s:2:\"en\";}', '', 2, '2023-08-31 07:37:04', NULL),
-(15, 4, 'NICOLAS POLO', 'ASJSJ@NCN.COM', 'NICOLASP', '0000-00-00', 'M', 'e8b71f51b9117bc631cc6b408196864d', 'NICOLASP', NULL, NULL, 0, '2023-11-14 09:28:28', '190.99.77.62', NULL, 'a:1:{s:8:\"language\";s:2:\"en\";}', '', 0, '2023-09-14 10:24:33', NULL);
+(15, 4, 'NICOLAS POLO', 'ASJSJ@NCN.COM', 'NICOLASP', '0000-00-00', 'M', 'e8b71f51b9117bc631cc6b408196864d', 'NICOLASP', NULL, NULL, 0, '2023-11-30 11:52:47', '2800:bf0:82d0:1093:9580:7a8:cb68:c74', NULL, 'a:1:{s:8:\"language\";s:2:\"en\";}', '', 0, '2023-09-14 10:24:33', NULL);
 
 -- --------------------------------------------------------
 
@@ -27009,7 +28780,7 @@ CREATE TABLE `user_group` (
   `sort_order` int(11) NOT NULL DEFAULT 0,
   `status` tinyint(3) UNSIGNED NOT NULL DEFAULT 1,
   `permission` text NOT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `user_group`
@@ -27037,7 +28808,7 @@ CREATE TABLE `user_to_store` (
   `store_id` int(10) UNSIGNED NOT NULL DEFAULT 1,
   `status` tinyint(3) UNSIGNED NOT NULL DEFAULT 1,
   `sort_order` int(11) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 --
 -- Volcado de datos para la tabla `user_to_store`
@@ -27055,39 +28826,45 @@ INSERT INTO `user_to_store` (`u2s_id`, `user_id`, `store_id`, `status`, `sort_or
 (36, 3, 3, 1, 0),
 (37, 1, 3, 1, 0),
 (38, 2, 3, 1, 0),
-(42, 9, 1, 1, 0),
-(43, 9, 2, 1, 0),
-(44, 9, 3, 1, 0),
-(49, 10, 3, 1, 0),
 (50, 3, 4, 1, 0),
 (51, 1, 4, 1, 0),
 (52, 2, 4, 1, 0),
-(53, 11, 1, 1, 0),
-(54, 11, 2, 1, 0),
-(55, 11, 3, 1, 0),
-(56, 11, 4, 1, 0),
-(57, 5, 1, 1, 0),
-(58, 5, 2, 1, 0),
-(59, 5, 3, 1, 0),
-(60, 5, 4, 1, 0),
 (65, 3, 5, 1, 0),
 (66, 1, 5, 1, 0),
 (67, 2, 5, 1, 0),
 (71, 6, 2, 0, 0),
-(72, 14, 1, 1, 0),
-(73, 14, 2, 1, 0),
-(74, 14, 3, 1, 0),
-(75, 14, 4, 1, 0),
-(76, 14, 5, 1, 0),
-(77, 8, 2, 1, 0),
-(78, 8, 5, 1, 0),
 (79, 15, 1, 1, 0),
 (80, 15, 2, 1, 0),
 (81, 15, 3, 1, 0),
 (82, 15, 4, 1, 0),
 (83, 15, 5, 1, 0),
 (84, 13, 5, 0, 0),
-(85, 12, 2, 0, 0);
+(89, 14, 1, 0, 0),
+(90, 14, 2, 0, 0),
+(91, 14, 3, 0, 0),
+(92, 14, 4, 0, 0),
+(93, 14, 5, 0, 0),
+(94, 12, 2, 0, 0),
+(95, 11, 1, 0, 0),
+(96, 11, 2, 0, 0),
+(97, 11, 3, 0, 0),
+(98, 11, 4, 0, 0),
+(99, 10, 3, 0, 0),
+(100, 9, 1, 0, 0),
+(101, 9, 2, 0, 0),
+(102, 9, 3, 0, 0),
+(103, 8, 2, 0, 0),
+(104, 8, 5, 0, 0),
+(105, 5, 1, 0, 0),
+(106, 5, 2, 0, 0),
+(107, 5, 3, 0, 0),
+(108, 5, 4, 0, 0),
+(109, 3, 6, 1, 0),
+(110, 1, 6, 1, 0),
+(111, 2, 6, 1, 0),
+(112, 3, 7, 1, 0),
+(113, 1, 7, 1, 0),
+(114, 2, 7, 1, 0);
 
 -- --------------------------------------------------------
 
@@ -27101,7 +28878,7 @@ CREATE TABLE `_box_to_store_` (
   `store_id` int(10) UNSIGNED NOT NULL DEFAULT 1,
   `status` tinyint(3) UNSIGNED NOT NULL DEFAULT 1,
   `sort_order` int(11) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -27115,7 +28892,7 @@ CREATE TABLE `_brand_to_store_` (
   `store_id` int(10) UNSIGNED NOT NULL DEFAULT 1,
   `status` tinyint(1) NOT NULL DEFAULT 1,
   `sort_order` int(11) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -27129,7 +28906,7 @@ CREATE TABLE `_category_to_store_` (
   `store_id` int(10) UNSIGNED NOT NULL DEFAULT 1,
   `status` tinyint(3) UNSIGNED NOT NULL DEFAULT 1,
   `sort_order` int(11) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -27143,7 +28920,7 @@ CREATE TABLE `_college_to_store_` (
   `store_id` int(10) UNSIGNED NOT NULL DEFAULT 1,
   `status` tinyint(3) UNSIGNED NOT NULL DEFAULT 1,
   `sort_order` int(11) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -27157,7 +28934,7 @@ CREATE TABLE `_currency_to_store_` (
   `store_id` int(10) UNSIGNED NOT NULL DEFAULT 1,
   `status` tinyint(1) NOT NULL DEFAULT 1,
   `sort_order` int(11) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -27171,7 +28948,7 @@ CREATE TABLE `_pmethod_to_store_` (
   `store_id` int(10) UNSIGNED NOT NULL DEFAULT 1,
   `status` tinyint(1) NOT NULL DEFAULT 1,
   `sort_order` int(11) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 -- --------------------------------------------------------
 
@@ -27185,7 +28962,7 @@ CREATE TABLE `_unit_to_store_` (
   `store_id` int(10) UNSIGNED NOT NULL,
   `status` tinyint(3) UNSIGNED NOT NULL DEFAULT 1,
   `sort_order` int(11) NOT NULL DEFAULT 0
-) ENGINE=InnoDB DEFAULT CHARSET=utf8 COLLATE=utf8_swedish_ci;
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb3 COLLATE=utf8mb3_swedish_ci;
 
 --
 -- Índices para tablas volcadas
@@ -27742,19 +29519,19 @@ ALTER TABLE `bank_accounts`
 -- AUTO_INCREMENT de la tabla `bank_account_to_store`
 --
 ALTER TABLE `bank_account_to_store`
-  MODIFY `ba2s` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `ba2s` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `bank_transaction_info`
 --
 ALTER TABLE `bank_transaction_info`
-  MODIFY `info_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2287;
+  MODIFY `info_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2443;
 
 --
 -- AUTO_INCREMENT de la tabla `bank_transaction_price`
 --
 ALTER TABLE `bank_transaction_price`
-  MODIFY `price_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2287;
+  MODIFY `price_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2443;
 
 --
 -- AUTO_INCREMENT de la tabla `boxes`
@@ -27796,13 +29573,13 @@ ALTER TABLE `currency`
 -- AUTO_INCREMENT de la tabla `customers`
 --
 ALTER TABLE `customers`
-  MODIFY `customer_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=407;
+  MODIFY `customer_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=413;
 
 --
 -- AUTO_INCREMENT de la tabla `customer_to_store`
 --
 ALTER TABLE `customer_to_store`
-  MODIFY `c2s_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=415;
+  MODIFY `c2s_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=423;
 
 --
 -- AUTO_INCREMENT de la tabla `customer_transactions`
@@ -27904,7 +29681,7 @@ ALTER TABLE `loan_payments`
 -- AUTO_INCREMENT de la tabla `login_logs`
 --
 ALTER TABLE `login_logs`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=888;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1057;
 
 --
 -- AUTO_INCREMENT de la tabla `mail_sms_tag`
@@ -27916,7 +29693,7 @@ ALTER TABLE `mail_sms_tag`
 -- AUTO_INCREMENT de la tabla `payments`
 --
 ALTER TABLE `payments`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2039;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2161;
 
 --
 -- AUTO_INCREMENT de la tabla `pmethods`
@@ -27940,7 +29717,7 @@ ALTER TABLE `pos_templates`
 -- AUTO_INCREMENT de la tabla `pos_template_to_store`
 --
 ALTER TABLE `pos_template_to_store`
-  MODIFY `pt2s` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=7;
+  MODIFY `pt2s` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=9;
 
 --
 -- AUTO_INCREMENT de la tabla `printers`
@@ -27952,7 +29729,7 @@ ALTER TABLE `printers`
 -- AUTO_INCREMENT de la tabla `printer_to_store`
 --
 ALTER TABLE `printer_to_store`
-  MODIFY `p2s_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `p2s_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `products`
@@ -27982,31 +29759,31 @@ ALTER TABLE `product_to_store`
 -- AUTO_INCREMENT de la tabla `purchase_info`
 --
 ALTER TABLE `purchase_info`
-  MODIFY `info_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=292;
+  MODIFY `info_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=319;
 
 --
 -- AUTO_INCREMENT de la tabla `purchase_item`
 --
 ALTER TABLE `purchase_item`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=813;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=859;
 
 --
 -- AUTO_INCREMENT de la tabla `purchase_logs`
 --
 ALTER TABLE `purchase_logs`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=278;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=282;
 
 --
 -- AUTO_INCREMENT de la tabla `purchase_payments`
 --
 ALTER TABLE `purchase_payments`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=480;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=484;
 
 --
 -- AUTO_INCREMENT de la tabla `purchase_price`
 --
 ALTER TABLE `purchase_price`
-  MODIFY `price_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=292;
+  MODIFY `price_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=319;
 
 --
 -- AUTO_INCREMENT de la tabla `purchase_returns`
@@ -28054,25 +29831,25 @@ ALTER TABLE `return_items`
 -- AUTO_INCREMENT de la tabla `selling_info`
 --
 ALTER TABLE `selling_info`
-  MODIFY `info_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1870;
+  MODIFY `info_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1992;
 
 --
 -- AUTO_INCREMENT de la tabla `selling_item`
 --
 ALTER TABLE `selling_item`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3569;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3778;
 
 --
 -- AUTO_INCREMENT de la tabla `selling_price`
 --
 ALTER TABLE `selling_price`
-  MODIFY `price_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1870;
+  MODIFY `price_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1992;
 
 --
 -- AUTO_INCREMENT de la tabla `sell_logs`
 --
 ALTER TABLE `sell_logs`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1870;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1992;
 
 --
 -- AUTO_INCREMENT de la tabla `settings`
@@ -28102,7 +29879,7 @@ ALTER TABLE `sms_setting`
 -- AUTO_INCREMENT de la tabla `stores`
 --
 ALTER TABLE `stores`
-  MODIFY `store_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+  MODIFY `store_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT de la tabla `suppliers`
@@ -28114,7 +29891,7 @@ ALTER TABLE `suppliers`
 -- AUTO_INCREMENT de la tabla `supplier_to_store`
 --
 ALTER TABLE `supplier_to_store`
-  MODIFY `s2s_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=48;
+  MODIFY `s2s_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=71;
 
 --
 -- AUTO_INCREMENT de la tabla `taxrates`
@@ -28126,13 +29903,13 @@ ALTER TABLE `taxrates`
 -- AUTO_INCREMENT de la tabla `transfers`
 --
 ALTER TABLE `transfers`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT de la tabla `transfer_items`
 --
 ALTER TABLE `transfer_items`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=38;
 
 --
 -- AUTO_INCREMENT de la tabla `units`
@@ -28156,7 +29933,7 @@ ALTER TABLE `user_group`
 -- AUTO_INCREMENT de la tabla `user_to_store`
 --
 ALTER TABLE `user_to_store`
-  MODIFY `u2s_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=86;
+  MODIFY `u2s_id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=115;
 
 --
 -- AUTO_INCREMENT de la tabla `_box_to_store_`
