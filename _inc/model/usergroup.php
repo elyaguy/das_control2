@@ -50,7 +50,8 @@ class ModelUsergroup extends Model
 		$sql = "SELECT * FROM `user_group` WHERE 1=1";
 
 		if (user_id() != 1) {
-			$sql .= ' AND `group_id` not in(1,2,3)';
+			// $sql .= ' AND `group_id` not in(1,2,3)';
+			$sql .= ' AND `group_id` not in(1,2)';
 		}
 
 		if (isset($data['filter_name'])) {
