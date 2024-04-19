@@ -108,8 +108,8 @@ class ModelStore extends Model
 
 	public function getStores($data = array())
 	{
-		$sql = "SELECT * FROM `stores` WHERE `status` = ? ";
-		$statement->execute(array(1));
+		$sql = "SELECT * FROM `stores` ";
+		// $statement->execute(array(1));
 
 		if (isset($data['filter_name'])) {
 			$sql .= " AND `name` LIKE '" . $data['filter_name'] . "%'";
