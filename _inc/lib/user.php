@@ -182,8 +182,8 @@ class User
 	{
 		$user_id = $user_id ? $user_id : $this->getId();
 
-		$statement = $this->db->prepare("SELECT `s`.* FROM `stores` s LEFT JOIN `user_to_store` u2s ON (`s`.`store_id` = `u2s`.`store_id`) WHERE `user_id` = ?");
-		$statement->execute(array($user_id));
+		$statement = $this->db->prepare("SELECT `s`.* FROM `stores` s LEFT JOIN `user_to_store` u2s ON (`s`.`store_id` = `u2s`.`store_id`) WHERE `user_id` = ? AND `s`.`status` = ?");
+		$statement->execute(array($user_id,1));
 
 		return $statement->fetchAll(PDO::FETCH_ASSOC);
 

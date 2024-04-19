@@ -248,8 +248,8 @@ class ModelUser extends Model
 
 	public function getBelongsStore($id)
 	{
-		$statement = $this->db->prepare("SELECT * FROM `user_to_store` WHERE `user_id` = ?");
-		$statement->execute(array($id));
+		$statement = $this->db->prepare("SELECT `user_to_store`.* FROM `user_to_store` LEFT JOIN `user_to_store` u2s ON (`user_to_store`.`store_id` = `u2s`.`store_id`) WHERE `user_to_store`.`user_id` = ? AND `u2s`.`status` = ? ");
+		$statement->execute(array($id,1));
 		return $statement->fetchAll(PDO::FETCH_ASSOC);
 	}
 
