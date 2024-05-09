@@ -29,49 +29,58 @@ include ("../../_init.php");
 			</div>
 			<div class="table-responsive">
 				<table class="table table-bordered table-condensed">
+				<thead>
+							<tr class="bg-gray">
+								<th class="text-center w-10">#</th>
+								<th class="w-50"><?php echo trans('label_product_name'); ?></th>
+								<th class="w-20"><?php echo trans('label_quantity'); ?></th>
+								<th class="text-center w-20"><?php echo trans('label_total'); ?></th>
+							</tr>
+						</thead>
 					<tbody>
 						<tr ng-repeat="items in order.items">
 							<td class="text-center w-10">
 								{{ $index+1 }}
 							</td>
-							<td class="w-70">{{ items.item_name }} (x{{ items.item_quantity | formatDecimal:2 }} {{ items.unitName }})</td>
+							<td class="w-50">{{ items.item_name }})</td>
+							<td class="w-20"> (x{{ items.item_quantity | formatDecimal:2 }} {{ items.unitName }})</td>
 							<td class="text-right w-20">{{ items.item_total | formatDecimal:2 }}</td>
 						</tr>
 					</tbody>
 					<tfoot>
 						<tr>
-							<th class="text-right w-60" colspan="2">
+							<th class="text-right w-60" colspan="3">
 								<?php echo trans('label_subtotal'); ?>
 							</th>
 							<td class="text-right w-40">{{ order.subtotal  | formatDecimal:2 }}</td>
 						</tr>
 						<tr>
-							<th class="text-right w-60"  colspan="2">
+							<th class="text-right w-60"  colspan="3">
 								<?php echo trans('label_discount'); ?> {{ discountType  == 'percentage' ? '('+discountAmount+'%)' : '' }}
 							</th>
 							<td class="text-right w-40" >{{ discountType  == 'percentage' ? (_percentage(totalAmount, discountAmount) | formatDecimal:2) : (discountAmount | formatDecimal:2) }}</td>
 						</tr>
 						<tr>
-							<th class="text-right w-60" colspan="2">
+							<th class="text-right w-60" colspan="3">
 								<?php echo trans('label_order_tax'); ?>
 							</th>
 							<td class="text-right w-40">{{ order.order_tax  | formatDecimal:2 }}</td>
 						</tr>
 						<tr>
-							<th class="text-right w-60"  colspan="2">
+							<th class="text-right w-60"  colspan="3">
 								<?php echo trans('label_shipping_charge'); ?> {{ shippingType  == 'percentage' ? '('+shippingAmount+'%)' : '' }}
 							</th>
 							<td class="text-right w-40" >{{ shippingType  == 'percentage' ? (_percentage(totalAmount, shippingAmount) | formatDecimal:2) : (shippingAmount | formatDecimal:2) }}</td>
 						</tr>
 						<tr>
-							<th class="text-right w-60"  colspan="2">
+							<th class="text-right w-60"  colspan="3">
 								<?php echo trans('label_others_charge'); ?>
 							</th>
 							<td class="text-right w-40" >{{ othersCharge | formatDecimal:2 }}</td>
 						</tr>
 						<?php if(INSTALLMENT && (user_group_id() == 1 || has_permission('access', 'create_installment'))):?>
 							<tr>
-								<th class="text-right w-60" colspan="2">
+								<th class="text-right w-60" colspan="3">
 									<?php echo trans('label_interest_amount'); ?>
 								</th>
 								<td class="text-right w-40">{{ installmentInterestAmount  | formatDecimal:2 }}</td>
@@ -86,7 +95,7 @@ include ("../../_init.php");
 						<!-- Payments end -->
 
 						<tr>
-							<th class="text-right w-60" colspan="2">
+							<th class="text-right w-60" colspan="3">
 								<?php echo trans('label_previous_due'); ?>
 							</th>
 							<input type="hidden" name="previous-due" value="{{ order.previous_due }}">
@@ -94,14 +103,14 @@ include ("../../_init.php");
 						</tr>
 
 						<tr>
-							<th class="text-right w-60 bg-gray" colspan="2">
+							<th class="text-right w-60 bg-gray" colspan="3">
 								<?php echo trans('label_payable_amount'); ?>
 								<small>({{ order.total_items }} items)</small>
 							</th>
 							<td class="text-right w-40 bg-gray">{{ order.payable_amount | formatDecimal:2 }}</td>
 						</tr>
 						<tr class="success">
-							<th class="text-right w-60" colspan="2">
+							<th class="text-right w-60" colspan="3">
 								<?php echo trans('label_previous_due_paid'); ?>
 							</th>
 							<input type="hidden" name="previous-due" value="{{ order.prev_due_paid }}">
@@ -110,19 +119,19 @@ include ("../../_init.php");
 
 						<!-- Payments start -->
 						<tr ng-repeat="payments in order.payments" class="{{ payments.type=='return' ? 'danger' : 'success' }}">
-							<th ng-show="payments.type=='due_paid'" class="text-right w-60" colspan="2"><small><i>Duepaid on</i></small> {{ payments.created_at }} <small><i>by {{ payments.by }}</i></small></th>
+							<th ng-show="payments.type=='due_paid'" class="text-right w-60" colspan="3"><small><i>Duepaid on</i></small> {{ payments.created_at }} <small><i>by {{ payments.by }}</i></small></th>
 							<td ng-show="payments.type=='due_paid'" class="text-right w-40">{{ payments.amount | formatDecimal:2 }}</td>
 
-							<th ng-show="payments.type=='sell'" class="text-right w-60" colspan="2"><small><i>Paid by</i></small> {{ payments.name }} <i>on</i> {{ payments.created_at }} <small><i>by {{ payments.by }}</i></small></th>
+							<th ng-show="payments.type=='sell'" class="text-right w-60" colspan="3"><small><i>Paid by</i></small> {{ payments.name }} <i>on</i> {{ payments.created_at }} <small><i>by {{ payments.by }}</i></small></th>
 							<td ng-show="payments.type=='sell'" class="text-right w-40">{{ payments.amount | formatDecimal:2 }}</td>
 
-							<th ng-show="payments.type=='return'" class="text-right w-60" colspan="2"><small><i>Return on</i></small> {{ payments.created_at }} <small><i>by {{ payments.by }}</i></small></th>
+							<th ng-show="payments.type=='return'" class="text-right w-60" colspan="3"><small><i>Return on</i></small> {{ payments.created_at }} <small><i>by {{ payments.by }}</i></small></th>
 							<td ng-show="payments.type=='return'" class="text-right w-40">{{ payments.amount | formatDecimal:2 }}</td>
 						</tr>
 						<!-- Payments end -->
 
 						<tr class="danger">
-							<th class="text-right w-60" colspan="2">
+							<th class="text-right w-60" colspan="3">
 								<?php echo trans('label_due'); ?>
 							</th>
 							<td class="text-right w-40">{{ order.due | formatDecimal:2 }}</td>
@@ -130,7 +139,7 @@ include ("../../_init.php");
 
 						<!-- Payments start -->
 						<tr ng-repeat="payments in order.payments" class="{{ 'success' }}">
-							<th ng-show="payments.type=='change'" class="text-right w-60" colspan="2"><small><i>Change on</i></small> {{ payments.created_at }} <small><i>by {{ payments.by }}</i></small></th>
+							<th ng-show="payments.type=='change'" class="text-right w-60" colspan="3"><small><i>Change on</i></small> {{ payments.created_at }} <small><i>by {{ payments.by }}</i></small></th>
 							<td ng-show="payments.type=='change'" class="text-right w-40">{{ payments.pos_balance | formatDecimal:2 }}</td>
 						</tr>
 						<!-- Payments end -->
@@ -164,7 +173,7 @@ include ("../../_init.php");
 							</tr>
 						</thead>
 						<tbody>
-							<tr ng-repeat="items in order.items">
+							<tr ng-repeat="items in order.items" ng-if="(items.item_quantity - items.return_quantity) > 0">
 								<td class="text-center w-10 bg-gray">
 									<input type="hidden" name="items[{{ items.item_id }}][item_id]" value="{{ items.item_id }}">
 									<input type="checkbox" name="items[{{ items.item_id }}][check]" value="1" style="width:20px;height:20px;">
