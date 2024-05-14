@@ -1,4 +1,5 @@
-<form id="create-customer-form" class="form-horizontal" action="customer.php" method="post" enctype="multipart/form-data">
+<form id="create-customer-form" class="form-horizontal" action="customer.php" method="post"
+  enctype="multipart/form-data">
   <input type="hidden" id="action_type" name="action_type" value="CREATE">
   <div class="box-body">
 
@@ -7,7 +8,9 @@
         <label for="customer_name">
           <?php echo sprintf(trans('label_name'), null); ?><i class="required">*</i>
         </label>
-        <input type="text" class="form-control" id="customer_name" value="<?php echo isset($request->post['customer_name']) ? $request->post['customer_name'] : null; ?>" name="customer_name" required>
+        <input type="text" class="form-control" id="customer_name"
+          value="<?php echo isset($request->post['customer_name']) ? $request->post['customer_name'] : null; ?>"
+          name="customer_name" required>
       </div>
     </div>
 
@@ -15,7 +18,9 @@
       <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
         <label for="customer_document">
           <?php echo sprintf(trans('label_document'), null); ?><i class="required">*</i> </label>
-        <input type="text" class="form-control" id="customer_document" value="<?php echo isset($request->post['customer_document']) ? $request->post['customer_document'] : null; ?>" name="customer_document" required>
+        <input type="text" class="form-control" id="customer_document"
+          value="<?php echo isset($request->post['customer_document']) ? $request->post['customer_document'] : null; ?>"
+          name="customer_document" required>
       </div>
     </div>
 
@@ -24,7 +29,9 @@
         <label for="customer_mobile">
           <?php echo sprintf(trans('label_phone'), null); ?>
         </label>
-        <input type="text" class="form-control" id="customer_mobile" value="<?php echo isset($request->post['customer_mobile']) ? $request->post['customer_mobile'] : null; ?>" name="customer_mobile">
+        <input type="text" class="form-control" id="customer_mobile"
+          value="<?php echo isset($request->post['customer_mobile']) ? $request->post['customer_mobile'] : null; ?>"
+          name="customer_mobile">
       </div>
     </div>
 
@@ -33,7 +40,8 @@
         <label for="customer_email">
           <?php echo sprintf(trans('label_email'), null); ?>
         </label>
-        <input type="email" class="form-control" id="customer_email" value="<?php echo unique_id(6); ?>@gmail.com" name="customer_email">
+        <input type="email" class="form-control" id="customer_email" value="<?php echo unique_id(6); ?>@gmail.com"
+          name="customer_email">
       </div>
     </div>
 
@@ -42,7 +50,9 @@
         <label for="customer_city">
           <?php echo sprintf(trans('label_city'), null); ?>
         </label>
-        <input type="text" class="form-control" id="customer_city" value="<?php echo isset($request->post['customer_city']) ? $request->post['customer_city'] : null; ?>" name="customer_city">
+        <input type="text" class="form-control" id="customer_city"
+          value="<?php echo isset($request->post['customer_city']) ? $request->post['customer_city'] : null; ?>"
+          name="customer_city">
       </div>
     </div>
 
@@ -50,9 +60,28 @@
       <div class="col-lg-6 col-md-6 col-sm-12 col-xs-12">
         <label for="customer_address">
           <?php echo sprintf(trans('label_address'), null); ?> </label>
-        <textarea class="form-control" id="customer_address" name="customer_address" value="<?php echo isset($request->post['customer_address']) ? $request->post['customer_address'] : null; ?>"></textarea>
+        <textarea class="form-control" id="customer_address" name="customer_address"
+          value="<?php echo isset($request->post['customer_address']) ? $request->post['customer_address'] : null; ?>"></textarea>
       </div>
     </div>
+
+
+    <?php if (user_group_id() == 1 || user_group_id() == 4): ?>
+      <div class="col-sm-12 store-selector">
+        <label>
+          <?php echo trans('label_apply_discount'); ?>
+        </label>
+        <div class="col-sm-12 store-selector">
+          <div class="checkbox selector">
+            <label>
+              <input type="checkbox" id="apply_discount" name="apply_discount" value="1" <?php if (isset($request->post['apply_discount']) && $request->post['apply_discount'] == '1')
+                echo 'checked'; ?>>
+              Si / No
+            </label>
+          </div>
+        </div>
+      </div>
+    <?php endif; ?>
 
     <div class="col-sm-12 store-selector">
       <label>
@@ -61,15 +90,17 @@
       <div class="col-sm-12 store-selector">
         <div class="checkbox selector">
           <label>
-            <input type="checkbox" onclick="$('input[name*=\'customer_store\']').prop('checked', this.checked);"> Seleccionar / Deseleccionar
+            <input type="checkbox" onclick="$('input[name*=\'customer_store\']').prop('checked', this.checked);">
+            Seleccionar / Deseleccionar
           </label>
         </div>
         <div class="filter-searchbox">
-          <input ng-model="search_store" class="form-control" type="text" id="search_store" placeholder="<?php echo trans('search'); ?>">
+          <input ng-model="search_store" class="form-control" type="text" id="search_store"
+            placeholder="<?php echo trans('search'); ?>">
         </div>
         <div class="well well-sm store-well">
           <div filter-list="search_store">
-            <?php foreach (get_stores() as $the_store) : ?>
+            <?php foreach (get_stores() as $the_store): ?>
               <div class="checkbox">
                 <label>
                   <input type="checkbox" name="customer_store[]" value="<?php echo $the_store['store_id']; ?>" <?php echo $the_store['store_id'] == store_id() ? ' checked' : null; ?>>
@@ -88,7 +119,9 @@
         <?php echo sprintf(trans('label_credit_balance'), null); ?>
       </label>
       <div class="col-sm-7">
-        <input type="text" class="form-control" id="credit_balance" value="0" name="credit_balance" onclick="this.select();" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;" onKeyUp="if(this.value<0){this.value='0';}">
+        <input type="text" class="form-control" id="credit_balance" value="0" name="credit_balance"
+          onclick="this.select();" onkeypress="return IsNumeric(event);" ondrop="return false;" onpaste="return false;"
+          onKeyUp="if(this.value<0){this.value='0';}">
       </div>
     </div>
 
@@ -99,7 +132,9 @@
         <?php echo sprintf(trans('label_date_of_birth'), null); ?>
       </label>
       <div class="col-sm-7">
-        <input type="date" class="form-control" id="dob" value="<?php echo isset($request->post['dob']) ? $request->post['dob'] : null; ?>" name="dob" autocomplete="off">
+        <input type="date" class="form-control" id="dob"
+          value="<?php echo isset($request->post['dob']) ? $request->post['dob'] : null; ?>" name="dob"
+          autocomplete="off">
       </div>
     </div>
 
@@ -129,11 +164,13 @@
         <?php echo sprintf(trans('label_age'), null); ?>
       </label>
       <div class="col-sm-7">
-        <input type="number" class="form-control" id="customer_age" value="<?php echo isset($request->post['customer_age']) ? $request->post['customer_age'] : null; ?>" name="customer_age" onKeyUp="if(this.value>140){this.value='140';}else if(this.value<0){this.value='0';}">
+        <input type="number" class="form-control" id="customer_age"
+          value="<?php echo isset($request->post['customer_age']) ? $request->post['customer_age'] : null; ?>"
+          name="customer_age" onKeyUp="if(this.value>140){this.value='140';}else if(this.value<0){this.value='0';}">
       </div>
     </div>
 
-    <?php if (get_preference('invoice_view') == 'indian_gst') : ?>
+    <?php if (get_preference('invoice_view') == 'indian_gst'): ?>
       <div class="form-group hidden">
         <label for="gtin">
           <?php echo trans('label_gtin'); ?>
@@ -148,7 +185,7 @@
 
 
 
-    <?php if (get_preference('invoice_view') == 'indian_gst') : ?>
+    <?php if (get_preference('invoice_view') == 'indian_gst'): ?>
       <div class="form-group hidden">
         <label for="customer_state">
           <?php echo sprintf(trans('label_state'), null); ?><i class="required">*</i>
@@ -157,13 +194,15 @@
           <?php echo stateSelector(isset($request->post['customer_state']) ? $request->post['customer_state'] : null, 'customer_state', 'customer_state'); ?>
         </div>
       </div>
-    <?php else : ?>
+    <?php else: ?>
       <div class="form-group hidden">
         <label for="customer_state">
           <?php echo sprintf(trans('label_state'), null); ?>
         </label>
         <div class="col-sm-7">
-          <input type="text" class="form-control" id="customer_state" value="<?php echo isset($request->post['customer_state']) ? $request->post['customer_state'] : null; ?>" name="customer_state">
+          <input type="text" class="form-control" id="customer_state"
+            value="<?php echo isset($request->post['customer_state']) ? $request->post['customer_state'] : null; ?>"
+            name="customer_state">
         </div>
       </div>
     <?php endif; ?>
@@ -184,10 +223,12 @@
       </label>
       <div class="col-sm-7">
         <select id="status" class="form-control" name="status">
-          <option <?php echo isset($request->post['status']) && $request->post['status'] == '1' ? 'selected' : null; ?> value="1">
+          <option <?php echo isset($request->post['status']) && $request->post['status'] == '1' ? 'selected' : null; ?>
+            value="1">
             <?php echo trans('text_active'); ?>
           </option>
-          <option <?php echo isset($request->post['status']) && $request->post['status'] == '0' ? 'selected' : null; ?> value="0">
+          <option <?php echo isset($request->post['status']) && $request->post['status'] == '0' ? 'selected' : null; ?>
+            value="0">
             <?php echo trans('text_inactive'); ?>
           </option>
         </select>
@@ -199,14 +240,17 @@
         <?php echo sprintf(trans('label_sort_order'), null); ?>
       </label>
       <div class="col-sm-7">
-        <input type="number" class="form-control" id="sort_order" value="<?php echo isset($request->post['sort_order']) ? $request->post['sort_order'] : 0; ?>" name="sort_order" required>
+        <input type="number" class="form-control" id="sort_order"
+          value="<?php echo isset($request->post['sort_order']) ? $request->post['sort_order'] : 0; ?>"
+          name="sort_order" required>
       </div>
     </div>
 
     <div class="form-group">
       <label></label>
       <div class="col-sm-6 col-sm-offset-5">
-        <button class="btn btn-info" id="create-customer-submit" type="submit" name="create-customer-submit" data-form="#create-customer-form" data-loading-text="Guardando...">
+        <button class="btn btn-info" id="create-customer-submit" type="submit" name="create-customer-submit"
+          data-form="#create-customer-form" data-loading-text="Guardando...">
           <span class="fa fa-fw fa-save"></span>
           <?php echo trans('button_save'); ?>
         </button>

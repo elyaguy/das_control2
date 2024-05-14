@@ -9,12 +9,13 @@
 
   <div class="box-body">
 
-  <div class="">
+    <div class="">
       <div class="col-sm-12">
         <label for="customer_name">
           <?php echo sprintf(trans('label_name'), null); ?><i class="required">*</i>
         </label>
-        <input type="text" class="form-control" id="customer_name" value="<?php echo $customer['customer_name']; ?>" name="customer_name" required>
+        <input type="text" class="form-control" id="customer_name" value="<?php echo $customer['customer_name']; ?>"
+          name="customer_name" required>
       </div>
     </div>
 
@@ -23,7 +24,8 @@
         <label for="customer_document">
           <?php echo trans('label_document'); ?><i class="required">*</i>
         </label>
-        <input type="text" class="form-control" id="customer_document" value="<?php echo $customer['customer_document']; ?>" name="customer_document">
+        <input type="text" class="form-control" id="customer_document"
+          value="<?php echo $customer['customer_document']; ?>" name="customer_document">
       </div>
     </div>
 
@@ -32,7 +34,8 @@
         <label for="customer_mobile">
           <?php echo trans('label_phone'); ?>
         </label>
-        <input type="text" class="form-control" id="customer_mobile" value="<?php echo $customer['customer_mobile']; ?>" name="customer_mobile">
+        <input type="text" class="form-control" id="customer_mobile" value="<?php echo $customer['customer_mobile']; ?>"
+          name="customer_mobile">
       </div>
     </div>
 
@@ -42,7 +45,8 @@
         <label for="customer_email">
           <?php echo sprintf(trans('label_email'), null); ?>
         </label>
-        <input type="email" class="form-control" id="customer_email" value="<?php echo $customer['customer_email']; ?>" name="customer_email">
+        <input type="email" class="form-control" id="customer_email" value="<?php echo $customer['customer_email']; ?>"
+          name="customer_email">
       </div>
     </div>
 
@@ -51,7 +55,8 @@
         <label for="customer_city">
           <?php echo sprintf(trans('label_city'), null); ?>
         </label>
-        <input type="text" class="form-control" id="customer_city" value="<?php echo $customer['customer_city']; ?>" name="customer_city">
+        <input type="text" class="form-control" id="customer_city" value="<?php echo $customer['customer_city']; ?>"
+          name="customer_city">
       </div>
     </div>
 
@@ -76,11 +81,27 @@
         <label for="customer_address">
           <?php echo sprintf(trans('label_address'), null); ?>
         </label>
-        <textarea class="form-control" id="customer_address" name="customer_address"><?php echo $customer['customer_address']; ?></textarea>
+        <textarea class="form-control" id="customer_address"
+          name="customer_address"><?php echo $customer['customer_address']; ?></textarea>
       </div>
     </div>
 
-
+    <?php if (user_group_id() == 1 || user_group_id() == 4): ?>
+      <div class="col-sm-12 store-selector">
+        <label>
+          <?php echo trans('label_apply_discount'); ?><i></i>
+        </label>
+        <div class="col-sm-12 store-selector">
+          <div class="checkbox selector">
+            <label>
+              <input type="checkbox" id="apply_discount" name="apply_discount" value="1" <?php if ($customer['apply_discount'])
+                echo 'checked'; ?>>
+              Si / No
+            </label>
+          </div>
+        </div>
+      </div>
+    <?php endif; ?>
 
     <div class="col-sm-12 store-selector">
       <label>
@@ -89,15 +110,17 @@
       <div class="col-sm-12 store-selector">
         <div class="checkbox selector">
           <label>
-            <input type="checkbox" onclick="$('input[name*=\'customer_store\']').prop('checked', this.checked);"> Seleccionar / Deseleccionar
+            <input type="checkbox" onclick="$('input[name*=\'customer_store\']').prop('checked', this.checked);">
+            Seleccionar / Deseleccionar
           </label>
         </div>
         <div class="filter-searchbox">
-          <input ng-model="search_store" class="form-control" type="text" id="search_store" placeholder="<?php echo trans('search'); ?>">
+          <input ng-model="search_store" class="form-control" type="text" id="search_store"
+            placeholder="<?php echo trans('search'); ?>">
         </div>
         <div class="well well-sm store-well">
           <div filter-list="search_store">
-            <?php foreach (get_stores() as $the_store) : ?>
+            <?php foreach (get_stores() as $the_store): ?>
               <div class="checkbox">
                 <label>
                   <input type="checkbox" name="customer_store[]" value="<?php echo $the_store['store_id']; ?>" <?php echo in_array($the_store['store_id'], $customer['stores']) ? 'checked' : null; ?>>
@@ -120,7 +143,8 @@
         <?php echo sprintf(trans('label_date_of_birth'), null); ?>
       </label>
       <div class="col-sm-7">
-        <input type="date" class="form-control" id="dob" value="<?php echo $customer['dob']; ?>" name="dob" autocomplete="off">
+        <input type="date" class="form-control" id="dob" value="<?php echo $customer['dob']; ?>" name="dob"
+          autocomplete="off">
       </div>
     </div>
 
@@ -145,11 +169,12 @@
         <?php echo sprintf(trans('label_age'), null); ?>
       </label>
       <div class="col-sm-7">
-        <input type="number" class="form-control" id="customer_age" value="<?php echo $customer['customer_age']; ?>" name="customer_age" onKeyUp="if(this.value>140){this.value='140';}else if(this.value<0){this.value='0';}">
+        <input type="number" class="form-control" id="customer_age" value="<?php echo $customer['customer_age']; ?>"
+          name="customer_age" onKeyUp="if(this.value>140){this.value='140';}else if(this.value<0){this.value='0';}">
       </div>
     </div>
 
-    <?php if (get_preference('invoice_view') == 'indian_gst') : ?>
+    <?php if (get_preference('invoice_view') == 'indian_gst'): ?>
       <div class=" hidden">
         <label for="gtin">
           <?php echo trans('label_gtin'); ?>
@@ -162,7 +187,7 @@
 
 
 
-    <?php if (get_preference('invoice_view') == 'indian_gst') : ?>
+    <?php if (get_preference('invoice_view') == 'indian_gst'): ?>
       <div class=" hidden">
         <label for="customer_state">
           <?php echo sprintf(trans('label_state'), null); ?>
@@ -171,13 +196,14 @@
           <?php echo stateSelector($customer['customer_state'], 'customer_state', 'customer_state'); ?>
         </div>
       </div>
-    <?php else : ?>
+    <?php else: ?>
       <div class=" hidden">
         <label for="customer_state">
           <?php echo sprintf(trans('label_state'), null); ?>
         </label>
         <div class="col-sm-7">
-          <input type="text" class="form-control" id="customer_state" value="<?php echo $customer['customer_state']; ?>" name="customer_state">
+          <input type="text" class="form-control" id="customer_state" value="<?php echo $customer['customer_state']; ?>"
+            name="customer_state">
         </div>
       </div>
     <?php endif; ?>
@@ -197,14 +223,16 @@
         <?php echo sprintf(trans('label_sort_order'), null); ?>
       </label>
       <div class="col-sm-7">
-        <input type="number" class="form-control" id="sort_order" value="<?php echo $customer['sort_order']; ?>" name="sort_order">
+        <input type="number" class="form-control" id="sort_order" value="<?php echo $customer['sort_order']; ?>"
+          name="sort_order">
       </div>
     </div>
 
     <div class="">
       <label for="customer_address"></label>
       <div class="col-sm-6 col-sm-offset-5">
-        <button id="customer-update" data-form="#customer-form" data-datatable="#customer-customer-list" class="btn btn-block btn-info" name="btn_edit_customer" data-loading-text="Actualizando Espera..!">
+        <button id="customer-update" data-form="#customer-form" data-datatable="#customer-customer-list"
+          class="btn btn-block btn-info" name="btn_edit_customer" data-loading-text="Actualizando Espera..!">
           <span class="fa fa-fw fa-pencil"></span>
           <?php echo trans('button_update'); ?>
         </button>

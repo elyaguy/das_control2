@@ -18,8 +18,10 @@ class ModelCustomer extends Model
 	{
 		$gtin = isset($data['gtin']) ? $data['gtin'] : '';
 		$customer_state = isset($data['customer_state']) ? $data['customer_state'] : '';
-    	$statement = $this->db->prepare("INSERT INTO `customers` (customer_name, customer_document, dob, customer_email, customer_mobile, customer_sex, customer_age, gtin, customer_address, customer_city, customer_state, customer_country, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
-    	$statement->execute(array($data['customer_name'],$data['customer_document'], date('Y-m-d',strtotime($data['dob'])), $data['customer_email'], $data['customer_mobile'], $data['customer_sex'], $data['customer_age'], $gtin, $data['customer_address'], $data['customer_city'], $customer_state, $data['customer_country'], date_time()));
+		$apply_discount = isset($data['apply_discount']) && $data['apply_discount'] == '1' ? '1' : '0';
+
+    	$statement = $this->db->prepare("INSERT INTO `customers` (customer_name, customer_document, dob, customer_email, customer_mobile, customer_sex, customer_age, gtin, customer_address, customer_city, customer_state, customer_country, apply_discount, created_at) VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)");
+    	$statement->execute(array($data['customer_name'],$data['customer_document'], date('Y-m-d',strtotime($data['dob'])), $data['customer_email'], $data['customer_mobile'], $data['customer_sex'], $data['customer_age'], $gtin, $data['customer_address'], $data['customer_city'], $customer_state, $data['customer_country'],$apply_discount, date_time()));
     	$customer_id = $this->db->lastInsertId();
 		if (isset($data['customer_store'])) {
 			foreach ($data['customer_store'] as $store_id) {
@@ -53,8 +55,10 @@ class ModelCustomer extends Model
 	{
 		$gtin = isset($data['gtin']) ? $data['gtin'] : '';
 		$customer_state = isset($data['customer_state']) ? $data['customer_state'] : '';
-    	$statement = $this->db->prepare("UPDATE `customers` SET `customer_name` = ?,`customer_document` = ?, `dob` = ?, `customer_email` = ?, `customer_mobile` = ?, `customer_sex` = ?, `customer_age` = ?, `gtin` = ?, `customer_address` = ?, `customer_city` = ?, `customer_state` = ?, `customer_country` = ? WHERE `customer_id` = ? ");
-    	$statement->execute(array($data['customer_name'],$data['customer_document'], date('Y-m-d',strtotime($data['dob'])), $data['customer_email'], $data['customer_mobile'], $data['customer_sex'], $data['customer_age'], $gtin, $data['customer_address'], $data['customer_city'], $customer_state, $data['customer_country'], $customer_id));
+		$apply_discount = isset($data['apply_discount']) && $data['apply_discount'] == '1' ? '1' : '0';
+
+    	$statement = $this->db->prepare("UPDATE `customers` SET `customer_name` = ?,`customer_document` = ?, `dob` = ?, `customer_email` = ?, `customer_mobile` = ?, `customer_sex` = ?, `customer_age` = ?, `gtin` = ?, `customer_address` = ?, `customer_city` = ?, `customer_state` = ?, `customer_country` = ?, `apply_discount` = ? WHERE `customer_id` = ? ");
+    	$statement->execute(array($data['customer_name'],$data['customer_document'], date('Y-m-d',strtotime($data['dob'])), $data['customer_email'], $data['customer_mobile'], $data['customer_sex'], $data['customer_age'], $gtin, $data['customer_address'], $data['customer_city'], $customer_state, $data['customer_country'], $apply_discount, $customer_id));
 
     	// Insert customer into store
     	if (isset($data['customer_store'])) {

@@ -73,6 +73,7 @@ window.angularApp.controller("PosController", [
         };
         $scope.error = false;
         $scope.isEditMode = false;
+        $scope.applyDiscount = true;
         $scope.invoiceId = null;
         $scope.orderData = {};
         $scope.billData = {};
@@ -158,6 +159,11 @@ window.angularApp.controller("PosController", [
                 var ob_info = pos_customer + "\n";
                 $scope.orderData.info = ob_info;
                 $scope.billData.info = ob_info;
+                $scope.applyDiscount = customer.apply_discount == 1 ? true : false;
+                
+                $scope.discountInput =  customer.apply_discount == 1 ? $scope.discountInput : 0;
+                // $scope.discountAmount =  customer.apply_discount == 1 ? true : false $scope.applyDiscount == true ? $scope.discountAmount : 0;
+                // console.log(customer); // Imprimir customer
                 $scope._calcTotalPayable();
             } else {
                 if (window.store.sound_effect == 1) {
@@ -348,7 +354,17 @@ window.angularApp.controller("PosController", [
         $scope.CustomerEditModal = function () {
             $scope.customer_name = $scope.customerName;
             $scope.customer_id = $scope.customerId;
-            CustomerEditModal($scope);
+            // CustomerEditModal($scope);
+
+            var modalInstance = CustomerEditModal($scope); // Guardamos la instancia del modal
+
+            modalInstance.result.then(function () { // Acción después de cerrar el modal
+                // Aquí puedes ejecutar lo que necesites después de que se cierre el modal
+                // console.log("Modal cerrado. ID del cliente actualizado:", $scope.customer_id);
+                // // Otras acciones aquí...
+                // window.toastr.error("Modal cerrado. ID del cliente actualizado:", $scope.customer_id, "ADVERTENCIA!");
+                $scope.addCustomer($scope.customer_id);
+            });
         };
 
         $("#category-search-select").on('select2:selecting', function (e) {
@@ -938,6 +954,7 @@ window.angularApp.controller("PosController", [
                 $scope.invoiceId = "";
                 $scope.invoiceNote = "";
                 $scope.hideCustomerDropdown = true;
+                $scope.applyDiscount = true;
                 $scope.taxInput = 0;
                 $scope.dueAmount = 0;
                 $scope.customerName = "";

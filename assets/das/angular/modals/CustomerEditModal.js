@@ -1,4 +1,4 @@
-window.angularApp.factory("CustomerEditModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $scope) {
+window.angularApp.factory("CustomerEditModal", ["API_URL", "window", "jQuery", "$http", "$uibModal", "$sce", "$rootScope", function (API_URL, window, $, $http, $uibModal, $sce, $rootScope) {
     return function(customer) {
         var customerId;
         var uibModalInstance = $uibModal.open({
@@ -102,17 +102,15 @@ window.angularApp.factory("CustomerEditModal", ["API_URL", "window", "jQuery", "
                     });
                 });
                 $scope.closeCustomerEditModal = function () {
-                    $uibModalInstance.dismiss("cancel");
+                    $uibModalInstance.close(customerId); // Pasar el ID del cliente
                 };
             },
-            scope: $scope,
+            scope: $rootScope, // Cambiado a $rootScope para evitar problemas de scope
             size: "md",
             backdrop  : "static",
             keyboard: true,
         });
 
-        uibModalInstance.result.catch(function () { 
-            uibModalInstance.close(); 
-        });
+        return uibModalInstance; // Devolver la instancia del modal
     };
 }]);

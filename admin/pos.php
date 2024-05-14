@@ -503,7 +503,7 @@ if ($order_printer_ids) {
 														<?php echo trans('label_discount'); ?>
 													</td>
 													<td class="text-right">
-														<input id="discount-input" ng-change="addDiscount()" onClick="this.select();" type="text" name="discount-amount" ng-model="discountInput" ondrop="return false;" onpaste="return false;" autocomplete="off">
+														<input id="discount-input" ng-change="addDiscount()" onClick="this.select();" type="text" name="discount-amount" ng-model="discountInput" ondrop="return false;" onpaste="return false;" autocomplete="off" ng-disabled="!applyDiscount" >
 													</td>
 													<td>
 														<?php echo trans('label_tax_amount'); ?> (%)
