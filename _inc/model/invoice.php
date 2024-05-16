@@ -753,14 +753,14 @@ class ModelInvoice extends Model
         // return $statement->rowCount();
 
         $statement = $this->db->prepare("SELECT SUM(`selling_item`.`item_total`) as total FROM `selling_info` 
-			LEFT JOIN `selling_price` ON (`selling_info`.`invoice_id` = `selling_price`.`invoice_id`) 
-            LEFT JOIN `selling_item` ON (`selling_info`.`invoice_id` = `selling_item`.`invoice_id`) 
+			INNER JOIN `selling_price` ON (`selling_info`.`invoice_id` = `selling_price`.`invoice_id`) 
+            INNER JOIN `selling_item` ON (`selling_info`.`invoice_id` = `selling_item`.`invoice_id`) 
             WHERE $where_query");
 
         if (user_group_id() == 6) {
             $statement = $this->db->prepare("SELECT SUM(`selling_item`.`item_purchase_price`) as total FROM `selling_info` 
-			LEFT JOIN `selling_price` ON (`selling_info`.`invoice_id` = `selling_price`.`invoice_id`) 
-            LEFT JOIN `selling_item` ON (`selling_info`.`invoice_id` = `selling_item`.`invoice_id`) 
+			INNER JOIN `selling_price` ON (`selling_info`.`invoice_id` = `selling_price`.`invoice_id`) 
+            INNER JOIN `selling_item` ON (`selling_info`.`invoice_id` = `selling_item`.`invoice_id`) 
             WHERE $where_query");
         }
 
@@ -802,13 +802,13 @@ class ModelInvoice extends Model
         // $statement->execute(array($store_id));
         // return $statement->rowCount();
         $statement = $this->db->prepare("SELECT SUM(`selling_item`.`item_total`) as total FROM `selling_info` 
-			LEFT JOIN `selling_price` ON (`selling_info`.`invoice_id` = `selling_price`.`invoice_id`) 
-			LEFT JOIN `selling_item` ON (`selling_info`.`invoice_id` = `selling_item`.`invoice_id`) 
+			INNER JOIN `selling_price` ON (`selling_info`.`invoice_id` = `selling_price`.`invoice_id`) 
+			INNER JOIN `selling_item` ON (`selling_info`.`invoice_id` = `selling_item`.`invoice_id`) 
 			WHERE $where_query");
         if (user_group_id() == 6) {
             $statement = $this->db->prepare("SELECT SUM(`selling_item`.`item_purchase_price`) as total FROM `selling_info` 
-			LEFT JOIN `selling_price` ON (`selling_info`.`invoice_id` = `selling_price`.`invoice_id`) 
-			LEFT JOIN `selling_item` ON (`selling_info`.`invoice_id` = `selling_item`.`invoice_id`) 
+			INNER JOIN `selling_price` ON (`selling_info`.`invoice_id` = `selling_price`.`invoice_id`) 
+			INNER JOIN `selling_item` ON (`selling_info`.`invoice_id` = `selling_item`.`invoice_id`) 
 			WHERE $where_query");
         }
         if ($store_id) {
